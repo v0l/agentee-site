@@ -1,4 +1,7 @@
 {
+  "100vrkpjg27": {
+    "defaultMessage": "Gerber, Bohrdateien, BOM, Placement und Fab-Notizen"
+  },
   "1013nohksnw": {
     "defaultMessage": "Eine Logik-Simulation kann ein Maß für eine Schnittstelle sein, die dann check schlägt, solange die Simulation einen Fehler hat:"
   },
@@ -7,6 +10,9 @@
   },
   "104fh86nhab": {
     "defaultMessage": "ein Via an derselben Stelle wie ein anderes Via seines Nets durch dasselbe Dielektrikum (zweimal gebohrt), gestapelt auf einem anderen Via an einer Ebene, wenn <code>stacked_microvias</code> aus ist oder außerhalb der Laminationsbau-Reihenfolge (das untere Via eines Stapels wird in einem späteren Schritt gebohrt als das obere), oder gestapelt mit einem Controlled-Depth-Via überhaupt"
+  },
+  "105xoy1i4vg": {
+    "defaultMessage": "5 mil"
   },
   "106v2549b6s": {
     "defaultMessage": "Die digitalen Teile eines Schematics direkt aus seiner Netlist simulieren: 74er-Serie-Modelle, Stimulation, Assertions, Setup- und Hold-Checks und ein VCD-Output."
@@ -50,6 +56,9 @@
   "10yitn8bo8u": {
     "defaultMessage": "Du hast keinen Draht gezeichnet. Eine Schaltung listet Nets als Pins auf, und agentee routet die Drähte auf dem 1,27-mm-Raster, wenn er sie zeichnet. Jeder Net hat einen <code>class</code>; ein Net, der in <code>Default</code> bleibt, ist eine Warnung, da der Class seine Track-Breite, seinen Abstand und seine Vias auf dem Board bestimmt."
   },
+  "111ha8z160m": {
+    "defaultMessage": "<code>fab</code> lehnt ab, solange das Layout Fehler enthält, damit ein Tag auf einem fehlerhaften Design fehlschlägt, statt Gerber zu versenden. Das Wasserzeichen in der Silk trägt den Commit, aus dem das Paket gebaut wurde; ein Build aus einem Baum mit nicht committeten Änderungen zeigt <code>-dirty</code>."
+  },
   "114e4kajgeq": {
     "defaultMessage": "8 ns"
   },
@@ -80,20 +89,35 @@
   "11icrfnkcy0": {
     "defaultMessage": "<code>agentee edit sch</code> schreibt die Datei für Sie, erhält Kommentare und Layout und prüft, was es geändert hat. Es verweigert einen Pin, ein Symbol oder eine Klasse, die nicht existieren, bevor es etwas schreibt, sodass ein Tippfehler nie zu einem neuen Net wird."
   },
+  "11ielj00el2": {
+    "defaultMessage": "agentee hat keine eigene Bauteilbibliothek. <code>agentee search</code> und <code>agentee import</code> lesen die Symbol- und Footprint-Bibliotheken von KiCad aus:"
+  },
   "11ik8rt3455": {
     "defaultMessage": "Trace-Breiten aus geschlossenen Formeln und GPU-Feldlösungen, coplanare RF-Leitungen, differentielle Paare, Längengleichung und Schnittstellen wie USB 3."
   },
   "11jm22r590b": {
     "defaultMessage": "jeder Footprint in seiner Position auf dem Board, solche auf der Unterseite werden zurück auf die Oberseite gedreht, Bohrungsversätze der Pads bleiben erhalten"
   },
+  "11jm8vdf8i9": {
+    "defaultMessage": "Releases"
+  },
   "11jmhootvzb": {
     "defaultMessage": "ein <code>[[fanouts]]</code>-Eintrag, der keinen Via platziert hat"
+  },
+  "11k385vc52h": {
+    "defaultMessage": "Tests und Benchmarks"
+  },
+  "11ne9kzx947": {
+    "defaultMessage": "90 Ohm +/-10 % diff"
   },
   "11oc1lqmrg6": {
     "defaultMessage": "Treiben Sie nur die Ports an, die Sie brauchen, mit <code>excite = [&quot;IN&quot;]</code>. Ein Cascade braucht alle Ports angetrieben, daher <code>excite</code> dort weglassen."
   },
   "11ofrkbbwe0": {
     "defaultMessage": "andere"
+  },
+  "11osxme6j78": {
+    "defaultMessage": "Ein Guide pro Designstufe, in der Reihenfolge, in der man sie trifft. Jeder ist für die Person geschrieben, die den Agent steuert, und für den Agent selbst: Jeder Befehl ist real und jeder Schlüssel ist in der Referenz."
   },
   "11sfpa2v5yp": {
     "defaultMessage": "Board"
@@ -155,6 +179,9 @@
   "12itoaqj6q7": {
     "defaultMessage": "Standardmäßig Millimeter, Einheitenstrings für alles andere, Y wächst nach unten und Rotation ist auf dem Bildschirm gegen den Uhrzeigersinn."
   },
+  "12l7h195o1h": {
+    "defaultMessage": "<code>usb2-hs</code>"
+  },
   "12nmfoozwbx": {
     "defaultMessage": "Ein Net mit einer Zone ist ein Plane-Net. <code>tie</code> gibt jedem SMD-Pad eines Plane-Nets einen kurzen Stummel und einen Via daneben, auf der Seite weg vom Bauteil, frei von jedem Pad und anderen Net. So sollen Ground- und Versorgungs-Pads eine Plane erreichen, statt Tracks dazwischen. Ein Pad, das bereits einen Via seines Nets in der Nähe hat, wird nicht angefasst, und ein Pad ohne legalen Platz wird unter <code>failed</code> aufgelistet."
   },
@@ -167,11 +194,17 @@
   "12ppthebbhq": {
     "defaultMessage": "2 Schichten"
   },
+  "12qj7i6hufa": {
+    "defaultMessage": "Skew"
+  },
   "12qk2f05us1": {
     "defaultMessage": "Dieses Net führt nirgendwohin"
   },
   "12s9t7y4ka5": {
     "defaultMessage": "Was die Fab bekommt"
+  },
+  "12sk5y6qioi": {
+    "defaultMessage": "Elektronikdesign für Coding-Agents. GPL-3.0-or-later."
   },
   "12viijf2302": {
     "defaultMessage": "15 ns"
@@ -203,11 +236,17 @@
   "13cjulq1dm2": {
     "defaultMessage": "nur dasselbe Bauteil beim anderen Händler und der vom Händler vorgeschlagene Ersatz"
   },
+  "13d1reysfze": {
+    "defaultMessage": "Siehe, was es gefunden hat:"
+  },
   "13e9gz5crub": {
     "defaultMessage": "Bauteil"
   },
   "13i17lzar2t": {
     "defaultMessage": "<code>unrouted</code>"
+  },
+  "13iw9e5zwmw": {
+    "defaultMessage": "Lernen"
   },
   "13kjnxwyh6d": {
     "defaultMessage": "<code>drill-PTH.drl</code>, <code>drill-NPTH.drl</code>"
@@ -226,6 +265,9 @@
   },
   "13swzzhh6wg": {
     "defaultMessage": "IPC-D-356A-Netlist für den elektrischen Test der unbestückten Leiterplatte durch die Fab, Spalten wie von KiCad geschrieben; Testpunkt-Pads sind Endpunkte mit dem Zugriffscode für die Prüfseite (<code>A01</code> oben, die Anzahl der Kupferschichten für unten, <code>A02</code> auf 2 Layern und <code>A08</code> auf 8), Vias sind abgedeckte (tented) Mittelpunkte, es sei denn, <code>[test] vias = true</code> macht sie für die Prüfseite zugänglich; der Zugriffscode eines nicht geprüften Vias folgt den Layern, die sein Kupfer erreicht (ein Backdrill entfernt seine Seite): <code>A00</code> durchgehend, <code>A01</code> von oben, die Nummer des untersten Layers von unten, die Nummer des ersten Layers für ein Buried-Via"
+  },
+  "13t5g5lhg38": {
+    "defaultMessage": "Ausgelassen und gemeldet: Tränen, Keepout-Bereiche und Schleifen in Edge.Cuts außerhalb des Umrisses. Eine Klasse, deren Tracks schmaler laufen als ihre Breite, nimmt die schmalste, da agentee die Breite als Mindestwert behandelt. Abstände werden mit der 0,5-um-Toleranz von KiCad geprüft."
   },
   "13telzv3cdy": {
     "defaultMessage": "<code>stitching-empty</code>"
@@ -278,11 +320,17 @@
   "14znaru0y31": {
     "defaultMessage": "Ein LNA, der HackRF Pro und zwei Logiksimulationen, alles einfache TOML."
   },
+  "1514tinqyr5": {
+    "defaultMessage": "<code>sheets = [...]</code> in einem Top-Schematic, Nets per Name verbunden"
+  },
   "1519g1avehv": {
     "defaultMessage": "Geschlossene Formen für eine erste Antwort, ein GPU-Feldlöser mit Maske und Kupferdicke für die Klassen, die zählen. Innerhalb von 0,5 % exakter Stripline-Referenzen."
   },
   "1528x7i9xv2": {
     "defaultMessage": "mechanisch, in einem Sub-Stack oder bis zu einer kontrollierten Tiefe (<code>drill_kind = &quot;controlled_depth&quot;</code>)"
+  },
+  "152h6ji8lvx": {
+    "defaultMessage": "Footprint"
   },
   "152usp03oi7": {
     "defaultMessage": "Eine Simulation des Layouts oder der Schaltung: FDTD, Kaskade, Kanal, PDN, DC Drop, thermisch oder logisch."
@@ -290,11 +338,17 @@
   "156bmxs5c35": {
     "defaultMessage": "ein Kondensator zwischen Versorgung und Masse, dessen Versorgungs-Pad weiter als <code>decoupling_distance</code> (3 mm) vom nächsten Pin eines ICs auf dieser Versorgung entfernt ist, 2,5 Mal so viel für Bulk-Kondensatoren über 1 uF"
   },
+  "158e1gx1ajq": {
+    "defaultMessage": "In Zwischenablage kopieren"
+  },
   "158t27rswc6": {
     "defaultMessage": "Eine Skill, die einen Agent lehrt, wie man eine Board mit agentee entwirft."
   },
   "15e7k0rgvag": {
     "defaultMessage": "12000 mil lang, 1 mm unreferenziert"
+  },
+  "15eva1g7wb9": {
+    "defaultMessage": "<code>agentee-3d</code>"
   },
   "15fdgx4pxgy": {
     "defaultMessage": "Eine FDTD-Vollwellensimulation eines Layouts auf der GPU mit lumped Ports auf Pads, die S-Parameter als JSON und Touchstone liefert."
@@ -308,8 +362,17 @@
   "15ot754w5ig": {
     "defaultMessage": "Die *.pcb.toml-Datei: Platzierungen, Spuren, Vias, Fanouts, Stitching, Zonen, Ausschnitte, Seide, Kunst, Testzugang und das Versions-Wasserzeichen."
   },
+  "15rgega759b": {
+    "defaultMessage": "Die CLI und der MCP-Server"
+  },
+  "15wwozm2wan": {
+    "defaultMessage": "Befehle"
+  },
   "15zn057qfg3": {
     "defaultMessage": "Kupfer pro Layer, RS-274X mit X2-Dateiattributen, Zonenfüllungen als Regionen"
+  },
+  "163d98q67s1": {
+    "defaultMessage": "Sponsor"
   },
   "1674g4enex3": {
     "defaultMessage": "Thermik - agentee Referenz"
@@ -356,6 +419,9 @@
   "16zew98wao8": {
     "defaultMessage": "Simulieren"
   },
+  "17149dx9dau": {
+    "defaultMessage": "Zurückkehren"
+  },
   "173rxxfj3zm": {
     "defaultMessage": "Die Board mit demselben Aufbau bestellen: Wenn JLCPCB einen anderen Stackup verwendet, ist jede berechnete Impedanz falsch."
   },
@@ -365,6 +431,9 @@
   "1758zalpxdz": {
     "defaultMessage": "<code>min_pth_hole_to_copper</code>"
   },
+  "175stqyiend": {
+    "defaultMessage": "Ziel auf der Klasse setzen"
+  },
   "175whh65x27": {
     "defaultMessage": "KiCad-Vias behalten ihren Typ: <code>micro</code> wird zu einem Microvia, <code>blind</code> je nach Spanne zu einem Blind oder Buried Via, und jede unterschiedliche Kombination aus Bohrung, Pad, Spanne, Füllung und Backdrill wird zu einem Board-Typ <code>[[vias]]</code>. KiCad 9 speichert nur ein <code>tenting</code> pro Via (Solder Mask statt einer Via-Füllung, die weggelassen wird) und hat keinen Backdrill oder Tiefenbohrung. Die <code>filling</code>-, <code>capping</code>-, <code>covering</code>- und <code>plugging</code>-Attribute des neueren Formats werden auf das IPC-4761-<code>fill</code> abgebildet, und sein <code>backdrill</code> (von oben) sowie <code>tertiary_drill</code> (von unten) werden zu <code>backdrill</code> mit ihrer entsprechenden <code>size</code>; KiCad listet die Lagen auf, die der Backdrill entfernt, sodass <code>to</code> die Kupferschicht hinter der letzten davon ist. Keines von beiden hat ein Via mit kontrollierter Tiefe, sodass ein importiertes Blind Via mechanisch gebohrt wird: Setzen Sie <code>drill_kind = &quot;controlled_depth&quot;</code> für seinen Typ, wenn die Fab es nach Tiefe bohrt."
   },
@@ -373,6 +442,9 @@
   },
   "17c5ykcyq2w": {
     "defaultMessage": "eine verzinnte Pad-Lochwand näher als <code>min_inner_pth_hole_to_copper</code> an Kupfer eines anderen Nets auf einer inneren Schicht"
+  },
+  "17ep8apkx1n": {
+    "defaultMessage": "Für Agents"
   },
   "17ezqmt7nzf": {
     "defaultMessage": "Eine Skill ist eine <code>SKILL.md</code>-Datei, die der Agent lädt, wenn eine Aufgabe zu ihrer Beschreibung passt. Die agentee-Skill deckt die edit-, check- und render-Schleife ab, die Reihenfolge, in der ein Design aufgebaut wird, die Fallstricke im Dateiformat, wie man für Montage und Test platziert und wie man Simulationen iteriert, ohne Stunden an GPU-Zeit zu verschwenden."
@@ -509,6 +581,9 @@
   "19oa1h9gccs": {
     "defaultMessage": "Footprint-Platzierungen, Tracks (Bögen als kurze Segmente), Vias und Zonen, wobei die Zonenfüllungen von agentee gespeichert werden, sowie die Silk- und Fab-Texte und Linien auf dem Board, wobei <code>${TITLE}</code>, <code>${DATE}</code> und die Textvariablen des Projekts ausgefüllt werden"
   },
+  "19v6u3ih0rb": {
+    "defaultMessage": "Die Design-Regel-Prüfungen"
+  },
   "19xg7e5ysfo": {
     "defaultMessage": "kind"
   },
@@ -526,6 +601,9 @@
   },
   "1ad670ounye": {
     "defaultMessage": "<code>*.sim.toml</code>"
+  },
+  "1adfjatvsb9": {
+    "defaultMessage": "Check meldet Pins in zwei Nets, Pins ohne Net, Single-Pin-Nets, mehrere Ausgänge auf einem Net, Hand-Drähte, die einen Pin verfehlen oder einen Pin eines anderen Nets berühren, überlappende Bauteile, Footprints, deren Pads die Pins des Symbols nicht abdecken, und Signalpegel, wenn <code>rails</code> gesetzt ist. Jedes Net in der Netclass <code>Default</code> ist eine Warnung, ob es keine Klasse benennt oder <code>Default</code>: Die Klasse bestimmt die Breite, den Abstand, die Vias und die Routing-Reihenfolge des Nets, daher sollte jedes Net angeben, was es ist. Die Warnung braucht ein Board und ein Layout der Schematic; eine nur simulierte Schematic (wie <code>examples/logic</code>) überspringt sie. Vergeben Sie dem Board eine Klasse pro Net-Art (<code>Signal</code>, <code>Data</code>, <code>Clock</code>, <code>Analog</code>, <code>Ground</code>, <code>Power</code>, <code>RF</code>, Paare) und halten Sie <code>Default</code> als Fallback, den das Layout für Regeln verwendet, die keine Klasse abdeckt. <code>agentee show sch:lna</code> gibt die Position jedes Pins aus."
   },
   "1aiks5l81a4": {
     "defaultMessage": "gruppiert nach Wert, Footprint, den Feldern <code>mpn</code> und <code>lcsc</code>"
@@ -557,6 +635,9 @@
   "1azhkhgucpo": {
     "defaultMessage": "Funktion"
   },
+  "1b0vrenqfx8": {
+    "defaultMessage": "Dateiformat-Referenz"
+  },
   "1b13kbhrk28": {
     "defaultMessage": "<code>--sweep 10MHz,20GHz,21</code> (MCP <code>sweep</code>) fügt eine Verlusttabelle pro Frequenz hinzu: R, L, G, C, Z0 und dB pro Meter und pro Zoll, aufgeteilt in Leiter- und Dielektrikumverlust. Der Leiterverlust stammt aus Wheelers inkrementeller Induktivität, gelöst durch Zurückziehen jeder Kupferfläche im Feldlöser (innerhalb von 1 % der Wheeler-Stripline-Formel in Pozar), mit Hauttiefe aus geglühtem Kupfer und dem Gleichstromwiderstand, gemischt als sqrt(Rdc^2 + Rac^2). Dielektrika folgen dem kausalen Djordjevic-Sarkar-Modell, angepasst an <code>er</code> und <code>loss_tangent</code> jeder Schicht, genommen als 1-GHz-Werte. Die Kupferrauheit wird im Stackup gesetzt:"
   },
@@ -584,11 +665,17 @@
   "1be7w0ut22r": {
     "defaultMessage": "<code>hole-to-smd-pad</code>"
   },
+  "1beeh2o3o8y": {
+    "defaultMessage": "Die GPU-Feld-Solver: der 2D-Querschnitt und der 3D-FDTD auf wgpu"
+  },
   "1bezdaoksrx": {
     "defaultMessage": "Gleicht die Längen eines Layouts an: Meandert das kurze Net jedes Pairs über seine Skew-Grenze und jedes Match-Gruppen-Mitglied, das unter seinem Ziel liegt, auf den längsten Segmenten, wo die Bumps jedes andere Net frei lassen, und schreibt die Punkte zurück in die Tracks."
   },
   "1bezqmkqaxh": {
     "defaultMessage": "Ein Symbol zeichnen"
+  },
+  "1bhe5g5ojab": {
+    "defaultMessage": "<code>side</code> gibt an, von welcher Kante des Körpers der Pin herausragt. Ein <code>left</code>-Pin verläuft von <code>at</code> nach rechts zum Körper. Halten Sie Verbindungspunkte auf dem 1,27-mm-Raster (2,54 mm ist besser)."
   },
   "1bjoflyulvw": {
     "defaultMessage": "<code>hdi-6l-1n1</code>: 6 Schichten, 1+4+1, 0,8 mm, ein 0,07 mm 1080-Aufbaupräpreg auf jeder Seite eines Core-Sub-Stacks."
@@ -611,6 +698,9 @@
   "1c241d73ceu": {
     "defaultMessage": "Die Dateien sind das Design, und der Agent arbeitet daran. Der Viewer ist der Ort, an dem eine Person das beobachtet und eingreift. Er ist ein Fenster über dem Projektverzeichnis, das bei jeder Dateiänderung neu lädt."
   },
+  "1c8qdwsfopb": {
+    "defaultMessage": "Eintrag in der Symbolbibliothek"
+  },
   "1cd60lu2oqu": {
     "defaultMessage": "<code>and</code>, <code>or</code>, <code>xor</code>, <code>nand</code>, <code>nor</code>, <code>xnor</code>"
   },
@@ -626,6 +716,9 @@
   "1cim9n2z5u3": {
     "defaultMessage": "Eine Simulation (*.sim.toml) ausführen: FDTD, dc, thermal, cascade, channel, pdn oder logic"
   },
+  "1crpygvo2zk": {
+    "defaultMessage": "Gemacht für den Agent, den du bereits nutzt"
+  },
   "1cvepqsqieg": {
     "defaultMessage": "Wo ein Bauelement keine Daten hat, wird das Band auf den Bereich beschnitten, in dem jedes Bauelement welche hat, und eine Noise Figure außerhalb der Daten bleibt leer statt geschätzt."
   },
@@ -637,6 +730,12 @@
   },
   "1d2fjcit5ne": {
     "defaultMessage": "Familie"
+  },
+  "1d2oey8ec95": {
+    "defaultMessage": "Jede Plattform mit Rust {rust} oder neuer."
+  },
+  "1d7lpt90j0y": {
+    "defaultMessage": "Das Schematic ist eine Netlist, nicht Ihre Zeichnung: Das Schematic von KiCad wird nicht gelesen, daher werden Pin-Namen, die Symbolgrafik und die Blattstruktur nicht übernommen. Das reicht aus, um das Board zu prüfen, zu rendern, zu simulieren und zu fabrizieren, und um einen Agenten das Layout ändern zu lassen."
   },
   "1d81fwypnsg": {
     "defaultMessage": "Einen Bitstrom durch einen Kanal schicken und das Eye ablesen, die Impedanz einer Versorgungsschiene gegen ein Ziel prüfen und TDR-, Mixed-Mode- und Crosstalk-Analysen ausführen."
@@ -661,6 +760,9 @@
   },
   "1dj711ix5kg": {
     "defaultMessage": "Eine Fab und einen echten Stackup auswählen, eine Net-Klasse pro Net-Art definieren und Impedanz- und Stromziele setzen, damit check die Breiten löst."
+  },
+  "1djz69hnhap": {
+    "defaultMessage": "PCB-Design als Text, den dein Agent bearbeiten kann"
   },
   "1dko2ubm5ro": {
     "defaultMessage": "<code>*.pcb.toml</code>"
@@ -692,6 +794,9 @@
   "1e2w3cyhagj": {
     "defaultMessage": "Die Nummerierung in einer Reihe zählt die nachfolgenden Ziffern hoch (<code>A1</code>, <code>A2</code>, ...). <code>number_step = 2</code> zählt in Zweierschritten. Ein benutzerdefiniertes Pad ist das Anker-Rechteck aus <code>size</code> plus <code>points</code>, ein Polygon relativ zu <code>at</code> (setzen Sie <code>size = [0, 0]</code> für das Polygon allein)."
   },
+  "1e4w54pugyo": {
+    "defaultMessage": "Beispiele"
+  },
   "1e836jbfyt5": {
     "defaultMessage": "Leiterbahnen"
   },
@@ -701,8 +806,17 @@
   "1ef7h87ntk5": {
     "defaultMessage": "Als Nächstes:"
   },
+  "1efswn5f88": {
+    "defaultMessage": "der Fab-Code, <code>JLC06161H-1080</code> (Schichten, Dicke, Außen- und Innen-Kupfer, Prepreg)"
+  },
+  "1eggdrl15wl": {
+    "defaultMessage": "Der MCP-Server in Claude Code"
+  },
   "1ei93zd059m": {
     "defaultMessage": "<code>courtyard-hole</code>"
+  },
+  "1eivw0ku5ei": {
+    "defaultMessage": "Flip-Flops, Zähler und Shift-Register prüfen Setup und Hold an ihren getakteten Eingängen sowie Recovery und Removal an ihren asynchronen Resets. Bei einer Verletzung wechselt die Zelle auf x, wie es Verilog-Modelle tun, bis sie wieder sauber getaktet oder zurückgesetzt wird. <code>on_violation = &quot;keep&quot;</code> meldet die Verletzung und behält den abgetasteten Wert bei."
   },
   "1ejtgjvwl7w": {
     "defaultMessage": "nicht in der Tabelle: Capture-Pad, 0,075 mm Ring auf dem 0,1 mm Bohrungsdurchmesser"
@@ -712,6 +826,9 @@
   },
   "1emeed3d3o9": {
     "defaultMessage": "agentee.sh veröffentlicht seine Skills an der bekannten Adresse aus dem Entwurf <a>Agent Skills Discovery</a>, mit einem SHA-256-Digest, den ein Client vor dem Laden der Datei prüft."
+  },
+  "1eneqa5dk3d": {
+    "defaultMessage": "Zum Fab"
   },
   "1epmfd3eh8f": {
     "defaultMessage": "Die Platzierungsregeln sind Hinweise für die Position der Bauteile, standardmäßig Benachrichtigungen; erhöhen Sie sie mit <code>[drc] severity</code>. Ihre Schwellwerte liegen im Board:"
@@ -740,6 +857,9 @@
   "1eywfkaf0bc": {
     "defaultMessage": "Importe lesen die KiCad-Bibliotheken aus dem App-Bundle, das Installieren von KiCad reicht:"
   },
+  "1ezqjsb9oo0": {
+    "defaultMessage": "Anwenden"
+  },
   "1f0t6b2zw6y": {
     "defaultMessage": "Die Dateiformat-Referenz ausgeben"
   },
@@ -748,6 +868,12 @@
   },
   "1f35gwftya6": {
     "defaultMessage": "Der Cascade"
+  },
+  "1f3cehvkdmm": {
+    "defaultMessage": "<code>NAME.board.toml</code>"
+  },
+  "1f5rft9imus": {
+    "defaultMessage": "<code>*.fp.toml</code>, mit Pad-Zeilen statt einem Eintrag pro Pad"
   },
   "1f60bdocjtl": {
     "defaultMessage": "Footprints"
@@ -769,6 +895,9 @@
   },
   "1fe38ecoz7u": {
     "defaultMessage": "<code>polygon</code>"
+  },
+  "1ffb08z2ut9": {
+    "defaultMessage": "Ein Mensch bleibt im Loop"
   },
   "1fftm2g546y": {
     "defaultMessage": "ein Via-Loch näher als <code>min_hole_to_smd_pad</code> an ein SMD-Pad seines eigenen Nets (oder ohne Net), das es nicht berührt; Paste und Lot können darin fließen"
@@ -812,20 +941,32 @@
   "1g7lgzvnqhn": {
     "defaultMessage": "Neben dem Terminal des Agenten offen lassen. Jede Änderung, die der Agent mit <code>agentee edit</code> oder durch das Schreiben von TOML vornimmt, erscheint kurz darauf, zusammen mit den Check-Diagnosen dafür."
   },
+  "1g82t6696st": {
+    "defaultMessage": "2 mm unreferenziert"
+  },
   "1gbseyzf0v7": {
     "defaultMessage": "Routen"
   },
   "1geygj66je3": {
     "defaultMessage": "Kommen von KiCad - agentee-Anleitung"
   },
+  "1gg3gblzoqk": {
+    "defaultMessage": "Für ein Box-Symbol listen Sie Pins pro Seite auf und lassen agentee sie auf dem Raster platzieren und den Körper dimensionieren. Jeder Eintrag ist ein Pin oder <code>{ gap = N }</code>, um N leere Slots zu lassen."
+  },
   "1giigubulsc": {
     "defaultMessage": "Für jede Net Class und Routing-Schicht ermittelt es die Spur-Geometrie aus dem Stackup (äußere Schichten sind Mikrostrip, innere Schichten sind Stripline zwischen dem nächstgelegenen Kupfer oben und unten), dann die Impedanz (Hammerstad-Jensen-Mikrostrip, Wheeler-Stripline, konforme Abbildung geerdete koplanare Leitung mit der Kupferdicke und Seitenwänden, alles unveredelt; die koplanare Form liegt innerhalb von 4 % des Feldlösers von 0,08 mm bis 0,21 mm Core), die Breite, die das Ziel erfüllt, und die IPC-2221-Stromtragfähigkeit. <code>agentee show &lt;board&gt;</code> gibt alles als JSON aus."
+  },
+  "1gkg43isxpt": {
+    "defaultMessage": "agentee installieren"
   },
   "1gkjwxo8yds": {
     "defaultMessage": "agentee import board wandelt ein .kicad_pcb in eine Board-Spezifikation, ein Layout, einen Netlist-Schaltplan, Footprints und Symbole um."
   },
   "1gkrykf8k03": {
     "defaultMessage": "Die <code>layout engine</code>-Karte führt die Stufen von <code>agentee layout</code> (siehe <code>docs/layout-engine-2.md</code>) auf dem Layout aus, wie es im Fenster steht, einschließlich ungespeicherter Änderungen: <code>run</code> nimmt die Stufen von..bis, <code>run X only</code> führt eine neu aus, <code>stop</code> beendet den Lauf nach der laufenden Stufe. Bearbeitung wird während des Laufs pausiert. Das Ergebnis landet im Fenster wie jede andere Änderung, ungespeichert und einen Undo entfernt, mit der Zeit und dem Score jeder Stufe und den Score-Begriffen, die am stärksten gewichtet sind. <code>phases to run</code> und <code>settings</code> schreiben <code>[engine]</code> in das Layout (<code>phases</code>, <code>rounds</code>, <code>place_rounds</code>, <code>[engine.place] seed</code>, <code>[engine.access] via_in_pad</code>, <code>[engine.global]</code>, <code>[engine.detail]</code>), und <code>default</code> entfernt eine Einstellung wieder. Ein ausgewähltes Teil mit 16 oder mehr Pads hat <code>pinswap</code>, das Vertauschungen seiner I/Os wie <code>agentee pinswap</code> durchsucht und sie bei <code>write to the schematic</code> in die Schematic-Dateien schreibt."
+  },
+  "1gngryix2dn": {
+    "defaultMessage": "<strong>Unbekannte Keys sind Fehler.</strong> Ein Tippfehler in einem Key wird gemeldet, nicht ignoriert."
   },
   "1gprq72oekt": {
     "defaultMessage": "Die RF-Leitungen sind eine feldgelöste geerdete koplanare Klasse mit 50 Ohm auf der Top-Ebene über der In1.Cu-Ebene, wobei der danebenliegende Pour alle 2 mm an die Ebene gestitched wird. Ihr <code>DESIGN.md</code> dokumentiert, warum jedes Bauteil gewählt wurde, welche Chokes bis 4 GHz induktiv bleiben und welche Layout-Regeln der Schaltkreis benötigt."
@@ -865,6 +1006,9 @@
   },
   "1hfj1gylge8": {
     "defaultMessage": "Punkte für eine Track, die ein gerades Segment ersetzt und eine gegebene Länge als Trombone-Bumps auf eine Seite hinzufügt. Fügen Sie sie in die Punkte der Track ein."
+  },
+  "1hhhztm1751": {
+    "defaultMessage": "<code>agentee parts</code> preist die BOM bei Mouser und Farnell an und findet günstigere Bauteile, die Wert, Package, Rating und Dielektrikum beibehalten. <code>agentee export</code> schreibt das Board und jedes Bauteilmodell als ein STEP für das Gehäuse."
   },
   "1hi9eni5l8u": {
     "defaultMessage": "Aus dem Repository statt von der Website:"
@@ -920,8 +1064,14 @@
   "1i3ljprnq6x": {
     "defaultMessage": "1 mm unreferenziert"
   },
+  "1i41bnvnpt9": {
+    "defaultMessage": "<code>steps</code> sind <code>[time, level]</code>-Paare in Zeitreihenfolge, mit Leveln 0, 1, <code>&quot;x&quot;</code> und <code>&quot;z&quot;</code>."
+  },
   "1i6lgawz9o5": {
     "defaultMessage": "ICs und Steckverbinder erhalten nur dasselbe Bauteil beim anderen Distributor oder den vom Distributor vorgeschlagenen Ersatz. Schreiben Sie den Tausch in das <code>mpn</code> des Bauteils, nicht in die BOM, damit der nächste Lauf und das nächste Paket übereinstimmen."
+  },
+  "1i7pbxun3lv": {
+    "defaultMessage": "<code>NAME.pcb.toml</code>"
   },
   "1ibt1vgiieq": {
     "defaultMessage": "Das <a href=\"/examples/lna/\">LNA-Beispiel</a> ist so aufgebaut, und dieser Guide verwendet seine Dateien."
@@ -940,6 +1090,12 @@
   },
   "1iizjuyq8uc": {
     "defaultMessage": "Fab-Paket, BOM und Preise"
+  },
+  "1ijpgw6zy04": {
+    "defaultMessage": "Es gibt keine Systembibliotheken, gegen die gelinkt werden muss. Der Viewer lädt X11 oder Wayland zur Laufzeit, und die GPU-Solver greifen über wgpu auf Vulkan, Metal oder DirectX 12 zu."
+  },
+  "1ijvmou62qv": {
+    "defaultMessage": "Jede <code>*.sim.toml</code> ist ein Lauf mit einer Art. Die Solver laufen über wgpu auf Vulkan, Metal oder DirectX 12, schreiben ihre Ergebnisse neben die Spezifikation und check warnt, wenn ein Ergebnis veraltet ist."
   },
   "1ik7elrzp6d": {
     "defaultMessage": "Via-Typen - agentee Referenz"
@@ -971,11 +1127,20 @@
   "1j0p42i8nde": {
     "defaultMessage": "agentee auf Apple-Silicon- oder Intel-Macs installieren, auf die Bibliotheken innerhalb von KiCad.app zeigen lassen und die GPU-Solver auf Metal ausführen."
   },
+  "1j1kntpmedf": {
+    "defaultMessage": "Führe es nach jeder Änderung aus. Es beendet sich mit 1 bei Fehlern, passt also in einen Loop oder in CI, und benennt einen Wert, der durchgeht, wo es einen gibt."
+  },
+  "1j1ms4p35q": {
+    "defaultMessage": "Beispiele"
+  },
   "1j20dvv45z5": {
     "defaultMessage": "eine Shell im Projekt"
   },
   "1j92wp5xn8w": {
     "defaultMessage": "Die Lamination ist die Build-up-Sequenz: die Bohrschritte, die die Fab zwischen den Pressvorgängen in Herstellungsreihenfolge durchführt, jeweils mit einer Kupferspanne und einer Bohrungsart (<code>mechanical</code>, <code>laser</code> oder <code>controlled_depth</code>). Ein Via ist nur bohrbar, wenn seine Spanne und Bohrungsart mit einem Schritt übereinstimmen (ein <code>stacked</code> Microvia: wenn jeder Teilschritt des Stacks ein Laserschritt ist). Ein von einem Layout platziertes Via-Typ wird einmal durch die <code>via-lamination</code>-Regel des Layouts gemeldet, die seine Vias zählt und den zu korrigierenden Board-Eintrag (<code>vias[i]</code>) nennt; check meldet einen Via-Typ, den kein Layout platziert, als Board-Fehler. Der Router lässt ein solches Klassen-Via weg. Jedes listet die Spannen auf, die die Lamination bohrt."
+  },
+  "1jadp48fdt1": {
+    "defaultMessage": "Setup auf {platform}"
   },
   "1jbg409oomz": {
     "defaultMessage": "ein Box-Symbol pro Footprint mit einem Pin pro Pad-Nummer"
@@ -989,6 +1154,12 @@
   "1jd1017ztm2": {
     "defaultMessage": "Die Simulationen zeigen die übliche Aufteilung für RF-Arbeit: ein FDTD-Lauf des passiven Boards mit einem Port an der Stelle, an der jedes aktive Bauteil sitzt, dann eine Kaskade, in die die Vendor-<code>.s2p</code>-Dateien und die Rauschzahl und OIP3 aus dem Datenblatt eingelegt werden. Ändert man das Board, wird die FDTD neu ausgeführt; ändert man ein Bauteil, wird nur die Kaskade neu ausgeführt."
   },
+  "1jftzni5t5z": {
+    "defaultMessage": "Das Rendering läuft headless, ohne Display oder GPU, damit der Reviewer einer Hardware-Änderung das Board neben dem Diff sieht."
+  },
+  "1jh5dcv1t7l": {
+    "defaultMessage": "100 Ohm +/-10 % diff"
+  },
   "1jhlv9wdhvf": {
     "defaultMessage": "Die Datei, wie sie Agenten erhalten"
   },
@@ -1000,6 +1171,9 @@
   },
   "1jm21fkhjht": {
     "defaultMessage": "1 ns"
+  },
+  "1jmcdv6xxo9": {
+    "defaultMessage": "Namen akzeptieren <code>~{...}</code> für einen Überstrich: <code>~{RESET}</code>."
   },
   "1jot47aloch": {
     "defaultMessage": "Suche"
@@ -1027,6 +1201,9 @@
   },
   "1k11wca9qt7": {
     "defaultMessage": "Ein Sim-Ergebnis analysieren: TDR, Mixed Mode, Crosstalk, Passivität und Reziprozität"
+  },
+  "1k216dcuu51": {
+    "defaultMessage": "Der Skill"
   },
   "1k4n2vaf4om": {
     "defaultMessage": "Innenlage bis Innenlage"
@@ -1058,6 +1235,9 @@
   "1khm1sp7n4l": {
     "defaultMessage": "Bei einer Verletzung geht das Flip-Flop, der Latch oder das Register, das die Prüfung abdeckt, zu x, wie es die Verilog-Modelle mit ihren Notifiern tun, bis es wieder sauber getaktet, gesetzt oder zurückgesetzt wird. Setze <code>on_violation = &quot;keep&quot;</code> in der Simulation, um die Verletzung zu melden und den abgetasteten Wert beizubehalten."
   },
+  "1khvxg9xejx": {
+    "defaultMessage": "KiCad-Bibliotheken"
+  },
   "1kl9p3f45q9": {
     "defaultMessage": "eine Außenlage bis eine Innenlage"
   },
@@ -1087,6 +1267,12 @@
   },
   "1l7i7cvrbu3": {
     "defaultMessage": "Ein Projekt ist ein Verzeichnis. Jede Datei darunter wird nach ihrer Endung geladen:"
+  },
+  "1l7mawz64c8": {
+    "defaultMessage": "Fixieren Sie die Version für reproduzierbare Ergebnisse, indem Sie von einem Release-Tag statt von latest installieren:"
+  },
+  "1l96r8sj9he": {
+    "defaultMessage": "Führen Sie FDTD-Läufe auf einer Workstation aus und committen Sie deren Ergebnisse, damit die CI das Design gegen die tatsächlich durchgeführten Simulationen prüft."
   },
   "1laf1fol2wx": {
     "defaultMessage": "FDTD, Kaskade, DC-Abfall, Thermik"
@@ -1136,6 +1322,9 @@
   "1m2y78wvygc": {
     "defaultMessage": "Der Agent wird stark auf check setzen, und das ist der Punkt: Jede Diagnose benennt die Datei, das Element und die Stelle, und die meisten benennen einen Wert, der durchgeht. Was noch von einem selbst kommt:"
   },
+  "1m39d50u8qg": {
+    "defaultMessage": "Jede Diagnose trägt ihre Datei, ihr Element, ihren Ort und ihre Schwere, und Layout-Diagnosen tragen ihre Regel-ID. Das reicht, um einen Pull Request zu annotieren oder bei Warnungen in einem Projekt zu scheitern, das sie als Fehler behandelt. Eine Regel kann auch im Board selbst mit <code>[drc] severity</code> zu einem Fehler hochgestuft werden, was die Politik im Design statt im CI-Skript hält."
+  },
   "1m526qxf80v": {
     "defaultMessage": "Fill-Inseln, die nichts vom Net der Zone erreichen und entfernt wurden"
   },
@@ -1145,11 +1334,20 @@
   "1m5yx6lqa0i": {
     "defaultMessage": "Power Distribution Network"
   },
+  "1m6kwfe3c6w": {
+    "defaultMessage": "<code>agentee</code>"
+  },
+  "1m9lznvbge": {
+    "defaultMessage": "Mit cargo installieren"
+  },
   "1mbcvq07ruj": {
     "defaultMessage": "Excellon-Bohrungen, eine Datei pro Via-Span auf HDI-Boards"
   },
   "1mdqz0sr4af": {
     "defaultMessage": "<code>sparam</code> funktioniert auf jedem FDTD- oder Cascade-Ergebnis: ein TDR eines Ports, Mixed-Mode-S-Parameter eines Paares und Crosstalk in Frequenz und als Step. Es meldet immer Passivität und Reziprozität, wenn alle Ports angetrieben wurden. Siehe <a href=\"/guides/signal-integrity/\">Eyes, PDN und S-Parameter</a>."
+  },
+  "1megpg1z5qq": {
+    "defaultMessage": "Dielektrische Verluste folgen einem kausalen Djordjevic-Sarkar-Modell, das an die Permittivität und den Verlusttangenten jeder Schicht angepasst ist. Kupfer wird als Oberflächenimpedanz modelliert, die dem Skin-Effekt, der Rauheit des Stackups und, bei <code>finish = &quot;ENIG&quot;</code>, dem Gold und Nickel auf den äußeren Pads folgt. Das Nickel erhöht den Widerstand gegenüber reinem Kupfer unterhalb weniger GHz um das Mehrfache. Die <a href=\"/reference/fdtd-losses/\">Referenz zu FDTD-Verlusten</a> enthält die Modelle und die Messungen, gegen die sie geprüft wurden."
   },
   "1mfa0koun0s": {
     "defaultMessage": "<code>text</code>, <code>at</code>, <code>size</code>, <code>rotation</code>, <code>anchor</code> (<code>left</code> / <code>center</code> / <code>right</code>)"
@@ -1190,6 +1388,9 @@
   "1mxesl4tx9n": {
     "defaultMessage": "TDR, Mixed-Mode-Paare, Übersprechen, Passivität und Reziprozität aus jedem FDTD- oder Kaskaden-Ergebnis."
   },
+  "1mzwfau5im8": {
+    "defaultMessage": "Jedes Blatt ist eine gewöhnliche Schematic-Datei mit eigenen Bauteilen und Nets. Nets werden über ihren Namen über Blätter hinweg verbunden, sodass <code>3V3</code> auf jedem Blatt dasselbe Net ist und ein Signal ein Blatt verlässt und unter demselben Namen auf einem anderen ankommt. Die Pins eines Nets müssen Bauteile auf demselben Blatt sein; ein Net, das über Blätter hinweg geht, braucht überall denselben <code>class</code>, wo es einen benennt, und wird mit Labels gezeichnet. Referenzen sind im gesamten Design eindeutig. Ein einzelnes Blatt überspringt die Warnungen für Single-Pin-Nets und die Default-Klasse (der Rest des Nets und seine Klasse können auf einem anderen Blatt liegen); die Top-Schematic führt alle Checks am verbundenen Design durch und zeichnet die Blätter von oben nach unten gestapelt. Die Top-Datei kann auch eigene Bauteile und Nets enthalten."
+  },
   "1n1rc7zgly9": {
     "defaultMessage": "Pads verschiedener Nets, deren Maskenöffnungen weniger als <code>min_mask_web</code> lassen, eine Zeile pro Bauteilpaar; Pads eines Footprints mit <code>mask_web = false</code> werden untereinander übersprungen"
   },
@@ -1204,6 +1405,9 @@
   },
   "1n4xskxmj6x": {
     "defaultMessage": "<code>F_Paste.gbr</code>, <code>B_Paste.gbr</code>"
+  },
+  "1n654yj4dk0": {
+    "defaultMessage": "Arbeite aus einem Clone, wenn du die Beispiele brauchst oder agentee selbst ändern möchtest:"
   },
   "1ncp0psxtys": {
     "defaultMessage": "true"
@@ -1220,8 +1424,20 @@
   "1ngwiqkmd9w": {
     "defaultMessage": "Stackup, Impedanzklassen, Via-Typen und was gefüllt wird"
   },
+  "1nlm67q95ox": {
+    "defaultMessage": "DC-Drop-, Thermal- und Logic-Simulationen sind billig genug, um in CI auf einem Runner mit GPU ausgeführt zu werden, und Logic-Simulationen brauchen gar keine:"
+  },
+  "1nnqixb5v3w": {
+    "defaultMessage": "Agent-Skill"
+  },
+  "1nnroxclb4i": {
+    "defaultMessage": "generisches HDI"
+  },
   "1npjgype70v": {
     "defaultMessage": "Silk-Text, der nur unter dem Gehäuse eines anderen Bauteils verborgen ist"
+  },
+  "1nqaf0rvtht": {
+    "defaultMessage": "<strong>Net-Klassen-Breiten sind Mindestwerte.</strong> In KiCad ist die Klassenbreite der Standard für neue Tracks; in agentee ist ein Track, der schmaler als seine Klasse ist, ein Fehler, es sei denn, es handelt sich um eine kurze Neck-down-Verjüngung in ein Pad."
   },
   "1nr6hlyvxis": {
     "defaultMessage": "Via-Werkzeug: auf Kupfer mit einem Net klicken, um einen Kategorie-Via dieses Nets zu setzen"
@@ -1265,8 +1481,14 @@
   "1oh9ifvpjvj": {
     "defaultMessage": "<code>solver = &quot;field&quot;</code> auf jeder Class, wo ein paar Ohm zählen."
   },
+  "1ohjl688ppo": {
+    "defaultMessage": "Ein Interface legt fest, was eine Verbindung erfüllen muss, und check misst das Kupfer gegen alles auf einmal:"
+  },
   "1oiyg9y9o9n": {
     "defaultMessage": "BOM und Placement in den Spalten, die JLCPCB verlangt"
+  },
+  "1ojjnv83jq4": {
+    "defaultMessage": "jeder impedance controlled Build, 4 bis 20 Schichten, 0,4 bis 3,0 mm, plus <code>jlcpcb-2l-1.6mm</code>"
   },
   "1olh91gd388": {
     "defaultMessage": "Große Chips (BGA, 16+ Pin-Gehäuse über 25 mm2, sonst das Bauteil mit der höchsten Pinanzahl) werden zum Boardzentrum gezogen und innerhalb von <code>off_centre</code> davon gehalten, wo sie Platz haben, ihre Pins auf jeder Seite zu entkommen (Xilinx UG1099, Recommended Design Rules and Strategies for BGA Devices) und weg von den Rändern und Montagebohrungen, wo Handhabung und Depaneling das Board biegen und BGA-Verbindungen reißen (IPC/JEDED-9704A Dehnungsrichtlinien)."
@@ -1277,20 +1499,38 @@
   "1ooducalbht": {
     "defaultMessage": "<code>tombstone-risk</code>"
   },
+  "1oq5v73a7cn": {
+    "defaultMessage": "<code>hdi-6l-1n1</code>: 6 Schichten 1+4+1, 0,8 mm, 1080 Build-up-Prepreg (0,07 mm) über einem Core, 2116, Core-Sub-Stack; <code>hdi-8l-2n2</code>: 8 Schichten 2+4+2, 1,0 mm, zwei 1080 Build-up-Schichten auf jeder Seite über demselben Sub-Stack"
+  },
   "1or6ukqmvvl": {
     "defaultMessage": "Noise und Linearität kommen mit, wenn die Daten da sind: der Touchstone-Noise-Block, wenn die Datei einen hat, sonst der Datasheet-<code>nf</code>, sowie <code>oip3</code> und <code>p1db</code> pro Frequenz. <code>[after]</code> ist die Stufe hinter dem Ausgang, hier ein Empfänger mit 6 dB Noise Figure, verbunden nach Friis."
   },
   "1osgh921477": {
     "defaultMessage": "AUP, LV, LVX"
   },
+  "1ou2oicps82": {
+    "defaultMessage": "Elektronikdesign für Coding-Agents"
+  },
+  "1ougwhs8d8r": {
+    "defaultMessage": "<code>agentee-layout</code>"
+  },
   "1ovgp4ihzo7": {
     "defaultMessage": "<code>buried</code>"
+  },
+  "1oxzhhqb14o": {
+    "defaultMessage": "Teilen Sie ein großes Design in ein Schematic pro Abschnitt auf und verbinden Sie sie in einem Top-Schematic, das sie auflistet. Das Layout platziert das Top-Schematic."
   },
   "1oz50qk4qtk": {
     "defaultMessage": "Setzt gemessene Bauteile in die S-Parameter einer Board-Simulation ein. Jeder Port der Board-Simulation muss angeregt worden sein (<code>excite</code> weglassen). Die Ports, die nicht mit einem Bauteil verbunden sind, sind die Ports des Ergebnisses, das als <code>&lt;name&gt;.result.json</code> und eine Touchstone-Datei wie jeder FDTD-Lauf geschrieben wird."
   },
   "1p3ol7tg66h": {
     "defaultMessage": "Silk-Grafik auf Pads, über Silk-Text oder außerhalb des Boards"
+  },
+  "1p5wmu1mr81": {
+    "defaultMessage": "<code>KICAD9_SYMBOL_DIR</code> und <code>KICAD9_FOOTPRINT_DIR</code> überall sonst, einschließlich Windows. <code>KICAD8_*</code> und <code>KICAD_*</code> funktionieren ebenfalls."
+  },
+  "1p6mjwcyb0p": {
+    "defaultMessage": "ein Box-Symbol pro Footprint, mit einem Pin pro Pad-Nummer"
   },
   "1p7abxj66m8": {
     "defaultMessage": "Testpunkte"
@@ -1355,6 +1595,9 @@
   "1qcbxs4y1yz": {
     "defaultMessage": "Messwerte: bestandene und fehlgeschlagene Assertions, Konflikte, Timing-Verletzungen, Zellen und Ereignisse. Check listet jede fehlgeschlagene Assertion, jeden Konflikt, jede Timing-Verletzung oder jeden gestoppten Lauf als Fehler in der Simulation auf, solange das Ergebnis aktuell ist. Das Ergebnis wird veraltet, wenn sich die Spec oder das Netlist der Schaltung ändert. <code>examples/logic</code> enthält zwei: <code>counter</code>, ein 74HC161, der in einen 74HC138 zählt, und <code>i2c</code>, ein Open-Drain-Bus, an dem ein Controller (zwei 74LVC1G07) und ein Target (ein 74LVC1G06, der SDA für sein ACK low zieht) 4,7k Pull-ups teilen, und ein 74HC595, der von SCL getaktet wird, das Byte einfängt, geprüft auf START, die Bits, das ACK, das Byte (ein <code>record</code>-Bus) und STOP."
   },
+  "1qetictu1fj": {
+    "defaultMessage": "Eine Binärdatei mit der CLI, dem Viewer und dem MCP-Server. Kein Konto, kein Service, nichts, das laufen gelassen werden muss."
+  },
   "1qgcxutab7c": {
     "defaultMessage": "S-Parameter des LNA-Boards aus dem FDTD-Lauf, mit einem Smith-Diagramm der Ports."
   },
@@ -1366,6 +1609,9 @@
   },
   "1qi2immv1uv": {
     "defaultMessage": "Symbole - agentee Referenz"
+  },
+  "1qjkp9dqj5c": {
+    "defaultMessage": "agentee Startseite"
   },
   "1qkh68ae8eh": {
     "defaultMessage": "Generische Bauteile werden geteilt"
@@ -1391,6 +1637,9 @@
   "1qvez8rx5jb": {
     "defaultMessage": "HDI: Microvias und Laminierung"
   },
+  "1qw5tcldd6o": {
+    "defaultMessage": "Einheiten, das Dateimodell, resolve und check, die Rechner"
+  },
   "1r0hmmormyn": {
     "defaultMessage": "mechanisch, in einem laminierten Sub-Stack"
   },
@@ -1412,6 +1661,9 @@
   "1r5t471qlyo": {
     "defaultMessage": "Placement, Routing und Pours - agentee-Anleitung"
   },
+  "1raj6a0in47": {
+    "defaultMessage": "<code>*.pcb.toml</code>: Placements, Tracks, Vias, Zonen, Silk"
+  },
   "1rboohsf3k0": {
     "defaultMessage": "Automatisches Placement"
   },
@@ -1423,6 +1675,12 @@
   },
   "1rd9mbz2phc": {
     "defaultMessage": "Footprint-Grafiken auf einer Kupfer-, Masken- oder Pastenschicht werden als Kupfer, Maskenöffnungen oder Paste gezeichnet und im Viewer dargestellt: zum Beispiel der Kupferstreifen eines überbrückten Lötjumper. Check erkennt sie nicht als Kupfer."
+  },
+  "1rg8ze8g7pz": {
+    "defaultMessage": "Placement und Routing: Phasen über einem Board-Modell und einer Score-Funktion"
+  },
+  "1ribqgf3wqs": {
+    "defaultMessage": "Was sich anders verhält:"
   },
   "1rizbmildvl": {
     "defaultMessage": "kontrollierte Tiefe von F.Cu und von B.Cu zu jeder Innenlage, nach dem letzten Pressen."
@@ -1436,14 +1694,26 @@
   "1rpeqj9sa5a": {
     "defaultMessage": "Ein benutzerdefiniertes Bauteil erhält ein Modell inline, abgeglichen über <code>ref</code> oder über <code>value</code> (jedes Bauteil mit diesem value). Mehrere Einträge für ein Bauteil fügen jeweils eine Zelle hinzu (eine pro Gate eines Quad, zum Beispiel). Ein Eintrag mit nur Timing behält das eingebaute Modell bei und ändert dessen Timing."
   },
+  "1rqigxpguzp": {
+    "defaultMessage": "Installieren, dem Agenten den Skill geben und etwas Kleines anfragen: ein Breakout, ein Netzteil, ein Sensor-Knoten. Im Viewer zusehen und lesen, was check sagt."
+  },
   "1rt96e9xmko": {
     "defaultMessage": "Ein Glob in <code>--nets</code> passt nie auf ein Plane-Net, daher routet <code>--nets &#39;*&#39;</code> jedes Signal und lässt Ground an den Planes."
   },
   "1rthuy1tn3u": {
     "defaultMessage": "Gängige Teile werden aus dem Footprint gezeichnet, ohne ein Modell zu laden: Chip-Widerstände, Kondensatoren, Induktivitäten, LEDs und Dioden (Namen mit einer <code>Metric</code>-Größe), vertikale Pin-Header und Sockets, SOIC, SOT, QFP, QFN, DFN, SON, TSLP und BGA-Gehäuse, Kristalle und Oszillatoren, Edge-Mount-SMA-Steckverbinder und Schirmrahmen (<code>Shield</code> im Namen oder in der Beschreibung), gezeichnet ohne Abdeckung. Der Körper ist die <code>F.Fab</code>-Umrandung, die Höhe stammt aus <code>height</code>, einem <code>_h1.25mm</code>-Teil des Namens oder der Gehäusefamilie, und Leads liegen auf den Pads außerhalb des Körpers. Montagebohrungen, Fiduzialen, Pad-Testpunkte, Lötbrücken und Tag-Connect-Footprints erhalten keinen Körper. Eine Modelldatei im Projekt (<code>3dmodels/</code> oder ein Pfad relativ dazu) hat weiterhin Vorrang vor einem generierten Teil; <code>agentee models</code> überspringt die generierten."
   },
+  "1ruf6sk1qs1": {
+    "defaultMessage": "<img src=\"/assets/renders/lna-thermal.webp\" alt=\"Thermische Karte des LNA-Boards\">"
+  },
+  "1rwceojmn56": {
+    "defaultMessage": "FDTD ist der teure: Der Sechs-Port-Lauf der LNA dauerte 27 Minuten auf einer Workstation-GPU. <code>agentee sim NAME --dry-run</code> gibt das Gitter und die Laufanzahl in einer Sekunde aus, damit der Agent einen Lauf dimensionieren kann, bevor er ihn startet."
+  },
   "1rwinkyzqro": {
     "defaultMessage": "<code>part-body-to-edge</code>"
+  },
+  "1rz0nijr5n2": {
+    "defaultMessage": "Crate"
   },
   "1rz2yecd21v": {
     "defaultMessage": "FDTD ist teuer. Der Sechs-Port-Lauf des LNA dauerte 27 Minuten auf einer Workstation-GPU. Immer zuerst dry-run:"
@@ -1460,6 +1730,9 @@
   "1s53udu7s0o": {
     "defaultMessage": "Die Laminierung ist die Abfolge der Pressvorgänge und der Bohrschritte dazwischen. Ohne eine <code>lamination</code>-Liste leitet agentee sie aus dem Stackup ab: jeder Core wird vor seinem Pressvorgang gebohrt, der Sub-Stack nach seinem Pressvorgang, dann für jeden Aufbaupressvorgang ein Laserschritt in die darunterliegende Schicht und ein mechanischer Schritt durch alles, was bisher gepresst wurde, und schließlich Tiefenkontrollschritte von jeder Seite."
   },
+  "1sgbmbows82": {
+    "defaultMessage": "jedes Bauteil mit seinem Wert und jedes Net als Liste von Pins, gezeichnet mit Net-Labels"
+  },
   "1sgs7vrz8gf": {
     "defaultMessage": "<img src=\"/assets/renders/lna-cascade.webp\" alt=\"Der Cascade: Gain, Match, Noise Figure und Stabilität\">"
   },
@@ -1472,6 +1745,9 @@
   "1snu5enx4u7": {
     "defaultMessage": "Jedes Release-Archiv enthält die Skill zusätzlich unter <code>skills/agentee</code>, passend zum danebenliegenden Binary. Bei einem Build aus einem Clone diesen Ordner in den Skills-Ordner verlinken, damit die Skill mit dem Code aktualisiert wird."
   },
+  "1soa29psznd": {
+    "defaultMessage": "benennt"
+  },
   "1sojsv5jan0": {
     "defaultMessage": "Gib jedem Bauteil im Schematic die Felder <code>mfr</code> und <code>mpn</code>, und ein <code>lcsc</code>-Feld für die JLCPCB-Bestückung:"
   },
@@ -1483,6 +1759,12 @@
   },
   "1stefpr3mkr": {
     "defaultMessage": "Die Bibliotheken werden unter <code>/Applications/KiCad/KiCad.app/Contents/SharedSupport</code> gefunden. An anderen Orten <code>KICAD9_SYMBOL_DIR</code> und <code>KICAD9_FOOTPRINT_DIR</code> setzen."
+  },
+  "1sthbc5yiss": {
+    "defaultMessage": "An den eigenen <code>video</code>- und <code>complex_hierarchy</code>-Demos von KiCad landet jedes Pad des importierten Layouts dort, wo der IPC-D-356-Export von KiCad es platziert: 2089 und 165 Pads. Das <a href=\"/examples/hackrf-pro/\">HackRF Pro-Beispiel</a> ist ein komplettes Board, das auf diese Weise importiert wurde."
+  },
+  "1sx8eu0wc31": {
+    "defaultMessage": "Der Starter ist nur ein Name. Füge darunter <code>board = &quot;blinky&quot;</code> ein, damit das Schematic weiß, welche Net-Klassen existieren. Dann fügst du Bauteile und Nets in einem Batch an Befehlen hinzu, einer pro Zeile:"
   },
   "1sxo3nbwdqe": {
     "defaultMessage": "Board-Spezifikation - agentee-Referenz"
@@ -1501,6 +1783,9 @@
   },
   "1tb0k2uaxra": {
     "defaultMessage": "Logiksimulationen eines Zählers und eines I2C-Busses"
+  },
+  "1tbnyw5o783": {
+    "defaultMessage": "Die geschlossenen Formen sind Hammerstad-Jensen für Microstrip, Wheeler für Stripline und konforme Abbildung für geerdete Coplanar, alle unbeschichtet. Sie ignorieren die Lötmaske und können bei dünnem Prepreg mehrere Ohm daneben liegen."
   },
   "1tbr6ixkxmp": {
     "defaultMessage": "Der Viewer kann die Stufen von <code>agentee layout</code> auf dem Layout ausführen, wie es im Fenster steht, ungespeicherte Änderungen inklusive, und zeigt Zeit und Score jeder Stufe. Das Ergebnis landet wie jede andere Änderung, ungespeichert und einen Undo entfernt. Ein ausgewähltes Bauteil mit 16 oder mehr Pads bietet Pin-Swapping an, das in das Schematic schreibt."
@@ -1523,6 +1808,9 @@
   "1tnlcsb83el": {
     "defaultMessage": "<code>[[stitching]]</code> platziert Ground-Vias auf einem Raster an allen Stellen, an denen sie alle anderen Nets frei lassen, oder als Zaun entlang der Tracks der benannten Nets. <code>[[fanouts]]</code> platziert einen Via in jedem verbundenen Pad eines BGA und lässt die äußeren Ringe für den Escape auf der Top-Layer frei. Beide sind Regeln: Die Vias werden erneut platziert, wann immer sich das Kupfer um sie herum ändert. <code>agentee edit pcb NAME stitch GND --pitch 2.5mm</code> und <code>fanout U3 --skip-rings 2</code> schreiben sie."
   },
+  "1tq3mqp1ha": {
+    "defaultMessage": "Fab-Pakete bei Release"
+  },
   "1tqhzwaa3a7": {
     "defaultMessage": "BGA-Pad, 0.2 bis 0.25 mm benötigt ENIG"
   },
@@ -1535,6 +1823,9 @@
   "1ty9v3x5upe": {
     "defaultMessage": "Bauteile sind platzierte Symbole; Nets listen die Pins auf, die sie verbinden. Drähte werden für dich auf einem 1,27-mm-Raster gezeichnet, es sei denn, du gibst sie an."
   },
+  "1u0p4bww3su": {
+    "defaultMessage": "agentee ist kein KiCad-Ersatz mit anderem Dateiformat. Es ist ein Design-Tool für Agents, das die Bibliotheken von KiCad übernimmt und Boards von KiCad liest. Wenn Sie KiCad kennen, übertragen sich die meisten Konzepte; was sich ändert, ist, dass die Dateien die Schnittstelle sind und eine Person über einen Agenten und einen Viewer editiert, nicht über einen Editor."
+  },
   "1u0twe57jl1": {
     "defaultMessage": "<code>watermark</code>"
   },
@@ -1544,8 +1835,14 @@
   "1u41ulukfz3": {
     "defaultMessage": "Keines der oben genannten CMOS-Datenblätter (auch nicht TI SN74HC161 SCLS297D oder Nexperia 74LVC161, dessen Hold nur die synchronen Eingänge abdeckt) listet eine Removal-Zeit, daher ist sie dort 0. Die Zeilen AUP, LV, LVX und andere übernehmen ihre Setup- und Hold-Zeiten."
   },
+  "1u4pgds32os": {
+    "defaultMessage": "Referenz"
+  },
   "1u6fenl5qnu": {
     "defaultMessage": "Die eigenen Grenzen der Fab"
+  },
+  "1u8fb2niukv": {
+    "defaultMessage": "Kopieren"
   },
   "1u9iuwgwx5q": {
     "defaultMessage": "Distributoren und Preise"
@@ -1562,8 +1859,14 @@
   "1uev31ln6u9": {
     "defaultMessage": "Laminierung"
   },
+  "1uevf9pj2qo": {
+    "defaultMessage": "12000 mil lang"
+  },
   "1uf7lrqszbz": {
     "defaultMessage": "Die zweite Zeilen zählt von 5 bis 8 die andere Seite hoch. Zeilen zählen die Endziffern hoch, daher funktionieren BGA-Balls auf die gleiche Weise (<code>A1</code>, <code>A2</code>, ...), und <code>number_step = 2</code> zählt in Zweierschritten."
+  },
+  "1ugb0n3o4y": {
+    "defaultMessage": "Der Feldlöser führt eine Finite-Differenzen-Laplace-Lösung des Querschnitts auf der GPU aus, mit Kupferdicke, Lötmaske, Coplanar-Erdungen und Paaren. Er liegt innerhalb von 0,5 % der exakten Stripline von Cohn und 0,4 % des Hammerstad-Jensen-Microstrips, in einem Bruchteil einer Sekunde:"
   },
   "1uj9ys512jy": {
     "defaultMessage": "Thermik-Karte des LNA-Boards mit dem Verstärker als heißer Punkt."
@@ -1586,6 +1889,9 @@
   "1v0wqtjy1ac": {
     "defaultMessage": "Bibliotheken an anderen Orten werden über <code>KICAD9_SYMBOL_DIR</code> und <code>KICAD9_FOOTPRINT_DIR</code> gefunden."
   },
+  "1v2uudc6t8s": {
+    "defaultMessage": "preset"
+  },
   "1v6tkvi9eoa": {
     "defaultMessage": "über sein <code>min</code> oder <code>max</code> hinausgehen kann."
   },
@@ -1594,6 +1900,9 @@
   },
   "1vheefcsvsv": {
     "defaultMessage": "Offene Pins"
+  },
+  "1vkdga2o8vm": {
+    "defaultMessage": "<code>agentee-kicad</code>"
   },
   "1vntgub8e50": {
     "defaultMessage": "<code>tall-part-shadow</code>"
@@ -1604,6 +1913,12 @@
   "1vwk1d04m7i": {
     "defaultMessage": "legt einen RF-Weg in einer geraden Linie von Connector zu Connector, mit Shunt-Bauteilen neben der Linie an ihrem Knoten;"
   },
+  "1vx4ph7hg13": {
+    "defaultMessage": "Inhalt"
+  },
+  "1vy6wglg1cw": {
+    "defaultMessage": "<code>tune</code> meandert das kurze Net jedes Paares über seinen Skew und jedes Match-Gruppen-Mitglied unter seinem Ziel, auf den längsten geraden Segmenten, wo die Bumps jedes andere Net frei lassen, und schreibt die Punkte zurück in die Tracks. Bei einem Paar bumpst es zuerst die Dehnungen, wo die Beine bereits auseinanderlaufen. Ein Net über seinem Ziel wird gemeldet, nicht verkürzt. <code>agentee calc serpentine --from 10,5 --to 20,5 --add 2.5mm</code> gibt die Punkte eines Meanders auf einem Segment, das Sie wählen. Net-Längen und -Verzögerungen sind in <code>show</code>."
+  },
   "1vzjszgv194": {
     "defaultMessage": "4+ Kupferschichten"
   },
@@ -1612,6 +1927,9 @@
   },
   "1w2hpqok4a9": {
     "defaultMessage": "BOM kalkulieren"
+  },
+  "1w3zseruwql": {
+    "defaultMessage": "Vias behalten ihren Typ. Ein KiCad-<code>micro</code>-Via wird zu einem Microvia, <code>blind</code> zu einem Blind- oder Buried-Via je nach Spannweite, und jeder einzelne Bohrdurchmesser, Pad, Spannweite, Füllung und Backdrill wird zu einem Board-Via-Typ. Die Koordinaten verschieben sich, damit der Umriss bei 0, 0 beginnt."
   },
   "1w4ko8owzj2": {
     "defaultMessage": "Die Impedanz einer Stromschiene, von Ports, die die FDTD-Simulation auf die Strompins der Schiene, Decap-Pads und das VRM setzt. Jeder Port der Board-Simulation muss angetrieben werden und muss ein Sink, ein Decap oder das VRM sein. Ports sollten eine niedrige <code>impedance</code> (0,5 bis 1 Ohm) tragen, da die Impedanz der Schiene weit unter 50 Ohm liegt und die Umrechnung aus S11 bei einer 50-Ohm-Referenz an Präzision verliert. Unterhalb des eigenen Bands der Simulation wird das Board als L plus der Gleichstromwiderstand seiner S-Matrix am ersten Punkt extrapoliert."
@@ -1622,14 +1940,23 @@
   "1w5ys1vanaj": {
     "defaultMessage": "Dein erstes Board"
   },
+  "1w8dxu3nb9z": {
+    "defaultMessage": "<code>*.sch.toml</code>: Bauteile und Nets als Listen von Pins; Drähte optional"
+  },
   "1w8kax0yd25": {
     "defaultMessage": "<code>--via-in-pad</code> lässt einen Via innerhalb eines SMD-Pads seines Nets sitzen, gefüllt und abgedeckt."
   },
   "1w9hs1f7j2l": {
     "defaultMessage": "jedes Core des Sub-Stacks, das vor seinem Pressvorgang mechanisch gebohrt wird (ein Buried Via in einem Core);"
   },
+  "1wepjk8hgio": {
+    "defaultMessage": "Primär"
+  },
   "1wiy621uk7q": {
     "defaultMessage": "<code>max_drill</code>"
+  },
+  "1wl1w7vzxz9": {
+    "defaultMessage": "Differentialpaare"
   },
   "1wlybynutw5": {
     "defaultMessage": "ein Bauteilkörper näher als <code>min_body_to_edge</code> an den Umriss oder einen Board-Ausschnitt, oder darüber hinaus (über einem Ausschnitt zählt als darüber hinaus) (Assembly-DFM-Leitfäden: kein Bauteil innerhalb von 1 mm vom Rand). Der Körper ist der Fab-Umriss, sonst der Courtyard, sonst das Pad-Kupfer, und die Meldung benennt, welcher; überspringt Fiduzialmarken, Montagebohrungen, Bauteile mit <code>edge</code>-Pads und Footprints mit <code>overhang = true</code>"
@@ -1648,6 +1975,9 @@
   },
   "1wzcna4bvid": {
     "defaultMessage": "Der Verstärker sitzt am Antennenende eines RTL-SDR-artigen Empfängers: SMA-Eingang, SMA-Ausgang, ein Qorvo SPF5189Z in der Mitte, versorgt entweder über das Ausgangs-Koaxialkabel durch den Bias-Tee des Empfängers oder von einem 5-V-Header. Zwei Schottky-Dioden ermöglichen es, dass entweder Quelle den Verstärker versorgt, ohne dass die eine in die andere speist."
+  },
+  "1wzfzbb8med": {
+    "defaultMessage": "<code>/usr/share/kicad</code> und <code>/usr/local/share/kicad</code> auf Linux,"
   },
   "1x26l2o1amg": {
     "defaultMessage": "0.065"
@@ -1675,6 +2005,9 @@
   },
   "1xfwjxnnmwm": {
     "defaultMessage": "10 ns"
+  },
+  "1xgdidilsrd": {
+    "defaultMessage": "Körper und manuell platzierte <code>[[pins]]</code> / <code>[[graphics]]</code> können gemischt werden."
   },
   "1xo4f6im8nx": {
     "defaultMessage": "gleiche, 2 oz"
@@ -1712,14 +2045,23 @@
   "1y5n7ddpz3o": {
     "defaultMessage": "PDN"
   },
+  "1y5w15b0fjb": {
+    "defaultMessage": "Wie sich die Konzepte übertragen"
+  },
   "1y6fw4m0ukg": {
     "defaultMessage": "Jede Diagnose benennt die Datei, den Eintrag und den Ort. Die meisten sagen, welcher Wert durchgehen würde, damit die nächste Änderung die Korrektur ist."
   },
   "1y8fv21jiim": {
     "defaultMessage": "Eine starten"
   },
+  "1y98f1o1dgt": {
+    "defaultMessage": "Bauteile werden aus den KiCad-Symbol- und Footprint-Bibliotheken importiert, daher benötigt agentee sie auf der Platte. KiCad selbst ist auf Linux optional."
+  },
   "1ybhhn7ovtw": {
     "defaultMessage": "Warnung"
+  },
+  "1yc28jq4m40": {
+    "defaultMessage": "Die Stackup-Presets stammen aus den veröffentlichten Daten der Fabs, die sich im Laufe der Zeit ändern. <code>crates/agentee-core/stackups/fetch.py</code> holt sie erneut von JLCPCB und PCBWay."
   },
   "1ycv51tmon0": {
     "defaultMessage": "Bauteile halten Abstand zur eigenen Seide des Boards: <code>[[graphics]]</code>-Linien auf einer Seidenschicht, Seidentext mit <code>locked = true</code> und Seide <code>[[artwork]]</code> blockieren die Courtyards auf ihrer Seite (ein Bauteil, das nirgendwo sonst passt, darf sie dennoch abdecken). Seidentext, der nicht gesperrt ist, blockiert keine Bauteile: Nach dem Platzieren wird jeder solche Text, den ein Bauteil (oder sein reserviertes Label) abdeckt, an den nächsten freien Platz auf dem Board innerhalb von 10 mm verschoben, frei von Bauteilen, Labels, gesperrter Seide und den anderen Texten; <code>texts_moved</code> listet die Bewegungen, die zurück in <code>[[graphics]]</code> geschrieben werden, und <code>texts_stuck</code> die Texte ohne freien Platz. Connectors, Montagebohrungen und Fiducials reservieren auch ein Label, auf der äußeren Seite des Bauteils oder zur inneren Seite gedreht, und gehen ohne eines, wenn an der Stelle, die das Bauteil einnimmt, keines passt. Das Referenzlabel jedes Bauteils benötigt auch Platz: Wenn die Labels höchstens ein Viertel der freien Boardfläche einnehmen, wird ein Kasten der Größe des Referenztextes (0,2 mm darum, an der Referenzstelle des Footprints, weggeschoben von seinen eigenen Pads und Seide) wie ein Courtyard frei gehalten, und place schreibt diesen Platz als <code>label.at</code>; auf einem volleren Board mit übrigem Platz ist die Überlappung dieser Kästen mit anderen Bauteilen und Labels eine kleine Kosten im Annealing, und auf einem vollen Board werden Labels dem Label-Durchlauf überlassen (<code>agentee silk --hide</code> für die ohne Platz)."
@@ -1727,11 +2069,17 @@
   "1yd48z3wex0": {
     "defaultMessage": "Via auf Kupfer mit Net setzen"
   },
+  "1yeem25v9mo": {
+    "defaultMessage": "<code>diff_gap</code> macht eine Klasse zu einem Paar und ihre Impedanz zu einer Differentialimpedanz. Nets, die auf <code>_P</code> und <code>_N</code>, <code>_DP</code> und <code>_DN</code>, <code>+</code> und <code>-</code> oder <code>P</code> und <code>N</code> enden, paaren sich von selbst; andernfalls benennen Sie sie im Layout:"
+  },
   "1yf5ve95i67": {
     "defaultMessage": "Ergebnis-JSON und VCD"
   },
   "1yfz4buacfb": {
     "defaultMessage": "Tiefenkontrolle von F.Cu und von B.Cu zu jeder inneren Schicht."
+  },
+  "1yg2jhzgg65": {
+    "defaultMessage": "Die gleichen Felder am Schematic-Bauteil, gelesen von der BOM und <code>agentee parts</code>"
   },
   "1ygns93txrz": {
     "defaultMessage": "V"
@@ -1745,11 +2093,20 @@
   "1yl2jnjwpw": {
     "defaultMessage": "Kondensatoren, Induktivitäten, Dioden, LEDs, Testpunkte, Kristalle und ähnliche werden weggelassen."
   },
+  "1yqopwhriij": {
+    "defaultMessage": "Aus dem Quellcode"
+  },
   "1ysi778ja9n": {
     "defaultMessage": "Logiksimulation - agentee-Anleitung"
   },
+  "1ywj64ua9cz": {
+    "defaultMessage": "Der 2D-Solver wendet die Rauheit als Verlustfaktor auf den Widerstand bei jeder Frequenz an. Die FDTD verwendet die Rauheit und die ENIG-Beschichtung, wie unter „Verluste in der FDTD“ unten beschrieben; <code>nickel</code> und <code>gold</code> sind nur relevant, wenn <code>finish = &quot;ENIG&quot;</code>. Die Standardwerte sind die Mitte der IPC-4552-Fenster (3 bis 6 um Nickel, Gold 0,05 um Minimum, wobei Fabs auf 0,05 bis 0,1 um abzielen)."
+  },
   "1ywrzxjtu8z": {
     "defaultMessage": "Der LNA-Schaltplan: die Eingangs-ESD-Schutzschaltung und DC-Block, der SPF5189Z, die Bias-Chokes und die zwei Strompfade."
+  },
+  "1yxzkg56ky9": {
+    "defaultMessage": "<code>preset</code> benennt einen Standard-Build einer Fab. Die Presets sind in agentee enthalten, in <code>crates/agentee-core/stackups/*.toml</code>:"
   },
   "1yygvqyhkge": {
     "defaultMessage": "0.09"
@@ -1760,6 +2117,9 @@
   "1z0vhw1pkrw": {
     "defaultMessage": "ein Schlüssel"
   },
+  "1z6puni9vdu": {
+    "defaultMessage": "<code>agentee-core</code>"
+  },
   "1z8ci87hbp6": {
     "defaultMessage": "Verstärkung 17,7 dB, NF 1,0 dB"
   },
@@ -1768,6 +2128,9 @@
   },
   "1z9j46q67r8": {
     "defaultMessage": "Der agentee-Skill"
+  },
+  "1zbhhlwlwcb": {
+    "defaultMessage": "Lagerbestand, Preise und günstigere Alternativen von Mouser und Farnell"
   },
   "1zctgotqodt": {
     "defaultMessage": "macOS 11 oder neuer."
@@ -1787,6 +2150,9 @@
   "1zkgdw4j6er": {
     "defaultMessage": "Die zwei mitgelieferten HDI-Stackups sind generische Aufbauten, nicht der veröffentlichte Stackup einer Fab:"
   },
+  "1zq8p8vhmap": {
+    "defaultMessage": "<code>usb3-gen1</code>, <code>usb3-gen2</code>"
+  },
   "1zq9a2ju80x": {
     "defaultMessage": "Die agentee-Skill lehrt einen Coding Agent den edit-, check-, render-Zyklus und die Reihenfolge, in der ein Design aufgebaut wird. Installiere sie mit npx skills add https://agentee.sh oder hole sie aus dem bekannten Skill-Registry."
   },
@@ -1799,6 +2165,9 @@
   "203ft1q016w": {
     "defaultMessage": "Das dauert eine Sekunde und sagt, was der Lauf kosten wird: ein Lauf pro angetriebenem Port, jeweils über ein Gitter mit dieser Anzahl an Zellen. Zum Iterieren:"
   },
+  "203ii6gf8z0": {
+    "defaultMessage": "Simulieren, bevor du bestellst"
+  },
   "206dqzpyrwa": {
     "defaultMessage": "ein Layout: Footprint-Platzierung, Tracks, Vias, Zonen"
   },
@@ -1807,6 +2176,9 @@
   },
   "207lu7hdiio": {
     "defaultMessage": "Ein Raster setzt eine Kante mit Null-Dicke etwa ein Drittel einer Zelle hinter ihre letzte Netzlinie, sodass ein auf dem Raster gezeichneter Streifen breiter gelesen wird, als er ist, und echtes Kupfer der Dicke t liest pro Kante erneut breiter um (t / 2 pi)(1 + ln(4h / t)), wobei h der Abstand zur nächsten anderen Kupferschicht ist (die Hammerstad-Jensen-Dickenkorrektur). Der Mesher setzt die letzte Linie jeder Spur-, Pad- und Zonenkante so, dass beide zusammenfallen: der eigene Offset des Rasters stammt aus einer endlichen Differenz-Lösung einer Schlitze auf der lokalen Zellform. Ein 0,3-mm-Mikrostrip auf 0,15 mm Luft liest 81,9 und 82,2 Ohm bei 0,05 und 0,025 mm Zellen gegenüber 82,4 Ohm aus Hammerstad-Jensen mit 35 um Kupfer; das Zeichnen der Kanten auf Netzlinien ergab 82,6 und 85,1."
+  },
+  "208c5entakq": {
+    "defaultMessage": "Jede Änderung durchläuft denselben Zyklus"
   },
   "20amke600vw": {
     "defaultMessage": "LS: 25 ns Setup von <code>CLR</code> inaktiv und 3 ns Hold an jedem Eingang, TI SN74LS161A SDLS060 (der SN74LS74A in SDLS119 listet beides nicht)."
@@ -1822,6 +2194,9 @@
   },
   "20ibe091n9u": {
     "defaultMessage": "<code>interface-length</code>"
+  },
+  "20jeq5fot08": {
+    "defaultMessage": "Bauen aus dem Quellcode"
   },
   "20jhelro40z": {
     "defaultMessage": "FDTD-Simulation - agentee Referenz"
@@ -1841,6 +2216,9 @@
   "20sj09hyvgc": {
     "defaultMessage": "die Backdrill-Bohrungen jeder Seite und jedes Stopp-Layers, nicht durchkontaktiert, mit dem Backdrill-Durchmesser, mit dem Stopp-Layer und <code>max_stub</code> in einem Kommentar"
   },
+  "20u1f7vfkkg": {
+    "defaultMessage": "<code>calc field --netclass USB</code> fügt einen <code>pair</code>-Block hinzu: Zdiff, Zcommon, die Impedanzen und Verzögerungen der ungeraden und geraden Mode, den Kopplungskoeffizienten und das Near-End-Crosstalk einer langen Leitung. Check meldet den Skew jedes Paares in mm und ps, jede Dehnung mit falschem Gap über <code>max_uncoupled</code> hinaus und Paare, die weniger als 80 % ihrer Länge nebeneinander laufen. Ein Paar durch Serienkomponenten, wie die AC-Kondensatoren auf einer USB-Lane, wird von Ende zu Ende gemessen. <code>agentee route NAME --nets &#39;USB_*&#39; --pairs</code> routet beide Hälften zusammen."
+  },
   "211ybnyn8so": {
     "defaultMessage": "Die Fab und die Schichtanzahl oder die Kosten, unter denen man bleiben will. <code>jlcpcb</code> mit einem Zwei- oder Vier-Schicht-Stackup eignet sich für die meisten ersten Boards."
   },
@@ -1856,14 +2234,26 @@
   "21bc96aqosb": {
     "defaultMessage": "Bauteile: importieren oder zeichnen - agentee-Anleitung"
   },
+  "21ceqskqfkd": {
+    "defaultMessage": "Die USB-Zahlen sind die Hochgeschwindigkeits-Layoutrichtlinien von TI. Über die Klassenziele hinaus prüft ein Interface die Länge von Ende zu Ende, die Vias pro Trace, die Via-Stubs, den Lauf ohne Referenzfläche darunter, das Ground-Via neben jedem Signal-Via und bei Bussen die Ankunftsstreuung und das Fenster gegenüber dem Takt. Es kann auch eine fertige Simulation lesen: schlechteste Einfüge- und Rückverluste und Modekonversion aus einem FDTD-Lauf, Eye-Höhe und -Breite aus einer Kanal-Simulation. Siehe <a href=\"/guides/signal-integrity/\">Eyes, PDN und S-Parameter</a>."
+  },
   "21fci6qv4rx": {
     "defaultMessage": "Cursor, Claude Desktop und die meisten anderen Clients"
+  },
+  "21kc4cge9iz": {
+    "defaultMessage": "Zonenfüllung"
   },
   "21lg9b01spd": {
     "defaultMessage": "<code>lamination</code> listet stattdessen die Schritte für einen Aufbau auf, den das Stackup nicht zeigt (ein Sub-Stack, der zuerst auf einer Seite gepresst wird, ein Laserschritt in einen Kern):"
   },
   "21mbk2ewvna": {
     "defaultMessage": "<code>min_inner_pth_hole_to_copper</code>"
+  },
+  "21mecuephe7": {
+    "defaultMessage": "<code>pcbway-6l-1.6mm-1oz-1oz-70-2116-7628</code> (Schichten, Dicke, Außen- und Innen-oz, Innen-Kupfer-%, Prepregs)"
+  },
+  "21mhsdlzlqh": {
+    "defaultMessage": "Brotkrumen"
   },
   "21r8tknr577": {
     "defaultMessage": "Größe festlegen, bevor Sie ausführen"
@@ -1874,14 +2264,29 @@
   "21t179n2u3z": {
     "defaultMessage": "<code>agentee tie NAME [--nets GND] [--dry-run]</code> (MCP <code>tie</code>) verbindet jeden SMD-Pad eines Plane-Netzes mit der nächsten Ebene, die seine Zone abdeckt, über einen kurzen Stub und ein Via neben dem Pad. So schließen sich Ground- und Versorgungspads an eine Plane an, statt über Tracks dazwischen. Das Via liegt auf der Seite des Pads, die vom Bauteilmittelpunkt weg zeigt, so nah wie möglich: sein Kupfer ist von jedem SMD-Pad frei (auch vom eigenen, daher kein Via-in-Pad), sein Loch ist <code>min_hole_to_smd_pad</code> von diesen, <code>min_hole_to_hole</code> von anderen Löchern, <code>min_via_hole_to_copper</code> und der Class-Clearance von anderen Netzen entfernt, <code>min_copper_to_edge</code> vom Umriss entfernt, und der Stub ist auf der Pad-Ebene von anderen Netzen frei. Es werden 16 Richtungen probiert, zuerst die am nächsten zur nach außen zeigenden, bis zu 1,2 mm über das Pad hinaus. Ein Pad, das bereits ein Via seines Netzes innerhalb von 0,8 mm von seiner Kante hat, bleibt unverändert. Through-Hole-Pads und BGA-Balls (<code>escape</code> behandelt diese) werden übersprungen. Ein Pad ohne gültige Position wird unter <code>failed</code> aufgelistet. Die Stubs und Vias werden als gewöhnliche <code>[[tracks]]</code> und <code>[[vias]]</code> angehängt."
   },
+  "21ttppkimpx": {
+    "defaultMessage": "Ein Import schreibt eine <code>.sym.toml</code> oder <code>.fp.toml</code> in <code>symbols/</code> oder <code>footprints/</code>. Ab dann gehört sie dem Projekt: Es gibt keinen Link zurück zur Bibliothek, daher ändert sich ein Bauteil nie unter Ihnen, wenn KiCad aktualisiert wird. Ein <code>.kicad_sym</code>- oder <code>.kicad_mod</code>-Pfad funktioniert anstelle von <code>Library:Name</code> für Bauteile außerhalb der Standardbibliotheken."
+  },
+  "21v5d9dete3": {
+    "defaultMessage": "Die Klasse ist eine Zusage; das Layout hält sie. Check misst jede Track einer Impedanzklasse:"
+  },
+  "21wi51767ol": {
+    "defaultMessage": "Impedanz"
+  },
   "21xmo8n3sgq": {
     "defaultMessage": "ein Track, der sich um mehr als 90 Grad zurückdreht, eine Säurefalle"
+  },
+  "21xug02u5te": {
+    "defaultMessage": "PCBWay"
   },
   "21y338fq4ci": {
     "defaultMessage": "Routen"
   },
   "21yxfse7rgr": {
     "defaultMessage": "agentee-Dateiformat-Referenz"
+  },
+  "21z7dt71046": {
+    "defaultMessage": "Check führt nie eine Simulation aus. Jedes Ergebnis speichert einen Hash der Spec, des Kupfers, das es sah, und des Stackups, und Check warnt, wenn sie nicht mehr übereinstimmen. Auf einem CI-Runner ohne GPU ist das der nützliche Teil: Ein Pull Request, der einen RF-Track verschiebt, bekommt eine stale-Warnung auf dem FDTD-Ergebnis, und ein Interface, das dieses Ergebnis misst, schlägt direkt fehl."
   },
   "221qbpi8pyl": {
     "defaultMessage": "In1.Cu zu In4.Cu, buried, durch den Sub-Stack,"
@@ -1910,8 +2315,14 @@
   "22fnit5bqbh": {
     "defaultMessage": ".cursor/mcp.json, claude_desktop_config.json oder die eigene Datei des Clients"
   },
+  "22lhuqm05qf": {
+    "defaultMessage": "Danach"
+  },
   "22rmjzm4b8o": {
     "defaultMessage": "Die Engine hält vier Levels, 0, 1, x und z. Starke Treiber, die sich nicht einigen, geben x und einen Konflikt; Pulls zählen nur, wenn kein starker Treiber an ist. Ein Gatter geht auf x nur, wenn der unbekannte Eingang wichtig ist, also ist 0 in ein AND immer noch 0."
+  },
+  "22y6wirhrgw": {
+    "defaultMessage": "<code>impedance-width</code> warnt vor einer Track der Klasse mit anderer Breite."
   },
   "231d4fonbt7": {
     "defaultMessage": "agentee mit cargo aus dem Git-Repository bauen und installieren: die benötigte Rust-Version, die Crates im Workspace sowie das Ausführen von Tests und Benchmarks."
@@ -1930,6 +2341,9 @@
   },
   "2363tz9syoj": {
     "defaultMessage": "<code>mux2</code>"
+  },
+  "238efy82bsi": {
+    "defaultMessage": "Listet die Fab-Stackup-Presets, die `stackup.preset` einer Platine benennen kann, oder gibt eines aus"
   },
   "239ijuexn6t": {
     "defaultMessage": "Check markiert alle Referenzbeschriftungen, die anderen Text verdrängen, auf einem Pad oder Via liegen oder vom Board ragen, und benennt eine Stelle, die frei ist. <code>agentee silk</code> verschiebt sie alle dorthin:"
@@ -1955,6 +2369,9 @@
   "23l76zfib2h": {
     "defaultMessage": "dreht jedes Bauteil zu seinen Nets."
   },
+  "23mm06wb3co": {
+    "defaultMessage": "DC-Abfall- und thermische Simulationen beantworten die zwei Fragen, die jeder Strompfad aufwirft: Sieht die Last die Spannung, die sie braucht, und wie heiß wird das Board? Beide laufen in Sekunden, also führen Sie sie frei aus, nach jeder Layout-Änderung, die einen Strompfad berührt."
+  },
   "23plfra7o4v": {
     "defaultMessage": "Excellon-Bohrungen, Slots als G85; eine weitere Datei pro Blind-, Buried- oder Microvia-Span auf HDI-Boards"
   },
@@ -1979,11 +2396,17 @@
   "24cgq3k0gom": {
     "defaultMessage": "Die Zonen eines Layouts füllen und das Kupfer in seiner Datei speichern, damit Ladevorgänge die Füllung überspringen"
   },
+  "24f48s88zot": {
+    "defaultMessage": "Ein Bauteil bekommt ein Primitive mit gemappten Pins, eine Bibliotheks-Pinout, geliehen mit <code>primitive = &quot;74HC244&quot;</code>, oder eine Wahrheitstabelle, deren erste passende Zeile gewinnt."
+  },
   "24ge4p3vpat": {
     "defaultMessage": "erste bis letzte Kupferschicht"
   },
   "24kimihxft4": {
     "defaultMessage": "Fill-Tips schärfer als 30 Grad; <code>min_width</code> der Zone erhöhen"
+  },
+  "24m8a2eo3kj": {
+    "defaultMessage": "<code>/Applications/KiCad/KiCad.app/Contents/SharedSupport</code> auf macOS,"
   },
   "24nz8lzyz4c": {
     "defaultMessage": "Ein Paar, dessen Skew über dem <code>max_skew</code> der Schnittstelle liegt"
@@ -2003,6 +2426,9 @@
   "24rudelfuhj": {
     "defaultMessage": "Der Name innerhalb der Teilenummer und dasselbe Gehäuse (SOT-23 ist nicht SOT-23-5, SMA ist DO-214AC, nicht SMB)"
   },
+  "24s07dggy0j": {
+    "defaultMessage": "Ein Symbol kann die Eingangsschwellen seiner Pins angeben, für den Signalpegel-Check der Schematic. <code>[levels]</code> gilt für jeden <code>input</code>- und <code>bidirectional</code>-Pin; die eigene <code>levels</code>-Tabelle eines Pins überschreibt sie Feld für Feld und unterwirft jeden Pin-Typ dem Check."
+  },
   "24s42atd7r2": {
     "defaultMessage": "Name und Gehäuse"
   },
@@ -2011,6 +2437,9 @@
   },
   "24vkk59o0ue": {
     "defaultMessage": "Die Renders sehen richtig aus: <code>agentee render pcb:NAME</code>, und die Montagezeichnungen im Paket."
+  },
+  "24wpr7txi7l": {
+    "defaultMessage": "KiCad"
   },
   "24ytcvgqxae": {
     "defaultMessage": "Die Koordinaten werden so verschoben, dass die Outline bei 0, 0 beginnt. Teardrops und Keepout-Bereiche werden weggelassen und gemeldet. Eine Klasse, deren Tracks schmaler als ihre Breite sind, übernimmt den schmalsten Track, da KiCad die Klassenbreite als Standardwert und agentee als Minimum behandelt. Clearances werden mit der KiCad-Toleranz von 0,5 µm geprüft. In den KiCad-Demos <code>video</code> und <code>complex_hierarchy</code> landet jedes Pad des importierten Layouts genau dort, wo es auch der KiCad-eigene IPC-D-356-Export platziert (2089 und 165 Pads)."
@@ -2033,8 +2462,14 @@
   "25bck7qz5e5": {
     "defaultMessage": "<code>agentee view --3d</code> zeigt die Bauteile dort, wo Sie sie erwarten."
   },
+  "25djsnwcls6": {
+    "defaultMessage": "<code>cargo build --release -p agentee</code> baut ohne Installation nach <code>target/release/agentee</code>."
+  },
   "25e31ncsuum": {
     "defaultMessage": "<code>silk-hidden</code>"
+  },
+  "25fez3tn8rw": {
+    "defaultMessage": "<code>tune</code> arbeitet bei Interfaces in Zeit wie in Länge: Ein Paar über seinem Skew in ps und ein Bus außerhalb seines Taktfensters bekommt die kurze Seite verlängert, jeweils mit der eigenen Verzögerung pro mm des Nets."
   },
   "25p7vx30apm": {
     "defaultMessage": "Ansehen"
@@ -2072,11 +2507,17 @@
   "262wjl7eu10": {
     "defaultMessage": "Vias in Pads"
   },
+  "263vpm1rcow": {
+    "defaultMessage": "50 mil"
+  },
   "268vqbs3pfx": {
     "defaultMessage": "Starten Sie bei <code>cell = 0.1</code> und verfeinern Sie erst auf den Standardwert 0,05, wenn das Design sich stabilisiert hat. Das Mesh verjüngt sich von Kupferkanten, daher bestimmt die feinste Zelle die Kosten."
   },
   "26b8o4kyzex": {
     "defaultMessage": "<code>edge-pad-reach</code>"
+  },
+  "26bjvb4kfal": {
+    "defaultMessage": "Dieser Lauf dauerte zwei Sekunden. Die Karten zeigen den Abfall von der Versorgung jedes Kupfer-Inseln in mV, die Stromdichte in A/mm2 und die Spannung. Schauen Sie auf die Dichtekarte nach Engstellen: ein Pour, der zwischen zwei Pads gequetscht wird, oder ein einzelnes Via, das eine Schiene trägt."
   },
   "26fe86vvqnb": {
     "defaultMessage": "Ausgewähltes Bauteil drehen"
@@ -2087,20 +2528,35 @@
   "26ggj5it9cm": {
     "defaultMessage": "<code>min_via_diameter</code>"
   },
+  "26hurtbg63o": {
+    "defaultMessage": "Es gibt keinen Export in KiCad-Dateien. Was agentee verlässt, ist das Fab-Paket (Gerber mit X2-Attributen, Excellon-Bohrungen, BOM, Placement und eine IPC-D-356-Netlist) und ein STEP des montierten Boards, das jede Fab und jedes MCAD-Tool liest."
+  },
   "26ieuvegot": {
     "defaultMessage": "KiCad-Dateien von Great Scott Gadgets"
   },
   "26jnmgzzxhh": {
     "defaultMessage": "jedes Gate mit <code>_od</code> (<code>nand_od</code>, <code>not_od</code>, <code>buf_od</code>)"
   },
+  "26k6u8quh5v": {
+    "defaultMessage": "<code>agentee fab</code>"
+  },
+  "26pkfhq2tqp": {
+    "defaultMessage": "<strong>Impedanz und Strom liegen an der Klasse.</strong> Geben Sie einer Klasse <code>impedance = &quot;50ohm&quot;</code> oder <code>current = &quot;2A&quot;</code> an, und check löst die Breite für jede Ebene des Stackups."
+  },
   "26s0srbqiyq": {
     "defaultMessage": "Eine Board kann mehrere Via-Typen auflisten. Ein Through via braucht nichts weiter. Blind, Buried und Microvias brauchen eine HDI-Fab und sind in <a href=\"/guides/hdi/\">HDI: Microvias und Laminierung</a> beschrieben."
+  },
+  "26tz2qnciqa": {
+    "defaultMessage": "Gehäuse modellieren"
   },
   "26u2i0yupaj": {
     "defaultMessage": "<code>fab-notes.txt</code>"
   },
   "26usu9ddj0s": {
     "defaultMessage": "<code>interface-reference</code>"
+  },
+  "26vnz731kn": {
+    "defaultMessage": "<code>.kicad_pro</code> Board-Einrichtung: Ebenen, Regeln, Net-Klassen"
   },
   "26xp2wb7oh5": {
     "defaultMessage": "Checks"
@@ -2126,6 +2582,9 @@
   "27ax5gs0bl3": {
     "defaultMessage": "Ein Datensignal, das außerhalb des <code>clock_window</code> vom Takt ankommt"
   },
+  "27esp12mu1q": {
+    "defaultMessage": "Jedes Fab-Paket enthält <code>agentee vX.Y.Z-HASH</code> in seiner Silk. Der Hash ist der Commit, aus dem die Binärdatei gebaut wurde, mit <code>-dirty</code>, wenn der Baum uncommittete Änderungen hatte, damit ein Board immer angibt, aus welchem Quellcode es gebaut wurde."
+  },
   "27mjljed7ff": {
     "defaultMessage": "14"
   },
@@ -2134,6 +2593,9 @@
   },
   "27o2dvhnuv0": {
     "defaultMessage": "Fab-Preset, Stackup, Umriss, Via-Typen und Net-Classes mit Impedanz- und Stromzielen."
+  },
+  "27rcjtco332": {
+    "defaultMessage": "<code>footprints/</code>"
   },
   "27rn493gxo2": {
     "defaultMessage": "Pins in zwei Nets, Pins ohne Net, Single-Pin-Nets, mehrere Ausgänge auf einem Net, Handdrähte, die einen Pin verfehlen oder einen anderen Net berühren, überlappende Bauteile, Footprints, deren Pads die Pins des Symbols nicht abdecken, Nets in <code>Default</code> und die Signalpegel, wenn <code>rails</code> gesetzt ist."
@@ -2195,6 +2657,9 @@
   "28wwq8sbxyp": {
     "defaultMessage": "Sonstiges"
   },
+  "28z3yapvrx": {
+    "defaultMessage": "Der Skill vermittelt den Ablauf, die Reihenfolge, in der ein Design aufgebaut wird, und die Stolperfallen im Format. Der MCP-Server stellt Clients, die ihn sprechen, dieselben Operationen als Tools bereit, wobei Renders als Bilder zurückgegeben werden."
+  },
   "28zcu6h1opb": {
     "defaultMessage": "Schaltpläne"
   },
@@ -2215,6 +2680,9 @@
   },
   "299rt91rys5": {
     "defaultMessage": "ein Track schmaler als seine Klassenbreite, aber nicht unter <code>min_track_width</code>, auf einem Lauf bis zur Klassen-<code>neckdown</code>-Länge (Standard 0,5 mm)"
+  },
+  "29cki9mtvxz": {
+    "defaultMessage": "Dem Agent den Skill geben"
   },
   "29f4o1z0ynn": {
     "defaultMessage": "was"
@@ -2240,6 +2708,9 @@
   "29t7eom4pu7": {
     "defaultMessage": "Keine Layerdicken eingeben. Den eigenen Aufbau der Fab auswählen:"
   },
+  "29u2d9n4iyg": {
+    "defaultMessage": "Pin-Typen: <code>input</code>, <code>output</code>, <code>bidirectional</code>, <code>tri_state</code>, <code>passive</code>, <code>free</code>, <code>unspecified</code>, <code>power_in</code>, <code>power_out</code>, <code>open_collector</code>, <code>open_emitter</code>, <code>no_connect</code>."
+  },
   "29wy114qrqa": {
     "defaultMessage": "Das Skript legt die Binärdatei in <code>~/.local/bin</code>. <code>AGENTEE_INSTALL_DIR</code> setzen, um sie woanders abzulegen."
   },
@@ -2251,6 +2722,9 @@
   },
   "29zw3trxzys": {
     "defaultMessage": "die Track abbrechen, zurück zur Auswahl, die Auswahl aufheben"
+  },
+  "2a36cas8c3": {
+    "defaultMessage": "Mehrfach-Symbole: Geben Sie Pins und Graphics eine <code>unit</code>. Dasselbe Pin-Nummer darf in mehr als einer Unit nur vorkommen, wenn sie denselben Namen hat (ein geteilter Pin)."
   },
   "2acppb2qi5r": {
     "defaultMessage": "Board-Spezifikationen, Stackups und Netzklassen"
@@ -2273,6 +2747,9 @@
   "2ap8qh2tub9": {
     "defaultMessage": "Der Feldlöser, FDTD und thermische Sims laufen auf Metal, auf jedem Mac, der macOS 11 ausführt."
   },
+  "2appvo3ibq2": {
+    "defaultMessage": "Schematics, Layouts und Simulationen sind einfache TOML-Dateien. agentee prüft jede Änderung gegen die Regeln deiner Fab und sagt, was zu ändern ist, zeichnet das Board, löst Impedanzen, führt FDTD- und thermische Simulationen auf der GPU aus und schreibt die Gerber."
+  },
   "2asfd21lwc7": {
     "defaultMessage": "AHC, AHCT: 3,5 ns trec von <code>nRD</code> zu <code>nCP</code> für die 74AHCT74 (3,0 ns für die 74AHC74), Nexperia 74AHC_AHCT74 rev 11 (TI SN74AHC74 SCLS255N gibt 3 ns an)."
   },
@@ -2291,6 +2768,12 @@
   "2azdq8hjg77": {
     "defaultMessage": "Ohne <code>type</code> entscheidet der Span: erste bis letzte Lage ist <code>through</code>, eine Außenlage als Ende ist <code>blind</code>, zwei Innenlagen als Enden <code>buried</code>. Check hält den Typ an seinen Span fest (ein blindes Via muss genau eine Außenlage berühren, ein buried Via keine) und an die Fab:"
   },
+  "2azq3xb5756": {
+    "defaultMessage": "Aus einem Clone"
+  },
+  "2b0kln8a7z6": {
+    "defaultMessage": "Der S-Expression-Reader und die Importer für <code>.kicad_sym</code>, <code>.kicad_mod</code> und <code>.kicad_pcb</code>"
+  },
   "2b2gonp55bj": {
     "defaultMessage": "Die Messwerte für das LNA:"
   },
@@ -2306,14 +2789,23 @@
   "2b6nbr5oygg": {
     "defaultMessage": "<code>new board</code> schreibt <code>blinky.board.toml</code>: einen Umriss von 50 mal 30 mm, den JLCPCB-zweilagigen 1,6-mm-Stackup, einen Via-Typ und vier Net-Classes. Check lädt es und meldet nichts:"
   },
+  "2b6xlltugst": {
+    "defaultMessage": "Von einem leeren Verzeichnis zu Gerbern"
+  },
   "2b7t81y413p": {
     "defaultMessage": "<code>agentee check</code> sauber, bevor das Schematic beginnt, Classes zu benennen."
   },
   "2b9md1xxs4j": {
     "defaultMessage": "Durchgearbeitete agentee-Projekte: ein Bias-Tee-LNA mit FDTD-, Kaskaden-, DC-Spannungsabfall- und Thermiksimulationen, der aus KiCad importierte HackRF Pro und Logiksimulationen eines Zählers und eines I2C-Busses."
   },
+  "2banbwa4skb": {
+    "defaultMessage": "Mit einem Board beginnen, das man bereits kennt"
+  },
   "2bbolmb8xgw": {
     "defaultMessage": "für jeden Pressvorgang von Build-up-Lagen, von innen nach außen: ein Laserschritt von jeder neuen äußeren Lage zur darunter liegenden Lage (und über zwei Dielektrika, ein Skip Via, ab der zweiten Build-up-Lage dieser Seite), dann ein mechanischer Schritt durch alles bisher Gepresste; der letzte ist die Durchgangsbohrung. Die Seite mit weniger Build-up-Lagen schließt sich den späteren Pressvorgängen an, sodass beide Außenfolien im letzten Pressvorgang aufgebracht werden: bei <code>1+4+2</code> fügt der erste Pressvorgang In5.Cu nur unter B.Cu hinzu, der zweite F.Cu und B.Cu;"
+  },
+  "2bcthj2uthw": {
+    "defaultMessage": "Auf dem Board halten"
   },
   "2bdmfo85x0h": {
     "defaultMessage": "<code>fab</code> lehnt ab, solange das Layout Fehler hat. Ohne Fehler schreibt es die Gerbers für jede Lage, die Bohrdatei, eine BOM und eine Platzierungsdatei in JLCPCB-Spalten, die IPC-D-356-Netlist, Montagezeichnungen, Fab-Notizen und <code>blinky-gerbers.zip</code> zum Hochladen."
@@ -2326,6 +2818,9 @@
   },
   "2bhynp34vku": {
     "defaultMessage": "<code>pad-off-board</code>"
+  },
+  "2bizg0yy61z": {
+    "defaultMessage": "Es gibt keinen Editor-Zustand, der synchron gehalten werden muss. Die Dateien sind das Design, daher arbeitet der Agent mit den Werkzeugen, die er bereits hat, und agentee antwortet in einer Form, die er verarbeiten kann."
   },
   "2bjnub8sm3c": {
     "defaultMessage": "Impedanz und Verluste - agentee Referenz"
@@ -2348,6 +2843,9 @@
   "2bplm0kfa0y": {
     "defaultMessage": "Einen Eintrag auf PNG rendern, so wie der Viewer ihn zeichnet"
   },
+  "2br1zzfoq12": {
+    "defaultMessage": "STEP- und VRML-Bauteilmodelle, Lookup und Download"
+  },
   "2bsy27aolyl": {
     "defaultMessage": "Kaskade"
   },
@@ -2363,6 +2861,9 @@
   "2bu38inx0ww": {
     "defaultMessage": "Eine Logik-Simulation führt die digitalen Teile eines Schematics direkt aus seiner Netlist aus. Es wird kein Layout benötigt, daher eignet sie sich früh im Design: Prüfe, ob ein Zähler zählt, ein Decoder dekodiert und ein Open-Drain-Bus acked, bevor etwas platziert ist."
   },
+  "2bxd38dsnem": {
+    "defaultMessage": "Ein ganzes Board importieren"
+  },
   "2bxezp9gm02": {
     "defaultMessage": "Durchsucht die installierten KiCad-Bibliotheken nach Namen. Jedes Wort muss Library:Name entsprechen."
   },
@@ -2377,6 +2878,9 @@
   },
   "2c6q98fqkky": {
     "defaultMessage": "Jedes andere Bauteil ist ein Fehler, der es benennt, es sei denn, es ist in <code>ignore</code> oder hat ein <code>[[parts]]</code>-Modell."
+  },
+  "2c7vx37k0vh": {
+    "defaultMessage": "4"
   },
   "2c8amrcwyd5": {
     "defaultMessage": "eine nicht verzinnte Lochwand näher als <code>min_copper_to_edge</code> an den Board-Umriss oder einen Board-Ausschnitt, oder hindurch"
@@ -2399,6 +2903,9 @@
   "2cjq2lndzi6": {
     "defaultMessage": "Der Treiber wird aus seinen Pulldown- und Pullup-Tabellen, seiner Die-Kapazität und seinem Gehäuse zu einer Thevenin-Quelle. Sein Rampenverhalten bestimmt die Kante, sein Spannungsbereich den Swing, es sei denn, <code>rise</code> oder <code>swing</code> sind angegeben. Der Empfänger belastet das ferne Ende mit seiner Gehäuse- und Die-Kapazität, und das Eye wird an seiner Die abgelesen. IBIS funktioniert derzeit nur für Single-Ended-Pfade."
   },
+  "2csls3gciuc": {
+    "defaultMessage": "Was es benötigt"
+  },
   "2ct1492h99e": {
     "defaultMessage": "KiCad-Bibliotheksnamen durchsuchen; jedes Wort muss Library:Name entsprechen"
   },
@@ -2417,6 +2924,12 @@
   "2czho36cqso": {
     "defaultMessage": "<code>min_npth_slot_width</code>"
   },
+  "2d56os6673e": {
+    "defaultMessage": "<code>impedance-trace</code> ist ein Fehler, wenn die Breite einer Track, ihre Neckdowns oder das Kupfer daneben auf einer Außenschicht ihre Impedanz außerhalb der Toleranz bewegt. Eine Coplanar-Leitung mit zu weit entferntem Pour oder eine, die zu lange neckt, wird hier erwischt."
+  },
+  "2d6nui62idj": {
+    "defaultMessage": "Der Solver behandelt das Kupfer jeder Schicht als widerstandsfähiges Blatt, mit Vias als verzinnte Barrel zwischen den Schichten, die sie überspannen, hält die Versorgungspads bei ihrer Spannung und zieht den Strom jeder Last an ihrem Pad ab und an ihrem <code>return</code> zurück. Er löst das ganze Board in Doppelpräzision mit sparsamer Cholesky-Zerlegung."
+  },
   "2d6y5d2d527": {
     "defaultMessage": "<code>impedance-trace</code>"
   },
@@ -2429,11 +2942,17 @@
   "2dcbqlgz11y": {
     "defaultMessage": "Verjüngt Track-Enden, die in ein Pad einlaufen, das schmaler als die Track ist oder den Clearance in der Nähe des Pads verletzt: Das Ende wird zu einem separaten [[tracks]]-Eintrag mit einer expliziten Breite, dem kleinsten Wert aus der Klassenbreite, der kleineren Seite des Pads und der größten Breite, die den Clearance hält, abgerundet auf 0,01 mm, nie unter min_track_width und nie länger als die Klassen-Neckdown. taper verringert die Breite über eine kurze Kette von Segmenten. Gespeicherte Zone-Fills werden aktualisiert."
   },
+  "2ddoczi1wf7": {
+    "defaultMessage": "<code>.kicad_pcb</code>"
+  },
   "2de6h0gw1fn": {
     "defaultMessage": "Die <a href=\"/reference/placement/\">Platzierungsreferenz</a> gibt die Quelle für jede Regel an. Das Ergebnis hängt nur von den Dateien und <code>--seed</code> ab."
   },
   "2dkux4yfq4z": {
     "defaultMessage": "Testpads"
+  },
+  "2dn1tyahlx1": {
+    "defaultMessage": "Check kennt die Fab"
   },
   "2dpjsb8x9zt": {
     "defaultMessage": "<code>min_npth_to_copper</code>"
@@ -2468,17 +2987,35 @@
   "2e32040yn3l": {
     "defaultMessage": "agentee-Kommandozeilen-Referenz"
   },
+  "2e4luhafp8k": {
+    "defaultMessage": "Bauteile tragen DC über <code>[[links]]</code>. Widerstände nehmen ihren Wert aus dem Schaltplan; Induktivitäten und Ferritperlen standardmäßig 0,1 Ohm, also geben Sie einer Drossel ihren DCR aus dem Datenblatt, wie oben. Alles andere ist offen, wenn nicht verlinkt. Ein Link verbindet Pads 1 und 2, es sei denn, <code>a</code> und <code>b</code> benennen andere, also ist ein Lastschalter <code>{ ref = &quot;U5&quot;, resistance = &quot;80mohm&quot;, a = &quot;1&quot;, b = &quot;6&quot; }</code>."
+  },
   "2e50flxb8bh": {
     "defaultMessage": "IPC-D-356-Netlist für den Bare-Board-Test"
+  },
+  "2e51eqkvav7": {
+    "defaultMessage": "<code>agentee neck NAME [--nets &#39;VBUS,RF_*&#39;] [--taper] [--dry-run]</code> (MCP <code>neck</code>) verengt Kupfer, das bereits vorhanden ist. Es betrachtet beide Enden aller Tracks der benannten Nets (Standard: alle), die innerhalb eines Pads ihres Nets auf ihrer Ebene enden, und nimmt diejenigen, die breiter als die kleinere Seite des Pads sind oder deren volle Breite den Clearance innerhalb der Länge <code>neckdown</code> (plus eine Track-Breite) des Pads verletzt. Ein solches Ende wird abgeschnitten: Der Track behält seine Breite vom Schnitt nach außen, und ein neuer <code>[[tracks]]</code>-Eintrag mit expliziter <code>width</code> verläuft vom alten Endpunkt im Pad zum Schnitt, entlang des alten Pfads. Die Halsbreite ist der kleinste Wert aus der Track-Breite, der kleineren Seite des Pads und der größten Breite, die den Clearance entlang des Halses aufrechterhält, abgerundet auf 0,01 mm (oder exakt <code>min_track_width</code> wie oben). Der Schnitt ist der erste Punkt, in 0,01-mm-Schritten, an dem die volle Breite den Clearance für die nächsten <code>neckdown</code> plus eine Track-Breite aufrechterhält (und, bei einem Pad, das schmaler ist als der Track, außerhalb des Pads liegt); ein Hals ist nie länger als <code>neckdown</code> und nie kürzer als <code>min_track_width</code>, andernfalls wird das Ende unter <code>failed</code> mit dem Grund aufgelistet und unverändert gelassen. Ein Pad, das aus mehreren Pad-Einträgen desselben Nets besteht, die sich berühren, zählt als ein breites Pad. <code>--taper</code> steigert die Breite über eine kurze Kette anstelle eines einzelnen Halses: Nach dem schmalen Hals folgen bis zu zwei weitere Einträge, die jeweils ein Drittel vom Hals- zur Track-Breite aufsteigen, zusammen nicht länger als <code>neckdown</code> (dreimal der Hals, maximal). Das Kupfer wird nur schmaler, daher kann kein neuer Clearance-Fehler auftreten; die Datei wird an Ort und Stelle bearbeitet (jede andere Zeile bleibt erhalten) und gespeicherte Zone-Fills werden aktualisiert. Der Bericht listet jeden Hals (Track-Index, Net, Pad, Grund, Breite, Länge, Einträge) und zählt die geänderten und hinzugefügten Tracks."
   },
   "2e5vkzcnnrm": {
     "defaultMessage": "Er liest das Skill-Register, das agentee.sh unter <code>/.well-known/agent-skills/index.json</code> veröffentlicht, das die Skill mit einem SHA-256-Digest ihrer Datei auflistet. <code>npx skills add v0l/agentee</code> installiert dieselbe Skill stattdessen aus dem GitHub-Repository."
   },
+  "2e74lsh1nks": {
+    "defaultMessage": "Die JLCPCB-Schichtdicken stammen aus den Daten hinter jlcpcb.com/impedance. Ihr Er stammt aus dem Rechner-Guide: Nan Ya NP-155F nach Core-Dicke und Prepreg für 4 bis 8 Schichten, Shengyi S1000-2M für 10 und mehr. Wo eine Tabelle keinen Eintrag hat, ist der Wert der des anderen Systems für dasselbe Prepreg oder der der nächsten Core-Dicke im selben System. PCBWay-Dicken sind nach der Laminierung, aufgeteilt auf gestapelte Prepreg-Lagen nach ihrer Rohdicke, mit dem auf jedem Build gedruckten DK. Die Verlusttangente beträgt durchgehend 0,02; keine der Fabs veröffentlicht sie pro Build. <code>crates/agentee-core/stackups/fetch.py</code> holt beide erneut ab."
+  },
   "2e7c9td1w4l": {
     "defaultMessage": "Was simuliert werden muss: der RF-Weg, ein USB-Lane, der Spannungsabfall einer Schiene, ein heißer Regler."
   },
+  "2eae1pcr9lz": {
+    "defaultMessage": "Längengleichlauf"
+  },
   "2eb2s3rm7ft": {
     "defaultMessage": "PCBWay baut 1+N+1 bis 6+N+6 durch sequenzielle Laminierung; gestapelte Microvias sind kupfergefüllt"
+  },
+  "2edtth2bfnq": {
+    "defaultMessage": "Zum Inhalt springen"
+  },
+  "2ek4dk4316d": {
+    "defaultMessage": "Gerber und Bohrdateien plotten"
   },
   "2ell9q01pdp": {
     "defaultMessage": "ein Track schmaler als seine Klassenbreite, der kein Neck-down ist"
@@ -2500,6 +3037,9 @@
   },
   "2esv3ij8ba7": {
     "defaultMessage": "Ein Layout manuell bearbeiten"
+  },
+  "2etkcmne0z1": {
+    "defaultMessage": "Seite nicht gefunden - agentee"
   },
   "2ev9oq0xw6j": {
     "defaultMessage": "<code>circle</code>"
@@ -2591,8 +3131,17 @@
   "2g7qg8g93l6": {
     "defaultMessage": "X"
   },
+  "2g89c5zmuo0": {
+    "defaultMessage": "Designen mit agentee"
+  },
   "2g9lysxffhg": {
     "defaultMessage": "Kondensatoren, Induktivitäten, Perlen, Filter, Dioden, LEDs, Testpunkte, Löcher, Fiduzialpunkte und Kristalle (<code>C</code>, <code>L</code>, <code>FB</code>, <code>FL</code>, <code>D</code>, <code>LED</code>, <code>TP</code>, <code>H</code>, <code>MH</code>, <code>FID</code>, <code>Y</code>, <code>X</code>) werden weggelassen."
+  },
+  "2g9u8a1wnma": {
+    "defaultMessage": "Längen sind Zahlen in Millimetern oder Strings mit Einheit: <code>&quot;0.2mm&quot;</code>, <code>&quot;8mil&quot;</code>, <code>&quot;35um&quot;</code>, <code>&quot;0.1in&quot;</code>, <code>&quot;1oz&quot;</code> (Kupfer, 35 um)."
+  },
+  "2gbdkmb6u42": {
+    "defaultMessage": "Koordinaten sind Millimeter mit Y nach oben, gleich in den Gerbern und der Platzierungsdatei. Bauteile, die als <code>dnp</code> markiert sind, Bauteile mit <code>assembly = &quot;no&quot;</code> in ihren Feldern sowie Montagebohrungen und Fiducials bleiben aus BOM und Platzierung."
   },
   "2gdxxtr0gxf": {
     "defaultMessage": "Einen echten Stackup auswählen"
@@ -2642,6 +3191,9 @@
   "328p3e39kt": {
     "defaultMessage": "Jeder Key jeder Datei, aufgeteilt nach Thema. Es ist derselbe Text, den <code>agentee docs</code> ausgibt und den der MCP-Server als <code>format_reference</code> zurückgibt, sodass ein Agent offline genau dies liest."
   },
+  "33c5mh1iyw": {
+    "defaultMessage": "<code>cmos</code>"
+  },
   "33p5vd7qbe": {
     "defaultMessage": "Das Fab-Paket schreiben"
   },
@@ -2669,6 +3221,9 @@
   "3gi7eg5yx": {
     "defaultMessage": "Das <code>hdi</code>-Preset ist <code>generic</code> mit den veröffentlichten HDI-Fähigkeiten von PCBWay: 1+N+1 bis 6+N+6-Aufbauten, 0,065 mm Spur und Abstand, 0,1 bis 0,2 mm Laserbohrung, 0,15 mm mechanische Bohrung, 14:1-Seitenverhältnis und gestapelte, kupfergefüllte Microvias. <code>[rules] hdi = true</code> schaltet HDI für ein anderes Preset ein, mit den Grenzen dieses Presets."
   },
+  "3h949grhyq": {
+    "defaultMessage": "Steady-State-Leitung durch FR4 (0,8 W/mK in der Ebene, 0,3 durch), Kupferblätter und Via-Bohrungen, mit Konvektion von beiden Seiten, gelöst auf der GPU per preconditioned conjugate gradient."
+  },
   "3k8q5s5roj": {
     "defaultMessage": "Zuschauen, wie er arbeitet"
   },
@@ -2687,14 +3242,23 @@
   "3unf1ewixy": {
     "defaultMessage": "Die Rotation ist in Grad, gegen den Uhrzeigersinn, wie auf dem Bildschirm zu sehen."
   },
+  "3w7i0ck2te": {
+    "defaultMessage": "Erst fragen"
+  },
   "3yy6rkw7yb": {
     "defaultMessage": "<code>--pairs</code> routet Differentialpaare als gekoppelte Paare, wo es passt."
   },
   "3zc2nu4nnd": {
     "defaultMessage": "<code>new layout</code> auf dem Layouts-Tab fragt nach Name, Board und Schematic, schreibt die Datei und platziert jedes Bauteil mit dem Placer. Das neue Layout startet mit einem Ground-Pour auf jeder Kupfer-Ebene und, wenn das Schematic RF-Nets hat, mit Ground-Stitching und einer Via-Fence entlang der RF-Tracks."
   },
+  "3zkdzzy60r": {
+    "defaultMessage": "Der Workspace"
+  },
   "40jssvaeqi": {
     "defaultMessage": "Das Projekt über MCP auf stdio bereitstellen"
+  },
+  "40pit28bom": {
+    "defaultMessage": "Vollständige Hilfe"
   },
   "431owsfft4": {
     "defaultMessage": "ein Connector (Rand-Pads, <code>overhang = true</code>, oder eine <code>J</code>/<code>P</code>-Referenz, die kein Tag-Connect, U.FL oder Testpad ist), dessen Courtyard weiter als <code>connector_edge</code> (3 mm) vom Umriss entfernt ist"
@@ -2723,8 +3287,14 @@
   "4eozrvrv71": {
     "defaultMessage": "<code>agentee edit</code> schreibt das TOML für dich um, behält Kommentare darin bei und führt check auf der bearbeiteten Datei aus. Gehe bei einem so einfachen Board nicht viel kleiner: Jedes Board trägt die <code>agentee vX.Y.Z-HASH</code>-Version in seiner Silk, und check braucht einen klaren Streifen von etwa 23 mal 1,2 mm, um sie dort unterzubringen. Auf einem 20-mm-Board meldet er einen <code>watermark</code>-Fehler und das Fab-Paket wird abgelehnt."
   },
+  "4fc8tsnpn5": {
+    "defaultMessage": "Maps: Temperatur pro Kupferschicht. Messwerte: Board-Spitze, Pad- und Junction-Temperatur jeder Quelle."
+  },
   "4hcmaqffpe": {
     "defaultMessage": "erste bis letzte Kupferlage"
+  },
+  "4i0hptmux5": {
+    "defaultMessage": "Vias"
   },
   "4lxxwf41j4": {
     "defaultMessage": "<code>min_plated_slot_width</code>"
@@ -2735,14 +3305,23 @@
   "4vvqzuvdnh": {
     "defaultMessage": "<strong>Layouts</strong>: Kupfer pro Schicht, Pours, Vias nach Typ, Silk, Courtyards und das Ratsnest aller nicht gerouteten Verbindungen, mit einer Net-Tabelle und dem Diagnose-Panel."
   },
+  "4w9ze7sl0l": {
+    "defaultMessage": "Neuestes Release {tag}"
+  },
   "4y5manoh5m": {
     "defaultMessage": "Das aufgelöste Modell als JSON: Pin-Positionen, Net-Längen und -Verzögerungen, gelöste Track-Breiten pro Layer, Sim-Messwerte."
+  },
+  "51bkgjilex": {
+    "defaultMessage": "Jeder Schlüssel, in der Referenz"
   },
   "54402au2kc": {
     "defaultMessage": "Platziert die Bauteile des Layouts automatisch als schnellen Start: Connectoren und Edge-Mount-Bauteile an den Board-Rändern (nie ein RF- und ein USB-Connector an einem Rand, es sei denn, es muss sein), Montagebohrungen und Fiducials in den Ecken, die größten Chips in der Nähe des Zentrums, die Entkopplungskondensatoren, den Oszillator und die Pull-ups jedes ICs in der Nähe der Pins, die sie versorgen, platziert nach gewichteter Drahtlänge, dann legalisiert auf einem 0,05-mm-Gitter ohne Courtyard-Überlappungen und verfeinert durch Simulated Annealing. Schreibt at, rotation und side in [[footprints]] und aktualisiert die gespeicherten Fills. Bauteile mit locked = true bleiben an ihrem Platz."
   },
   "56md48ys3m": {
     "defaultMessage": "Schickt einen Bitstrom durch einen Pfad eines FDTD- oder Cascade-Ergebnisses und zeichnet das Eye."
+  },
+  "5fuldbyvww": {
+    "defaultMessage": "<strong>Jedes Board trägt ein Versions-Wasserzeichen</strong> in seiner Silk: die agentee-Version und der Commit, aus dem das Fab-Paket gebaut wurde."
   },
   "5j6snvvuuk": {
     "defaultMessage": "Layout"
@@ -2755,6 +3334,9 @@
   },
   "5lzmwcyr7a": {
     "defaultMessage": "<code>zone-tips</code>"
+  },
+  "5m5l2y1x20": {
+    "defaultMessage": "Mit <code>solver = &quot;field&quot;</code> löst check die Klasse auf jeder Schicht, die sie nutzen darf, und sagt, wenn sie nicht passt, um wie viel und was zu verwenden:"
   },
   "5mdecrm7hm": {
     "defaultMessage": "<code>fab</code> gesetzt, und ein Stackup-<code>preset</code>, das die Fab tatsächlich baut."
@@ -2801,6 +3383,9 @@
   "6x8yn1m2yz": {
     "defaultMessage": "Kupfer von zwei verschiedenen Nets berührt sich"
   },
+  "71kw1z7b1m": {
+    "defaultMessage": "Rendert bei jedem Pull Request"
+  },
   "733i3i2l0j": {
     "defaultMessage": "0,25, 0,15"
   },
@@ -2812,6 +3397,9 @@
   },
   "74vkuiezk": {
     "defaultMessage": "<code>agentee sparam NAME</code> (MCP <code>sparam</code>) funktioniert mit jedem FDTD- oder Kaskaden-Ergebnis:"
+  },
+  "785vso7xer": {
+    "defaultMessage": "Lassen Sie <code>track_width</code> weg, und check löst es für die erste Schicht. Wenn eine Breite nicht auf jede Schicht passt, geben Sie <code>widths = { &quot;In2.Cu&quot; = &quot;0.16mm&quot; }</code> an."
   },
   "7bxalrqtkl": {
     "defaultMessage": "<code>check</code> führt jede Regel aus; <code>drc</code> gibt nur die Regel-Diagnosen des Layouts aus, jeweils mit ihrer ID in eckigen Klammern am Anfang, und <code>--list</code> gibt jede Regel mit an, ob sie auf dieses Board zutrifft. Fehler blockieren das Fab-Paket. Warnungen und Hinweise sind Praxis, keine Fab-Grenzen: Beachten Sie sie, es sei denn, das Design liefert einen Grund, und dokumentieren Sie diesen Grund in <code>DESIGN.md</code>."
@@ -2876,6 +3464,12 @@
   "7yos9axkg5": {
     "defaultMessage": "Jede unterscheidbare Fläche (pro Kupferdicke) wird mit einem gemeinsamen Satz von etwa 24 Polen durch Vektorfitting angepasst (Gustavsen und Semlyen, IEEE Trans. Power Delivery 14(3), 1999), von einem tausendstel der Bandmitte bis zum 100-fachen der oberen Frequenz (innerhalb von 0,02 % der obigen Funktionen für eine 20-GHz-Bandmitte), und durch Erhöhung des Serienwiderstands passiv gemacht, falls der Fit irgendwo unter null fällt. Die Blattkante schaltet einen Zustand pro realem Pol und einen komplexen Zustand pro Polpaar um, geteilt zwischen ihren zwei Flächen, mit der Trapezregel, sodass das diskrete Blatt das bilineare Bild der angepassten Impedanz ist (eine CPU-Nachstellung der Tabelle stimmt damit auf 5e-6 überein)."
   },
+  "806u90mrug": {
+    "defaultMessage": "Skill"
+  },
+  "82k3a4fl2t": {
+    "defaultMessage": "Kommandozeile"
+  },
   "82qvrr6scb": {
     "defaultMessage": "<code>via-cuts-pad</code>"
   },
@@ -2890,6 +3484,9 @@
   },
   "8cp12r8ntj": {
     "defaultMessage": "<img src=\"/assets/renders/lna-sim.webp\" alt=\"S-Parameter des LNA-Boards aus dem FDTD-Lauf\">"
+  },
+  "8e976fy6oi": {
+    "defaultMessage": "KiCad-Bibliotheken installieren"
   },
   "8esubrd7a2": {
     "defaultMessage": "Jedes Board braucht Probe-Zugang für den Bring-up und eine Pogo-Pin-Fixtur für den Produktionstest. Standardmäßig sind das die Power-Rails, Ground, Resets, Enables, Power Good, Clocks und die Low-Speed-Busse; Schaltknoten und Regler-Feedback werden bewusst ausgelassen. <code>testpoints</code> fügt für jedes Net ohne Zugang ein <code>TP</code>-Bauelement in der Schaltung, ein 1-mm-Pad auf der Probe-Seite in der Nähe des Net-Kupfers und einen gerouteten Track dorthin hinzu. Impedanz-Nets und Paare werden übersprungen, da ein Stub sie beeinträchtigt."
@@ -2921,14 +3518,23 @@
   "8q4wpya2zd": {
     "defaultMessage": "0.16"
   },
+  "8ttwonuoex": {
+    "defaultMessage": "Die Bibliotheken"
+  },
   "8tvmwo35k": {
     "defaultMessage": "Die Binärdatei ist nicht notariert. Das Install-Skript lädt sie mit curl herunter, das hinterlässt keinen Quarantäne-Flag. Wenn Sie das Archiv stattdessen im Browser herunterladen, das Flag einmal mit <code>xattr -d com.apple.quarantine agentee</code> entfernen."
+  },
+  "8vf2ipcuu0": {
+    "defaultMessage": "Sechs Arten von Dateien, geladen nach Suffix. Unbekannte Schlüssel sind Fehler, daher wird ein Tippfehler gemeldet und nicht ignoriert. Reine Zahlen sind Millimeter; alles andere trägt seine Einheit."
   },
   "90ssgwd7lr": {
     "defaultMessage": "Jede Fläche hat ihre eigene Oberflächenimpedanz, eine Funktion der Frequenz:"
   },
   "962yh23fjb": {
     "defaultMessage": "Der Server schreibt keine TOML für den Agenten. Er liest, prüft, rendert, routet, simuliert und schreibt das Fab-Paket; der Agent bearbeitet Dateien weiterhin mit seinen eigenen Tools oder mit <code>agentee edit</code> in einer Shell. Die <a href=\"/mcp/\">MCP-Seite</a> listet alle Tools."
+  },
+  "9b2cn8yf3k": {
+    "defaultMessage": "Quellcode"
   },
   "9e23y0wnzc": {
     "defaultMessage": "Esc"
@@ -2948,6 +3554,9 @@
   "9ian9sucb7": {
     "defaultMessage": "Das Fab-Paket für ein Layout schreiben: Gerbers, Drill, BOM, Placement, Notizen"
   },
+  "9j2oxeebxr": {
+    "defaultMessage": "jeden Footprint, wie er auf dem Board liegt, mit den unteren nach oben umgedreht"
+  },
   "9jg21u56kj": {
     "defaultMessage": "Jede BOM-Zeile ist ein <code>mpn</code>-Feld, dieselbe Gruppierung wie <code>bom.csv</code>, benötigt die Anzahl der Referenzen mal <code>--boards</code>. Die Angebote der Zeile sind die Händlerlisten dieses Teilenummers; das gewählte ist das günstigste, das für die Menge auf Lager ist und nicht obsolet. Ein Preis respektiert das Minimum und die Mehrfachmenge des Angebots und kauft bis zu einem späteren Preisabschnitt, wenn die größere Menge insgesamt weniger kostet, sodass zehn Widerstände als hundert gekauft werden können."
   },
@@ -2966,6 +3575,9 @@
   "9tdtrp8oa4": {
     "defaultMessage": "Silk-Text muss 0.4 mm Abstand zu anderem Silk-Text und 0.2 mm zu Silk-Outlines einhalten, darf nicht auf Pads, Vias und anderen Bauteilkörpern liegen und muss auf dem Board bleiben. Jedes dieser Vorkommnisse ist ein Fehler, außer Text unter dem Körper eines anderen Bauteils, was eine Warnung ist. Wenn ein Referenzlabel fehlschlägt, nennt check eine Stelle, die alle Regeln erfüllt, als eine einzufügende <code>label = { at = [...] }</code>-Zeile. <code>agentee silk NAME</code> (MCP <code>silk</code>) fügt diese alle für Sie ein und wiederholt den Vorgang, bis sich die Labels eingependelt haben; <code>--hide</code> blendet die Referenzen aus, die keine freie Stelle haben, typischerweise kleine passive Bauteile unter einem BGA."
   },
+  "9u7i8lybkg": {
+    "defaultMessage": "3D-Modelle stammen aus <code>KICAD9_3DMODEL_DIR</code> und verwandten Variablen, aus <code>3dmodels/</code> im Projekt oder aus einem Cache, den <code>agentee models</code> aus dem kicad-packages3D-Repository füllt."
+  },
   "9wwswyud6u": {
     "defaultMessage": "Ein Switcher (ein IC mit einem Induktor an einem seiner Pins, dessen anderes Ende eine Versorgung ist) hält seinen Induktor und seine Eingangskondensatoren eng an sich, und Switcher halten 8 mm (Mittelpunkt zu Mittelpunkt) Abstand zu empfindlichen Bauteilen: Oszillatoren und Bauteile auf Single-Ended-Impedanz- (RF-)Netzen (TI SNVA021, AN-1149 Layout Guidelines for Switching Power Supplies; Linear Technology AN139, Power Supply Layout and EMI)."
   },
@@ -2974,6 +3586,12 @@
   },
   "9z0a5kke3l": {
     "defaultMessage": "Strg+Z, Strg+Umschalt+Z"
+  },
+  "9zxxrog84m": {
+    "defaultMessage": "agentee ist ein Rust-Workspace ohne Systembibliotheken, die installiert werden müssen. Jede Maschine mit einem aktuellen Rust-Toolchain baut es."
+  },
+  "a09necsmsk": {
+    "defaultMessage": "Schematic-Blatt mit Drähten"
   },
   "a0ji40xtce": {
     "defaultMessage": "Eine ausgewählte Ratsnest-Linie kann an den Autorouter übergeben werden, als eine Verbindung oder als gesamtes Net, mit denselben Regeln wie <code>agentee route</code>. Für ein Plane-Net bietet es an, die Pads stattdessen an das Plane zu binden."
@@ -2990,8 +3608,14 @@
   "a5yry83gi7": {
     "defaultMessage": "KiCad-Symbole und Footprints suchen und importieren, was die Fab ablehnt, korrigieren und ein Bauteil aus seinem Datenblatt bauen, wenn es in KiCad nicht vorhanden ist."
   },
+  "a9vukwwmgk": {
+    "defaultMessage": "Oder listen Sie die Schichten selbst auf, von oben nach unten. Verwenden Sie entweder <code>preset</code> oder <code>layers</code>, nicht beides."
+  },
   "abb99ekaja": {
     "defaultMessage": "agentee ist so gebaut, dass ein Coding Agent es steuert: Claude Code, Claude Code, Codex, Cursor, pi oder jedes andere Tool, das Shell-Befehle ausführen und Dateien bearbeiten kann. Es gibt zwei Komponenten, die eingerichtet werden müssen. Die Skill erklärt dem Agenten, wie er arbeitet. Der MCP-Server ist optional und stellt Clients, die MCP sprechen, dieselben Operationen als Tools bereit."
+  },
+  "akkmisuarv": {
+    "defaultMessage": "Nur Pins mit Levels werden geprüft; für ein Symbol ohne Levels wird nichts angenommen."
   },
   "alk59hitn5": {
     "defaultMessage": "Removal"
@@ -3011,11 +3635,17 @@
   "aq5m89eyr9": {
     "defaultMessage": "0.2"
   },
+  "as6e4itjc6": {
+    "defaultMessage": "Maschinenlesbare Ausgabe"
+  },
   "awea5dpil0": {
     "defaultMessage": "Kaskade - agentee Referenz"
   },
   "aweb8hojkh": {
     "defaultMessage": "ein <code>[[stitching]]</code>-Eintrag, der keinen Via platziert hat"
+  },
+  "ayazs3m022": {
+    "defaultMessage": "Der Import schreibt:"
   },
   "ayjewqtkc2": {
     "defaultMessage": "Eine Via-Art ist nur bohren, wenn ihre Spanne und ihr Bohrtyp einen Schritt abdecken. Eine, die keinen abdeckt, ist ein <code>via-lamination</code>-Fehler, und die Meldung listet alle Spannen auf, die die Laminierung bohrt. F.Cu zu In2.Cu ist beispielsweise auf <code>hdi-8l-2n2</code> als zwei gestapelte Laserschritte bohren, aber nicht auf <code>hdi-6l-1n1</code>, wo sie den ersten Core kreuzen würde. Listen Sie <code>lamination</code>-Schritte manuell für einen Aufbau auf, den der Stackup nicht zeigt."
@@ -3032,6 +3662,12 @@
   "b32802o1an": {
     "defaultMessage": "min. Via-Durchmesser"
   },
+  "b3zlv1gdi7": {
+    "defaultMessage": "agentee auf {platform}"
+  },
+  "b4du3mm5x7": {
+    "defaultMessage": "Dein erstes Board bauen"
+  },
   "b71sv3ntno": {
     "defaultMessage": "<code>min_via_hole_to_copper</code>"
   },
@@ -3041,17 +3677,26 @@
   "b92nzpwkpa": {
     "defaultMessage": "Was du getan hast"
   },
+  "bfszn94lc9": {
+    "defaultMessage": "<code>--sweep</code> fügt eine Verlusttabelle pro Frequenz hinzu: R, L, G, C, Z0 und dB pro Meter und pro Zoll, aufgeteilt in Leiter- und Dielektrikumverlust, mit Skin-Effekt, Kupferrauheit aus dem Stackup (<code>roughness</code> oder <code>huray</code>) und einem kausalen Dielektrikummodell. Ohne GPU fällt der 2D-Solver auf die CPU zurück."
+  },
   "bhwbvbaf0s": {
     "defaultMessage": "0.5"
   },
   "bkysp9m0z3": {
     "defaultMessage": "Check listet jede fehlgeschlagene Assertion, jeden Konflikt oder jeden Timing-Verstoß als Fehler auf der Simulation, während das Ergebnis aktuell ist."
   },
+  "blg2ol2zyn": {
+    "defaultMessage": "die Standard-Through-Hole-Builds, 4 bis 18 Schichten"
+  },
   "bp830w79wp": {
     "defaultMessage": "Batches"
   },
   "bpabo8g7fs": {
     "defaultMessage": "Autorouting"
+  },
+  "brwn491d99": {
+    "defaultMessage": "<code>agentee-fab</code>"
   },
   "bs5c7s0vv8": {
     "defaultMessage": "<code>agentee drc NAME --list</code> gibt jede Regel aus, mit ob sie auf diese Board zutrifft und warum. Die <a href=\"/reference/drc/\">Design Rule-Checks-Referenz</a> listet sie alle auf."
@@ -3086,6 +3731,9 @@
   "c7b9w5rv43": {
     "defaultMessage": "<code>max_aspect_ratio</code>"
   },
+  "c8xiqoyh6c": {
+    "defaultMessage": "<code>agentee view</code> öffnet ein Fenster, das sich bei jeder Dateiänderung neu lädt, sodass man dem Board beim Entstehen zuschauen kann, während der Agent arbeitet. Im Layout kann man Bauteile verschieben, Tracks routen und Vias manuell platzieren. Beim Speichern werden die Änderungen in dasselbe TOML geschrieben, das der Agent als Nächstes liest."
+  },
   "c9ekqbryqq": {
     "defaultMessage": "Spurbgeometrie pro Klasse und Ebene, geschlossene Form und Feldlösung für die Impedanz, Differentialpaare und das Verlustmodell mit Rauheit und ENIG."
   },
@@ -3107,14 +3755,32 @@
   "cuvulrz5sw": {
     "defaultMessage": "Um ein <code>DESIGN.md</code> neben den Dateien bitten. Die Skill weist den Agenten an, eines zu führen, mit dem Schaltkreis, der Begründung für jede Bauteilauswahl, den Layout-Regeln, die der Schaltkreis benötigt, und dem, was noch nicht verifiziert ist. Es ist das Dokument, das man prüft, und das, das die nächste Sitzung zuerst liest."
   },
+  "cvo21ugzrw": {
+    "defaultMessage": "agentee"
+  },
+  "cvvq06bely": {
+    "defaultMessage": "Steady-State-Wärmeleitung durch FR4 (0,8 W/mK in der Ebene, 0,3 quer), die Kupferblätter und die Via-Barrel, mit Konvektion von beiden Seiten, gelöst auf der GPU mit preconditioniertem konjugiertem Gradientenverfahren. Eine Quelle gibt ihre Leistung über ihre Pads in das Board, oder nur über die <code>pads</code>, die Sie benennen, wie den Thermal-Tab eines Reglers. <code>theta_jc</code> fügt eine Junction-Schätzung über der Pad-Temperatur hinzu."
+  },
+  "d23wnx6pab": {
+    "defaultMessage": "<code>lvds</code>"
+  },
   "d2bf1i0p59": {
     "defaultMessage": "<code>Q</code>, <code>QN</code> (z, wenn <code>OE</code> low ist)"
   },
   "d4h9xa9tl2": {
     "defaultMessage": "Zeichne den Courtyard auf <code>F.CrtYd</code> und den Körperumriss auf <code>F.Fab</code>: Check benötigt einen Courtyard, der die Pads umschließt, der Placer hält Courtyards voneinander fern, und die Kanten- und Bestückungsregeln messen vom Körper aus. Setze <code>height</code>, damit die 3D-Ansicht und die Regel für hohe Bauteile eine Höhe haben, ohne ein Modell."
   },
+  "da20h6ryzp": {
+    "defaultMessage": "Der MCP-Server"
+  },
   "da4s6xwybs": {
     "defaultMessage": "Ein PNG des Boards, genau so, wie der Viewer es zeichnet. Ein bestandener Check kann überfüllte Silk oder einen Umweg in einem Track verbergen."
+  },
+  "dbq5pcavbe": {
+    "defaultMessage": "Agent-Setup, inklusive MCP"
+  },
+  "dc15fypawa": {
+    "defaultMessage": "<code>agentee-view</code>"
   },
   "ddp1zi15x0": {
     "defaultMessage": "Simulationsbudgets. Ein FDTD-Lauf kann mehrere Dutzend Minuten dauern. Die Skill weist den Agenten an, zuerst einen Dry-Run durchzuführen und grob zu iterieren, aber im Brief darauf hinweisen, wenn GPU-Zeit wichtig ist."
@@ -3127,6 +3793,9 @@
   },
   "dpkvg4p2g0": {
     "defaultMessage": "<code>dlatch</code>"
+  },
+  "dq5fgc9a66": {
+    "defaultMessage": "<img src=\"/assets/renders/lna-dc.webp\" alt=\"DC-Abfall-Karte des LNA-Boards\">"
   },
   "dqqttfnrhh": {
     "defaultMessage": "<code>blind</code>"
@@ -3188,6 +3857,9 @@
   "f4sl2c797x": {
     "defaultMessage": "Ein Courtyard, der einen Montagebohrung oder einen nicht verzinnten Bohrung eines anderen Bauteils bedeckt"
   },
+  "f6rpx32og4": {
+    "defaultMessage": "Öffnen"
+  },
   "f8cwpk3obd": {
     "defaultMessage": "<code>agentee fab NAME -o fab/</code> schreibt das Fertigungspaket, sobald das Layout keine Fehler hat."
   },
@@ -3217,6 +3889,9 @@
   },
   "fm2p0hrar5": {
     "defaultMessage": "ein BGA"
+  },
+  "fnclo6kdyf": {
+    "defaultMessage": "Footprint-Placements, Tracks (Bögen als kurze Segmente), Vias und Zonen mit ihren gespeicherten Füllungen, sowie Silk- und Fab-Text und Linien, wobei <code>${TITLE}</code> und die Textvariablen des Projekts ausgefüllt werden"
   },
   "fu1o330nrq": {
     "defaultMessage": "Geben Sie Logik- und MCU-Symbolen eine <code>[levels]</code>-Tabelle aus dem Datenblatt (siehe <a href=\"/guides/parts/\">Bauteile</a>) und dem Schematic eine <code>rails</code>-Tabelle:"
@@ -3263,6 +3938,9 @@
   "g6frqcmynu": {
     "defaultMessage": "Strom <code>&quot;2A&quot;</code> / <code>&quot;500mA&quot;</code>, Impedanz <code>&quot;50ohm&quot;</code>, Temperaturanstieg <code>&quot;10C&quot;</code>, Toleranz <code>&quot;10%&quot;</code>."
   },
+  "g8kvw5vsrk": {
+    "defaultMessage": "Simulationen in CI"
+  },
   "gaamns4i1l": {
     "defaultMessage": "<code>min_drill</code>, <code>min_via_drill</code>"
   },
@@ -3286,6 +3964,9 @@
   },
   "gtpyxbfvvt": {
     "defaultMessage": "Primitives nach Name und generische Symbole nehmen 1 ns und kein Setup oder Hold."
+  },
+  "gtsnwaxlbg": {
+    "defaultMessage": "Release-Archive enthalten auch die README, die Lizenz und den Skill. Prüfsummen liegen neben jedem Archiv auf der <a>Releases-Seite</a>."
   },
   "gtxjkl6uea": {
     "defaultMessage": "5 ns"
@@ -3319,6 +4000,9 @@
   },
   "hcy78wqikg": {
     "defaultMessage": "Logikpegel"
+  },
+  "hfvqfijj9m": {
+    "defaultMessage": "<code>agentee-sim</code>"
   },
   "hh1rq2r3pl": {
     "defaultMessage": "<code>{ gap = N }</code> lässt N leere Slots. Pins können auch manuell mit <code>[[pins]]</code> (<code>number</code>, <code>name</code>, <code>type</code>, <code>at</code>, <code>side</code>) platziert werden, und die beiden können gemischt werden. Halte Verbindungspunkte auf dem 1,27-mm-Raster; außerhalb des Rasters liegende Pins werden markiert. Multi-Unit-Symbole geben Pins und Grafiken ein <code>unit</code>."
@@ -3374,8 +4058,20 @@
   "hx8pcscsih": {
     "defaultMessage": "<code>edge = true</code> bei einem Pad, dessen Kupfer bis zur Board-Kante reichen soll (Edge-Launch-Connectors, Kastellierungen)."
   },
+  "hxo6177k4": {
+    "defaultMessage": "<strong>Y wächst nach unten</strong> in jeder Datei, wie im Footprint-Editor von KiCad, und die Rotation ist gegen den Uhrzeigersinn auf dem Bildschirm."
+  },
+  "hywf14x0cv": {
+    "defaultMessage": "Das Feld lösen"
+  },
   "i079jv86s8": {
     "defaultMessage": "Keramikkondensatoren mit demselben Wert, einer Spannung, die nicht niedriger ist, einem Dielektrikum, das nicht schlechter ist (C0G bleibt C0G, X5R darf zu X7R werden) und derselben Bauform;"
+  },
+  "i0c6h3t4en": {
+    "defaultMessage": "Generierte Körper"
+  },
+  "i4sm2cka8e": {
+    "defaultMessage": "Hierarchische Blätter"
   },
   "i4vrctmum3": {
     "defaultMessage": "<code>Q0</code> bis <code>Q7</code>, <code>QS</code>"
@@ -3412,6 +4108,9 @@
   },
   "iwyr635zdx": {
     "defaultMessage": "<strong>Symbolen und Footprints</strong>: das Bauteile so, wie es platziert wird, mit nummerierten Pins oder Pads."
+  },
+  "iy856qxv7k": {
+    "defaultMessage": "Löst das Kupfer jeder Ebene als widerstandsfähiges Blatt (Vias als verzinnte Hülsen) auf, mit Versorgungspads auf ihrer Spannung und Lasten, die Strom ziehen, durch spärliche Cholesky-Zerlegung in f64. Bauteile tragen DC über <code>[[links]]</code>: Widerstände nehmen ihren Wert an, Induktivitäten und Ferrit-Perlen (<code>FB</code>) standardmäßig 0,1 Ohm, alles andere ist offen, außer verlinkt. Ein Link verbindet Pads 1 und 2, außer <code>a</code> und <code>b</code> benennen andere, daher ist ein Lastschalter <code>{ ref = &quot;U5&quot;, resistance = &quot;80mohm&quot;, a = &quot;1&quot;, b = &quot;6&quot; }</code>."
   },
   "izurc4vkko": {
     "defaultMessage": "Eine volle Wellen-FDTD eines Layouts auf der GPU ausführen, Hersteller-S-Parameter und Rauschdaten einfügen und Verstärkung, Rauschzahl, Anpassung und Stabilität ablesen."
@@ -3470,6 +4169,9 @@
   "jtpda3gs6e": {
     "defaultMessage": "Hold"
   },
+  "jufo5lf8so": {
+    "defaultMessage": "Oder lade das Archiv für deine Maschine herunter und lege die Binärdatei auf deinen PATH:"
+  },
   "jvhdrxfzdy": {
     "defaultMessage": "Pads außerhalb des Umrisses oder in einem Board-Ausschnitt; Pads mit <code>edge = true</code> sind ausgenommen"
   },
@@ -3494,8 +4196,14 @@
   "kcruwlbzhh": {
     "defaultMessage": "74HC161, 74HC138, 74LVC1G06, 74LVC1G07, 74HC595"
   },
+  "kda8zoaqfo": {
+    "defaultMessage": "Die Zone-Füllung hat einen Benchmark pro Stufe (<code>clip</code>, <code>overlay</code>, <code>min_width</code>, <code>probe</code>, <code>keep_connected</code>, <code>rasterize</code>, <code>fill_zone</code>) über alle Zonen der Beispiele, plus <code>check_zones</code> und das Laden eines ganzen Projekts. Filtere auf die Stufe, an der du arbeitest:"
+  },
   "ke9ywszxbj": {
     "defaultMessage": "Kaskade bei 900 MHz"
+  },
+  "kh8v2bzhkc": {
+    "defaultMessage": "<code>agentee neck NAME</code> neckt vorhandene Track-Enden, die in ein Pad einlaufen, das schmaler ist als die Track, und <code>--taper</code> schaltet die Breite über eine kurze Kette wieder hoch."
   },
   "kha8mlviym": {
     "defaultMessage": "Klassen auf jedem Net"
@@ -3536,6 +4244,9 @@
   "kzf8t0wgov": {
     "defaultMessage": "<code>--pair IN+,IN-,OUT+,OUT-</code> gibt Mixed-Mode Sdd21, Sdd11, Scc21, Scd21 und Sdc21."
   },
+  "l0m0zq96zd": {
+    "defaultMessage": "In Codex"
+  },
   "l2ifub9231": {
     "defaultMessage": "Jedes Board, Symbol und jeder Footprint im Projekt mit seinen Dateien und Fehleranzahlen."
   },
@@ -3551,6 +4262,9 @@
   "l9sdfg559n": {
     "defaultMessage": "läuft, wenn"
   },
+  "la4hih4cp": {
+    "defaultMessage": "Fab-Daten"
+  },
   "lg0qh2mrtr": {
     "defaultMessage": "Die Kaskade des Boards mit den SPF5189Z-Daten: Verstärkung, Anpassung, Rauschzahl und Stabilität."
   },
@@ -3559,6 +4273,9 @@
   },
   "lgwkdu5ixz": {
     "defaultMessage": "Das Skript legt <code>agentee.exe</code> in <code>%LOCALAPPDATA%\\agentee\\bin</code> ab und fügt es zum Benutzer-<code>PATH</code> hinzu. Danach ein neues Terminal öffnen."
+  },
+  "ljublhbg4": {
+    "defaultMessage": "Builds"
   },
   "lk5sgjg6kd": {
     "defaultMessage": "DC-Abfall - agentee Referenz"
@@ -3617,20 +4334,38 @@
   "mdjyrpvmib": {
     "defaultMessage": "Quellzeile"
   },
+  "mg7q7s567k": {
+    "defaultMessage": "Prüfe, ob es läuft:"
+  },
   "mlw19z4hoo": {
     "defaultMessage": "jeder Test-Pad, für den Fixture-Bauer"
+  },
+  "mm03n0h8n9": {
+    "defaultMessage": "Mit <code>rails</code> gesetzt, ermittelt check die Spannung, die jeder Eingang mit <code>levels</code> sieht: Widerstände (<code>R</code>-Bauteile, 1 %, außer das Bauteil hat ein <code>tolerance</code>-Feld), Schalter (<code>SW</code>-Bauteile, jeder offene und geschlossene Zustand), Open-Collector-Ausgänge (aus und niedrig), interne Pulls und Eingangsleckstrom, jeweils in ihrem schlechtesten Eckpunkt über Rail- und Widerstandsbereiche. Es ist ein Fehler, wenn der Eingang zwischen VIL und VIH liegen kann, wenn er schwebt, ohne etwas, das ihn an ein Rail bindet, wenn Leckstrom durch einen schwachen Pull ihn aus einem gültigen Level bewegt, und wenn er über sein <code>min</code> oder <code>max</code> hinausgehen kann. Innerhalb von 100 mV eines Schwellwerts ist eine Warnung. Ein Net mit etwas anderem darauf (ein Ausgang, ein Connector, eine Diode, ein Versorgungspins eines Nets nicht in <code>rails</code>) wird von etwas angetrieben, das es nicht modellieren kann, und wird übersprungen. Kondensatoren und Testpunkte werden ignoriert. Ein bidirektionaler Pin kann antreiben: außer ein Schalter oder Open-Collector auf dem Net zeigt, dass er gezogen wird, werden die anderen Eingänge auf seinem Net übersprungen und er wird nicht als schwebend gemeldet."
   },
   "mpzrdlihpw": {
     "defaultMessage": "Projekt starten"
   },
+  "mrv3scji9m": {
+    "defaultMessage": "Eine ereignisgesteuerte Simulation der digitalen Teile eines Schematics, direkt aus seiner Netlist; kein Layout ist erforderlich. <code>agentee new sim NAME --kind logic</code> (MCP <code>new_item</code> mit <code>kind = &quot;sim&quot;</code> und <code>sim_kind = &quot;logic&quot;</code>) schreibt einen Starter mit einem Takt, einem Reset und einer taktsynchronen Assertion, die auf Ihre Nets umbenannt werden kann; <code>--kind fdtd</code>, der Standard, startet stattdessen eine FDTD-Simulation. <code>agentee sim NAME</code> (MCP <code>run_sim</code>) schreibt <code>NAME.result.json</code> und eine VCD-Wellenform <code>NAME.vcd</code> neben der Spezifikation; der Viewer zeichnet eine Spur pro aufgezeichnetem Net gegen die Zeit."
+  },
   "msdw44dc8u": {
     "defaultMessage": "Delay"
+  },
+  "mujfdbdzrt": {
+    "defaultMessage": "Ein Projekt ist ein Verzeichnis mit TOML"
   },
   "mv21s7dl63": {
     "defaultMessage": "<code>S</code>, <code>R</code>"
   },
+  "mw4pg0mbu6": {
+    "defaultMessage": "<code>agentee check</code>, wobei jede Regel von <code>agentee drc NAME --list</code> aufgelistet wird"
+  },
   "mxdob04iid": {
     "defaultMessage": "Automatische Platzierung - agentee Referenz"
+  },
+  "n12gix5w7v": {
+    "defaultMessage": "Datei"
   },
   "n1b966asxw": {
     "defaultMessage": "Primitive Pin-Schlüssel (Eingänge, dann Ausgänge); hänge <code>_N</code> an einen Schlüssel für einen active-low Pin oder einen invertierten Ausgang an, und lass einen optionalen Eingang aus, um ihn inaktiv zu halten:"
@@ -3649,6 +4384,9 @@
   },
   "ncslo2moub": {
     "defaultMessage": "Testzugriff: Standardmäßig sind die Netze, die eine Prüfspitze benötigen, Power-Netze (eine Netzklasse mit <code>current</code> oder ein Name wie <code>3V3</code>, <code>1V8</code>, <code>+5V</code>, <code>VCC*</code>, <code>VDD*</code>, <code>VBUS*</code>, <code>VBAT*</code>, <code>VIN*</code>, <code>VSYS*</code>), Masse (<code>GND</code>, <code>*GND</code>, <code>GND*</code>) und Netze mit Namen wie <code>*RST*</code>, <code>*RESET*</code>, <code>*EN*</code>, <code>*PG*</code>, <code>*CLK*</code>, <code>*TX*</code>, <code>*RX*</code>, <code>*SCL*</code>, <code>*SDA*</code>, <code>*SWD*</code>, <code>*TCK*</code>, <code>*TMS*</code>, <code>*TDI*</code>, <code>*TDO*</code>. Die Standardeinstellungen klammern Schaltknoten und Regler-Feedback, Soft-Start- und Rauschunterdrückungs-Netze aus (<code>SW*</code>, <code>*_SW</code>, <code>LX*</code>, <code>FB*</code>, <code>SS*</code>, <code>NR*</code>, abgeglichen auf den gesamten Namen oder dessen letztes <code>/</code>-Segment), selbst wenn ihre Netzklasse Power ist: Die Kapazität einer Prüfspitze und der Stub zum Pad koppeln Schaltrauschen in einen Feedback-Teiler ein oder verlangsamen einen Soft-Start oder Rauschfilter, und ein Stub auf einem Schaltknoten strahlt ab. <code>nets</code> ersetzt diese Liste (tragen Sie dort ein solches Netz ein, um es trotzdem zu prüfen) und <code>exclude</code> schließt Netze davon aus. Ein Testpunkt ist ein Bauteil mit der Referenz <code>TP</code> und einer Nummer oder ein Footprint namens <code>TestPoint*</code>; wie jedes Bauteil muss er im Schematic vorhanden sein. Der integrierte Footprint <code>TestPoint_Pad_D1.0mm</code> (ein runder SMD-Pad mit 1.0 mm Durchmesser, Lötstoppmaske offen, keine Lötpaste) und das Symbol <code>TestPoint</code> werden von <code>agentee testpoints</code> in <code>footprints/</code> und <code>symbols/</code> geschrieben."
+  },
+  "nfa6cuuvuk": {
+    "defaultMessage": "50 Ohm +/-10 %"
   },
   "nhkvv796zs": {
     "defaultMessage": "Jeder Schritt war derselbe Loop: eine Bearbeitung, check, ansehen. Nichts hat Zustand außerhalb der Dateien gehalten, daher kannst du an jedem Punkt aufhören, das Verzeichnis in git öffnen oder es einem Agenten mit dem <a href=\"/skills/\">Skill</a> übergeben und ihn bitten, eine Sperrdiode hinzuzufügen."
@@ -3677,6 +4415,9 @@
   "ntv69zm13y": {
     "defaultMessage": "Der Pfad ist das Projektdirectory, das die TOML-Dateien enthält. Kombinieren Sie den Server mit <a>dem Skill</a>, der dem Agenten sagt, wann er welches Tool aufruft und in welcher Reihenfolge."
   },
+  "nve8brurko": {
+    "defaultMessage": "MCP-Server"
+  },
   "nvty8lq7fu": {
     "defaultMessage": "<code>agentee edit sch build.txt</code> macht dasselbe aus einer Datei. Batches funktionieren auf dem einen Schematic, das das Projekt hat. Bei mehreren, führen Sie jeden Befehl einzeln aus und benennen Sie das Schematic: <code>agentee edit sch power add U1 AP2112K-3.3 AP2112K-3.3 --footprint SOT-23-5</code>."
   },
@@ -3685,6 +4426,9 @@
   },
   "nwyoayadgb": {
     "defaultMessage": "Impedanz einer Leiterbahn auf einer Board-Ebene für eine Breite (und Paarlücke) oder die Breite, die ein Zielwert trifft."
+  },
+  "o54cnfr1fb": {
+    "defaultMessage": "Weiter"
   },
   "o67m58c5c9": {
     "defaultMessage": "Kapazität innerhalb von 1 %, Spannung nicht niedriger (aus dem Wert <code>/50V</code> oder dem gelisteten Bauteil), Dielektrikum nicht schlechter (C0G bleibt C0G, X7R darf X7S oder X8R werden, X5R darf X7R werden), Toleranz nicht lockerer, derselbe Gehäusecode; Elektrolyt, Tantal, Polymer und Folie werden abgelehnt"
@@ -3704,14 +4448,29 @@
   "odjuljlglb": {
     "defaultMessage": "BGA-Pads (16 oder mehr runde SMD-Pads) kleiner als <code>min_bga_pad</code>"
   },
+  "oiis0f7b4j": {
+    "defaultMessage": "<code>NAME.sch.toml</code>"
+  },
+  "oiuakc8lz3": {
+    "defaultMessage": "aus"
+  },
+  "ojj2dxtsne": {
+    "defaultMessage": "<code>rf-50</code>"
+  },
   "okoutd05o3": {
     "defaultMessage": "Ball-Pitch feiner als <code>min_bga_pitch</code>"
+  },
+  "olbl0xhid6": {
+    "defaultMessage": "Alle {count} Tools"
   },
   "olojqtrvsv": {
     "defaultMessage": "Quelle"
   },
   "oopp25aa3z": {
     "defaultMessage": "Checkliste"
+  },
+  "os2c8385pu": {
+    "defaultMessage": "sonstiges"
   },
   "othgynjo8g": {
     "defaultMessage": "Legende-Linienbreite, Texthöhe"
@@ -3722,6 +4481,9 @@
   "ov8n4kah41": {
     "defaultMessage": "<code>interface-bus-skew</code>"
   },
+  "ozhhecsz5s": {
+    "defaultMessage": "<strong>Stackups sind die der Fab.</strong> Wählen Sie <code>JLC04161H-7628</code> oder einen PCBWay-Build aus <code>agentee stackups</code> aus, statt Dicken einzutippen."
+  },
   "p56if3224j": {
     "defaultMessage": "<code>min_hole_to_hole</code>, <code>min_via_hole_to_copper</code>"
   },
@@ -3731,8 +4493,17 @@
   "p658b5ma0a": {
     "defaultMessage": "Ein Net einer differentiellen Schnittstelle ohne Paar-Partner"
   },
+  "p6jedqkct6": {
+    "defaultMessage": "JLCPCB"
+  },
+  "p6nhi4mrel": {
+    "defaultMessage": "DRC"
+  },
   "p6s7aiol2t": {
     "defaultMessage": "Automatisches Routing - agentee Referenz"
+  },
+  "pcgefuhs1k": {
+    "defaultMessage": "Die KiCad-Bibliotheken werden nur benötigt, wenn der Job Bauteile importiert; ein Projekt, das bereits seine Symbole und Footprints enthält, wird ohne sie geprüft. Zeigen Sie <code>check</code> auf das Projektdirectory oder führen Sie es von dort aus."
   },
   "pcgjrx5r9e": {
     "defaultMessage": "Ein Design, das reiner Text ist, gehört in git. Ein Design in git kann bei jedem Push wie Code geprüft werden. <code>agentee check</code> beendet sich mit 0, wenn das Projekt sauber ist, mit 1, wenn es Fehler gibt, und mit 2, wenn eine Datei nicht geladen wird. So passt es direkt in CI."
@@ -3745,6 +4516,9 @@
   },
   "phlzsr1csm": {
     "defaultMessage": "Felder"
+  },
+  "plgddlc4iq": {
+    "defaultMessage": "Fab"
   },
   "pmcyyhlf09": {
     "defaultMessage": "ein großer Chip (ein BGA, ein Gehäuse mit 16 oder mehr Pins über 25 mm2, andernfalls die Bauteile mit den meisten Pins), dessen Courtyard-Mittelpunkt mehr als <code>off_centre</code> (0,6) des Weges vom Board-Mittelpunkt zum Rand entfernt ist"
@@ -3770,11 +4544,20 @@
   "pv2a7gbfo9": {
     "defaultMessage": "<code>mlcc-flex-zone-case</code>"
   },
+  "pvlccgp9z3": {
+    "defaultMessage": "Der Hilfetext jedes Befehls, wie die Binärdatei ihn ausgibt. Ein Projekt ist das aktuelle Verzeichnis, es sei denn, ein Befehl nimmt einen Pfad oder <code>-p</code> entgegen."
+  },
+  "q1ap23m16u": {
+    "defaultMessage": "<code>neckdown</code> notiert eine Track, die kürzer als ihre Klasse ist, für einen kurzen Lauf zu einem kleinen Pad, was bis zur <code>neckdown</code>-Länge der Klasse erlaubt ist (0,5 mm standardmäßig)."
+  },
   "q3vsnxl95d": {
     "defaultMessage": "<code>Y</code> (z, wenn <code>OE</code> low ist)"
   },
   "q4ghz4i51d": {
     "defaultMessage": "Vier Bauteile brauchen keine 50 mal 30 mm. Verkleinere den Umriss:"
+  },
+  "q5rukqmqgn": {
+    "defaultMessage": "<code>agentee stackups</code> listet sie auf (<code>--fab</code>, <code>--layers</code>, <code>--thickness</code>, <code>--search</code>) und <code>agentee stackups NAME</code> gibt die Schichten eines Presets aus; über MCP ist es das <code>stackups</code>-Tool. Namen werden ohne Berücksichtigung der Groß-/Kleinschreibung abgeglichen. <code>jlcpcb-4l-1.6mm-7628</code> und <code>jlcpcb-4l-1.6mm-3313</code> sind die alten Namen von <code>JLC04161H-7628</code> und <code>JLC04161H-3313</code>."
   },
   "q699o8ral8": {
     "defaultMessage": "Gib Ground einen Pour auf beiden Lagen, verbinde die Ground-Pads damit und route die anderen zwei Nets:"
@@ -3797,11 +4580,20 @@
   "qd2x6bk9v7": {
     "defaultMessage": "Gerbers, Bohrungen, BOM und Placement für JLCPCB oder jede Fab schreiben, die BOM bei Mouser und Farnell preisen und ein STEP für das Gehäuse exportieren."
   },
+  "qf4dlgfub5": {
+    "defaultMessage": "die Edge.Cuts-Umrisslinie und ihre Ausschnitte, den Stackup mit Dicke, Dielektrizitätskonstante und Verlustfaktor, die Beschichtung und die Maskenfarbe, die Designregeln und Net-Klassen aus <code>NAME.kicad_pro</code>"
+  },
+  "qgiqfefbg1": {
+    "defaultMessage": "Diese lesen das Board im Projekt. Die erste beantwortet eine Breite für einen 50-ohm-Microstrip auf der Top-Ebene; die zweite für ein 90-ohm-Differential-Paar bei einem 0,15-mm-Abstand:"
+  },
   "qh0ojri5hh": {
     "defaultMessage": "Fehler"
   },
   "qhk30c8ffk": {
     "defaultMessage": "<code>agentee parts NAME</code> (MCP <code>parts</code>) preist die BOM eines Layouts oder Schematics bei Mouser und Farnell und listet günstigere Bauteile, die direkt passen. Die Keys liegen außerhalb jedes Projekts, in <code>~/.config/agentee/distributors.toml</code> (<code>$AGENTEE_DISTRIBUTORS</code> oder <code>--config</code> zeigen woanders hin):"
+  },
+  "qimbrf3p7z": {
+    "defaultMessage": "<code>agentee-parts</code>"
   },
   "qj96oq6eq7": {
     "defaultMessage": "Zusätzlich <code>width</code> (Strichstärke), <code>fill</code> (<code>none</code> / <code>solid</code> / <code>background</code>) und <code>layer</code> (Footprints) oder <code>unit</code> (Symbole). Im Layout <code>[[graphics]]</code> hält <code>locked = true</code> <code>agentee place</code> davon ab, einen Text zu verschieben."
@@ -3821,8 +4613,14 @@
   "qnrjed0cry": {
     "defaultMessage": "<a href=\"/guides/board-spec/\">Board-Spezifikationen, Stackups und Net-Classes</a> vor einem Board, bei dem Impedanz oder Strom wichtig sind."
   },
+  "qnsjfmc8du": {
+    "defaultMessage": "15 mil Stubs, 3500 / 3000 mil lang, Return-Via innerhalb von 200 mil"
+  },
   "qpqn3c21tz": {
     "defaultMessage": "Ein Skill ist eine Datei mit Anweisungen, die ein Agent lädt, wenn eine Aufgabe dazu passt. Dieser lehrt die edit-, check-, render-Schleife, die Reihenfolge zum Aufbau eines Designs, die Fallstricke im Dateiformat und wie man Simulationen iteriert, ohne Stunden an GPU-Zeit zu verschwenden."
+  },
+  "qqaoguhe3q": {
+    "defaultMessage": "Installation"
   },
   "qw9dcq11a5": {
     "defaultMessage": "Drei Simulationen lesen die S-Parameter eines FDTD-Laufs für etwas Spezifischeres als ein Plot: Eine Channel-Simulation schiebt einen Bitstrom durch einen Link und zeichnet das Eye, eine PDN-Simulation wandelt die Ports einer Schiene in ihre Impedanz gegenüber einem Ziel um, und <code>agentee sparam</code> analysiert jedes Ergebnis im Zeitbereich. Jede benötigt zuerst einen FDTD-Lauf des Boards; siehe <a href=\"/guides/rf-simulation/\">RF-Simulation</a> für die Einrichtung und wie man sie günstig hält."
@@ -3832,6 +4630,9 @@
   },
   "r38rmh6amp": {
     "defaultMessage": "Fab-Paket - agentee Referenz"
+  },
+  "r392b8rxb1": {
+    "defaultMessage": "Durchgeführte Designs"
   },
   "r5eifeovvr": {
     "defaultMessage": "Ein Bias-Tee-versorgter LNA - agentee Beispiel"
@@ -3845,11 +4646,23 @@
   "rb6cod4ejg": {
     "defaultMessage": "Jedes Release-Archiv-Archiv enthält den Skill zusätzlich unter <code>skills/agentee</code>, passend zum danebenliegenden Binary."
   },
+  "rbd5i5y6uj": {
+    "defaultMessage": "Guides"
+  },
   "rgx7g5j89u": {
     "defaultMessage": "Bauteildaten werden linear in Real- und Imaginärteil interpoliert, und das Band wird auf den Bereich beschnitten, in dem jedes Bauteil Daten hat. Ein Zweiport-Ergebnis meldet Gain-Peak und -Low, schlechtesten S11, S22 und S12, und das niedrigste Edwards-Sinsky-mu und Rollett-K (mu über 1 bei jeder Frequenz ist bedingungslos stabil). Das Ergebnis wird veraltet, wenn sich die Spec, das Board-Ergebnis oder eine Bauteildatei ändert."
   },
+  "rj1ngyto0o": {
+    "defaultMessage": "Sprache"
+  },
   "rja1dm7xmw": {
     "defaultMessage": "<code>aspect-ratio</code>"
+  },
+  "rkxgh00hxo": {
+    "defaultMessage": "Dieselben Operationen werden Agents über MCP bereitgestellt. Siehe <a>die MCP-Tools</a>."
+  },
+  "rlhquamy47": {
+    "defaultMessage": "Footprint-Felder <code>mpn</code>, <code>lcsc</code>"
   },
   "rlznhd29qs": {
     "defaultMessage": "Via-Loch zu Track, Innenschicht-Via-Loch zu Kupfer"
@@ -3863,6 +4676,9 @@
   "rprylmp9v2": {
     "defaultMessage": "<code>hdi</code>"
   },
+  "rrxnnmw2kp": {
+    "defaultMessage": "Jedes Beispiel ist ein Verzeichnis mit TOML-Dateien im agentee-Repository. Clone es, führe <code>agentee check</code> und <code>agentee view</code> darin aus und kopiere seine Muster, bevor du eigene erfindest."
+  },
   "rsmvdw07u3": {
     "defaultMessage": "Jeder JLCPCB-Impedanz-Build von 4 bis 20 Lagen und die Standard-Builds von PCBWay, nach dem eigenen Code der Fab, mit Dicke und Permittivität jeder Lage."
   },
@@ -3871,6 +4687,9 @@
   },
   "rtqa2csd32": {
     "defaultMessage": "Ein <code>clock</code> ist niedrig bis <code>phase</code>, dann hoch für <code>duty</code> von jedem <code>period</code>."
+  },
+  "s7lm158iyk": {
+    "defaultMessage": "kein veröffentlichter Build einer Fab"
   },
   "s8e2xbkvjt": {
     "defaultMessage": "Wert, Spannung, Dielektrikum und Größe"
@@ -3893,8 +4712,17 @@
   "sj2lq2duv2": {
     "defaultMessage": "<code>zone-to-zone</code>"
   },
+  "sl5omwrd8i": {
+    "defaultMessage": "Stackups und Net-Klassen"
+  },
   "smr7zfb1k": {
     "defaultMessage": "Den Viewer öffnen, er lädt neu, wenn sich Dateien ändern"
+  },
+  "snrk45b0ly": {
+    "defaultMessage": "Ein Backdrill entfernt das Barrel von einer Seite bis kurz vor <code>to</code>, und lässt einen Stub von höchstens <code>max_stub</code>. Ein Controlled-Depth-Via (<code>drill_kind = &quot;controlled_depth&quot;</code>) ist ein Blindvia, der mechanisch von seiner Seite nach dem letzten Pressen gebohrt wird und auf seiner Schicht per Tiefe stoppt. Seine Tiefe zu Bohrung wird 1:1 gehalten, und nichts darf darauf stapeln."
+  },
+  "sntxiq6bo6": {
+    "defaultMessage": "90 Ohm +/-7 % diff"
   },
   "srk9y3tpb1": {
     "defaultMessage": "das ausgewählte Teil um 90 Grad drehen"
@@ -3943,6 +4771,9 @@
   },
   "ttxkgqdq0u": {
     "defaultMessage": "min. verzinnte Schlitzbreite, Schlitz mindestens 2 Breiten lang"
+  },
+  "tv4mqr1ugy": {
+    "defaultMessage": "Dateien auf GitHub durchsuchen"
   },
   "tvq8zhxflf": {
     "defaultMessage": "Bewegen von Bauteilen, manuelles Routing von Spuren und Platzieren von Vias in agentee view, gespeichert zurück in dasselbe TOML."
@@ -4001,6 +4832,12 @@
   "uuvef4pq4c": {
     "defaultMessage": "<code>--dry-run</code> meldet, ohne zu schreiben."
   },
+  "uvqa3at41j": {
+    "defaultMessage": "0"
+  },
+  "uw5fig3ut9": {
+    "defaultMessage": "Skill lesen"
+  },
   "ux8zd7myih": {
     "defaultMessage": "Board-Spezifikation"
   },
@@ -4013,6 +4850,9 @@
   "v8uikgvbmu": {
     "defaultMessage": "Through-, Blind-, Buried- und Microvias, gestapelte und Skip-Vias, Tiefenkontrollbohrung, Backdrills und IPC-4761 Via-Füllung."
   },
+  "vavpbqeh9x": {
+    "defaultMessage": "Das baut die <code>agentee</code>-Binärdatei im Release-Modus und legt sie in <code>~/.cargo/bin</code> ab. Führe denselben Befehl erneut aus, um zu aktualisieren."
+  },
   "vcxd3l5rmt": {
     "defaultMessage": "Silk-Text unter <code>min_silk_text_height</code>"
   },
@@ -4021,6 +4861,12 @@
   },
   "vgzxbueyi7": {
     "defaultMessage": "Manche Entscheidungen sind mit der Maus schneller: einen Connector an die Stelle schieben, an die das Gehäuse ihn will, eine Track um ein Bauteil herum neu verlegen, einen Via setzen. Die 2D-Layout-Seite bearbeitet das Layout, und Speichern (Strg+S) schreibt die Änderung in die <code>.pcb.toml</code> mit demselben Writer, der Kommentare und Reihenfolge erhält, den die CLI verwendet. Der Agent liest Ihre Änderung beim nächsten Laden der Datei."
+  },
+  "vh88ypv7zp": {
+    "defaultMessage": "Kopiert"
+  },
+  "vjxiut1gq9": {
+    "defaultMessage": "Zurück"
   },
   "vl7ij1ncgf": {
     "defaultMessage": "Ein Via belegt nur die Kupferlagen, die er überbrückt (nach einem Backdrill die verbleibenden Lagen). Alles, was Vias platziert oder liest, folgt dem: Konnektivität, Kurzschlüsse und Clearance, Zone Fill (ein Pour auf einer Lage, die das Via nicht erreicht, hält kein Antipad für es), Stitching (die Lagen des Vias), Fanout (das erste Class Via, das die Pad-Lage erreicht), die unrouted- und dangling-end-Checks, die Interface-Via-Stubs (ein blindes Via hat keinen Stub über seine Endelage hinaus, ein backgebohrtes Via behält seinen <code>max_stub</code>), <code>hole-to-copper</code> und <code>aspect-ratio</code> über den Span des Lochs, <code>hole-to-hole</code> nur für Löcher, deren Spans ein Dielektrikum teilen, und <code>stacked-via</code>: Zwei Vias an einer Stelle durch dasselbe Dielektrikum werden zweimal gebohrt, während Vias, die sich an einer Lage treffen (ein Microvia auf einem buried Via, oder ein Stack von Microvias), gestapelte Vias sind, nur mit <code>stacked_microvias</code> erlaubt und in Bau-Reihenfolge: Von zwei Vias, die sich an einer Lage treffen, ist das näher an der Board-Oberfläche oben, und das darunter muss im selben oder einem früheren Laminierungsschritt gebohrt werden (ein Microvia auf einem buried Via benötigt den Schritt des buried Vias zuerst). Zwei Vias, die sich gleich nah an der Oberfläche befinden, stapeln sich in beliebiger Reihenfolge. Silk-Text hält Abstand nur von Vias, deren Loch auf seiner Seite öffnet, daher ist ein buried Via unter einer Beschriftung in Ordnung. Die DC-, thermischen und FDTD-Modelle führen nur einen Barrel zwischen der ersten und letzten Lage des Vias aus; ein backgebohrtes Via behält auch seinen Stub, <code>max_stub</code> Barrel über die Stopplage hinaus in Richtung der gebohrten Seite (kurz vor der nächsten Lage): FDTD meshed ihn als Metall bis zur nächsten Mesh-Ebene, thermisch leitet er als Kupfer entlang und durch den Rest des Dielektrikums als FR-4, und DC lässt ihn aus, da ein totes Ende keinen Strom trägt. Der 2D-Viewer zeichnet ein Via nur, wenn eine seiner Lagen angezeigt wird, ringt es in der Farbe seines Typs (through gold, blind teal, buried lavender, microvia cyan) mit den Farben seiner beiden Endelagen am Rand, und markiert ein controlled depth Via mit einem Punkt seiner Ringfarbe im Loch, seinem verzinnten Boden. Der 3D-Viewer bohrt die Board-Fläche nur auf den Seiten, die ein Via erreicht, und endet seinen Barrel an seinem Span; ein controlled depth Via endet in einem verzinnten Bohrpunkt, einem Kegel 0,6 seines Bohrlochradius tief (ein 118-Grad-Bohrer) über seine Stopplage hinaus, wo ein sequenziell gebohrtes Via flach endet; ein Backdrill zeigt sich als ein breiteres unverzinntes Loch, im Backdrill-Durchmesser, von der gebohrten Fläche bis zum Stub, wo der verzinnte Barrel endet."
@@ -4043,6 +4889,9 @@
   "vrerkndm31": {
     "defaultMessage": "ein zweipoliges passives Bauteil, dessen Signal-Nets nur ein IC erreichen und nichts anderes, weiter als <code>cluster_spread</code> (10 mm) vom Pin dieses ICs entfernt"
   },
+  "vtb7ixnbr3": {
+    "defaultMessage": "Diesen Guide verbessern"
+  },
   "vu8wsyr48t": {
     "defaultMessage": "Ansehen"
   },
@@ -4058,6 +4907,9 @@
   "w5td8hqlk0": {
     "defaultMessage": "Recovery"
   },
+  "w76ptldiz3": {
+    "defaultMessage": "Der egui-Viewer und der headless PNG-Renderer"
+  },
   "w7ba4yzjw9": {
     "defaultMessage": "<code>current</code> wird auf jedem Layer, den die Class verwenden darf, gegen IPC-2221 geprüft, bei <code>max_temp_rise</code> (Standard 10 C). Innere Layer tragen weniger als äußere. check benennt die Breite, die es auf jedem trägt:"
   },
@@ -4067,8 +4919,17 @@
   "wb6rqca056": {
     "defaultMessage": "Wann man sie ausführt"
   },
+  "wb8h17w7md": {
+    "defaultMessage": "Eine kontrollierte Impedanz-Leitung ist eine Zusage zwischen drei Dingen: dem Stackup, der Track-Breite und dem Kupfer drumherum. agentee hält die Zusage an einem Ort, der Net-Klasse, und prüft jeden Track der Klasse dagegen."
+  },
+  "wbz0lqxaz": {
+    "defaultMessage": "Es gibt noch keine Binärdatei-Release auf GitHub, daher schlagen die Installations-Skripte und Download-Links unten fehl, bis das erste getaggt ist. Baue es in der Zwischenzeit aus dem Quellcode:"
+  },
   "wdyhpqood2": {
     "defaultMessage": "<code>hdi</code>, <code>stacked_microvias</code>"
+  },
+  "wg81j9pw7d": {
+    "defaultMessage": "<code>*.board.toml</code>: Fab-Preset, Stackup-Preset, <code>[rules]</code>, <code>[[netclasses]]</code>, <code>[[vias]]</code>"
   },
   "wiragp2ndh": {
     "defaultMessage": "ein zweipadiges SMD-Bauteil von 0603 (1608 metrisch) oder kleiner, dessen Pads in Größe oder Form abweichen, das einen Via in einem Pad hat, aber nicht im anderen, oder dessen Kupfer innerhalb von 0,3 mm eines Pads auf seiner Ebene (Tracks, Vias, Pours seines Nets) mehr als <code>tombstone_ratio</code> (Standard 3) Mal so groß ist wie das des anderen Pads; ein Pad, das über eine thermische Entlastung mit seinem Pour verbunden ist, wird anhand seiner Speichenbreite im Verhältnis zur Track-Breite am anderen Pad gewichtet, und ein Pad ohne Track, Via oder Pour wird nicht verglichen; das Ende, das zuerst heiß wird, benetzt zuerst und stellt das Bauteil auf (EMS DFM-Leitfäden: symmetrische Ländchen und ausgeglichenes Kupfer an beiden Enden)"
@@ -4082,11 +4943,20 @@
   "wonqk3rj7e": {
     "defaultMessage": "<code>Edge_Cuts.gbr</code>"
   },
+  "woo9c0roqi": {
+    "defaultMessage": "Alle Befehle"
+  },
   "wpxpqlkbu5": {
     "defaultMessage": "agentee sucht nicht von selbst in Program Files. KiCad installieren, dann einmal auf die Bibliotheken zeigen:"
   },
+  "wqqh8v8zam": {
+    "defaultMessage": "Issues"
+  },
   "wr9a7lakw9": {
     "defaultMessage": "Stitching und Fanouts"
+  },
+  "wu68kxwz2v": {
+    "defaultMessage": "In der Wellenformansicht zoomt das Mausrad (oder Pinch, oder Strg und das Rad) um den Zeiger, ein Drag oder ein seitliches Scrollen verschiebt, ein Doppelklick passt den gesamten Lauf an, und ein Klick setzt den Zeitcursor, an eine Kante der Zeile darunter innerhalb weniger Pixel ausgerichtet. <code>+</code> und <code>-</code> zoomen um den Cursor, die Pfeiltasten verschieben, <code>F</code> oder <code>Home</code> passt an, <code>Escape</code> entfernt den Cursor, und <code>N</code> und <code>P</code> springen den Cursor zum nächsten und vorherigen Marker. Bei mehr Zeilen, als passen, scrollt das Rad über die Namen, ein Drag oder Klick auf die Leiste am rechten Rand sowie <code>Page Up</code> und <code>Page Down</code> die Zeilen (<code>top=N</code> in <code>--show</code> startet bei Zeile N). Die Spalte neben den Namen liest jede Zeile am Cursor (am Zeiger ohne Cursor, sonst am rechten Rand der Ansicht) aus, und der Hover-Tipp gibt die Zeit vom Cursor an. Nets mit Namen <code>X[0]</code> bis <code>X[n]</code>, oder <code>X0</code> bis <code>Xn</code> (auch <code>X0_N</code> bis <code>Xn_N</code>), werden zu einer Bus-Zeile zusammengefasst, in Hex dargestellt, MSB zuerst, mit einem Nibble von x für jedes unbekannte Bit und z für ein schwebendes; ebenso ein <code>record</code>-Eintrag <code>{ name, nets }</code>. Klicken Sie auf einen Bus-Namen, um seine Bits zu öffnen. Die VCD hält dieselben Buses als Vektoren anstelle ihrer Bits: <code>Q0</code> bis <code>Q3</code> als <code>$var wire 4 # Q [3:0] $end</code>, <code>Y0_N</code> bis <code>Y7_N</code> als <code>Y_N [7:0]</code> und ein <code>record</code>-Bus von n Nets als <code>NAME [n-1:0]</code>, MSB zuerst. Marker oben zeigen jede fehlgeschlagene Assertion (rot, zur Zeit, in der sie geprüft wurde), Timing-Verletzung (bernsteinfarben) und Kontention (violett), mit einem Punkt auf den Zeilen der beteiligten Nets; Hover zeigt ihre Nachricht, Klick setzt den Cursor dorthin. Ein Lauf behält seine ersten 10000 Marker, und der Header sagt „capped“, wenn er diese Grenze erreicht hat. <code>agentee render NAME --show from=300ns,to=900ns,cursor=550ns,open=Q[3:0]</code> zeichnet dieselbe Ansicht headless."
   },
   "wv1dyxl3wo": {
     "defaultMessage": "ein zweipadiger Chip von 0603 oder kleiner, der näher an einem Bauteil mit einer Höhe über 3 mm liegt als die Höhe dieses Bauteils, gemessen von den Pads des Chips zum Gehäuse des hohen Bauteils (EMS-Regel 1:1: Schattenwurf bei Reflow und Inspektion); die Höhen stammen aus der <code>height</code>-Angabe des Footprints, andernfalls aus dem Gehäuse, das die 3D-Ansicht ohne Modell zeichnet: ihr Standardwert (SOIC, QFN, Header, Shields) oder ein <code>_h1.25mm</code>-Teil des Namens"
@@ -4121,6 +4991,9 @@
   "x9kvp30rzz": {
     "defaultMessage": "<code>interface-pair</code>"
   },
+  "xd9q7qc4ol": {
+    "defaultMessage": "<code>*.sym.toml</code>, eine pro Symbol"
+  },
   "xdn9jbx1c5": {
     "defaultMessage": "<code>NAME.d356</code>"
   },
@@ -4130,17 +5003,29 @@
   "xe19xxqz3m": {
     "defaultMessage": "Check berichtet den Skew jedes Pairs in mm und ps (aus der effektiven Permittivität der Ebene), einen Abschnitt des Pairs, der mit dem falschen Abstand verläuft, und Paare, die weniger als 80 % ihrer Länge nebeneinander verbringen. Match-Gruppen zeigen an, welches Netz zu kurz oder zu lang ist und um wie viel. Ein Pair, das durch serielle Zweipin-Bauteile verläuft, wie die AC-Kondensatoren auf einer USB-Lane, wird von Ende zu Ende gemessen: Sein Skew ist die Summe über jedes Pair, das es verbindet, gemeldet als <code>FX_TX1_P+SS_TX1_P/FX_TX1_N+SS_TX1_N</code>."
   },
+  "xetsghciuj": {
+    "defaultMessage": "<code>symbols/</code>"
+  },
+  "xktfmjujro": {
+    "defaultMessage": "Füge <code>board = &quot;blinky&quot;</code> und <code>schematic = &quot;blinky&quot;</code> zum Starter hinzu. Die Prüfung schlägt jetzt fehl, was korrekt ist:"
+  },
   "xm2pl1y9re": {
     "defaultMessage": "Leitung durch FR4, Kupfer und Vias mit Konvektion von beiden Seiten. Sekunden, nicht Minuten."
   },
   "xo0nw080h3": {
     "defaultMessage": "ein Kupfer-Pad mit Paste, aber ohne Maske-Öffnung auf dieser Seite, sodass die Stencil auf die Maske druckt"
   },
+  "xo8xg4z4lw": {
+    "defaultMessage": "Schichtarten: <code>silk</code>, <code>paste</code>, <code>mask</code>, <code>copper</code>, <code>core</code>, <code>prepreg</code>. Kupfer muss mit Dielektrikum altern; Mask, Paste und Silk liegen außerhalb des Außen-Kupfers."
+  },
   "xod2yasm39": {
     "defaultMessage": "<code>at</code> liest ein Net oder einen Bus, sobald alles zu diesem Zeitpunkt abgeklungen ist."
   },
   "xomm6f5hw": {
     "defaultMessage": "Der Treiber wird zu einer Thevenin-Quelle: der Kleinsignal-Ausgangswiderstand aus den [Pulldown]- und [Pullup]-Tabellen nahe an den Schienen, C_comp am Die, dann das R, L und C des Gehäuses des Pins (oder des Bauteils); sein [Ramp] bestimmt den Flankenverlauf (20-80 % in 10-90 % umgerechnet) und [Voltage Range] die Amplitude, sofern nicht <code>rise</code> oder <code>swing</code> angegeben sind. Der Empfänger belastet das ferne Ende mit seinem Gehäuse und C_comp, und das Eye wird an seinem Die abgelesen. Der Pfad wird mit dem vollständigen Zweipol gelöst, sodass ein hochohmiger Empfänger die Reflexionen der Leitung sieht. Im Modell des SN74LVC1G04 von TI stimmen Ramp und V-I-Tabellen bei der Amplitude in 50 Ohm bis auf 2,5 % überein. IBIS funktioniert derzeit für Single-Ended-Pfade."
+  },
+  "xplz5o9lzn": {
+    "defaultMessage": "Version {version}"
   },
   "xv6num7j7s": {
     "defaultMessage": "AHC, AHCT, VHC, VHCT"
@@ -4163,6 +5048,9 @@
   "y56cpfpudy": {
     "defaultMessage": "<strong>Sims</strong>: S-Parameter-Plots und Smith-Diagramme, TDR, Eyes, PDN-Impedanz, DC-Abfall, Stromdichte und Temperaturverteilungen sowie Logik-Wellenformen."
   },
+  "y6qutugiwd": {
+    "defaultMessage": "Markdown für Agents"
+  },
   "y7csnnvqhh": {
     "defaultMessage": "Routing ist abgeschlossen, wenn <code>unrouted</code> bei jedem Net in <code>agentee show pcb:NAME</code> 0 ist."
   },
@@ -4178,11 +5066,17 @@
   "y89mco74l": {
     "defaultMessage": "<code>locked = true</code> wird nie verschoben. <code>--keep-placed</code> lässt jedes Bauteil, das bereits einen Platz hat, <code>--parts</code> platziert nur die passenden, und <code>--side both</code> lässt Decoupling-Kondensatoren unter ein BGA auf der Rückseite. <code>[place] edges</code> im Layout pinnt einen Connector an eine Kante, und <code>keepouts</code> sind Polygone, die kein Courtyard betreten darf:"
   },
+  "y8i0lygtdi": {
+    "defaultMessage": "<code>agentee fab</code> lehnt ab, solange das Layout Fehler enthält. Ist es sauber, schreibt es ein Paket, das ein Fab so akzeptiert, mit der agentee-Version und dem Commit in der Silkscreen, damit jedes Board angibt, was es gebaut hat."
+  },
   "yc9r30dm9u": {
     "defaultMessage": "Die BOM gruppiert danach, und <code>agentee parts</code> sucht Lagerbestand, Preis und günstigere Äquivalente über <code>mpn</code>. Siehe <a href=\"/guides/fab/\">Fab-Paket, BOM und Preise</a>."
   },
   "ydfgdztl7j": {
     "defaultMessage": "<code>rect</code>"
+  },
+  "yfwyujuwr8": {
+    "defaultMessage": "2"
   },
   "yg67ojncc5": {
     "defaultMessage": "Placement, in den Spalten von JLCPCB"
@@ -4198,6 +5092,9 @@
   },
   "yng2rqtj54": {
     "defaultMessage": "ein Testpunkt-Pad unter <code>min_test_pad</code>, näher als <code>min_test_pad_pitch</code> zu einem anderen Zentrum, näher als <code>min_test_pad_to_body</code> zum Gehäuse eines anderen Bauteils auf der Probe-Seite, näher als <code>min_test_pad_to_edge</code> zum Board-Rand oder einem Werkzeugloch (nicht verzinnte Löcher und Montagebohrungen) oder nicht auf der Probe-Seite"
+  },
+  "yogn3g1644": {
+    "defaultMessage": "Automatisch beim Laden, gecacht; <code>agentee fill</code> speichert sie in der Datei"
   },
   "yr5rdgbsfg": {
     "defaultMessage": "<code>fab-notes.txt</code> listet alles auf, was die Fab über die Standardwerte hinaus tun muss: Vias in Pads, die zu füllen und zu kapseln sind, Edge-Pads, die zu behalten sind, Impedanzklassen mit ihrem Ziel, Layer und Breite. Füge die relevanten Zeilen in die Bestellnotizen ein."
@@ -4219,6 +5116,9 @@
   },
   "z03irmy480": {
     "defaultMessage": "Pins eines Chips entwirren"
+  },
+  "z0rpp7x1vv": {
+    "defaultMessage": "Agent-Einrichtung"
   },
   "z24a3nnpi9": {
     "defaultMessage": "min. Track-Breite und Abstand (1 oz)"
@@ -4261,6 +5161,9 @@
   },
   "zmroxh9640": {
     "defaultMessage": "min. nicht verzinnte Löcher"
+  },
+  "zmwpi15wc7": {
+    "defaultMessage": "Auf dieser Seite"
   },
   "zmyz0dx8bz": {
     "defaultMessage": "Version, Stackup, Finish, Impedanzklassen, Via-Typen und was zu füllen ist"

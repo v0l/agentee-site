@@ -59,10 +59,13 @@ function icuSignature(text: string): string | null {
   }
 }
 
+const decode = (s: string) =>
+  s.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+
 function htmlSignature(text: string): string {
   const tags = [...text.matchAll(/<\/?([a-z0-9]+)/gi)].map(m => m[0].toLowerCase()).sort();
   const hrefs = [...text.matchAll(/href="([^"]*)"/g)].map(m => m[1]).sort();
-  const code = [...text.matchAll(/<code>([\s\S]*?)<\/code>/g)].map(m => m[1]).sort();
+  const code = [...text.matchAll(/<code>([\s\S]*?)<\/code>/g)].map(m => decode(m[1]).trim()).sort();
   const holes = [...text.matchAll(/\{[A-Za-z]+\}/g)].map(m => m[0]).sort();
   return JSON.stringify([tags, hrefs, code, holes]);
 }
