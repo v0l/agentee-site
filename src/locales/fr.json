@@ -3,7 +3,7 @@
     "defaultMessage": "Gerbers, fichiers de perçage, BOM, placement et notes de fabrication"
   },
   "1013nohksnw": {
-    "defaultMessage": "Une simulation logique peut être une mesure d'une interface, qui échoue alors au check tant que la simulation a une erreur :"
+    "defaultMessage": "Une simulation logique peut servir de mesure d'une interface, qui échoue alors à la vérification tant que la simulation présente un échec :"
   },
   "103mz65rwf1": {
     "defaultMessage": "résistance dans les 0,5 %, tolérance pas plus large, le même code de boîtier impérial ; les thermistances, les tableaux et les ponts sont refusés"
@@ -129,7 +129,7 @@
     "defaultMessage": "3500 / 3000 mil de long, via de retour GND dans les 200 mil, 0,5 mm non référencé"
   },
   "11u8z4z2j0g": {
-    "defaultMessage": "Chaque mot d'une recherche doit correspondre à <code>Library:Name</code>. Les imports arrivent dans <code>symbols/</code> et <code>footprints/</code> sous forme de TOML. Le check a maintenant quelque chose à signaler :"
+    "defaultMessage": "Chaque mot d'une recherche doit correspondre à <code>Library:Name</code>. Les imports arrivent dans <code>symbols/</code> et <code>footprints/</code> en TOML. La vérification a maintenant quelque chose à dire :"
   },
   "11v9auq055e": {
     "defaultMessage": "0.28"
@@ -183,7 +183,7 @@
     "defaultMessage": "Un net avec une zone est un net de plan. <code>tie</code> donne à chaque pastille SMD d'un net de plan une courte tige et un via à côté, sur le côté opposé au composant, à l'écart de toute pastille et de tout autre net. C'est ainsi que les pastilles de masse et d'alimentation doivent atteindre un plan, au lieu de pistes entre elles. Une pastille qui a déjà un via de son net à proximité est laissée telle quelle, et une pastille sans emplacement légal est listée sous <code>failed</code>."
   },
   "12omflotwaq": {
-    "defaultMessage": "Ajoutez <code>board</code> et <code>schematic</code> au starter. Le check signale alors chaque composant qui n'est pas encore placé."
+    "defaultMessage": "Ajoutez <code>board</code> et <code>schematic</code> au point de départ. La vérification signale alors chaque composant non encore placé."
   },
   "12pkt0z0xgr": {
     "defaultMessage": "Import"
@@ -759,7 +759,7 @@
     "defaultMessage": "fentes plus étroites que <code>min_plated_slot_width</code> ou <code>min_npth_slot_width</code>, ou plus courtes que deux fois leur largeur"
   },
   "1dj711ix5kg": {
-    "defaultMessage": "Choisir un fabricant et un empilement réel, définir une classe de nets par type de net, et y mettre des cibles d'impédance et de courant pour que check résolve les largeurs."
+    "defaultMessage": "Choisissez un fabricant et un empilement réel, définissez une classe de nets par type de net, et fixez des cibles d'impédance et de courant pour que la vérification calcule les largeurs."
   },
   "1djz69hnhap": {
     "defaultMessage": "La conception de cartes en texte que votre agent peut modifier"
@@ -1278,7 +1278,7 @@
     "defaultMessage": "FDTD, cascade, chute DC, thermique"
   },
   "1lal1ex41vt": {
-    "defaultMessage": "Le check liste maintenant chaque connexion manquante :"
+    "defaultMessage": "La vérification liste maintenant chaque connexion manquante :"
   },
   "1lb0i5d9dkh": {
     "defaultMessage": "déplace un composant avec son étiquette, un via, un coin de piste ou un segment entier"
@@ -2412,7 +2412,7 @@
     "defaultMessage": "Sans <code>lamination</code>, la séquence vient de l'empilement. Les couches de construction de chaque côté sont les diélectriques préimprégnés uniquement à l'extérieur avant le premier noyau, comptés par côté, donc une construction peut être asymétrique (<code>1+4+2</code>) ; les <code>N</code> couches entre sont la sous-pile de noyaux, pressée une fois à partir de ses noyaux et préimprégnés. Les étapes sont :"
   },
   "24o2k9tttmm": {
-    "defaultMessage": "Les nets des pastilles viennent du schéma par numéro : la broche 3 du symbole est la pastille 3 de l'empreinte. Le check signale toute broche sans pastille. Une broche de symbole nommée <code>EP</code> ou numérotée <code>17</code> pour une pastille exposée a besoin de ce numéro de pastille dans l'empreinte aussi."
+    "defaultMessage": "Les nets des pastilles proviennent du schéma par numéro : la broche 3 du symbole est la pastille 3 de l'empreinte. La vérification signale toute broche sans pastille. Une broche de symbole nommée <code>EP</code> ou numérotée <code>17</code> pour une pastille exposée exige ce numéro de pastille dans l'empreinte également."
   },
   "24ocgbs1su0": {
     "defaultMessage": "une extrémité de piste qui ne touche aucun cuivre de son net et aucune zone de cuivre"
@@ -3030,7 +3030,7 @@
     "defaultMessage": "<code>drill-backdrill-FROM-TO.drl</code>"
   },
   "2erk3af4v4t": {
-    "defaultMessage": "Lancez le check juste après. Le constat habituel est la sérigraphie :"
+    "defaultMessage": "Lancez la vérification immédiatement après. Le résultat habituel concerne la sérigraphie :"
   },
   "2esv3ij8ba7": {
     "defaultMessage": "Modifier un routage à la main"
@@ -3504,7 +3504,7 @@
     "defaultMessage": "Intel"
   },
   "8lxceyo8ts": {
-    "defaultMessage": "Les types de broches comptent : le check les utilise pour les vérifications de nets, et les sorties <code>open_collector</code> et les broches <code>input</code> participent à la vérification du niveau de signal."
+    "defaultMessage": "Les types de broches comptent : la vérification les utilise pour les contrôles de nets, et les sorties <code>open_collector</code> et les broches <code>input</code> participent au contrôle des niveaux de signal."
   },
   "8oesbcmonl": {
     "defaultMessage": "Là où agentee est plus strict que la page, volontairement : <code>min_copper_to_edge</code> reste à 0.3 mm (la page autorise 0.2 mm sur un bord routé, usiné à +/-0.2 mm, et 0.4 mm sur une découpe en V), <code>min_hole_to_hole</code> reste à 0.5 mm (la page indique 0.45 mm entre les trous de pastilles et 0.2 mm entre les vias), et <code>min_hole_to_smd_pad</code> (0.2 mm, la valeur trou de via à piste) et <code>min_part_to_edge</code> (0.5 mm) sont des choix d'agentee, absents de la page. <code>min_body_to_edge</code> (1.0 mm) suit les guides DFM d'assemblage, qui maintiennent chaque composant à 1 mm du bord de la carte pour la dépannage et la manipulation. <code>flex_zone</code> (5 mm) suit Knowles sur la fissuration des MLCC en flexion : la zone de contrainte est typiquement à moins de 5 mm du bord de la carte ou des points de fixation."
@@ -3618,7 +3618,7 @@
     "defaultMessage": "Retrait"
   },
   "alwra0pyrw": {
-    "defaultMessage": "Pour les composants logiques et MCU, copiez les seuils de la fiche technique dans une table <code>[levels]</code>. Le check calcule alors la tension que chaque entrée voit à travers ses rails, résistances et interrupteurs, et signale une entrée qui peut rester entre VIL et VIH, flotter, ou dépasser ses limites :"
+    "defaultMessage": "Pour les composants logiques et les MCU, copiez les seuils de la fiche technique dans un tableau <code>[levels]</code>. La vérification calcule ensuite la tension que chaque entrée reçoit à travers ses rails, résistances et interrupteurs, et signale une entrée qui peut rester entre VIL et VIH, flotter, ou dépasser ses limites :"
   },
   "amshfe3pvt": {
     "defaultMessage": "les vias à profondeur contrôlée d'une portée, séparés des vias percés dans un sous-empilement ou au laser sur la même portée, car le fabricant les perce dans une passe différente, après la dernière pressage et par profondeur ; même fonction de fichier, avec le côté percé et la couche d'arrêt dans un commentaire <code>; span In4.Cu to B.Cu, controlled depth blind vias drilled from B.Cu after the last press, stopping on In4.Cu</code>"
@@ -3765,13 +3765,13 @@
     "defaultMessage": "<code>Q</code>, <code>QN</code> (z quand <code>OE</code> est bas)"
   },
   "d4h9xa9tl2": {
-    "defaultMessage": "Dessinez la zone d'encombrement sur <code>F.CrtYd</code> et le contour du corps sur <code>F.Fab</code> : le check a besoin d'une zone d'encombrement qui englobe les pastilles, le placeur garde les zones d'encombrement séparées, et les règles de bord et d'assemblage mesurent depuis le corps. Définissez <code>height</code> pour que la vue 3D et la règle des composants hauts aient une hauteur sans modèle."
+    "defaultMessage": "Tracez la zone d'encombrement sur <code>F.CrtYd</code> et le contour du corps sur <code>F.Fab</code> : la vérification exige une zone d'encombrement qui englobe les pastilles, le placeur maintient les zones d'encombrement séparées, et les règles de bord et d'assemblage mesurent à partir du corps. Définissez <code>height</code> pour que la vue 3D et la règle des composants hauts disposent d'une hauteur sans modèle."
   },
   "da20h6ryzp": {
     "defaultMessage": "Le serveur MCP"
   },
   "da4s6xwybs": {
-    "defaultMessage": "Un PNG de la carte exactement comme le visualiseur la dessine. Un check qui passe peut encore cacher une sérigraphie encombrée ou un détour dans une piste."
+    "defaultMessage": "Un PNG de la carte exactement comme le visualiseur la dessine. Une vérification réussie peut encore masquer une sérigraphie encombrée ou un détour dans une piste."
   },
   "dbq5pcavbe": {
     "defaultMessage": "Configuration de l'agent, MCP inclus"
@@ -4818,7 +4818,7 @@
     "defaultMessage": "Schémas, routages de cartes et simulations sous forme de fichiers TOML que votre agent de codage rédige. agentee vérifie chaque modification selon les règles du fabricant, dessine la carte, résout l'impédance et exécute les simulations FDTD, thermiques et logiques sur le GPU, puis écrit les Gerbers."
   },
   "uk5y9kvoda": {
-    "defaultMessage": "Un lot est un seul chargement et un seul check à la fin, pour que les états intermédiaires inachevés ne soient jamais signalés. Les broches sont <code>REF.PIN</code>, par numéro ou par un nom de broche unique : <code>D1.A</code> est l'anode, et la sortie confirme à quel numéro elle a résolu."
+    "defaultMessage": "Un lot est une seule charge et une seule vérification à la fin, de sorte que les états intermédiaires inachevés ne sont jamais signalés. Les broches sont <code>REF.PIN</code>, par numéro ou par un nom de broche unique : <code>D1.A</code> est l'anode, et la sortie confirme le numéro résolu."
   },
   "uqt2owvio4": {
     "defaultMessage": "Unités et coordonnées"
@@ -5010,7 +5010,7 @@
     "defaultMessage": "<code>symbols/</code>"
   },
   "xktfmjujro": {
-    "defaultMessage": "Ajoutez <code>board = &quot;blinky&quot;</code> et <code>schematic = &quot;blinky&quot;</code> au point de départ. Le check échoue maintenant, ce qui est correct :"
+    "defaultMessage": "Ajoutez <code>board = &quot;blinky&quot;</code> et <code>schematic = &quot;blinky&quot;</code> au point de départ. La vérification échoue maintenant, ce qui est correct :"
   },
   "xm2pl1y9re": {
     "defaultMessage": "Conduction à travers le FR4, le cuivre et les vias avec convection des deux faces. Des secondes, pas des minutes."

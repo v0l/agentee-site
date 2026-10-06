@@ -62,7 +62,7 @@ bun run intl:translate                     # every locale, or name some: bun run
 `intl:translate` sends what a locale lacks to an OpenAI compatible endpoint (`INTL_URL`, default
 `http://localhost:8001/v1`, `INTL_KEY`, `INTL_MODEL`, default the first model it serves) in
 batches with a PCB glossary, and keeps a translation only when its tags, links, `<code>` contents
-and placeholders match the English and it has no en or em dash. Rerun it until nothing is missing.
+and placeholders match the English, it has no en or em dash, and it does not leave "check" in English outside `<code>`. Rerun it until nothing is missing.
 The prompt carries a PCB glossary per language (`GLOSSARY` in `scripts/translate.ts`), and
 `scripts/overrides.ts` holds hand translations for the short labels the model keeps getting wrong
 ("Out the door", the loop verbs, "Skill"). Hand fixes in a locale file stay.

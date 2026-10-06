@@ -272,6 +272,9 @@
   "13u8mhxwbqd": {
     "defaultMessage": "任意の<code>R</code>、<code>CLK</code>、任意の<code>D0</code>から<code>D3</code>、<code>CEP</code>、<code>LOAD</code>、<code>CET</code>"
   },
+  "13wt2gfx3mu": {
+    "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code>（MCP では <code>route</code>）は、指定したネットのラッツネストをグリッド上で配線し（<code>--grid</code>、デフォルト 0.05 mm）、配線とビアを通常の <code>[[tracks]]</code> と <code>[[vias]]</code> としてレイアウトファイルに追記します。そのため、後から自由に編集できます。各ネットクラスの幅、クリアランス、<code>layers</code> を、すべてのパッド、配線、ビア、穴、基板端に対して守ります。クラスの各ビアに必要なスペースは、そのビア自身のパッド、ドリル、層から求めます（スルービアが入らない場所にもマイクロビアは入り、マイクロビアは別の層にあるベリードビアの隣に置けます）。新しいビアは、スパンが誘電体を共有するすべてのドリルから <code>min_hole_to_hole</code> 離し、その穴を他のネットのパッド、配線、ビアから <code>min_via_hole_to_copper</code> 離します。また、自ネットを含むすべてのネットの SMD パッドにビアを重ねません。ビアの銅はパッドに触れてはならず（<code>via-cuts-pad</code>）、穴はパッドから <code>min_hole_to_smd_pad</code> 離します（<code>hole-to-smd-pad</code>）。ただし <code>--via-in-pad</code>（MCP では <code>via_in_pad</code>）を指定すると、ドリルが <code>max_filled_via_drill</code> 以下であれば、自ネットの SMD パッドの内側に完全に収まる形で置けます。層の切り替えには、クラスのビアのうち両方の層をスパンに含む最も安価なものを使います（別の名前から選ぶには <code>--via uv-top,core</code> または MCP の <code>via</code> を使います。<code>--via-cost</code> は配線長 mm 単位でデフォルト 3、これにビアの <code>cost</code> を掛けます）。45 度の曲がりごとに <code>--bend-cost</code> mm 分の配線長を加算し（デフォルト 0.1、90 度はその 3 倍）、<code>--reroute</code> を指定しない限り既存のものは動かしません。指定した場合は、まず指定したネットの配線とビアを削除します。空いた経路が見つからない接続は、横切ることになる配線済みネットや、ビア穴が自分の穴から <code>min_hole_to_hole</code> 以内に入ることになる配線済みネット（スパンが誘電体を共有する穴）を引きはがし、その場所を混雑箇所として記録し、それらのネットをキューに戻します。探索は 45 度方向に進み、曲がりごとにコストを加算するため、経路は 45 度の曲がりを持つ直線区間になります。その後、2 セグメントの 45 度ドッグレッグで区間を引き締め、残った 90 度の角はクリアランスが取れる場所で面取りします。グリッド外のパッド中心への引き込み線だけは別の角度になることがあります。クラス幅が終端のパッドに収まらない場合（パッドの短辺より広い、または隣のパッドに近すぎてクリアランスを保てない場合）、配線はネックダウンします。クラス幅の配線はパッドの手前で止まり、明示的な <code>width</code> を持つ別の <code>[[tracks]]</code> エントリがパッド中心までまっすぐ伸びます。その長さはクラスの <code>neckdown</code> 以下、幅は <code>min_track_width</code> 以上です。幅は、クラス幅、パッドの短辺、クリアランスを保てる最大幅のうち最小のものを 0.01 mm 単位で切り捨てた値です（切り捨てるとこの下限を下回るが切り捨て前は下回らない場合は、ちょうど <code>min_track_width</code> になります）。太い配線は、パッドから外へ向かって全幅でクリアランスを保てる最初の位置から始まります（配線より狭いパッドでは、パッドの外側から始まります）。複数のパッドエントリで作ったサーマルパッドのように、互いに接する同じネットのパッドは 1 つの幅広パッドとして扱います。<code>--pairs</code> で配線したペアはネックダウンしません。すでに新しい銅箔があるネットの接続は、その銅箔から始まります。すべて配線し終えると、ビアを使う配線済みの接続を、ほかを固定したまま 1 層ずつ配線し直し、1 層の経路が元の長さの 25% プラス 1 mm 以内であれば置き換えます。続いて、互いの近くで層を切り替える隣り合った平行な接続のビアを、それぞれの配線に沿ってグリッド上の共通の行または列へスライドさせます。ただし、その位置がルール上問題なく、接続の長さが変わらない場合に限ります（<code>--pairs</code> で固定されたペアの各線と、複数の接続を持つネットは動きません）。<code>max_vias</code> を持つインターフェース内のネットは、トレース（直列部品を経由するレーンのすべてのネット）をその上限内に保ちます。ビアが多すぎる経路は、より高価なビアで、次に 1 層で再試行し、どちらも収まらなければ理由を示して失敗します。ペアの 2 本目のネットは、ペアの間隔でパートナーに寄せて引かれます。<code>--pairs</code> は、まず両方を 1 本の結合した配線としてまとめて配線しようとします。いくつかの接続が失敗した場合は、周囲のネットと一緒に <code>--reroute</code> で配線し直すと、ルーターが領域全体を引きはがして順序を組み直せます。または <code>--grid 0.025</code> に下げます。<code>--dry-run</code> は書き込まずに結果を報告します。重要なネットはまず手で配線し、残りはクラスごとにルーターに任せてください。"
+  },
   "13xykr3e7l9": {
     "defaultMessage": "シンボル"
   },
@@ -959,6 +962,9 @@
   "1gkjwxo8yds": {
     "defaultMessage": "agentee import board は .kicad_pcb を基板仕様、レイアウト、ネットリスト回路図、フットプリント、シンボルに変換します。"
   },
+  "1gkrykf8k03": {
+    "defaultMessage": "<code>layout engine</code> カードは、<code>agentee layout</code> のステージ（<code>docs/layout-engine-2.md</code> を参照）を、未保存の編集を含めてウィンドウ上の現在のレイアウトに対して実行します。<code>run</code> は from..to のステージを実行し、<code>run X only</code> は 1 つだけ再実行し、<code>stop</code> は実行中のステージが終わった時点で実行を終えます。実行中は編集が一時停止します。結果はほかの編集と同じく未保存のままウィンドウに反映され、1 回の取り消しで元に戻せます。各ステージの時間とスコア、最も重みの大きいスコア項目も表示されます。<code>phases to run</code> と <code>settings</code> はレイアウトに <code>[engine]</code> を書き込み（<code>phases</code>、<code>rounds</code>、<code>place_rounds</code>、<code>[engine.place] seed</code>、<code>[engine.access] via_in_pad</code>、<code>[engine.global]</code>、<code>[engine.detail]</code>）、<code>default</code> は設定を削除して既定値に戻します。16 個以上のパッドを持つ部品を選択すると <code>pinswap</code> が使えます。これは <code>agentee pinswap</code> と同様に I/O の入れ替えを探索し、<code>write to the schematic</code> で回路図ファイルに書き込みます。"
+  },
   "1gngryix2dn": {
     "defaultMessage": "<strong>不明なキーはエラーです。</strong>キーのタイプミスは無視されず、報告されます。"
   },
@@ -1632,7 +1638,7 @@
     "defaultMessage": "HDI: マイクロビアと積層"
   },
   "1qw5tcldd6o": {
-    "defaultMessage": "単位、ファイルモデル、resolve と check、計算ツール"
+    "defaultMessage": "単位、ファイルモデル、解決とチェック、計算ツール"
   },
   "1r0hmmormyn": {
     "defaultMessage": "機械ドリル、積層されたサブスタック内"

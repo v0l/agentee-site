@@ -129,7 +129,7 @@
     "defaultMessage": "3500 / 3000 mil de largo, vía de retorno GND dentro de 200 mil, 0,5 mm sin referencia"
   },
   "11u8z4z2j0g": {
-    "defaultMessage": "Cada palabra de la búsqueda debe coincidir con <code>Library:Name</code>. Las importaciones se guardan en <code>symbols/</code> y <code>footprints/</code> como TOML. Ahora el check tiene algo que decir:"
+    "defaultMessage": "Cada palabra de la búsqueda debe coincidir con <code>Library:Name</code>. Las importaciones llegan a <code>symbols/</code> y <code>footprints/</code> como TOML. Ahora la verificación tiene algo que decir:"
   },
   "11v9auq055e": {
     "defaultMessage": "0.28"
@@ -423,7 +423,7 @@
     "defaultMessage": "Pide la placa con la misma construcción: si JLCPCB usa otro apilamiento, todas las impedancias que resolviste están fuera de rango."
   },
   "175374ikzs4": {
-    "defaultMessage": "Una interfaz dice lo que un enlace debe cumplir, y check mide el cobre contra ella: impedancia, skew, longitud, vías, estribos de vía, el plano de referencia bajo cada pista, las vías de retorno, el temporizado del bus, y los parámetros S y el ojo de las simulaciones que la modelan."
+    "defaultMessage": "Una interfaz dice lo que un enlace debe cumplir, y la verificación mide el cobre contra ella: impedancia, skew, longitud, vías, estribos de vía, el plano de referencia bajo cada pista, las vías de retorno, el temporizado del bus y los parámetros S y el ojo de las simulaciones que la modelan."
   },
   "1758zalpxdz": {
     "defaultMessage": "<code>min_pth_hole_to_copper</code>"
@@ -600,7 +600,7 @@
     "defaultMessage": "<code>*.sim.toml</code>"
   },
   "1adfjatvsb9": {
-    "defaultMessage": "El check informa sobre pines en dos redes, pines sin red, redes de un solo pin, varias salidas en una misma red, cables manuales que no tocan un pin o tocan el pin de otra red, piezas superpuestas, huellas cuyos pads no cubren los pines del símbolo y niveles de señal cuando se establece <code>rails</code>. Cada red en la clase de red <code>Default</code> es una advertencia, ya sea que no nombre una clase o nombre <code>Default</code>: la clase define el ancho, el despeje, las vías y el orden de enrutado de la red, por lo que cada red debe indicar qué es. La advertencia necesita una placa y un layout del esquemático; un esquemático solo simulado (como <code>examples/logic</code>) la omite. Asigna a la placa una clase por tipo de red (<code>Signal</code>, <code>Data</code>, <code>Clock</code>, <code>Analog</code>, <code>Ground</code>, <code>Power</code>, <code>RF</code>, pares) y mantén <code>Default</code> como el valor predeterminado que el layout usa para las reglas que ninguna clase cubre. <code>agentee show sch:lna</code> imprime la posición de cada pin."
+    "defaultMessage": "La verificación informa de pines en dos redes, pines sin red, redes de un solo pin, varias salidas en una misma red, cables manuales que no tocan un pin o tocan un pin de otra red, componentes superpuestos, huellas cuyos pads no cubren los pines del símbolo, y niveles de señal cuando <code>rails</code> está establecido. Cada red en la clase de red <code>Default</code> es una advertencia, ya sea que no nombre ninguna clase o que nombre <code>Default</code>: la clase fija el ancho, el despeje, las vías y el orden de enrutado de la red, por lo que cada red debería decir qué es. La advertencia necesita una placa y un layout del esquemático; un esquemático solo simulado (como <code>examples/logic</code>) la omite. Da a la placa una clase por tipo de red (<code>Signal</code>, <code>Data</code>, <code>Clock</code>, <code>Analog</code>, <code>Ground</code>, <code>Power</code>, <code>RF</code>, parejas) y mantén <code>Default</code> como el valor predeterminado que el layout usa para las reglas que ninguna clase cubre. <code>agentee show sch:lna</code> imprime la posición de cada pin."
   },
   "1aiks5l81a4": {
     "defaultMessage": "agrupado por valor, huella, campos <code>mpn</code> y <code>lcsc</code>"
@@ -681,7 +681,7 @@
     "defaultMessage": "<code>hdi-6l-1n1</code>: 6 capas, 1+4+1, 0,8 mm, un preimpregnado de construcción de 0,07 mm 1080 a cada lado de un subapilamiento de núcleo."
   },
   "1bse3rd4z5c": {
-    "defaultMessage": "Los resultados caducan cuando cambia la especificación o el cobre, y check lo dice."
+    "defaultMessage": "Los resultados se vuelven obsoletos cuando la especificación o el cobre cambia, y la verificación lo dice."
   },
   "1bvx5muloyq": {
     "defaultMessage": "Un punto es <code>[x, y]</code>. X crece hacia la derecha, <strong>Y crece hacia abajo</strong>, tanto para símbolos como para huellas."
@@ -759,7 +759,7 @@
     "defaultMessage": "ranuras más estrechas que <code>min_plated_slot_width</code> o <code>min_npth_slot_width</code>, o más cortas que el doble de su ancho"
   },
   "1dj711ix5kg": {
-    "defaultMessage": "Elige un fabricante y un apilamiento real, define una clase de red por cada tipo de red, y ponles objetivos de impedancia y corriente para que check resuelva los anchos."
+    "defaultMessage": "Elige un fabricante y un apilamiento real, define una clase de red por tipo de red y pon objetivos de impedancia y corriente en ellas para que la verificación resuelva los anchos."
   },
   "1djz69hnhap": {
     "defaultMessage": "Diseño de PCB como texto que tu agente puede editar"
@@ -924,7 +924,7 @@
     "defaultMessage": "Reglas de layout de {drc}"
   },
   "1ft2ilcqy8x": {
-    "defaultMessage": "Pega el ancho, vuelve a ejecutar check. <a href=\"/guides/impedance/\">Impedancia controlada y pares</a> va más lejos."
+    "defaultMessage": "Pega el ancho, vuelve a ejecutar la verificación. <a href=\"/guides/impedance/\">Impedancia controlada y parejas</a> va más lejos."
   },
   "1fxwuxai4vj": {
     "defaultMessage": "Un compilador C, para el crate TLS que usan las descargas de distribuidor y modelos: las herramientas de línea de comandos de Xcode en macOS, las herramientas de compilación de MSVC en Windows, <code>gcc</code> o <code>clang</code> en Linux."
@@ -1116,7 +1116,7 @@
     "defaultMessage": "Ruteo con varios tipos de vía"
   },
   "1itm5kdohd2": {
-    "defaultMessage": "<code>show</code> imprime la placa resuelta como JSON: para cada clase y capa, la geometría de la pista (microstripa en las capas exteriores, stripline en las interiores), la impedancia, el ancho que cumple el objetivo y la corriente que transporta. Cuando una clase está fuera de objetivo, check indica cuánto y qué usar:"
+    "defaultMessage": "<code>show</code> imprime la placa resuelta como JSON: para cada clase y capa la geometría de la pista (microstrip en las capas externas, stripline en las internas), la impedancia, el ancho que cumple el objetivo y la corriente que lleva. Cuando una clase no está en el objetivo, la verificación dice cuánto se desvía y qué usar:"
   },
   "1ivu4pud73f": {
     "defaultMessage": "Los rellenos se calculan al cargar y se guardan en caché. <code>agentee fill NAME</code> los almacena al final del archivo de layout, así que un checkout nuevo carga sin rellenar."
@@ -1137,7 +1137,7 @@
     "defaultMessage": "una shell en el proyecto"
   },
   "1j92wp5xn8w": {
-    "defaultMessage": "La laminación es la secuencia de construcción: los pasos de taladro que el fabricante ejecuta entre prensadas, en orden de construcción, cada uno un alcance de cobre y un tipo de taladro (<code>mechanical</code>, <code>laser</code> o <code>controlled_depth</code>). Una vía es taladrable solo cuando su alcance y tipo de taladro coinciden con un paso (una microvía <code>stacked</code>: cuando cada salto del apilamiento es un paso láser). Un tipo de vía que un diseño de PCB coloca se informa una vez, por la regla <code>via-lamination</code> del diseño, que cuenta sus vías e indica la entrada de la placa (<code>vias[i]</code>) para corregir; check informa un tipo de vía que ningún diseño coloca como un error de placa. El enrutador deja fuera una vía de esa clase. Cada una lista los alcances que la laminación taladra."
+    "defaultMessage": "La laminación es la secuencia de construcción: los pasos de taladro que el fabricante ejecuta entre prensadas, en orden de construcción, cada uno un tramo de cobre y un tipo de taladro (<code>mechanical</code>, <code>laser</code> o <code>controlled_depth</code>). Una vía es taladrable solo cuando su tramo y su tipo de taladro coinciden con un paso (una microvía <code>stacked</code>: cuando cada salto de la pila es un paso de láser). Un tipo de vía que un layout coloca se informa una vez, por la regla <code>via-lamination</code> del layout, que cuenta sus vías y nombra la entrada de la placa (<code>vias[i]</code>) para corregir; la verificación informa de un tipo de vía que ningún layout coloca como error de placa. El enrutador deja fuera de la ruta una vía de esa clase. Cada uno lista los tramos que la laminación taladra."
   },
   "1jadp48fdt1": {
     "defaultMessage": "Configuración en {platform}"
@@ -1278,7 +1278,7 @@
     "defaultMessage": "FDTD, cascada, caída en CC, térmica"
   },
   "1lal1ex41vt": {
-    "defaultMessage": "Ahora el check lista cada conexión que falta:"
+    "defaultMessage": "Ahora la verificación enumera cada conexión que falta:"
   },
   "1lb0i5d9dkh": {
     "defaultMessage": "mueve un componente con su etiqueta, una vía, una esquina de pista o un segmento entero"
@@ -1317,7 +1317,7 @@
     "defaultMessage": "Todos los largos: <code>min_track_width</code>, <code>min_clearance</code>, <code>min_drill</code>, <code>min_via_drill</code>, <code>min_via_diameter</code>, <code>min_annular_ring</code> (vías, las microvías usan <code>min_microvia_diameter</code>), <code>min_blind_via_drill</code>, <code>min_controlled_depth_drill</code>, <code>min_microvia_drill</code>, <code>max_microvia_drill</code>, <code>min_microvia_diameter</code>, <code>min_hole_to_hole</code>, <code>min_copper_to_edge</code>, <code>min_silk_width</code>, <code>min_silk_text_height</code>, <code>min_mask_web</code> (0.1 mm), <code>max_drill</code>, <code>min_npth_drill</code>, <code>min_plated_slot_width</code>, <code>min_npth_slot_width</code>, <code>min_pth_annular_ring</code>, <code>min_via_hole_to_copper</code>, <code>min_pth_hole_to_copper</code>, <code>min_inner_pth_hole_to_copper</code>, <code>min_npth_to_copper</code>, <code>min_smd_pad_gap</code>, <code>min_hole_to_smd_pad</code>, <code>max_filled_via_drill</code>, <code>min_bga_pad</code>, <code>min_bga_pitch</code>, <code>min_part_to_edge</code>, <code>min_body_to_edge</code>, <code>flex_zone</code>; más <code>max_aspect_ratio</code>, un número plano (profundidad del agujero sobre taladro), <code>max_microvia_aspect_ratio</code> (profundidad del dieléctrico sobre taladro por láser), <code>max_controlled_depth_aspect_ratio</code> (profundidad sobre taladro de una vía de profundidad controlada), y los interruptores <code>hdi</code> (el fabricante construye vías ciegas, enterradas y microvías y retro-taladrados) y <code>stacked_microvias</code> (el fabricante apila microvías). Las huellas se comprueban contra las reglas de cada placa cuyo diseño las coloca, así que un proyecto con una placa de 4 capas y una de 2 capas somete cada huella solo a las placas en las que está. Una huella que ningún diseño coloca se comprueba contra cada placa y se informa para la que mejor encaja; sin placa, contra <code>generic</code>."
   },
   "1m2uye5hrsr": {
-    "defaultMessage": "Con <code>solver = &quot;field&quot;</code>, la clase se comprueba con el solver de campos 2D: una resolución de Laplace por diferencias finitas basada en nodos sobre una malla graduada, ejecutada en la GPU a través de wgpu, con el espesor del cobre, la máscara de soldadura, las tierras coplanares y los pares incluidos. En referencias exactas cae dentro de un 0,5 % de la stripline de espesor nulo de Cohn y un 0,4 % de la microtira de Hammerstad-Jensen. Cuando la clase no está en el objetivo, check sugiere el ancho de pista que la cumple. <code>agentee calc field --netclass RF</code> imprime el resultado completo (Z0, eeff, C y L por metro, retardo, malla)."
+    "defaultMessage": "Con <code>solver = &quot;field&quot;</code> la clase se verifica con el solver de campo 2D en su lugar: una resolución de Laplace por diferencias finas basada en nodos sobre una malla graduada, ejecutada en la GPU a través de wgpu, con el grosor del cobre, la máscara de soldadura, las tierras coplanares y los pares incluidos. En referencias exactas cae dentro del 0,5% de la stripline de espesor cero de Cohn y del 0,4% de la microstrip de Hammerstad-Jensen. Cuando la clase está fuera de objetivo, la verificación sugiere el ancho de pista que lo cumple. <code>agentee calc field --netclass RF</code> imprime el resultado completo (Z0, eeff, C y L por metro, retardo, malla)."
   },
   "1m2y78wvygc": {
     "defaultMessage": "El agente se apoyará mucho en la comprobación, y ese es el punto: cada diagnóstico nombra el archivo, el elemento y el lugar, y la mayoría nombran un valor que pasa. Cosas que siguen requiriéndote:"
@@ -1479,7 +1479,7 @@
     "defaultMessage": "<code>solver = &quot;field&quot;</code> en cada clase donde unos pocos ohmios importan."
   },
   "1ohjl688ppo": {
-    "defaultMessage": "Una interfaz declara lo que un enlace debe cumplir, y check mide el cobre contra todo ello a la vez:"
+    "defaultMessage": "Una interfaz declara lo que un enlace debe cumplir, y la verificación mide el cobre contra todo ello a la vez:"
   },
   "1oiyg9y9o9n": {
     "defaultMessage": "BOM y colocación en las columnas que pide JLCPCB"
@@ -1539,7 +1539,7 @@
     "defaultMessage": "Tipos de vía"
   },
   "1p9al4txnn2": {
-    "defaultMessage": "Las zonas mantienen <code>min_via_hole_to_copper</code> respecto a los orificios de vía de otras redes y <code>min_npth_to_copper</code> respecto a los orificios no bañados, además de la separación. Los arcos se dibujan por fuera del círculo real para que la separación nunca haga cortocircuito. Las vías de cosido se colocan solo donde la vía respeta la separación respecto al cobre de todas las demás redes en cada capa que atraviesa, mantiene su orificio a <code>min_via_hole_to_copper</code> de ese cobre y a <code>min_hole_to_smd_pad</code> de los pads SMD de cualquier red, respeta <code>min_hole_to_hole</code> respecto a todos los taladros y la regla de borde respecto al contorno, y cae dentro de una zona de su red. El check informa de cuántas ha colocado. Se taladran y trazan como cualquier otra vía."
+    "defaultMessage": "Los rellenos mantienen <code>min_via_hole_to_copper</code> de los agujeros de vía de otras redes y <code>min_npth_to_copper</code> de los agujeros no bañados, además del despeje, con arcos dibujados fuera del círculo real para que el hueco nunca sea corto. Las vías de cosido van solo donde la vía despeja el cobre de todas las demás redes en cada capa que abarca, mantiene su agujero a <code>min_via_hole_to_copper</code> de ese cobre y a <code>min_hole_to_smd_pad</code> de pads SMD de cualquier red, mantiene <code>min_hole_to_hole</code> de todos los taladros y la regla de borde del contorno, y cae dentro de una zona de su red; la verificación informa de cuántas colocó. Se taladran y trazan como cualquier vía."
   },
   "1pfflqoefax": {
     "defaultMessage": "un relleno que cubre o se acerca demasiado al cobre de otra red"
@@ -1590,7 +1590,7 @@
     "defaultMessage": "Verificaciones de reglas de diseño - referencia de agentee"
   },
   "1qadrepmt73": {
-    "defaultMessage": "Un trozo de relleno se conserva solo si toca dos elementos de su red, o uno y es al menos <code>min_island_area</code>; el resto no llega a nada nuevo y se elimina. Check verifica cada relleno contra otras redes: un relleno que se superpone con la zona, pista, vía o pad de otra red, o se acerca más que la separación, es un error, y las puntas de cobre más agudas que 30 grados se marcan."
+    "defaultMessage": "Una pieza de relleno se conserva solo si toca dos elementos de su red, o uno y es al menos <code>min_island_area</code>; el resto no llega a nada nuevo y se elimina. La verificación comprueba cada relleno contra otras redes: un relleno que se solapa con la zona, pista, vía o pad de otra red, o se acerca más que el despeje, es un error, y las puntas de cobre más agudas que 30 grados se marcan."
   },
   "1qcbxs4y1yz": {
     "defaultMessage": "Lecturas: aserciones superadas y fallidas, conteniones, violaciones de temporizado, celdas y eventos. La comprobación lista cada aserción fallida, contención, violación de temporizado o ejecución detenida como un error en la simulación, mientras el resultado esté actual. El resultado queda obsoleto cuando cambia la especificación o el netlist del esquemático. <code>examples/logic</code> contiene dos: <code>counter</code>, un 74HC161 contando hacia un 74HC138, e <code>i2c</code>, un bus de drenador abierto donde un controlador (dos 74LVC1G07) y un destino (un 74LVC1G06 que baja SDA para su ACK) comparten polarizaciones de 4.7k, y un 74HC595 con reloj SCL captura el byte, comprobado para START, los bits, el ACK, el byte (un bus <code>record</code>) y STOP."
@@ -1602,7 +1602,7 @@
     "defaultMessage": "Parámetros S de la placa del LNA desde la ejecución FDTD, con un diagrama de Smith de los puertos."
   },
   "1qgtndzh2fg": {
-    "defaultMessage": "Un resultado ausente u obsoleto también es un error, por lo que un cambio de layout que las simulaciones no han visto hace que el check falle hasta que se vuelvan a ejecutar. Ese es el punto: el ojo que aprobaste es el ojo del cobre que estás a punto de pedir. La <a href=\"/reference/interfaces/\">referencia de interfaces</a> lista cada límite."
+    "defaultMessage": "Un resultado ausente o desactualizado también es un error, por lo que un cambio en el layout que las simulaciones no han visto hace que la verificación falle hasta que se vuelvan a ejecutar. Ese es el objetivo: el diagrama de ojo que aprobaste es el del cobre que vas a pedir. La <a href=\"/reference/interfaces/\">guía de interfaces</a> enumera todos los límites."
   },
   "1qhwcea3j31": {
     "defaultMessage": "flota sin nada que la atenga a un riel,"
@@ -1674,7 +1674,7 @@
     "defaultMessage": "Un pin que queda fuera de todas las redes se informa. Los pines que están abiertos a propósito van en <code>no_connect</code>:"
   },
   "1rd9mbz2phc": {
-    "defaultMessage": "Los gráficos de huella en una capa de cobre, máscara o pasta se trazan como cobre, aberturas de máscara o pasta, y se dibujan en el visor: por ejemplo, la tira de cobre de un jumper de soldadura puenteado. Check no los ve como cobre."
+    "defaultMessage": "La gráfica de huella en una capa de cobre, máscara o pasta se traza como cobre, apertura de máscara o pasta, y se dibuja en el visor: por ejemplo, la tira de cobre de un jumper de soldadura puenteado. La verificación no los ve como cobre."
   },
   "1rg8ze8g7pz": {
     "defaultMessage": "colocación y ruteo: fases sobre un modelo de placa y una puntuación"
@@ -1695,7 +1695,7 @@
     "defaultMessage": "Una pieza personalizada obtiene un modelo en línea, coincidente por <code>ref</code> o por <code>value</code> (todas las piezas con ese valor). Varias entradas para una pieza añaden una celda cada una (una por puerta de un cuádruple, por ejemplo). Una entrada con solo tiempo mantiene el modelo integrado y cambia su tiempo."
   },
   "1rqigxpguzp": {
-    "defaultMessage": "Instálalo, dale la skill a tu agente y pide algo pequeño: un breakout, una fuente de alimentación, un nodo de sensor. Míralo en el visor y lee lo que dice check."
+    "defaultMessage": "Instálalo, dale la skill a tu agente y pídele algo pequeño: un breakout, una fuente de alimentación, un nodo de sensor. Obsérvalo en el visor y lee lo que dice la verificación."
   },
   "1rt96e9xmko": {
     "defaultMessage": "Un comodín en <code>--nets</code> nunca coincide con una red de plano, por lo que <code>--nets &#39;*&#39;</code> rutea cada señal y deja la masa a los planos."
@@ -2217,7 +2217,7 @@
     "defaultMessage": "los agujeros de retro-taladrado de cada lado y capa de parada, sin plado, con el diámetro de retro-taladrado, con la capa de parada y <code>max_stub</code> en un comentario"
   },
   "20u1f7vfkkg": {
-    "defaultMessage": "<code>calc field --netclass USB</code> añade un bloque <code>pair</code>: Zdiff, Zcommon, las impedancias y retardos de modo impar y par, el coeficiente de acoplamiento y el cruce de extremo cercano de una línea larga. El check informa el desfase de cada par en mm y ps, cualquier tramo con el hueco incorrecto más allá de <code>max_uncoupled</code>, y pares que corren lado a lado durante menos del 80% de su longitud. Un par a través de piezas en serie, como los condensadores AC en un carril USB, se mide de extremo a extremo. <code>agentee route NAME --nets &#39;USB_*&#39; --pairs</code> enruta ambas mitades juntas."
+    "defaultMessage": "<code>calc field --netclass USB</code> añade un bloque <code>pair</code>: Zdiff, Zcommon, las impedancias y retardos de modo impar y par, el coeficiente de acoplamiento y el cruce de cercanía de una línea larga. La verificación informa del desfase de cada pareja en mm y ps, cualquier tramo con separación incorrecta por encima de <code>max_uncoupled</code>, y parejas que corren lado a lado menos del 80 % de su longitud. Una pareja a través de componentes en serie, como los condensadores AC en un canal USB, se mide de extremo a extremo. <code>agentee route NAME --nets &#39;USB_*&#39; --pairs</code> enruta ambas mitades juntas."
   },
   "211ybnyn8so": {
     "defaultMessage": "El fabricante y el número de capas, o el coste que quieres no superar. <code>jlcpcb</code> con un apilamiento de dos o cuatro capas sirve para la mayoría de placas iniciales."
@@ -2265,7 +2265,7 @@
     "defaultMessage": "Una importación escribe un <code>.sym.toml</code> o <code>.fp.toml</code> en <code>symbols/</code> o <code>footprints/</code>. A partir de entonces el proyecto lo posee: no hay enlace de vuelta a la biblioteca, así que un componente nunca cambia bajo tus pies cuando KiCad se actualiza. Una ruta <code>.kicad_sym</code> o <code>.kicad_mod</code> funciona en lugar de <code>Library:Name</code> para componentes fuera de las bibliotecas estándar."
   },
   "21v5d9dete3": {
-    "defaultMessage": "La clase es una promesa; el layout la cumple. El check mide cada pista de una clase de impedancia:"
+    "defaultMessage": "La clase es una promesa; el layout la cumple. La verificación mide cada pista de una clase de impedancia:"
   },
   "21wi51767ol": {
     "defaultMessage": "impedancia"
@@ -2283,7 +2283,7 @@
     "defaultMessage": "Referencia de formato de archivos de agentee"
   },
   "21z7dt71046": {
-    "defaultMessage": "El check nunca ejecuta una simulación. Cada resultado registra un hash de la especificación, el cobre que vio y el apilamiento, y el check advierte cuando ya no coinciden. En un ejecutor de CI sin GPU, esa es la parte útil: una solicitud de extracción que mueve una pista de RF recibe una advertencia de obsolescencia en el resultado FDTD, y una interfaz que mide ese resultado falla directamente."
+    "defaultMessage": "La verificación nunca ejecuta una simulación. Cada resultado registra un hash de la especificación, el cobre que vio y el apilamiento, y la verificación avisa cuando ya no coinciden. En un runner de CI sin GPU, esa es la parte útil: una solicitud de extracción que mueve una pista de RF recibe una advertencia de obsolescencia en el resultado FDTD, y una interfaz que mide ese resultado falla directamente."
   },
   "221qbpi8pyl": {
     "defaultMessage": "In1.Cu a In4.Cu, enterrada, a través del subapilamiento,"
@@ -2343,7 +2343,7 @@
     "defaultMessage": "Lista los presets de apilamiento de fabricante que puede nombrar `stackup.preset` de una placa, o imprime uno"
   },
   "239ijuexn6t": {
-    "defaultMessage": "Check marca cada etiqueta de referencia que amontona otro texto, se sitúa sobre un pad o una vía, o sale de la placa, y nombra un sitio que pasa. <code>agentee silk</code> las mueve todas allí:"
+    "defaultMessage": "La verificación marca cada etiqueta de referencia que amontona otro texto, se sitúa sobre un pad o una vía, o sale de la placa, y nombra un punto que pasa. <code>agentee silk</code> las mueve todas allí:"
   },
   "23abd480i7l": {
     "defaultMessage": "agentee, diseño electrónico para agentes de código"
@@ -2373,7 +2373,7 @@
     "defaultMessage": "taladros Excellon, ranuras como G85; un archivo más por cada tramo de vía ciega, enterrada o microvía en placas HDI"
   },
   "23q0rg2wlh0": {
-    "defaultMessage": "Check busca pads superpuestos, pads más cerca que la separación del fabricante, taladros y anillos anulares bajo las reglas (<code>min_drill</code>, <code>min_pth_annular_ring</code>), un courtyard que encierra los pads, y serigrafía que pasa sobre cobre expuesto."
+    "defaultMessage": "La verificación busca pads solapados, pads más cerca que el despeje del fabricante, taladros y anillos anulares por debajo de las reglas (<code>min_drill</code>, <code>min_pth_annular_ring</code>), un courtyard que encierra los pads y serigrafía que pasa sobre cobre expuesto."
   },
   "23tshyft62l": {
     "defaultMessage": "La página de diseño del visor tiene una pestaña <code>3d</code> (<code>agentee view --3d</code> se abre en ella): la placa con su espesor de apilamiento, colores de máscara y serigrafía y acabado, cobre bajo la máscara, pads desnudos, paredes de taladro bañadas y desnudas, y el modelo 3D de cada componente. El conmutador <code>parts</code> oculta los modelos. Arrastra para orbitar, shift-arrastre para desplazar, rueda para hacer zoom, doble clic para restablecer. El visor dibuja con OpenGL (<a href=\"https://github.com/asny/three-d\">three-d</a>); <code>agentee render pcb:NAME --show 3d</code> (o <code>3d-top</code>, <code>3d-bottom</code>) dibuja la misma escena en software, <code>--hide parts</code> omite los modelos y <code>--region</code> apunta la cámara a esa área."
@@ -2538,7 +2538,7 @@
     "defaultMessage": "<code>agentee fab</code>"
   },
   "26pkfhq2tqp": {
-    "defaultMessage": "<strong>La impedancia y la corriente están en la clase.</strong> Asigna a una clase <code>impedance = &quot;50ohm&quot;</code> o <code>current = &quot;2A&quot;</code> y check resuelve el ancho para cada capa del apilamiento."
+    "defaultMessage": "<strong>La impedancia y la corriente viven en la clase.</strong> Da a una clase <code>impedance = &quot;50ohm&quot;</code> o <code>current = &quot;2A&quot;</code> y la verificación resuelve el ancho para cada capa del apilamiento."
   },
   "26s0srbqiyq": {
     "defaultMessage": "Una placa puede listar varios tipos de vía. Una vía a través no necesita nada más; las vías ciegas, enterradas y microvías requieren un fabricante HDI y se tratan en <a href=\"/guides/hdi/\">HDI: microvías y laminación</a>."
@@ -2712,7 +2712,7 @@
     "defaultMessage": "El script pone el binario en <code>~/.local/bin</code>. Establece <code>AGENTEE_INSTALL_DIR</code> para ponerlo en otro lugar."
   },
   "29y1zbo05b4": {
-    "defaultMessage": "El trabajo de check"
+    "defaultMessage": "El trabajo de verificación"
   },
   "29yqnm21ssu": {
     "defaultMessage": "Los biestables se relajan en el flanco de subida (clave <code>CLK_N</code> para el de bajada); <code>S</code> y <code>R</code> son asincrónicos y si ambos están activos, Q = QN = 1, como en un 74HC74. El 161 se reinicia de inmediato, el 163 en el siguiente flanco. Un 595 desplaza en <code>CLK</code>, copia a sus salidas en <code>LATCH</code> (el valor de antes del desplazamiento en el mismo instante) y deja las salidas en alta impedancia mientras <code>OE</code> está bajo."
@@ -2895,7 +2895,7 @@
     "defaultMessage": "una red cuyos pads no están todos unidos por pistas, vías y zonas de cobre, nombrando los grupos que están separados"
   },
   "2cjp54hpvxh": {
-    "defaultMessage": "Cada simulación está actualizada: el check avisa de resultados desactualizados."
+    "defaultMessage": "Cada simulación está actualizada: la verificación avisa de los resultados desactualizados."
   },
   "2cjq2lndzi6": {
     "defaultMessage": "El conductor se convierte en una fuente de Thevenin desde sus tablas de pulldown y pullup, su capacidad de die y su encapsulado; su rampa fija el borde y su rango de voltaje el swing, a menos que se den <code>rise</code> o <code>swing</code>. El receptor carga el extremo lejano con su encapsulado y capacidad de die, y el ojo se lee en su die. IBIS funciona ahora en rutas de extremo único."
@@ -3114,7 +3114,7 @@
     "defaultMessage": "<code>stacked-via</code>"
   },
   "2g27vxcvei2": {
-    "defaultMessage": "Una clase de red es lo que es una red: su ancho de pista, separación, vías y los objetivos a los que check la somete. Da a cada tipo de red su propia clase. Una red que queda en <code>Default</code> es una advertencia, porque la clase decide cómo se enruta."
+    "defaultMessage": "Una clase de red es lo que es una red: su ancho de pista, despeje, vías y los objetivos a los que la verificación la somete. Da a cada tipo de red su propia clase. Una red dejada en <code>Default</code> es una advertencia, porque la clase decide cómo se enruta."
   },
   "2g2bruy73r8": {
     "defaultMessage": "La recuperación y la eliminación son mínimos de la hoja de datos entre -40 y 85 C a 4.5 V (familias de 5 V) o 3.3 V (LVC), el mayor de TI y Nexperia cuando ambos listan uno:"
@@ -3333,7 +3333,7 @@
     "defaultMessage": "<code>zone-tips</code>"
   },
   "5m5l2y1x20": {
-    "defaultMessage": "Con <code>solver = &quot;field&quot;</code>, check resuelve la clase en cada capa que pueda usar y, cuando no coincide, indica en cuánto y qué usar:"
+    "defaultMessage": "Con <code>solver = &quot;field&quot;</code>, la verificación resuelve la clase en cada capa que puede usar y, cuando no está en el objetivo, dice cuánto se desvía y qué usar:"
   },
   "5mdecrm7hm": {
     "defaultMessage": "<code>fab</code> establecido, y un apilamiento <code>preset</code> que el fabricante construye realmente."
@@ -3375,7 +3375,7 @@
     "defaultMessage": "el contorno y cada recorte de la placa"
   },
   "6vtwvstloc": {
-    "defaultMessage": "Una vez que el check no tiene errores, un layout se convierte en un paquete que un fabricante y una casa de ensamblaje aceptan tal cual. Esta guía cubre su escritura, el precio de las piezas y la obtención de un modelo 3D para el alojamiento."
+    "defaultMessage": "Una vez que la verificación no tiene errores, un layout se convierte en un paquete de fabricación que un fabricante y una casa de montaje aceptan tal cual. Esta guía cubre cómo escribirlo, cómo presupuestar las piezas y cómo obtener un modelo 3D para el encapsulado."
   },
   "6x8yn1m2yz": {
     "defaultMessage": "cobre de dos redes diferentes se toca"
@@ -3396,7 +3396,7 @@
     "defaultMessage": "<code>agentee sparam NAME</code> (MCP <code>sparam</code>) funciona con cualquier resultado FDTD o de cascada:"
   },
   "785vso7xer": {
-    "defaultMessage": "Deja <code>track_width</code> fuera y check lo resuelve para la primera capa. Donde un ancho no encaja en todas las capas, da <code>widths = { &quot;In2.Cu&quot; = &quot;0.16mm&quot; }</code>."
+    "defaultMessage": "Deja <code>track_width</code> fuera y la verificación lo resuelve para la primera capa. Cuando un ancho no sirve para todas las capas, da <code>widths = { &quot;In2.Cu&quot; = &quot;0.16mm&quot; }</code>."
   },
   "7bxalrqtkl": {
     "defaultMessage": "<code>check</code> ejecuta cada regla; <code>drc</code> imprime solo los diagnósticos de reglas del layout, cada uno empezando con su id entre corchetes, y <code>--list</code> imprime cada regla con si se aplica a esta placa. Los errores bloquean el paquete de fabricación. Las advertencias y notas son práctica, no límites del fabricante: síguelas salvo que el diseño dé una razón, y escribe la razón en <code>DESIGN.md</code>."
@@ -3474,7 +3474,7 @@
     "defaultMessage": "El alcance y el tipo de taladro deben coincidir con un paso de taladro de la laminación (ver Laminación); el error lista los alcances que taladra. <code>drill_kind</code> por defecto es <code>laser</code> para una microvía y <code>mechanical</code> en otro caso; una microvía siempre se taladra con láser y una vía taladrada con láser es una microvía."
   },
   "8a8gp8ef5g": {
-    "defaultMessage": "Los rellenos de zona se almacenan en caché: cada relleno se clavea con un hash de todo lo que depende y se guarda en <code>~/.cache/agentee/fills</code>, de modo que una carga solo rellena las zonas cuyo cobre, separaciones o vecinos cambiaron (establece <code>AGENTEE_NO_FILL_CACHE</code> para omitir la caché). <code>agentee fill NAME</code> (MCP <code>fill</code>) también guarda los rellenos al final del archivo de layout, una tabla <code>[[fills]]</code> por zona y capa, de modo que un checkout nuevo carga sin rellenar; un relleno guardado cuyo hash ya no coincide se ignora, y check lo anota con <code>--info</code>. Importar una placa guarda sus rellenos. Deja las tablas <code>[[fills]]</code> a la herramienta."
+    "defaultMessage": "Las zonas de cobre se almacenan en caché: cada relleno se indexa con un hash de todo lo que depende de él y se guarda en <code>~/.cache/agentee/fills</code>, de modo que una carga solo rellena las zonas cuyo cobre, despeje o vecinos hayan cambiado (establece <code>AGENTEE_NO_FILL_CACHE</code> para omitir la caché). <code>agentee fill NAME</code> (MCP <code>fill</code>) también guarda los rellenos al final del archivo de layout, una tabla <code>[[fills]]</code> por zona y capa, de modo que un clonado nuevo se carga sin rellenos; un relleno guardado cuyo hash ya no coincide se ignora, y la verificación lo anota con <code>--info</code>. Al importar una placa se guardan sus rellenos. Deja las tablas <code>[[fills]]</code> a la herramienta."
   },
   "8c7fyqgezg": {
     "defaultMessage": "Todo lo que necesita el fabricante, listo para subir"
@@ -3570,7 +3570,7 @@
     "defaultMessage": "La placa HackRF Pro importada desde KiCad, renderizada por agentee."
   },
   "9tdtrp8oa4": {
-    "defaultMessage": "El texto de serigrafía debe mantener 0.4 mm de otro texto de serigrafía y 0.2 mm de los contornos de serigrafía, mantenerse alejado de pads, vías y cuerpos de otros componentes, y permanecer en la placa. Cada una de estas es un error, excepto el texto bajo el cuerpo de otro componente, que es una advertencia. Si una etiqueta de referencia falla, check nombra un punto que cumple todas las reglas, como una línea <code>label = { at = [...] }</code> para pegar. <code>agentee silk NAME</code> (MCP <code>silk</code>) las pega todas por ti y repite hasta que las etiquetas se asientan; <code>--hide</code> oculta las referencias que no tienen punto libre, típicamente pasivos pequeños bajo una BGA."
+    "defaultMessage": "El texto de serigrafía debe mantener 0,4 mm de otro texto de serigrafía y 0,2 mm de los contornos de serigrafía, mantenerse lejos de pads, vías y cuerpos de otros componentes, y mantenerse en la placa. Cada una de estas es un error, excepto el texto bajo el cuerpo de otro componente, que es una advertencia. Cuando una etiqueta de referencia falla, la verificación nombra un punto que pasa todas las reglas, como una línea <code>label = { at = [...] }</code> para pegar. <code>agentee silk NAME</code> (MCP <code>silk</code>) las pega todas por ti y repite hasta que las etiquetas se asientan; <code>--hide</code> oculta las referencias que no tienen punto despejado, típicamente pasivos pequeños bajo una BGA."
   },
   "9u7i8lybkg": {
     "defaultMessage": "Los modelos 3D proceden de <code>KICAD9_3DMODEL_DIR</code> y similares, <code>3dmodels/</code> en el proyecto, o una caché que <code>agentee models</code> rellena desde el repositorio kicad-packages3D."
@@ -3627,7 +3627,7 @@
     "defaultMessage": "<img src=\"/assets/renders/blinky-pcb.webp\" alt=\"El layout enrutado de blinky\">"
   },
   "aptrexto3m": {
-    "defaultMessage": "El resultado registra un hash del cobre que vio (solo la <code>region</code> de la simulación) y del apilamiento. Cuando cambia cualquiera de los dos, check avisa de que el resultado ha caducado, y cualquier cosa que lo lea, una cascada o una medida de interfaz, falla hasta que vuelvas a ejecutar."
+    "defaultMessage": "El resultado registra un hash del cobre que vio (solo la <code>region</code> de la simulación) y del apilamiento. Cuando cambia cualquiera de los dos, la verificación avisa de que el resultado está desactualizado, y todo lo que lo lea, una cascada o una medida de interfaz, falla hasta que lo vuelvas a ejecutar."
   },
   "aq5m89eyr9": {
     "defaultMessage": "0.2"
@@ -3681,7 +3681,7 @@
     "defaultMessage": "0.5"
   },
   "bkysp9m0z3": {
-    "defaultMessage": "Check enumera cada aserción fallida, contención o violación de temporización como un error en la simulación, mientras el resultado esté actual."
+    "defaultMessage": "La verificación enumera cada aserción fallida, contención o violación de temporización como un error en la simulación, mientras el resultado esté actualizado."
   },
   "blg2ol2zyn": {
     "defaultMessage": "las construcciones estándar de taladro a través, de 4 a 18 capas"
@@ -3771,7 +3771,7 @@
     "defaultMessage": "El servidor MCP"
   },
   "da4s6xwybs": {
-    "defaultMessage": "Un PNG de la placa exactamente como lo dibuja el visor. Un check que pasa aún puede ocultar serigrafía apretada o un desvío en una pista."
+    "defaultMessage": "Un PNG de la placa exactamente como lo dibuja el visor. Una verificación que pasa aún puede ocultar una serigrafía amontonada o un desvío en una pista."
   },
   "dbq5pcavbe": {
     "defaultMessage": "Configuración del agente, incluido MCP"
@@ -3906,7 +3906,7 @@
     "defaultMessage": "<code>diff_gap</code> convierte la clase en un par diferencial, y su impedancia en la impedancia diferencial."
   },
   "g1pmb5fxu3": {
-    "defaultMessage": "Los pads toman sus redes del esquemático (número de pad = número de pin). Las zonas se rellenan con el despeje respecto a todas las demás redes y al borde de la placa, y se eliminan las islas que no tocan nada. El check informa de conexiones sin enrutar (con el ratsnest), cortocircuitos, incumplimientos de despeje, pistas más estrechas que su clase o fuera de su ancho de impedancia, cobre cerca del borde, solapamientos de courtyards, componentes sin colocar, extremos de pista que no conectan con nada y texto de serigrafía que se solapa con otro texto, cruza un contorno de serigrafía, está sobre un pad o sale de la placa. Los courtyards son los contornos cerrados dibujados en <code>F.CrtYd</code> / <code>B.CrtYd</code>, colocados con el componente (el land de un componente inferior va en el otro lado); dos componentes cuyos courtyards se solapan en el mismo lado son un error, y también lo es un courtyard en cualquiera de los lados sobre un agujero NPTH de otro componente o sobre el courtyard de una huella <code>MountingHole*</code> (su contorno de pad si no tiene). Nombra un elemento con su tipo cuando los nombres colisionan: <code>agentee render pcb:lna</code>, <code>sch:lna</code>, <code>board:lna</code>."
+    "defaultMessage": "Los pads toman sus redes del esquemático (número de pad = número de pin). Las zonas se rellenan con el despeje hacia todas las demás redes y hacia el borde de la placa, y se eliminan las islas que no tocan nada. La verificación informa de conexiones sin enrutar (con el ratsnest), cortocircuitos, violaciones de despeje, pistas más estrechas que su clase o fuera de su ancho de impedancia, cobre cerca del borde, solapamientos de courtyard, componentes sin colocar, extremos de pista que no conectan con nada y texto de serigrafía que se solapa con otro texto, cruza un contorno de serigrafía, está sobre un pad o sale de la placa. Los courtyards son los contornos cerrados dibujados en <code>F.CrtYd</code> / <code>B.CrtYd</code>, colocados con el componente (la cara de un componente inferior en el otro lado); dos componentes cuyos courtyards se solapan en el mismo lado son un error, al igual que un courtyard en cualquiera de los dos lados sobre un agujero NPTH de otro componente o sobre el courtyard de una huella <code>MountingHole*</code> (su contorno de pad cuando no tiene). Nombra un elemento con su tipo cuando los nombres colisionan: <code>agentee render pcb:lna</code>, <code>sch:lna</code>, <code>board:lna</code>."
   },
   "g1udt5l7aq": {
     "defaultMessage": "líneas de serigrafía, arte y texto en la fuente de trazo Hershey, con la marca de agua <code>agentee vX.Y.Z-HASH</code>"
@@ -3915,7 +3915,7 @@
     "defaultMessage": "<code>add</code> coloca una pieza a la derecha de todo lo que hay, en la cuadrícula de 1,27 mm. <code>--at X,Y</code> la coloca en otro sitio y la ajusta a la cuadrícula. <code>--list</code> imprime las piezas y redes como JSON, y <code>--json</code> en cualquier comando devuelve los pines y coordenadas resueltos."
   },
   "g2d59524d6": {
-    "defaultMessage": "<code>impedance</code> se comprueba en cada capa de <code>layers</code>. Deja <code>track_width</code> fuera y check lo resuelve en la primera capa; da <code>widths</code> por capa donde un solo ancho no sirve para todas las capas."
+    "defaultMessage": "<code>impedance</code> se verifica en cada capa de <code>layers</code>. Deja <code>track_width</code> fuera y la verificación lo resuelve en la primera capa; da <code>widths</code> por capa cuando un ancho no sirve para todas las capas."
   },
   "g2n2yl3yhc": {
     "defaultMessage": "De la primera placa al paquete de fabricación, una guía por cada etapa del diseño."
@@ -3942,7 +3942,7 @@
     "defaultMessage": "<code>min_drill</code>, <code>min_via_drill</code>"
   },
   "glhbhwqbjr": {
-    "defaultMessage": "Un pin es <code>REF.PIN</code>, por número o por un nombre de pin único; un nombre compartido por varios pines es un error. Un pin al que se le asigna una red en la que ya está se mueve a la nueva red. El archivo conserva sus comentarios y su diseño. <code>agentee edit</code> escribe el archivo, vuelve a rellenar los rellenos de zona guardados del diseño y luego informa de los diagnósticos del check de los archivos que tocó, y termina con 1 si alguno es un error."
+    "defaultMessage": "Un pin es <code>REF.PIN</code>, por número o por un nombre de pin único; un nombre compartido por varios pines es un error. Un pin al que se le asigna una red en la que ya está se mueve a la nueva red. El archivo conserva sus comentarios y su layout. <code>agentee edit</code> escribe el archivo, vuelve a rellenar los rellenos de zona almacenados de un layout e informa después de los diagnósticos de la verificación de los archivos que tocó, y termina con 1 si alguno de ellos es un error."
   },
   "glyi8p9jou": {
     "defaultMessage": "Rutea primero a mano las redes que importan: una línea RF, el bucle caliente de un conmutador, un cristal. Luego deja que el ruteador rellene el resto, una clase a la vez."
@@ -3972,7 +3972,7 @@
     "defaultMessage": "Diagramas de ojo, PDN y parámetros S"
   },
   "gx47fhiroy": {
-    "defaultMessage": "Cada layout lleva texto de serigrafía <code>agentee vX.Y.Z-HASH</code>: la versión de agentee que construyó el paquete y el hash git corto de su código, con <code>-dirty</code> cuando el árbol tenía cambios sin confirmar, o <code>unknown</code> fuera de git. Siempre se traza y no se puede desactivar. Tiene la altura de <code>min_silk_text_height</code>, está centrado y por defecto va en <code>B.SilkS</code> (<code>F.SilkS</code> cuando la cara inferior no tiene espacio o la placa no tiene serigrafía inferior) en el punto libre más cercano a la esquina inferior izquierda de la placa, rotado 90 grados si solo cabe en un hueco alto. Un punto libre se mantiene alejado de pads, vías, otro texto de serigrafía y líneas, arte y cuerpos de componentes, y se mantiene a <code>min_copper_to_edge</code> dentro del contorno. El visor, el render y los dibujos de montaje lo muestran, y <code>fab-notes.txt</code> lo nombra. Cuando no hay punto libre, check informa un error de <code>watermark</code> con el tamaño a despejar y el punto menos concurrido, y el fabricante lo rechaza; despeja espacio ahí o establece <code>[watermark] at</code> (más <code>layer</code>, <code>rotation</code>) tú mismo. Un punto <code>[watermark]</code> que no está libre es un error de <code>watermark</code> que nombra lo que toca, y un apilamiento sin capa <code>kind = \"silk\"</code> es un error de <code>watermark</code> que pide una."
+    "defaultMessage": "Cada layout lleva texto de serigrafía <code>agentee vX.Y.Z-HASH</code>: la versión de agentee que construyó el paquete y el hash git corto de su fuente, con <code>-dirty</code> cuando el árbol tenía cambios sin confirmar, o <code>unknown</code> fuera de git. Siempre se traza y no se puede desactivar. Tiene la altura de <code>min_silk_text_height</code>, está centrado y por defecto va en <code>B.SilkS</code> (<code>F.SilkS</code> cuando la cara inferior no tiene sitio o la placa no tiene serigrafía inferior) en el punto despejado más cercano a la esquina inferior izquierda de la placa, rotado 90 grados si solo cabe un hueco alto. Un punto despejado se mantiene lejos de pads, vías, otro texto de serigrafía y líneas, arte y cuerpos de componentes, y se mantiene a <code>min_copper_to_edge</code> dentro del contorno. El visor, el render y los dibujos de montaje lo muestran, y <code>fab-notes.txt</code> lo nombra. Cuando ningún punto está despejado, la verificación informa de un error de <code>watermark</code> con el tamaño a despejar y el punto menos concurrido, y el fabricante lo rechaza; despeja sitio ahí o configura <code>[watermark] at</code> (más <code>layer</code>, <code>rotation</code>) tú mismo. Un punto <code>[watermark]</code> que no está despejado es un error de <code>watermark</code> que nombra con qué choca, y un apilamiento sin capa <code>kind = &quot;silk&quot;</code> es un error de <code>watermark</code> que pide una."
   },
   "gykjxthnef": {
     "defaultMessage": "Componentes que ya elegiste, por número de pieza del fabricante. Los componentes que el agente elija por su cuenta deben ir en <code>DESIGN.md</code> con la razón."
@@ -4080,7 +4080,7 @@
     "defaultMessage": "Piezas y redes colocadas como listas de pines. Deja los cables fuera y agentee los enruta."
   },
   "iab45dfro1": {
-    "defaultMessage": "Una interfaz en el layout puede leer simulaciones terminadas y hacer que el check falle cuando un enlace no cumple sus números:"
+    "defaultMessage": "Una interfaz en el layout puede leer simulaciones terminadas y hacer fallar la verificación cuando un enlace no cumple sus números:"
   },
   "ibp664pyt5": {
     "defaultMessage": "La lista de redes se convierte en celdas de la siguiente manera:"
@@ -4341,7 +4341,7 @@
     "defaultMessage": "cada pad de prueba, para el constructor del fixture"
   },
   "mm03n0h8n9": {
-    "defaultMessage": "Con <code>rails</code> establecido, check calcula el voltaje que ve cada entrada con <code>levels</code>: resistencias (componentes <code>R</code>, 1 % a menos que el componente tenga un campo <code>tolerance</code>), interruptores (componentes <code>SW</code>, cada estado abierto y cerrado), salidas de colector abierto (apagado y bajo), derivas internas y fuga de entrada, cada una en su peor esquina a través de los rangos de riel y resistencia. Es un error cuando la entrada puede situarse entre VIL y VIH, cuando flota sin nada que la sujete a un riel, cuando la fuga a través de una derivación débil la mueve fuera de un nivel válido, y cuando puede superar su <code>min</code> o <code>max</code>. Dentro de 100 mV de un umbral es una advertencia. Una red con algo más (una salida, un conector, un diodo, un pin de alimentación de una red no en <code>rails</code>) está excitada por algo que no puede modelar y se omite. Los condensadores y los puntos de prueba se ignoran. Un pin bidireccional puede estar excitando: a menos que un interruptor o colector abierto en la red muestre que está derivado, las otras entradas en su red se omiten y no se informa como flotante."
+    "defaultMessage": "Con <code>rails</code> establecido, la verificación calcula el voltaje que ve cada entrada con <code>levels</code>: resistencias (componentes <code>R</code>, 1 % a menos que el componente tenga un campo <code>tolerance</code>), interruptores (componentes <code>SW</code>, en cada estado abierto y cerrado), salidas colector abierto (apagada y baja), derivas internas y fuga de entrada, cada una en su peor esquina a lo largo de los rangos de riel y de resistencia. Es un error cuando la entrada puede quedar entre VIL y VIH, cuando flota sin nada que la ligue a un riel, cuando la fuga a través de una derivación débil la saca de un nivel válido, y cuando puede superar su <code>min</code> o <code>max</code>. Estar a menos de 100 mV de un umbral es una advertencia. Una red con cualquier otra cosa encima (una salida, un conector, un diodo, un pin de alimentación de una red no incluida en <code>rails</code>) está impulsada por algo que no puede modelar y se omite. Los condensadores y los puntos de prueba se ignoran. Un pin bidireccional puede estar impulsando: a menos que un interruptor o un colector abierto en la red muestre que está derivado, las otras entradas de su red se omiten y no se informa de que flota."
   },
   "mpzrdlihpw": {
     "defaultMessage": "Iniciar un proyecto"
@@ -4380,7 +4380,7 @@
     "defaultMessage": "Dibujar una huella"
   },
   "nbhz11on0k": {
-    "defaultMessage": "Sin <code>type</code>, el tramo decide. Una microvía abarca un dieléctrico a menos que sea <code>stacked</code> (una microvía por dieléctrico, lo que requiere <code>stacked_microvias</code>) o <code>skip</code> (un orificio láser sobre dos dieléctricos). El check mantiene cada microvía dentro de los límites de perforación láser y su profundidad sobre perforación en <code>max_microvia_aspect_ratio</code>, 0,8:1 en el preset <code>hdi</code>."
+    "defaultMessage": "Sin <code>type</code>, el tramo lo decide. Una microvía abarca un dieléctrico a menos que sea <code>stacked</code> (una microvía por dieléctrico, lo que requiere <code>stacked_microvias</code>) o <code>skip</code> (un agujero láser sobre dos dieléctricos). La verificación somete cada microvía a los límites de perforación láser y su relación de profundidad a perforación a <code>max_microvia_aspect_ratio</code>, 0,8:1 en el preset <code>hdi</code>."
   },
   "ncslo2moub": {
     "defaultMessage": "Acceso a pruebas: por defecto, las redes que necesitan una sonda son las redes de alimentación (una clase con <code>current</code>, o un nombre como <code>3V3</code>, <code>1V8</code>, <code>+5V</code>, <code>VCC*</code>, <code>VDD*</code>, <code>VBUS*</code>, <code>VBAT*</code>, <code>VIN*</code>, <code>VSYS*</code>), tierra (<code>GND</code>, <code>*GND</code>, <code>GND*</code>) y redes con nombres como <code>*RST*</code>, <code>*RESET*</code>, <code>*EN*</code>, <code>*PG*</code>, <code>*CLK*</code>, <code>*TX*</code>, <code>*RX*</code>, <code>*SCL*</code>, <code>*SDA*</code>, <code>*SWD*</code>, <code>*TCK*</code>, <code>*TMS*</code>, <code>*TDI*</code>, <code>*TDO*</code>. Los valores por defecto excluyen los nodos de conmutación y las redes de retroalimentación del regulador, de arranque suave y de reducción de ruido (<code>SW*</code>, <code>*_SW</code>, <code>LX*</code>, <code>FB*</code>, <code>SS*</code>, <code>NR*</code>, coincidiendo con el nombre completo o con su último segmento tras <code>/</code>), incluso si su clase es de alimentación: la capacidad de la sonda y la rama hasta el pad acoplan ruido de conmutación en un divisor de retroalimentación, ralentizan un filtro de arranque suave o de ruido, y una rama en un nodo de conmutación irradia. <code>nets</code> sustituye esa lista (nombra una red allí para sondarla de todos modos) y <code>exclude</code> quita redes de ella. Un punto de prueba es una pieza con referencia <code>TP</code> y un número, o una huella llamada <code>TestPoint*</code>; como cualquier otra pieza, debe estar en el esquemático. La huella integrada <code>TestPoint_Pad_D1.0mm</code> (un pad SMD circular de 1,0 mm, con máscara abierta y sin pasta) y el símbolo <code>TestPoint</code> se escriben en <code>footprints/</code> y <code>symbols/</code> con <code>agentee testpoints</code>."
@@ -4395,7 +4395,7 @@
     "defaultMessage": "Placa y pistas"
   },
   "nja0mzsiyi": {
-    "defaultMessage": "Una pista que solo roza un pad (su línea central no lo atraviesa) se marca; haz que entre en el pad. Dos segmentos de una misma red que se superponen en una capa (paralelos, con una superposición mayor que el ancho de pista) son un error, porque el cobre se duplica; una curva más aguda que 90 grados se marca como trampa de ácido. Una pista puede estrecharse por debajo del ancho de su clase, hasta el mínimo del fabricante, durante un máximo de 0,5 mm (el <code>neckdown</code> de la clase) donde se une a un pad pequeño; el enrutador dibuja estos cuellos por sí mismo (ver Autorouting). Los orificios taladrados, las vías y los pads bañados deben mantener entre sí el <code>min_hole_to_hole</code> de la placa; el check cuenta las parejas que no lo hacen y nombra la primera. Dos vías de una misma red en el mismo punto también son un error: el fabricante taladraría el orificio dos veces. Las aperturas de máscara son los contornos de los pads, sin expansión, y las vías se tapan. Dos aperturas de redes distintas (o sin red) que se superponen o dejan una telaraña de máscara menor que <code>min_mask_web</code> son un error, contado por pareja de piezas y nombrando el primer lugar. También se comprueban los pads de una pieza de paso fino: corrígelo en la huella con pads más estrechos, o establece un <code>min_mask_web</code> menor si el fabricante lo permite. Una huella con <code>mask_web = false</code> tiene su máscara abierta como una sola ventana sobre sus pads (apertura en grupo), de modo que se omiten las parejas de sus propios pads; sus pads se siguen comprobando respecto a otras piezas."
+    "defaultMessage": "Una pista que solo roza un pad (su línea central no toca el pad) se marca; hazla entrar en el pad. Dos segmentos de una misma red que se superponen en una capa (paralelos, con una solapación mayor que el ancho de pista) son un error, porque el cobre se duplica; una curva más aguda que 90 grados se marca como trampa de ácido. Una pista puede estrecharse por debajo del ancho de su clase, hasta el mínimo del fabricante, durante un máximo de 0,5 mm (el campo <code>neckdown</code> de la clase) donde se une a un pad pequeño; el enrutador dibuja estos estrechamientos él mismo (ver Autorouting). Los agujeros taladrados, las vías y los pads bañados, todos por igual, deben mantener la separación <code>min_hole_to_hole</code> de la placa; la verificación cuenta las parejas que no lo hacen y nombra la primera. Dos vías de una misma red en el mismo punto también son un error: el fabricante taladraría el agujero dos veces. Las aperturas de la máscara son los contornos de los pads, sin expansión, y las vías se tapan. Dos aperturas de redes distintas (o sin red) que se solapan o dejan una telaraña de máscara por debajo de <code>min_mask_web</code> son un error, contado por pareja de componentes con el primer punto nombrado. También se verifican los pads de un componente de paso fino: corrígelo en la huella con pads más estrechos, o establece un <code>min_mask_web</code> menor si el fabricante lo permite. Una huella con <code>mask_web = false</code> tiene su máscara abierta como una sola ventana sobre sus pads (apertura en grupo), de modo que se omiten las parejas de sus propios pads; sus pads siguen verificándose contra otros componentes."
   },
   "nkntq5f43u": {
     "defaultMessage": "<code>track-grazes-pad</code>"
@@ -4818,7 +4818,7 @@
     "defaultMessage": "Esquemáticos, diseños de PCB (layout) y simulaciones como archivos TOML planos que escribe tu agente de código. agentee verifica cada edición contra las reglas del fabricante, dibuja la placa, resuelve la impedancia y ejecuta simulaciones FDTD, térmicas y lógicas en la GPU, y escribe los Gerbers."
   },
   "uk5y9kvoda": {
-    "defaultMessage": "Un lote es una sola carga y un check al final, para que los estados intermedios a medio terminar nunca se marquen. Los pines son <code>REF.PIN</code>, por número o por un nombre de pin único: <code>D1.A</code> es el ánodo, y la salida confirma a qué número se resolvió."
+    "defaultMessage": "Un lote es una carga y una verificación al final, por lo que los estados a medio terminar intermedios nunca se marcan. Los pines son <code>REF.PIN</code>, por número o por un nombre de pin único: <code>D1.A</code> es el ánodo, y la salida confirma a qué número se resolvió."
   },
   "uqt2owvio4": {
     "defaultMessage": "Unidades y coordenadas"
@@ -4914,7 +4914,7 @@
     "defaultMessage": "el visor egui y el renderizador PNG sin cabeza"
   },
   "w7ba4yzjw9": {
-    "defaultMessage": "<code>current</code> se comprueba contra IPC-2221 en cada capa que la clase puede usar, a <code>max_temp_rise</code> (10 C por defecto). Las capas interiores transportan menos que las exteriores, y check indica el ancho que lo transporta en cada capa:"
+    "defaultMessage": "<code>current</code> se verifica contra IPC-2221 en cada capa que la clase puede usar, a <code>max_temp_rise</code> (10 C por defecto). Las capas internas llevan menos que las externas, y la verificación nombra el ancho que lo lleva en cada una:"
   },
   "w8vs1sxjll": {
     "defaultMessage": "La referencia clave por clave de cada archivo de agentee: especificaciones de placa, apilamientos, vías y reglas del fabricante, las verificaciones de reglas de diseño, símbolos, huellas, esquemáticos, diseños de PCB (layout), simulaciones y el paquete de fabricación."
@@ -4941,7 +4941,7 @@
     "defaultMessage": "sufijo"
   },
   "wkkjumi055": {
-    "defaultMessage": "Ejecuta simulaciones largas en segundo plano y sigue editando otras cosas. Check avisa cuando un resultado ha quedado desactualizado."
+    "defaultMessage": "Ejecuta simulaciones largas en segundo plano y sigue editando otras cosas. La verificación avisa cuando un resultado se ha desactualizado."
   },
   "wonqk3rj7e": {
     "defaultMessage": "<code>Edge_Cuts.gbr</code>"
@@ -5004,13 +5004,13 @@
     "defaultMessage": "<code>agentee place NAME [--parts &#39;U*,C1?&#39;] [--keep-placed] [--side F|B|both] [--seed N] [--dry-run]</code> (MCP <code>place</code>) coloca las piezas del esquemático del diseño de PCB dentro del contorno de la placa y escribe cada <code>at</code>, <code>rotation</code> y <code>side</code> en su entrada <code>[[footprints]]</code> (añade entradas para piezas nuevas, elimina el <code>at</code> de una etiqueta movida), mueve las etiquetas de referencia que ahora fallan una comprobación de serigrafía y luego actualiza los rellenos almacenados. Es un arranque rápido para una placa entera: colocar, mirar y luego mover a mano lo importante y bloquearlo. <code>--parts</code> coloca solo las piezas coincidentes y deja el resto donde está; <code>--keep-placed</code> deja cada pieza que ya tenga una colocación; <code>locked = true</code> en una entrada <code>[[footprints]]</code> nunca se mueve. <code>--side both</code> permite que los condensadores de desacoplamiento de un BGA vayan debajo en la cara trasera y que los pasivos desborden a la cara trasera cuando la delantera está llena; por defecto, todo va en la cara delantera. El resultado depende solo de los archivos y <code>--seed</code>, así que una semilla distinta es un arranque distinto. Informa de la longitud de alambre de semiperímetro (HPWL) de las redes de señal y de todas las redes, cruces de ratsnest, solapamientos de courtyard y la distancia media y peor de desacoplamiento, para la colocación de la que partió (cuando cada pieza tenía una) y para la suya, además de los clústeres que construyó y el borde al que fue cada conector. Las pistas y vías ya en el archivo se quedan donde están; coloca una placa sin enrutar, o <code>route --reroute</code> después. Las etiquetas se mueven con la misma búsqueda que <code>agentee silk</code> (un sitio libre junto a la pieza, hasta 8 pasadas y 3 intentos por etiqueta), ejecutada sobre el diseño de PCB colocado en memoria, así que el proyecto se carga una vez más, no una vez por pasada; <code>labels_moved</code> las cuenta y <code>labels_failing</code> nombra las que quedaron sin sitio libre, para <code>agentee silk NAME --hide</code> o un movimiento a mano."
   },
   "xe19xxqz3m": {
-    "defaultMessage": "El check informa del desajuste de cada pareja en mm y ps (a partir de la permitividad efectiva de la capa), de un tramo de la pareja ejecutado con el separación incorrecta, y de las parejas que pasan menos del 80% de su longitud lado a lado. Los grupos de coincidencia indican qué red es corta o larga y en cuánto. Una pareja que pasa por componentes de dos pines en serie, como los condensadores de AC en un canal USB, se mide de extremo a extremo: su desajuste es la suma de todas las parejas que une, e informada como <code>FX_TX1_P+SS_TX1_P/FX_TX1_N+SS_TX1_N</code>."
+    "defaultMessage": "La verificación informa del skew de cada par en mm y ps (a partir de la permitividad efectiva de la capa), de un tramo del par ejecutado con el hueco incorrecto y de los pares que pasan menos del 80% de su longitud lado a lado. Los grupos de coincidencia indican qué red es corta o larga y en cuánto. Un par que pasa por componentes de dos pines en serie, como las condensadoras AC de un carril USB, se mide de extremo a extremo: su skew es la suma sobre todos los pares que une, e informado como <code>FX_TX1_P+SS_TX1_P/FX_TX1_N+SS_TX1_N</code>."
   },
   "xetsghciuj": {
     "defaultMessage": "<code>symbols/</code>"
   },
   "xktfmjujro": {
-    "defaultMessage": "Añade <code>board = &quot;blinky&quot;</code> y <code>schematic = &quot;blinky&quot;</code> al punto de partida. Ahora el check falla, y eso es correcto:"
+    "defaultMessage": "Añade <code>board = &quot;blinky&quot;</code> y <code>schematic = &quot;blinky&quot;</code> al inicial. Ahora la verificación falla, y eso es correcto:"
   },
   "xm2pl1y9re": {
     "defaultMessage": "Conducción a través de FR4, cobre y vías con convección desde ambas caras. Segundos, no minutos."

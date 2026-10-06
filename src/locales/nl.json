@@ -3,7 +3,7 @@
     "defaultMessage": "Gerbers, boorbestanden, BOM, plaatsing en fab-notities"
   },
   "1013nohksnw": {
-    "defaultMessage": "Een logicasimulatie kan een meting van een interface zijn, die dan check faalt terwijl de simulatie een fout heeft:"
+    "defaultMessage": "Een logicsimulatie kan een meting van een interface zijn, die dan de controle laat falen zolang de simulatie een fout heeft:"
   },
   "103mz65rwf1": {
     "defaultMessage": "weerstand binnen 0,5%, tolerantie niet groter, dezelfde imperiale behuizingscode; thermistors, arrays en jumpers worden geweigerd"
@@ -36,7 +36,7 @@
     "defaultMessage": "Outputs"
   },
   "10u280yhaz6": {
-    "defaultMessage": "vias waarvan de span en boortype geen boorstap van de laminatie overeenkomen (zie Laminatie), per viatype en span; het bericht noemt de <code>[[vias]]</code>-invoeging van de printplaat en somt elke span op die de laminatie boort, per boortype. De printplaat-check laat een viatype die een layout plaatst aan deze regel over"
+    "defaultMessage": "vias waarvan de span en boorgatsoort geen boorgatstap van de laminatie overeenkomen (zie Laminatie), per via-type en span; het bericht noemt het <code>[[vias]]</code>-element van de printplaat en somt alle spans op die de laminatie boort, per boorgatsoort. De printplaatcontrole laat een via-type dat een layout plaatst aan deze regel over"
   },
   "10vlme9hp27": {
     "defaultMessage": "<code>track-overlap</code>"
@@ -129,7 +129,7 @@
     "defaultMessage": "3500 / 3000 mil lang, GND return via binnen 200 mil, 0,5 mm onreferenced"
   },
   "11u8z4z2j0g": {
-    "defaultMessage": "Elk woord van een zoekopdracht moet overeenkomen met <code>Library:Name</code>. Imports komen in <code>symbols/</code> en <code>footprints/</code> als TOML. De check heeft nu iets te melden:"
+    "defaultMessage": "Elk woord van een zoekopdracht moet overeenkomen met <code>Library:Name</code>. Imports komen in <code>symbols/</code> en <code>footprints/</code> als TOML. De controle heeft nu iets te zeggen:"
   },
   "11v9auq055e": {
     "defaultMessage": "0.28"
@@ -153,7 +153,7 @@
     "defaultMessage": "weerstands met dezelfde waarde, tolerantie of beter, en dezelfde behuizing;"
   },
   "12bnatlbqpw": {
-    "defaultMessage": "Verplaats elke zeefdruk referentie die check markeert naar de vrije plek die hij suggereert, herhaal totdat de labels op hun plek zitten, en verberg optioneel degenen die nergens naartoe kunnen. Schrijft label = { at, rotation } of hide = true in de footprints."
+    "defaultMessage": "Verplaats elke zeefdrukverwijzing die de controle markeert naar de vrije plek die deze suggereert, herhaal dit totdat de labels op hun plek zitten en verberg optioneel de labels die nergens past. Schrijft label = { at, rotation } of hide = true in de footprints."
   },
   "12bwxqfxztk": {
     "defaultMessage": "De starter heeft een klok, een reset en een geklokte assertie om te hernoemen naar jouw nets. Het <a href=\"/examples/logic/\">logica voorbeeld</a> bevat twee afgeronde. Dit is <code>counter</code>, een 74HC161 die een 10 MHz klok telt naar een 74HC138:"
@@ -183,7 +183,7 @@
     "defaultMessage": "Een net met een zone is een plan-net. <code>tie</code> geeft elke SMD-pad van een plan-net een korte stub en een via ernaast, aan de kant weg van de component, vrij van elke pad en ander net. Zo moeten grond- en voeding-pads een plan bereiken, in plaats van sporen ertussen. Een pad dat al een via van zijn net in de buurt heeft wordt niet aangeraakt, en een pad zonder legale plek wordt opgenomen onder <code>failed</code>."
   },
   "12omflotwaq": {
-    "defaultMessage": "Voeg <code>board</code> en <code>schematic</code> toe aan de starter. Check rapporteert dan elk onderdeel dat nog niet is geplaatst."
+    "defaultMessage": "Voeg <code>board</code> en <code>schematic</code> toe aan de starter. De controle rapporteert dan elk onderdeel dat nog niet is geplaatst."
   },
   "12pkt0z0xgr": {
     "defaultMessage": "Importeren"
@@ -255,7 +255,7 @@
     "defaultMessage": "2.4 ns"
   },
   "13mgmqapqep": {
-    "defaultMessage": "Een klok is laag tot <code>phase</code>, daarna hoog voor <code>duty</code> van elke <code>period</code>; zonder phase begint hij hoog op 0. Een stimulus stuurt zijn net aan als sterke driver; op een voedingnet vervangt hij de rail. Een <code>at</code>-check leest het net zodra alles op dat moment is gestabiliseerd; een sequence leest de netten vlak voor elke schone flanke (0 naar 1, of 1 naar 0) van de klok, zodat een geregistreerde output wordt gezien zoals die was op het moment dat de flanke kwam. Netten worden genoemd zoals in het schema, en een net dat via een 0-ohm-koppeling aan een ander net is verbonden, reageert op beide namen."
+    "defaultMessage": "Een klok is laag tot <code>phase</code>, dan hoog voor <code>duty</code> van elke <code>period</code>; zonder phase begint hij hoog op 0. Een stimulus stuurt zijn net als een sterke driver; op een voedingnet vervangt hij de rail. Een <code>at</code>-controle leest het net zodra alles op dat moment is gestabiliseerd; een sequentie leest de nets net voor elke schone rand (0 naar 1, of 1 naar 0) van de klok, zodat een geregistreerde output wordt gezien zoals hij was toen de rand kwam. Nets worden genoemd zoals in het schema, en een net die via een 0 ohm-koppeling aan een andere is verbonden, reageert op beide namen."
   },
   "13r99o1j0yg": {
     "defaultMessage": "LVC"
@@ -396,7 +396,7 @@
     "defaultMessage": "agentee place: connectoren op de randen, grote chips in het midden, ontkoppeling condensatoren aan hun pinnen, daarna gelegaliseerd en verfijnd."
   },
   "16nq891lplf": {
-    "defaultMessage": "Meer dan één onderdeel of net tegelijk, schrijf de commando's als een lijst. Eén laad, één check aan het einde, zodat de half-gebouwde staten ertussen nooit worden gemeld:"
+    "defaultMessage": "Meer dan één onderdeel of net tegelijk, schrijf de commando's als een lijst. Eén load, één controle aan het einde, zodat de halve staten ertussen nooit worden gerapporteerd:"
   },
   "16p2t89rmmw": {
     "defaultMessage": "Thermisch"
@@ -423,7 +423,7 @@
     "defaultMessage": "Bestel de printplaat met dezelfde opbouw: als JLCPCB een andere stackup gebruikt, klopt geen enkele impedantie die je hebt berekend."
   },
   "175374ikzs4": {
-    "defaultMessage": "Een interface beschrijft wat een link moet voldoen, en check meet het koper daartegen: impedantie, skew, lengte, vias, via stubs, het referentievlak onder elk spoor, de return vias, bus timing, en de S-parameters en het oog van de sims die het modelleren."
+    "defaultMessage": "Een interface geeft aan wat een link moet voldoen, en de controle meet het koper daartegen: impedantie, skew, lengte, vias, viastubs, het referentievlak onder elk spoor, de return vias, de bustiming, en de S-parameters en het oog van de simulaties die het modelleren."
   },
   "1758zalpxdz": {
     "defaultMessage": "<code>min_pth_hole_to_copper</code>"
@@ -600,7 +600,7 @@
     "defaultMessage": "<code>*.sim.toml</code>"
   },
   "1adfjatvsb9": {
-    "defaultMessage": "Check rapport pinnen in twee nets, pinnen in geen net, nets met één pin, meerdere outputs op één net, handgetrokken sporen die een pin missen of een pin van een ander net raken, overlappende onderdelen, footprints waarvan de pads de pinnen van het symbool niet bedekken, en signaalniveaus als <code>rails</code> is ingesteld. Elk net in de netklasse <code>Default</code> is een waarschuwing, of het nu geen klasse noemt of <code>Default</code>: de klasse bepaalt de breedte, de clearance, de vias en de routingvolgorde van het net, dus elk net moet aangeven wat het is. De waarschuwing vereist een printplaat en een layout van het schema; een schema dat alleen gesimuleerd is (zoals <code>examples/logic</code>) slaat dit over. Geef de printplaat een klasse per type net (<code>Signal</code>, <code>Data</code>, <code>Clock</code>, <code>Analog</code>, <code>Ground</code>, <code>Power</code>, <code>RF</code>, paren) en houd <code>Default</code> aan als de fallback die de layout gebruikt voor regels die geen klasse dekt. <code>agentee show sch:lna</code> toont de positie van elke pin."
+    "defaultMessage": "De controle rapporteert pinnen in twee nets, pinnen in geen net, enkele-pinnen nets, meerdere outputs op één net, handgetekende draden die een pin missen of een pin van een ander net raken, overlappende onderdelen, footprints waarvan de pads de pinnen van het symbool niet dekken, en signaalniveaus als <code>rails</code> is ingesteld. Elk net in de <code>Default</code>-netklasse is een waarschuwing, of het nu geen klasse noemt of <code>Default</code>: de klasse stelt de breedte, clearance, vias en routingvolgorde van het net in, dus elk net zou moeten zeggen wat het is. De waarschuwing heeft een printplaat en een layout van het schema nodig; een schema dat alleen gesimuleerd wordt (zoals <code>examples/logic</code>) slaat hem over. Geef de printplaat een klasse per soort net (<code>Signal</code>, <code>Data</code>, <code>Clock</code>, <code>Analog</code>, <code>Ground</code>, <code>Power</code>, <code>RF</code>, paren) en houd <code>Default</code> als de fallback die de layout gebruikt voor regels die geen klasse dekt. <code>agentee show sch:lna</code> print de positie van elke pin."
   },
   "1aiks5l81a4": {
     "defaultMessage": "gegroepeerd op waarde, footprint, <code>mpn</code> en <code>lcsc</code>-velden"
@@ -681,7 +681,7 @@
     "defaultMessage": "<code>hdi-6l-1n1</code>: 6 lagen, 1+4+1, 0,8 mm, een 0,07 mm 1080 opbouw prepreg aan elke kant van een core sub-stack."
   },
   "1bse3rd4z5c": {
-    "defaultMessage": "Resultaten verouderen als de specificatie of het koper verandert, en check zegt dat."
+    "defaultMessage": "Resultaten verouderen als de specificatie of het kopervlak verandert, en de controle zegt dat."
   },
   "1bvx5muloyq": {
     "defaultMessage": "Een punt is <code>[x, y]</code>. X groeit naar rechts, <strong>Y groeit naar beneden</strong>, voor symbolen en footprints allebei."
@@ -759,7 +759,7 @@
     "defaultMessage": "slots smaller dan <code>min_plated_slot_width</code> of <code>min_npth_slot_width</code>, of korter dan twee keer hun breedte"
   },
   "1dj711ix5kg": {
-    "defaultMessage": "Kies een fabrikant en een echte stackup, definieer een netklasse per type net, en stel impedantie- en stroomdoelen in zodat check de breedtes oplost."
+    "defaultMessage": "Kies een fabrikant en een echte stackup, definieer een netklasse per type net en stel doelen voor impedantie en stroom in, zodat de controle de breedtes oplost."
   },
   "1djz69hnhap": {
     "defaultMessage": "PCB-ontwerp als tekst die je agent kan bewerken"
@@ -924,7 +924,7 @@
     "defaultMessage": "{drc} layout-regels"
   },
   "1ft2ilcqy8x": {
-    "defaultMessage": "Plak de breedte in, voer check opnieuw uit. <a href=\"/guides/impedance/\">Gestuurde impedantie en paren</a> gaat verder."
+    "defaultMessage": "Plak de dikte in, voer de controle opnieuw uit. <a href=\"/guides/impedance/\">Gecontroleerde impedantie en paren</a> gaat verder."
   },
   "1fxwuxai4vj": {
     "defaultMessage": "Een C-compiler, voor de TLS-crate die de distributiedownloads en modeldownloads gebruiken: de command line tools van Xcode op macOS, de MSVC build tools op Windows, <code>gcc</code> of <code>clang</code> op Linux."
@@ -939,7 +939,7 @@
     "defaultMessage": "één dielektricum"
   },
   "1g7lgzvnqhn": {
-    "defaultMessage": "Laat het open staan naast de terminal van de agent. Elke bewerking die de agent maakt, via <code>agentee edit</code> of door TOML te schrijven, verschijnt een moment later, met de check-diagnoses erbij."
+    "defaultMessage": "Laat het open naast de terminal van de agent. Elke bewerking die de agent maakt, via <code>agentee edit</code> of door TOML te schrijven, verschijnt een moment later, met de controlediagnostiek ervoor."
   },
   "1g82t6696st": {
     "defaultMessage": "2 mm ongereserveerd"
@@ -1095,7 +1095,7 @@
     "defaultMessage": "Er zijn geen systeembibliotheken om tegen te linken. De viewer laadt X11 of Wayland op runtime, en de GPU-oplossers bereiken Vulkan, Metal of DirectX 12 via wgpu."
   },
   "1ijvmou62qv": {
-    "defaultMessage": "Elk <code>*.sim.toml</code> is een run met een type. De solvers draaien via wgpu op Vulkan, Metal of DirectX 12, schrijven hun resultaten naast de specificatie en de check waarschuwt wanneer een resultaat verouderd is."
+    "defaultMessage": "Elk <code>*.sim.toml</code> is een run met een soort. De solvers draaien via wgpu op Vulkan, Metal of DirectX 12, schrijven hun resultaten naast de specificatie en de controle waarschuwt als een resultaat verouderd is."
   },
   "1ik7elrzp6d": {
     "defaultMessage": "Via types - agentee referentie"
@@ -1116,7 +1116,7 @@
     "defaultMessage": "Routen met meerdere via types"
   },
   "1itm5kdohd2": {
-    "defaultMessage": "<code>show</code> toont de opgeloste printplaat als JSON: voor elke klasse en laag de spoorgeometrie (microstrip op de buitenlagen, stripline binnenin), de impedantie, de breedte die het doel haalt en de stroom die het voert. Als een klasse niet op doel is, zegt check hoeveel het afwijkt en wat je moet gebruiken:"
+    "defaultMessage": "<code>show</code> toont de opgeloste printplaat als JSON: voor elke klasse en laag de spoorgeometrie (microstrip op de buitenste lagen, stripline binnenin), de impedantie, de dikte die aan het doel voldoet en de stroom die het draagt. Als een klasse niet aan het doel voldoet, zegt de controle hoeveel en wat te gebruiken:"
   },
   "1ivu4pud73f": {
     "defaultMessage": "Vullingen worden bij het laden berekend en gecached. <code>agentee fill NAME</code> slaat ze op aan het einde van het layout-bestand, zodat een verse checkout laadt zonder vullen."
@@ -1137,7 +1137,7 @@
     "defaultMessage": "een shell in het project"
   },
   "1j92wp5xn8w": {
-    "defaultMessage": "De laminatie is de opbouwvolgorde: de boorsteps die de fabrikant uitvoert tussen persen, in bouwvolgorde, elk een koperspan en een boortype (<code>mechanical</code>, <code>laser</code> of <code>controlled_depth</code>). Een via is alleen boorbaar als zijn span en boortype overeenkomen met een step (een <code>stacked</code> microvia: als elke hop van de stack een laser step is). Een via type dat een layout plaatst, wordt één keer gemeld, door de <code>via-lamination</code> regel van de layout, die zijn vias telt en het printplaat item (<code>vias[i]</code>) noemt dat je moet repareren; Check meldt een via type dat geen layout plaatst als een printplaat fout. De router laat zo'n class via weg. Elke lijst de spans die de laminatie boort."
+    "defaultMessage": "De laminatie is de opbouwvolgorde: de boorgatstappen die de fabrikant uitvoert tussen persingen, in bouwvolgorde, elk een koperen span en een boorgatsoort (<code>mechanical</code>, <code>laser</code> of <code>controlled_depth</code>). Een via is alleen boorbaar als zijn span en boorgatsoort overeenkomen met een stap (een <code>stacked</code> microvia: als elke hop van de stack een laserstap is). Een via-type dat een layout plaatst wordt één keer gerapporteerd, door de <code>via-lamination</code>-regel van de layout, die zijn vias telt en het printplaat-element (<code>vias[i]</code>) noemt dat moet worden aangepast; de controle rapporteert een via-type dat geen layout plaatst als een printplaatfout. De router laat zo'n klasse via achter. Elk lijst de spans op die de laminatie boort."
   },
   "1jadp48fdt1": {
     "defaultMessage": "Opzetten op {platform}"
@@ -1233,7 +1233,7 @@
     "defaultMessage": "4 ns"
   },
   "1khm1sp7n4l": {
-    "defaultMessage": "Bij een overtreding gaat de flip-flop, latch of register waar de check op van toepassing is naar x, zoals de Verilog-modellen dat doen met hun notifiers, tot hij weer netjes wordt geklokt, gezet of gereset. Stel <code>on_violation = &quot;keep&quot;</code> in op de sim om de overtreding te melden en de bemonsterde waarde te behouden in plaats daarvan."
+    "defaultMessage": "Bij een overtreding gaat de flip-flop, latch of register die de controle dekt naar x, zoals de Verilog-modellen dat doen met hun notifiers, tot hij weer netjes wordt geklokt, gezet of gereset. Stel <code>on_violation = \"keep\"</code> in op de simulatie om de overtreding te rapporteren en de bemonsterde waarde te behouden in plaats daarvan."
   },
   "1khvxg9xejx": {
     "defaultMessage": "KiCad-bibliotheken"
@@ -1278,7 +1278,7 @@
     "defaultMessage": "FDTD, cascade, DC drop, thermisch"
   },
   "1lal1ex41vt": {
-    "defaultMessage": "De check noemt nu elke verbinding die ontbreekt:"
+    "defaultMessage": "De controle noemt nu elke ontbrekende verbinding:"
   },
   "1lb0i5d9dkh": {
     "defaultMessage": "verplaats een onderdeel met zijn label, een via, een spoorhoek of een heel segment"
@@ -1317,10 +1317,10 @@
     "defaultMessage": "Alle lengtes: <code>min_track_width</code>, <code>min_clearance</code>, <code>min_drill</code>, <code>min_via_drill</code>, <code>min_via_diameter</code>, <code>min_annular_ring</code> (vias, microvias gebruiken <code>min_microvia_diameter</code>), <code>min_blind_via_drill</code>, <code>min_controlled_depth_drill</code>, <code>min_microvia_drill</code>, <code>max_microvia_drill</code>, <code>min_microvia_diameter</code>, <code>min_hole_to_hole</code>, <code>min_copper_to_edge</code>, <code>min_silk_width</code>, <code>min_silk_text_height</code>, <code>min_mask_web</code> (0,1 mm), <code>max_drill</code>, <code>min_npth_drill</code>, <code>min_plated_slot_width</code>, <code>min_npth_slot_width</code>, <code>min_pth_annular_ring</code>, <code>min_via_hole_to_copper</code>, <code>min_pth_hole_to_copper</code>, <code>min_inner_pth_hole_to_copper</code>, <code>min_npth_to_copper</code>, <code>min_smd_pad_gap</code>, <code>min_hole_to_smd_pad</code>, <code>max_filled_via_drill</code>, <code>min_bga_pad</code>, <code>min_bga_pitch</code>, <code>min_part_to_edge</code>, <code>min_body_to_edge</code>, <code>flex_zone</code>; plus <code>max_aspect_ratio</code>, een gewoon getal (gatdiepte over boor), <code>max_microvia_aspect_ratio</code> (dielektrische diepte over laserboor), <code>max_controlled_depth_aspect_ratio</code> (diepte over boor van een gecontroleerde diepte via), en de schakelaars <code>hdi</code> (de fabrikant bouwt blind, buried en microvias en backdrills) en <code>stacked_microvias</code> (de fabrikant stapelt microvias). Footprints worden gecontroleerd tegen de regels van elke printplaat waarvan het layout ze plaatst, dus een project met een 4-laags en een 2-laags printplaat houdt elke footprint alleen aan de printplaten waar hij op zit. Een footprint die geen layout plaatst, wordt gecontroleerd tegen elke printplaat en gerapporteerd voor de waar hij het beste past; zonder printplaat, tegen <code>generic</code>."
   },
   "1m2uye5hrsr": {
-    "defaultMessage": "Met <code>solver = &quot;field&quot;</code> wordt de klasse gecontroleerd door de 2D-veldoplosser: een knooppuntgebaseerde eindverschil-Laplace-oplossing op een gestreept raster, uitgevoerd op de GPU via wgpu, met koperdikte, soldeermasker, coplanair aarden en paren meegenomen. Op exacte referenties komt het binnen 0,5% van Cohn's nul-dikte stripline en 0,4% van Hammerstad-Jensen microstrip. Als de klasse niet aan het doel voldoet, suggereert check de spoorbreedte die het wel haalt. <code>agentee calc field --netclass RF</code> toont het volledige resultaat (Z0, eeff, C en L per meter, vertraging, raster)."
+    "defaultMessage": "Met <code>solver = &quot;field&quot;</code> wordt de klasse gecontroleerd door de 2D-veldoplosser in plaats daarvan: een knooppuntgebaseerde eindverschil-Laplace-oplossing op een gestructureerd raster, uitgevoerd op de GPU via wgpu, met koperdikte, soldeermasker, coplanare gronden en paren meegenomen. Op exacte referenties komt hij binnen 0,5% van Cohn's stripline met nul dikte en binnen 0,4% van Hammerstad-Jensen microstrip. Als de klasse niet op doel is, suggereert de controle de spoorbreedte die wel voldoet. <code>agentee calc field --netclass RF</code> toont het volledige resultaat (Z0, eeff, C en L per meter, vertraging, raster)."
   },
   "1m2y78wvygc": {
-    "defaultMessage": "De agent zal zwaar leunen op de check, en dat is het punt: elke diagnose noemt het bestand, het item en de plaats, en de meeste noemen een waarde die slaagt. Wat nog steeds van jou is:"
+    "defaultMessage": "De agent zal zwaar op de controle leunen, en dat is het punt: elke diagnostiek noemt het bestand, het item en de plek, en de meeste noemen een waarde die slaagt. Dingen die nog van jou nodig hebben:"
   },
   "1m39d50u8qg": {
     "defaultMessage": "Elke diagnose bevat het bestand, het item, de plaats en de ernst, en layoutdiagnoses bevatten hun regel-id. Dat is genoeg om een pull request te annoteren, of om op waarschuwingen te falen in een project die ze als fouten wil behandelen. Een regel kan ook in de printplaat zelf verhoogd worden tot een fout met <code>[drc] severity</code>, wat het beleid in het ontwerp houdt in plaats van in het CI-script."
@@ -1386,7 +1386,7 @@
     "defaultMessage": "TDR, mixed-mode paren, kruispraten, passiviteit en reciprociteit uit elk FDTD of cascade resultaat."
   },
   "1mzwfau5im8": {
-    "defaultMessage": "Elke sheet is een gewoon schema-bestand met zijn eigen onderdelen en nets. Nets verbinden over sheets heen via naam, dus <code>3V3</code> op elke sheet is één net en een signaal verlaat één sheet en komt op een andere aan onder dezelfde naam. De pinnen van een net moeten onderdelen op dezelfde sheet zijn; een net dat over sheets heen gaat, heeft overal dezelfde <code>class</code> nodig als het er één noemt, en wordt getekend met labels. Referenties zijn uniek over het hele ontwerp. Een sheet op zichzelf slaat de waarschuwingen voor enkele-pinnen en Default-class over (de rest van het net, en zijn class, kan op een andere sheet staan); het bovenliggende schema voert elke check uit op het samengevoegde ontwerp en tekent de sheets gestapeld van boven naar beneden. Het bovenliggende bestand mag ook eigen onderdelen en nets bevatten."
+    "defaultMessage": "Elk blad is een gewone schema-bestand met zijn eigen onderdelen en nets. Nets sluiten aan over bladen via naam, dus <code>3V3</code> op elk blad is één net en een signaal verlaat één blad en komt op een ander aan onder dezelfde naam. De pinnen van een net moeten onderdelen op hetzelfde blad zijn; een net die bladen overspant, heeft overal dezelfde <code>class</code> nodig waar hij die noemt, en wordt getekend met labels. Referenties zijn uniek over het hele ontwerp. Een blad op zichzelf slaat de waarschuwingen voor enkele-pinnen en Default klasse over (de rest van het net, en zijn klasse, kan op een ander blad zitten); het bovenste schema voert elke controle uit op het samengevoegde ontwerp en tekent de bladen gestapeld van boven naar beneden. Het bovenste bestand kan ook onderdelen en nets van zichzelf bevatten."
   },
   "1n1rc7zgly9": {
     "defaultMessage": "pads van verschillende nets waarvan de maskergaten minder dan <code>min_mask_web</code> laten, één regel per paar onderdelen; pads van één footprint met <code>mask_web = false</code> worden onderling overgeslagen"
@@ -1479,7 +1479,7 @@
     "defaultMessage": "<code>solver = &quot;field&quot;</code> op elke klasse waar een paar ohm uitmaakt."
   },
   "1ohjl688ppo": {
-    "defaultMessage": "Een interface beschrijft wat een link moet voldoen aan, en check meet het koper tegelijkertijd tegen alles:"
+    "defaultMessage": "Een interface stelt wat een link moet voldoen, en de controle meet het kopervlak tegelijkertijd aan alles:"
   },
   "1oiyg9y9o9n": {
     "defaultMessage": "BOM en plaatsing in de kolommen die JLCPCB vraagt"
@@ -1539,7 +1539,7 @@
     "defaultMessage": "Via types"
   },
   "1p9al4txnn2": {
-    "defaultMessage": "Kopervlakken houden <code>min_via_hole_to_copper</code> van de via-gaten van andere nets en <code>min_npth_to_copper</code> van niet-geplated gaten, naast de gewone afstand. Bogen worden buiten de echte cirkel getekend, zodat de opening nooit kortsluit. Stitching-vias worden alleen geplaatst waar de via op elke laag die hij overspant de afstand tot het koper van alle andere nets respecteert, zijn gat <code>min_via_hole_to_copper</code> van dat koper en <code>min_hole_to_smd_pad</code> van SMD-pads van elk net houdt, <code>min_hole_to_hole</code> van elke boorgat en de randregel van de omtrek respecteert, en binnen een kopervlak van zijn eigen net ligt. De check rapporteert hoeveel er zijn geplaatst. Ze worden geboord en geplot als elke andere via."
+    "defaultMessage": "Kopervlakken houden ook <code>min_via_hole_to_copper</code> aan van via-gaten van andere nets en <code>min_npth_to_copper</code> van niet-geplated gaten, naast de clearance, met bogen die buiten de echte cirkel worden getekend zodat de opening nooit te klein is. Stitching vias komen alleen op plekken waar de via op elk laag dat hij overspant de kopervlakken van alle andere nets respecteert, zijn gat <code>min_via_hole_to_copper</code> van dat koper houdt en <code>min_hole_to_smd_pad</code> van SMD pads van elk net, <code>min_hole_to_hole</code> van elke boorgat en de randregel van de omtrek houdt, en binnen een zone van zijn eigen net landt; de controle rapporteert hoeveel er zijn geplaatst. Ze worden geboord en getekend als elke andere via."
   },
   "1pfflqoefax": {
     "defaultMessage": "een vulling die koper van een ander net bedekt of te dichtbij komt"
@@ -1590,10 +1590,10 @@
     "defaultMessage": "Ontwerp regel controles - agentee referentie"
   },
   "1qadrepmt73": {
-    "defaultMessage": "Een vulstuk wordt alleen behouden als het twee items van zijn net raakt, of één en minstens <code>min_island_area</code> is; de rest bereikt niets nieuws en wordt verwijderd. Check verifieert elke vul tegen andere nets: een vul die overlapt met de zone, spoor, via of pad van een ander net, of dichter komt dan de clearance, is een fout, en koperspitsen scherper dan 30 graden worden gemarkeerd."
+    "defaultMessage": "Een vulstuk wordt alleen behouden als het twee items van zijn net raakt, of één en minstens <code>min_island_area</code> is; de rest raakt niets nieuws en wordt verwijderd. De controle verifieert elke vulling tegen andere nets: een vulling die de zone, het spoor, de via of het pad van een ander net overlapt, of dichter komt dan de clearance, is een fout, en koptips scherper dan 30 graden worden gemarkeerd."
   },
   "1qcbxs4y1yz": {
-    "defaultMessage": "Lezingen: assertions geslaagd en mislukt, contentions, timing overtredingen, cells en events. Check lijst elke mislukte assertion, contention, timing overtreding of gestopte run op als een fout op de sim, zolang het resultaat actueel is. Het resultaat wordt verouderd als de spec of het netlist van het schema verandert. <code>examples/logic</code> bevat twee: <code>counter</code>, een 74HC161 die telt naar een 74HC138, en <code>i2c</code>, een open-drain bus waar een controller (twee 74LVC1G07) en een target (een 74LVC1G06 die SDA laag trekt voor zijn ACK) 4,7k pull-ups delen, en een 74HC595 die door SCL wordt geklokt het byte vangt, gecheckt op START, de bits, de ACK, het byte (een <code>record</code> bus) en STOP."
+    "defaultMessage": "Lezingen: geslaagde en mislukte assertions, contentions, timingovertredingen, cells en events. De controle lijst elke mislukte assertion, contention, timingovertreding of gestopte run op als een fout op de simulatie, zolang het resultaat actueel is. Het resultaat wordt verouderd als de spec of het netlist van het schema verandert. <code>examples/logic</code> bevat twee: <code>counter</code>, een 74HC161 die telt naar een 74HC138, en <code>i2c</code>, een open-drain bus waar een controller (twee 74LVC1G07) en een doel (een 74LVC1G06 die SDA laag trekt voor zijn ACK) 4,7k pull-ups delen, en een 74HC595 geklokt door SCL de byte vangt, gecontroleerd op START, de bits, de ACK, de byte (een <code>record</code>-bus) en STOP."
   },
   "1qetictu1fj": {
     "defaultMessage": "Eén binair bestand met de CLI, de viewer en de MCP-server. Geen account, geen service, niets dat draaiend moet blijven."
@@ -1602,7 +1602,7 @@
     "defaultMessage": "S-parameters van de LNA printplaat uit de FDTD run, met een Smith diagram van de poorten."
   },
   "1qgtndzh2fg": {
-    "defaultMessage": "Een ontbrekend of verouderd resultaat is ook een fout, dus een layoutwijziging die de simulaties nog niet hebben gezien faalt check totdat ze opnieuw zijn uitgevoerd. Dat is het punt: het oog dat je hebt goedgekeurd is het oog van het koper dat je gaat bestellen. De <a href=\"/reference/interfaces/\">interfaces-referentie</a> noemt elke limiet."
+    "defaultMessage": "Een ontbrekend of verouderd resultaat is ook een fout, dus een layoutwijziging die de simulaties niet hebben gezien, faalt de controle totdat ze opnieuw zijn uitgevoerd. Dat is het punt: de oog die je hebt goedgekeurd, is de oog van het kopervlak dat je gaat bestellen. De <a href=\"/reference/interfaces/\">interface-referentie</a> noemt elke limiet."
   },
   "1qhwcea3j31": {
     "defaultMessage": "drijft met niets dat hem aan een rail bindt,"
@@ -1638,7 +1638,7 @@
     "defaultMessage": "HDI: microvias en laminatie"
   },
   "1qw5tcldd6o": {
-    "defaultMessage": "eenheden, het bestandsmodel, resolve en check, de calculatoren"
+    "defaultMessage": "eenheden, het bestandsmodel, oplossen en controleren, de calculatoren"
   },
   "1r0hmmormyn": {
     "defaultMessage": "mechanisch, in een gelamineerde sub-stack"
@@ -1674,7 +1674,7 @@
     "defaultMessage": "Een pin die uit elk net is gelaten, wordt gemeld. Pinnen die opzettelijk open zijn, gaan in <code>no_connect</code>:"
   },
   "1rd9mbz2phc": {
-    "defaultMessage": "Footprint grafieken op een koper, masker of paste laag worden geplot als koper, maskeropeningen of paste, en getekend in de viewer: de koperstrip van een gebruggte solder jumper, bijvoorbeeld. Check ziet ze niet als koper."
+    "defaultMessage": "Footprint-graphics op een koper-, masker- of paste-laag worden getekend als koper, maskeropeningen of paste, en weergegeven in de viewer: bijvoorbeeld de koperstrook van een gesoldeerde jumper. De controle ziet ze niet als koper."
   },
   "1rg8ze8g7pz": {
     "defaultMessage": "plaatsing en routing: fasen over één printplaatmodel en één score"
@@ -1695,7 +1695,7 @@
     "defaultMessage": "Een aangepast onderdeel krijgt een model inline, gematcht op <code>ref</code> of op <code>value</code> (elk onderdeel met die waarde). Meerdere entries voor één onderdeel voegen elk een cel toe (één per poort van een quad, bijvoorbeeld). Een entry met alleen timing behoudt het ingebouwde model en verandert de timing ervan."
   },
   "1rqigxpguzp": {
-    "defaultMessage": "Installeer het, geef je agent de skill en vraag om iets kleins: een breakout, een voeding, een sensorknoop. Bekijk het in de viewer en lees wat check zegt."
+    "defaultMessage": "Installeer het, geef je agent de skill en vraag om iets kleins: een breakout, een voeding, een sensor node. Kijk ernaar in de viewer en lees wat de controle zegt."
   },
   "1rt96e9xmko": {
     "defaultMessage": "Een glob in <code>--nets</code> matcht nooit een plan-net, dus <code>--nets &#39;*&#39;</code> routeert elk signaal en laat grond aan de plannen."
@@ -1971,7 +1971,7 @@
     "defaultMessage": "<code>overhang = true</code> op een connector die over de rand moet hangen."
   },
   "1wwdzxssh5k": {
-    "defaultMessage": "Elk blad is een gewoon schema-bestand. Nets verbinden over bladen heen per naam, dus <code>3V3</code> op elk blad is één net. De pinnen van een net moeten op het blad staan dat ze opsomt, referenties zijn uniek over het hele ontwerp, en een net dat over bladen gaat, heeft dezelfde klasse nodig waar het er een noemt. Een blad op zich slaat de waarschuwingen voor enkele pinnen en de Default-klasse over, omdat de rest van het net ergens anders kan zijn; het bovenliggende schema voert elke check uit op het verbonden ontwerp."
+    "defaultMessage": "Elk blad is een gewone schema-bestand. Netten sluiten aan over bladen via naam, dus <code>3V3</code> op elk blad is één net. De pinnen van een net moeten op het blad staan dat ze vermeldt, referenties zijn uniek over het hele ontwerp, en een net dat over bladen gaat, heeft overal dezelfde klasse als het er een noemt. Een blad op zichzelf slaat de waarschuwingen voor één pin en de Default-klasse over, omdat de rest van het net elders kan zitten; het top-schema voert elke controle uit op het samengevoegde ontwerp."
   },
   "1wzcna4bvid": {
     "defaultMessage": "De versterker zit aan de antennekant van een RTL-SDR stijl ontvanger: SMA in, SMA uit, een Qorvo SPF5189Z in het midden, gevoed via de uitgang coax door de bias tee van de ontvanger of van een 5 V header. Twee Schottky diodes laten beide bronnen de versterker voeden zonder dat de ene de andere voedt."
@@ -2217,7 +2217,7 @@
     "defaultMessage": "de backdrill-gaten van elke kant en stoplaag, niet geplateerd, met de backdrill-diameter, met de stoplaag en <code>max_stub</code> in een commentaar"
   },
   "20u1f7vfkkg": {
-    "defaultMessage": "<code>calc field --netclass USB</code> voegt een <code>pair</code>-blok toe: Zdiff, Zcommon, de oneven- en evenmodus-impedanties en vertragingen, de koppelingscoëfficiënt en het near-end-crosstalk van een lange lijn. Check rapporteert de skew van elk paar in mm en ps, elke uitstulping met de verkeerde afstand boven <code>max_uncoupled</code>, en paren die minder dan 80% van hun lengte naast elkaar lopen. Een paar door serieschakelaars, zoals de AC-condensatoren op een USB-lane, wordt van begin tot eind gemeten. <code>agentee route NAME --nets &#39;USB_*&#39; --pairs</code> routeert beide helften samen."
+    "defaultMessage": "<code>calc field --netclass USB</code> voegt een <code>pair</code>-blok toe: Zdiff, Zcommon, de oneven- en evenmodusimpedanties en -vertragingen, de koppelingscoëfficiënt en de near-end-crosstalk van een lange lijn. De controle rapporteert de skew van elk paar in mm en ps, elke strek met de verkeerde afstand boven <code>max_uncoupled</code>, en paren die minder dan 80% van hun lengte naast elkaar lopen. Een paar door seriële onderdelen, zoals de AC-condensatoren op een USB-lane, wordt van begin tot eind gemeten. <code>agentee route NAME --nets &#39;USB_*&#39; --pairs</code> routeert beide helften samen."
   },
   "211ybnyn8so": {
     "defaultMessage": "De fabrikant en het aantal lagen, of de kosten waarbinnen je wilt blijven. <code>jlcpcb</code> met een stackup van twee of vier lagen past bij de meeste eerste printplaten."
@@ -2265,7 +2265,7 @@
     "defaultMessage": "Een import schrijft een <code>.sym.toml</code> of <code>.fp.toml</code> naar <code>symbols/</code> of <code>footprints/</code>. Vanaf dan is het project eigenaar: er is geen link terug naar de bibliotheek, dus een onderdeel verandert nooit onder je vandaan als KiCad wordt bijgewerkt. Een <code>.kicad_sym</code>- of <code>.kicad_mod</code>-pad werkt in plaats van <code>Library:Name</code> voor onderdelen buiten de standaardbibliotheken."
   },
   "21v5d9dete3": {
-    "defaultMessage": "De klasse is een belofte; de layout houdt die vast. Check meet elk spoor van een impedantieklasse:"
+    "defaultMessage": "De klasse is een belofte; het layout houdt die vast. De controle meet elk spoor van een impedantieklasse:"
   },
   "21wi51767ol": {
     "defaultMessage": "impedantie"
@@ -2283,7 +2283,7 @@
     "defaultMessage": "agentee bestandsformaat referentie"
   },
   "21z7dt71046": {
-    "defaultMessage": "Check voert nooit een simulatie uit. Elk resultaat registreert een hash van de specificatie, het koper dat het zag en de stackup, en check waarschuwt als ze niet meer overeenkomen. Op een CI-runner zonder GPU is dat het nuttige deel: een pull request die een RF-spoor verplaatst krijgt een verouderde waarschuwing op het FDTD-resultaat, en een interface die dat resultaat meet faalt meteen."
+    "defaultMessage": "De controle voert nooit een simulatie uit. Elk resultaat registreert een hash van de specificatie, het kopervlak dat het zag en de stackup, en de controle waarschuwt als ze niet meer overeenkomen. Op een CI-runner zonder GPU is dat het nuttige deel: een pull request die een RF-spoor verplaatst, krijgt een verouderde waarschuwing op het FDTD-resultaat, en een interface die dat resultaat meet, faalt meteen."
   },
   "221qbpi8pyl": {
     "defaultMessage": "In1.Cu naar In4.Cu, buried, door de sub-stack,"
@@ -2343,7 +2343,7 @@
     "defaultMessage": "Toon de fabrikant-stackup-preset die een printplaat in `stackup.preset` kan noemen, of toon er één"
   },
   "239ijuexn6t": {
-    "defaultMessage": "Check markeert elk referentielabel dat andere tekst overpakt, op een pad of via zit, of van de printplaat afloopt, en noemt een plek die slaagt. <code>agentee silk</code> verplaatst ze allemaal daarheen:"
+    "defaultMessage": "De controle markeert elke referentie-label die andere tekst verdringt, op een pad of via zit, of van de printplaat loopt, en noemt een plek die slaagt. <code>agentee silk</code> verplaatst ze allemaal daar:"
   },
   "23abd480i7l": {
     "defaultMessage": "agentee - elektronica-ontwerp voor coding agents"
@@ -2373,7 +2373,7 @@
     "defaultMessage": "Excellon-boren, gaten als G85; één extra bestand per blind, begraven of microvia-span op HDI-printplaten"
   },
   "23q0rg2wlh0": {
-    "defaultMessage": "Check zoekt naar overlappende pads, pads dichter bij elkaar dan de fab clearance, boorgaten en annulaire ringen onder de regels (<code>min_drill</code>, <code>min_pth_annular_ring</code>), een courtyard die de pads omsluit, en zeefdruk die over bloot koper loopt."
+    "defaultMessage": "De controle zoekt naar overlappende pads, pads die dichter bij elkaar liggen dan de fabrikantclearance, boorgaten en annulaire ringen onder de regels (<code>min_drill</code>, <code>min_pth_annular_ring</code>), een courtyard die de pads omsluit, en zeefdruk die over bloot koper loopt."
   },
   "23tshyft62l": {
     "defaultMessage": "De layout pagina van de viewer heeft een <code>3d</code> tab (<code>agentee view --3d</code> opent daarop): de printplaat in zijn stackup dikte, mask en zeefdruk kleuren en finish, koper onder het mask, kale pads, geplateerde en kale boorwanden, en het 3D model van elk onderdeel. De <code>parts</code> toggle verbergt de modellen. Sleep om te draaien, shift-sleep om te pannen, scroll om te zoomen, dubbelklik om te resetten. De viewer tekent met OpenGL (<a href=\"https://github.com/asny/three-d\">three-d</a>); <code>agentee render pcb:NAME --show 3d</code> (of <code>3d-top</code>, <code>3d-bottom</code>) tekent dezelfde scène in software, <code>--hide parts</code> laat de modellen weg en <code>--region</code> richt de camera op dat gebied."
@@ -2412,7 +2412,7 @@
     "defaultMessage": "Zonder <code>lamination</code> komt de volgorde uit de stackup. De build-up lagen aan elke kant zijn de prepreg-only dielektrici aan de buitenkant vóór de eerste core, geteld per kant, dus een build kan asymmetrisch zijn (<code>1+4+2</code>); de <code>N</code> lagen ertussen zijn de core sub-stack, één keer gepers van zijn cores en prepregs. De stappen zijn:"
   },
   "24o2k9tttmm": {
-    "defaultMessage": "Pad-nets komen uit het schema via nummer: pin 3 van het symbool is pad 3 van de footprint. Check rapporteert elke pin zonder pad. Een symboolpin met de naam <code>EP</code> of het nummer <code>17</code> voor een exposed pad heeft dat padnummer ook in de footprint nodig."
+    "defaultMessage": "Padnets komen uit het schema via nummer: pin 3 van het symbool is pad 3 van de footprint. De controle rapporteert elke pin zonder pad. Een symboolpin met de naam <code>EP</code> of het nummer <code>17</code> voor een blootliggend pad heeft dat padnummer ook in de footprint nodig."
   },
   "24ocgbs1su0": {
     "defaultMessage": "een sporeinde dat geen koper van zijn net en geen kopervlak raakt"
@@ -2424,7 +2424,7 @@
     "defaultMessage": "de naam binnen het onderdeelnummer en dezelfde behuizing (SOT-23 is niet SOT-23-5, SMA is DO-214AC, niet SMB)"
   },
   "24s07dggy0j": {
-    "defaultMessage": "Een symbool kan de ingangsdrempels van zijn pins opgeven, voor de signaalniveaucheque van het schema. <code>[levels]</code> geldt voor elke <code>input</code>- en <code>bidirectional</code>-pin; de eigen <code>levels</code>-tabel van een pin overschrijft dat veld voor veld, en onderwerpt elk pintoype aan de check."
+    "defaultMessage": "Een symbool kan de ingangsdrempels van zijn pinnen opgeven, voor de signaalniveaucontrole van het schema. <code>[levels]</code> geldt voor elke <code>input</code>- en <code>bidirectional</code>-pin; de eigen <code>levels</code>-tabel van een pin overschrijft dit veld voor veld en onderwerpt elk pintoype aan de controle."
   },
   "24s42atd7r2": {
     "defaultMessage": "naam en behuizing"
@@ -2538,7 +2538,7 @@
     "defaultMessage": "<code>agentee fab</code>"
   },
   "26pkfhq2tqp": {
-    "defaultMessage": "<strong>Impedantie en stroom zitten op de klasse.</strong> Geef een klasse <code>impedance = &quot;50ohm&quot;</code> of <code>current = &quot;2A&quot;</code> en check lost de breedte op voor elke laag van de stackup."
+    "defaultMessage": "<strong>Impedantie en stroom zitten op de klasse.</strong> Geef een klasse <code>impedance = &quot;50ohm&quot;</code> of <code>current = &quot;2A&quot;</code> en de controle lost de dikte op voor elke laag van de stackup."
   },
   "26s0srbqiyq": {
     "defaultMessage": "Een printplaat kan meerdere via-types opgeven. Een doorvia heeft niets extra's nodig; blind, buried en microvias hebben een HDI-fabrikant nodig en staan in <a href=\"/guides/hdi/\">HDI: microvias en laminatie</a>."
@@ -2712,7 +2712,7 @@
     "defaultMessage": "Het script plaatst het binair bestand in <code>~/.local/bin</code>. Stel <code>AGENTEE_INSTALL_DIR</code> in om het ergens anders te plaatsen."
   },
   "29y1zbo05b4": {
-    "defaultMessage": "De check-job"
+    "defaultMessage": "De controletaak"
   },
   "29yqnm21ssu": {
     "defaultMessage": "Flip-flops klokken op de stijgende flank (gebruik <code>CLK_N</code> voor de dalende); <code>S</code> en <code>R</code> zijn asynchroon en als beide actief zijn, wordt Q = QN = 1, zoals op een 74HC74. De 161 reset direct, de 163 op de volgende flank. Een 595 verschuift op <code>CLK</code>, kopieert naar zijn uitgangen op <code>LATCH</code> (de waarde van vóór een verschuiving op hetzelfde moment) en laat ze zweven terwijl <code>OE</code> laag is."
@@ -2763,7 +2763,7 @@
     "defaultMessage": "<code>cpl.csv</code>"
   },
   "2azdq8hjg77": {
-    "defaultMessage": "Zonder <code>type</code> bepaalt de span het: van eerste tot laatste laag is <code>through</code>, één buitenste eind is <code>blind</code>, twee binnenste einden <code>buried</code>. De check houdt het type vast aan de span (een blind via raakt precies één buitenlaag, een buried via geen) en aan de fabrikant:"
+    "defaultMessage": "Zonder <code>type</code> bepaalt de span het type: van de eerste naar de laatste laag is <code>through</code>, één buitenste eind is <code>blind</code>, twee binnenste einden <code>buried</code>. De controle houdt het type vast aan de span (een blind via moet precies één buitenste laag raken, een buried via geen) en aan de fabrikant:"
   },
   "2azq3xb5756": {
     "defaultMessage": "Van een clone"
@@ -2784,7 +2784,7 @@
     "defaultMessage": "<code>agentee fab pcb:NAME -o DIR</code> (MCP <code>fab</code>) schrijft:"
   },
   "2b6nbr5oygg": {
-    "defaultMessage": "<code>new board</code> schrijft <code>blinky.board.toml</code>: een omlijning van 50 bij 30 mm, de JLCPCB-tweelaags 1.6 mm stackup, één viatype en vier netklassen. Check laadt het en rapporteert niets:"
+    "defaultMessage": "<code>new board</code> schrijft <code>blinky.board.toml</code>: een omlijning van 50 bij 30 mm, de JLCPCB-tweelaagse 1,6 mm stackup, één via-type en vier netklassen. De controle laadt het en rapporteert niets:"
   },
   "2b6xlltugst": {
     "defaultMessage": "Van een lege map naar Gerbers"
@@ -2895,7 +2895,7 @@
     "defaultMessage": "een net waarvan de pads niet allemaal door sporen, vias en kopervlakken zijn verbonden, met de groepen die uit elkaar liggen"
   },
   "2cjp54hpvxh": {
-    "defaultMessage": "Elke simulatie is actueel: check waarschuwt voor verouderde resultaten."
+    "defaultMessage": "Elke simulatie is actueel: de controle waarschuwt voor verouderde resultaten."
   },
   "2cjq2lndzi6": {
     "defaultMessage": "De driver wordt een Thevenin-bron uit zijn pulldown- en pulluptabellen, zijn die-capaciteit en zijn package; zijn ramp bepaalt de rand en zijn spanningsbereik de swing, tenzij <code>rise</code> of <code>swing</code> zijn opgegeven. De ontvanger belast het verre eind met zijn package- en die-capaciteit, en het oog wordt gelezen op zijn die. IBIS werkt voor nu op single-ended paden."
@@ -2955,7 +2955,7 @@
     "defaultMessage": "<code>min_npth_to_copper</code>"
   },
   "2dpmy5nueed": {
-    "defaultMessage": "Laat <code>wires</code> weg en agentee routeert ze. Als je een bepaalde tekening wilt, geef het net zijn eigen <code>wires = [[[x, y], [x, y]], ...]</code>, en check controleert of ze elke pin bereiken en geen ander net raken."
+    "defaultMessage": "Laat <code>wires</code> weg en agentee routeert ze. Als je een bepaalde tekening wilt, geef het net zijn eigen <code>wires = [[[x, y], [x, y]], ...]</code>, en de controle verifieert dat ze elke pin bereiken en geen ander net raken."
   },
   "2dqpqxhqzk7": {
     "defaultMessage": "Eén klasse per type net: signaal, voeding, massa, elke impedantie, elk paar."
@@ -3030,7 +3030,7 @@
     "defaultMessage": "<code>drill-backdrill-FROM-TO.drl</code>"
   },
   "2erk3af4v4t": {
-    "defaultMessage": "Voer direct daarna check uit. De gebruikelijke bevinding is zeefdruk:"
+    "defaultMessage": "Voer de controle direct daarna uit. De gebruikelijke bevinding is zeefdruk:"
   },
   "2esv3ij8ba7": {
     "defaultMessage": "Een layout met de hand bewerken"
@@ -3084,7 +3084,7 @@
     "defaultMessage": "Deze handleiding bouwt een kleine printplaat met de hand, commando voor commando: een twee-pins voedingshaver, een weerstand, een groene LED en een ontkoppelingselektrolyt op een tweelaagse JLCPCB-printplaat. Het is dezelfde volgorde die een agent volgt, dus het zelf één keer doen maakt het veel makkelijker om later te lezen wat je agent doet."
   },
   "2fkypo5l7hk": {
-    "defaultMessage": "Wat check meldt"
+    "defaultMessage": "Wat de controle rapporteert"
   },
   "2fl8125e10j": {
     "defaultMessage": "Een layout plaatst de footprints van het schema op de printplaat en verbindt ze met koper. Elk commando hier schrijft gewone items in het <code>*.pcb.toml</code>, dus wat de placer of router ook doet, kun je of de agent het daarna bewerken."
@@ -3114,7 +3114,7 @@
     "defaultMessage": "<code>stacked-via</code>"
   },
   "2g27vxcvei2": {
-    "defaultMessage": "Een netklasse is wat een net is: zijn spoorbreedte, clearance, vias en de doelen waaraan check het net toetst. Geef elk type net zijn eigen klasse. Een net dat in <code>Default</code> blijft, is een waarschuwing, omdat de klasse bepaalt hoe het wordt gerouteerd."
+    "defaultMessage": "Een netklasse is wat een net is: de spoordikte, de clearance, de vias en de doelen waaraan de controle het net houdt. Geef elk type net zijn eigen klasse. Een net dat in <code>Default</code> blijft, is een waarschuwing, omdat de klasse bepaalt hoe het net wordt gerouteerd."
   },
   "2g2bruy73r8": {
     "defaultMessage": "Recovery en removal zijn datasheet-minima over -40 tot 85 C bij 4.5 V (5 V-families) of 3.3 V (LVC), het grootste van TI en Nexperia als beide er één vermelden:"
@@ -3123,7 +3123,7 @@
     "defaultMessage": "min. niet-geplatede sloten"
   },
   "2g3va6s0t1e": {
-    "defaultMessage": "Verplaats elke zeefdrukverwijzing die faalt naar de vrije plek die de check suggereert, opnieuw tot ze op hun plek zitten, en verberg degenen zonder plek wanneer gevraagd"
+    "defaultMessage": "Verplaats elke zeefdrukreferentie die faalt naar de vrije plek die de controle suggereert, opnieuw tot ze op hun plek zitten, en verberg degenen die nergens naartoe kunnen als gevraagd"
   },
   "2g7qg8g93l6": {
     "defaultMessage": "X"
@@ -3282,7 +3282,7 @@
     "defaultMessage": "<code>points</code> (open)"
   },
   "4eozrvrv71": {
-    "defaultMessage": "<code>agentee edit</code> herschrijft de TOML voor je, behoudt eventuele commentaar, en voert check uit op het bestand dat het heeft aangeraakt. Ga niet veel kleiner op een printplaat zo simpel: elke printplaat draagt de <code>agentee vX.Y.Z-HASH</code>-versie in zijn zeefdruk, en check heeft een duidelijke strook van ongeveer 23 bij 1,2 mm nodig om die in te plaatsen. Op een 20 mm printplaat meldt het een <code>watermark</code>-fout en wordt het fab-pakket geweigerd."
+    "defaultMessage": "<code>agentee edit</code> schrijft het TOML voor je, behoudt eventuele commentaren erin en voert de controle uit op het bestand dat het heeft aangeraakt. Ga niet veel kleiner op een printplaat zo simpel: elke printplaat draagt de <code>agentee vX.Y.Z-HASH</code>-versie in de zeefdruk, en de controle heeft een vrije strook van ongeveer 23 bij 1,2 mm nodig om die in te plaatsen. Op een 20 mm printplaat rapporteert het een <code>watermark</code>-fout en wordt het fabpakket geweigerd."
   },
   "4fc8tsnpn5": {
     "defaultMessage": "Kaarten: temperatuur per koperlaag. Metingen: piektemperatuur van de printplaat, pad- en junctiontemperatuur van elke bron."
@@ -3333,7 +3333,7 @@
     "defaultMessage": "<code>zone-tips</code>"
   },
   "5m5l2y1x20": {
-    "defaultMessage": "Met <code>solver = &quot;field&quot;</code> lost check de klasse op op elke laag die hij mag gebruiken en zegt, als het afwijkt, hoeveel en wat je moet gebruiken:"
+    "defaultMessage": "Met <code>solver = &quot;field&quot;</code> lost de controle de klasse op op elke laag die hij mag gebruiken en zegt, als hij niet aan het doel voldoet, hoeveel en wat te gebruiken:"
   },
   "5mdecrm7hm": {
     "defaultMessage": "<code>fab</code> ingesteld, en een stackup-<code>preset</code> die de fabrikant daadwerkelijk bouwt."
@@ -3375,7 +3375,7 @@
     "defaultMessage": "de omtrek en elke printplaatuitsparing"
   },
   "6vtwvstloc": {
-    "defaultMessage": "Zodra check geen fouten meer heeft, wordt een layout een pakket dat een fabrikant en een montagebedrijf zo aanneemt. Deze handleiding behandelt het schrijven ervan, het prijzen van de onderdelen en het ophalen van een 3D-model voor de behuizing."
+    "defaultMessage": "Zodra de controle geen fouten meer heeft, wordt een layout een pakket dat een fabrikant en een assemblagebedrijf zo accepteren. Deze handleiding dekt het schrijven ervan, het prijzen van de onderdelen en het krijgen van een 3D-model voor de behuizing."
   },
   "6x8yn1m2yz": {
     "defaultMessage": "koper van twee verschillende nets raakt elkaar"
@@ -3396,7 +3396,7 @@
     "defaultMessage": "<code>agentee sparam NAME</code> (MCP <code>sparam</code>) werkt op elk FDTD- of cascade-resultaat:"
   },
   "785vso7xer": {
-    "defaultMessage": "Laat <code>track_width</code> weg en check lost het op voor de eerste laag. Waar één breedte niet op elke laag past, geef <code>widths = { &quot;In2.Cu&quot; = &quot;0.16mm&quot; }</code>."
+    "defaultMessage": "Laat <code>track_width</code> weg en de controle lost het op voor de eerste laag. Als één dikte niet op elke laag past, geef <code>widths = { &quot;In2.Cu&quot; = &quot;0.16mm&quot; }</code>."
   },
   "7bxalrqtkl": {
     "defaultMessage": "<code>check</code> voert elke regel uit; <code>drc</code> toont alleen de regel-diagnostiek van het layout, elk begint met zijn id in haakjes, en <code>--list</code> toont elke regel met of deze op deze printplaat van toepassing is. Fouten blokkeren het fabpakket. Waarschuwingen en meldingen zijn praktijk in plaats van fab-limieten: volg ze tenzij het ontwerp een reden geeft, en schrijf die reden in <code>DESIGN.md</code>."
@@ -3474,7 +3474,7 @@
     "defaultMessage": "De span en de boorsoort moeten overeenkomen met een boorstap van de laminatie (zie Laminatie); de fout toont de spans die het boort. <code>drill_kind</code> is standaard <code>laser</code> voor een microvia en <code>mechanical</code> anders; een microvia is altijd laser geboord en een laser geboorde via is een microvia."
   },
   "8a8gp8ef5g": {
-    "defaultMessage": "Kopervlak-vullingen worden gecached: elke vulling wordt gesleuteld op een hash van alles waar hij van afhangt en opgeslagen in <code>~/.cache/agentee/fills</code>, zodat een laadactie alleen de kopervlakken vult waarvan het koper, de afstanden of de buren zijn veranderd (stel <code>AGENTEE_NO_FILL_CACHE</code> in om de cache over te slaan). <code>agentee fill NAME</code> (MCP <code>fill</code>) slaat de vullingen ook op aan het einde van het layout-bestand, met één <code>[[fills]]</code>-tabel per kopervlak en laag, zodat een verse checkout laadt zonder te vullen. Een opgeslagen vulling waarvan de hash niet meer klopt wordt genegeerd, en de check meldt dit met <code>--info</code>. Een geïmporteerde printplaat slaat zijn vullingen op. Laat de <code>[[fills]]</code>-tabellen aan het tool over."
+    "defaultMessage": "Zonevullingen worden gecached: elke vulling wordt gesleuteld op een hash van alles waar hij van afhangt en bewaard in <code>~/.cache/agentee/fills</code>, zodat een laad alleen de zones vult waarvan het koper, de clearances of de buren zijn veranderd (stel <code>AGENTEE_NO_FILL_CACHE</code> in om de cache over te slaan). <code>agentee fill NAME</code> (MCP <code>fill</code>) bewaart de vullingen ook aan het einde van het layoutbestand, met één <code>[[fills]]</code>-tabel per zone en laag, zodat een verse checkout laadt zonder vullen; een bewaarde vulling waarvan de hash niet meer klopt wordt genegeerd, en de controle noemt hem met <code>--info</code>. Een geïmporteerde printplaat bewaart zijn vullingen. Laat de <code>[[fills]]</code>-tabellen aan het tool over."
   },
   "8c7fyqgezg": {
     "defaultMessage": "Alles wat de fabrikant nodig heeft, klaar om te uploaden"
@@ -3504,7 +3504,7 @@
     "defaultMessage": "Intel"
   },
   "8lxceyo8ts": {
-    "defaultMessage": "Pintypes tellen: check gebruikt ze voor de netcontroles, en <code>open_collector</code>-uitgangen en <code>input</code>-pinnen doen mee aan de signaalniveaucheck."
+    "defaultMessage": "Pintypes tellen: de controle gebruikt ze voor de netcontroles, en <code>open_collector</code>-uitgangen en <code>input</code>-pinnen doen mee aan de signaalniveaucontrole."
   },
   "8oesbcmonl": {
     "defaultMessage": "Waar agentee strenger is dan de pagina, opzettelijk: <code>min_copper_to_edge</code> blijft 0.3 mm (de pagina staat 0.2 mm toe aan een gefreesde rand, die op +/-0.2 mm wordt gefreesd, en 0.4 mm aan een V-sned), <code>min_hole_to_hole</code> blijft 0.5 mm (de pagina geeft 0.45 mm tussen padgaten en 0.2 mm tussen vias), en <code>min_hole_to_smd_pad</code> (0.2 mm, de waarde voor via-gat tot spoor) en <code>min_part_to_edge</code> (0.5 mm) zijn keuzes van agentee, niet op de pagina. <code>min_body_to_edge</code> (1.0 mm) volgt de DFM-handleidingen voor montage, die elk component 1 mm van de rand van de printplaat houden voor depaneling en handhaving. <code>flex_zone</code> (5 mm) volgt Knowles over flexbreuk van MLCC's: de spanningszone ligt doorgaans binnen 5 mm van de rand van de printplaat of bevestigingspunten."
@@ -3540,7 +3540,7 @@
     "defaultMessage": "één dielektricum (<code>stacked</code>: meerdere, <code>skip</code>: twee)"
   },
   "9hy2mo0tx8": {
-    "defaultMessage": "Rails en de signaalniveau-check"
+    "defaultMessage": "Rails en de signaalniveaucheque"
   },
   "9hyv3qy4ib": {
     "defaultMessage": "Plaatuitsparingen zitten samen met de omtrek in het plaatbestand, omdat ze deel uitmaken van de vorm van de printplaat: de omtrek is de buitenrand en elke uitsparing is een binnenrand, beide gefreesd uit hetzelfde Edge.Cuts-profiel. De <code>[[cutouts]]</code> in het layout houden alleen kopervlakken van een gebied op bepaalde lagen weg en laten de plaat intact. Een uitsparing moet binnen de omtrek liggen. Alles dat de omtrek gebruikt, behandelt een uitsparingsrand als plattrand: de randregels (<code>copper-to-edge</code>, <code>pad-to-edge</code>, <code>pad-off-board</code>, <code>part-to-edge</code>, <code>part-body-to-edge</code>, <code>hole-to-edge</code>, <code>edge-pad-reach</code>, de <code>mlcc-flex-zone</code>-regels, die de uitsparing noemen), zeefdruk en watermerk, kopervlakken (op <code>min_copper_to_edge</code> afstand gehouden), stikviapjes, testpunten, de router en tuner, het Edge_Cuts-profiel van de fabrikant, de viewers en de FDTD-, thermische en DC-modellen, waar een uitsparing lucht is. Een opgeslagen vulling wordt verouderd wanneer een uitsparing verandert."
@@ -3570,7 +3570,7 @@
     "defaultMessage": "De HackRF Pro-printplaat geïmporteerd uit KiCad, gerenderd door agentee."
   },
   "9tdtrp8oa4": {
-    "defaultMessage": "Zeefdrukt tekst moet 0,4 mm afstand houden tot andere zeefdrukt tekst en 0,2 mm tot zeefdruk omtrekken, pads, vias en andere componentlichamen vermijden, en op de printplaat blijven. Elk van deze is een fout, behalve tekst onder het lichaam van een andere component, wat een waarschuwing is. Als een referentielabel faalt, noemt check een plek die aan alle regels voldoet, als een <code>label = { at = [...] }</code> regel om te plakken. <code>agentee silk NAME</code> (MCP <code>silk</code>) plakt ze allemaal voor je en herhaalt dit tot de labels op hun plek zitten; <code>--hide</code> verborgt de referenties die geen vrije plek hebben, typisch kleine passieven onder een BGA."
+    "defaultMessage": "Zeefdrukletters moeten 0,4 mm afstand houden tot andere zeefdrukletters en 0,2 mm tot zeefdrukcontouren, op pads, vias en andere onderdelenlichamen blijven, en op de printplaat blijven. Elk van deze is een fout, behalve tekst onder het lichaam van een ander onderdeel, wat een waarschuwing is. Als een verwijzingslabel faalt, noemt de controle een plek die aan alle regels voldoet, als een <code>label = { at = [...] }</code>-regel om te plakken. <code>agentee silk NAME</code> (MCP <code>silk</code>) plakt ze allemaal voor je en herhaalt totdat de labels op hun plek zitten; <code>--hide</code> verbergt de verwijzingen die geen vrije plek hebben, meestal kleine passieve onderdelen onder een BGA."
   },
   "9u7i8lybkg": {
     "defaultMessage": "3D-modellen komen van <code>KICAD9_3DMODEL_DIR</code> en dergelijke, <code>3dmodels/</code> in het project, of een cache die <code>agentee models</code> vult uit de kicad-packages3D-repository."
@@ -3618,7 +3618,7 @@
     "defaultMessage": "Removal"
   },
   "alwra0pyrw": {
-    "defaultMessage": "Voor logische en MCU-onderdelen kopieer je de drempelwaarden uit het datasheet naar een <code>[levels]</code>-tabel. Check berekent dan de spanning die elke input ziet over zijn rails, weerstanden en schakelaars, en rapporteert een input die tussen VIL en VIH kan zitten, zwevend kan zijn, of buiten zijn limieten kan gaan:"
+    "defaultMessage": "Voor logiek- en MCU-onderdelen, kopieer de drempels uit de datasheet naar een <code>[levels]</code>-tabel. De controle berekent dan de spanning die elke ingang ziet over zijn rails, weerstanden en schakelaars, en rapporteert een ingang die tussen VIL en VIH kan zitten, zweven kan, of buiten zijn limieten kan gaan:"
   },
   "amshfe3pvt": {
     "defaultMessage": "de gecontroleerde diepte-vias van een span, apart gehouden van de vias die in een sub-stack of met laser over dezelfde span worden geboord, omdat de fabrikant ze in een andere pass boort, na de laatste pers en per diepte; zelfde bestandsfunctie, met de geboorde kant en stoplaag in een <code>; span In4.Cu to B.Cu, controlled depth blind vias drilled from B.Cu after the last press, stopping on In4.Cu</code>-commentaar"
@@ -3627,7 +3627,7 @@
     "defaultMessage": "<img src=\"/assets/renders/blinky-pcb.webp\" alt=\"Het gerouteerde blinky-layout\">"
   },
   "aptrexto3m": {
-    "defaultMessage": "Het resultaat registreert een hash van het koper dat het zag (alleen de <code>region</code> van de simulatie) en van de stackup. Wanneer een van beide verandert, waarschuwt check dat het resultaat verouderd is, en faalt alles dat het leest, een cascade of een interface-meting, totdat je het opnieuw uitvoert."
+    "defaultMessage": "Het resultaat registreert een hash van het kopervlak dat het zag (alleen de <code>region</code> van de simulatie) en van de stackup. Als een van beide verandert, waarschuwt de controle dat het resultaat verouderd is, en faalt alles dat het leest, een cascade of een interface-meting, totdat je het opnieuw uitvoert."
   },
   "aq5m89eyr9": {
     "defaultMessage": "0.2"
@@ -3681,7 +3681,7 @@
     "defaultMessage": "0.5"
   },
   "bkysp9m0z3": {
-    "defaultMessage": "Check toont elke mislukte assertie, contentie of timingovertreding als een fout op de simulatie, zolang het resultaat actueel is."
+    "defaultMessage": "De controle noemt elke mislukte assertie, contentie of timingovertreding als een fout op de simulatie, zolang het resultaat actueel is."
   },
   "blg2ol2zyn": {
     "defaultMessage": "de standaard doorgeboorde stackups, 4 tot 18 lagen"
@@ -3765,13 +3765,13 @@
     "defaultMessage": "<code>Q</code>, <code>QN</code> (z als <code>OE</code> laag is)"
   },
   "d4h9xa9tl2": {
-    "defaultMessage": "Teken de courtyard op <code>F.CrtYd</code> en het lichaam op <code>F.Fab</code>: check heeft een courtyard nodig die de pads omsluit, de placer houdt courtyards uit elkaar, en de rand- en montage-regels meten vanaf het lichaam. Stel <code>height</code> in zodat de 3D-view en de regel voor hoge onderdelen een hoogte hebben zonder model."
+    "defaultMessage": "Teken de courtyard op <code>F.CrtYd</code> en de behuizingscontour op <code>F.Fab</code>: de controle heeft een courtyard nodig die de pads omsluit, de placer houdt courtyards uit elkaar, en de rand- en assemblageregels meten vanaf de behuizing. Stel <code>height</code> in zodat het 3D-weergave en de regel voor hoge onderdelen een hoogte hebben zonder model."
   },
   "da20h6ryzp": {
     "defaultMessage": "De MCP-server"
   },
   "da4s6xwybs": {
-    "defaultMessage": "Een PNG van de printplaat precies zoals de viewer hem tekent. Een geslaagde check kan nog steeds een overvolle zeefdruk of een omweg in een spoor verbergen."
+    "defaultMessage": "Een PNG van de printplaat precies zoals de viewer hem tekent. Een geslaagde controle kan nog steeds een overvolle zeefdruk of een omweg in een spoor verbergen."
   },
   "dbq5pcavbe": {
     "defaultMessage": "Agentopzet, MCP inbegrepen"
@@ -3906,7 +3906,7 @@
     "defaultMessage": "<code>diff_gap</code> maakt de klasse een differentieel paar, en zijn impedantie de differentieelimpedantie."
   },
   "g1pmb5fxu3": {
-    "defaultMessage": "Pads krijgen hun nets uit het schema (padnummer = pinnennummer). Kopervlakken worden gevuld met de clearance tot elk ander net en tot de rand van de printplaat, en eilanden die niets raken, worden verwijderd. De check rapporteert ongerouteerde verbindingen (met het ratsnest), kortsluitingen, overtredingen van de clearance, sporen die smaller zijn dan hun netklasse of afwijken van hun impedantiebreedte, koper dicht bij de rand, overlappingen van courtyards, ongeplaatste onderdelen, sporeinde die niets raken, en zeefdruktxt die andere tekst overlapt, een zeefdrukcontour kruist, op een pad ligt of van de printplaat loopt. Courtyards zijn de gesloten contouren die op <code>F.CrtYd</code> / <code>B.CrtYd</code> worden getekend en met het onderdeel worden geplaatst (een onderdeel aan de onderkant ligt aan de andere kant); twee onderdelen waarvan de courtyards aan dezelfde kant overlappen, is een fout, en ook een courtyard aan een van beide kanten die over het NPTH-gat van een ander onderdeel ligt of over de courtyard van een <code>MountingHole*</code>-footprint (de padcontour als die er geen heeft). Noem een item met zijn type als namen botsen: <code>agentee render pcb:lna</code>, <code>sch:lna</code>, <code>board:lna</code>."
+    "defaultMessage": "Pads krijgen hun nets uit het schema (padnummer = pinnummer). Kopervlakken worden gevuld met de clearance tot elk ander net en tot de rand van de printplaat, en eilanden die niets raken worden verwijderd. De controle rapporteert ongerouteerde verbindingen (met het ratsnest), kortsluitingen, overtredingen van de clearance, sporen die smaller zijn dan hun klasse of afwijken van hun impedantiebreedte, koper dicht bij de rand, overlappingen van courtyards, ongeplaatste onderdelen, sporeinde die niets raken, en zeefdrukletters die andere letters overlappen, een zeefdrukcontour kruisen, op een pad liggen of buiten de printplaat lopen. Courtyards zijn de gesloten contouren die op <code>F.CrtYd</code> / <code>B.CrtYd</code> worden getekend, geplaatst met het onderdeel (een onderkant-onderdeel ligt op de andere kant); twee onderdelen waarvan de courtyards op dezelfde kant overlappen zijn een fout, evenals een courtyard op een van beide kanten die over een NPTH-gat van een ander onderdeel of over de courtyard van een <code>MountingHole*</code>-footprint ligt (de padcontour als die er geen heeft). Noem een item met zijn type als namen botsen: <code>agentee render pcb:lna</code>, <code>sch:lna</code>, <code>board:lna</code>."
   },
   "g1udt5l7aq": {
     "defaultMessage": "zeefdruklijnen, artwork en tekst in het Hershey-stroke-lettertype, met het <code>agentee vX.Y.Z-HASH</code>-watermerk"
@@ -3915,7 +3915,7 @@
     "defaultMessage": "<code>add</code> plaatst een onderdeel rechts van alles wat er al is, op het raster van 1,27 mm. <code>--at X,Y</code> plaatst het ergens anders en past het aan het raster aan. <code>--list</code> toont de onderdelen en nets als JSON, en <code>--json</code> op elk commando geeft de opgeloste pinnen en coördinaten."
   },
   "g2d59524d6": {
-    "defaultMessage": "<code>impedance</code> wordt op elke laag in <code>layers</code> gecontroleerd. Laat <code>track_width</code> weg en check lost het op op de eerste laag; geef <code>widths</code> per laag op als één breedte niet op elke laag past."
+    "defaultMessage": "<code>impedance</code> wordt gecontroleerd op elke laag in <code>layers</code>. Laat <code>track_width</code> weg en de controle lost het op voor de eerste laag; geef <code>widths</code> per laag als één dikte niet op elke laag past."
   },
   "g2n2yl3yhc": {
     "defaultMessage": "Van de eerste printplaat tot het fabrikantpakket, één handleiding per fase van een ontwerp."
@@ -3942,7 +3942,7 @@
     "defaultMessage": "<code>min_drill</code>, <code>min_via_drill</code>"
   },
   "glhbhwqbjr": {
-    "defaultMessage": "Een pin is <code>REF.PIN</code>, met nummer of met een unieke pinnaam; een naam die meerdere pins delen, is een fout. Een pin die een net krijgt waar hij al op zit, verplaatst naar het nieuwe net. Het bestand behoudt zijn commentaar en opmaak. <code>agentee edit</code> schrijft het bestand, vult de opgeslagen kopervlakinvullingen van een layout opnieuw, rapporteert daarna de check-diagnostiek van de bestanden die het heeft aangeraakt, en eindigt met 1 als er een fout is."
+    "defaultMessage": "Een pin is <code>REF.PIN</code>, per nummer of per unieke pinnaam; een naam die meerdere pins delen is een fout. Een pin die een net krijgt waar hij al op zit, verplaatst naar het nieuwe net. Het bestand behoudt zijn commentaar en opmaak. <code>agentee edit</code> schrijft het bestand, vult de opgeslagen kopervlakken van een layout opnieuw in en rapporteert daarna de controlediagnostiek van de bestanden die het heeft aangeraakt, en eindigt met 1 als er een fout is."
   },
   "glyi8p9jou": {
     "defaultMessage": "Routeer eerst de nets die ertoe doen met de hand: een RF-lijn, de hete lus van een schakelregelaar, een kristaloscillator. Laat daarna de router de rest invullen, een klasse tegelijk."
@@ -3972,7 +3972,7 @@
     "defaultMessage": "Oogdiagrammen, PDN en S-parameters"
   },
   "gx47fhiroy": {
-    "defaultMessage": "Elk layout bevat zeefdrukt tekst <code>agentee vX.Y.Z-HASH</code>: de versie van agentee die het pakket heeft gebouwd en de korte git hash van de bron, met <code>-dirty</code> als de boom ongecommitte wijzigingen had, of <code>unknown</code> buiten git. Deze wordt altijd geplot en kan niet worden uitgeschakeld. De hoogte is <code>min_silk_text_height</code>, gecentreerd, en standaard op <code>B.SilkS</code> (<code>F.SilkS</code> als de onderkant geen ruimte heeft of de printplaat geen onderzeefdruk heeft) op de vrije plek dichtst bij de linkerbenedrand van de printplaat, 90 graden gedraaid als alleen een hoge opening past. Een vrije plek houdt afstand van pads, vias, andere zeefdrukt tekst en lijnen, artwork en componentlichamen, en blijft <code>min_copper_to_edge</code> binnen de omtrek. De viewer, render en montagetekeningen tonen deze, en <code>fab-notes.txt</code> noemt deze. Als er geen vrije plek is, meldt check een <code>watermark</code> fout met de vereiste grootte en de minst bezette plek, en weigert de fabrikant; maak daar ruimte of stel <code>[watermark] at</code> (plus <code>layer</code>, <code>rotation</code>) zelf in. Een <code>[watermark]</code> plek die niet vrij is, is een <code>watermark</code> fout die aangeeft wat deze raakt, en een stackup zonder <code>kind = \"silk\"</code> laag is een <code>watermark</code> fout die erom vraagt."
+    "defaultMessage": "Elke layout bevat zeefdrukletters <code>agentee vX.Y.Z-HASH</code>: de versie van agentee die het pakket heeft gebouwd en de korte git-hash van de bron, met <code>-dirty</code> als de boom onbevestigde wijzigingen had, of <code>unknown</code> buiten git. Het wordt altijd getekend en kan niet worden uitgeschakeld. Het is <code>min_silk_text_height</code> hoog, gecentreerd, en gaat standaard op <code>B.SilkS</code> (<code>F.SilkS</code> als de onderkant geen ruimte heeft of de printplaat geen onderkant-zeefdruk heeft) op de vrije plek dichtst bij de linkerbenedenhoek van de printplaat, geroteerd 90 graden als alleen een hoge opening past. Een vrije plek houdt afstand van pads, vias, andere zeefdrukletters en lijnen, artwork en onderdelenlichamen, en blijft <code>min_copper_to_edge</code> binnen de contour. De viewer, render en montagetekeningen tonen het, en <code>fab-notes.txt</code> noemt het. Als er geen vrije plek is, rapporteert de controle een <code>watermark</code>-fout met de grootte die vrij moet zijn en de minst bezette plek, en weigert de fabrikant; maak daar ruimte of stel <code>[watermark] at</code> (plus <code>layer</code>, <code>rotation</code>) zelf in. Een <code>[watermark]</code>-plek die niet vrij is, is een <code>watermark</code>-fout die noemt wat hij raakt, en een stackup zonder <code>kind = &quot;silk&quot;</code>-laag is een <code>watermark</code>-fout die erom vraagt."
   },
   "gykjxthnef": {
     "defaultMessage": "Onderdelen die je al hebt gekozen, op fabrikantonderdeelnummer. Onderdelen die de agent zelf kiest, komen in <code>DESIGN.md</code> met de reden."
@@ -4080,7 +4080,7 @@
     "defaultMessage": "Geplaatste onderdelen en nets als lijsten van pins. Laat de draden weg en agentee routeert ze."
   },
   "iab45dfro1": {
-    "defaultMessage": "Een interface in het layout kan afgeronde simulaties lezen en check laten falen als een link zijn getallen mist:"
+    "defaultMessage": "Een interface in het layout kan afgeronde simulaties lezen en de controle laten falen als een link niet aan zijn getallen voldoet:"
   },
   "ibp664pyt5": {
     "defaultMessage": "Het netlist wordt als volgt omgezet in cellen:"
@@ -4290,7 +4290,7 @@
     "defaultMessage": "Ontwerpen controleren in CI - agentee handleiding"
   },
   "lnxfsx9n9j": {
-    "defaultMessage": "Check berekent dan de spanning die elke input met levels ziet, op de slechtste hoek van zijn rails en weerstandstoleranties (1% tenzij het onderdeel een <code>tolerance</code>-veld heeft), door schakelaars in elke staat, open-collector-outputs uit en laag, interne pulls en input-lekstromen. Het is een fout als een input:"
+    "defaultMessage": "De controle berekent daarna de spanning die elke ingang met niveaus ziet, bij de slechtste hoek van de rails en de toleranties van de weerstanden (1% tenzij het onderdeel een <code>tolerance</code>-veld heeft), door schakelaars in elke staat, open collector-uitgangen uit en laag, interne pull-ups en -pull-downs en inlekkage van ingangen. Het is een fout als een ingang:"
   },
   "lq8wugwd8k": {
     "defaultMessage": "Dielektrici volgen hetzelfde Djordjevic-Sarkar-model als de 2D-oplosser (hun <code>er</code> en <code>loss_tangent</code> genomen op 1 GHz), als een set Debye-polen log-uitgelijnd van een dertigste van de laagste frequentie tot dertig keer de hoogste, één polarisatiestroom per pool op elke dielektrische rand (binnen 3% van de verliesfactor van het model en 0,01 van zijn er over het bandbreedte). Het verlies groeit dus met de frequentie zoals het zou moeten, en op een 50 ohm microstrip komt het binnen 4% van de Hammerstad filling-factor formule uit op 1,5, 2,2 en 3 GHz. Randen die een poort, een lumped onderdeel of koper dragen, houden een geleidbaarheid vast die op het bandcentrum is vastgezet. Koperlagen zijn platen met een oppervlakimpedantie die met de frequentie varieert, zodat zowel de weerstand als de interne inductantie de skin effect, de ruwheid en de afwerking over het bandbreedte volgen, impliciet bijgewerkt zodat de plaat stabiel blijft bij elke tijdstap. Een plaat met nul dikte heeft één stroom, terwijl echt koper hem op twee vlakken voert, zodat elke plaatrand het magnetische veld net boven en onder zich bijhoudt tijdens de run en zijn impedantie neemt als (Jtop^2 Ztop + Jbottom^2 Zbottom) / (Jtop + Jbottom)^2: de helft van de vlakimpedantie voor een gecentreerde stripline, dicht bij het onderste vlak voor een spoor boven een plane."
@@ -4341,7 +4341,7 @@
     "defaultMessage": "elke testpad, voor de bouwer van de testopstelling"
   },
   "mm03n0h8n9": {
-    "defaultMessage": "Met <code>rails</code> ingesteld, berekent check de spanning die elke ingang met <code>levels</code> ziet: weerstanden (<code>R</code>-onderdelen, 1% tenzij het onderdeel een <code>tolerance</code>-veld heeft), schakelaars (<code>SW</code>-onderdelen, elke open en gesloten staat), open collector-uitgangen (uit en laag), interne pulls en ingangslekstroom, elk op het slechtste hoekpunt binnen de spannings- en weerstandsbereiken. Het is een fout als de ingang tussen VIL en VIH kan zitten, als hij zweeft zonder dat iets hem aan een spoor koppelt, als lekstroom door een zwakke pull hem buiten een geldig niveau brengt, en als hij boven zijn <code>min</code> of <code>max</code> kan uitkomen. Binnen 100 mV van een drempel is een waarschuwing. Een net met iets anders erop (een uitgang, een connector, een diode, een voedingpin van een net dat niet in <code>rails</code> staat) wordt gedreven door iets dat het niet kan modelleren en wordt overgeslagen. Condensatoren en testpunten worden genegeerd. Een bidirectionele pin mag drijven: tenzij een schakelaar of open collector op het net aangeeft dat hij getrokken wordt, worden de andere ingangen op zijn net overgeslagen en wordt hij niet als zwevend gemeld."
+    "defaultMessage": "Met <code>rails</code> ingesteld, berekent de controle de spanning die elke input met <code>levels</code> ziet: weerstanden (<code>R</code>-onderdelen, 1% tenzij het onderdeel een <code>tolerance</code>-veld heeft), schakelaars (<code>SW</code>-onderdelen, elke open en gesloten staat), open collector outputs (uit en laag), interne pulls en input-lekstromen, elk op zijn slechtste hoek over rail- en weerstandsbereiken. Het is een fout als de input tussen VIL en VIH kan zitten, als hij zweeft zonder iets die hem aan een rail koppelt, als lekstroom door een zwakke pull hem uit een geldig niveau verplaatst, en als hij buiten zijn <code>min</code> of <code>max</code> kan gaan. Binnen 100 mV van een drempel is een waarschuwing. Een net met iets anders erop (een output, een connector, een diode, een voedingpint van een net niet in <code>rails</code>) wordt gestuurd door iets dat het niet kan modelleren en wordt overgeslagen. Condensatoren en testpunten worden genegeerd. Een bidirectionele pin mag aan het sturen zijn: tenzij een schakelaar of open collector op het net aangeeft dat hij getrokken wordt, worden de andere inputs op zijn net overgeslagen en wordt hij niet als zwevend gerapporteerd."
   },
   "mpzrdlihpw": {
     "defaultMessage": "Start een project"
@@ -4380,7 +4380,7 @@
     "defaultMessage": "Een footprint tekenen"
   },
   "nbhz11on0k": {
-    "defaultMessage": "Zonder <code>type</code> bepaalt de span het. Een microvia overspant één dielektricum, tenzij het <code>stacked</code> is (één microvia per dielektricum, wat <code>stacked_microvias</code> vereist) of <code>skip</code> (één laserboor over twee dielektrica). Check houdt elke microvia aan de laserboorlimieten en de diepte-over-boor aan <code>max_microvia_aspect_ratio</code>, 0.8:1 op de <code>hdi</code>-preset."
+    "defaultMessage": "Zonder <code>type</code> bepaalt de span het. Een microvia spannt één dielektricum, tenzij het <code>stacked</code> is (één microvia per dielektricum, wat <code>stacked_microvias</code> vereist) of <code>skip</code> (één laserboor over twee dielektrica). De controle houdt elke microvia vast aan de laserboorlimieten en de diepte-over-boor aan <code>max_microvia_aspect_ratio</code>, 0.8:1 op de <code>hdi</code>-preset."
   },
   "ncslo2moub": {
     "defaultMessage": "Testtoegang: standaard zijn de nets die een probe nodig hebben de voedingnets (een klasse met <code>current</code>, of een naam zoals <code>3V3</code>, <code>1V8</code>, <code>+5V</code>, <code>VCC*</code>, <code>VDD*</code>, <code>VBUS*</code>, <code>VBAT*</code>, <code>VIN*</code>, <code>VSYS*</code>), massa (<code>GND</code>, <code>*GND</code>, <code>GND*</code>) en nets met een naam zoals <code>*RST*</code>, <code>*RESET*</code>, <code>*EN*</code>, <code>*PG*</code>, <code>*CLK*</code>, <code>*TX*</code>, <code>*RX*</code>, <code>*SCL*</code>, <code>*SDA*</code>, <code>*SWD*</code>, <code>*TCK*</code>, <code>*TMS*</code>, <code>*TDI*</code>, <code>*TDO*</code>. De standaardinstelling laat schakelpunten en nets voor regelfeedback, soft-start en ruisreductie (<code>SW*</code>, <code>*_SW</code>, <code>LX*</code>, <code>FB*</code>, <code>SS*</code>, <code>NR*</code>, gematcht op de volledige naam of het laatste <code>/</code>-segment) uit, ook als hun klasse voeding is: de capaciteit van een probe en de stub naar het pad koppelen schakelruis naar een feedbackdelier of vertragen een soft-start of ruisfilter, en een stub op een schakelpunt straalt uit. <code>nets</code> vervangt die lijst (noem een net daar om het alsnog te proeven) en <code>exclude</code> haalt nets uit die lijst. Een testpunt is een onderdeel met een referentie <code>TP</code> en een nummer, of een footprint met de naam <code>TestPoint*</code>; zoals elk onderdeel moet het in het schema staan. De ingebouwde <code>TestPoint_Pad_D1.0mm</code>-footprint (een rond SMD-pad van 1,0 mm, masker open, geen pasta) en het <code>TestPoint</code>-symbool worden door <code>agentee testpoints</code> in <code>footprints/</code> en <code>symbols/</code> geschreven."
@@ -4395,7 +4395,7 @@
     "defaultMessage": "Printplaat en sporen"
   },
   "nja0mzsiyi": {
-    "defaultMessage": "Een spoor dat een pad alleen raakt (de middellijn mist het pad) wordt gemarkeerd; voer het spoor in het pad. Twee segmenten van één net die op dezelfde laag over elkaar liggen (parallel, overlappend met meer dan een spoorbreedte) zijn een fout, omdat het koper verdubbeld is; een bocht scherper dan 90 graden wordt gemarkeerd als een zuurval. Een spoor mag onder de breedte van zijn netklasse inkomen, tot minimaal het fabrikant-minimum, voor maximaal 0,5 mm (de <code>neckdown</code> van de klasse) waar het op een klein pad uitkomt; de router tekent zulke halsjes zelf (zie Autorouting). Geboorde gaten, vias en geplated pads moeten allemaal de <code>min_hole_to_hole</code> van de printplaat van elkaar houden; de check telt de paren die dit niet doen en noemt het eerste. Twee vias van één net op dezelfde plek zijn ook een fout: de fabrikant zou het gat dan tweemaal boren. Maskeropeningen zijn de pad-omtrekken, zonder uitbreiding, en vias worden getent. Twee openingen van verschillende nets (of zonder net) die overlappen of een maskerweb onder <code>min_mask_web</code> laten, zijn een fout, geteld per paar onderdelen met de eerste plek genoemd. Pads van één onderdeel met een fijne pitch worden ook gecontroleerd: los het op in de footprint met smalere pads, of stel een kleinere <code>min_mask_web</code> in als de fabrikant dat toelaat. Een footprint met <code>mask_web = false</code> heeft zijn masker geopend als één venster over zijn pads (een gang opening), zodat paren van zijn eigen pads worden overgeslagen; zijn pads worden wel gecontroleerd tegenover andere onderdelen."
+    "defaultMessage": "Een spoor dat een pad alleen raakt (zijn middellijn mist het pad) wordt gemarkeerd; voer het spoor het pad in. Twee segmenten van één net die op een laag boven elkaar liggen (parallel, overlappend met meer dan een spoorbreedte) zijn een fout, omdat het koper verdubbeld is; een bocht scherper dan 90 graden wordt gemarkeerd als een zuurval. Een spoor mag onder zijn klassebreedte inkomen, tot minimaal het fabrikantminimum, voor maximaal 0,5 mm (de klasse <code>neckdown</code>) waar het op een klein pad uitkomt; de router tekent zulke nekken zelf (zie Autorouting). Geboorde gaten, vias en geplated pads moeten allemaal het <code>min_hole_to_hole</code> van de printplaat onderling aanhouden; de controle telt de paren die dat niet doen en noemt de eerste. Twee vias van één net op dezelfde plek zijn ook een fout: de fabrikant boort het gat dan twee keer. Maskeropeningen zijn de padomtrekken, zonder uitbreiding, en vias worden getented. Twee openingen van verschillende nets (of zonder net) die overlappen of een maskergat onder <code>min_mask_web</code> laten, zijn een fout, geteld per onderdeelpaar met de eerste plek genoemd. Pads van één onderdeel met een fijne pitch worden ook gecontroleerd: los het op in de footprint met smalere pads, of stel een kleinere <code>min_mask_web</code> in als de fabrikant dat toelaat. Een footprint met <code>mask_web = false</code> heeft zijn masker geopend als één venster over zijn pads (een gang opening), zodat paren van zijn eigen pads worden overgeslagen; zijn pads worden wel gecontroleerd tegen andere onderdelen."
   },
   "nkntq5f43u": {
     "defaultMessage": "<code>track-grazes-pad</code>"
@@ -4818,7 +4818,7 @@
     "defaultMessage": "Schemata, printplaat layouts en simulaties als gewone TOML-bestanden die je coding agent schrijft. agentee controleert elke wijziging aan de hand van de regels van de fabrikant, rendert de printplaat, lost impedantie op en draait FDTD-, thermische en logica-simulaties op de GPU, en schrijft de Gerbers."
   },
   "uk5y9kvoda": {
-    "defaultMessage": "Een batch is één laden en één check aan het eind, zodat de halve toestand ertussen nooit wordt gemarkeerd. Pins zijn <code>REF.PIN</code>, per nummer of per unieke pinnaam: <code>D1.A</code> is de anode, en de output bevestigt welk nummer het oploste."
+    "defaultMessage": "Een batch is één laad en één controle aan het einde, dus de halve afgeronde staten ertussen worden nooit gemarkeerd. Pinnen zijn <code>REF.PIN</code>, per nummer of per unieke pinnaam: <code>D1.A</code> is de anode, en de output bevestigt welk nummer het heeft opgelost."
   },
   "uqt2owvio4": {
     "defaultMessage": "Eenheden en coördinaten"
@@ -4914,7 +4914,7 @@
     "defaultMessage": "de egui-viewer en de headless PNG-renderer"
   },
   "w7ba4yzjw9": {
-    "defaultMessage": "<code>current</code> wordt op elke laag die de klasse mag gebruiken gecontroleerd tegen IPC-2221, bij <code>max_temp_rise</code> (standaard 10 C). Binnenlagen voeren minder stroom dan buitenlagen, en check noemt de breedte die dat op elke laag kan:"
+    "defaultMessage": "<code>current</code> wordt gecontroleerd tegen IPC-2221 op elke laag die de klasse mag gebruiken, bij <code>max_temp_rise</code> (standaard 10 C). Binnenste lagen dragen minder dan buitenste lagen, en de controle noemt de dikte die het op elke laag draagt:"
   },
   "w8vs1sxjll": {
     "defaultMessage": "De sleutel-voor-sleutel referentie voor elk agentee-bestand: printplaat specificaties, stackups, vias en fabrikantregels, de ontwerpregelcontroles, symbolen, footprints, schemata, layouts, simulaties en het fabrikantpakket."
@@ -4941,7 +4941,7 @@
     "defaultMessage": "extensie"
   },
   "wkkjumi055": {
-    "defaultMessage": "Voer lange simulaties in de achtergrond uit en ga door met het bewerken van andere dingen. Check waarschuwt als een resultaat verouderd is."
+    "defaultMessage": "Voer lange simulaties op de achtergrond uit en ga door met het bewerken van andere dingen. De controle waarschuwt als een resultaat verouderd is."
   },
   "wonqk3rj7e": {
     "defaultMessage": "<code>Edge_Cuts.gbr</code>"
@@ -5004,13 +5004,13 @@
     "defaultMessage": "<code>agentee place NAME [--parts &#39;U*,C1?&#39;] [--keep-placed] [--side F|B|both] [--seed N] [--dry-run]</code> (MCP <code>place</code>) plaatst de onderdelen van het schema van de layout binnen de printplaatrand en schrijft voor elk <code>at</code>, <code>rotation</code> en <code>side</code> in zijn <code>[[footprints]]</code>-item (voegt items toe voor nieuwe onderdelen, verwijdert het <code>at</code> van een verplaatst label), verplaatst de referentielabels die nu een zeefdrukcheck niet halen, en vernieuwt daarna de opgeslagen kopervlakken. Het is een snelle start voor een hele printplaat: plaatsen, bekijken, en daarna wat belangrijk is handmatig verplaatsen en vastzetten. <code>--parts</code> plaatst alleen de overeenkomende onderdelen en laat de rest waar die staan; <code>--keep-placed</code> laat elk onderdeel dat al een plaatsing heeft; <code>locked = true</code> op een <code>[[footprints]]</code>-item wordt nooit verplaatst. <code>--side both</code> laat ontkoppelingscondensatoren van een BGA eronder op de achterkant gaan en passieve onderdelen naar de achterkant overlopen als de voorkant vol is; de standaard zet alles op de voorkant. Het resultaat hangt alleen af van de bestanden en <code>--seed</code>, dus een andere seed is een andere start. Het rapporteert de halve omtrek draadlengte (HPWL) van de signaalnetten en van elk net, ratsnest-kruispunten, courtyard-overlappingen en de gemiddelde en slechtste ontkoppelingafstand, voor de plaatsing waar het mee begon (als elk onderdeel er een had) en voor zijn eigen, plus de clusters die het bouwde en de rand waar elke connector naartoe ging. Sporen en vias die al in het bestand staan blijven waar ze zijn; plaats een ongerouteerde printplaat, of <code>route --reroute</code> daarna. De labels worden verplaatst met dezelfde zoekopdracht als <code>agentee silk</code> (een vrije plek naast het onderdeel, tot 8 passes en 3 pogingen per label), uitgevoerd op de geplaatste layout in het geheugen, zodat het project nog één keer wordt geladen, niet per pass; <code>labels_moved</code> telt ze en <code>labels_failing</code> noemt degenen zonder vrije plek, voor <code>agentee silk NAME --hide</code> of een handmatige verplaatsing."
   },
   "xe19xxqz3m": {
-    "defaultMessage": "De check rapporteert de skew van elk paar in mm en ps (uit de effectieve permittiviteit van de laag), een stuk van het paar dat met de verkeerde afstand loopt, en paren die minder dan 80% van hun lengte naast elkaar doorbrengen. Matchgroepen zeggen welk net te kort of te lang is en met hoeveel. Een paar dat door seriële twee-pins-onderdelen loopt, zoals de AC-condensatoren op een USB-lane, wordt van eind tot eind gemeten: de skew is de som over elk paar dat het verbindt, gerapporteerd als <code>FX_TX1_P+SS_TX1_P/FX_TX1_N+SS_TX1_N</code>."
+    "defaultMessage": "De controle rapporteert de skew van elk paar in mm en ps (afgeleid van de effectieve permittiviteit van de laag), een stuk van het paar dat met de verkeerde afstand loopt, en paren die minder dan 80% van hun lengte naast elkaar lopen. Match groups geven aan welk net te kort of te lang is en met hoeveel. Een paar dat door serieschakelaars met twee pinnen loopt, zoals de AC-condensatoren op een USB-lane, wordt van begin tot eind gemeten: de skew is de som over alle paren die het verbindt, gerapporteerd als <code>FX_TX1_P+SS_TX1_P/FX_TX1_N+SS_TX1_N</code>."
   },
   "xetsghciuj": {
     "defaultMessage": "<code>symbols/</code>"
   },
   "xktfmjujro": {
-    "defaultMessage": "Voeg <code>board = &quot;blinky&quot;</code> en <code>schematic = &quot;blinky&quot;</code> toe aan de starter. De check faalt nu, en dat is correct:"
+    "defaultMessage": "Voeg <code>board = &quot;blinky&quot;</code> en <code>schematic = &quot;blinky&quot;</code> toe aan de starter. De controle faalt nu, wat correct is:"
   },
   "xm2pl1y9re": {
     "defaultMessage": "Geleiding door FR4, koper en vias met convectie van beide zijden. Seconden, geen minuten."
@@ -5088,7 +5088,7 @@
     "defaultMessage": "De layout-enginekaart"
   },
   "ym46vdpzte": {
-    "defaultMessage": "Binnen 100 mV van een drempel is een waarschuwing. Invoeren die in <code>analog</code> staan, worden gelezen door een ADC, dus gelden alleen hun limieten. Een net met iets erop dat check niet kan modelleren, zoals een uitgang of een connector, wordt overgeslagen in plaats van geraden."
+    "defaultMessage": "Binnen 100 mV van een drempel is een waarschuwing. Ingangen die in <code>analog</code> staan, worden door een ADC gelezen, dus gelden alleen hun grenzen. Een net met erop iets wat de controle niet kan modelleren, zoals een uitgang of een connector, wordt overgeslagen in plaats van geraden."
   },
   "yng2rqtj54": {
     "defaultMessage": "een testpunt-pad kleiner dan <code>min_test_pad</code>, dichter dan <code>min_test_pad_pitch</code> tot een ander centrum tot centrum, dichter dan <code>min_test_pad_to_body</code> tot het lichaam van een ander onderdeel aan de probe-zijde, dichter dan <code>min_test_pad_to_edge</code> tot de rand van de printplaat of een gereedschapsgat (niet-geplateerde gaten en montagegaten), of niet aan de probe-zijde"

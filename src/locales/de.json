@@ -255,7 +255,7 @@
     "defaultMessage": "2,4 ns"
   },
   "13mgmqapqep": {
-    "defaultMessage": "Ein Takt ist niedrig bis <code>phase</code>, dann hoch für <code>duty</code> von jedem <code>period</code>; ohne Phase startet er bei 0 hoch. Ein Stimulus steuert sein Netz als starker Treiber; auf einem Versorgungsnetz ersetzt er die Schiene. Ein <code>at</code>-Check liest das Netz, sobald alles zu diesem Zeitpunkt abgeklungen ist; eine Sequenz liest die Netze kurz vor jeder sauberen Flanke (0 zu 1, oder 1 zu 0) des Takts, sodass ein registrierter Ausgang so gesehen wird, wie er war, als die Flanke kam. Netze werden wie im Schaltplan benannt, und ein Netz, das über einen 0-Ohm-Link mit einem anderen verbunden ist, antwortet auf beide Namen."
+    "defaultMessage": "Ein Takt ist niedrig bis <code>phase</code>, dann hoch für <code>duty</code> von jedem <code>period</code>; ohne Phase startet er hoch bei 0. Ein Stimulus treibt sein Netz als starker Treiber; auf einem Versorgungsnetz ersetzt er die Schiene. Eine <code>at</code>-Prüfung liest das Netz, sobald alles zu diesem Zeitpunkt abgeklungen ist; eine Sequenz liest die Netze kurz vor jeder sauberen Flanke (0 zu 1 oder 1 zu 0) des Takts, sodass ein registrierter Ausgang so gesehen wird, wie er war, als die Flanke kam. Netze werden benannt wie im Schaltplan, und ein Netz, das über eine 0-Ohm-Verbindung mit einem anderen verbunden ist, antwortet auf beide Namen."
   },
   "13r99o1j0yg": {
     "defaultMessage": "LVC"
@@ -759,7 +759,7 @@
     "defaultMessage": "Schlitze, die schmaler als <code>min_plated_slot_width</code> oder <code>min_npth_slot_width</code> sind, oder kürzer als das Doppelte ihrer Breite"
   },
   "1dj711ix5kg": {
-    "defaultMessage": "Einen Fertiger und einen echten Lagenaufbau wählen, eine Netzklasse pro Netztyp definieren und Impedanz- und Stromziele setzen, damit check die Breiten löst."
+    "defaultMessage": "Wähle einen Fertiger und einen realen Lagenaufbau, definiere eine Netzklasse pro Netzart und setze Impedanz- und Stromziele, damit die Prüfung die Breiten berechnet."
   },
   "1djz69hnhap": {
     "defaultMessage": "PCB-Design als Text, den dein Agent bearbeiten kann"
@@ -1095,7 +1095,7 @@
     "defaultMessage": "Es gibt keine Systembibliotheken, gegen die gelinkt wird. Der Viewer lädt X11 oder Wayland zur Laufzeit, und die GPU-Löser erreichen Vulkan, Metal oder DirectX 12 über wgpu."
   },
   "1ijvmou62qv": {
-    "defaultMessage": "Jede <code>*.sim.toml</code> ist ein Lauf mit einer Art. Die Solver laufen über wgpu auf Vulkan, Metal oder DirectX 12, schreiben ihre Ergebnisse neben die Spezifikation und check warnt, wenn ein Ergebnis veraltet ist."
+    "defaultMessage": "Jede <code>*.sim.toml</code> ist eine Ausführung mit einer Art. Die Solver laufen über wgpu auf Vulkan, Metal oder DirectX 12, schreiben ihre Ergebnisse neben die Spezifikation und die Prüfung warnt, wenn ein Ergebnis veraltet ist."
   },
   "1ik7elrzp6d": {
     "defaultMessage": "Via-Typen - agentee Referenz"
@@ -2538,7 +2538,7 @@
     "defaultMessage": "<code>agentee fab</code>"
   },
   "26pkfhq2tqp": {
-    "defaultMessage": "<strong>Impedanz und Strom liegen an der Klasse.</strong> Gib einer Klasse <code>impedance = &quot;50ohm&quot;</code> oder <code>current = &quot;2A&quot;</code> an, und check löst die Breite für jede Schicht des Lagenaufbaus."
+    "defaultMessage": "<strong>Impedanz und Strom liegen auf der Klasse.</strong> Gib einer Klasse <code>impedance = &quot;50ohm&quot;</code> oder <code>current = &quot;2A&quot;</code> und die Prüfung berechnet die Breite für jede Schicht des Lagenaufbaus."
   },
   "26s0srbqiyq": {
     "defaultMessage": "Eine Platine kann mehrere Via-Typen auflisten. Ein Durchgangsvia braucht nichts weiter; Blind-, Grab- und Mikrovias brauchen einen HDI-Fertiger und werden in <a href=\"/guides/hdi/\">HDI: Mikrovias und Laminierung</a> behandelt."
@@ -3333,7 +3333,7 @@
     "defaultMessage": "<code>zone-tips</code>"
   },
   "5m5l2y1x20": {
-    "defaultMessage": "Mit <code>solver = &quot;field&quot;</code> löst check die Klasse auf jeder Schicht, die sie verwenden darf, und sagt, wenn sie daneben liegt, um wie viel und was zu verwenden:"
+    "defaultMessage": "Mit <code>solver = &quot;field&quot;</code> berechnet die Prüfung die Klasse auf jeder Schicht, die sie verwenden darf, und sagt, wenn sie nicht passt, um wie viel und was zu verwenden:"
   },
   "5mdecrm7hm": {
     "defaultMessage": "<code>fab</code> gesetzt, und ein Lagenaufbau-<code>preset</code>, das der Fertiger tatsächlich baut."
@@ -3396,7 +3396,7 @@
     "defaultMessage": "<code>agentee sparam NAME</code> (MCP <code>sparam</code>) funktioniert mit jedem FDTD- oder Kaskadenergebnis:"
   },
   "785vso7xer": {
-    "defaultMessage": "Lass <code>track_width</code> aus und check löst es für die erste Schicht. Wo eine Breite nicht auf jede Schicht passt, gib <code>widths = { &quot;In2.Cu&quot; = &quot;0.16mm&quot; }</code> an."
+    "defaultMessage": "Lass <code>track_width</code> weg und die Prüfung berechnet es für die erste Schicht. Wenn eine Breite nicht auf jede Schicht passt, gib <code>widths = { &quot;In2.Cu&quot; = &quot;0.16mm&quot; }</code> an."
   },
   "7bxalrqtkl": {
     "defaultMessage": "<code>check</code> führt jede Regel aus; <code>drc</code> gibt nur die Regel-Diagnosen des Layouts aus, jede beginnt mit ihrer ID in eckigen Klammern, und <code>--list</code> gibt jede Regel aus, mit Angabe, ob sie auf diese Platine zutrifft. Fehler blockieren das Fertigerpaket. Warnungen und Hinweise sind Praxis, keine Fertigerlimits: Folge ihnen, außer das Design gibt einen Grund, und schreibe den Grund in <code>DESIGN.md</code>."
@@ -3570,7 +3570,7 @@
     "defaultMessage": "Die HackRF-Pro-Platine, importiert aus KiCad und von agentee gerendert."
   },
   "9tdtrp8oa4": {
-    "defaultMessage": "Bestückungsdruck-Text muss 0,4 mm Abstand zu anderem Bestückungsdruck-Text und 0,2 mm zu Bestückungsdruck-Umrissen halten, Pads, Vias und andere Bauteilkörper meiden und auf der Platine bleiben. Jeder dieser Punkte ist ein Fehler, mit Ausnahme von Text unter dem Körper eines anderen Bauteils, was eine Warnung ist. Wenn eine Referenzbeschriftung fehlschlägt, benennt check eine Stelle, die alle Regeln erfüllt, als <code>label = { at = [...] }</code>-Zeile zum Einfügen. <code>agentee silk NAME</code> (MCP <code>silk</code>) fügt sie alle für dich ein und wiederholt, bis die Beschriftungen sich einpendeln; <code>--hide</code> blendet die Referenzen aus, die keine freie Stelle haben, typischerweise kleine passive Bauteile unter einem BGA."
+    "defaultMessage": "Bestückungsdruck-Text muss 0,4 mm Abstand zu anderem Bestückungsdruck-Text und 0,2 mm zu Bestückungsdruck-Umrissen halten, Pads, Vias und andere Bauteilkörper meiden und auf der Platine bleiben. Jeder dieser Punkte ist ein Fehler, außer Text unter dem Körper eines anderen Bauteils, der eine Warnung ist. Wenn ein Referenzlabel fehlschlägt, benennt die Prüfung eine Stelle, die alle Regeln erfüllt, als <code>label = { at = [...] }</code>-Zeile zum Einfügen. <code>agentee silk NAME</code> (MCP <code>silk</code>) fügt sie alle ein und wiederholt, bis die Labels sich einpendeln; <code>--hide</code> blendet die Referenzen aus, die keine freie Stelle haben, typischerweise kleine passive Bauteile unter einem BGA."
   },
   "9u7i8lybkg": {
     "defaultMessage": "3D-Modelle stammen von <code>KICAD9_3DMODEL_DIR</code> und Freunden, <code>3dmodels/</code> im Projekt, oder einem Cache, den <code>agentee models</code> aus dem kicad-packages3D-Repository füllt."
@@ -3972,7 +3972,7 @@
     "defaultMessage": "Augendiagramme, PDN und S-Parameter"
   },
   "gx47fhiroy": {
-    "defaultMessage": "Jedes Layout trägt den Bestückungsdruck-Text <code>agentee vX.Y.Z-HASH</code>: die Version von agentee, die das Paket erstellt hat, und der kurze Git-Hash seines Quellcodes, mit <code>-dirty</code>, wenn der Baum uncommittete Änderungen hatte, oder <code>unknown</code> außerhalb von Git. Er wird immer gezeichnet und kann nicht deaktiviert werden. Er ist <code>min_silk_text_height</code> hoch, zentriert und geht standardmäßig auf <code>B.SilkS</code> (<code>F.SilkS</code>, wenn unten kein Platz ist oder die Platine keinen unteren Bestückungsdruck hat) an die freie Stelle in der Nähe der unteren linken Ecke der Platine, gedreht um 90 Grad, wenn nur eine hohe Lücke passt. Eine freie Stelle hält Abstand zu Pads, Vias, anderem Bestückungsdruck-Text und Linien, Kunst und Bauteilkörpern und bleibt <code>min_copper_to_edge</code> innerhalb des Umrisses. Der Viewer, die Darstellung und die Montagezeichnungen zeigen ihn, und <code>fab-notes.txt</code> benennt ihn. Wenn keine Stelle frei ist, meldet check einen <code>watermark</code>-Fehler mit der Größe, die freizugeben ist, und der am wenigsten belegten Stelle, und der Fertiger lehnt ab; gib dort Platz oder setze <code>[watermark] at</code> (plus <code>layer</code>, <code>rotation</code>) selbst. Eine <code>[watermark]</code>-Stelle, die nicht frei ist, ist ein <code>watermark</code>-Fehler, der benennt, was sie trifft, und ein Lagenaufbau ohne <code>kind = \"silk\"</code>-Schicht ist ein <code>watermark</code>-Fehler, der darum bittet, eine hinzuzufügen."
+    "defaultMessage": "Jedes Layout trägt den Bestückungsdruck-Text <code>agentee vX.Y.Z-HASH</code>: die Version von agentee, mit der das Fertigungsdatenpaket erstellt wurde, und der kurze Git-Hash des Quellcodes, mit <code>-dirty</code>, wenn der Baum uncommittete Änderungen hatte, oder <code>unknown</code> außerhalb von Git. Er wird immer gezeichnet und kann nicht deaktiviert werden. Er ist <code>min_silk_text_height</code> hoch, zentriert und geht standardmäßig auf <code>B.SilkS</code> (<code>F.SilkS</code>, wenn unten kein Platz ist oder die Platine keinen unteren Bestückungsdruck hat) an die freie Stelle in der Nähe der unteren linken Ecke der Platine, gedreht um 90 Grad, wenn nur ein hoher Spalt passt. Eine freie Stelle hält Abstand zu Pads, Vias, anderem Bestückungsdruck-Text und Linien, Kunst und Bauteilkörpern und bleibt <code>min_copper_to_edge</code> innerhalb des Umrisses. Der Viewer, die Darstellung und die Montagezeichnungen zeigen ihn, und <code>fab-notes.txt</code> benennt ihn. Wenn keine Stelle frei ist, meldet die Prüfung einen <code>watermark</code>-Fehler mit der Größe, die frei sein muss, und der am wenigsten belegten Stelle, und der Fertiger lehnt ab; räume dort Platz oder setze <code>[watermark] at</code> (plus <code>layer</code>, <code>rotation</code>) selbst. Eine <code>[watermark]</code>-Stelle, die nicht frei ist, ist ein <code>watermark</code>-Fehler, der benennt, was sie trifft, und ein Lagenaufbau ohne <code>kind = &quot;silk&quot;</code>-Schicht ist ein <code>watermark</code>-Fehler, der eine solche Schicht verlangt."
   },
   "gykjxthnef": {
     "defaultMessage": "Bauteile, die du bereits ausgewählt hast, nach Herstellerartikelnummer. Bauteile, die der Agent selbst auswählt, gehören mit Begründung in <code>DESIGN.md</code>."

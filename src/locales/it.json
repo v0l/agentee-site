@@ -3,7 +3,7 @@
     "defaultMessage": "Gerber, file di foratura, BOM, posizionamento e note di produzione"
   },
   "1013nohksnw": {
-    "defaultMessage": "Una simulazione logica può essere una misura di un'interfaccia, che poi fallisce il check mentre la simulazione ha un errore:"
+    "defaultMessage": "Una simulazione logica può essere una misura di un'interfaccia, che poi fa fallire la verifica mentre la simulazione ha un errore:"
   },
   "103mz65rwf1": {
     "defaultMessage": "resistenza entro lo 0,5 %, tolleranza non più larga, stesso codice case imperiale; termistori, array e jumper sono rifiutati"
@@ -36,7 +36,7 @@
     "defaultMessage": "Output"
   },
   "10u280yhaz6": {
-    "defaultMessage": "vie il cui span e tipo di foratura non corrispondono a nessun passo di foratura della laminazione (vedi Lamination), per tipo di via e span; il messaggio nomina la voce <code>[[vias]]</code> della scheda ed elenca ogni span che la laminazione forisce, per tipo di foratura. Il check della scheda lascia un tipo di via posizionato da un layout a questa regola"
+    "defaultMessage": "le via il cui span e tipo di foratura non corrispondono a nessun passo di foratura della laminazione (vedi Laminazione), per tipo di via e span; il messaggio indica la voce <code>[[vias]]</code> della scheda e elenca ogni span che la laminazione forisce, per tipo di foratura. La verifica della scheda lascia a questa regola un tipo di via che il layout posiziona"
   },
   "10vlme9hp27": {
     "defaultMessage": "<code>track-overlap</code>"
@@ -183,7 +183,7 @@
     "defaultMessage": "Un net con un'area è un net di piano. <code>tie</code> dà a ogni piazzola SMD di un net di piano un breve stub e una via accanto, sul lato opposto al componente, libera da ogni piazzola e altro net. È così che le piazzole di massa e alimentazione dovrebbero raggiungere un piano, invece di piste tra di esse. Una piazzola che ha già una via del suo net nelle vicinanze viene lasciata così com'è, e una piazzola senza posto legale viene elencata sotto <code>failed</code>."
   },
   "12omflotwaq": {
-    "defaultMessage": "Aggiungi <code>board</code> e <code>schematic</code> al punto di partenza. Il check poi segnala ogni componente non ancora posizionato."
+    "defaultMessage": "Aggiungi <code>board</code> e <code>schematic</code> al punto di partenza. La verifica segnala poi ogni componente non ancora posizionato."
   },
   "12pkt0z0xgr": {
     "defaultMessage": "Importa"
@@ -255,7 +255,7 @@
     "defaultMessage": "2.4 ns"
   },
   "13mgmqapqep": {
-    "defaultMessage": "Un clock è basso fino a <code>phase</code>, poi alto per <code>duty</code> di ogni <code>period</code>; senza phase parte alto a 0. Uno stimolo guida il suo net come driver forte; su un net di alimentazione sostituisce il rail. Un check <code>at</code> legge il net quando tutto a quel tempo si è stabilizzato; una sequenza legge i net poco prima di ogni transizione pulita (da 0 a 1, o da 1 a 0) del clock, in modo che un output registrato venga letto come era al momento della transizione. I net hanno i nomi dello schema, e un net collegato a un altro tramite un link da 0 ohm risponde a entrambi i nomi."
+    "defaultMessage": "Un clock è basso fino a <code>phase</code>, poi alto per <code>duty</code> di ogni <code>period</code>; senza phase inizia alto a 0. Un stimulus guida il suo net come un driver forte; su un net di alimentazione sostituisce il rail. Una verifica <code>at</code> legge il net quando tutto a quel tempo si è stabilizzato; una sequenza legge i net poco prima di ogni transizione pulita (da 0 a 1, o da 1 a 0) del clock, così un output registrato viene letto come era quando la transizione è avvenuta. I net hanno i nomi dello schema, e un net collegato a un altro tramite un collegamento da 0 ohm risponde a entrambi i nomi."
   },
   "13r99o1j0yg": {
     "defaultMessage": "LVC"
@@ -423,7 +423,7 @@
     "defaultMessage": "Ordina la scheda con la stessa costruzione: se JLCPCB usa uno stackup diverso, ogni impedenza risolta è sbagliata."
   },
   "175374ikzs4": {
-    "defaultMessage": "Un'interfaccia definisce ciò che un collegamento deve soddisfare, e check misura il rame rispetto a essa: impedenza, skew, lunghezza, via, stub delle via, il piano di riferimento sotto ogni pista, le via di ritorno, il timing del bus, e gli S-parametri e l'eye delle simulazioni che la modellano."
+    "defaultMessage": "Un'interfaccia dice cosa una linea deve soddisfare e la verifica misura il rame rispetto ad essa: impedenza, skew, lunghezza, via, stub di via, il piano di riferimento sotto ogni pista, le via di ritorno, il timing del bus e i parametri S e l'eye delle simulazioni che la modellano."
   },
   "1758zalpxdz": {
     "defaultMessage": "<code>min_pth_hole_to_copper</code>"
@@ -681,7 +681,7 @@
     "defaultMessage": "<code>hdi-6l-1n1</code>: 6 strati, 1+4+1, 0,8 mm, un prepreg di costruzione da 0,07 mm 1080 su ciascun lato di uno sub-stack di core."
   },
   "1bse3rd4z5c": {
-    "defaultMessage": "I risultati diventano obsoleti quando la specifica o il rame cambiano, e check lo dice."
+    "defaultMessage": "I risultati diventano obsoleti quando la specifica o il rame cambiano, e la verifica lo dice."
   },
   "1bvx5muloyq": {
     "defaultMessage": "Un punto è <code>[x, y]</code>. X cresce verso destra, <strong>Y cresce verso il basso</strong>, per simboli e footprint."
@@ -759,7 +759,7 @@
     "defaultMessage": "fessure più strette di <code>min_plated_slot_width</code> o <code>min_npth_slot_width</code>, o più corte di due volte la loro larghezza"
   },
   "1dj711ix5kg": {
-    "defaultMessage": "Scegli un produttore e uno stackup reale, definisci una classe di net per ogni tipo di net, e imposta su di esse obiettivi di impedenza e corrente in modo che check risolva le larghezze."
+    "defaultMessage": "Scegli un produttore e uno stackup reale, definisci una classe di net per ogni tipo di net e imposta su di esse i target di impedenza e corrente, così la verifica risolve le larghezze."
   },
   "1djz69hnhap": {
     "defaultMessage": "Progettazione di PCB come testo che il tuo agente può modificare"
@@ -924,7 +924,7 @@
     "defaultMessage": "Regole di layout {drc}"
   },
   "1ft2ilcqy8x": {
-    "defaultMessage": "Incolla la larghezza, riesegui check. <a href=\"/guides/impedance/\">Impedenza controllata e coppie</a> va oltre."
+    "defaultMessage": "Incolla la larghezza, rilancia la verifica. <a href=\"/guides/impedance/\">Impedenza controllata e coppie</a> va oltre."
   },
   "1fxwuxai4vj": {
     "defaultMessage": "Un compilatore C, per la crate TLS usata dai download di distributori e modelli: gli strumenti da riga di comando di Xcode su macOS, gli strumenti di build MSVC su Windows, <code>gcc</code> o <code>clang</code> su Linux."
@@ -1116,7 +1116,7 @@
     "defaultMessage": "Routing con più tipi di via"
   },
   "1itm5kdohd2": {
-    "defaultMessage": "<code>show</code> stampa la scheda risolta in JSON: per ogni classe e layer la geometria della pista (microstrip sui layer esterni, stripline all'interno), l'impedenza, la larghezza che soddisfa il target e la corrente che porta. Quando una classe è fuori target, check dice di quanto e cosa usare:"
+    "defaultMessage": "<code>show</code> stampa la scheda risolta come JSON: per ogni classe e strato la geometria della traccia (microstrip sugli strati esterni, stripline all'interno), l'impedenza, la larghezza che soddisfa il target e la corrente che porta. Quando una classe è fuori target, la verifica dice di quanto e cosa usare:"
   },
   "1ivu4pud73f": {
     "defaultMessage": "I riempimenti vengono calcolati al caricamento e messi in cache. <code>agentee fill NAME</code> li salva alla fine del file di layout, così un checkout fresco carica senza riempire."
@@ -1137,7 +1137,7 @@
     "defaultMessage": "una shell nel progetto"
   },
   "1j92wp5xn8w": {
-    "defaultMessage": "La laminazione è la sequenza di costruzione: i passaggi di foratura che il produttore esegue tra le pressioni, in ordine di costruzione, ognuno un'estensione di rame e un tipo di foratura (<code>mechanical</code>, <code>laser</code> o <code>controlled_depth</code>). Una via è forabile solo quando la sua estensione e il suo tipo di foratura corrispondono a un passaggio (una microvia <code>stacked</code>: quando ogni salto dello stack è un passaggio laser). Un tipo di via che un layout posiziona viene segnalato una volta, dalla regola <code>via-lamination</code> del layout, che conta le sue via e indica la voce della scheda (<code>vias[i]</code>) da correggere; check segnala un tipo di via che nessun layout posiziona come errore di scheda. Il router lascia fuori una via di questa classe. Ciascuno elenca le estensioni che la laminazione fora."
+    "defaultMessage": "La laminazione è la sequenza di costruzione: i passi di foratura che il produttore esegue tra le pressate, in ordine di costruzione, ognuno uno span di rame e un tipo di foratura (<code>mechanical</code>, <code>laser</code> o <code>controlled_depth</code>). Una via è forabile solo quando il suo span e il suo tipo di foratura corrispondono a un passo (una microvia <code>stacked</code>: quando ogni salto dello stack è un passo laser). Un tipo di via che il layout posiziona viene riportato una volta, dalla regola <code>via-lamination</code> del layout, che conta le sue via e indica la voce della scheda (<code>vias[i]</code>) da correggere; la verifica riporta un tipo di via che nessun layout posiziona come errore della scheda. Il router lascia fuori una via di questa classe. Ciascuno elenca gli span che la laminazione forisce."
   },
   "1jadp48fdt1": {
     "defaultMessage": "Configurazione su {platform}"
@@ -1233,7 +1233,7 @@
     "defaultMessage": "4 ns"
   },
   "1khm1sp7n4l": {
-    "defaultMessage": "In caso di violazione, il flip-flop, latch o registro coperto dal check passa a x, come fanno i modelli Verilog con i loro notifiers, finché non viene clockato, settato o resettato pulito di nuovo. Imposta <code>on_violation = &quot;keep&quot;</code> sulla sim per segnalare la violazione e mantenere il valore campionato invece."
+    "defaultMessage": "In caso di violazione, il flip-flop, latch o registro coperto dalla verifica passa a x, come fanno i modelli Verilog con i loro notifiers, finché non viene clockato, settato o resettato di nuovo in modo pulito. Imposta <code>on_violation = &quot;keep&quot;</code> sulla simulazione per segnalare la violazione e mantenere il valore campionato."
   },
   "1khvxg9xejx": {
     "defaultMessage": "Librerie KiCad"
@@ -1317,7 +1317,7 @@
     "defaultMessage": "Tutte le lunghezze: <code>min_track_width</code>, <code>min_clearance</code>, <code>min_drill</code>, <code>min_via_drill</code>, <code>min_via_diameter</code>, <code>min_annular_ring</code> (via, le microvia usano <code>min_microvia_diameter</code>), <code>min_blind_via_drill</code>, <code>min_controlled_depth_drill</code>, <code>min_microvia_drill</code>, <code>max_microvia_drill</code>, <code>min_microvia_diameter</code>, <code>min_hole_to_hole</code>, <code>min_copper_to_edge</code>, <code>min_silk_width</code>, <code>min_silk_text_height</code>, <code>min_mask_web</code> (0.1 mm), <code>max_drill</code>, <code>min_npth_drill</code>, <code>min_plated_slot_width</code>, <code>min_npth_slot_width</code>, <code>min_pth_annular_ring</code>, <code>min_via_hole_to_copper</code>, <code>min_pth_hole_to_copper</code>, <code>min_inner_pth_hole_to_copper</code>, <code>min_npth_to_copper</code>, <code>min_smd_pad_gap</code>, <code>min_hole_to_smd_pad</code>, <code>max_filled_via_drill</code>, <code>min_bga_pad</code>, <code>min_bga_pitch</code>, <code>min_part_to_edge</code>, <code>min_body_to_edge</code>, <code>flex_zone</code>; più <code>max_aspect_ratio</code>, un numero semplice (profondità del foro su foratura), <code>max_microvia_aspect_ratio</code> (profondità del dielettrico su foratura laser), <code>max_controlled_depth_aspect_ratio</code> (profondità su foratura di una via a profondità controllata), e gli interruttori <code>hdi</code> (il produttore costruisce via cieche, sepolte e microvia e backdrill) e <code>stacked_microvias</code> (il produttore impila microvia). I footprint vengono verificati rispetto alle regole di ogni scheda il cui layout li posiziona, quindi un progetto con una scheda a 4 layer e una a 2 layer tiene ogni footprint solo alle schede su cui si trova. Un footprint che nessun layout posiziona viene verificato rispetto a ogni scheda e riportato per quella che gli si adatta meglio; senza scheda, rispetto a <code>generic</code>."
   },
   "1m2uye5hrsr": {
-    "defaultMessage": "Con <code>solver = &quot;field&quot;</code> la classe viene verificata dal risolutore di campo 2D: una risoluzione di Laplace a differenze finite basata su nodi su una mesh graduata, eseguita sulla GPU tramite wgpu, con spessore del rame, solder mask, terre coplanari e coppie incluse. Su riferimenti esatti si colloca entro lo 0,5% della stripline a spessore nullo di Cohn e lo 0,4% della microstrip Hammerstad-Jensen. Quando la classe non è nel target, check suggerisce la larghezza della pista che la soddisfa. <code>agentee calc field --netclass RF</code> stampa il risultato completo (Z0, eeff, C e L per metro, ritardo, griglia)."
+    "defaultMessage": "Con <code>solver = &quot;field&quot;</code> la classe viene verificata dal solver di campo 2D: una risoluzione di Laplace a differenze finite basata su nodi su una mesh graduata, eseguita sulla GPU tramite wgpu, con spessore del rame, solder mask, masse coplanari e coppie incluse. Su riferimenti esatti si attesta entro lo 0,5% della stripline a spessore zero di Cohn e lo 0,4% della microstrip di Hammerstad-Jensen. Quando la classe non è nel target, la verifica suggerisce la larghezza di pista che lo soddisfa. <code>agentee calc field --netclass RF</code> stampa il risultato completo (Z0, eeff, C e L per metro, ritardo, griglia)."
   },
   "1m2y78wvygc": {
     "defaultMessage": "L'agente farà molto affidamento sulla verifica, ed è questo il punto: ogni diagnostica indica il file, l'elemento e la posizione, e la maggior parte indica un valore che passa. Le cose che richiedono ancora te:"
@@ -1479,7 +1479,7 @@
     "defaultMessage": "<code>solver = &quot;field&quot;</code> su ogni classe dove pochi ohm contano."
   },
   "1ohjl688ppo": {
-    "defaultMessage": "Un'interfaccia dichiara cosa un link deve soddisfare, e check misura il rame contro tutti i requisiti in una volta sola:"
+    "defaultMessage": "Un'interfaccia dichiara cosa un link deve soddisfare, e la verifica misura il rame contro tutto questo in una volta:"
   },
   "1oiyg9y9o9n": {
     "defaultMessage": "BOM e posizionamento nelle colonne richieste da JLCPCB"
@@ -1539,7 +1539,7 @@
     "defaultMessage": "Tipi di via"
   },
   "1p9al4txnn2": {
-    "defaultMessage": "Le aree di rame mantengono <code>min_via_hole_to_copper</code> dai fori delle via degli altri net e <code>min_npth_to_copper</code> dai fori non placcati, oltre al distacco, con archi disegnati all'esterno del cerchio reale in modo che il gap non sia mai in cortocircuito. Le via di stitching vengono posizionate solo dove la via rispetta il distacco dal rame di ogni altro net su ogni layer che attraversa, mantiene il foro a <code>min_via_hole_to_copper</code> da quel rame e a <code>min_hole_to_smd_pad</code> dalle piazzole SMD di qualsiasi net, mantiene <code>min_hole_to_hole</code> da ogni foro e la regola del bordo dal contorno, e atterra all'interno di un'area del proprio net; il check riporta quante ne ha posizionate. Vengono forate e tracciate come qualsiasi altra via."
+    "defaultMessage": "Le aree di rame mantengono <code>min_via_hole_to_copper</code> dai fori di via delle altre net e <code>min_npth_to_copper</code> dai fori non placcati oltre al clearance, con archi tracciati fuori dal cerchio vero in modo che il gap non sia mai corto. Le via di stitching vanno solo dove la via libera il rame di ogni altra net su ogni strato che attraversa, mantiene il suo foro a <code>min_via_hole_to_copper</code> da quel rame e a <code>min_hole_to_smd_pad</code> da piazzole SMD di qualsiasi net, mantiene <code>min_hole_to_hole</code> da ogni foratura e la regola del bordo dal contorno, e atterra dentro una zona della sua net; la verifica riporta quante ne ha posizionate. Vengono forate e tracciate come qualsiasi via."
   },
   "1pfflqoefax": {
     "defaultMessage": "un riempimento che copre o arriva troppo vicino al rame di un altro net"
@@ -1590,10 +1590,10 @@
     "defaultMessage": "Verifiche delle regole di progetto - riferimento agentee"
   },
   "1qadrepmt73": {
-    "defaultMessage": "Un pezzo di riempimento viene mantenuto solo se tocca due elementi del suo net, oppure uno ed è almeno <code>min_island_area</code>; il resto non raggiunge nulla di nuovo e viene rimosso. Check verifica ogni riempimento rispetto agli altri net: un riempimento che sovrappone l'area, la pista, la via o la piazzola di un altro net, o si avvicina più della distanza di sicurezza, è un errore, e le punte di rame più acute di 30 gradi vengono segnalate."
+    "defaultMessage": "Un pezzo di riempimento viene mantenuto solo se tocca due elementi della sua net, oppure uno ed è almeno <code>min_island_area</code>; il resto non raggiunge nulla di nuovo e viene rimosso. La verifica controlla ogni riempimento rispetto alle altre net: un riempimento che sovrappone la zona, la pista, la via o la piazzola di un'altra net, o si avvicina più del clearance, è un errore, e le punte di rame più acute di 30 gradi vengono segnalate."
   },
   "1qcbxs4y1yz": {
-    "defaultMessage": "Letture: asserzioni superate e fallite, contese, violazioni di timing, celle ed eventi. Check elenca ogni asserzione fallita, contesa, violazione di timing o esecuzione interrotta come errore sulla simulazione, finché il risultato è attuale. Il risultato diventa obsoleto quando la specifica o il netlist dello schema cambiano. <code>examples/logic</code> ne contiene due: <code>counter</code>, un 74HC161 che conta in un 74HC138, e <code>i2c</code>, un bus open-drain dove un controller (due 74LVC1G07) e un target (un 74LVC1G06 che porta SDA a basso per il suo ACK) condividono pull-up da 4,7k, e un 74HC595 pilotato da SCL cattura il byte, verificato per START, i bit, l'ACK, il byte (un bus <code>record</code>) e STOP."
+    "defaultMessage": "Letture: asserzioni superate e fallite, contese, violazioni di timing, celle ed eventi. La verifica elenca ogni asserzione fallita, contesa, violazione di timing o esecuzione interrotta come errore sulla simulazione, finché il risultato è attuale. Il risultato diventa obsoleto quando la specifica o il netlist dello schema cambiano. <code>examples/logic</code> ne contiene due: <code>counter</code>, un 74HC161 che conta in un 74HC138, e <code>i2c</code>, un bus open-drain dove un controller (due 74LVC1G07) e un target (un 74LVC1G06 che porta SDA a basso per il suo ACK) condividono pull-up da 4,7k, e un 74HC595 clockato da SCL cattura il byte, verificato per START, i bit, l'ACK, il byte (un bus <code>record</code>) e STOP."
   },
   "1qetictu1fj": {
     "defaultMessage": "Un unico binario con la CLI, il visualizzatore e il server MCP. Nessun account, nessun servizio, niente da tenere in esecuzione."
@@ -1602,7 +1602,7 @@
     "defaultMessage": "Parametri S della scheda del LNA dalla simulazione FDTD, con un diagramma di Smith delle porte."
   },
   "1qgtndzh2fg": {
-    "defaultMessage": "Un risultato mancante o obsoleto è un errore anche questo, quindi una modifica al layout non ancora vista dalle simulazioni fa fallire il check finché non vengono rieseguite. Questo è il punto: l'eye che hai approvato è l'eye del rame che stai per ordinare. Il <a href=\"/reference/interfaces/\">riferimento alle interfacce</a> elenca ogni limite."
+    "defaultMessage": "Un risultato mancante o obsoleto è un errore anche, quindi un cambiamento nel layout che le simulazioni non hanno visto fa fallire la verifica finché non vengono rilanciate. Questo è il punto: l'occhio che hai approvato è l'occhio del rame che stai per ordinare. Il <a href=\"/reference/interfaces/\">riferimento sulle interfacce</a> elenca ogni limite."
   },
   "1qhwcea3j31": {
     "defaultMessage": "galleggia senza nulla che lo leghi a una rail,"
@@ -1638,7 +1638,7 @@
     "defaultMessage": "HDI: microvia e laminazione"
   },
   "1qw5tcldd6o": {
-    "defaultMessage": "unità, il modello file, resolve e check, i calcolatori"
+    "defaultMessage": "unità, modello dei file, resolve e verifica, i calcolatori"
   },
   "1r0hmmormyn": {
     "defaultMessage": "meccanicamente, in uno sub-stack laminato"
@@ -1674,7 +1674,7 @@
     "defaultMessage": "Un pin lasciato fuori da ogni net viene riportato. I pin che sono aperti di proposito vanno in <code>no_connect</code>:"
   },
   "1rd9mbz2phc": {
-    "defaultMessage": "La grafica dei footprint su uno strato di rame, solder mask o pasta viene tracciata come rame, aperture di solder mask o pasta e disegnata nel visualizzatore: ad esempio la striscia di rame di un jumper di saldatura ponticellato. Check non li vede come rame."
+    "defaultMessage": "La grafica dei footprint su uno strato di rame, mask o pasta viene tracciata come rame, apertura di mask o pasta e disegnata nel visualizzatore: ad esempio la striscia di rame di un jumper di saldatura ponticellato. La verifica non li vede come rame."
   },
   "1rg8ze8g7pz": {
     "defaultMessage": "posizionamento e routing: fasi su un modello di scheda e un punteggio"
@@ -1695,7 +1695,7 @@
     "defaultMessage": "Un componente personalizzato ottiene un modello inline, abbinato per <code>ref</code> o per <code>value</code> (ogni componente con quel valore). Più voci per un componente aggiungono una cella ciascuna (una per porta di un quad, ad esempio). Una voce con solo tempi mantiene il modello integrato e ne cambia i tempi."
   },
   "1rqigxpguzp": {
-    "defaultMessage": "Installa, dai la skill al tuo agente e chiedi qualcosa di piccolo: un breakout, un alimentatore, un nodo sensore. Osservalo nel visualizzatore e leggi cosa dice check."
+    "defaultMessage": "Installa, dai la skill al tuo agente e chiedi qualcosa di piccolo: un breakout, un alimentatore, un nodo sensore. Osservalo nel visualizzatore e leggi cosa dice la verifica."
   },
   "1rt96e9xmko": {
     "defaultMessage": "Un glob in <code>--nets</code> non corrisponde mai a un net di piano, quindi <code>--nets &#39;*&#39;</code> fa il routing di ogni segnale e lascia la massa ai piani."
@@ -2217,7 +2217,7 @@
     "defaultMessage": "i fori di backdrill di ogni lato e layer di arresto, non placcati, al diametro di backdrill, con il layer di arresto e <code>max_stub</code> in un commento"
   },
   "20u1f7vfkkg": {
-    "defaultMessage": "<code>calc field --netclass USB</code> aggiunge un blocco <code>pair</code>: Zdiff, Zcommon, le impedenze e i ritardi dei modi dispari e pari, il coefficiente di accoppiamento e il crosstalk di estremità vicina di una linea lunga. Check riporta lo skew di ogni pair in mm e ps, ogni tratto con gap errato oltre <code>max_uncoupled</code>, e le coppie che corrono affiancate per meno dell'80% della loro lunghezza. Un pair attraverso componenti in serie, come i condensatori AC su una lane USB, viene misurato da un'estremità all'altra. <code>agentee route NAME --nets &#39;USB_*&#39; --pairs</code> esegue lo sbroglio di entrambe le metà insieme."
+    "defaultMessage": "<code>calc field --netclass USB</code> aggiunge un blocco <code>pair</code>: Zdiff, Zcommon, le impedenze e i ritardi dei modi dispari e pari, il coefficiente di accoppiamento e il crosstalk di estremità vicina di una linea lunga. La verifica riporta lo skew di ogni coppia in mm e ps, ogni tratto con il gap sbagliato oltre <code>max_uncoupled</code>, e le coppie che corrono fianco a fianco per meno dell'80% della loro lunghezza. Una coppia attraverso componenti in serie, come i condensatori AC su una lane USB, viene misurata da un'estremità all'altra. <code>agentee route NAME --nets &#39;USB_*&#39; --pairs</code> sbrogliare entrambe le metà insieme."
   },
   "211ybnyn8so": {
     "defaultMessage": "Il produttore e il numero di layer, o il costo che vuoi non superare. <code>jlcpcb</code> con uno stackup a due o quattro layer va bene per la maggior parte delle prime schede."
@@ -2265,7 +2265,7 @@
     "defaultMessage": "Un import scrive un <code>.sym.toml</code> o <code>.fp.toml</code> in <code>symbols/</code> o <code>footprints/</code>. Da quel momento il progetto lo possiede: non c'è un link alla libreria, così un componente non cambia mai sotto di te quando KiCad si aggiorna. Un percorso <code>.kicad_sym</code> o <code>.kicad_mod</code> funziona al posto di <code>Library:Name</code> per componenti fuori dalle librerie standard."
   },
   "21v5d9dete3": {
-    "defaultMessage": "La classe è una promessa; il layout la mantiene. Check misura ogni pista di una classe di impedenza:"
+    "defaultMessage": "La classe è una promessa; il layout la mantiene. La verifica misura ogni pista di una classe di impedenza:"
   },
   "21wi51767ol": {
     "defaultMessage": "impedenza"
@@ -2283,7 +2283,7 @@
     "defaultMessage": "Riferimento dei formati di file di agentee"
   },
   "21z7dt71046": {
-    "defaultMessage": "Check non esegue mai una simulazione. Ogni risultato registra un hash della spec, del rame osservato e dello stackup, e check avvisa quando non corrispondono più. Su un runner CI senza GPU questa è la parte utile: una pull request che sposta una pista RF riceve un avviso di obsolescenza sul risultato FDTD, e un'interfaccia che misura quel risultato fallisce del tutto."
+    "defaultMessage": "La verifica non esegue mai una simulazione. Ogni risultato registra un hash della specifica, del rame visto e dello stackup, e la verifica avvisa quando non corrispondono più. Su un runner CI senza GPU questa è la parte utile: una pull request che sposta una pista RF riceve un avviso di obsolescenza sul risultato FDTD, e un'interfaccia che misura quel risultato fallisce del tutto."
   },
   "221qbpi8pyl": {
     "defaultMessage": "da In1.Cu a In4.Cu, interrata, attraverso lo sub-stack,"
@@ -2343,7 +2343,7 @@
     "defaultMessage": "Elenca i preset di stackup del produttore che `stackup.preset` di una scheda può nominare, oppure stampane uno"
   },
   "239ijuexn6t": {
-    "defaultMessage": "Check segnala ogni etichetta di riferimento che affolla altro testo, si trova su una piazzola o una via, o esce dalla scheda, e indica un punto che passa. <code>agentee silk</code> le sposta tutte lì:"
+    "defaultMessage": "La verifica segnala ogni etichetta di riferimento che affolla altro testo, sta su una piazzola o una via, o esce dalla scheda, e indica un punto che passa. <code>agentee silk</code> le sposta tutte lì:"
   },
   "23abd480i7l": {
     "defaultMessage": "agentee - progettazione elettronica per agenti di coding"
@@ -2373,7 +2373,7 @@
     "defaultMessage": "trapani Excellon, slot come G85; un file in più per ogni span di via cieca, sepolta o microvia su schede HDI"
   },
   "23q0rg2wlh0": {
-    "defaultMessage": "Check cerca piazzole sovrapposte, piazzole più vicine della distanza di sicurezza del produttore, fori e anelli annulari sotto le regole (<code>min_drill</code>, <code>min_pth_annular_ring</code>), un courtyard che racchiude le piazzole e serigrafia che passa su rame esposto."
+    "defaultMessage": "La verifica cerca piazzole sovrapposte, piazzole più vicine del clearance del produttore, forature e anelli annulari sotto i limiti (<code>min_drill</code>, <code>min_pth_annular_ring</code>), un courtyard che racchiude le piazzole e serigrafia che passa sopra rame esposto."
   },
   "23tshyft62l": {
     "defaultMessage": "La pagina layout del visualizzatore ha una scheda <code>3d</code> (<code>agentee view --3d</code> si apre su di essa): la scheda con lo spessore del suo stackup, i colori di mask e serigrafia e la finitura, il rame sotto la mask, le piazzole nude, le pareti dei fori placcate e nude, e il modello 3D di ogni componente. L'interruttore <code>parts</code> nasconde i modelli. Trascina per orbitare, shift-trascina per pan, scrolla per zoom, doppio clic per reimpostare. Il visualizzatore disegna con OpenGL (<a href=\"https://github.com/asny/three-d\">three-d</a>); <code>agentee render pcb:NAME --show 3d</code> (o <code>3d-top</code>, <code>3d-bottom</code>) disegna la stessa scena in software, <code>--hide parts</code> lascia fuori i modelli e <code>--region</code> punta la camera su quell'area."
@@ -2412,7 +2412,7 @@
     "defaultMessage": "Senza <code>lamination</code> la sequenza viene dallo stackup. I layer di costruzione su ogni lato sono i dielettrici solo prepreg all'esterno prima del primo core, contati per lato, quindi una costruzione può essere asimmetrica (<code>1+4+2</code>); gli <code>N</code> layer in mezzo sono lo sub-stack del core, pressato una volta dai suoi core e prepreg. I passaggi sono:"
   },
   "24o2k9tttmm": {
-    "defaultMessage": "I net delle piazzole vengono dallo schema per numero: il pin 3 del simbolo è la piazzola 3 del footprint. Il check segnala ogni pin senza piazzola. Un pin del simbolo chiamato <code>EP</code> o numerato <code>17</code> per una piazzola esposta ha bisogno di quel numero di piazzola anche nel footprint."
+    "defaultMessage": "I net delle piazzole vengono dallo schema per numero: il pin 3 del simbolo è la piazzola 3 del footprint. La verifica segnala ogni pin senza piazzola. Un pin del simbolo chiamato <code>EP</code> o numerato <code>17</code> per una piazzola esposta richiede quel numero di piazzola anche nel footprint."
   },
   "24ocgbs1su0": {
     "defaultMessage": "un'estremità di pista che non tocca il rame del suo net né un'area di rame"
@@ -2538,7 +2538,7 @@
     "defaultMessage": "<code>agentee fab</code>"
   },
   "26pkfhq2tqp": {
-    "defaultMessage": "<strong>Impedenza e corrente sono sulla classe.</strong> Assegna a una classe <code>impedance = &quot;50ohm&quot;</code> o <code>current = &quot;2A&quot;</code> e check risolve la larghezza per ogni layer dello stackup."
+    "defaultMessage": "<strong>Impedenza e corrente vivono sulla classe.</strong> Dà a una classe <code>impedance = &quot;50ohm&quot;</code> o <code>current = &quot;2A&quot;</code> e la verifica risolve la larghezza per ogni strato dello stackup."
   },
   "26s0srbqiyq": {
     "defaultMessage": "Una scheda può elencare diversi tipi di via. Una via through non richiede altro; blind, buried e microvia richiedono un produttore HDI e sono trattate in <a href=\"/guides/hdi/\">HDI: microvia e laminazione</a>."
@@ -2712,7 +2712,7 @@
     "defaultMessage": "Lo script mette il binario in <code>~/.local/bin</code>. Imposta <code>AGENTEE_INSTALL_DIR</code> per metterlo altrove."
   },
   "29y1zbo05b4": {
-    "defaultMessage": "Il job di check"
+    "defaultMessage": "Il job di verifica"
   },
   "29yqnm21ssu": {
     "defaultMessage": "I flip-flop si clockano sul fronte saliente (chiave <code>CLK_N</code> per quello discendente); <code>S</code> e <code>R</code> sono asincroni e se entrambi sono attivi danno Q = QN = 1, come su un 74HC74. Il 161 si resetta immediatamente, il 163 al fronte successivo. Un 595 sposta su <code>CLK</code>, copia sui suoi output su <code>LATCH</code> (il valore di prima dello spostamento nello stesso istante) e li lascia in stato di alta impedenza mentre <code>OE</code> è basso."
@@ -2763,7 +2763,7 @@
     "defaultMessage": "<code>cpl.csv</code>"
   },
   "2azdq8hjg77": {
-    "defaultMessage": "Senza <code>type</code> è la span a decidere: dal primo all'ultimo strato è <code>through</code>, con un'estremità esterna è <code>blind</code>, con due estremità interne è <code>buried</code>. Check vincola il tipo alla span (una via blind deve toccare esattamente uno strato esterno, una via buried nessuno) e al produttore:"
+    "defaultMessage": "Senza <code>type</code>, lo span decide: dal primo all'ultimo strato è <code>through</code>, un'estremità esterna è <code>blind</code>, due estremità interne <code>buried</code>. La verifica tiene il tipo coerente con lo span (una via blind deve toccare esattamente uno strato esterno, una via buried nessuno) e con il produttore:"
   },
   "2azq3xb5756": {
     "defaultMessage": "Da un clone"
@@ -2895,7 +2895,7 @@
     "defaultMessage": "un net le cui piazzole non sono tutte collegate da piste, vie e aree di rame, nominando i gruppi separati"
   },
   "2cjp54hpvxh": {
-    "defaultMessage": "Ogni simulazione è aggiornata: il check avvisa sui risultati obsoleti."
+    "defaultMessage": "Ogni simulazione è attuale: la verifica avvisa sui risultati obsoleti."
   },
   "2cjq2lndzi6": {
     "defaultMessage": "Il driver diventa una sorgente di Thevenin dalle sue tabelle di pulldown e pullup, la sua capacità del die e il suo package; il suo rampa imposta il bordo e il suo intervallo di tensione lo swing, a meno che non siano dati <code>rise</code> o <code>swing</code>. Il ricevitore carica l'estremità lontana con il suo package e la capacità del die, e l'occhio viene letto al suo die. IBIS funziona per ora sui percorsi single-ended."
@@ -3030,7 +3030,7 @@
     "defaultMessage": "<code>drill-backdrill-FROM-TO.drl</code>"
   },
   "2erk3af4v4t": {
-    "defaultMessage": "Esegui il check subito dopo. Il riscontro abituale è la serigrafia:"
+    "defaultMessage": "Esegui la verifica subito dopo. Il riscontro più comune è la serigrafia:"
   },
   "2esv3ij8ba7": {
     "defaultMessage": "Modificare un layout a mano"
@@ -3114,7 +3114,7 @@
     "defaultMessage": "<code>stacked-via</code>"
   },
   "2g27vxcvei2": {
-    "defaultMessage": "Una classe di net definisce cosa è un net: la sua larghezza di pista, il clearance, le vie e i target a cui check lo sottopone. Dà a ogni tipo di net la sua classe. Un net lasciato in <code>Default</code> è un avviso, perché la classe decide come viene instradato."
+    "defaultMessage": "Una classe di net definisce cosa è un net: la sua larghezza di pista, il clearance, le via e i target a cui la verifica lo tiene. Dà a ogni tipo di net la sua classe. Un net lasciato in <code>Default</code> è un avviso, perché la classe decide come viene sbrogliato."
   },
   "2g2bruy73r8": {
     "defaultMessage": "Recovery e removal sono i minimi del datasheet da -40 a 85 C a 4.5 V (famiglie a 5 V) o 3.3 V (LVC), il maggiore tra TI e Nexperia dove entrambi ne indicano uno:"
@@ -3123,7 +3123,7 @@
     "defaultMessage": "slot non placcati, min."
   },
   "2g3va6s0t1e": {
-    "defaultMessage": "Sposta ogni riferimento serigrafico non conforme nel punto libero suggerito dal check, di nuovo finché non si stabilizzano, e nasconde quelli senza posto quando richiesto"
+    "defaultMessage": "Sposta ogni riferimento di serigrafia che fallisce nel punto libero suggerito dalla verifica, di nuovo finché non si assestano, e nascondi quelli senza posto quando richiesto"
   },
   "2g7qg8g93l6": {
     "defaultMessage": "X"
@@ -3333,7 +3333,7 @@
     "defaultMessage": "<code>zone-tips</code>"
   },
   "5m5l2y1x20": {
-    "defaultMessage": "Con <code>solver = &quot;field&quot;</code>, check risolve la classe su ogni layer che può usare e, quando è fuori, dice di quanto e cosa usare:"
+    "defaultMessage": "Con <code>solver = &quot;field&quot;</code>, la verifica risolve la classe su ogni strato che può usare e, quando è fuori, dice di quanto e cosa usare:"
   },
   "5mdecrm7hm": {
     "defaultMessage": "<code>fab</code> impostato, e uno stackup <code>preset</code> che il produttore costruisce davvero."
@@ -3375,7 +3375,7 @@
     "defaultMessage": "il contorno e ogni taglio nella scheda"
   },
   "6vtwvstloc": {
-    "defaultMessage": "Quando il check non ha più errori, un layout diventa un pacchetto che un produttore di PCB e una casa di assemblaggio accettano così com'è. Questa guida copre la sua scrittura, il prezzo dei componenti e l'ottenimento di un modello 3D per l'involucro."
+    "defaultMessage": "Quando la verifica non ha più errori, un layout diventa un pacchetto che un produttore di PCB e una casa di assemblaggio accettano così com'è. Questa guida copre la sua scrittura, il prezzo dei componenti e l'ottenimento di un modello 3D per l'involucro."
   },
   "6x8yn1m2yz": {
     "defaultMessage": "il rame di due net diversi si tocca"
@@ -3396,7 +3396,7 @@
     "defaultMessage": "<code>agentee sparam NAME</code> (MCP <code>sparam</code>) funziona su qualsiasi risultato FDTD o cascade:"
   },
   "785vso7xer": {
-    "defaultMessage": "Lascia fuori <code>track_width</code> e check lo risolve per il primo layer. Dove una larghezza non va bene per ogni layer, dai <code>widths = { &quot;In2.Cu&quot; = &quot;0.16mm&quot; }</code>."
+    "defaultMessage": "Lascia fuori <code>track_width</code> e la verifica lo risolve per il primo strato. Dove una larghezza non va bene per tutti gli strati, dai <code>widths = { &quot;In2.Cu&quot; = &quot;0.16mm&quot; }</code>."
   },
   "7bxalrqtkl": {
     "defaultMessage": "<code>check</code> esegue ogni regola; <code>drc</code> stampa solo le diagnostiche delle regole del layout, ognuna che inizia con il suo id tra parentesi quadre, e <code>--list</code> stampa ogni regola con se si applica a questa scheda. Gli errori bloccano il pacchetto di produzione. Gli avvisi e le note sono pratica più che limiti del produttore: seguili a meno che il design non dia una ragione, e scrivi la ragione in <code>DESIGN.md</code>."
@@ -3474,7 +3474,7 @@
     "defaultMessage": "Lo span e il tipo di foratura devono corrispondere a una fase di foratura della laminazione (vedi Laminazione); l'errore elenca gli span che foratura. <code>drill_kind</code> è di default <code>laser</code> per una microvia e <code>mechanical</code> altrimenti; una microvia è sempre forata al laser e una via forata al laser è una microvia."
   },
   "8a8gp8ef5g": {
-    "defaultMessage": "I riempimenti delle aree sono in cache: ogni riempimento è indicizzato da un hash di tutto ciò da cui dipende e conservato in <code>~/.cache/agentee/fills</code>, in modo che un caricamento riempia solo le aree il cui rame, distacco o vicini sono cambiati (impostare <code>AGENTEE_NO_FILL_CACHE</code> per saltare la cache). <code>agentee fill NAME</code> (MCP <code>fill</code>) salva anche i riempimenti alla fine del file di layout, una tabella <code>[[fills]]</code> per area e layer, in modo che un checkout fresco si carichi senza riempire; un riempimento salvato il cui hash non corrisponde più viene ignorato, e il check lo segnala con <code>--info</code>. L'importazione di una scheda salva i suoi riempimenti. Lascia le tabelle <code>[[fills]]</code> allo strumento."
+    "defaultMessage": "I riempimenti di zona sono in cache: ogni riempimento è chiaveato da un hash di tutto ciò da cui dipende e conservato in <code>~/.cache/agentee/fills</code>, così un caricamento riempie solo le zone il cui rame, clearance o vicini sono cambiati (imposta <code>AGENTEE_NO_FILL_CACHE</code> per saltare la cache). <code>agentee fill NAME</code> (MCP <code>fill</code>) conserva anche i riempimenti alla fine del file di layout, una tabella <code>[[fills]]</code> per zona e strato, così un checkout fresco carica senza riempire; un riempimento conservato il cui hash non corrisponde più viene ignorato, e la verifica lo segnala con <code>--info</code>. L'importazione di una scheda conserva i suoi riempimenti. Lascia le tabelle <code>[[fills]]</code> allo strumento."
   },
   "8c7fyqgezg": {
     "defaultMessage": "Tutto ciò che il produttore di PCB ha bisogno, pronto per il caricamento"
@@ -3504,7 +3504,7 @@
     "defaultMessage": "Intel"
   },
   "8lxceyo8ts": {
-    "defaultMessage": "I tipi di pin contano: il check li usa per i controlli dei net, e le uscite <code>open_collector</code> e i pin <code>input</code> partecipano al controllo del livello di segnale."
+    "defaultMessage": "I tipi di pin contano: la verifica li usa per i controlli sui net, e le uscite <code>open_collector</code> e i pin <code>input</code> partecipano al controllo del livello di segnale."
   },
   "8oesbcmonl": {
     "defaultMessage": "Dove agentee è più restrittivo della pagina, volutamente: <code>min_copper_to_edge</code> resta 0.3 mm (la pagina consente 0.2 mm su un bordo fresato, che viene fresato a +/-0.2 mm, e 0.4 mm su un V-cut), <code>min_hole_to_hole</code> resta 0.5 mm (la pagina indica 0.45 mm tra fori di piazzola e 0.2 mm tra vie), e <code>min_hole_to_smd_pad</code> (0.2 mm, il valore foro via a pista) e <code>min_part_to_edge</code> (0.5 mm) sono scelte di agentee, non presenti nella pagina. <code>min_body_to_edge</code> (1.0 mm) segue le guide DFM di assemblaggio, che tengono ogni componente a 1 mm dal bordo della scheda per il depaneling e la manipolazione. <code>flex_zone</code> (5 mm) segue Knowles sulla flessione degli MLCC: la zona di sollecitazione è tipicamente entro 5 mm dal bordo della scheda o dai punti di fissaggio."
@@ -3570,7 +3570,7 @@
     "defaultMessage": "La scheda HackRF Pro importata da KiCad, resa da agentee."
   },
   "9tdtrp8oa4": {
-    "defaultMessage": "Il testo serigrafia deve mantenere 0,4 mm da altri testi serigrafia e 0,2 mm dai contorni serigrafia, evitare piazzole, vie e corpi di altri componenti, e restare sulla scheda. Ciascuno di questi è un errore, tranne il testo sotto il corpo di un altro componente, che è un avviso. Se un'etichetta di riferimento non passa, check nomina un punto che passa a tutte le regole, come una riga <code>label = { at = [...] }</code> da incollare. <code>agentee silk NAME</code> (MCP <code>silk</code>) le incolla tutte per te e ripete finché le etichette non si stabilizzano; <code>--hide</code> nasconde i riferimenti che non hanno un punto libero, tipicamente piccoli passivi sotto un BGA."
+    "defaultMessage": "Il testo di serigrafia deve mantenere 0,4 mm da altri testi di serigrafia e 0,2 mm dai contorni di serigrafia, stare fuori da piazzole, via e corpi di altri componenti, e restare sulla scheda. Ciascuno di questi è un errore, tranne il testo sotto il corpo di un altro componente, che è un avviso. Quando un'etichetta di riferimento non passa, la verifica indica un punto che soddisfa ogni regola, come una riga <code>label = { at = [...] }</code> da incollare. <code>agentee silk NAME</code> (MCP <code>silk</code>) le incolla tutte per te e ripete finché le etichette non si assestano; <code>--hide</code> nasconde i riferimenti che non hanno un punto libero, tipicamente piccoli passivi sotto una BGA."
   },
   "9u7i8lybkg": {
     "defaultMessage": "I modelli 3D vengono da <code>KICAD9_3DMODEL_DIR</code> e simili, <code>3dmodels/</code> nel progetto, o una cache che <code>agentee models</code> riempie dal repository kicad-packages3D."
@@ -3618,7 +3618,7 @@
     "defaultMessage": "Removal"
   },
   "alwra0pyrw": {
-    "defaultMessage": "Per i componenti logici e MCU, copia le soglie dal datasheet in una tabella <code>[levels]</code>. Il check poi calcola la tensione che ogni ingresso vede attraverso i suoi rail, resistori e interruttori, e segnala un ingresso che può stare tra VIL e VIH, fluttuare, o andare oltre i suoi limiti:"
+    "defaultMessage": "Per i componenti logici e i MCU, copia le soglie dal datasheet in una tabella <code>[levels]</code>. La verifica calcola poi la tensione che ogni ingresso vede attraverso i suoi rail, resistori e interruttori, e segnala un ingresso che può restare tra VIL e VIH, fluttuare, o superare i suoi limiti:"
   },
   "amshfe3pvt": {
     "defaultMessage": "le via a profondità controllata di uno span, tenute separate dalle via forate in un sotto-stack o al laser sullo stesso span poiché il produttore le forisce in una passata diversa, dopo l'ultima pressatura e per profondità; stessa funzione di file, con il lato forato e il layer di arresto in un commento <code>; span In4.Cu to B.Cu, controlled depth blind vias drilled from B.Cu after the last press, stopping on In4.Cu</code>"
@@ -3627,7 +3627,7 @@
     "defaultMessage": "<img src=\"/assets/renders/blinky-pcb.webp\" alt=\"Il layout di blinky instradato\">"
   },
   "aptrexto3m": {
-    "defaultMessage": "Il risultato registra un hash del rame che ha visto (solo la <code>region</code> della simulazione) e dello stackup. Quando uno dei due cambia, check avverte che il risultato è obsoleto e qualsiasi cosa che lo legga, un cascade o una misura di interfaccia, fallisce finché non rilanci."
+    "defaultMessage": "Il risultato registra un hash del rame che ha visto (solo la <code>region</code> della simulazione) e dello stackup. Quando uno dei due cambia, la verifica avvisa che il risultato è obsoleto, e tutto ciò che lo legge, una cascata o una misura di interfaccia, fallisce finché non lo riesegui."
   },
   "aq5m89eyr9": {
     "defaultMessage": "0.2"
@@ -3681,7 +3681,7 @@
     "defaultMessage": "0.5"
   },
   "bkysp9m0z3": {
-    "defaultMessage": "Check elenca ogni asserzione fallita, contention o violazione di timing come errore sulla simulazione, finché il risultato è aggiornato."
+    "defaultMessage": "La verifica elenca ogni asserzione fallita, contesa o violazione di timing come errore sulla simulazione, finché il risultato è attuale."
   },
   "blg2ol2zyn": {
     "defaultMessage": "i build standard through-hole, da 4 a 18 layer"
@@ -3765,7 +3765,7 @@
     "defaultMessage": "<code>Q</code>, <code>QN</code> (z quando <code>OE</code> è basso)"
   },
   "d4h9xa9tl2": {
-    "defaultMessage": "Disegna il courtyard su <code>F.CrtYd</code> e il contorno del corpo su <code>F.Fab</code>: il check ha bisogno di un courtyard che contenga le piazzole, il posizionatore tiene i courtyard separati, e le regole di bordo e assemblaggio misurano dal corpo. Imposta <code>height</code> così la vista 3D e la regola dei componenti alti hanno un'altezza senza un modello."
+    "defaultMessage": "Disegna il courtyard su <code>F.CrtYd</code> e il contorno del corpo su <code>F.Fab</code>: la verifica richiede un courtyard che contenga le piazzole, il posizionatore tiene i courtyard separati, e le regole di bordo e di assemblaggio misurano dal corpo. Imposta <code>height</code> in modo che la vista 3D e la regola per i componenti alti abbiano un'altezza senza un modello."
   },
   "da20h6ryzp": {
     "defaultMessage": "Il server MCP"
@@ -3915,7 +3915,7 @@
     "defaultMessage": "<code>add</code> posiziona una parte a destra di tutto ciò che c'è, sulla griglia di 1,27 mm. <code>--at X,Y</code> la posiziona altrove e la aggancia alla griglia. <code>--list</code> stampa le parti e i net in JSON, e <code>--json</code> su qualsiasi comando restituisce i pin e le coordinate risolte."
   },
   "g2d59524d6": {
-    "defaultMessage": "<code>impedance</code> viene verificato su ogni layer in <code>layers</code>. Lascia fuori <code>track_width</code> e check lo risolve sul primo layer; dai <code>widths</code> per layer dove una larghezza non va bene per tutti i layer."
+    "defaultMessage": "<code>impedance</code> viene verificato su ogni strato in <code>layers</code>. Lascia fuori <code>track_width</code> e la verifica lo risolve sul primo strato; dai <code>widths</code> per strato dove una larghezza non va bene per tutti gli strati."
   },
   "g2n2yl3yhc": {
     "defaultMessage": "Dalla prima scheda al pacchetto per il produttore, una guida per ogni fase della progettazione."
@@ -3972,7 +3972,7 @@
     "defaultMessage": "Diagrammi ad occhio, PDN e parametri S"
   },
   "gx47fhiroy": {
-    "defaultMessage": "Ogni layout porta il testo serigrafia <code>agentee vX.Y.Z-HASH</code>: la versione di agentee che ha creato il pacchetto e l'hash git breve della sua sorgente, con <code>-dirty</code> se l'albero aveva modifiche non commit, o <code>unknown</code> fuori da git. Viene sempre tracciato e non può essere disattivato. È alto <code>min_silk_text_height</code>, centrato e di default va su <code>B.SilkS</code> (<code>F.SilkS</code> se in basso non c'è spazio o la scheda non ha serigrafia in basso) nel punto libero più vicino all'angolo in basso a sinistra della scheda, ruotato di 90 gradi se solo uno spazio alto lo contiene. Un punto libero evita piazzole, vie, altri testi e linee serigrafia, artwork e corpi dei componenti, e resta a <code>min_copper_to_edge</code> dal contorno. Il visualizzatore, il render e i disegni di assemblaggio lo mostrano, e <code>fab-notes.txt</code> lo nomina. Se nessun punto è libero, check segnala un errore <code>watermark</code> con la dimensione da liberare e il punto meno affollato, e il produttore rifiuta; libera spazio lì o imposta tu <code>[watermark] at</code> (più <code>layer</code>, <code>rotation</code>). Un punto <code>[watermark]</code> non libero è un errore <code>watermark</code> che nomina cosa colpisce, e uno stackup senza layer <code>kind = \"silk\"</code> è un errore <code>watermark</code> che ne richiede uno."
+    "defaultMessage": "Ogni layout porta il testo di serigrafia <code>agentee vX.Y.Z-HASH</code>: la versione di agentee che ha costruito il pacchetto e l'hash git breve della sua sorgente, con <code>-dirty</code> quando l'albero aveva modifiche non committe, o <code>unknown</code> fuori da git. Viene sempre tracciato e non può essere disattivato. È alto <code>min_silk_text_height</code>, centrato e di default va su <code>B.SilkS</code> (<code>F.SilkS</code> quando il lato inferiore non ha spazio o la scheda non ha serigrafia inferiore) nel punto libero più vicino all'angolo in basso a sinistra della scheda, ruotato di 90 gradi se solo un intervallo alto lo consente. Un punto libero tiene fuori piazzole, via, altri testi di serigrafia e linee, artwork e corpi dei componenti, e resta <code>min_copper_to_edge</code> dentro il contorno. Il visualizzatore, il render e i disegni di assemblaggio lo mostrano, e <code>fab-notes.txt</code> lo nomina. Quando nessun punto è libero, la verifica riporta un errore <code>watermark</code> con la dimensione da liberare e il punto meno affollato, e il produttore rifiuta; libera spazio lì o imposta <code>[watermark] at</code> (più <code>layer</code>, <code>rotation</code>) tu stesso. Un punto <code>[watermark]</code> che non è libero è un errore <code>watermark</code> che nomina cosa colpisce, e uno stackup senza strato <code>kind = &quot;silk&quot;</code> è un errore <code>watermark</code> che ne richiede uno."
   },
   "gykjxthnef": {
     "defaultMessage": "Componenti che hai già scelto, per codice produttore. I componenti scelti dall'agente vanno in <code>DESIGN.md</code> con la motivazione."
@@ -4080,7 +4080,7 @@
     "defaultMessage": "Componenti posizionati e net come elenchi di pin. Lascia fuori i fili e agentee li instrada."
   },
   "iab45dfro1": {
-    "defaultMessage": "Un'interfaccia nel layout può leggere simulazioni completate e far fallire il check quando un link non rispetta i suoi numeri:"
+    "defaultMessage": "Un'interfaccia nel layout può leggere simulazioni finite e far fallire la verifica quando un link non raggiunge i suoi numeri:"
   },
   "ibp664pyt5": {
     "defaultMessage": "La netlist diventa celle nel seguente modo:"
@@ -4380,7 +4380,7 @@
     "defaultMessage": "Disegnare un footprint"
   },
   "nbhz11on0k": {
-    "defaultMessage": "Senza <code>type</code>, è la span a decidere. Un microvia attraversa un dielettrico, a meno che non sia <code>stacked</code> (un microvia per dielettrico, che richiede <code>stacked_microvias</code>) o <code>skip</code> (un foro laser su due dielettrici). Check vincola ogni microvia ai limiti di trapano laser e il suo rapporto profondità su trapano a <code>max_microvia_aspect_ratio</code>, 0.8:1 nel preset <code>hdi</code>."
+    "defaultMessage": "Senza <code>type</code>, lo span decide. Una microvia attraversa un solo dielettrico, a meno che non sia <code>stacked</code> (una microvia per dielettrico, che richiede <code>stacked_microvias</code>) o <code>skip</code> (un foro laser su due dielettrici). La verifica tiene ogni microvia entro i limiti di perforazione laser e il suo rapporto profondità su foro a <code>max_microvia_aspect_ratio</code>, 0,8:1 nel preset <code>hdi</code>."
   },
   "ncslo2moub": {
     "defaultMessage": "Accesso ai test: di default i net che richiedono una sonda sono i net di alimentazione (una classe con <code>current</code>, oppure un nome come <code>3V3</code>, <code>1V8</code>, <code>+5V</code>, <code>VCC*</code>, <code>VDD*</code>, <code>VBUS*</code>, <code>VBAT*</code>, <code>VIN*</code>, <code>VSYS*</code>), il ground (<code>GND</code>, <code>*GND</code>, <code>GND*</code>) e i net con nomi come <code>*RST*</code>, <code>*RESET*</code>, <code>*EN*</code>, <code>*PG*</code>, <code>*CLK*</code>, <code>*TX*</code>, <code>*RX*</code>, <code>*SCL*</code>, <code>*SDA*</code>, <code>*SWD*</code>, <code>*TCK*</code>, <code>*TMS*</code>, <code>*TDI*</code>, <code>*TDO*</code>. I valori di default escludono i nodi di commutazione e i net di feedback dei regolatori, soft-start e riduzione del rumore (<code>SW*</code>, <code>*_SW</code>, <code>LX*</code>, <code>FB*</code>, <code>SS*</code>, <code>NR*</code>, confrontati sull'intero nome o sull'ultimo segmento dopo <code>/</code>), anche se la loro classe è di alimentazione: la capacità della sonda e lo stub verso la piazzola accoppiano il rumore di commutazione in un partitore di feedback, rallentano un soft-start o un filtro di rumore, e uno stub su un nodo di commutazione irradia. <code>nets</code> sostituisce quell'elenco (dichiara lì un net per sondarlo comunque) e <code>exclude</code> rimuove i net dall'elenco. Un punto di test è un componente con riferimento <code>TP</code> e un numero, oppure un footprint chiamato <code>TestPoint*</code>; come ogni componente, deve essere presente nello schema. Il footprint integrato <code>TestPoint_Pad_D1.0mm</code> (piazzola SMD rotonda da 1,0 mm, solder mask aperta, senza pasta) e il simbolo <code>TestPoint</code> vengono scritti in <code>footprints/</code> e <code>symbols/</code> da <code>agentee testpoints</code>."
@@ -4395,7 +4395,7 @@
     "defaultMessage": "Scheda e piste"
   },
   "nja0mzsiyi": {
-    "defaultMessage": "Una pista che sfiora solo una piazzola (la sua linea centrale non la tocca) viene segnalata; portala dentro la piazzola. Due segmenti dello stesso net che si sovrappongono su un layer (paralleli, sovrapposti per più di una larghezza di pista) sono un errore, poiché il rame è raddoppiato; una curva più stretta di 90 gradi viene segnalata come trappola acida. Una pista può restringersi sotto la larghezza della sua classe, fino al minimo del produttore, per un massimo di 0,5 mm (il <code>neckdown</code> della classe) dove incontra una piccola piazzola; il router disegna tali colli da solo (vedi Autorouting). I fori, le via e le piazzole placcate devono mantenere tra loro il <code>min_hole_to_hole</code> della scheda; il check conta le coppie che non lo rispettano e indica la prima. Due via dello stesso net nello stesso punto sono un errore anche loro: il produttore forerebbe il foro due volte. Le aperture del solder mask sono i contorni delle piazzole, senza espansione, e le via sono tentate. Due aperture di net diversi (o senza net) che si sovrappongono o lasciano un ponte di solder mask sotto <code>min_mask_web</code> sono un errore, contate per coppia di componenti con l'indicazione del primo punto. Le piazzole di un componente a passo fine vengono verificate anche loro: correggile nel footprint con piazzole più strette, oppure imposta un <code>min_mask_web</code> più piccolo se il produttore lo consente. Un footprint con <code>mask_web = false</code> ha il solder mask aperto come una finestra unica sopra le sue piazzole (apertura in gruppo), quindi le coppie delle sue stesse piazzole vengono saltate; le sue piazzole vengono comunque verificate rispetto ad altri componenti."
+    "defaultMessage": "Una pista che sfiora solo una piazzola (la sua linea centrale non la attraversa) viene segnalata; portala dentro la piazzola. Due segmenti dello stesso net che si sovrappongono su uno strato (paralleli, con sovrapposizione maggiore di una larghezza di pista) sono un errore, perché il rame è doppio; una curva più stretta di 90 gradi viene segnalata come trappola acida. Una pista può restringersi sotto la larghezza della sua classe, fino al minimo del produttore, per non più di 0,5 mm (la classe <code>neckdown</code>) dove incontra una piazzola piccola; il router disegna questi restringimenti da solo (vedi Autorouting). Fori perforati, via e piazzole placcate devono mantenere la distanza <code>min_hole_to_hole</code> della scheda; la verifica conta le coppie che non la rispettano e indica la prima. Due via dello stesso net nello stesso punto sono un errore: il produttore forerebbe il foro due volte. Le aperture del solder mask sono i contorni delle piazzole, senza espansione, e le via sono coperte. Due aperture di net diversi (o senza net) che si sovrappongono o lasciano un ponte di mask sotto <code>min_mask_web</code> sono un errore, contati per coppia di componenti con l'indicazione del primo punto. Le piazzole di un componente a passo fine vengono verificate: correggile nel footprint con piazzole più strette, oppure imposta un <code>min_mask_web</code> più piccolo se il produttore lo consente. Un footprint con <code>mask_web = false</code> ha la mask aperta come una finestra unica sopra le sue piazzole (apertura in blocco), quindi le coppie delle sue piazzole vengono saltate; le sue piazzole vengono comunque verificate rispetto agli altri componenti."
   },
   "nkntq5f43u": {
     "defaultMessage": "<code>track-grazes-pad</code>"
@@ -4914,7 +4914,7 @@
     "defaultMessage": "il visualizzatore egui e il renderer PNG headless"
   },
   "w7ba4yzjw9": {
-    "defaultMessage": "<code>current</code> viene verificato contro IPC-2221 su ogni layer che la classe può usare, a <code>max_temp_rise</code> (10 C di default). I layer interni portano meno corrente di quelli esterni, e check indica la larghezza che la porta su ciascuno:"
+    "defaultMessage": "<code>current</code> viene verificato contro IPC-2221 su ogni strato che la classe può usare, a <code>max_temp_rise</code> (10 C di default). Gli strati interni portano meno corrente di quelli esterni, e la verifica indica la larghezza che la porta su ciascuno:"
   },
   "w8vs1sxjll": {
     "defaultMessage": "Il riferimento chiave per chiave per ogni file di agentee: specifiche della scheda, stackup, via e regole del produttore, i controlli delle regole di progettazione, simboli, footprint, schemi, layout, simulazioni e pacchetto per il produttore."
@@ -4941,7 +4941,7 @@
     "defaultMessage": "suffisso"
   },
   "wkkjumi055": {
-    "defaultMessage": "Esegui simulazioni lunghe in background e continua a modificare altre cose. Check avvisa quando un risultato è diventato obsoleto."
+    "defaultMessage": "Esegui simulazioni lunghe in background e continua a modificare altre cose. La verifica avvisa quando un risultato è diventato obsoleto."
   },
   "wonqk3rj7e": {
     "defaultMessage": "<code>Edge_Cuts.gbr</code>"
@@ -5004,7 +5004,7 @@
     "defaultMessage": "<code>agentee place NAME [--parts &#39;U*,C1?&#39;] [--keep-placed] [--side F|B|both] [--seed N] [--dry-run]</code> (MCP <code>place</code>) posiziona i componenti dello schema del layout all'interno del contorno della scheda e scrive per ciascuno <code>at</code>, <code>rotation</code> e <code>side</code> nella sua voce <code>[[footprints]]</code> (aggiungendo voci per nuovi componenti, rimuovendo <code>at</code> da un'etichetta spostata), sposta le etichette di riferimento che ora non passano il controllo serigrafia, quindi aggiorna i riempimenti memorizzati. È un avvio rapido per un'intera scheda: posiziona, guarda, poi sposta a mano ciò che conta e blocca. <code>--parts</code> posiziona solo i componenti corrispondenti e lascia gli altri dove sono; <code>--keep-placed</code> lascia ogni componente che ha già una posizione; <code>locked = true</code> in una voce <code>[[footprints]]</code> non viene mai spostato. <code>--side both</code> permette ai condensatori di disaccoppiamento di una BGA di andare sotto di essa sul retro e ai passivi di traboccare sul retro quando il fronte è pieno; il default mette tutto sul fronte. Il risultato dipende solo dai file e da <code>--seed</code>, quindi un seed diverso è un avvio diverso. Segnala la lunghezza filo di semiperimetro (HPWL) dei net di segnale e di ogni net, le intersezioni del ratsnest, le sovrapposizioni dei courtyard e la distanza media e peggiore di disaccoppiamento, per la posizione da cui è partito (quando ogni componente ne aveva una) e per la sua, oltre ai cluster costruiti e al bordo a cui è andato ogni connettore. Le piste e le via già nel file restano dove sono; posiziona una scheda non instradabile, oppure <code>route --reroute</code> dopo. Le etichette vengono spostate con la stessa ricerca di <code>agentee silk</code> (un punto libero accanto al componente, fino a 8 passaggi e 3 tentativi per etichetta), eseguita sul layout posizionato in memoria, quindi il progetto viene caricato una volta in più, non una volta per passaggio; <code>labels_moved</code> le conta e <code>labels_failing</code> nomina quelle lasciate senza punto libero, per <code>agentee silk NAME --hide</code> o uno spostamento a mano."
   },
   "xe19xxqz3m": {
-    "defaultMessage": "Il check riporta lo skew di ogni coppia in mm e ps (dalla permittività effettiva del layer), un tratto della coppia eseguito con il passo sbagliato, e le coppie che passano meno dell&#39;80% della loro lunghezza affiancate. I gruppi di matching indicano quale net è corto o lungo e di quanto. Una coppia che attraversa componenti bipin in serie, come i condensatori AC su una linea USB, viene misurata da estremità a estremità: il suo skew è la somma su ogni coppia che unisce, riportato come <code>FX_TX1_P+SS_TX1_P/FX_TX1_N+SS_TX1_N</code>."
+    "defaultMessage": "La verifica riporta lo skew di ogni coppia in mm e ps (dalla permittività effettiva dello strato), un tratto della coppia eseguito con il passo sbagliato e le coppie che passano meno dell'80% della loro lunghezza affiancate. I gruppi di match indicano quale net è corta o lunga e di quanto. Una coppia che attraversa componenti bipin in serie, come i condensatori AC su una linea USB, viene misurata da capo a coda: il suo skew è la somma su ogni coppia che unisce, riportata come <code>FX_TX1_P+SS_TX1_P/FX_TX1_N+SS_TX1_N</code>."
   },
   "xetsghciuj": {
     "defaultMessage": "<code>symbols/</code>"
@@ -5103,7 +5103,7 @@
     "defaultMessage": "<code>agentee render</code> disegna esattamente ciò che disegna il visualizzatore, in un PNG, ed è così che l'agente vede la stessa cosa senza una finestra:"
   },
   "ytyzo9synx": {
-    "defaultMessage": "Scegli lo stesso stackup che specifica la scheda. Per schede con controllo dell'impedenza, scegli la costruzione per codice (<code>JLC04161H-7628</code> e simili); ogni check di larghezza risolto lo presuppone."
+    "defaultMessage": "Scegli lo stesso stackup che la specifica della scheda indica. Per schede con impedenza controllata, scegli la costruzione dal suo codice (<code>JLC04161H-7628</code> e così via); ogni verifica di larghezza risolta lo presuppone."
   },
   "yxvf3ydeca": {
     "defaultMessage": "viene spostato fuori da un livello valido dalla dispersione attraverso un pull troppo debole,"

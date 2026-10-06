@@ -272,6 +272,9 @@
   "13u8mhxwbqd": {
     "defaultMessage": "可选 <code>R</code>、<code>CLK</code>，可选 <code>D0</code> 到 <code>D3</code>、<code>CEP</code>、<code>LOAD</code>、<code>CET</code>"
   },
+  "13wt2gfx3mu": {
+    "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code>（MCP 中为 <code>route</code>）在网格上为指定网络的飞线布线（<code>--grid</code>，默认 0.05 mm），并将走线和过孔作为普通的 <code>[[tracks]]</code> 和 <code>[[vias]]</code> 追加到布局文件中，之后可以随意编辑。它对每个焊盘、走线、过孔、孔和板边保持各网络类的线宽、间距和 <code>layers</code>；按每种类过孔自身的焊盘、钻孔和层来确定所需空间（通孔放不下的地方可以放微孔，微孔也可以放在位于其他层的埋孔旁边）；新过孔与所有跨度共享同一介质层的钻孔保持 <code>min_hole_to_hole</code> 的距离，其孔与其他网络的焊盘、走线和过孔保持 <code>min_via_hole_to_copper</code> 的距离；并让过孔避开所有网络（包括自身网络）的 SMD 焊盘：过孔铜不得接触焊盘（<code>via-cuts-pad</code>），孔与焊盘保持 <code>min_hole_to_smd_pad</code>（<code>hole-to-smd-pad</code>），除非 <code>--via-in-pad</code>（MCP 中为 <code>via_in_pad</code>）允许钻孔不大于 <code>max_filled_via_drill</code> 的过孔完全位于自身网络的 SMD 焊盘内。换层时使用该类过孔中跨度同时包含两层且代价最低的一个（如需从其他名称中选择，使用 <code>--via uv-top,core</code> 或 MCP 的 <code>via</code>；<code>--via-cost</code> 以走线长度 mm 计，默认 3，再乘以过孔的 <code>cost</code>）；每个 45 度拐角计 <code>--bend-cost</code> mm 走线长度（默认 0.1，90 度为其三倍）；除非给出 <code>--reroute</code>，否则绝不移动已有内容，给出该选项时会先删除指定网络的走线和过孔。找不到空闲路径的连接会拆除它将穿过的已布网络，以及其过孔孔会落入自身孔 <code>min_hole_to_hole</code> 范围内的已布网络（跨度共享同一介质层的孔），将该位置记为拥塞，并把这些网络放回队列。搜索沿 45 度方向前进，并为每个拐角计代价，因此路径是带 45 度拐角的直线段；之后用两段式 45 度折线收紧走线，剩余的 90 度拐角在间距允许处倒角。只有通向不在网格上的焊盘中心的引线可以是其他角度。当类线宽放不进末端焊盘时（比焊盘短边更宽，或离相邻焊盘太近而无法保持间距），走线会缩颈：类线宽走线在焊盘前停止，另一条带显式 <code>width</code> 的 <code>[[tracks]]</code> 条目直线进入焊盘中心，长度不超过类的 <code>neckdown</code>，宽度不小于 <code>min_track_width</code>。其宽度取类线宽、焊盘短边和能保持间距的最大宽度中的最小值，向下取整到 0.01 mm（若取整后低于该下限而未取整的宽度不低于它，则恰为 <code>min_track_width</code>）；宽走线从焊盘向外第一个能以全宽保持间距的位置开始（对于比走线窄的焊盘，从焊盘外开始）。同一网络中相互接触的焊盘，例如由多个焊盘条目组成的散热焊盘，视为一个宽焊盘。用 <code>--pairs</code> 布线的差分对不会缩颈。已有新铜的网络，其连接从这些铜开始。全部布完后，每条使用过孔的已布连接会在其余保持不变的情况下逐层重试，若单层路径的长度不超过原长的 25% 加 1 mm，就替换原路径。然后，相邻且在彼此附近换层的平行连接，其过孔会沿各自的走线滑动到网格上的同一行或同一列，前提是该位置合规且连接长度不变（被 <code>--pairs</code> 固定的差分对各线以及有多条连接的网络保持不动）。带 <code>max_vias</code> 的接口中的网络会将走线（经过串联元件的整条通道上的所有网络）控制在该限制内：过孔过多的路径会先用代价更高的过孔重试，再尝试单层，两者都不行则给出原因并失败。差分对的第二个网络会按对间距被拉向其伙伴；<code>--pairs</code> 会先尝试把两半作为一条耦合走线一起布线。当少数连接失败时，用 <code>--reroute</code> 将它们与周围的网络一起重新布线，让布线器可以拆除并重新排序整个区域，或者降到 <code>--grid 0.025</code>。<code>--dry-run</code> 只报告不写入。先手工布好关键网络，再让布线器按类逐个完成其余部分。"
+  },
   "13xykr3e7l9": {
     "defaultMessage": "符号"
   },
@@ -756,7 +759,7 @@
     "defaultMessage": "长圆孔宽度小于 <code>min_plated_slot_width</code> 或 <code>min_npth_slot_width</code>，或长度小于其宽度的两倍。"
   },
   "1dj711ix5kg": {
-    "defaultMessage": "选择板厂和实际叠层，为每种网络定义网络类，并设置阻抗和电流目标，以便 check 求解线宽。"
+    "defaultMessage": "选择板厂和实际叠层，按网络类型定义网络类，并为其设置阻抗和电流目标，以便检查计算走线宽度。"
   },
   "1djz69hnhap": {
     "defaultMessage": "你的智能体可以编辑的文本形式的 PCB 设计"
