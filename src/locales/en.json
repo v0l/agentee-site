@@ -4889,6 +4889,9 @@
   "vrerkndm31": {
     "defaultMessage": "a two-pin passive whose signal nets reach one IC and nothing else, farther than <code>cluster_spread</code> (10 mm) from that IC&#39;s pin"
   },
+  "vtb7ixnbr3": {
+    "defaultMessage": "Improve this guide"
+  },
   "vu8wsyr48t": {
     "defaultMessage": "Look"
   },

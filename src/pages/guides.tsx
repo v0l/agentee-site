@@ -6,6 +6,8 @@ import { Crumbs, DocBody, PageHead, Pager, SideNav, Toc } from '../components/do
 import { useLocalePath, useString } from '../i18n/context';
 import { NotFound } from './not-found';
 
+const SITE_REPO = 'https://github.com/v0l/agentee-site';
+
 export function Guides() {
   const to = useLocalePath();
   const t = useString();
@@ -66,6 +68,10 @@ export function GuidePage() {
                 <p class="lede">{t(guide.summary)}</p>
                 <DocBody doc={doc} />
                 <p class="doc-source">
+                  <a href={`${SITE_REPO}/blob/master/content/guides/${guide.slug}.md`}>
+                    <FormattedMessage defaultMessage="Improve this guide" />
+                  </a>
+                  {' · '}
                   <a href={`/guides/${guide.slug}/index.html.md`}>
                     <FormattedMessage defaultMessage="Markdown for agents" />
                   </a>
