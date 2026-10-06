@@ -63,6 +63,8 @@ bun run intl:translate                     # every locale, or name some: bun run
 `http://localhost:8001/v1`, `INTL_KEY`, `INTL_MODEL`, default the first model it serves) in
 batches with a PCB glossary, and keeps a translation only when its tags, links, `<code>` contents
 and placeholders match the English and it has no en or em dash. Rerun it until nothing is missing.
-Hand fixes in a locale file stay.
+The prompt carries a PCB glossary per language (`GLOSSARY` in `scripts/translate.ts`), and
+`scripts/overrides.ts` holds hand translations for the short labels the model keeps getting wrong
+("Out the door", the loop verbs, "Skill"). Hand fixes in a locale file stay.
 
 Deployed to Cloudflare Pages (project `agentee`, apex `agentee.sh`).

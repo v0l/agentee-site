@@ -138,7 +138,7 @@ agentee sparam link --pair 1,2,3,4
 agentee sparam link --xtalk 1,3
 ```
 
-`sparam` works on any FDTD or cascade result: a TDR of one port, mixed-mode S-parameters of a pair, and crosstalk in frequency and as a step. It always reports passivity and reciprocity when every port was driven. See [Eyes, PDN and S-parameters](/guides/signal-integrity/).
+`sparam` works on any FDTD or cascade result: a TDR of one port, mixed-mode S-parameters of a pair, and crosstalk in frequency and as a step. It always reports passivity and reciprocity when every port was driven. See [Eye diagrams, PDN and S-parameters](/guides/signal-integrity/).
 
 ## Fields and emissions
 

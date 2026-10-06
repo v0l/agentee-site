@@ -70,7 +70,7 @@ export const GUIDES: Guide[] = [
   },
   {
     slug: 'signal-integrity',
-    title: 'Eyes, PDN and S-parameters',
+    title: 'Eye diagrams, PDN and S-parameters',
     summary: 'Push a bit stream through a channel and read the eye, check a power rail’s impedance against a target, and run TDR, mixed-mode and crosstalk analysis.',
     group: 'Simulate',
   },

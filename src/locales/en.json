@@ -50,9 +50,6 @@
   "10xbg5lcilr": {
     "defaultMessage": "<code>zone-overlap</code>"
   },
-  "10xio758fp8": {
-    "defaultMessage": "Eyes, PDN and S-parameters"
-  },
   "10yitn8bo8u": {
     "defaultMessage": "You did not draw a wire. A schematic lists nets as pins, and agentee routes the wires on the 1.27 mm grid when it draws them. Every net has a <code>class</code>; a net left in <code>Default</code> is a warning, because the class decides its track width, clearance and vias on the board."
   },
@@ -625,6 +622,9 @@
   },
   "1api0wdnxbo": {
     "defaultMessage": "From an empty directory to a checked, routed two layer board and a fab package: board spec, KiCad parts, a schematic, placement, routing and Gerbers."
+  },
+  "1ar5epo06pj": {
+    "defaultMessage": "Eye diagrams, PDN and S-parameters - agentee guide"
   },
   "1atsd2r8zsc": {
     "defaultMessage": "<code>*.fp.toml</code>"
@@ -1343,9 +1343,6 @@
   "1mbcvq07ruj": {
     "defaultMessage": "Excellon drills, one file per via span on HDI boards"
   },
-  "1mdqz0sr4af": {
-    "defaultMessage": "<code>sparam</code> works on any FDTD or cascade result: a TDR of one port, mixed-mode S-parameters of a pair, and crosstalk in frequency and as a step. It always reports passivity and reciprocity when every port was driven. See <a href=\"/guides/signal-integrity/\">Eyes, PDN and S-parameters</a>."
-  },
   "1megpg1z5qq": {
     "defaultMessage": "Dielectric loss follows a causal Djordjevic-Sarkar model fitted to each layer&#39;s permittivity and loss tangent. Copper is a surface impedance that follows the skin effect, the stackup&#39;s roughness and, with <code>finish = &quot;ENIG&quot;</code>, the gold and nickel on the outer pads, whose nickel adds several times the resistance of bare copper below a few GHz. The <a href=\"/reference/fdtd-losses/\">FDTD losses reference</a> has the models and the measurements they were checked against."
   },
@@ -1549,6 +1546,9 @@
   },
   "1pgivx3wguz": {
     "defaultMessage": "zones"
+  },
+  "1pj2k64de7u": {
+    "defaultMessage": "The USB numbers are TI&#39;s high-speed layout guidelines. Beyond the class targets, an interface checks the length end to end, the vias per trace, the via stubs, the run with no reference plane under it, the ground via beside every signal via, and for buses the arrival spread and the window against the clock. It can also read a finished sim: worst insertion and return loss and mode conversion from an FDTD run, eye height and width from a channel sim. See <a href=\"/guides/signal-integrity/\">Eye diagrams, PDN and S-parameters</a>."
   },
   "1pk2iwsv7fq": {
     "defaultMessage": "laser F.Cu to In1.Cu and In4.Cu to B.Cu,"
@@ -2233,9 +2233,6 @@
   },
   "21bc96aqosb": {
     "defaultMessage": "Parts: import or draw - agentee guide"
-  },
-  "21ceqskqfkd": {
-    "defaultMessage": "The USB numbers are TI&#39;s high-speed layout guidelines. Beyond the class targets, an interface checks the length end to end, the vias per trace, the via stubs, the run with no reference plane under it, the ground via beside every signal via, and for buses the arrival spread and the window against the clock. It can also read a finished sim: worst insertion and return loss and mode conversion from an FDTD run, eye height and width from a channel sim. See <a href=\"/guides/signal-integrity/\">Eyes, PDN and S-parameters</a>."
   },
   "21fci6qv4rx": {
     "defaultMessage": "Cursor, Claude Desktop and most other clients"
@@ -3971,6 +3968,9 @@
   "gtxjkl6uea": {
     "defaultMessage": "5 ns"
   },
+  "gx36z0lcz6": {
+    "defaultMessage": "Eye diagrams, PDN and S-parameters"
+  },
   "gx47fhiroy": {
     "defaultMessage": "Every layout carries silk text <code>agentee vX.Y.Z-HASH</code>: the version of the agentee that built the package and the short git hash of its source, with <code>-dirty</code> when the tree had uncommitted changes, or <code>unknown</code> outside git. It is always plotted and cannot be turned off. It is <code>min_silk_text_height</code> tall, centred, and by default goes on <code>B.SilkS</code> (<code>F.SilkS</code> when the bottom has no room or the board has no bottom silk) at the clear spot nearest the board&#39;s bottom left corner, rotated 90 degrees if only a tall gap fits. A clear spot keeps off pads, vias, other silk text and lines, artwork and part bodies, and stays <code>min_copper_to_edge</code> inside the outline. The viewer, render and assembly drawings show it, and <code>fab-notes.txt</code> names it. When no spot is clear, check reports a <code>watermark</code> error with the size to clear and the least crowded spot, and fab refuses; clear room there or set <code>[watermark] at</code> (plus <code>layer</code>, <code>rotation</code>) yourself. A <code>[watermark]</code> spot that is not clear is a <code>watermark</code> error naming what it hits, and a stackup with no <code>kind = &quot;silk&quot;</code> layer is a <code>watermark</code> error asking for one."
   },
@@ -4529,6 +4529,9 @@
   "pp0qjzzull": {
     "defaultMessage": "Primitive"
   },
+  "ppeeuqyiw9": {
+    "defaultMessage": "<code>sparam</code> works on any FDTD or cascade result: a TDR of one port, mixed-mode S-parameters of a pair, and crosstalk in frequency and as a step. It always reports passivity and reciprocity when every port was driven. See <a href=\"/guides/signal-integrity/\">Eye diagrams, PDN and S-parameters</a>."
+  },
   "ppu20tg4d8": {
     "defaultMessage": "severity"
   },
@@ -5059,9 +5062,6 @@
   },
   "y852j1pdwt": {
     "defaultMessage": "<code>*.sym.toml</code>"
-  },
-  "y8818fqsfi": {
-    "defaultMessage": "Eyes, PDN and S-parameters - agentee guide"
   },
   "y89mco74l": {
     "defaultMessage": "<code>locked = true</code> is never moved. <code>--keep-placed</code> leaves every part that already has a spot, <code>--parts</code> places only the matching ones, and <code>--side both</code> lets decoupling caps go under a BGA on the back. <code>[place] edges</code> in the layout pins a connector to an edge, and <code>keepouts</code> are polygons no courtyard may enter:"

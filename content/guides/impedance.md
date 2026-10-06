@@ -134,6 +134,6 @@ nets = ["SS_TX*", "SS_RX*"]
 | `rf-50` | 50 ohm +/-10% | | 0 | |
 | `cmos` | | | | 2 mm unreferenced |
 
-The USB numbers are TI's high-speed layout guidelines. Beyond the class targets, an interface checks the length end to end, the vias per trace, the via stubs, the run with no reference plane under it, the ground via beside every signal via, and for buses the arrival spread and the window against the clock. It can also read a finished sim: worst insertion and return loss and mode conversion from an FDTD run, eye height and width from a channel sim. See [Eyes, PDN and S-parameters](/guides/signal-integrity/).
+The USB numbers are TI's high-speed layout guidelines. Beyond the class targets, an interface checks the length end to end, the vias per trace, the via stubs, the run with no reference plane under it, the ground via beside every signal via, and for buses the arrival spread and the window against the clock. It can also read a finished sim: worst insertion and return loss and mode conversion from an FDTD run, eye height and width from a channel sim. See [Eye diagrams, PDN and S-parameters](/guides/signal-integrity/).
 
 `tune` works on interfaces in time as well as length: a pair over its skew in ps, and a bus outside its clock window, get the short side lengthened at each net's own delay per mm.
