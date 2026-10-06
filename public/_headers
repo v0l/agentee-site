@@ -1,0 +1,36 @@
+/assets/*
+  Cache-Control: public, max-age=604800
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/.well-known/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+
+/.well-known/agent-skills/index.json
+  Content-Type: application/json
+
+/.well-known/skills/index.json
+  Content-Type: application/json
+
+/.well-known/agent-skills/agentee/SKILL.md
+  Content-Type: text/markdown; charset=utf-8
+
+/.well-known/skills/agentee/SKILL.md
+  Content-Type: text/markdown; charset=utf-8
+
+/llms.txt
+  Access-Control-Allow-Origin: *
+  Content-Type: text/plain; charset=utf-8
+
+/llms-full.txt
+  Access-Control-Allow-Origin: *
+  Content-Type: text/plain; charset=utf-8
+
+/install.sh
+  Content-Type: text/plain; charset=utf-8
+
+/install.ps1
+  Content-Type: text/plain; charset=utf-8

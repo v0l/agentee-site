@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600&family=Martian+Mono:wdth,wght@75..112.5,400..700&display=block" rel="stylesheet">
+<style>
+  html, body { margin: 0; }
+  body {
+    width: 1200px; height: 630px; overflow: hidden; position: relative;
+    background-color: #0f3a2c;
+    background-image: radial-gradient(circle at center, rgb(217 174 59 / 0.22) 0 2.5px, transparent 3px),
+      radial-gradient(ellipse 60% 90% at 80% 40%, #154b39, transparent 70%);
+    background-size: 34px 34px, 100% 100%;
+    background-position: 17px 17px, 0 0;
+    color: #f3f5ef;
+    font-family: 'Atkinson Hyperlegible Next', sans-serif;
+  }
+  .brand { position: absolute; left: 64px; top: 56px; display: flex; align-items: center; gap: 16px; }
+  .brand svg { width: 56px; height: 56px; }
+  .brand span { font: 600 40px 'Martian Mono'; font-variation-settings: 'wdth' 90; letter-spacing: -0.03em; }
+  h1 { position: absolute; left: 64px; top: 170px; width: 560px; margin: 0;
+       font: 600 58px/1.12 'Martian Mono'; font-variation-settings: 'wdth' 80; letter-spacing: -0.035em; }
+  p { position: absolute; left: 64px; top: 430px; width: 520px; margin: 0; font-size: 25px; line-height: 1.4; color: #b9cbbf; }
+  .url { position: absolute; left: 64px; bottom: 48px; font: 500 20px 'Martian Mono'; font-variation-settings: 'wdth' 75;
+         letter-spacing: 0.14em; text-transform: uppercase; color: #d9ae3b; }
+  .board { position: absolute; left: 650px; top: 95px; width: 640px; border-radius: 10px; overflow: hidden;
+           border: 1px solid #000; box-shadow: 0 30px 70px -20px rgb(0 0 0 / 0.7); }
+  .board img { display: block; width: 100%; }
+</style>
+</head>
+<body>
+  <div class="brand">
+    <svg viewBox="0 0 32 32"><path d="M9.5 21.5 L18 13 H24" stroke="#d9774b" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="4.5" y="16.5" width="10" height="10" rx="2.5" fill="#d9ae3b"/><circle cx="24" cy="13" r="4" fill="#d9ae3b"/><circle cx="24" cy="13" r="1.7" fill="#0f3a2c"/></svg>
+    <span>agentee</span>
+  </div>
+  <h1>PCB design as text your agent can edit</h1>
+  <p>Checked against the fab, rendered, simulated on the GPU, written out as Gerbers.</p>
+  <div class="url">agentee.sh</div>
+  <div class="board"><img src="/assets/renders/lna-pcb.webp"></div>
+</body>
+</html>

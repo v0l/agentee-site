@@ -1,0 +1,887 @@
+[
+  {
+    "name": "format_reference",
+    "description": "The file format reference for boards, symbols and footprints, with examples. Read this before writing files.",
+    "args": []
+  },
+  {
+    "name": "check",
+    "description": "Load the project and report errors and warnings for every item, or one item.",
+    "args": [
+      {
+        "name": "include_info",
+        "type": "boolean",
+        "required": false,
+        "description": "also list info notes"
+      },
+      {
+        "name": "item",
+        "type": "string",
+        "required": false,
+        "description": "only this board, symbol or footprint"
+      }
+    ]
+  },
+  {
+    "name": "drc",
+    "description": "Design rule checks of a layout. With list = true: every DRC rule with its id, category, severity, and whether it applies to this board and why. Without: the layout's diagnostics that carry a rule id. Rule ids go in the board's [drc] disable list or severity table.",
+    "args": [
+      {
+        "name": "list",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": "layout or board"
+      }
+    ]
+  },
+  {
+    "name": "layout",
+    "description": "Run the layout engine on a layout: the configured [engine] phases in order, then the score per term with the worst offenders of each. Phases not implemented yet are listed as skipped.",
+    "args": [
+      {
+        "name": "dry_run",
+        "type": "boolean",
+        "required": false,
+        "description": "report without writing the plan"
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "required": false,
+        "description": "start at this phase"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "only",
+        "type": "string",
+        "required": false,
+        "description": "run one phase"
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "required": false,
+        "description": "stop after this phase"
+      }
+    ]
+  },
+  {
+    "name": "stackups",
+    "description": "Stackup presets for a board's `stackup.preset`: JLCPCB and PCBWay builds and generic HDI builds with layer thicknesses and er. Filter the list, or give name to get one preset's layers.",
+    "args": [
+      {
+        "name": "fab",
+        "type": "string",
+        "required": false,
+        "description": "jlcpcb, pcbway or generic"
+      },
+      {
+        "name": "layers",
+        "type": "integer",
+        "required": false,
+        "description": "copper layer count"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "description": "one preset, returns its layers"
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "required": false,
+        "description": "substring of name or description"
+      },
+      {
+        "name": "thickness",
+        "type": "number",
+        "required": false,
+        "description": "finished thickness in mm, within 10%"
+      }
+    ]
+  },
+  {
+    "name": "list_items",
+    "description": "Every board, symbol and footprint in the project with its file and error counts.",
+    "args": []
+  },
+  {
+    "name": "show_item",
+    "description": "The resolved model of one item as JSON: pins with positions, expanded pad arrays, stackup with computed trace geometry, impedance and current analysis.",
+    "args": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "render_item",
+    "description": "Render an item to PNG exactly as the viewer shows it and return the image.",
+    "args": [
+      {
+        "name": "canvas_only",
+        "type": "boolean",
+        "required": false,
+        "description": "drop the side panels"
+      },
+      {
+        "name": "height",
+        "type": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "hidden_pins",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "hide",
+        "type": "array",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "region",
+        "type": "array",
+        "required": false,
+        "description": "zoom to [x0, y0, x1, y1] in mm"
+      },
+      {
+        "name": "save_to",
+        "type": "string",
+        "required": false,
+        "description": "also write the PNG here, relative to the project"
+      },
+      {
+        "name": "show",
+        "type": "array",
+        "required": false,
+        "description": "layers to turn on, e.g. F.Fab, F.Mask, In1.Cu"
+      },
+      {
+        "name": "unit",
+        "type": "integer",
+        "required": false,
+        "description": "symbol unit, 1 based"
+      },
+      {
+        "name": "width",
+        "type": "integer",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "kicad_search",
+    "description": "Search the installed KiCad libraries by name. Every word must match Library:Name.",
+    "args": [
+      {
+        "name": "kind",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "limit",
+        "type": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "query",
+        "type": "string",
+        "required": true,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "import_kicad_symbol",
+    "description": "Convert a KiCad symbol (Library:Name) into a .sym.toml in the project. with_footprint also imports its default footprint, or give footprint to pick one.",
+    "args": [
+      {
+        "name": "dir",
+        "type": "string",
+        "required": false,
+        "description": "relative to the project, default symbols/"
+      },
+      {
+        "name": "footprint",
+        "type": "string",
+        "required": false,
+        "description": "Library:Name of the footprint to import and link"
+      },
+      {
+        "name": "force",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "spec",
+        "type": "string",
+        "required": true,
+        "description": "Library:Name, e.g. Amplifier_Operational:LM358"
+      },
+      {
+        "name": "with_footprint",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "import_kicad_footprint",
+    "description": "Convert a KiCad footprint (Library:Name) into a .fp.toml in the project.",
+    "args": [
+      {
+        "name": "dir",
+        "type": "string",
+        "required": false,
+        "description": "relative to the project, default footprints/"
+      },
+      {
+        "name": "force",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "spec",
+        "type": "string",
+        "required": true,
+        "description": "Library:Name, e.g. Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
+      }
+    ]
+  },
+  {
+    "name": "new_item",
+    "description": "Write a starter file for a board, symbol, footprint, schematic, layout or sim, to edit from. A sim starts as an FDTD run of a layout, or with sim_kind logic as a logic sim of a schematic (clock, reset, a clocked assertion) whose nets you rename.",
+    "args": [
+      {
+        "name": "dir",
+        "type": "string",
+        "required": false,
+        "description": "relative to the project"
+      },
+      {
+        "name": "kind",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "sim_kind",
+        "type": "string",
+        "required": false,
+        "description": "with kind sim, default fdtd"
+      }
+    ]
+  },
+  {
+    "name": "trace_width",
+    "description": "Minimum track width for a current (IPC-2221).",
+    "args": [
+      {
+        "name": "copper",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "current",
+        "type": "string",
+        "required": true,
+        "description": "e.g. 2A or 500mA"
+      },
+      {
+        "name": "internal",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "temp_rise",
+        "type": "string",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "run_sim",
+    "description": "Run a simulation (*.sim.toml): an FDTD run of a layout on the GPU (ports on pads, lumped models for passives, S-parameters saved as JSON and Touchstone next to the spec), any other kind (dc, thermal, cascade, channel, pdn), or a logic sim of the schematic netlist (stimulus, assertions, setup and hold, a VCD next to the spec). Render the sim afterwards to see the plot or the waveforms.",
+    "args": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "serpentine",
+    "description": "Points for a track that replaces a straight segment and adds a given length as trombone bumps to one side. Paste them into the track's points.",
+    "args": [
+      {
+        "name": "add",
+        "type": "string",
+        "required": true,
+        "description": "e.g. 2.5mm"
+      },
+      {
+        "name": "amplitude",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "required": true,
+        "description": "x,y in mm"
+      },
+      {
+        "name": "pitch",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "required": true,
+        "description": "x,y in mm"
+      }
+    ]
+  },
+  {
+    "name": "tie",
+    "description": "Tie every SMD pad of a plane net (a net with a [[zones]] entry) to the nearest plane layer with a short stub and a via beside the pad, away from the part body, and append them to the layout file. Use this for ground and supply pads instead of routing tracks between them; `route` with a glob skips plane nets.",
+    "args": [
+      {
+        "name": "dry_run",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "nets",
+        "type": "string",
+        "required": false,
+        "description": "comma separated plane nets, globs allowed, default every net with a zone"
+      }
+    ]
+  },
+  {
+    "name": "route",
+    "description": "Autoroute the ratsnest of the named nets of a layout on a grid, keeping each class's width, clearance, layers and via, and append the tracks and vias to the layout file. Existing copper is never moved unless reroute is set.",
+    "args": [
+      {
+        "name": "bend_cost",
+        "type": "number",
+        "required": false,
+        "description": "mm of track per 45 degree bend, three times that for 90"
+      },
+      {
+        "name": "dry_run",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "grid",
+        "type": "number",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "layers",
+        "type": "string",
+        "required": false,
+        "description": "comma separated copper layers, default all"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "nets",
+        "type": "string",
+        "required": true,
+        "description": "comma separated, * and ? globs"
+      },
+      {
+        "name": "pairs",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "reroute",
+        "type": "boolean",
+        "required": false,
+        "description": "remove these nets' tracks and vias first"
+      },
+      {
+        "name": "via",
+        "type": "string",
+        "required": false,
+        "description": "comma separated [[vias]] names from the board to choose from, default the class vias"
+      },
+      {
+        "name": "via_cost",
+        "type": "number",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "via_in_pad",
+        "type": "boolean",
+        "required": false,
+        "description": "allow vias fully inside SMD pads (filled and capped); by default vias keep off every SMD pad"
+      }
+    ]
+  },
+  {
+    "name": "fill",
+    "description": "Fill the zones of a layout and store the copper at the end of its file, so loads and the viewer skip the fill until the zone's copper, clearances or neighbours change.",
+    "args": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "tune",
+    "description": "Length-match a layout: meander the short net of every pair over its skew limit and every match group member short of its target, on the longest segments where the bumps clear every other net, and write the points back into the tracks.",
+    "args": [
+      {
+        "name": "amplitude",
+        "type": "number",
+        "required": false,
+        "description": "largest bump height in mm"
+      },
+      {
+        "name": "dry_run",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "nets",
+        "type": "string",
+        "required": false,
+        "description": "comma separated globs, default all"
+      },
+      {
+        "name": "pitch",
+        "type": "number",
+        "required": false,
+        "description": "bump pitch in mm"
+      }
+    ]
+  },
+  {
+    "name": "neck",
+    "description": "Neck down track ends that enter a pad narrower than the track or break clearance near the pad: the end becomes a separate [[tracks]] entry with an explicit width, the smallest of the class width, the pad's smaller side and the widest that keeps clearance, rounded down to 0.01 mm, never under min_track_width and never longer than the class neckdown. taper steps the width down over a short chain of segments. Stored zone fills are refreshed.",
+    "args": [
+      {
+        "name": "dry_run",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "nets",
+        "type": "string",
+        "required": false,
+        "description": "comma separated globs, default all"
+      },
+      {
+        "name": "taper",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "place",
+    "description": "Place the layout's parts automatically as a quick start: connectors and edge-mount parts on the board edges (never an RF and a USB connector on one edge unless it must), mounting holes and fiducials in the corners, the largest chips near the centre, each IC's decoupling caps, crystal and pull-ups clustered at the pins they serve, placed by weighted wirelength, then legalised on a 0.05 mm grid with no courtyard overlaps and refined by simulated annealing. Writes at, rotation and side into [[footprints]] and refreshes the stored fills. Parts with locked = true stay put.",
+    "args": [
+      {
+        "name": "dry_run",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "keep_placed",
+        "type": "boolean",
+        "required": false,
+        "description": "leave every part that already has a placement"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "parts",
+        "type": "string",
+        "required": false,
+        "description": "comma separated globs of the parts to place, default all"
+      },
+      {
+        "name": "seed",
+        "type": "integer",
+        "required": false,
+        "description": "default 1; the same seed gives the same placement"
+      },
+      {
+        "name": "side",
+        "type": "string",
+        "required": false,
+        "description": "F, B or both, default F"
+      }
+    ]
+  },
+  {
+    "name": "silk",
+    "description": "Move every silk reference that check flags to the clear spot it suggests, repeating until the labels settle, and optionally hide the ones that have nowhere to go. Writes label = { at, rotation } or hide = true into the footprints.",
+    "args": [
+      {
+        "name": "dry_run",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "hide",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "testpoints",
+    "description": "Add a test pad to each net that needs probe access and has none: a TestPoint part (TestPoint_Pad_D1.0mm footprint, both written into the project if missing) joined to the net in the schematic sheet that lists it, a footprint on the probe side in free space near the net's copper, and an autorouted track and via from the net's copper. Nets default to the layout's [test] nets; impedance and pair nets are skipped.",
+    "args": [
+      {
+        "name": "dry_run",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "nets",
+        "type": "string",
+        "required": false,
+        "description": "comma separated, * and ? globs, any case; default the [test] nets"
+      },
+      {
+        "name": "pitch",
+        "type": "number",
+        "required": false,
+        "description": "grid and least spacing of the test pads, mm"
+      },
+      {
+        "name": "side",
+        "type": "string",
+        "required": false,
+        "description": "probe side F or B, default the [test] side (B)"
+      }
+    ]
+  },
+  {
+    "name": "sparam",
+    "description": "Analyse a finished sim or cascade: passivity and reciprocity, a TDR of one port (impedance against time with a Gaussian edge), mixed-mode Sdd/Scc/Scd for a pair given as IN+,IN-,OUT+,OUT-, and crosstalk FROM,TO in frequency and as a step.",
+    "args": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "pair",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "rise",
+        "type": "string",
+        "required": false,
+        "description": "10-90% rise, e.g. 35ps"
+      },
+      {
+        "name": "tdr",
+        "type": "string",
+        "required": false,
+        "description": "port name or number"
+      },
+      {
+        "name": "xtalk",
+        "type": "string",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "models",
+    "description": "Find the 3D models (STEP or VRML) the project's footprints name, downloading missing KiCad library models into the cache. Reports each model's path and triangle count, or why it is missing.",
+    "args": []
+  },
+  {
+    "name": "fab",
+    "description": "Write the fab package for a layout into a folder: RS-274X Gerbers (X2) per copper, mask, paste, silk and edge layer, Excellon drills, a zip of those for upload, BOM (generic and JLCPCB), pick-and-place, fab notes and assembly drawings. Refuses while the layout has errors.",
+    "args": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "out",
+        "type": "string",
+        "required": true,
+        "description": "output folder, relative to the project"
+      }
+    ]
+  },
+  {
+    "name": "export",
+    "description": "Write a layout as one STEP assembly for enclosure CAD: the board as a solid with its drilled holes and cutouts, each part's STEP model embedded and placed, and VRML, generated and missing models as surfaces or boxes. Board bottom at z = 0, X and Y as the layout with Y up.",
+    "args": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "out",
+        "type": "string",
+        "required": true,
+        "description": "output .step file, relative to the project"
+      }
+    ]
+  },
+  {
+    "name": "parts",
+    "description": "Price a layout's or schematic's BOM at Mouser and Farnell and find cheaper equivalents: the same part at the other distributor, resistors and ceramic capacitors with the same value, package, tolerance, voltage and dielectric (never a downgrade), generic discretes (2N7002, S1D, SS14, SMAJ..) by name and package, indicator LEDs by colour and package, and the distributor's suggested replacement for parts going obsolete. Costs are at the needed quantity, buying up to a price break when that is cheaper. Keys come from ~/.config/agentee/distributors.toml ([mouser] api_key, [farnell] api_key and store).",
+    "args": [
+      {
+        "name": "alternatives",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "boards",
+        "type": "integer",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "distributors",
+        "type": "array",
+        "required": false,
+        "description": "mouser, farnell; default every one with a key"
+      },
+      {
+        "name": "farnell_store",
+        "type": "string",
+        "required": false,
+        "description": "e.g. uk.farnell.com, ie.farnell.com, www.newark.com"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": "layout or schematic"
+      },
+      {
+        "name": "refs",
+        "type": "array",
+        "required": false,
+        "description": "only the BOM lines holding these references"
+      }
+    ]
+  },
+  {
+    "name": "field_solve",
+    "description": "Solve a trace cross-section with the GPU field solver: impedance, effective permittivity, C and L per metre, delay. Includes solder mask, thickness, coplanar grounds and differential pairs. Within 0.5% of exact references with fine = true.",
+    "args": [
+      {
+        "name": "board",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "coplanar_gap",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "fine",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "gap",
+        "type": "string",
+        "required": false,
+        "description": "differential pair gap"
+      },
+      {
+        "name": "layer",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "netclass",
+        "type": "string",
+        "required": false,
+        "description": "take width and gaps from this class"
+      },
+      {
+        "name": "no_mask",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "sweep",
+        "type": "string",
+        "required": false,
+        "description": "loss sweep START,STOP,POINTS, e.g. 10MHz,20GHz,21: R, L, G, C, Z0 and dB/in per frequency with skin effect, stackup roughness and a causal (Djordjevic-Sarkar) dielectric"
+      },
+      {
+        "name": "width",
+        "type": "string",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "impedance",
+    "description": "Trace impedance on a board layer for a width (and pair gap), or the width that hits a target.",
+    "args": [
+      {
+        "name": "board",
+        "type": "string",
+        "required": false,
+        "description": "board name, optional when there is one"
+      },
+      {
+        "name": "coplanar_gap",
+        "type": "string",
+        "required": false,
+        "description": "gap to the ground pour either side, grounded coplanar on outer layers"
+      },
+      {
+        "name": "gap",
+        "type": "string",
+        "required": false,
+        "description": "differential pair gap"
+      },
+      {
+        "name": "layer",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "target",
+        "type": "string",
+        "required": false,
+        "description": "e.g. 50ohm"
+      },
+      {
+        "name": "width",
+        "type": "string",
+        "required": false,
+        "description": ""
+      }
+    ]
+  }
+]

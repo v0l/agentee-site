@@ -1,0 +1,189 @@
+{
+  "top": "Electronic design for agents: board spec, symbols and footprints as TOML\n\nUsage: agentee <COMMAND>\n\nCommands:\n  check       Load every board, symbol and footprint under PATH and report problems\n  drc         Design rule checks of a layout: its rule diagnostics, or every rule with --list\n  list        List the items in a project\n  show        Print the resolved model of one item as JSON\n  render      Render an item to PNG as the viewer draws it\n  view        Open the viewer, it reloads when files change\n  mcp         Serve the project over MCP on stdio\n  new         Write a starter board, symbol, footprint, schematic, layout or sim\n  import      Import from the installed KiCad libraries\n  search      Search KiCad library names; every word must match Library:Name\n  sim         Run a simulation (*.sim.toml): FDTD, dc, thermal, cascade, channel, pdn or logic\n  sparam      Analyse a sim result: TDR, mixed mode, crosstalk, passivity and reciprocity\n  models      Download the KiCad 3D models (VRML) the project's footprints name, for the 3D view\n  fab         Write the fab package for a layout: Gerbers, drill, BOM, placement, notes\n  export      Write the board and every part model of a layout as one STEP assembly, for enclosure CAD\n  parts       Stock, price and cheaper equivalents for a layout's or schematic's BOM from Mouser and Farnell, with keys in ~/.config/agentee/distributors.toml\n  fill        Fill the zones of a layout and store the copper in its file, so loads skip the fill\n  route       Route nets of a layout on a grid and append the tracks and vias to its file\n  tie         Tie every SMD pad of a plane net (a net with a zone) to its plane with a stub and a via beside the pad, and append them to the layout file\n  tune        Meander the short net of every pair over its skew limit and every match group member short of its target, and write the new points into the tracks\n  neck        Neck down track ends that enter a pad narrower than the track or break clearance near it: the end becomes a separate narrower track within the class neckdown length\n  place       Place the schematic's parts on the board: connectors on edges, holes and fiducials in corners, large chips central, passives clustered by the netlist, then legalised and refined\n  silk        Move every failing silk reference to the clear spot check suggests, again until they settle, and hide the ones with nowhere to go when asked\n  testpoints  Add a test pad to each net that has no probe access: a TestPoint part in the schematic, a footprint on the probe side near the net's copper, and a routed track (and via) to it\n  calc        Trace calculators\n  layout      Run the layout engine on a layout: the configured stages in order, then the score per term\n  pinswap     Reassign a chip's swappable I/O (same bank, pairs as pairs, clock pins kept on clock pins) to untangle the ratsnest\n  stackups    List the fab stackup presets a board's `stackup.preset` can name, or print one\n  edit        Edit a schematic, layout or board with commands instead of writing TOML by hand\n  docs        Print the file format reference\n  help        Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help     Print help\n  -V, --version  Print version",
+  "commands": [
+    {
+      "command": "new",
+      "about": "Write a starter board, symbol, footprint, schematic, layout or sim",
+      "help": "Write a starter board, symbol, footprint, schematic, layout or sim\n\nUsage: agentee new [OPTIONS] <KIND> <NAME>\n\nArguments:\n  <KIND>  [possible values: board, symbol, footprint, schematic, layout, sim]\n  <NAME>  \n\nOptions:\n  -d, --dir <DIR>        \n      --kind <SIM_KIND>  The sim to start from: an FDTD run of a layout, or a logic sim of a schematic [default: fdtd] [possible values: fdtd, logic]\n  -h, --help             Print help"
+    },
+    {
+      "command": "check",
+      "about": "Load every board, symbol and footprint under PATH and report problems",
+      "help": "Load every board, symbol and footprint under PATH and report problems\n\nUsage: agentee check [OPTIONS] [PATH]\n\nArguments:\n  [PATH]  [default: .]\n\nOptions:\n      --item <ITEM>  Only this item\n      --info         Also print info notes\n      --json         \n  -h, --help         Print help"
+    },
+    {
+      "command": "edit",
+      "about": "Edit a schematic, layout or board with commands instead of writing TOML by hand",
+      "help": "Edit a schematic, layout or board with commands instead of writing TOML by hand\n\nEvery edit takes the item name and a command. `agentee edit sch help` lists them with their arguments. A list of commands also works: `agentee edit sch -` reads them from stdin, one per line, and `agentee edit sch FILE` from a file, one load, one check at the end. It rewrites the TOML, keeps the comments and layout of the file, and prints the check report of the files it touched.\n\nPin references are REF.PIN, by number (U1.3) or by a unique pin name (U1.VCC). The pin numbers that came back are in the JSON facts.\n\nUsage: agentee edit [OPTIONS] <TARGET> <NAME> [ARGS]...\n\nArguments:\n  <TARGET>\n          schematic, layout or board\n          \n          [possible values: sch, pcb, board]\n\n  <NAME>\n          Item name, `-` for stdin, a script file, or a command\n\n  [ARGS]...\n          Arguments of the command\n\nOptions:\n      --list\n          List the item's parts and nets, or its tracks, vias and zones\n\n      --json\n          \n\n  -h, --help\n          Print help (see a summary with '-h')"
+    },
+    {
+      "command": "list",
+      "about": "List the items in a project",
+      "help": "List the items in a project\n\nUsage: agentee list [PATH]\n\nArguments:\n  [PATH]  [default: .]\n\nOptions:\n  -h, --help  Print help"
+    },
+    {
+      "command": "show",
+      "about": "Print the resolved model of one item as JSON",
+      "help": "Print the resolved model of one item as JSON\n\nUsage: agentee show [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n  -h, --help               Print help"
+    },
+    {
+      "command": "render",
+      "about": "Render an item to PNG as the viewer draws it",
+      "help": "Render an item to PNG as the viewer draws it\n\nUsage: agentee render [OPTIONS] --out <OUT> <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n  -o, --out <OUT>          \n      --width <WIDTH>      [default: 1400]\n      --height <HEIGHT>    [default: 900]\n      --scale <SCALE>      Pixels per point [default: 1]\n      --unit <UNIT>        [default: 1]\n      --canvas-only        Only the drawing, no side panels\n      --hidden-pins        \n      --show <SHOW>        Layers to turn on, comma separated (F.Fab,F.Mask,In1.Cu)\n      --hide <HIDE>        Layers to turn off, comma separated\n      --region <REGION>    Zoom to x0,y0,x1,y1 in mm\n  -h, --help               Print help"
+    },
+    {
+      "command": "view",
+      "about": "Open the viewer, it reloads when files change",
+      "help": "Open the viewer, it reloads when files change\n\nUsage: agentee view [OPTIONS] [PATH]\n\nArguments:\n  [PATH]  [default: .]\n\nOptions:\n      --select <SELECT>  \n      --3d               Open layouts in the 3D view\n  -h, --help             Print help"
+    },
+    {
+      "command": "search",
+      "about": "Search KiCad library names; every word must match Library:Name",
+      "help": "Search KiCad library names; every word must match Library:Name\n\nUsage: agentee search [OPTIONS] <KIND> [QUERY]...\n\nArguments:\n  <KIND>\n          Possible values:\n          - symbol\n          - footprint\n          - board:     A whole .kicad_pcb: board, layout, a netlist schematic, footprints and pin symbols\n\n  [QUERY]...\n          \n\nOptions:\n      --limit <LIMIT>\n          [default: 40]\n\n  -h, --help\n          Print help (see a summary with '-h')"
+    },
+    {
+      "command": "import",
+      "about": "Import from the installed KiCad libraries",
+      "help": "Import from the installed KiCad libraries\n\nUsage: agentee import [OPTIONS] <KIND> <SPEC>\n\nArguments:\n  <KIND>\n          Possible values:\n          - symbol\n          - footprint\n          - board:     A whole .kicad_pcb: board, layout, a netlist schematic, footprints and pin symbols\n\n  <SPEC>\n          Library:Name, a .kicad_sym path with :Name, or a .kicad_mod path\n\nOptions:\n  -d, --dir <DIR>\n          \n\n      --with-footprint\n          With a symbol, also import its default footprint\n\n      --footprint <FOOTPRINT>\n          With a symbol, import this footprint (Library:Name) and link it\n\n      --footprint-dir <FOOTPRINT_DIR>\n          Where footprints go when importing with a symbol\n          \n          [default: footprints]\n\n      --force\n          \n\n  -h, --help\n          Print help (see a summary with '-h')"
+    },
+    {
+      "command": "models",
+      "about": "Download the KiCad 3D models (VRML) the project's footprints name, for the 3D view",
+      "help": "Download the KiCad 3D models (VRML) the project's footprints name, for the 3D view\n\nUsage: agentee models [PATH]\n\nArguments:\n  [PATH]  [default: .]\n\nOptions:\n  -h, --help  Print help"
+    },
+    {
+      "command": "stackups",
+      "about": "List the fab stackup presets a board's `stackup.preset` can name, or print one",
+      "help": "List the fab stackup presets a board's `stackup.preset` can name, or print one\n\nUsage: agentee stackups [OPTIONS] [NAME]\n\nArguments:\n  [NAME]  Print this preset's layers as JSON\n\nOptions:\n      --fab <FAB>              jlcpcb, pcbway or generic\n      --layers <LAYERS>        Copper layer count\n      --thickness <THICKNESS>  Finished thickness in mm, matched within 10%\n      --search <SEARCH>        Substring of the name or description, like 1080 or 2oz\n      --json                   \n  -h, --help                   Print help"
+    },
+    {
+      "command": "calc",
+      "about": "Trace calculators",
+      "help": "Trace calculators\n\nUsage: agentee calc <COMMAND>\n\nCommands:\n  trace-width  Minimum track width for a current (IPC-2221)\n  serpentine   Meander points that add length to a straight segment\n  field        Solve the trace cross-section on the GPU (2D field solver)\n  impedance    Impedance on a board layer, or the width for a target\n  help         Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help"
+    },
+    {
+      "command": "calc trace-width",
+      "about": "Minimum track width for a current (IPC-2221)",
+      "help": "Minimum track width for a current (IPC-2221)\n\nUsage: agentee calc trace-width [OPTIONS] --current <CURRENT>\n\nOptions:\n      --current <CURRENT>  \n      --copper <COPPER>    [default: 1oz]\n      --rise <RISE>        [default: 10C]\n      --internal           \n  -h, --help               Print help"
+    },
+    {
+      "command": "calc impedance",
+      "about": "Impedance on a board layer, or the width for a target",
+      "help": "Impedance on a board layer, or the width for a target\n\nUsage: agentee calc impedance [OPTIONS]\n\nOptions:\n  -p, --project <PROJECT>            [default: .]\n      --board <BOARD>                \n      --layer <LAYER>                \n      --width <WIDTH>                \n      --gap <GAP>                    \n      --coplanar-gap <COPLANAR_GAP>  Gap to the ground pour either side (grounded coplanar, outer layers)\n      --target <TARGET>              \n      --h <H>                        Dielectric height for a bare microstrip, instead of a board\n      --er <ER>                      \n      --t <T>                        \n  -h, --help                         Print help"
+    },
+    {
+      "command": "calc field",
+      "about": "Solve the trace cross-section on the GPU (2D field solver)",
+      "help": "Solve the trace cross-section on the GPU (2D field solver)\n\nUsage: agentee calc field [OPTIONS]\n\nOptions:\n  -p, --project <PROJECT>            [default: .]\n      --board <BOARD>                \n      --layer <LAYER>                [default: F.Cu]\n      --width <WIDTH>                \n      --netclass <NETCLASS>          Take width and gaps from this net class\n      --gap <GAP>                    \n      --coplanar-gap <COPLANAR_GAP>  \n      --no-mask                      Leave off the solder mask the stackup puts over outer layers\n      --fine                         \n      --sweep <SWEEP>                Loss sweep START,STOP,POINTS (log spaced), e.g. 10MHz,20GHz,21\n  -h, --help                         Print help"
+    },
+    {
+      "command": "calc serpentine",
+      "about": "Meander points that add length to a straight segment",
+      "help": "Meander points that add length to a straight segment\n\nUsage: agentee calc serpentine [OPTIONS] --from <FROM> --to <TO> --add <ADD>\n\nOptions:\n      --from <FROM>            Segment start x,y in mm\n      --to <TO>                Segment end x,y in mm\n      --add <ADD>              Length to add, e.g. 2.5mm\n      --amplitude <AMPLITUDE>  Largest bump height [default: 0.6mm]\n      --pitch <PITCH>          Distance between the legs of a bump [default: 0.4mm]\n  -h, --help                   Print help"
+    },
+    {
+      "command": "place",
+      "about": "Place the schematic's parts on the board: connectors on edges, holes and fiducials in corners, large chips central, passives clustered by the netlist, then legalised and refined",
+      "help": "Place the schematic's parts on the board: connectors on edges, holes and fiducials in corners, large chips central, passives clustered by the netlist, then legalised and refined\n\nUsage: agentee place [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n      --parts <PARTS>      Parts to place, globs allowed, comma separated; default every part\n      --keep-placed        Leave every part that already has a placement where it is\n      --side <SIDE>        Sides to place on: F, B or both [default: F]\n      --seed <SEED>        Seed for the refinement, the same seed gives the same placement [default: 1]\n      --dry-run            Report without writing the file\n  -h, --help               Print help"
+    },
+    {
+      "command": "route",
+      "about": "Route nets of a layout on a grid and append the tracks and vias to its file",
+      "help": "Route nets of a layout on a grid and append the tracks and vias to its file\n\nUsage: agentee route [OPTIONS] --nets <NETS> <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>      [default: .]\n      --nets <NETS>            Nets to route, globs allowed, comma separated or repeated\n      --layers <LAYERS>        Copper layers to route on, default every layer\n      --grid <GRID>            Grid cell in mm [default: 0.05]\n      --via <VIA>              Vias from the board to use, comma separated or repeated, default the net class vias\n      --via-cost <VIA_COST>    Cost of a via in mm of track [default: 3]\n      --bend-cost <BEND_COST>  Cost of a 45 degree bend in mm of track, three times that for 90 [default: 0.1]\n      --pairs                  Route differential pairs as coupled pairs where they fit\n      --via-in-pad             Allow vias fully inside SMD pads (filled and capped), default keep them off every pad\n      --reroute                Remove the existing tracks and vias of these nets first and route them again\n      --dry-run                Report without writing the file\n  -h, --help                   Print help"
+    },
+    {
+      "command": "tie",
+      "about": "Tie every SMD pad of a plane net (a net with a zone) to its plane with a stub and a via beside the pad, and append them to the layout file",
+      "help": "Tie every SMD pad of a plane net (a net with a zone) to its plane with a stub and a via beside the pad, and append them to the layout file\n\nUsage: agentee tie [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n      --nets <NETS>        Plane nets to tie, globs allowed, default every net with a zone\n      --dry-run            Report without writing the file\n  -h, --help               Print help"
+    },
+    {
+      "command": "tune",
+      "about": "Meander the short net of every pair over its skew limit and every match group member short of its target, and write the new points into the tracks",
+      "help": "Meander the short net of every pair over its skew limit and every match group member short of its target, and write the new points into the tracks\n\nUsage: agentee tune [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>      [default: .]\n      --nets <NETS>            Nets to tune, globs allowed, comma separated [default: *]\n      --amplitude <AMPLITUDE>  Largest bump height in mm, default tries 1.2 mm down to 0.2 mm\n      --pitch <PITCH>          Bump pitch in mm, default three track widths\n      --dry-run                Report without writing the file\n  -h, --help                   Print help"
+    },
+    {
+      "command": "neck",
+      "about": "Neck down track ends that enter a pad narrower than the track or break clearance near it: the end becomes a separate narrower track within the class neckdown length",
+      "help": "Neck down track ends that enter a pad narrower than the track or break clearance near it: the end becomes a separate narrower track within the class neckdown length\n\nUsage: agentee neck [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n      --nets <NETS>        Nets to neck down, globs allowed, comma separated [default: *]\n      --taper              Step the width down in a short chain of segments instead of one neck\n      --dry-run            Report without writing the file\n  -h, --help               Print help"
+    },
+    {
+      "command": "fill",
+      "about": "Fill the zones of a layout and store the copper in its file, so loads skip the fill",
+      "help": "Fill the zones of a layout and store the copper in its file, so loads skip the fill\n\nUsage: agentee fill [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n  -h, --help               Print help"
+    },
+    {
+      "command": "silk",
+      "about": "Move every failing silk reference to the clear spot check suggests, again until they settle, and hide the ones with nowhere to go when asked",
+      "help": "Move every failing silk reference to the clear spot check suggests, again until they settle, and hide the ones with nowhere to go when asked\n\nUsage: agentee silk [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n      --hide               Hide references that have no clear spot\n      --dry-run            List the fixes without writing the file\n  -h, --help               Print help"
+    },
+    {
+      "command": "testpoints",
+      "about": "Add a test pad to each net that has no probe access: a TestPoint part in the schematic, a footprint on the probe side near the net's copper, and a routed track (and via) to it",
+      "help": "Add a test pad to each net that has no probe access: a TestPoint part in the schematic, a footprint on the probe side near the net's copper, and a routed track (and via) to it\n\nUsage: agentee testpoints [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n      --nets <NETS>        Nets to give a test pad, globs allowed, comma separated; default the [test] nets\n      --side <SIDE>        Probe side, F or B; default the [test] side (B)\n      --pitch <PITCH>      Grid the pads sit on and the least spacing between them, mm [default: 2.54]\n      --dry-run            List the spots without writing any file\n  -h, --help               Print help"
+    },
+    {
+      "command": "pinswap",
+      "about": "Reassign a chip's swappable I/O (same bank, pairs as pairs, clock pins kept on clock pins) to untangle the ratsnest",
+      "help": "Reassign a chip's swappable I/O (same bank, pairs as pairs, clock pins kept on clock pins) to untangle the ratsnest\n\nUsage: agentee pinswap [OPTIONS] --part <PART> <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n      --part <PART>        \n  -p, --project <PROJECT>  [default: .]\n      --seed <SEED>        [default: 1]\n      --write              Rewrite the schematic pin references\n  -h, --help               Print help"
+    },
+    {
+      "command": "layout",
+      "about": "Run the layout engine on a layout: the configured stages in order, then the score per term",
+      "help": "Run the layout engine on a layout: the configured stages in order, then the score per term\n\nUsage: agentee layout [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n      --from <FROM>        Start at this stage, keeping the results of the stages before it\n      --to <TO>            Stop after this stage\n      --only <ONLY>        Run one stage only\n      --dry-run            Report without writing the plan into the layout file\n      --json               \n  -h, --help               Print help"
+    },
+    {
+      "command": "drc",
+      "about": "Design rule checks of a layout: its rule diagnostics, or every rule with --list",
+      "help": "Design rule checks of a layout: its rule diagnostics, or every rule with --list\n\nUsage: agentee drc [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n      --list               Print every rule with its id, category, severity and whether it applies here\n      --json               \n  -h, --help               Print help"
+    },
+    {
+      "command": "sim",
+      "about": "Run a simulation (*.sim.toml): FDTD, dc, thermal, cascade, channel, pdn or logic",
+      "help": "Run a simulation (*.sim.toml): FDTD, dc, thermal, cascade, channel, pdn or logic\n\nUsage: agentee sim [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n      --dry-run            Only mesh it and print the grid, time step and step count\n  -h, --help               Print help"
+    },
+    {
+      "command": "sparam",
+      "about": "Analyse a sim result: TDR, mixed mode, crosstalk, passivity and reciprocity",
+      "help": "Analyse a sim result: TDR, mixed mode, crosstalk, passivity and reciprocity\n\nUsage: agentee sparam [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n      --tdr <TDR>          Port for a TDR (name or number)\n      --rise <RISE>        10-90% rise time, default 1.3 / the top frequency\n      --pair <PAIR>        Mixed mode: IN+,IN-,OUT+,OUT-\n      --xtalk <XTALK>      Crosstalk from one port to another: FROM,TO\n  -h, --help               Print help"
+    },
+    {
+      "command": "fab",
+      "about": "Write the fab package for a layout: Gerbers, drill, BOM, placement, notes",
+      "help": "Write the fab package for a layout: Gerbers, drill, BOM, placement, notes\n\nUsage: agentee fab [OPTIONS] --out <OUT> <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n  -o, --out <OUT>          \n  -h, --help               Print help"
+    },
+    {
+      "command": "export",
+      "about": "Write the board and every part model of a layout as one STEP assembly, for enclosure CAD",
+      "help": "Write the board and every part model of a layout as one STEP assembly, for enclosure CAD\n\nUsage: agentee export [OPTIONS] --out <OUT> <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n  -o, --out <OUT>          Output file, .step or .stp\n  -h, --help               Print help"
+    },
+    {
+      "command": "parts",
+      "about": "Stock, price and cheaper equivalents for a layout's or schematic's BOM from Mouser and Farnell, with keys in ~/.config/agentee/distributors.toml",
+      "help": "Stock, price and cheaper equivalents for a layout's or schematic's BOM from Mouser and Farnell, with keys in ~/.config/agentee/distributors.toml\n\nUsage: agentee parts [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>              [default: .]\n      --boards <BOARDS>                Boards to buy for [default: 1]\n      --distributor <DISTRIBUTOR>      Distributors to ask, comma separated (mouser, farnell), default every one with a key\n      --farnell-store <FARNELL_STORE>  Farnell store, e.g. uk.farnell.com, ie.farnell.com, de.farnell.com, www.newark.com\n      --refs <REFS>                    Only these references, comma separated\n      --no-alternatives                Price what is on the BOM without searching for cheaper equivalents\n      --config <CONFIG>                Key file instead of ~/.config/agentee/distributors.toml\n      --json                           \n  -h, --help                           Print help"
+    },
+    {
+      "command": "mcp",
+      "about": "Serve the project over MCP on stdio",
+      "help": "Serve the project over MCP on stdio\n\nUsage: agentee mcp [PATH]\n\nArguments:\n  [PATH]  [default: .]\n\nOptions:\n  -h, --help  Print help"
+    },
+    {
+      "command": "docs",
+      "about": "Print the file format reference",
+      "help": "Print the file format reference\n\nUsage: agentee docs\n\nOptions:\n  -h, --help  Print help"
+    }
+  ],
+  "edits": [
+    {
+      "target": "sch",
+      "help": "agentee edit sch ITEM COMMAND [args]   (sch = sch:NAME, pcb = pcb:NAME)\nagentee edit sch -   commands on stdin, one per line\nagentee edit sch FILE   commands from a file; the project needs exactly one schematic for this\n\n  add REF SYMBOL [VALUE] [--footprint FP] [--at X,Y] [--rotation 90] [--mirror] [--unit 2] [--dnp] [--field key=value]\n  remove REF ...  or  remove net NAME ...\n  move REF X,Y [--rotation 90] [--mirror] [--unit 2]\n  set REF [VALUE] [--value V] [--footprint FP] [--unit 2] [--dnp] [--clear dnp,footprint] [--field k=v]\n  net NAME [REF.PIN ...] [--class Power] [--style power|label] [--sheet NAME]\n  connect REF.PIN ... NET\n  disconnect REF.PIN ...\n  nc REF.PIN ...\n  unnc REF.PIN ...\n  note TEXT ..."
+    },
+    {
+      "target": "pcb",
+      "help": "agentee edit pcb ITEM COMMAND [args]   (sch = sch:NAME, pcb = pcb:NAME)\nagentee edit pcb -   commands on stdin, one per line\nagentee edit pcb FILE   commands from a file; the project needs exactly one layout for this\n\n  place REF [X,Y] [--rotation 90] [--bottom] [--locked]\n  unplace REF ...\n  track NET LAYER X,Y X,Y ... [--width 0.2mm]\n  untrack NET | X,Y X,Y ...\n  via NET X,Y [--via std] [--count 1] [--pitch 1.2,0]\n  unvia NET X,Y | NET ...\n  zone NET [--layers F.Cu,In1.Cu] [--outline X,Y ...] [--priority 1] [--clearance 0.25] [--min-width 0.15mm] [--min-island-area 2.0] [--pad-connection solid|relief|none] [--relief-gap 0.3mm] [--spoke-width 0.3mm] [--relief-tht-only]\n  unzone NET ...\n  pair NET+ NET- [--max-skew 1mm]\n  text STRING [--layer F.SilkS] [--at X,Y] [--size 1.0] [--rotation 90] [--locked]\n  fanout REF [--via bga] [--skip-rings 2] [--always GND] [--skip A1] [--nets GND,3V3] [--exclude C2?]\n  stitch NET [--via std] [--pitch 2.5mm] [--fence RF_*] [--offset 0.5mm] [--margin 0.6mm] [--outline X,Y ...]\n  watermark [--at X,Y] [--layer B.SilkS] [--rotation 90] [--hide]\n  test [--nets 3V3,*RST*] [--exclude LED_*] [--side B] [--through-holes] [--no-vias] [--min-test-pad 1.0mm]\n  board NAME\n  schematic NAME"
+    },
+    {
+      "target": "board",
+      "help": "agentee edit board ITEM COMMAND [args]   (sch = sch:NAME, pcb = pcb:NAME)\nagentee edit board -   commands on stdin, one per line\nagentee edit board FILE   commands from a file; the project needs exactly one board for this\n\n  class NAME [--track-width 0.2mm] [--clearance 0.2mm] [--via std] [--current 1A] [--max-temp-rise 10C] [--impedance 50ohm] [--impedance-tolerance 10%] [--solver field] [--diff-gap 0.15mm] [--coplanar-gap 0.2mm] [--layers F.Cu] [--max-skew 1mm] [--max-uncoupled 1mm] [--neckdown 1mm] [--width LAYER=WIDTH ...] [--description TEXT]\n  unclass NAME ...\n  via NAME [--drill 0.3mm] [--diameter 0.6mm] [--type through|blind|buried|microvia] [--from F.Cu] [--to B.Cu] [--fill filled_capped] [--drill-kind laser] [--stacked] [--skip] [--cost 2.0] [--backdrill-from L] [--backdrill-to L] [--backdrill-diameter 0.4mm]\n  unvia NAME ...\n  outline [--size W,H] [--corner-radius 1mm] [--origin X,Y] [--point X,Y ...]\n  cutout [--size W,H] [--origin X,Y] [--point X,Y ...]\n  stackup [--preset NAME] [--finish ENIG] [--mask-color green] [--silk-color white] [--roughness 1um] [--layer kind:name:thickness ...]"
+    }
+  ]
+}

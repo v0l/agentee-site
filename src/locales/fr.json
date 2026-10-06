@@ -1,0 +1,122 @@
+{
+  "119giktmgrp": {
+    "defaultMessage": "Paquet de fabrication"
+  },
+  "11sfpa2v5yp": {
+    "defaultMessage": "Board"
+  },
+  "13xykr3e7l9": {
+    "defaultMessage": "Symboles"
+  },
+  "14bd9z49wd1": {
+    "defaultMessage": "Simulation FDTD"
+  },
+  "16p2t89rmmw": {
+    "defaultMessage": "Thermique"
+  },
+  "18rwqd2skjh": {
+    "defaultMessage": "Commencer ici"
+  },
+  "1de1dkyah31": {
+    "defaultMessage": "Chute en continu"
+  },
+  "1f60bdocjtl": {
+    "defaultMessage": "Footprints"
+  },
+  "1hb0jme7uy": {
+    "defaultMessage": "Cartes de champ et émissions"
+  },
+  "1jcg8r460zn": {
+    "defaultMessage": "Pertes dans le FDTD"
+  },
+  "1lbr98avoxb": {
+    "defaultMessage": "Analyse des paramètres S"
+  },
+  "1m5yx6lqa0i": {
+    "defaultMessage": "Réseau de distribution d'alimentation"
+  },
+  "1p8ipoorf0k": {
+    "defaultMessage": "Types de via"
+  },
+  "1r5rgzug9vq": {
+    "defaultMessage": "Canal et œil"
+  },
+  "1rboohsf3k0": {
+    "defaultMessage": "Placement automatique"
+  },
+  "1u9iuwgwx5q": {
+    "defaultMessage": "Distributeurs et tarifs"
+  },
+  "1uev31ln6u9": {
+    "defaultMessage": "Lamination"
+  },
+  "1yhvi4i25oj": {
+    "defaultMessage": "Sortie"
+  },
+  "20o2n4nzvl6": {
+    "defaultMessage": "Interfaces"
+  },
+  "25vabn6q4d8": {
+    "defaultMessage": "Composants"
+  },
+  "28goafxzigz": {
+    "defaultMessage": "Édition avec agentee edit"
+  },
+  "28zcu6h1opb": {
+    "defaultMessage": "Schémas"
+  },
+  "2b42o5myj2m": {
+    "defaultMessage": "Import d'un board KiCad"
+  },
+  "2bsy27aolyl": {
+    "defaultMessage": "Cascade"
+  },
+  "2cawvgs4ce2": {
+    "defaultMessage": "Préréglages de stackup"
+  },
+  "2dzolzqpt29": {
+    "defaultMessage": "Bases"
+  },
+  "2ex3r53vycd": {
+    "defaultMessage": "Édition dans le visualiseur"
+  },
+  "2g0voiexwvr": {
+    "defaultMessage": "Règles de fabrication"
+  },
+  "2md2r9onz": {
+    "defaultMessage": "Conception"
+  },
+  "4645p3gy53": {
+    "defaultMessage": "Vérifications des règles de conception"
+  },
+  "7tor0zvch3": {
+    "defaultMessage": "Layouts"
+  },
+  "b7b8tb291q": {
+    "defaultMessage": "Fichiers de projet"
+  },
+  "bpabo8g7fs": {
+    "defaultMessage": "Routage automatique"
+  },
+  "ki8h6yx5r8": {
+    "defaultMessage": "Flux de travail"
+  },
+  "m3q854l4gb": {
+    "defaultMessage": "Simulation"
+  },
+  "m4e6lolose": {
+    "defaultMessage": "Impédance et pertes"
+  },
+  "uqt2owvio4": {
+    "defaultMessage": "Unités et coordonnées"
+  },
+  "ux8zd7myih": {
+    "defaultMessage": "Spécification du board"
+  },
+  "zg2mt7jl16": {
+    "defaultMessage": "Graphiques"
+  },
+  "zluqrvuq4m": {
+    "defaultMessage": "Schéma et layout"
+  }
+}
