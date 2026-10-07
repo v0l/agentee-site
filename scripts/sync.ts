@@ -126,7 +126,7 @@ async function renders() {
 }
 
 async function renderSizes() {
-  const sizes = await $`python3 -c ${'import glob, json, os; from PIL import Image; print(json.dumps({os.path.basename(f)[:-5]: Image.open(f).size for f in sorted(glob.glob("public/assets/renders/*.webp"))}))'}`.quiet();
+  const sizes = await $`python3 -c ${'import glob, hashlib, json, os; from PIL import Image; print(json.dumps({os.path.basename(f)[:-5]: [*Image.open(f).size, hashlib.sha256(open(f, "rb").read()).hexdigest()[:10]] for f in sorted(glob.glob("public/assets/renders/*.webp"))}))'}`.quiet();
   await Bun.write('src/generated/renders.json', `${JSON.stringify(JSON.parse(sizes.stdout.toString()), null, 2)}\n`);
 }
 

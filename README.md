@@ -23,7 +23,7 @@ bun run deploy         # build, then Cloudflare Pages project `agentee`
 | `content/reference/*.md` | the file format reference, split from `docs/format.md` by `bun run sync` |
 | `content/upstream/` | `SKILL.md` and `format.md` as copied from the agentee repo |
 | `src/content/*.ts` | home page copy, examples, install platforms, the reference page list |
-| `src/generated/` | CLI help, MCP tools, render sizes and counts, written by `bun run sync` |
+| `src/generated/` | CLI help, MCP tools, counts, and each render's size and content hash (its `?v=` cache key), written by `bun run sync` |
 | `public/assets/renders/` | renders of the examples, written by `bun run sync` |
 | `public/install.sh`, `public/install.ps1` | the one line installers, reading GitHub release assets |
 | `scripts/og.html` | the source of `public/assets/og.png`, screenshot at 1200 x 630 |

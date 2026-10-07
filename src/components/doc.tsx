@@ -3,12 +3,15 @@ import { useState } from 'preact/hooks';
 import { FormattedMessage, useIntl } from 'react-intl';
 import type { Block, Doc } from '../md/types';
 import { useLocalePath, useString } from '../i18n/context';
+import { versionRenders } from '../renders';
 
 export function useLocalHtml(): (html: string) => string {
   const to = useLocalePath();
   const prefix = to('/').slice(0, -1);
-  return html =>
-    prefix ? html.replace(/href="\/(?!\/|\.well-known)([^"]*)"/g, (m, path) => (/\.[a-z0-9]+$/i.test(path) ? m : `href="${prefix}/${path}"`)) : html;
+  return raw => {
+    const html = versionRenders(raw);
+    return prefix ? html.replace(/href="\/(?!\/|\.well-known)([^"]*)"/g, (m, path) => (/\.[a-z0-9]+$/i.test(path) ? m : `href="${prefix}/${path}"`)) : html;
+  };
 }
 
 export function Html({ html, tag = 'span', class: cls }: { html: string; tag?: string; class?: string }) {

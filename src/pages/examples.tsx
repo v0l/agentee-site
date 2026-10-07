@@ -6,13 +6,10 @@ import { useLocalePath, useString } from '../i18n/context';
 import { REPO } from '../components/header';
 import { NotFound } from './not-found';
 
-import sizes from '../generated/renders.json';
-import facts from '../generated/facts.json';
-
-export const render = (name: string) => `/assets/renders/${name}.webp?v=${facts.commit}`;
+import { render, renderSize } from '../renders';
 
 export function Shot(props: { name: string; alt: string; lazy?: boolean; priority?: boolean }) {
-  const [width, height] = (sizes as Record<string, number[]>)[props.name] ?? [1600, 1000];
+  const [width, height] = renderSize(props.name);
   return (
     <img
       src={render(props.name)}
