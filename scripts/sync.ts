@@ -15,7 +15,7 @@ const COMMANDS = [
   'drc', 'sim', 'sparam', 'fab', 'export', 'parts', 'mcp', 'docs',
 ];
 
-type Render = { project: string; item: string; name: string; canvas?: boolean; size?: [number, number, number]; cropTop?: number };
+type Render = { project: string; item: string; name: string; canvas?: boolean; size?: [number, number, number] };
 
 const PANEL: [number, number, number] = [1400, 1000, 1.6];
 
@@ -23,12 +23,12 @@ const RENDERS: Render[] = [
   { project: 'lna', item: 'pcb:lna', name: 'lna-pcb', canvas: true },
   { project: 'lna', item: 'sch:lna', name: 'lna-sch', canvas: true },
   { project: 'lna', item: 'board:lna', name: 'lna-board', size: [1200, 760, 1.5] },
-  { project: 'lna', item: 'sim:lna-rf', name: 'lna-sim', canvas: true, size: PANEL, cropTop: 44 },
-  { project: 'lna', item: 'sim:lna-cascade', name: 'lna-cascade', canvas: true, size: PANEL, cropTop: 44 },
-  { project: 'lna', item: 'sim:lna-thermal', name: 'lna-thermal', canvas: true, size: PANEL, cropTop: 44 },
-  { project: 'lna', item: 'sim:lna-dc', name: 'lna-dc', canvas: true, size: PANEL, cropTop: 44 },
+  { project: 'lna', item: 'sim:lna-rf', name: 'lna-sim', canvas: true, size: PANEL },
+  { project: 'lna', item: 'sim:lna-cascade', name: 'lna-cascade', canvas: true, size: PANEL },
+  { project: 'lna', item: 'sim:lna-thermal', name: 'lna-thermal', canvas: true, size: PANEL },
+  { project: 'lna', item: 'sim:lna-dc', name: 'lna-dc', canvas: true, size: PANEL },
   { project: 'hackrf-pro', item: 'pcb:praline', name: 'praline-pcb', canvas: true },
-  { project: 'logic', item: 'sim:counter', name: 'logic-counter', canvas: true, size: [1400, 640, 1.8], cropTop: 44 },
+  { project: 'logic', item: 'sim:counter', name: 'logic-counter', canvas: true, size: [1400, 640, 1.8] },
   { project: 'demo', item: 'sym:STM32F103C8Tx', name: 'demo-symbol', canvas: true },
   { project: 'demo', item: 'fp:LQFP-48_7x7mm_P0.5mm', name: 'demo-footprint', canvas: true },
 ];
@@ -109,7 +109,7 @@ async function renders() {
   mkdirSync('public/assets/renders', { recursive: true });
   const tmp = mkdtempSync(join(tmpdir(), 'agentee-render-'));
   const convert =
-    'import sys; from PIL import Image; im = Image.open(sys.argv[1]).convert("RGB"); top = int(float(sys.argv[3])); im = im.crop((0, top, im.width, im.height)) if top else im; im.save(sys.argv[2], "WEBP", quality=88, method=6)';
+    'import sys; from PIL import Image; Image.open(sys.argv[1]).convert("RGB").save(sys.argv[2], "WEBP", quality=88, method=6)';
   for (const r of RENDERS) {
     const png = join(tmp, `${r.name}.png`);
     const [width, height, scale] = r.size ?? [1600, 1000, 1];
@@ -119,7 +119,7 @@ async function renders() {
       console.warn(`render ${r.project} ${r.item}: ${res.stderr}`);
       continue;
     }
-    await $`python3 -c ${convert} ${png} ${`public/assets/renders/${r.name}.webp`} ${(r.cropTop ?? 0) * scale}`;
+    await $`python3 -c ${convert} ${png} ${`public/assets/renders/${r.name}.webp`}`;
   }
   rmSync(tmp, { recursive: true });
   await renderSizes();
