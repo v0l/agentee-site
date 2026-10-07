@@ -46,6 +46,13 @@ ships to the browser. Code is highlighted at the same time.
   of the skill) and the older `/.well-known/skills/index.json`, both with `agentee/SKILL.md`,
 - `/sitemap.xml` with hreflang alternates.
 
+The skill itself follows `master` of the agentee repository without a rebuild: Pages Functions in
+`functions/.well-known/` (shared code in `edge/skill.ts`) serve both `SKILL.md` paths and both
+indexes from `raw.githubusercontent.com/v0l/agentee/master/skills/agentee/SKILL.md`, with the
+digest worked out per request and a five minute edge cache. When GitHub cannot be reached they
+fall back to the copy the build wrote. The `/skills/` page and `llms-full.txt` still carry the
+copy from the last `bun run sync`.
+
 ## Translations
 
 Every page is prerendered once per locale: English at `/`, the rest under `/de/`, `/fr/`, `/es/`,
