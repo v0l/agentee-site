@@ -26,6 +26,16 @@ agentee render pcb:lna -o rf.png --region 0,6,20,18 --show F.Fab
 agentee render pcb:lna -o lna-3d.png --show 3d
 ```
 
+A whole board at 1400 pixels is too small for a model to read the labels on, so render the part you are asking about. `--focus` zooms to the parts, nets and pins you name and fades the rest, `--rulers` labels millimetre coordinates along the edges so the next `--region` can be read off the picture, and with `--canvas-only` the PNG is cropped to the drawing:
+
+```sh
+agentee render pcb:sdr -o tmp.png --canvas-only --rulers
+agentee render sch:fpga -o flash.png --canvas-only --focus 'FLASH_*'
+agentee render pcb:lna -o rf.png --canvas-only --focus 'RF_*' --context hide
+```
+
+`--focus` takes references (`U1`), net names (`SPI_CLK`) and pins (`U1.3`), with `*` as a wildcard. A net brings in the parts it touches. `--context` is `dim` by default, `hide` to leave only what you named, or `show` to zoom without fading anything. MCP `render_item` takes the same `focus`, `context` and `rulers` arguments.
+
 ## Editing a layout by hand
 
 Some decisions are faster with a mouse: nudging a connector to where the enclosure wants it, rerouting one track around a part, dropping a via. The 2D layout page edits the layout, and saving (ctrl+S) writes the change into the `.pcb.toml` with the same comment and order preserving writer the CLI uses. The agent reads your change the next time it loads the file.

@@ -20,6 +20,9 @@
   "10hj9wtkhca": {
     "defaultMessage": "断言、建立时间和保持时间、竞争"
   },
+  "10jc42a8vsy": {
+    "defaultMessage": "缩放至该矩形，单位为 mm，在项自身的坐标系中"
+  },
   "10l2rcg9xvo": {
     "defaultMessage": "<code>interface-vias</code>"
   },
@@ -179,6 +182,12 @@
   "12l7h195o1h": {
     "defaultMessage": "<code>usb2-hs</code>"
   },
+  "12la968121a": {
+    "defaultMessage": "具有 <code>creepage</code> 的屏障"
+  },
+  "12mj4ud735z": {
+    "defaultMessage": "与此部件一起购买但未放置在电路板上的部件：配套外壳、压接件、天线。<code> xN</code> 是每部件的数量；该行列出其对应的部件，并在 <code>--spares</code> 下增加一个备件"
+  },
   "12nmfoozwbx": {
     "defaultMessage": "带有铺铜区域的网络是平面网络。<code>tie</code> 为平面网络的每个表面贴装焊盘添加一个短存根和旁边的过孔，位于远离元件的一侧，避开所有焊盘和其他网络。这是地和电源焊盘应到达平面的方式，而不是它们之间的走线。如果焊盘附近已有其网络的过孔，则保持不变；如果没有合法位置的焊盘，则列在 <code>failed</code> 下。"
   },
@@ -272,9 +281,6 @@
   "13u8mhxwbqd": {
     "defaultMessage": "可选 <code>R</code>、<code>CLK</code>，可选 <code>D0</code> 到 <code>D3</code>、<code>CEP</code>、<code>LOAD</code>、<code>CET</code>"
   },
-  "13wt2gfx3mu": {
-    "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code>（MCP 中为 <code>route</code>）在网格上为指定网络的飞线布线（<code>--grid</code>，默认 0.05 mm），并将走线和过孔作为普通的 <code>[[tracks]]</code> 和 <code>[[vias]]</code> 追加到布局文件中，之后可以随意编辑。它对每个焊盘、走线、过孔、孔和板边保持各网络类的线宽、间距和 <code>layers</code>；按每种类过孔自身的焊盘、钻孔和层来确定所需空间（通孔放不下的地方可以放微孔，微孔也可以放在位于其他层的埋孔旁边）；新过孔与所有跨度共享同一介质层的钻孔保持 <code>min_hole_to_hole</code> 的距离，其孔与其他网络的焊盘、走线和过孔保持 <code>min_via_hole_to_copper</code> 的距离；并让过孔避开所有网络（包括自身网络）的 SMD 焊盘：过孔铜不得接触焊盘（<code>via-cuts-pad</code>），孔与焊盘保持 <code>min_hole_to_smd_pad</code>（<code>hole-to-smd-pad</code>），除非 <code>--via-in-pad</code>（MCP 中为 <code>via_in_pad</code>）允许钻孔不大于 <code>max_filled_via_drill</code> 的过孔完全位于自身网络的 SMD 焊盘内。换层时使用该类过孔中跨度同时包含两层且代价最低的一个（如需从其他名称中选择，使用 <code>--via uv-top,core</code> 或 MCP 的 <code>via</code>；<code>--via-cost</code> 以走线长度 mm 计，默认 3，再乘以过孔的 <code>cost</code>）；每个 45 度拐角计 <code>--bend-cost</code> mm 走线长度（默认 0.1，90 度为其三倍）；除非给出 <code>--reroute</code>，否则绝不移动已有内容，给出该选项时会先删除指定网络的走线和过孔。找不到空闲路径的连接会拆除它将穿过的已布网络，以及其过孔孔会落入自身孔 <code>min_hole_to_hole</code> 范围内的已布网络（跨度共享同一介质层的孔），将该位置记为拥塞，并把这些网络放回队列。搜索沿 45 度方向前进，并为每个拐角计代价，因此路径是带 45 度拐角的直线段；之后用两段式 45 度折线收紧走线，剩余的 90 度拐角在间距允许处倒角。只有通向不在网格上的焊盘中心的引线可以是其他角度。当类线宽放不进末端焊盘时（比焊盘短边更宽，或离相邻焊盘太近而无法保持间距），走线会缩颈：类线宽走线在焊盘前停止，另一条带显式 <code>width</code> 的 <code>[[tracks]]</code> 条目直线进入焊盘中心，长度不超过类的 <code>neckdown</code>，宽度不小于 <code>min_track_width</code>。其宽度取类线宽、焊盘短边和能保持间距的最大宽度中的最小值，向下取整到 0.01 mm（若取整后低于该下限而未取整的宽度不低于它，则恰为 <code>min_track_width</code>）；宽走线从焊盘向外第一个能以全宽保持间距的位置开始（对于比走线窄的焊盘，从焊盘外开始）。同一网络中相互接触的焊盘，例如由多个焊盘条目组成的散热焊盘，视为一个宽焊盘。用 <code>--pairs</code> 布线的差分对不会缩颈。已有新铜的网络，其连接从这些铜开始。全部布完后，每条使用过孔的已布连接会在其余保持不变的情况下逐层重试，若单层路径的长度不超过原长的 25% 加 1 mm，就替换原路径。然后，相邻且在彼此附近换层的平行连接，其过孔会沿各自的走线滑动到网格上的同一行或同一列，前提是该位置合规且连接长度不变（被 <code>--pairs</code> 固定的差分对各线以及有多条连接的网络保持不动）。带 <code>max_vias</code> 的接口中的网络会将走线（经过串联元件的整条通道上的所有网络）控制在该限制内：过孔过多的路径会先用代价更高的过孔重试，再尝试单层，两者都不行则给出原因并失败。差分对的第二个网络会按对间距被拉向其伙伴；<code>--pairs</code> 会先尝试把两半作为一条耦合走线一起布线。当少数连接失败时，用 <code>--reroute</code> 将它们与周围的网络一起重新布线，让布线器可以拆除并重新排序整个区域，或者降到 <code>--grid 0.025</code>。<code>--dry-run</code> 只报告不写入。先手工布好关键网络，再让布线器按类逐个完成其余部分。"
-  },
   "13xykr3e7l9": {
     "defaultMessage": "符号"
   },
@@ -284,6 +290,9 @@
   "13z0xd124hs": {
     "defaultMessage": "当板厂将细间距元件所有焊盘的阻焊打开为一个窗口时，设置 <code>mask_web = false</code>。"
   },
+  "1412p7ywue1": {
+    "defaultMessage": "具有 <code>clearance</code> 的屏障"
+  },
   "1414n4x5uae": {
     "defaultMessage": "PCB 布局的设计规则检查。当 list = true 时：列出每条 DRC 规则及其 id、类别、严重级别，以及该规则是否适用于此电路板及原因。否则：返回带有规则 id 的 PCB 布局诊断信息。规则 id 可放入电路板的 [drc] 禁用列表或严重级别表中。"
   },
@@ -292,6 +301,9 @@
   },
   "14bd9z49wd1": {
     "defaultMessage": "FDTD 仿真"
+  },
+  "14dlyveasdo": {
+    "defaultMessage": "隔离域和屏障"
   },
   "14f19xcrdbg": {
     "defaultMessage": "Apple 芯片"
@@ -323,6 +335,9 @@
   "1519g1avehv": {
     "defaultMessage": "闭式公式用于初步答案，GPU 场求解器用于重要类，考虑阻焊和铜厚。与精确带状线参考误差在 0.5% 以内。"
   },
+  "1521tyvidt3": {
+    "defaultMessage": "两个域的铜沿电路板表面的间距小于屏障的爬电距离：在一个外层上，围绕电路板切口和非镀孔，至少为其 <code>pollution_degree</code> 宽度的槽宽；以及从 F.Cu 到 B.Cu，沿切口或孔壁或绕过电路板边缘"
+  },
   "1528x7i9xv2": {
     "defaultMessage": "机械钻孔，在子叠层中，或到受控深度（<code>drill_kind = &quot;controlled_depth&quot;</code>）"
   },
@@ -331,6 +346,9 @@
   },
   "152usp03oi7": {
     "defaultMessage": "布局或原理图的仿真：FDTD、级联、信道、PDN、直流压降、热或逻辑。"
+  },
+  "154h9bif94k": {
+    "defaultMessage": "<code>[[domains]]</code>"
   },
   "156bmxs5c35": {
     "defaultMessage": "电源与地之间的电容，其电源焊盘距离该电源上最近的 IC 引脚超过 <code>decoupling_distance</code>（3 mm），大于 1 uF 的储能电容为 2.5 倍该值"
@@ -632,6 +650,9 @@
   "1aw9rgb1j68": {
     "defaultMessage": "<code>place</code> 将连接器放在边缘，保持无源元件靠近其连接的元件，优化结果，并移动现在重叠的参考标号。它打印 JSON 报告，并将 <code>at</code> 和 <code>rotation</code> 写入每个元件的 <code>[[footprints]]</code> 条目。这是一个快速开始：在实际电路板上，你查看结果，手动移动重要元件，标记为 <code>locked = true</code>，然后重新放置其余部分。"
   },
+  "1axqq49zy6j": {
+    "defaultMessage": "<code>--show</code> / <code>--hide</code>"
+  },
   "1azhkhgucpo": {
     "defaultMessage": "功能"
   },
@@ -716,8 +737,14 @@
   "1cim9n2z5u3": {
     "defaultMessage": "运行仿真 (*.sim.toml)：FDTD、直流、热、级联、信道、PDN 或逻辑"
   },
+  "1cmyetwl4ud": {
+    "defaultMessage": "<code>isolation-clearance</code>"
+  },
   "1crpygvo2zk": {
     "defaultMessage": "为你已经使用的智能体制作"
+  },
+  "1cvbxcnncg4": {
+    "defaultMessage": "<code>--focus A,B,...</code>"
   },
   "1cvepqsqieg": {
     "defaultMessage": "当某器件没有数据时，频段被截断到所有器件都有数据的范围，超出数据范围的噪声系数留空而非猜测。"
@@ -733,6 +760,9 @@
   },
   "1d2oey8ec95": {
     "defaultMessage": "任何拥有 Rust {rust} 或更高版本的平台。"
+  },
+  "1d6wja5huke": {
+    "defaultMessage": "填充岛未触及铺铜网络的任何部分，或仅触及与其余部分断开且未连接两个焊盘的铜，且已被移除"
   },
   "1d7lpt90j0y": {
     "defaultMessage": "原理图是网表，不是你的绘图：KiCad 的原理图不会被读取，因此引脚名称、符号图形和页结构不会保留。这足以检查、渲染、模拟和制造电路板，并让智能体更改 PCB 布局。"
@@ -1034,9 +1064,6 @@
   "1hojglbgsmu": {
     "defaultMessage": "统计每个 <code>[[stitching]]</code> 条目放置的过孔数量"
   },
-  "1hp9m6oody5": {
-    "defaultMessage": "将项目渲染为 PNG，与查看器显示完全一致，并返回图像。"
-  },
   "1hr7d2icya6": {
     "defaultMessage": "链路必须满足的条件，从 USB 3 到 50 欧姆射频线：阻抗、偏斜、长度、过孔、残桩、参考平面和回流过孔。"
   },
@@ -1057,6 +1084,9 @@
   },
   "1i1pyr1ujko": {
     "defaultMessage": "每个测试点焊盘，用于夹具构建者：参考、焊盘、网络、X、Y（毫米，Y 向上）、侧、焊盘直径"
+  },
+  "1i2bwr6hy06": {
+    "defaultMessage": "爬电距离是两块铜沿其所在外表面之间的最短路径（<code>creepage</code>）。它保持在电路板上，绕过电路板切口和非镀通孔。宽度小于污染等级槽宽 X 的槽或孔（IEC 60664-1 规定为 1 级 0.25 mm，2 级 1.0 mm，3 级 1.5 mm）被桥接并直接测量。F.Cu 上的铜与 B.Cu 上的铜之间的路径沿任意宽度的电路板切口或非镀通孔的壁向下，或绕过电路板边缘，并计入电路板厚度。阻焊不计为绝缘。"
   },
   "1i2n5zybesm": {
     "defaultMessage": "在 <code>[rules]</code> 中覆盖任何规则："
@@ -1211,6 +1241,9 @@
   "1k5ujui3zzb": {
     "defaultMessage": "电路板的功能，以及与之连接的内容：连接器、电压、电流、信号及其速率。"
   },
+  "1k608muzjgc": {
+    "defaultMessage": "不同网络的焊盘，其阻焊开口小于 <code>min_mask_web</code>，每对元件一行；同一封装中 <code>mask_web = false</code> 的焊盘彼此跳过，火花间隙的电极也跳过"
+  },
   "1k984m2d9ls": {
     "defaultMessage": "在几秒内求解每个铜层的电压降和电流密度，然后根据每个元件的功率求解电路板温度。"
   },
@@ -1228,6 +1261,9 @@
   },
   "1kfd50so1g": {
     "defaultMessage": "<code>min_controlled_depth_drill</code>"
+  },
+  "1kgj4wspayo": {
+    "defaultMessage": "<code>spark-gap</code>"
   },
   "1kh7lutkph8": {
     "defaultMessage": "4 ns"
@@ -1295,6 +1331,9 @@
   "1ln0s6ojknb": {
     "defaultMessage": "添加 MCP 服务器"
   },
+  "1lpa8tzh6yg": {
+    "defaultMessage": "具有 <code>spark_gaps</code> 的封装"
+  },
   "1lqngucnspi": {
     "defaultMessage": "统计属于其自身网络且钻孔位于焊盘内的 SMD 焊盘中的过孔数量；<code>fab-notes.txt</code> 要求板厂恰好填充并封顶这些过孔（IPC-4761 类型 VII）。"
   },
@@ -1324,9 +1363,6 @@
   },
   "1m39d50u8qg": {
     "defaultMessage": "每个诊断都携带其文件、项目、位置和严重性，布局诊断还携带其规则 id。这足以注释拉取请求，或在希望将警告视为错误的项目中因警告而失败。规则也可以在电路板本身通过 <code>[drc] severity</code> 提升为错误，这将策略保留在设计中而不是 CI 脚本中。"
-  },
-  "1m526qxf80v": {
-    "defaultMessage": "未接触铺铜网络任何部分且被移除的铺铜孤岛"
   },
   "1m52uejprc2": {
     "defaultMessage": "射频路径沿直线布置。从每个具有射频网络焊盘的连接器开始（具有 <code>impedance</code> 且无 <code>diff_gap</code> 的网络类），放置器通过承载两个或更多射频网络且引脚数不超过 16 的元件（直流阻断、衰减器、开关、低噪声放大器、巴伦）跟踪射频网络，并选择以另一个连接器或具有射频引脚的较大芯片结尾的最长路径；具有旁路的开关通过放大器而非旁路。当两端都是连接器时，它们位于电路板长轴的相对边缘，并沿边缘滑动至同一直线，穿过电路板中心（若两者都适合）。路径上的每个元件旋转，使其输入和输出焊盘按顺序位于该直线上，向输入端紧密排列，每个元件最多增加 1.5 mm 间隙，剩余空间留给最后一段。具有两个或三个引脚且一个焊盘位于路径节点上的元件（ESD 钳位、偏置扼流圈、并联电容）位于该节点旁的直线边，旋转使其其他焊盘指向远离方向，足够近使其射频焊盘接触走线，足够远使其其他焊盘保持网络类间距；同一节点的两个并联元件位于相对两侧。路径在其余元件围绕其放置之前固定，若元件会移出电路板或落在其他元件上，则留给通用放置器处理。"
@@ -1388,9 +1424,6 @@
   "1mzwfau5im8": {
     "defaultMessage": "每个页签是一个普通的原理图文件，拥有自己的元件和网络。网络通过名称跨页签连接，因此每个页签上的 <code>3V3</code> 都是同一个网络，信号从一个页签离开并以相同名称到达另一个页签。网络的引脚必须是同一页签上的元件；跨页签的网络在任何地方指定 <code>class</code> 时必须一致，并使用标签绘制。引用在整个设计中是唯一的。单独一个页签会跳过单引脚和 Default 类警告（网络的其余部分及其类可能在另一个页签上）；顶层原理图对合并后的设计运行所有检查，并将页签从上到下堆叠绘制。顶层文件也可以拥有自己的元件和网络。"
   },
-  "1n1rc7zgly9": {
-    "defaultMessage": "不同网络焊盘的阻焊开口小于 <code>min_mask_web</code>，每对元件一行；同一封装中 <code>mask_web = false</code> 的焊盘之间跳过"
-  },
   "1n1sk97q413": {
     "defaultMessage": "一个原理图：放置的元件、网络、导线"
   },
@@ -1405,6 +1438,9 @@
   },
   "1n654yj4dk0": {
     "defaultMessage": "如果需要示例或修改 agentee 本身，请从克隆开始："
+  },
+  "1na2buppw58": {
+    "defaultMessage": "<code>--rulers</code>"
   },
   "1ncp0psxtys": {
     "defaultMessage": "true"
@@ -1640,6 +1676,9 @@
   "1qw5tcldd6o": {
     "defaultMessage": "单位、文件模型、解析和检查、计算器"
   },
+  "1qxtym14c23": {
+    "defaultMessage": "<code>agentee render</code>（MCP <code>render_item</code>）绘制查看器所绘制的内容。无侧面板（<code>--canvas-only</code>）时，PNG 裁剪至绘图区域，<code>--width</code> 和 <code>--height</code> 限制其大小。"
+  },
   "1r0hmmormyn": {
     "defaultMessage": "机械钻孔，在压合的子叠层中"
   },
@@ -1660,6 +1699,9 @@
   },
   "1r5t471qlyo": {
     "defaultMessage": "布局、布线与铺铜 - agentee 指南"
+  },
+  "1r94okxp0ki": {
+    "defaultMessage": "1400 像素的整块电路板对于模型读取标签来说太小，因此渲染所询问的部分。<code>--focus</code> 缩放至指定的部件、网络和引脚并淡化其余部分，<code>--rulers</code> 沿边缘标注毫米坐标以便从图中读取下一个 <code>--region</code>，使用 <code>--canvas-only</code> 时 PNG 裁剪至绘图区域："
   },
   "1raj6a0in47": {
     "defaultMessage": "<code>*.pcb.toml</code>：放置、走线、过孔、铺铜、丝印"
@@ -1739,6 +1781,9 @@
   "1siy1uwon63": {
     "defaultMessage": "否则运行 <code>agentee new symbol NAME</code> / <code>agentee new footprint NAME</code> 并编辑起始文件。"
   },
+  "1sm539dig10": {
+    "defaultMessage": "标志"
+  },
   "1snb267xxo0": {
     "defaultMessage": "当所有端口都被激励时，始终报告无源性（频带内 S 矩阵的最大奇异值）和互易性（最大的 |Sij - Sji|）。TDR 重采样到均匀网格，将实部外推至直流，应用高斯边沿（默认 10-90% 上升时间为 1.3 / 最高频率），并积分脉冲响应；当边沿快于数据支持时发出警告。查看器在 <code>tdr</code> 选项卡下显示每个被激励端口的相同 TDR。"
   },
@@ -1780,6 +1825,9 @@
   },
   "1t6pxa5bz3h": {
     "defaultMessage": "从已安装的 KiCad 库导入"
+  },
+  "1t7f8d3334k": {
+    "defaultMessage": "沿顶部和左边缘标注 mm 坐标"
   },
   "1tb0k2uaxra": {
     "defaultMessage": "计数器和 I2C 总线的逻辑仿真"
@@ -1888,6 +1936,9 @@
   },
   "1v0wqtjy1ac": {
     "defaultMessage": "其他位置的库通过 <code>KICAD9_SYMBOL_DIR</code> 和 <code>KICAD9_FOOTPRINT_DIR</code> 查找。"
+  },
+  "1v1hqsikkfv": {
+    "defaultMessage": "订购单"
   },
   "1v2uudc6t8s": {
     "defaultMessage": "预设"
@@ -2003,6 +2054,9 @@
   "1xdif2fiz9x": {
     "defaultMessage": "更改活动层"
   },
+  "1xekxt0pa8v": {
+    "defaultMessage": "此部件的备件数量，替代默认值，例如昂贵模块为零"
+  },
   "1xfwjxnnmwm": {
     "defaultMessage": "10 ns"
   },
@@ -2023,9 +2077,6 @@
   },
   "1xsx0n8gdmv": {
     "defaultMessage": "有用的封装键："
-  },
-  "1xwa0edgvkl": {
-    "defaultMessage": "两个网络的铜皮距离小于其网络类间距中较大者（封装的 <code>clearance</code> 对其焊盘替代该值），或铜皮进入非镀通孔"
   },
   "1xx1mnazadi": {
     "defaultMessage": "编写原理图 - agentee 指南"
@@ -2069,8 +2120,14 @@
   "1yd48z3wex0": {
     "defaultMessage": "在有网络的铜上放置过孔"
   },
+  "1ydrf2t9pa0": {
+    "defaultMessage": "<code>isolation-domain</code>"
+  },
   "1yeem25v9mo": {
     "defaultMessage": "<code>diff_gap</code> 使网络类成为差分对，其阻抗为差分。以 <code>_P</code> 和 <code>_N</code>、<code>_DP</code> 和 <code>_DN</code>、<code>+</code> 和 <code>-</code>，或 <code>P</code> 和 <code>N</code> 结尾的网络自动配对；否则在 PCB 布局中命名它们："
+  },
+  "1yf3l1ndp3i": {
+    "defaultMessage": "<code>buy_with = \"XHP-2, SXH-001T-P0.6 x2\"</code>"
   },
   "1yf5ve95i67": {
     "defaultMessage": "结果 JSON 和 VCD"
@@ -2092,6 +2149,9 @@
   },
   "1yl2jnjwpw": {
     "defaultMessage": "电容、电感、二极管、发光二极管、测试点、晶振等元件不在其中。"
+  },
+  "1yo5k7srzdk": {
+    "defaultMessage": "<code>--order DIR</code>（MCP <code>order</code>）写入用于购买的订单单，而非报告：<code>NAME-order.csv</code> 包含每一行及其购买的分销商，每个分销商一个 <code>NAME-&lt;distributor&gt;.csv</code>，包含关键字，Mouser 的采用其 BOM 导入模板的列布局。每一行分配给在所需数量下更便宜、库存充足且未停产的分销商。分销商的订单单将每一行分为三个块：在此订购的行，在其他分销商购买的行，以及未列出或库存不足的行，因此每个订单单的顶部块即为订单。无分销商有库存的行在 <code>NAME-order.csv</code> 中注明，或列出其 <code>lcsc</code> 部件号。"
   },
   "1yqopwhriij": {
     "defaultMessage": "从源码"
@@ -2147,6 +2207,9 @@
   "1zgogqmzk75": {
     "defaultMessage": "<code>copper-to-edge</code>"
   },
+  "1zguykj5vvy": {
+    "defaultMessage": "火花间隙的电极间距与声明的 <code>gap</code> 不符（精确到 0.01 mm），位于 <code>min_clearance</code> 之下，共享同一网络或缺少网络，或外层间隙上有阻焊"
+  },
   "1zkgdw4j6er": {
     "defaultMessage": "随附的两个 HDI 叠层是通用构建，不是某家板厂公布的叠层："
   },
@@ -2185,6 +2248,9 @@
   },
   "20dpdr10xbq": {
     "defaultMessage": "<code>dff</code>"
+  },
+  "20gg17bj404": {
+    "defaultMessage": "<code>--focus</code> 之外所有内容的处理方式（默认 <code>dim</code>）"
   },
   "20hgaqi3se5": {
     "defaultMessage": "铺铜中颈部宽度小于铺铜 <code>min_width</code> 的 90%，铺铜本应打开；按最窄处计数"
@@ -2287,6 +2353,9 @@
   },
   "221qbpi8pyl": {
     "defaultMessage": "In1.Cu 到 In4.Cu，埋孔，穿过子叠层，"
+  },
+  "226ie5pbkpb": {
+    "defaultMessage": "LCSC 部件号，当两个分销商均无库存时列出"
   },
   "226vjhs4w16": {
     "defaultMessage": "*.fp.toml 文件：焊盘行、焊盘形状和层、边缘焊盘、铺铜区连接、占位区、丝印和 3D 模型。"
@@ -2398,6 +2467,9 @@
   },
   "24ge4p3vpat": {
     "defaultMessage": "从第一层铜到最后一层铜"
+  },
+  "24ghp4o686m": {
+    "defaultMessage": "渲染设计的一部分"
   },
   "24kimihxft4": {
     "defaultMessage": "铺铜尖端角度小于 30 度；增大铺铜的 <code>min_width</code>"
@@ -2567,6 +2639,9 @@
   "270mf8lg1lx": {
     "defaultMessage": "将连接器放置在边缘，配合面朝外；如果存在其他分割方式，则不会将射频连接器和 USB 连接器放在同一边缘，因为 USB 3 的噪声会落入 2.4 GHz 频段；"
   },
+  "272ff8lqlwg": {
+    "defaultMessage": "两个网络的铜间距小于其网络类间距中的较大者（封装的 <code>clearance</code> 会替换其焊盘的间距），或铜进入非镀孔。同一封装的焊盘保持 <code>min_clearance</code> 以及隔离域中网络的类间距；火花间隙电极被跳过"
+  },
   "273giv9xl0e": {
     "defaultMessage": "贴装，JLCPCB 列"
   },
@@ -2620,6 +2695,12 @@
   },
   "28a3r88ouzz": {
     "defaultMessage": "0.3"
+  },
+  "28d8cxee2e6": {
+    "defaultMessage": "原理图和 PCB 布局：缩放至这些参考、网络名称或 <code>REF.PIN</code>，<code>*</code> 匹配任意字符序列。网络引入其触及的部件，引脚引入其网络"
+  },
+  "28eex1tfszn": {
+    "defaultMessage": "位于域中的网络的类间距被视为电气间距，因此也适用于同一封装的焊盘之间：1.5 mm HvBus 类上焊盘间距 1.0 mm 的 TO-220 是 <code>clearance</code> 错误。未在任何域中的网络的同一封装焊盘仅受 <code>min_clearance</code> 约束，因为部件的引脚间距决定了其间隙。"
   },
   "28f7652hq13": {
     "defaultMessage": "为电路板、符号、封装、原理图、PCB 布局或仿真编写起始文件，供后续编辑。仿真起始为 PCB 布局的 FDTD 运行，或当 sim_kind 为 logic 时，为原理图的逻辑仿真（时钟、复位、带时钟的断言），其网络可重命名。"
@@ -2689,6 +2770,9 @@
   },
   "29iu3d22sqh": {
     "defaultMessage": "布线：单击焊盘、过孔或走线开始，单击添加 45 度拐角，<code>/</code> 翻转弯曲方向，V 放置过孔，Enter 结束"
+  },
+  "29j14m86ht8": {
+    "defaultMessage": "字段"
   },
   "29ku7ky1qub": {
     "defaultMessage": "一对走线并排走线，间距不同于网络类的 <code>diff_gap</code>，且超出 <code>max_uncoupled</code>"
@@ -2779,6 +2863,9 @@
   },
   "2b4wu4tjhac": {
     "defaultMessage": "使用 HDI 预设"
+  },
+  "2b5qclo9mdd": {
+    "defaultMessage": "<code>isolation-unassigned</code>"
   },
   "2b6e1q1tvd8": {
     "defaultMessage": "<code>agentee fab pcb:NAME -o DIR</code>（MCP <code>fab</code>）写入："
@@ -2900,6 +2987,9 @@
   "2cjq2lndzi6": {
     "defaultMessage": "驱动器从其下拉和上拉表、其芯片电容和封装变为戴维南源；其斜坡设定边缘，其电压范围设定摆幅，除非给出 <code>rise</code> 或 <code>swing</code>。接收器用其封装和芯片电容加载远端，眼图在其芯片处读取。IBIS 目前适用于单端路径。"
   },
+  "2cozbj3xs0k": {
+    "defaultMessage": "<code>--focus</code> 接受参考（<code>U1</code>）、网络名称（<code>SPI_CLK</code>）和引脚（<code>U1.3</code>），<code>*</code> 作为通配符。网络引入其触及的部件。<code>--context</code> 默认为 <code>dim</code>，<code>hide</code> 仅保留指定内容，<code>show</code> 缩放而不淡化任何内容。MCP <code>render_item</code> 接受相同的 <code>focus</code>、<code>context</code> 和 <code>rulers</code> 参数。"
+  },
   "2csls3gciuc": {
     "defaultMessage": "它需要什么"
   },
@@ -2929,6 +3019,9 @@
   },
   "2d6y5d2d527": {
     "defaultMessage": "<code>impedance-trace</code>"
+  },
+  "2d70vdx1d3o": {
+    "defaultMessage": "不匹配任何名称的名称是错误。<code>--region</code> 与 <code>--focus</code> 一起使用时，保留过滤器并使用区域进行缩放。"
   },
   "2dayrb6juwp": {
     "defaultMessage": "HC, HCT"
@@ -3296,6 +3389,9 @@
   "4lxxwf41j4": {
     "defaultMessage": "<code>min_plated_slot_width</code>"
   },
+  "4pvnbce4b5": {
+    "defaultMessage": "<code>creepage</code>"
+  },
   "4rae9zpwbh": {
     "defaultMessage": "始终"
   },
@@ -3358,6 +3454,9 @@
   },
   "686lhskeo4": {
     "defaultMessage": "一个原理图符号"
+  },
+  "6f8tjd4506": {
+    "defaultMessage": "要开启或关闭的层，例如 <code>--hide F.Cu --show In1.Cu</code>"
   },
   "6ido514tq1": {
     "defaultMessage": "4 层，JLC04161H-7628，ENIG"
@@ -3671,6 +3770,9 @@
   "b7b8tb291q": {
     "defaultMessage": "项目文件"
   },
+  "b7nt3ki7r1": {
+    "defaultMessage": "将项目渲染为 PNG，效果与查看器显示完全一致，并返回该图像。如果没有侧边栏，图像会裁剪至绘图区域，因此宽度和高度即为最大尺寸。"
+  },
   "b92nzpwkpa": {
     "defaultMessage": "你做了什么"
   },
@@ -3766,6 +3868,9 @@
   },
   "d4h9xa9tl2": {
     "defaultMessage": "在 <code>F.CrtYd</code> 上绘制占位区，在 <code>F.Fab</code> 上绘制主体轮廓：检查需要一个包围焊盘的占位区，放置器保持占位区间距，边缘和装配规则从主体测量。设置 <code>height</code>，以便 3D 视图和高元件规则在没有模型时也有高度。"
+  },
+  "d8xhh7ye1c": {
+    "defaultMessage": "2D 页面的 <code>back</code> 切换将电路板镜像以从下方查看：底层铜绘制在顶层之上，每个前层的可见性与其后层对应层交换。<code>agentee render pcb:NAME --show back</code> 渲染该视图。"
   },
   "da20h6ryzp": {
     "defaultMessage": "MCP 服务器"
@@ -3941,6 +4046,9 @@
   "gaamns4i1l": {
     "defaultMessage": "<code>min_drill</code>、<code>min_via_drill</code>"
   },
+  "gj2bevgtpu": {
+    "defaultMessage": "<code>--spares</code>（MCP <code>spares</code>）添加手工装配余量：0402 和 0603 电阻和电容按需求量的下一个十的倍数加五购买，每个 <code>D</code>、<code>Q</code>、<code>U</code> 和 <code>F</code> 行增加一个备件。这些部件字段会改变它："
+  },
   "glhbhwqbjr": {
     "defaultMessage": "引脚为 <code>REF.PIN</code>，按编号或唯一的引脚名称指定；多个引脚共享的名称是错误。已指定网络的引脚若移动到新的网络，则移至该新网络。文件保留其注释和布局。<code>agentee edit</code> 写入文件，重新填充 PCB 布局中存储的铺铜区域，然后报告其修改过的文件的检查诊断信息，若其中任何一个是错误，则退出码为 1。"
   },
@@ -4093,6 +4201,15 @@
   },
   "ijyo5sjjdk": {
     "defaultMessage": "<code>Y0</code> 到 <code>Y7</code>"
+  },
+  "ingvojakto": {
+    "defaultMessage": "不在任何域中的网络，且没有屏障覆盖"
+  },
+  "iomevdc6xc": {
+    "defaultMessage": "<code>--context dim|hide|show</code>"
+  },
+  "iozyts7ml0": {
+    "defaultMessage": "<code>spares = \"0\"</code>"
   },
   "ir7t9q4eba": {
     "defaultMessage": "<code>A</code>、<code>B</code>：相同的引脚，由另一侧的 <code>DIR</code> 驱动"
@@ -4652,6 +4769,9 @@
   "rbd5i5y6uj": {
     "defaultMessage": "指南"
   },
+  "rg8rx5tw3u": {
+    "defaultMessage": "<code>lcsc = \"C165948\"</code>"
+  },
   "rgx7g5j89u": {
     "defaultMessage": "器件数据在实部和虚部上线性插值，频段裁剪至所有器件均有数据的范围。双端口结果报告增益峰值和谷值、最差的 S11、S22 和 S12，以及最低的 Edwards-Sinsky mu 和 Rollett K（所有频率下 mu 大于 1 即为无条件稳定）。当规格、电路板结果或器件文件发生变化时，结果会失效。"
   },
@@ -4699,6 +4819,9 @@
   },
   "sa2s0k3fii": {
     "defaultMessage": "0.15，1.0"
+  },
+  "sa82hcx9ev": {
+    "defaultMessage": "同一层上两个域的铜间距小于它们之间屏障的间距，包括同一封装的焊盘和铺铜；每对网络一行，显示最近的位置"
   },
   "saviwyv34g": {
     "defaultMessage": "20 ns"
@@ -4862,6 +4985,9 @@
   "vevjglgna0": {
     "defaultMessage": "提供格式参考"
   },
+  "vg1052wiwx": {
+    "defaultMessage": "网络类有一个间距，针对所有其他网络。当网络需要与某一组保持比与邻近网络更大的距离时（如市电初级与次级，浮动轨与次级其余部分），将网络放入域，并在两个域之间设置屏障："
+  },
   "vgzxbueyi7": {
     "defaultMessage": "某些决定用鼠标更快：将连接器移动到外壳要求的位置，围绕某个元件重新布线一条走线，放置一个过孔。2D PCB 布局页面编辑布局，保存（ctrl+S）会将更改写入 <code>.pcb.toml</code>，使用与 CLI 相同的保留注释和顺序的写入器。智能体下次加载文件时会读取你的更改。"
   },
@@ -4970,6 +5096,9 @@
   "x0m5nm2n6u": {
     "defaultMessage": "KiCad 绘制 0.12 mm 的丝印，而 JLCPCB 要求 0.15 mm。打开每个封装，将其丝印图形中的 <code>width = 0.12</code> 改为 <code>0.15</code>，或者让智能体来做。这是使用 agentee 的典型工作形态：诊断指明文件、条目和数值，修复只需一次编辑。"
   },
+  "x3a0fv0yot": {
+    "defaultMessage": "含义"
+  },
   "x3j6gd5rkw": {
     "defaultMessage": "项目文件 - agentee 参考"
   },
@@ -5060,6 +5189,9 @@
   "y817q65376": {
     "defaultMessage": "<code>hole-to-edge</code>"
   },
+  "y84zm9obxw": {
+    "defaultMessage": "<code>--region x0,y0,x1,y1</code>"
+  },
   "y852j1pdwt": {
     "defaultMessage": "<code>*.sym.toml</code>"
   },
@@ -5072,8 +5204,14 @@
   "yc9r30dm9u": {
     "defaultMessage": "物料清单按这些字段分组，<code>agentee parts</code> 通过 <code>mpn</code> 查询库存、价格和更便宜的替代品。参见 <a href=\"/guides/fab/\">板厂包、物料清单和价格</a>。"
   },
+  "ycd75jjuqy": {
+    "defaultMessage": "其网络类或名称将其放入两个域的网络"
+  },
   "ydfgdztl7j": {
     "defaultMessage": "<code>rect</code>"
+  },
+  "yebgi2jbad": {
+    "defaultMessage": "一个网络最多位于一个域中。在域内，以及对于未在任何域中的网络，类间距按原样适用。在两个有屏障的域之间，同一层上的铜保持屏障的 <code>clearance</code>（<code>isolation-clearance</code>），包括同一封装的焊盘和铺铜。铺铜和自动布线器在填充和布线时保持与另一域铜的屏障距离；在 F.Cu 和 B.Cu 上，它们保持 <code>clearance</code> 和 <code>creepage</code> 中较大者，因为两者均不测量绕过槽口的路径。"
   },
   "yfwyujuwr8": {
     "defaultMessage": "2"

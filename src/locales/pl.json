@@ -20,6 +20,9 @@
   "10hj9wtkhca": {
     "defaultMessage": "asercje, setup i hold, konflikt"
   },
+  "10jc42a8vsy": {
+    "defaultMessage": "powiększenie do tego prostokąta, w mm we własnych współrzędnych elementu"
+  },
   "10l2rcg9xvo": {
     "defaultMessage": "<code>interface-vias</code>"
   },
@@ -179,6 +182,12 @@
   "12l7h195o1h": {
     "defaultMessage": "<code>usb2-hs</code>"
   },
+  "12la968121a": {
+    "defaultMessage": "bariera z <code>creepage</code>"
+  },
+  "12mj4ud735z": {
+    "defaultMessage": "elementy kupowane z każdym egzemplarzem tego elementu, ale nie umieszczane na płytce: dopasowane obudowy, zaciski, antena. <code> xN</code> to liczba na element; linia podaje nazwy elementów, dla których jest przeznaczona, i dostaje jeden zapas z <code>--spares</code>"
+  },
   "12nmfoozwbx": {
     "defaultMessage": "Sieć ze strefą to sieć płaszczyznowa. <code>tie</code> daje każdemu padowi SMD sieci płaszczyznowej krótki stub i przelotkę obok, po stronie z dala od elementu, z dala od każdego pada i innej sieci. Tak pady masy i zasilania powinny łączyć się z płaszczyzną, zamiast ścieżek między nimi. Pad, który już ma przelotkę swojej sieci w pobliżu, zostaje w spokoju, a pad bez legalnego miejsca jest wymieniany pod <code>failed</code>."
   },
@@ -272,9 +281,6 @@
   "13u8mhxwbqd": {
     "defaultMessage": "opcjonalnie <code>R</code>, <code>CLK</code>, opcjonalnie <code>D0</code> do <code>D3</code>, <code>CEP</code>, <code>LOAD</code>, <code>CET</code>"
   },
-  "13wt2gfx3mu": {
-    "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code> (MCP <code>route</code>) trasy ratsnest nazwanych sieci na siatce (<code>--grid</code>, domyślnie 0,05 mm) i dołącza ścieżki i przelotki do pliku projektu PCB jako zwykłe <code>[[tracks]]</code> i <code>[[vias]]</code>, więc możesz je później edytować. Zachowuje szerokość, odstęp i <code>layers</code> każdej klasy sieci względem każdego padu, ścieżki, przelotki, otworu i krawędzi płytki, rozmiaruje przestrzeń dla każdej klasy przelotki według jej własnego padu, wiertła i warstw (mikroprzelotka mieści się tam, gdzie przelotka przez całość się nie mieści, a mikroprzelotka może stać obok zakopanej przelotki na innych warstwach), trzyma nowe przelotki w odległości <code>min_hole_to_hole</code> od każdego wiertła, którego zakres współdzieli dielektryk z ich zakresem, i ich otwory w odległości <code>min_via_hole_to_copper</code> od padów, ścieżek i przelotek innych sieci, trzyma je z dala od padów SMD każdej sieci, także własnej (miedź przelotki nie może ich dotykać, <code>via-cuts-pad</code>, a otwór pozostaje w odległości <code>min_hole_to_smd_pad</code>, <code>hole-to-smd-pad</code>, chyba że <code>--via-in-pad</code>, MCP <code>via_in_pad</code>, pozwala mu stać całkowicie wewnątrz padu SMD jego sieci z wiertłem nie większym niż <code>max_filled_via_drill</code>), używa przelotek klasy do zmiany warstwy, najtańszej, której zakres obejmuje obie warstwy (<code>--via uv-top,core</code> lub MCP <code>via</code>, aby wybrać z innych nazw, <code>--via-cost</code> w mm ścieżki, domyślnie 3, razy <code>cost</code> przelotki), nalicza <code>--bend-cost</code> mm ścieżki za każde zawinięcie o 45 stopni (domyślnie 0,1, trzykrotnie więcej za 90) i nigdy nie przesuwa tego, co już jest, chyba że podano <code>--reroute</code>, który najpierw usuwa ścieżki i przelotki nazwanych sieci. Połączenie, które nie znajdzie wolnej ścieżki, usuwa trasy sieci, które by przecięło, lub których otwory przelotek sprowadziłoby w odległość mniejszą niż <code>min_hole_to_hole</code> od własnych (otwory, których zakresy współdzielą dielektryk), zapamiętuje to miejsce jako zatłoczone, a te sieci wracają do kolejki. Wyszukiwanie krokówuje w kierunkach co 45 stopni i nalicza za każde zawinięcie, więc ścieżki wychodzą jako proste odcinki z zawinięciami o 45 stopni; później odcinki są napinane dwusegmentowymi doglegami o 45 stopni, a każde pozostałe narożnik 90 stopni jest ścięty tam, gdzie to możliwe. Tylko stub do środka padu poza siatką może stać pod innym kątem. Tam, gdzie szerokość klasy nie mieści się w końcowym padzie (szersza niż mniejsza strona padu, lub zbyt blisko sąsiednich padów, aby zachować odstęp), trasa zwęża się: ścieżka o szerokości klasy zatrzymuje się przed padem, a osobny wpis <code>[[tracks]]</code> z jawnym <code>width</code> biegnie prosto do środka padu, najwyżej o długości <code>neckdown</code> klasy i nie węższy niż <code>min_track_width</code>. Jego szerokość to najmniejsza z szerokości klasy, mniejszej strony padu i najszerszej, która zachowuje odstęp, zaokrąglona w dół do 0,01 mm (lub dokładnie <code>min_track_width</code>, tam gdzie zaokrąglenie obniżyłoby ją poniżej tej wartości, a szerokość bez zaokrąglenia nie obniżyłaby); szeroka ścieżka zaczyna się w pierwszym miejscu od padu, gdzie jej pełna szerokość zachowuje odstęp (i, dla padu węższego niż ścieżka, poza padem). Pady jednej sieci, które się dotykają, jak pad termiczny zbudowany z kilku wpisów padów, liczą się jako jeden szeroki pad. Pary trasy z <code>--pairs</code> nie zwężają się. Połączenie sieci, która już ma świeżą miedź, zaczyna się od tej miedzi. Po wstawieniu wszystkiego, każde trasowane połączenie używające przelotek jest ponownie próbowane na jednej warstwie naraz, z pozostałymi trzymanymi na sztywno, i trasa jednowarstwowa zastępuje je, jeśli jest najwyżej o 25% plus 1 mm dłuższa. Wtedy przelotki sąsiednich równoległych połączeń zmieniających warstwę w pobliżu siebie są przesuwane wzdłuż własnych ścieżek na wspólny rząd lub kolumnę na siatce, tam gdzie miejsce jest legalne i połączenie zachowuje długość (nogi pary trzymane przez <code>--pairs</code> i sieci z kilkoma połączeniami pozostają w miejscu). Sieć w interfejsie z <code>max_vias</code> trzyma trasę (każdą sieć pasa, przez elementy szeregowo) w jego granicach: trasa z za dużo przelotek jest ponownie próbowana z droższymi przelotkami, potem na jednej warstwie i zawodzi z powodem, jeśli żadna się nie mieści. Druga sieć pary jest ciągnięta do partnera w szczelinie pary; <code>--pairs</code> najpierw próbuje trasować obie połówki razem jako jedną sprzężoną ścieżkę. Gdy kilka połączeń zawiedzie, trasuj je ponownie razem z sieciami wokół i <code>--reroute</code>, aby router mógł usunąć i ponownie uporządkować cały obszar, lub obniż do <code>--grid 0.025</code>. <code>--dry-run</code> raportuje bez zapisywania. Najpierw trasuj ręcznie sieci, które mają znaczenie, potem pozwól routerowi wypełnić resztę, klasa po klasie."
-  },
   "13xykr3e7l9": {
     "defaultMessage": "Symbole"
   },
@@ -284,6 +290,9 @@
   "13z0xd124hs": {
     "defaultMessage": "<code>mask_web = false</code>, gdy producent otwiera soldermaskę nad wszystkimi padami elementu o małym rozstawie jako jedno okno."
   },
+  "1412p7ywue1": {
+    "defaultMessage": "bariera z <code>clearance</code>"
+  },
   "1414n4x5uae": {
     "defaultMessage": "Sprawdzanie zasad projektowania projektu PCB (layout). Przy list = true: każda zasada DRC z jej identyfikatorem, kategorią, wagą oraz informacją, czy dotyczy tej płytki i dlaczego. Bez tego: diagnostyka projektu PCB (layout) z identyfikatorem zasady. Identyfikatory zasad wpisuje się do listy wyłączonych [drc] lub tabeli wag w pliku płytki."
   },
@@ -292,6 +301,9 @@
   },
   "14bd9z49wd1": {
     "defaultMessage": "Symulacja FDTD"
+  },
+  "14dlyveasdo": {
+    "defaultMessage": "Domeny izolacji i bariery"
   },
   "14f19xcrdbg": {
     "defaultMessage": "Apple silicon"
@@ -323,6 +335,9 @@
   "1519g1avehv": {
     "defaultMessage": "Wzory zamknięte na pierwszą odpowiedź, solver pól na GPU z soldermaską i grubością miedzi dla klas, które mają znaczenie. W granicach 0,5% od dokładnych referencji stripline."
   },
+  "1521tyvidt3": {
+    "defaultMessage": "miedź dwóch domen bliżej wzdłuż powierzchni płytki niż creepage bariery: na jednej zewnętrznej warstwie wokół wycięć płytki i nieutwardzonych otworów co najmniej szerokość rowka jej <code>pollution_degree</code>, oraz od F.Cu do B.Cu w dół ściany wycięcia lub otworu lub wzdłuż krawędzi płytki"
+  },
   "1528x7i9xv2": {
     "defaultMessage": "mechanicznie, w podstacku, albo do kontrolowanej głębokości (<code>drill_kind = &quot;controlled_depth&quot;</code>)"
   },
@@ -331,6 +346,9 @@
   },
   "152usp03oi7": {
     "defaultMessage": "Symulacja projektu PCB (layout) lub schematu: FDTD, kaskada, kanał, PDN, spadek DC, termika lub logika."
+  },
+  "154h9bif94k": {
+    "defaultMessage": "<code>[[domains]]</code>"
   },
   "156bmxs5c35": {
     "defaultMessage": "kondensator między zasilaniem a masą, którego pad zasilania jest dalej niż <code>decoupling_distance</code> (3 mm) od najbliższego pinu układu scalonego na tym zasilaniu; dla kondensatorów filtrujących o pojemności powyżej 1 uF odległość jest 2,5 razy większa"
@@ -632,6 +650,9 @@
   "1aw9rgb1j68": {
     "defaultMessage": "<code>place</code> umieszcza złącza na krawędziach, utrzymuje elementy biernych blisko tego, do czego są podłączone, dopracowuje wynik i przesuwa etykiety referencyjne, które teraz się nakładają. Wyświetla raport JSON i zapisuje <code>at</code> oraz <code>rotation</code> w wpisie <code>[[footprints]]</code> dla każdego elementu. To szybki start: na prawdziwej płytce patrzysz na wynik, ręcznie przesuwasz to, co ważne, oznaczasz to jako <code>locked = true</code> i umieszczasz resztę ponownie."
   },
+  "1axqq49zy6j": {
+    "defaultMessage": "<code>--show</code> / <code>--hide</code>"
+  },
   "1azhkhgucpo": {
     "defaultMessage": "działa"
   },
@@ -716,8 +737,14 @@
   "1cim9n2z5u3": {
     "defaultMessage": "Uruchom symulację (*.sim.toml): FDTD, dc, termiczną, kaskadową, kanałową, pdn lub logiczną"
   },
+  "1cmyetwl4ud": {
+    "defaultMessage": "<code>isolation-clearance</code>"
+  },
   "1crpygvo2zk": {
     "defaultMessage": "Stworzone dla agenta, którego już używasz"
+  },
+  "1cvbxcnncg4": {
+    "defaultMessage": "<code>--focus A,B,...</code>"
   },
   "1cvepqsqieg": {
     "defaultMessage": "Gdzie urządzenie nie ma danych, pasmo jest przycinane do zakresu, w którym każde urządzenie ma jakieś, a współczynnik szumu poza danymi zostaje pusty zamiast zgadywany."
@@ -733,6 +760,9 @@
   },
   "1d2oey8ec95": {
     "defaultMessage": "Każda platforma z Rust {rust} lub nowszym."
+  },
+  "1d6wja5huke": {
+    "defaultMessage": "wyspy wylewki, które nie dotykają żadnego elementu sieci strefy, lub tylko miedzi odciętej od reszty i nie łączącej dwóch padów, które zostały usunięte"
   },
   "1d7lpt90j0y": {
     "defaultMessage": "Schemat to lista połączeń, nie twój rysunek: schemat KiCad nie jest odczytywany, więc nazwy pinów, grafika symboli i struktura arkuszy nie są przenoszone. To wystarcza, aby sprawdzić, wyrenderować, zasymulować i wyprodukować płytkę oraz pozwolić agentowi zmienić projekt PCB."
@@ -1034,9 +1064,6 @@
   "1hojglbgsmu": {
     "defaultMessage": "liczy przelotki, które umieścił każdy wpis <code>[[stitching]]</code>"
   },
-  "1hp9m6oody5": {
-    "defaultMessage": "Wyrenderuj element do PNG dokładnie tak, jak pokazuje to podgląd, i zwróć obraz."
-  },
   "1hr7d2icya6": {
     "defaultMessage": "Wymagania dla łącza, od USB 3 po linię RF 50 omów: impedancja, skew, długość, przelotki, stuby, płaszczyzny odniesienia i przelotki powrotne."
   },
@@ -1057,6 +1084,9 @@
   },
   "1i1pyr1ujko": {
     "defaultMessage": "każdy pad punktu testowego dla konstruktora fixture: ref, pad, sieć, X, Y (mm, Y w górę), strona, średnica padu"
+  },
+  "1i2bwr6hy06": {
+    "defaultMessage": "Creepage to najkrótsza ścieżka między dwiema miedziami wzdłuż zewnętrznej powierzchni, na której się znajdują (<code>creepage</code>). Zostaje na płytce i omija wycięcia płytki i niepokryte otwory. Rowek lub otwór węższy niż szerokość rowka X stopnia zanieczyszczenia (0,25 mm dla 1, 1,0 mm dla 2, 1,5 mm dla 3, zgodnie z IEC 60664-1) jest pomostowany i mierzony prosto na wylot. Między miedzią na F.Cu a miedzią na B.Cu ścieżka biegnie wzdłuż ściany wycięcia płytki lub niepokrytego otworu dowolnej szerokości, lub wokół krawędzi płytki, i uwzględnia grubość płytki. Soldermaska nie jest liczona jako izolacja."
   },
   "1i2n5zybesm": {
     "defaultMessage": "Nadpisz dowolną regułę w <code>[rules]</code>:"
@@ -1202,6 +1232,9 @@
   "1k11wca9qt7": {
     "defaultMessage": "Analizuj wynik symulacji: TDR, tryb mieszany, crosstalk, pasywność i wzajemność"
   },
+  "1k1enhqihl2": {
+    "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code> (MCP <code>route</code>) prowadzi ścieżki ratsnest dla nazwanych sieci na siatce (<code>--grid</code>, domyślnie 0,05 mm) i dołącza ścieżki i przelotki do pliku projektu PCB jako zwykłe <code>[[tracks]]</code> i <code>[[vias]]</code>, więc możesz je później edytować. Zachowuje szerokość, odstęp i <code>layers</code> każdej klasy sieci względem każdego padu, ścieżki, przelotki, otworu i krawędzi płytki, rozmiaruje miejsce dla każdej przelotki klasy według jej własnego padu, otworu i warstw (mikroprzelotka mieści się tam, gdzie nie mieści się przelotka przez całą grubość, a mikroprzelotka może leżeć obok pogrzebanej przelotki na innych warstwach), trzyma nowe przelotki w odległości <code>min_hole_to_hole</code> od każdego otworu, którego zakres współdzieli dielektryk z ich zakresem, a ich otwory w odległości <code>min_via_hole_to_copper</code> od padów, ścieżek i przelotek innych sieci, trzyma je z dala od padów SMD każdej sieci, także własnej (miedź przelotki nie może ich dotknąć, <code>via-cuts-pad</code>, a otwór pozostaje w odległości <code>min_hole_to_smd_pad</code> od nich, <code>hole-to-smd-pad</code>, chyba że <code>--via-in-pad</code>, MCP <code>via_in_pad</code>, pozwala mu leżeć całkowicie wewnątrz padu SMD jego sieci z otworem o średnicy co najwyżej <code>max_filled_via_drill</code>), używa przelotek klasy do zmiany warstwy, najtańszych, których zakres obejmuje obie warstwy (<code>--via uv-top,core</code> lub MCP <code>via</code>, aby wybrać z innych nazw, <code>--via-cost</code> w mm ścieżki, domyślnie 3, razy <code>cost</code> przelotki), nalicza <code>--bend-cost</code> mm ścieżki za każde zagięcie pod kątem 45 stopni (domyślnie 0,1, trzykrotnie więcej dla 90 stopni) i nigdy nie przesuwa tego, co już jest, chyba że podano <code>--reroute</code>, które najpierw usuwa ścieżki i przelotki nazwanych sieci. Połączenie, które nie znajdzie wolnej ścieżki, rozbiera prowadzone sieci, które przecina, lub których otwory przelotek zbliżyłoby do własnych w odległości <code>min_hole_to_hole</code> (otwory, których zakresy współdzielą dielektryk), zapamiętuje to miejsce jako zatłoczone, a te sieci wracają do kolejki. Wyszukiwanie idzie krokami pod kątem 45 stopni i nalicza za każde zagięcie, więc ścieżki wychodzą jako proste odcinki z zagięciami pod kątem 45 stopni; potem odcinki są napinane dwusegmentowymi doglegami pod kątem 45 stopni, a każde pozostałe naroże pod kątem 90 stopni jest ścięte, gdzie to pozwala odstęp. Tylko stub do środka padu poza siatką może leżeć pod innym kątem. Gdy szerokość klasy nie mieści się w końcowym padzie (szersza niż mniejsza strona padu lub zbyt blisko sąsiednich padów, aby zachować odstęp), trasa zwęża się: ścieżka o szerokości klasy zatrzymuje się przed padem, a osobny wpis <code>[[tracks]]</code> z jawnym <code>width</code> biegnie prosto do środka padu, o długości co najwyżej <code>neckdown</code> klasy i o szerokości nie mniejszej niż <code>min_track_width</code>. Jej szerokość to najmniejsza z szerokości klasy, mniejszej strony padu i najszerszej, która zachowuje odstęp, zaokrąglona w dół do 0,01 mm (lub dokładnie <code>min_track_width</code>, gdy zaokrąglenie dałoby mniej, a szerokość bez zaokrąglenia nie); szeroka ścieżka zaczyna się w pierwszym miejscu od padu, gdzie jej pełna szerokość zachowuje odstęp (a dla padu węższego niż ścieżka, poza padem). Pady jednej sieci, które się dotykają, jak pad termiczny zbudowany z kilku wpisów padów, liczą się jako jeden szeroki pad. Pary prowadzone z <code>--pairs</code> nie zwężają się. Połączenie sieci, która już ma świeżą miedź, zaczyna od tej miedzi. Połączenie, które nie znajdzie ścieżki nawet przez sieci, które może rozbierać, czeka na inne połączenia swojej sieci i próbuje raz jeszcze od miedzi, którą dodają. Klasy są prowadzone jedna po drugiej, najpierw najściślejsza (najmniej dozwolonych warstw, potem najszersza ścieżka plus odstęp), każda trzymana na stałe dla następnej. Gdy klasa jest już w, każda jej sieć z przelotkami jest rozbierana i prowadzona ponownie z przelotkami czterokrotnie droższymi i resztą trzymaną na stałe, a nowa trasa zostaje, gdy ma mniej przelotek (lub łączy więcej), przejście po przejściu, dopóki jedno oszczędza przelotkę. Potem każde prowadzone połączenie używające przelotek jest próbowane ponownie na jednej warstwie naraz z resztą trzymaną na stałe, a trasa na jednej warstwie zastępuje je, gdy jest co najwyżej 25% plus 1 mm dłuższa. Potem przelotki sąsiednich równoległych połączeń zmieniających warstwę blisko siebie są przesuwane wzdłuż własnych ścieżek na wspólny rząd lub kolumnę na siatce, gdzie miejsce jest legalne i połączenie zachowuje swoją długość (nogi pary trzymane przez <code>--pairs</code> i sieci z kilkoma połączeniami zostają w miejscu). Sieć w interfejsie z <code>max_vias</code> trzyma trasę (każdą sieć pasa, przez elementy szeregowo) w jego granicach: trasa z za dużo przelotek jest próbowana ponownie z droższymi przelotkami, potem na jednej warstwie i nie udaje się z powodem, jeśli żadna nie pasuje. Druga sieć pary jest ciągnięta do partnera w szczelinie pary; <code>--pairs</code> najpierw próbuje prowadzić obie połówki razem jako jedną sprzężoną ścieżkę. Gdy połączenia nie udają się, cała trasa jest uruchamiana ponownie, do czterech razy łącznie, z nieudanyymi sieciami najpierw w ich klasie i ich klasą najpierw, oraz kosztem na ścieżce, którą by przeszły przez miedź wcześniejszych klas, aby te klasy zostawiły ją wolną; uruchomienie z najmniej nieudanych połączeniami, potem z najmniej przelotkami, potem z najmniej ścieżką jest zapisywane. Gdy kilka połączeń nie udaje się, prowadź je ponownie razem z sieciami wokół nich i <code>--reroute</code>, aby router mógł rozbierać i przestawiać cały obszar, lub przejdź na <code>--grid 0.025</code>. <code>--dry-run</code> raportuje bez zapisywania. Najpierw ręcznie prowadź sieci, które mają znaczenie, potem pozwól routerowi wypełnić resztę, klasa po klasie."
+  },
   "1k216dcuu51": {
     "defaultMessage": "Skill"
   },
@@ -1210,6 +1243,9 @@
   },
   "1k5ujui3zzb": {
     "defaultMessage": "Co robi płytka i co do niej podłączasz: złącza, napięcia, prądy, sygnały i ich prędkości."
+  },
+  "1k608muzjgc": {
+    "defaultMessage": "pady różnych sieci, których otwory w soldermasce zostawiają mniej niż <code>min_mask_web</code>, jedna linia na parę elementów; pady tego samego footprintu z <code>mask_web = false</code> są pomijane wzajemnie, podobnie jak elektrody przerwy iskrowej"
   },
   "1k984m2d9ls": {
     "defaultMessage": "Rozwiązywanie każdej warstwy miedzi dla spadku napięcia i gęstości prądu, a następnie temperatury płytki z mocą każdego elementu, w sekundy."
@@ -1228,6 +1264,9 @@
   },
   "1kfd50so1g": {
     "defaultMessage": "<code>min_controlled_depth_drill</code>"
+  },
+  "1kgj4wspayo": {
+    "defaultMessage": "<code>spark-gap</code>"
   },
   "1kh7lutkph8": {
     "defaultMessage": "4 ns"
@@ -1295,6 +1334,9 @@
   "1ln0s6ojknb": {
     "defaultMessage": "Dodaj serwer MCP"
   },
+  "1lpa8tzh6yg": {
+    "defaultMessage": "footprinty z <code>spark_gaps</code>"
+  },
   "1lqngucnspi": {
     "defaultMessage": "zlicza przelotki na padach SMD własnej sieci (otwór wewnątrz padu); <code>fab-notes.txt</code> prosi producenta o wypełnienie i zamknięcie dokładnie tych (typ VII wg IPC-4761)"
   },
@@ -1324,9 +1366,6 @@
   },
   "1m39d50u8qg": {
     "defaultMessage": "Każdy diagnostyk niesie swój plik, element, miejsce i wagę, a diagnostyki projektu PCB nieszą identyfikator reguły. To wystarcza, by adnotować pull request albo zawieść na ostrzeżeniach w projekcie, który traktuje je jak błędy. Regułę można też podnieść do błędu w samej płytce przez <code>[drc] severity</code>, co trzyma politykę w projekcie, a nie w skrypcie CI."
-  },
-  "1m526qxf80v": {
-    "defaultMessage": "wyspy wylewki, które nie dotykają żadnej części sieci strefy i zostały usunięte"
   },
   "1m52uejprc2": {
     "defaultMessage": "Ścieżka RF jest układana w linii prostej. Zaczynając od każdego złącznika z padem na sieci RF (klasa z <code>impedance</code> i bez <code>diff_gap</code>), układnik podąża po sieciach RF przez elementy, które niosą dwie lub więcej z nich i mają co najwyżej 16 pinów (bloki DC, tłumiki, przełączniki, LNA, baluny) i bierze najdłuższą ścieżkę kończącą się na innym złączniku lub na większym układzie z pinami RF; przełącznik z obejściem przechodzi przez wzmacniacz, a nie przez obejście. Gdy oba końce to złączniki, trafiają na przeciwległe krawędzie długiej osi płytki i przesuwają się wzdłuż nich na jedną linię, przez środek płytki, gdzie oba się mieszczą. Każdy element na ścieżce obraca się tak, aby jego pady wejściowe i wyjściowe leżały na tej linii, w kolejności, upakowane w stronę wejścia z co najwyżej 1,5 mm dodatkowego odstępu każdy, a reszta miejsca trafia na ostatni odcinek. Element dwu- lub trójpinowy z jednym padem na węźle ścieżki (przekaźnik ESD, dławik polaryzacji, kondensator szuntowy) siada obok linii na tym węźle, obrócony tak, aby jego pozostałe pady wskazywały na zewnątrz, wystarczająco blisko, aby jego pad RF spotkał ścieżkę, i wystarczająco daleko, aby jego pozostałe pady zachowały odstęp klasy; dwa szunty na jednym węźle trafiają na przeciwległe strony. Ścieżka jest ustalana przed rozmieszczeniem reszty wokół niej, a element, który wyszedłby z płytki lub trafił na inny, zostawia się ogólnemu układnikowi."
@@ -1388,9 +1427,6 @@
   "1mzwfau5im8": {
     "defaultMessage": "Każdy arkusz to zwykły plik schematu z własnymi elementami i sieciami. Sieci łączą się między arkuszami po nazwie, więc <code>3V3</code> na każdym arkuszu to jedna sieć, a sygnał opuszcza jeden arkusz i dociera na inny pod tą samą nazwą. Piny sieci muszą być elementami na tym samym arkuszu; sieć rozciągająca się na arkusze wymaga tej samej <code>class</code> wszędzie, gdzie ją nazwie, i jest rysowana za pomocą etykiet. Odniesienia są unikalne w całym projekcie. Arkusz samodzielnie pomija ostrzeżenia o pojedynczym pinie i klasie Default (reszta sieci i jej klasa mogą być na innym arkuszu); schemat główny wykonuje każde sprawdzanie na połączonym projekcie i rysuje arkusze jeden pod drugim. Plik główny może zawierać również własne elementy i sieci."
   },
-  "1n1rc7zgly9": {
-    "defaultMessage": "pady różnych sieci, których otwory soldermaski zostawiają mniej niż <code>min_mask_web</code>, jedna linia dla każdej pary elementów; pady footprintu z <code>mask_web = false</code> są pomijane wzajemnie"
-  },
   "1n1sk97q413": {
     "defaultMessage": "schemat: umieszczone elementy, sieci, przewody"
   },
@@ -1405,6 +1441,9 @@
   },
   "1n654yj4dk0": {
     "defaultMessage": "Pracuj z klonu, gdy chcesz przykłady, lub zmienić agentee:"
+  },
+  "1na2buppw58": {
+    "defaultMessage": "<code>--rulers</code>"
   },
   "1ncp0psxtys": {
     "defaultMessage": "true"
@@ -1640,6 +1679,9 @@
   "1qw5tcldd6o": {
     "defaultMessage": "jednostki, model plików, resolve i sprawdzanie, kalkulatory"
   },
+  "1qxtym14c23": {
+    "defaultMessage": "<code>agentee render</code> (MCP <code>render_item</code>) rysuje to, co rysuje podgląd. Bez paneli bocznych (<code>--canvas-only</code>) PNG jest przycinany do rysunku, a <code>--width</code> i <code>--height</code> ograniczają jego rozmiar."
+  },
   "1r0hmmormyn": {
     "defaultMessage": "mechanicznie, w prasowanym podstacku"
   },
@@ -1660,6 +1702,9 @@
   },
   "1r5t471qlyo": {
     "defaultMessage": "Rozmieszczanie, trasy i wylewki - przewodnik agentee"
+  },
+  "1r94okxp0ki": {
+    "defaultMessage": "Cała płytka w 1400 pikselach jest zbyt mała, aby model odczytał etykiety, więc renderuj część, o którą pytasz. <code>--focus</code> powiększa do podanych elementów, sieci i pinów i wygasza resztę, <code>--rulers</code> etykietuje współrzędne milimetrowe wzdłuż krawędzi, aby następny <code>--region</code> można było odczytać z obrazka, a z <code>--canvas-only</code> PNG jest przycinany do rysunku:"
   },
   "1raj6a0in47": {
     "defaultMessage": "<code>*.pcb.toml</code>: rozmieszczenia, ścieżki, przelotki, wylewki, opisy"
@@ -1739,6 +1784,9 @@
   "1siy1uwon63": {
     "defaultMessage": "W przeciwnym razie <code>agentee new symbol NAME</code> / <code>agentee new footprint NAME</code> i edytuj plik startowy."
   },
+  "1sm539dig10": {
+    "defaultMessage": "flaga"
+  },
   "1snb267xxo0": {
     "defaultMessage": "Zawsze zgłasza pasywność (największa wartość osobliwa S w paśmie) i odwzajemnialność (największe |Sij - Sji|), gdy każdy port był pobudzany. TDR resampuluje na jednorodną siatkę, ekstrapoluje część rzeczywistą do DC, stosuje krawędź gaussowską (domyślnie wzrost 10-90% równy 1,3 / częstotliwość górna) i całkuje odpowiedź impulsową; ostrzega, gdy krawędź jest szybsza, niż pozwalają dane. Podgląd pokazuje ten sam TDR dla każdego pobudzanego portu pod zakładką <code>tdr</code>."
   },
@@ -1780,6 +1828,9 @@
   },
   "1t6pxa5bz3h": {
     "defaultMessage": "Importuj z zainstalowanych bibliotek KiCad"
+  },
+  "1t7f8d3334k": {
+    "defaultMessage": "etykietowanie współrzędnych mm wzdłuż górnej i lewej krawędzi"
   },
   "1tb0k2uaxra": {
     "defaultMessage": "Symulacje logiczne licznika i magistrali I2C"
@@ -1888,6 +1939,9 @@
   },
   "1v0wqtjy1ac": {
     "defaultMessage": "Biblioteki w innych lokalizacjach są wyszukiwane przez <code>KICAD9_SYMBOL_DIR</code> i <code>KICAD9_FOOTPRINT_DIR</code>."
+  },
+  "1v1hqsikkfv": {
+    "defaultMessage": "Arkusze zamówień"
   },
   "1v2uudc6t8s": {
     "defaultMessage": "preset"
@@ -2003,6 +2057,9 @@
   "1xdif2fiz9x": {
     "defaultMessage": "zmienia aktywną warstwę"
   },
+  "1xekxt0pa8v": {
+    "defaultMessage": "zapasy dla tego elementu zamiast domyślnych, np. brak dla drogiego modułu"
+  },
   "1xfwjxnnmwm": {
     "defaultMessage": "10 ns"
   },
@@ -2023,9 +2080,6 @@
   },
   "1xsx0n8gdmv": {
     "defaultMessage": "Przydatne klucze footprint:"
-  },
-  "1xwa0edgvkl": {
-    "defaultMessage": "miedź dwóch sieci bliżej niż większa z ich odstępów klasowych (odstęp <code>clearance</code> footprintu zastępuje je dla jego padów) lub miedź wchodzi w otwór bez miedzi"
   },
   "1xx1mnazadi": {
     "defaultMessage": "Pisanie schematów - przewodnik agentee"
@@ -2069,8 +2123,14 @@
   "1yd48z3wex0": {
     "defaultMessage": "umieszcza przelotkę na miedzi z siecią"
   },
+  "1ydrf2t9pa0": {
+    "defaultMessage": "<code>isolation-domain</code>"
+  },
   "1yeem25v9mo": {
     "defaultMessage": "<code>diff_gap</code> czyni klasę parą i jej impedancję różnicową. Sieci kończące się na <code>_P</code> i <code>_N</code>, <code>_DP</code> i <code>_DN</code>, <code>+</code> i <code>-</code>, lub <code>P</code> i <code>N</code> łączą się w pary automatycznie; w przeciwnym razie nazwij je w projekcie PCB:"
+  },
+  "1yf3l1ndp3i": {
+    "defaultMessage": "<code>buy_with = &quot;XHP-2, SXH-001T-P0.6 x2&quot;</code>"
   },
   "1yf5ve95i67": {
     "defaultMessage": "wynik JSON i VCD"
@@ -2092,6 +2152,9 @@
   },
   "1yl2jnjwpw": {
     "defaultMessage": "Kondensatory, cewności, diody, diody LED, punkty testowe, kryształy i podobne elementy są pomijane."
+  },
+  "1yo5k7srzdk": {
+    "defaultMessage": "<code>--order DIR</code> (MCP <code>order</code>) zapisuje arkusze do zakupu zamiast raportu: <code>NAME-order.csv</code> z każdą linią i dystrybutorem, od którego jest kupowana, oraz jeden <code>NAME-&lt;distributor&gt;.csv</code> na dystrybutora, z kluczem, a w przypadku Mousera w układzie kolumn jego szablonu importu BOM. Każda linia trafia do dystrybutora, który jest tańszy dla kupowanej ilości, spośród tych z wystarczającym stanem magazynowym i nieprzestarzałych. Arkusz dystrybutora zawiera każdą linię w trzech blokach: linie zamawiane u niego, następnie linie kupowane u innego dystrybutora, a na końcu linie, których nie prowadzi lub ma ich za mało, tak że górny blok każdego arkusza to zamówienie. Linia, której nie prowadzi żaden dystrybutor, jest oznaczona w <code>NAME-order.csv</code>, lub podaje swój element <code>lcsc</code>."
   },
   "1yqopwhriij": {
     "defaultMessage": "Ze źródła"
@@ -2147,6 +2210,9 @@
   "1zgogqmzk75": {
     "defaultMessage": "<code>copper-to-edge</code>"
   },
+  "1zguykj5vvy": {
+    "defaultMessage": "przerwa iskrowa, której elektrody nie są oddalone o zadeklarowaną wartość <code>gap</code> (z dokładnością do 0,01 mm), znajdują się poniżej <code>min_clearance</code>, należą do tej samej sieci lub nie mają przypisanej sieci, albo mają soldermaskę w przerwie na warstwie zewnętrznej"
+  },
   "1zkgdw4j6er": {
     "defaultMessage": "Dwa dostarczane stackupy HDI to ogólne budowy, a nie opublikowany stackup jednego producenta:"
   },
@@ -2185,6 +2251,9 @@
   },
   "20dpdr10xbq": {
     "defaultMessage": "<code>dff</code>"
+  },
+  "20gg17bj404": {
+    "defaultMessage": "co dzieje się ze wszystkim poza <code>--focus</code> (domyślnie <code>dim</code>)"
   },
   "20hgaqi3se5": {
     "defaultMessage": "wąskie miejsca w wylewce węższe niż 90% <code>min_width</code> strefy, które wylewka powinna była otworzyć; liczone z najwęższym miejscem"
@@ -2287,6 +2356,9 @@
   },
   "221qbpi8pyl": {
     "defaultMessage": "In1.Cu do In4.Cu, pogrzebane, przez podstack,"
+  },
+  "226ie5pbkpb": {
+    "defaultMessage": "element LCSC, podawany, gdy żaden dystrybutor nie prowadzi tej linii"
   },
   "226vjhs4w16": {
     "defaultMessage": "Plik *.fp.toml: rzędy padów, kształty i warstwy padów, pady krawędziowe, połączenia wylewek, courtyardy, opisy i modele 3D."
@@ -2398,6 +2470,9 @@
   },
   "24ge4p3vpat": {
     "defaultMessage": "od pierwszej do ostatniej miedzi"
+  },
+  "24ghp4o686m": {
+    "defaultMessage": "Renderowanie części projektu"
   },
   "24kimihxft4": {
     "defaultMessage": "wierzchołki wylewki ostrzejsze niż 30 stopni; zwiększ <code>min_width</code> strefy"
@@ -2567,6 +2642,9 @@
   "270mf8lg1lx": {
     "defaultMessage": "umieszcza złącza na krawędziach, stroną stykową na zewnątrz, i nigdy nie stawia złącza RF i złącza USB na jednej krawędzi, jeśli inny podział się zmieści, ponieważ szum USB 3 trafia w pasmo 2,4 GHz;"
   },
+  "272ff8lqlwg": {
+    "defaultMessage": "miedź dwóch sieci bliżej siebie niż większa z ich odstępów klasowych (footprint <code>clearance</code> zastępuje je dla swoich padów), lub miedź wchodząca w otwór nieprzelotowy. Pady jednego footprintu są trzymane do <code>min_clearance</code> i do odstępu klasowego sieci w domenie izolacji; elektrody przerw iskrzących są pomijane"
+  },
   "273giv9xl0e": {
     "defaultMessage": "umieszczenie, kolumny JLCPCB"
   },
@@ -2620,6 +2698,12 @@
   },
   "28a3r88ouzz": {
     "defaultMessage": "0.3"
+  },
+  "28d8cxee2e6": {
+    "defaultMessage": "schematy i projekty PCB: powiększenie do tych odwołań, nazw sieci lub <code>REF.PIN</code>, <code>*</code> dopasowuje dowolny ciąg znaków. Sieć wciąga elementy, które dotyka, pin wciąga jego sieć"
+  },
+  "28eex1tfszn": {
+    "defaultMessage": "Odstępowanie klasy, której sieci należą do domeny, jest traktowane jako odstęp elektryczny, więc obowiązuje również między padami tego samego footprintu: TO-220 na klasie HvBus 1,5 mm z padami oddalonymi o 1,0 mm to błąd <code>clearance</code>. Pady tego samego footprintu, których sieci nie należą do żadnej domeny, są utrzymywane tylko do <code>min_clearance</code>, ponieważ rozstaw elementu wyznacza ich odstęp."
   },
   "28f7652hq13": {
     "defaultMessage": "Napisz plik startowy dla płytki, symbolu, footprintu, schematu, projektu PCB (layout) lub symulacji, do edycji. Symulacja zaczyna się jako uruchomienie FDTD projektu PCB (layout) lub, przy sim_kind logic, jako symulacja logiczna schematu (zegar, reset, asercja zegarowana), której sieci się przemianowuje."
@@ -2689,6 +2773,9 @@
   },
   "29iu3d22sqh": {
     "defaultMessage": "prowadzenie: kliknij pad, przelotkę lub ścieżkę, aby zacząć, klikaj, aby dodać narożniki 45 stopni, <code>/</code> odwraca zakręt, V dodaje przelotkę, Enter kończy"
+  },
+  "29j14m86ht8": {
+    "defaultMessage": "pole"
   },
   "29ku7ky1qub": {
     "defaultMessage": "para biegnąca równolegle z odstępem innym niż <code>diff_gap</code> klasy, przekraczającym <code>max_uncoupled</code>"
@@ -2779,6 +2866,9 @@
   },
   "2b4wu4tjhac": {
     "defaultMessage": "Użyj presetu HDI"
+  },
+  "2b5qclo9mdd": {
+    "defaultMessage": "<code>isolation-unassigned</code>"
   },
   "2b6e1q1tvd8": {
     "defaultMessage": "<code>agentee fab pcb:NAME -o DIR</code> (MCP <code>fab</code>) zapisuje:"
@@ -2900,6 +2990,9 @@
   "2cjq2lndzi6": {
     "defaultMessage": "Sterownik staje się źródłem Thevenina z jego tabel pull-down i pull-up, pojemnością die i obudową; jego rampa ustawia krawędź, a zakres napięć swing, chyba że podano <code>rise</code> lub <code>swing</code>. Odbiornik obciąża daleki koniec swoją obudową i pojemnością die, a oko jest odczytywane na jego die. IBIS działa obecnie na ścieżkach pojedynczo zakończonych."
   },
+  "2cozbj3xs0k": {
+    "defaultMessage": "<code>--focus</code> przyjmuje odwołania (<code>U1</code>), nazwy sieci (<code>SPI_CLK</code>) i piny (<code>U1.3</code>), z <code>*</code> jako znakiem dzikim. Sieć wciąga elementy, które dotyka. <code>--context</code> domyślnie to <code>dim</code>, <code>hide</code>, aby zostawić tylko to, co nazwałeś, lub <code>show</code>, aby powiększyć bez wygaszania czegokolwiek. MCP <code>render_item</code> przyjmuje te same argumenty <code>focus</code>, <code>context</code> i <code>rulers</code>."
+  },
   "2csls3gciuc": {
     "defaultMessage": "Czego potrzebuje"
   },
@@ -2929,6 +3022,9 @@
   },
   "2d6y5d2d527": {
     "defaultMessage": "<code>impedance-trace</code>"
+  },
+  "2d70vdx1d3o": {
+    "defaultMessage": "Nazwa, która nie pasuje do niczego, to błąd. <code>--region</code> z <code>--focus</code> zachowuje filtr i używa regionu do powiększenia."
   },
   "2dayrb6juwp": {
     "defaultMessage": "HC, HCT"
@@ -3296,6 +3392,9 @@
   "4lxxwf41j4": {
     "defaultMessage": "<code>min_plated_slot_width</code>"
   },
+  "4pvnbce4b5": {
+    "defaultMessage": "<code>creepage</code>"
+  },
   "4rae9zpwbh": {
     "defaultMessage": "zawsze"
   },
@@ -3358,6 +3457,9 @@
   },
   "686lhskeo4": {
     "defaultMessage": "jeden symbol schematu"
+  },
+  "6f8tjd4506": {
+    "defaultMessage": "warstwy do włączenia lub wyłączenia, np. <code>--hide F.Cu --show In1.Cu</code>"
   },
   "6ido514tq1": {
     "defaultMessage": "4 warstwy, JLC04161H-7628, ENIG"
@@ -3671,6 +3773,9 @@
   "b7b8tb291q": {
     "defaultMessage": "Pliki projektu"
   },
+  "b7nt3ki7r1": {
+    "defaultMessage": "Rendery element do PNG dokładnie tak, jak pokazuje go podgląd, i zwraca obraz. Bez paneli bocznych obraz jest przycięty do rysunku, więc szerokość i wysokość to jego maksymalne wymiary."
+  },
   "b92nzpwkpa": {
     "defaultMessage": "Co zrobiłeś"
   },
@@ -3766,6 +3871,9 @@
   },
   "d4h9xa9tl2": {
     "defaultMessage": "Rysuj courtyard na <code>F.CrtYd</code> i obrys korpusu na <code>F.Fab</code>: weryfikacja wymaga courtyardu, który obejmuje pady, rozmieszczacz trzyma courtyardy w odległości, a reguły krawędzi i montażu mierzą od korpusu. Ustaw <code>height</code>, aby widok 3D i reguła wysokich elementów miały wysokość bez modelu."
+  },
+  "d8xhh7ye1c": {
+    "defaultMessage": "Przełącznik <code>back</code> na stronie 2D odbija płytkę, aby oglądać ją od spodu: dolna miedź rysuje się nad górną, a widoczność każdej warstwy przedniej zamienia się z jej odpowiednikiem tylnym. <code>agentee render pcb:NAME --show back</code> renderuje ten widok."
   },
   "da20h6ryzp": {
     "defaultMessage": "Serwer MCP"
@@ -3941,6 +4049,9 @@
   "gaamns4i1l": {
     "defaultMessage": "<code>min_drill</code>, <code>min_via_drill</code>"
   },
+  "gj2bevgtpu": {
+    "defaultMessage": "<code>--spares</code> (MCP <code>spares</code>) dodaje zapas na ręczny montaż: rezystory i kondensatory 0402 i 0603 są kupowane w najbliższej wielokrotności dziesięciu powyżej zapotrzebowania plus pięć, a każda linia <code>D</code>, <code>Q</code>, <code>U</code> i <code>F</code> dostaje jeden zapas. Te pola elementu to zmieniają:"
+  },
   "glhbhwqbjr": {
     "defaultMessage": "Pin to <code>REF.PIN</code>, po numerze lub po unikalnej nazwie pina; nazwa wspólna dla kilku pinów to błąd. Pin, któremu przypisano sieć, na której już się znajduje, przenosi się do nowej sieci. Plik zachowuje swoje komentarze i układ. <code>agentee edit</code> zapisuje plik, uzupełnia zapisane wypełnienia stref w projekcie PCB, a następnie raportuje diagnostykę sprawdzania dla plików, które zmienił, i kończy się kodem 1, jeśli którykolwiek z nich to błąd."
   },
@@ -4093,6 +4204,15 @@
   },
   "ijyo5sjjdk": {
     "defaultMessage": "<code>Y0</code> do <code>Y7</code>"
+  },
+  "ingvojakto": {
+    "defaultMessage": "sieci w żadnej domenie, których nie pokrywa żadna bariera"
+  },
+  "iomevdc6xc": {
+    "defaultMessage": "<code>--context dim|hide|show</code>"
+  },
+  "iozyts7ml0": {
+    "defaultMessage": "<code>spares = &quot;0&quot;</code>"
   },
   "ir7t9q4eba": {
     "defaultMessage": "<code>A</code>, <code>B</code>: te same piny, sterowane z drugiej strony przez <code>DIR</code>"
@@ -4652,6 +4772,9 @@
   "rbd5i5y6uj": {
     "defaultMessage": "Przewodniki"
   },
+  "rg8rx5tw3u": {
+    "defaultMessage": "<code>lcsc = &quot;C165948&quot;</code>"
+  },
   "rgx7g5j89u": {
     "defaultMessage": "Dane urządzeń są interpolowane liniowo w częściach rzeczywistych i urojonych, a pasmo jest przycinane do zakresu, w którym każde urządzenie ma dane. Wynik dwuportowy raportuje szczyt i dolną granicę wzmocnienia, najgorsze S11, S22 i S12 oraz najniższe mu Edwardsa-Sinsky'ego i K Rolletta (mu powyżej 1 przy każdej częstotliwości oznacza bezwarunkową stabilność). Wynik staje się nieaktualny, gdy zmieni się specyfikacja, wynik płytki lub plik urządzenia."
   },
@@ -4699,6 +4822,9 @@
   },
   "sa2s0k3fii": {
     "defaultMessage": "0.15, 1.0"
+  },
+  "sa82hcx9ev": {
+    "defaultMessage": "miedź dwóch domen na jednej warstwie bliżej niż odstęp bariery między nimi, w tym pady jednego footprintu i wylewki; jedna linia na parę sieci z najbliższym miejscem"
   },
   "saviwyv34g": {
     "defaultMessage": "20 ns"
@@ -4862,6 +4988,9 @@
   "vevjglgna0": {
     "defaultMessage": "Podaj mu referencję formatu"
   },
+  "vg1052wiwx": {
+    "defaultMessage": "Klasa sieci ma jedno odstępowanie, utrzymywane względem każdej innej sieci. Gdy sieci muszą zachować większy dystans od jednej grupy niż od sąsiadów (np. pierwotna sieci zasilającej od wtórnej, pływająca szyna od reszty wtórnej), umieść sieci w domenach i ustaw barierę między dwiema domenami:"
+  },
   "vgzxbueyi7": {
     "defaultMessage": "Niektóre decyzje są szybsze myszką: przesunięcie złącza tam, gdzie chce obudowa, ponowne poprowadzenie jednej ścieżki wokół części, dodanie przelotki. Strona 2D layoutu edytuje layout, a zapisanie (ctrl+S) wpisuje zmianę do <code>.pcb.toml</code> tym samym zapisywaczem zachowującym komentarze i kolejność, którego używa CLI. Agent odczyta twoją zmianę przy następnym załadowaniu pliku."
   },
@@ -4970,6 +5099,9 @@
   "x0m5nm2n6u": {
     "defaultMessage": "KiCad rysuje opisy (sitodruk) o grubości 0,12 mm, a JLCPCB wymaga 0,15 mm. Otwórz każdy footprint i zmień <code>width = 0.12</code> na <code>0.15</code> w grafikach opisów (sitodruku), albo poproś o to swojego agenta. To normalny kształt pracy z agentee: diagnostyka wskazuje plik, element i wartość, a poprawka to jedna edycja."
   },
+  "x3a0fv0yot": {
+    "defaultMessage": "znaczenie"
+  },
   "x3j6gd5rkw": {
     "defaultMessage": "Pliki projektu - referencja agentee"
   },
@@ -5060,6 +5192,9 @@
   "y817q65376": {
     "defaultMessage": "<code>hole-to-edge</code>"
   },
+  "y84zm9obxw": {
+    "defaultMessage": "<code>--region x0,y0,x1,y1</code>"
+  },
   "y852j1pdwt": {
     "defaultMessage": "<code>*.sym.toml</code>"
   },
@@ -5072,8 +5207,14 @@
   "yc9r30dm9u": {
     "defaultMessage": "BOM grupuje po nich, a <code>agentee parts</code> wyszukuje stan magazynowy, cenę i tańsze zamienniki po <code>mpn</code>. Zobacz <a href=\"/guides/fab/\">Pakiet produkcyjny, BOM i ceny</a>."
   },
+  "ycd75jjuqy": {
+    "defaultMessage": "sieć, której klasa lub nazwa umieszcza ją w dwóch domenach"
+  },
   "ydfgdztl7j": {
     "defaultMessage": "<code>rect</code>"
+  },
+  "yebgi2jbad": {
+    "defaultMessage": "Sieć należy do co najwyżej jednej domeny. Wewnątrz domeny i dla sieci bez domeny obowiązują odstępowania klasy jak wcześniej. Między dwiema domenami z barierą miedź na jednej warstwie zachowuje <code>clearance</code> bariery (<code>isolation-clearance</code>), w tym pady tego samego footprintu i wylewki. Wylewki i autorouter zachowują barierę od miedzi innej domeny podczas wypełniania i trasy; na F.Cu i B.Cu zachowują większą z wartości <code>clearance</code> i <code>creepage</code>, ponieważ żadna z nich nie mierzy ścieżek wokół rowków."
   },
   "yfwyujuwr8": {
     "defaultMessage": "2"

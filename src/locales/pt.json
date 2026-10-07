@@ -20,6 +20,9 @@
   "10hj9wtkhca": {
     "defaultMessage": "asserções, setup e hold, contenção"
   },
+  "10jc42a8vsy": {
+    "defaultMessage": "ampliar para esse retângulo, em mm nas coordenadas próprias do item"
+  },
   "10l2rcg9xvo": {
     "defaultMessage": "<code>interface-vias</code>"
   },
@@ -179,6 +182,12 @@
   "12l7h195o1h": {
     "defaultMessage": "<code>usb2-hs</code>"
   },
+  "12la968121a": {
+    "defaultMessage": "uma barreira com <code>creepage</code>"
+  },
+  "12mj4ud735z": {
+    "defaultMessage": "peças compradas com cada uma desta peça mas não colocadas na placa: alojamentos correspondentes, prensas, uma antena. <code> xN</code> é a contagem por peça; a linha indica as peças para as quais serve e recebe uma peça extra com <code>--spares</code>"
+  },
   "12nmfoozwbx": {
     "defaultMessage": "Uma rede com uma zona é uma rede de plano. <code>tie</code> dá a cada pad SMD de uma rede de plano um pino curto e uma via ao lado, no lado oposto ao componente, afastado de todos os pads e das outras redes. É assim que os pads de massa e de alimentação devem chegar a um plano, em vez de pistas entre eles. Um pad que já tem uma via da respetiva rede por perto é deixado como está, e um pad sem lugar legal é listado sob <code>failed</code>."
   },
@@ -272,9 +281,6 @@
   "13u8mhxwbqd": {
     "defaultMessage": "opcional <code>R</code>, <code>CLK</code>, opcional <code>D0</code> a <code>D3</code>, <code>CEP</code>, <code>LOAD</code>, <code>CET</code>"
   },
-  "13wt2gfx3mu": {
-    "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code> (MCP <code>route</code>) faz o roteamento do ratsnest das redes indicadas numa grelha (<code>--grid</code>, predefinição 0,05 mm) e acrescenta as pistas e vias ao ficheiro de layout como <code>[[tracks]]</code> e <code>[[vias]]</code> ordinários, para que as possa editar depois. Mantém a largura, o afastamento e as <code>layers</code> de cada classe de rede em relação a cada pad, pista, via, furo e à borda da placa, dimensiona o espaço para cada via de classe pelo seu próprio pad, furo e camadas (uma microvia cabe onde uma via atravessante não cabe, e uma microvia pode ficar junto a uma via enterrada noutras camadas), mantém as novas vias a <code>min_hole_to_hole</code> de todos os furos cujo alcance partilha um dielétrico com o delas e os seus furos a <code>min_via_hole_to_copper</code> dos pads, pistas e vias de outras redes, mantém-nas afastadas dos pads SMD de todas as redes, inclusive da própria (o cobre da via não pode tocar num pad, <code>via-cuts-pad</code>, e o furo fica a <code>min_hole_to_smd_pad</code> dele, <code>hole-to-smd-pad</code>, a menos que <code>--via-in-pad</code>, MCP <code>via_in_pad</code>, permita que fique totalmente dentro de um pad SMD da sua rede com um furo de no máximo <code>max_filled_via_drill</code>), usa as vias da classe para mudar de camada, a mais barata cujo alcance contenha ambas as camadas (<code>--via uv-top,core</code> ou MCP <code>via</code> para escolher a partir de outros nomes, <code>--via-cost</code> em mm de pista, predefinição 3, vezes o <code>cost</code> da via), cobra <code>--bend-cost</code> mm de pista por cada dobra de 45 graus (predefinição 0,1, três vezes isso para 90) e nunca move o que já está lá a menos que seja dado <code>--reroute</code>, que primeiro remove as pistas e vias das redes indicadas. Uma ligação que não encontra um caminho livre desfaz as redes roteadas que cruzaria ou cujos furos de via traria a menos de <code>min_hole_to_hole</code> dos seus (furos cujo alcance partilha um dielétrico), lembra o ponto como congestionado e essas redes voltam para a fila. A pesquisa avança em direções de 45 graus e cobra por cada dobra, pelo que os caminhos saem como retas com dobras de 45 graus; depois, as retas são apertadas com doglegs de dois segmentos a 45 graus e qualquer canto de 90 graus que reste é chanfrado onde houver espaço. Apenas o rabo para um centro de pad fora da grelha pode ficar a outro ângulo. Quando a largura da classe não cabe num pad de extremidade (mais larga que o lado menor do pad, ou demasiado perto dos pads vizinhos para manter o afastamento), o roteamento afina: a pista da largura da classe para antes do pad e uma entrada <code>[[tracks]]</code> separada com uma <code>width</code> explícita vai em linha reta para o centro do pad, com no máximo o <code>neckdown</code> da classe de comprimento e nunca mais estreita que <code>min_track_width</code>. A sua largura é a menor entre a largura da classe, o lado menor do pad e a mais larga que mantém o afastamento, arredondada para baixo a 0,01 mm (ou exatamente <code>min_track_width</code> se o arredondamento a fizesse cair abaixo e a largura não arredondada não o fizesse); a pista larga começa no primeiro ponto afastado do pad onde a sua largura total mantém o afastamento (e, para um pad mais estreito que a pista, fora do pad). Pads de uma rede que se tocam, como um pad térmico construído a partir de várias entradas de pad, contam como um único pad largo. Pares roteados com <code>--pairs</code> não afinam. Uma ligação de uma rede que já tem cobre novo começa desse cobre. Quando tudo está no lugar, cada ligação roteada que usa vias é tentada novamente numa camada de cada vez com o resto fixo, e o roteamento de uma camada substitui-a quando for no máximo 25% mais 1 mm mais longo. Depois, as vias de ligações paralelas vizinhas que mudam de camada perto umas das outras são deslizadas ao longo das suas próprias pistas para uma linha comum ou coluna na grelha, onde o ponto for legal e a ligação mantiver o seu comprimento (as pernas de par mantidas por <code>--pairs</code> e as redes com várias ligações ficam no lugar). Uma rede numa interface com <code>max_vias</code> mantém a trilha (todas as redes da via, através de componentes em série) dentro dela: um roteamento com demasiadas vias é tentado novamente com vias mais caras, depois numa camada, e falha com a razão se nenhum dos dois couber. A segunda rede de um par é atraída para o seu parceiro no intervalo do par; <code>--pairs</code> tenta primeiro rotear as duas metades juntas como uma única pista acoplada. Quando algumas ligações falham, roteie-as novamente juntas com as redes à volta e <code>--reroute</code>, para que o roteador possa desfazer e reordenar toda a área, ou desça para <code>--grid 0.025</code>. <code>--dry-run</code> relata sem escrever. Roteie primeiro à mão as redes que importam, depois deixe o roteador preencher o resto, uma classe de cada vez."
-  },
   "13xykr3e7l9": {
     "defaultMessage": "Símbolos"
   },
@@ -284,6 +290,9 @@
   "13z0xd124hs": {
     "defaultMessage": "<code>mask_web = false</code> quando o fabricante abre a máscara sobre todos os pads de uma peça de passo fino como uma janela única."
   },
+  "1412p7ywue1": {
+    "defaultMessage": "uma barreira com <code>clearance</code>"
+  },
   "1414n4x5uae": {
     "defaultMessage": "Verificações de regras de design de um layout. Com list = true: cada regra DRC com o seu id, categoria, severidade, e se se aplica a esta placa e porquê. Sem isto: os diagnósticos do layout que transportam um id de regra. Os ids de regras vão para a lista de desativação [drc] ou para a tabela de severidade da placa."
   },
@@ -292,6 +301,9 @@
   },
   "14bd9z49wd1": {
     "defaultMessage": "Simulação FDTD"
+  },
+  "14dlyveasdo": {
+    "defaultMessage": "Domínios e barreiras de isolamento"
   },
   "14f19xcrdbg": {
     "defaultMessage": "Apple silicon"
@@ -323,6 +335,9 @@
   "1519g1avehv": {
     "defaultMessage": "Formas fechadas para uma primeira resposta, um solver de campo na GPU com máscara e espessura de cobre para as classes que importam. Dentro de 0,5% das referências exatas de stripline."
   },
+  "1521tyvidt3": {
+    "defaultMessage": "cobre de dois domínios mais próximo ao longo da superfície da placa que a fuga da barreira: numa camada externa em volta de recortes da placa e furos não revestidos, pelo menos a largura de sulco do respetivo <code>pollution_degree</code>, e de F.Cu para B.Cu por uma parede de recorte ou furo ou em volta da borda da placa"
+  },
   "1528x7i9xv2": {
     "defaultMessage": "mecanicamente, num sub-stack, ou até uma profundidade controlada (<code>drill_kind = &quot;controlled_depth&quot;</code>)"
   },
@@ -331,6 +346,9 @@
   },
   "152usp03oi7": {
     "defaultMessage": "Uma simulação do layout ou do esquema: FDTD, cascata, canal, PDN, queda DC, térmica ou lógica."
+  },
+  "154h9bif94k": {
+    "defaultMessage": "<code>[[domains]]</code>"
   },
   "156bmxs5c35": {
     "defaultMessage": "um condensador entre uma alimentação e a massa cujo pad de alimentação está mais longe do que <code>decoupling_distance</code> (3 mm) do pino mais próximo de um CI nessa alimentação, 2,5 vezes esse valor para condensadores de reserva acima de 1 uF"
@@ -632,6 +650,9 @@
   "1aw9rgb1j68": {
     "defaultMessage": "<code>place</code> coloca conetores nas bordas, mantém os passivos perto do que ligam, refina o resultado e move qualquer etiqueta de referência que agora sobreponha algo. Imprime um relatório JSON e escreve <code>at</code> e <code>rotation</code> numa entrada <code>[[footprints]]</code> por peça. É um arranque rápido: numa placa real, vê-se o resultado, move-se o que importa à mão, marca-se <code>locked = true</code> e coloca-se o resto novamente."
   },
+  "1axqq49zy6j": {
+    "defaultMessage": "<code>--show</code> / <code>--hide</code>"
+  },
   "1azhkhgucpo": {
     "defaultMessage": "faz"
   },
@@ -716,8 +737,14 @@
   "1cim9n2z5u3": {
     "defaultMessage": "Executar uma simulação (*.sim.toml): FDTD, cc, térmica, cascata, canal, pdn ou lógica"
   },
+  "1cmyetwl4ud": {
+    "defaultMessage": "<code>isolation-clearance</code>"
+  },
   "1crpygvo2zk": {
     "defaultMessage": "Feito para o agente que já usa"
+  },
+  "1cvbxcnncg4": {
+    "defaultMessage": "<code>--focus A,B,...</code>"
   },
   "1cvepqsqieg": {
     "defaultMessage": "Quando um dispositivo não tem dados, a banda é cortada para onde todos os dispositivos têm alguns, e uma figura de ruído fora dos dados fica em branco em vez de ser estimada."
@@ -733,6 +760,9 @@
   },
   "1d2oey8ec95": {
     "defaultMessage": "Qualquer plataforma com Rust {rust} ou mais recente."
+  },
+  "1d6wja5huke": {
+    "defaultMessage": "ilhas de preenchimento que não tocam em nada da rede da área, ou apenas cobre que está cortado do resto e não liga dois pads, e foram removidas"
   },
   "1d7lpt90j0y": {
     "defaultMessage": "O esquema é uma netlist, não o seu desenho: o esquema do KiCad não é lido, pelo que os nomes dos pinos, o desenho dos símbolos e a estrutura das folhas não são transportados. Isso é suficiente para verificar, renderizar, simular e fabricar a placa e para ter um agente a alterar o layout."
@@ -1034,9 +1064,6 @@
   "1hojglbgsmu": {
     "defaultMessage": "conta as vias que cada entrada <code>[[stitching]]</code> colocou"
   },
-  "1hp9m6oody5": {
-    "defaultMessage": "Renderiza um item para PNG exatamente como o visualizador o mostra e devolve a imagem."
-  },
   "1hr7d2icya6": {
     "defaultMessage": "O que uma ligação tem de cumprir, do USB 3 a uma linha RF de 50 ohms: impedância, skew, comprimento, vias, stubs, planos de referência e vias de retorno."
   },
@@ -1057,6 +1084,9 @@
   },
   "1i1pyr1ujko": {
     "defaultMessage": "todos os pads de ponto de teste para o construtor de fixação: ref, pad, rede, X, Y (mm, Y para cima), lado, diâmetro do pad"
+  },
+  "1i2bwr6hy06": {
+    "defaultMessage": "A distância de fuga é o caminho mais curto entre os dois cobres ao longo da superfície externa em que estão (<code>creepage</code>). Fica na placa e contorna recortes da placa e furos não revestidos. Uma fenda ou furo mais estreito que a largura da ranhura X do grau de contaminação (0,25 mm para 1, 1,0 mm para 2, 1,5 mm para 3, conforme IEC 60664-1) é atravessada e medida diretamente. Entre cobre em F.Cu e cobre em B.Cu, o caminho desce pela parede de um recorte da placa ou furo não revestido de qualquer largura, ou contorna a borda da placa, e conta a espessura da placa. A máscara de solda não conta como isolamento."
   },
   "1i2n5zybesm": {
     "defaultMessage": "Substituir qualquer regra em <code>[rules]</code>:"
@@ -1202,6 +1232,9 @@
   "1k11wca9qt7": {
     "defaultMessage": "Analisar um resultado de simulação: TDR, modo misto, crosstalk, passividade e reciprocidade"
   },
+  "1k1enhqihl2": {
+    "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code> (MCP <code>route</code>) roteia o ratsnest das redes indicadas numa grelha (<code>--grid</code>, predefinição 0,05 mm) e acrescenta as pistas e vias ao ficheiro de layout como entradas ordinárias <code>[[tracks]]</code> e <code>[[vias]]</code>, para que as possa editar depois. Mantém a largura, o afastamento e as <code>layers</code> de cada classe de rede em relação a cada pad, pista, via, furo e à borda da placa, dimensiona o espaço para cada via de classe pelos respetivos pad, furo e camadas (uma microvia cabe onde uma via atravessada não cabe, e uma microvia pode ficar junto a uma via enterrada noutras camadas), mantém as novas vias a <code>min_hole_to_hole</code> de todos os furos cujo alcance partilha um dielétrico com o delas e os furos delas a <code>min_via_hole_to_copper</code> dos pads, pistas e vias de outras redes, mantém-nas afastadas dos pads SMD de todas as redes, inclusive da própria (o cobre da via não pode tocar num pad, <code>via-cuts-pad</code>, e o furo fica a <code>min_hole_to_smd_pad</code> dele, <code>hole-to-smd-pad</code>, salvo se <code>--via-in-pad</code>, MCP <code>via_in_pad</code>, a deixar assentar por inteiro dentro de um pad SMD da sua rede com um furo de no máximo <code>max_filled_via_drill</code>), usa as vias da classe para mudar de camada, a mais barata cujo alcance abranja ambas as camadas (<code>--via uv-top,core</code> ou MCP <code>via</code> para escolher outros nomes, <code>--via-cost</code> em mm de pista, predefinição 3, vezes o <code>cost</code> da via), cobra <code>--bend-cost</code> mm de pista por cada dobra de 45 graus (predefinição 0,1, três vezes isso para 90) e nunca move o que já está lá, salvo se for dado <code>--reroute</code>, que primeiro apaga as pistas e vias das redes indicadas. Uma ligação que não encontra caminho livre arranca as redes roteadas que cruzaria ou cujos furos de via aproximaria a menos de <code>min_hole_to_hole</code> dos seus (furos cujo alcance partilha um dielétrico), marca o ponto como congestionado e essas redes voltam para a fila. A pesquisa avança em direções de 45 graus e cobra cada dobra, pelo que os caminhos saem como retas com dobras de 45 graus; depois as retas são apertadas com doglegs de dois segmentos a 45 graus e qualquer canto de 90 graus que reste é chanfrado onde houver espaço. Só o bico para um centro de pad fora da grelha pode ficar a outro ângulo. Quando a largura da classe não cabe num pad de extremidade (mais larga que o lado menor do pad, ou demasiado perto dos pads vizinhos para manter o afastamento), o roteio afina: a pista da largura da classe para antes do pad e uma entrada <code>[[tracks]]</code> separada com <code>width</code> explícito vai em linha reta até ao centro do pad, com no máximo a <code>neckdown</code> da classe e nunca mais estreita que <code>min_track_width</code>. A sua largura é a menor entre a largura da classe, o lado menor do pad e a mais larga que mantém o afastamento, arredondada para baixo a 0,01 mm (ou exatamente <code>min_track_width</code> se o arredondamento a fizesse cair abaixo e a largura não arredondada não o fizesse); a pista larga começa no primeiro ponto afastado do pad onde a sua largura total mantém o afastamento (e, para um pad mais estreito que a pista, fora do pad). Pads de uma rede que se tocam, como um pad térmico feito de várias entradas de pad, contam como um único pad largo. Pares roteados com <code>--pairs</code> não afinam. Uma ligação de uma rede que já tem cobre novo começa desse cobre. Uma ligação que não encontra caminho nem através das redes que poderia arrancar espera pelas outras ligações da sua rede e tenta mais uma vez a partir do cobre que elas acrescentam. As classes roteiam uma a seguir à outra, a mais apertada primeiro (menos camadas permitidas, depois a pista mais larga mais afastamento), cada uma mantida fixa para a seguinte. Assim que uma classe entra, todas as redes dela com vias são arrancadas e roteadas de novo com vias quatro vezes mais caras e o resto mantido fixo, e o novo roteio fica quando tem menos vias (ou junta mais), passada a passada enquanto uma poupa uma via. Depois cada ligação roteada que usa vias é tentada de novo numa camada de cada vez com o resto mantido fixo, e o roteio de uma camada substitui-a quando tem no máximo 25% mais 1 mm de comprimento. Depois as vias de ligações paralelas vizinhas que mudam de camada perto umas das outras são deslizadas ao longo das respetivas pistas para uma linha ou coluna comum na grelha, onde o ponto é legal e a ligação mantém o seu comprimento (pernas de par mantidas por <code>--pairs</code> e redes com várias ligações ficam no sítio). Uma rede numa interface com <code>max_vias</code> mantém o traçado (todas as redes da via, através de componentes em série) dentro dele: um roteio com demasiadas vias é tentado de novo com vias mais caras, depois numa camada, e falha com a razão se nenhum couber. A segunda rede de um par é atraída para o parceiro à distância do par; <code>--pairs</code> tenta primeiro rotear as duas metades juntas como uma pista acoplada. Quando as ligações falham, o roteio inteiro corre de novo, até quatro vezes no total, com as redes falhadas primeiro na sua classe e a sua classe primeiro, e um custo no caminho que tomariam através do cobre das classes anteriores para que essas classes o deixem livre; a corrida com menos falhas, depois menos vias, depois menos pista é escrita. Quando poucas ligações falham, roteie-as de novo juntas com as redes à volta e <code>--reroute</code>, para que o roteador possa arrancar e reordenar a área inteira, ou desça para <code>--grid 0.025</code>. <code>--dry-run</code> reporta sem escrever. Roteie à mão primeiro as redes que importam, depois deixe o roteador preencher o resto, uma classe de cada vez."
+  },
   "1k216dcuu51": {
     "defaultMessage": "A skill"
   },
@@ -1210,6 +1243,9 @@
   },
   "1k5ujui3zzb": {
     "defaultMessage": "O que a placa faz e o que se liga a ela: conetores, tensões, correntes, sinais e as suas velocidades."
+  },
+  "1k608muzjgc": {
+    "defaultMessage": "pads de redes diferentes cujas aberturas de máscara deixam menos de <code>min_mask_web</code>, uma linha por par de componentes; pads de um footprint com <code>mask_web = false</code> são ignorados entre si, tal como os eletrodos de um intervalo de faísca"
   },
   "1k984m2d9ls": {
     "defaultMessage": "Resolver todas as camadas de cobre para queda de tensão e densidade de corrente, e depois a temperatura da placa com a potência de cada componente, em segundos."
@@ -1228,6 +1264,9 @@
   },
   "1kfd50so1g": {
     "defaultMessage": "<code>min_controlled_depth_drill</code>"
+  },
+  "1kgj4wspayo": {
+    "defaultMessage": "<code>spark-gap</code>"
   },
   "1kh7lutkph8": {
     "defaultMessage": "4 ns"
@@ -1295,6 +1334,9 @@
   "1ln0s6ojknb": {
     "defaultMessage": "Adicione o servidor MCP"
   },
+  "1lpa8tzh6yg": {
+    "defaultMessage": "footprints com <code>spark_gaps</code>"
+  },
   "1lqngucnspi": {
     "defaultMessage": "conta as vias em pads SMD da sua própria rede (furo dentro do pad); <code>fab-notes.txt</code> pede ao fabricante para preencher e tampar exatamente estas (tipo VII da IPC-4761)"
   },
@@ -1324,9 +1366,6 @@
   },
   "1m39d50u8qg": {
     "defaultMessage": "Cada diagnóstico inclui o ficheiro, o item, o local e a severidade, e os diagnósticos de layout incluem o id da regra. Isso é suficiente para anotar uma pull request, ou para falhar em avisos num projeto que os quer tratar como erros. Uma regra também pode ser elevada a erro na própria placa com <code>[drc] severity</code>, o que mantém a política no design em vez do script de CI."
-  },
-  "1m526qxf80v": {
-    "defaultMessage": "ilhas de preenchimento que não chegam a nada da rede da área e foram removidas"
   },
   "1m52uejprc2": {
     "defaultMessage": "Um caminho RF é disposto em linha reta. A partir de cada conector com um pad numa rede RF (uma classe com <code>impedance</code> e sem <code>diff_gap</code>), o posicionador segue redes RF através das peças que transportam duas ou mais delas e têm no máximo 16 pinos (blocos de CC, atenuadores, comutadores, LNAs, baluns), e toma o caminho mais longo que termina noutro conector ou num chip maior com pinos RF; um comutador com um bypass passa pelo amplificador, não pelo bypass. Quando ambas as extremidades são conectores, ficam em bordas opostas do eixo longo da placa e deslizam ao longo delas para uma linha, através do centro da placa onde ambos cabem. Cada peça no caminho gira para que os seus pads de entrada e saída fiquem nessa linha, em ordem, empacotados em direção à entrada com no máximo 1,5 mm de separação extra cada, e o resto do espaço vai para a última secção. Uma peça de dois ou três pinos com um pad num nó do caminho (um clamp ESD, um choke de polarização, um condensador em shunt) fica ao lado da linha nesse nó, girada para que os seus outros pads apontem para fora, perto o suficiente para que o seu pad RF encontre a pista e longe o suficiente para que os seus outros pads mantenham a separação da classe; dois shunts num nó tomam lados opostos. O caminho é fixado antes do resto ser posicionado à volta dele, e uma peça que sairia da placa ou cairia sobre outra é deixada para o posicionador geral."
@@ -1388,9 +1427,6 @@
   "1mzwfau5im8": {
     "defaultMessage": "Cada folha é um ficheiro de esquema ordinário com os seus próprios componentes e redes. As redes unem-se entre folhas pelo nome, por isso <code>3V3</code> em todas as folhas é uma rede e um sinal sai de uma folha e chega a outra com o mesmo nome. Os pinos de uma rede devem ser componentes na mesma folha; uma rede que abrange folhas precisa do mesmo <code>class</code> onde quer que nomeie uma, e é desenhada com etiquetas. As referências são únicas em todo o projeto. Uma folha isolada ignora os avisos de pino único e classe Default (o resto da rede, e a sua classe, podem estar noutra folha); o esquema superior executa todas as verificações no projeto unido e desenha as folhas empilhadas de cima para baixo. O ficheiro superior pode também conter componentes e redes próprios."
   },
-  "1n1rc7zgly9": {
-    "defaultMessage": "pads de redes diferentes cujas aberturas de máscara deixam menos do que <code>min_mask_web</code>, uma linha por par de peças; pads de um footprint com <code>mask_web = false</code> são ignorados entre si"
-  },
   "1n1sk97q413": {
     "defaultMessage": "um esquema: componentes colocados, redes, fios"
   },
@@ -1405,6 +1441,9 @@
   },
   "1n654yj4dk0": {
     "defaultMessage": "Trabalhe a partir de um clone quando quiser os exemplos, ou para alterar o próprio agentee:"
+  },
+  "1na2buppw58": {
+    "defaultMessage": "<code>--rulers</code>"
   },
   "1ncp0psxtys": {
     "defaultMessage": "true"
@@ -1640,6 +1679,9 @@
   "1qw5tcldd6o": {
     "defaultMessage": "unidades, o modelo de ficheiro, resolução e verificação, as calculadoras"
   },
+  "1qxtym14c23": {
+    "defaultMessage": "<code>agentee render</code> (MCP <code>render_item</code>) desenha o que o visualizador desenha. Sem os painéis laterais (<code>--canvas-only</code>), o PNG é recortado para o desenho, e <code>--width</code> e <code>--height</code> limitam o seu tamanho."
+  },
   "1r0hmmormyn": {
     "defaultMessage": "mecanicamente, num sub-stack prensado"
   },
@@ -1660,6 +1702,9 @@
   },
   "1r5t471qlyo": {
     "defaultMessage": "Posicionamento, roteamento e áreas de cobre - guia do agentee"
+  },
+  "1r94okxp0ki": {
+    "defaultMessage": "Uma placa inteira a 1400 píxeis é demasiado pequena para um modelo ler as etiquetas, pelo que renderize a parte sobre a qual está a perguntar. <code>--focus</code> amplia para as peças, redes e pinos que nomeia e esbate o resto, <code>--rulers</code> etiqueta coordenadas em milímetros ao longo das bordas para que o próximo <code>--region</code> possa ser lido a partir da imagem, e com <code>--canvas-only</code> o PNG é recortado para o desenho:"
   },
   "1raj6a0in47": {
     "defaultMessage": "<code>*.pcb.toml</code>: posicionamentos, pistas, vias, áreas de cobre, serigrafia"
@@ -1739,6 +1784,9 @@
   "1siy1uwon63": {
     "defaultMessage": "Caso contrário <code>agentee new symbol NAME</code> / <code>agentee new footprint NAME</code> e editar o ficheiro inicial."
   },
+  "1sm539dig10": {
+    "defaultMessage": "flag"
+  },
   "1snb267xxo0": {
     "defaultMessage": "Relata sempre a passividade (o maior valor singular de S na banda) e a reciprocidade (o maior |Sij - Sji|) quando todas as portas foram excitadas. O TDR reamostra numa grelha uniforme, extrapola a parte real para CC, aplica uma borda gaussiana (por omissão subida de 10-90% de 1,3 / a frequência superior) e integra a resposta ao impulso; avisa quando a borda é mais rápida do que os dados suportam. O visualizador mostra o mesmo TDR para todas as portas excitadas na aba <code>tdr</code>."
   },
@@ -1780,6 +1828,9 @@
   },
   "1t6pxa5bz3h": {
     "defaultMessage": "Importar das bibliotecas do KiCad instaladas"
+  },
+  "1t7f8d3334k": {
+    "defaultMessage": "etiquetar coordenadas em mm ao longo das bordas superior e esquerda"
   },
   "1tb0k2uaxra": {
     "defaultMessage": "Simulações lógicas de um contador e de um barramento I2C"
@@ -1888,6 +1939,9 @@
   },
   "1v0wqtjy1ac": {
     "defaultMessage": "As bibliotecas noutras localizações são encontradas através de <code>KICAD9_SYMBOL_DIR</code> e <code>KICAD9_FOOTPRINT_DIR</code>."
+  },
+  "1v1hqsikkfv": {
+    "defaultMessage": "Folhas de encomenda"
   },
   "1v2uudc6t8s": {
     "defaultMessage": "pré-definido"
@@ -2003,6 +2057,9 @@
   "1xdif2fiz9x": {
     "defaultMessage": "muda a camada ativa"
   },
+  "1xekxt0pa8v": {
+    "defaultMessage": "peças extra para esta peça em vez do valor predefinido, por exemplo, nenhuma para um módulo caro"
+  },
   "1xfwjxnnmwm": {
     "defaultMessage": "10 ns"
   },
@@ -2023,9 +2080,6 @@
   },
   "1xsx0n8gdmv": {
     "defaultMessage": "Chaves úteis de footprint:"
-  },
-  "1xwa0edgvkl": {
-    "defaultMessage": "cobre de duas redes mais próximo do que o maior dos seus afastamentos de classe (um <code>clearance</code> de footprint substitui-os para os seus pads), ou cobre que entra num furo sem metálico"
   },
   "1xx1mnazadi": {
     "defaultMessage": "Escrever esquemas - guia do agentee"
@@ -2069,8 +2123,14 @@
   "1yd48z3wex0": {
     "defaultMessage": "coloca uma via em cobre com uma rede"
   },
+  "1ydrf2t9pa0": {
+    "defaultMessage": "<code>isolation-domain</code>"
+  },
   "1yeem25v9mo": {
     "defaultMessage": "<code>diff_gap</code> torna uma classe num par e a sua impedância diferencial. Redes que terminam em <code>_P</code> e <code>_N</code>, <code>_DP</code> e <code>_DN</code>, <code>+</code> e <code>-</code>, ou <code>P</code> e <code>N</code> formam pares por si mesmas; caso contrário, dê-lhes nomes no layout:"
+  },
+  "1yf3l1ndp3i": {
+    "defaultMessage": "<code>buy_with = &quot;XHP-2, SXH-001T-P0.6 x2&quot;</code>"
   },
   "1yf5ve95i67": {
     "defaultMessage": "resultado JSON e VCD"
@@ -2092,6 +2152,9 @@
   },
   "1yl2jnjwpw": {
     "defaultMessage": "Condensadores, indutores, diodos, LEDs, pontos de teste, cristais e semelhantes ficam de fora."
+  },
+  "1yo5k7srzdk": {
+    "defaultMessage": "<code>--order DIR</code> (MCP <code>order</code>) escreve folhas para comprar em vez do relatório: <code>NAME-order.csv</code> com todas as linhas e o distribuidor de onde são compradas, e um <code>NAME-&lt;distributor&gt;.csv</code> por distribuidor com uma chave, o da Mouser no layout de colunas do seu modelo de importação de BOM. Cada linha vai para o distribuidor que é mais barato para a quantidade comprada, entre os que têm stock suficiente e não estão obsoletos. A folha de um distribuidor lista todas as linhas em três blocos: as linhas para encomendar aí, depois as linhas compradas no outro distribuidor, depois as linhas que ele não lista ou tem em quantidade insuficiente, de modo que o bloco superior de cada folha é a encomenda. Uma linha que nenhum distribuidor tem em stock diz isso em <code>NAME-order.csv</code>, ou indica a sua peça <code>lcsc</code>."
   },
   "1yqopwhriij": {
     "defaultMessage": "A partir do código-fonte"
@@ -2147,6 +2210,9 @@
   "1zgogqmzk75": {
     "defaultMessage": "<code>copper-to-edge</code>"
   },
+  "1zguykj5vvy": {
+    "defaultMessage": "um intervalo de faísca cujos eletrodos não estão separados pela distância declarada em <code>gap</code> (a 0,01 mm), ficam abaixo de <code>min_clearance</code>, partilham uma rede ou não têm rede, ou têm máscara de solda sobre o intervalo numa camada externa"
+  },
   "1zkgdw4j6er": {
     "defaultMessage": "Os dois stackups HDI incluídos são construções genéricas, não o stackup publicado de um fabricante:"
   },
@@ -2185,6 +2251,9 @@
   },
   "20dpdr10xbq": {
     "defaultMessage": "<code>dff</code>"
+  },
+  "20gg17bj404": {
+    "defaultMessage": "o que acontece a tudo fora de <code>--focus</code> (predefinido <code>dim</code>)"
   },
   "20hgaqi3se5": {
     "defaultMessage": "gargalos num preenchimento mais estreitos do que 90% do <code>min_width</code> da área, que o preenchimento deveria ter aberto; contados por sítio com o mais estreito"
@@ -2287,6 +2356,9 @@
   },
   "221qbpi8pyl": {
     "defaultMessage": "In1.Cu para In4.Cu, enterrada, através do sub-stack,"
+  },
+  "226ie5pbkpb": {
+    "defaultMessage": "a peça LCSC, indicada quando nenhum distribuidor tem a linha em stock"
   },
   "226vjhs4w16": {
     "defaultMessage": "O ficheiro *.fp.toml: linhas de pads, formas e camadas de pads, pads de borda, ligações de zonas, courtyards, serigrafia e modelos 3D."
@@ -2398,6 +2470,9 @@
   },
   "24ge4p3vpat": {
     "defaultMessage": "da primeira à última camada de cobre"
+  },
+  "24ghp4o686m": {
+    "defaultMessage": "Renderização de parte de um design"
   },
   "24kimihxft4": {
     "defaultMessage": "puntas de preenchimento mais afiadas do que 30 graus; aumentar o <code>min_width</code> da área"
@@ -2567,6 +2642,9 @@
   "270mf8lg1lx": {
     "defaultMessage": "coloca conetores nas bordas com o lado de acoplamento para fora e nunca coloca um conetor RF e um conetor USB na mesma borda se outra divisão couber, porque o ruído do USB 3 cai na banda dos 2,4 GHz;"
   },
+  "272ff8lqlwg": {
+    "defaultMessage": "cobre de duas redes mais próximo que o maior dos respetivos afastamentos de classe (um <code>clearance</code> de footprint substitui-os para os seus pads), ou cobre que entra num furo não revestido. Pads de um footprint são mantidos a <code>min_clearance</code> e ao afastamento de classe das redes num domínio de isolamento; eletrodos de spark gap são ignorados"
+  },
   "273giv9xl0e": {
     "defaultMessage": "posicionamento, colunas JLCPCB"
   },
@@ -2620,6 +2698,12 @@
   },
   "28a3r88ouzz": {
     "defaultMessage": "0.3"
+  },
+  "28d8cxee2e6": {
+    "defaultMessage": "esquemas e layouts: ampliar para estas referências, nomes de rede ou <code>REF.PIN</code>, <code>*</code> corresponde a qualquer sequência de caracteres. Uma rede traz os componentes que toca, um pino traz a sua rede"
+  },
+  "28eex1tfszn": {
+    "defaultMessage": "A distância de isolamento de uma classe cujas redes estão num domínio é tomada como um espaçamento elétrico, pelo que também se aplica entre pads de um footprint: um TO-220 numa classe HvBus de 1,5 mm com pads a 1,0 mm de distância é um erro de <code>clearance</code>. Pads de um footprint cujas redes não estão em nenhum domínio são mantidos apenas a <code>min_clearance</code>, uma vez que o passo da peça define o seu intervalo."
   },
   "28f7652hq13": {
     "defaultMessage": "Escreve um ficheiro inicial para uma placa, símbolo, footprint, esquema, layout ou simulação, para editar a partir dele. Uma simulação começa como uma execução FDTD de um layout, ou com sim_kind logic como uma simulação lógica de um esquema (relógio, reset, uma asserção com relógio) cujas redes renomeia."
@@ -2689,6 +2773,9 @@
   },
   "29iu3d22sqh": {
     "defaultMessage": "encaminhar: clicar num pad, via ou pista para começar, clicar para adicionar cantos de 45 graus, <code>/</code> inverte a curva, V coloca uma via, Enter termina"
+  },
+  "29j14m86ht8": {
+    "defaultMessage": "campo"
   },
   "29ku7ky1qub": {
     "defaultMessage": "um par a correr lado a lado com um espaçamento diferente do <code>diff_gap</code> da classe, além do <code>max_uncoupled</code>"
@@ -2779,6 +2866,9 @@
   },
   "2b4wu4tjhac": {
     "defaultMessage": "Usar um preset HDI"
+  },
+  "2b5qclo9mdd": {
+    "defaultMessage": "<code>isolation-unassigned</code>"
   },
   "2b6e1q1tvd8": {
     "defaultMessage": "<code>agentee fab pcb:NAME -o DIR</code> (MCP <code>fab</code>) escreve:"
@@ -2900,6 +2990,9 @@
   "2cjq2lndzi6": {
     "defaultMessage": "O driver torna-se uma fonte de Thevenin a partir das suas tabelas de pulldown e pullup, da sua capacitância de die e do seu encapsulamento; a sua rampa define a borda e o seu intervalo de tensão o swing, a menos que <code>rise</code> ou <code>swing</code> sejam dados. O receptor carrega a extremidade distante com a sua capacitância de encapsulamento e die, e o olho é lido no seu die. O IBIS funciona por agora em caminhos de extremidade única."
   },
+  "2cozbj3xs0k": {
+    "defaultMessage": "<code>--focus</code> aceita referências (<code>U1</code>), nomes de rede (<code>SPI_CLK</code>) e pinos (<code>U1.3</code>), com <code>*</code> como curinga. Uma rede traz os componentes que toca. <code>--context</code> é <code>dim</code> por predefinição, <code>hide</code> para deixar apenas o que nomeou, ou <code>show</code> para ampliar sem esbater nada. MCP <code>render_item</code> aceita os mesmos argumentos <code>focus</code>, <code>context</code> e <code>rulers</code>."
+  },
   "2csls3gciuc": {
     "defaultMessage": "O que precisa"
   },
@@ -2929,6 +3022,9 @@
   },
   "2d6y5d2d527": {
     "defaultMessage": "<code>impedance-trace</code>"
+  },
+  "2d70vdx1d3o": {
+    "defaultMessage": "Um nome que não corresponde a nada é um erro. <code>--region</code> com <code>--focus</code> mantém o filtro e usa a região para a ampliação."
   },
   "2dayrb6juwp": {
     "defaultMessage": "HC, HCT"
@@ -3296,6 +3392,9 @@
   "4lxxwf41j4": {
     "defaultMessage": "<code>min_plated_slot_width</code>"
   },
+  "4pvnbce4b5": {
+    "defaultMessage": "<code>creepage</code>"
+  },
   "4rae9zpwbh": {
     "defaultMessage": "sempre"
   },
@@ -3358,6 +3457,9 @@
   },
   "686lhskeo4": {
     "defaultMessage": "um símbolo de esquema"
+  },
+  "6f8tjd4506": {
+    "defaultMessage": "camadas para ligar ou desligar, por exemplo, <code>--hide F.Cu --show In1.Cu</code>"
   },
   "6ido514tq1": {
     "defaultMessage": "4 camadas, JLC04161H-7628, ENIG"
@@ -3671,6 +3773,9 @@
   "b7b8tb291q": {
     "defaultMessage": "Ficheiros do projeto"
   },
+  "b7nt3ki7r1": {
+    "defaultMessage": "Renderiza um item para PNG exatamente como o visualizador o mostra e devolve a imagem. Sem os painéis laterais, a imagem é recortada ao desenho, pelo que a largura e a altura são as máximas que atinge."
+  },
   "b92nzpwkpa": {
     "defaultMessage": "O que fez"
   },
@@ -3766,6 +3871,9 @@
   },
   "d4h9xa9tl2": {
     "defaultMessage": "Desenhe o courtyard em <code>F.CrtYd</code> e o contorno do corpo em <code>F.Fab</code>: a verificação precisa de um courtyard que envolva os pads, o posicionador mantém os courtyards separados, e as regras de borda e montagem medem a partir do corpo. Defina <code>height</code> para que a vista 3D e a regra de peças altas tenham uma altura sem um modelo."
+  },
+  "d8xhh7ye1c": {
+    "defaultMessage": "O alternador <code>back</code> da página 2D espelha a placa para a ver por baixo: o cobre inferior desenha sobre o superior, e a visibilidade de cada camada frontal troca com a sua camada traseira correspondente. <code>agentee render pcb:NAME --show back</code> renderiza essa vista."
   },
   "da20h6ryzp": {
     "defaultMessage": "O servidor MCP"
@@ -3941,6 +4049,9 @@
   "gaamns4i1l": {
     "defaultMessage": "<code>min_drill</code>, <code>min_via_drill</code>"
   },
+  "gj2bevgtpu": {
+    "defaultMessage": "<code>--spares</code> (MCP <code>spares</code>) adiciona a margem para montagem manual: resistores e capacitores 0402 e 0603 são comprados no múltiplo de dez acima da necessidade mais cinco, e cada linha <code>D</code>, <code>Q</code>, <code>U</code> e <code>F</code> recebe uma peça extra. Estes campos de peça alteram isso:"
+  },
   "glhbhwqbjr": {
     "defaultMessage": "Um pino é <code>REF.PIN</code>, por número ou por um nome de pino único; um nome partilhado por vários pinos é um erro. Um pino a quem se dá uma rede em que já está é movido para a nova rede. O ficheiro mantém os seus comentários e layout. O <code>agentee edit</code> escreve o ficheiro, repreenche os preenchimentos de zonas guardados de um layout e, em seguida, reporta os diagnósticos da verificação dos ficheiros que tocou, e termina com 1 se algum deles for um erro."
   },
@@ -4093,6 +4204,15 @@
   },
   "ijyo5sjjdk": {
     "defaultMessage": "<code>Y0</code> a <code>Y7</code>"
+  },
+  "ingvojakto": {
+    "defaultMessage": "redes em nenhum domínio, que nenhuma barreira cobre"
+  },
+  "iomevdc6xc": {
+    "defaultMessage": "<code>--context dim|hide|show</code>"
+  },
+  "iozyts7ml0": {
+    "defaultMessage": "<code>spares = &quot;0&quot;</code>"
   },
   "ir7t9q4eba": {
     "defaultMessage": "<code>A</code>, <code>B</code>: os mesmos pinos, conduzidos a partir do outro lado por <code>DIR</code>"
@@ -4652,6 +4772,9 @@
   "rbd5i5y6uj": {
     "defaultMessage": "Guias"
   },
+  "rg8rx5tw3u": {
+    "defaultMessage": "<code>lcsc = &quot;C165948&quot;</code>"
+  },
   "rgx7g5j89u": {
     "defaultMessage": "Os dados do dispositivo são interpolados linearmente nas partes real e imaginária, e a banda é cortada até onde todos os dispositivos têm dados. Um resultado de duas portas reporta o pico e o mínimo de ganho, o pior S11, S22 e S12, e o mu de Edwards-Sinsky e o K de Rollett mais baixos (mu acima de 1 em todas as frequências é estabilidade incondicional). O resultado fica obsoleto quando a especificação, o resultado da placa ou um ficheiro de dispositivo muda."
   },
@@ -4699,6 +4822,9 @@
   },
   "sa2s0k3fii": {
     "defaultMessage": "0.15, 1.0"
+  },
+  "sa82hcx9ev": {
+    "defaultMessage": "cobre de dois domínios na mesma camada mais próximo que o afastamento da barreira entre eles, incluindo pads de um footprint e áreas de cobre; uma linha por par de redes com o ponto mais próximo"
   },
   "saviwyv34g": {
     "defaultMessage": "20 ns"
@@ -4862,6 +4988,9 @@
   "vevjglgna0": {
     "defaultMessage": "Forneça a referência de formato"
   },
+  "vg1052wiwx": {
+    "defaultMessage": "Uma classe de rede tem uma distância de isolamento, mantida em relação a todas as outras redes. Quando as redes devem manter mais distância de um grupo do que dos vizinhos (um primário de rede elétrica do secundário, um trilho flutuante do resto do secundário), coloque as redes em domínios e defina uma barreira entre dois domínios:"
+  },
   "vgzxbueyi7": {
     "defaultMessage": "Algumas decisões são mais rápidas com um rato: ajustar um conetor para onde a carcaça quer, reencaminhar uma pista à volta de um componente, colocar uma via. A página 2D de layout edita o layout, e guardar (ctrl+S) escreve a alteração no <code>.pcb.toml</code> com o mesmo escritor que preserva comentários e ordem que a CLI usa. O agente lê a sua alteração da próxima vez que carrega o ficheiro."
   },
@@ -4970,6 +5099,9 @@
   "x0m5nm2n6u": {
     "defaultMessage": "O KiCad desenha a serigrafia a 0,12 mm e a JLCPCB pede 0,15 mm. Abra cada footprint e mude <code>width = 0.12</code> para <code>0.15</code> nos seus gráficos de serigrafia, ou deixe o agente fazê-lo. Esta é a forma normal de trabalho com o agentee: o diagnóstico indica o ficheiro, o item e o número, e a correção é uma única edição."
   },
+  "x3a0fv0yot": {
+    "defaultMessage": "significado"
+  },
   "x3j6gd5rkw": {
     "defaultMessage": "Ficheiros de projeto - referência do agentee"
   },
@@ -5060,6 +5192,9 @@
   "y817q65376": {
     "defaultMessage": "<code>hole-to-edge</code>"
   },
+  "y84zm9obxw": {
+    "defaultMessage": "<code>--region x0,y0,x1,y1</code>"
+  },
   "y852j1pdwt": {
     "defaultMessage": "<code>*.sym.toml</code>"
   },
@@ -5072,8 +5207,14 @@
   "yc9r30dm9u": {
     "defaultMessage": "A BOM agrupa por eles, e o <code>agentee parts</code> procura stock, preço e equivalentes mais baratos por <code>mpn</code>. Veja <a href=\"/guides/fab/\">Pacote de fabricante, BOM e preços</a>."
   },
+  "ycd75jjuqy": {
+    "defaultMessage": "uma rede cuja classe ou nome a coloca em dois domínios"
+  },
   "ydfgdztl7j": {
     "defaultMessage": "<code>rect</code>"
+  },
+  "yebgi2jbad": {
+    "defaultMessage": "Uma rede fica em, no máximo, um domínio. Dentro de um domínio, e para redes que não estão em nenhum, as distâncias de isolamento da classe aplicam-se como antes. Entre dois domínios com uma barreira, o cobre numa camada mantém a <code>clearance</code> da barreira (<code>isolation-clearance</code>), incluindo pads de um footprint e áreas de cobre. As áreas de cobre e o autorouter mantêm a barreira do cobre do outro domínio enquanto preenchem e roteiam; em F.Cu e B.Cu mantêm o maior valor entre <code>clearance</code> e <code>creepage</code>, uma vez que nenhum mede caminhos ao redor de fendas."
   },
   "yfwyujuwr8": {
     "defaultMessage": "2"

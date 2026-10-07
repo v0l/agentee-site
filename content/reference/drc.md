@@ -54,7 +54,12 @@ tombstone_ratio = 3            # copper or feed width one chip pad may have over
 | `placement-cluster-spread` | info | parts | a two-pin passive whose signal nets reach one IC and nothing else, farther than `cluster_spread` (10 mm) from that IC's pin |
 | `placement-connector-not-at-edge` | info | parts | a connector (edge pads, `overhang = true`, or a `J`/`P` reference that is not a Tag-Connect, U.FL or test pad) whose courtyard is farther than `connector_edge` (3 mm) from the outline |
 | `short` | error | always | copper of two different nets touches |
-| `clearance` | error | always | copper of two nets closer than the larger of their class clearances (a footprint `clearance` replaces them for its pads), or copper run into a non-plated hole |
+| `clearance` | error | always | copper of two nets closer than the larger of their class clearances (a footprint `clearance` replaces them for its pads), or copper run into a non-plated hole. Pads of one footprint are held to `min_clearance` and to the class clearance of nets in an isolation domain; spark gap electrodes are skipped |
+| `isolation-domain` | error | `[[domains]]` | a net whose class or name puts it in two domains |
+| `isolation-unassigned` | warning | `[[domains]]` | nets in no domain, which no barrier covers |
+| `isolation-clearance` | error | a barrier with `clearance` | copper of two domains on one layer closer than the clearance of the barrier between them, pads of one footprint and pours included; one line per net pair with the closest spot |
+| `creepage` | error | a barrier with `creepage` | copper of two domains closer along the board surface than the barrier's creepage: on one outer layer around board cutouts and non-plated holes at least the groove width of its `pollution_degree` wide, and from F.Cu to B.Cu down a cutout or hole wall or round the board edge |
+| `spark-gap` | error | footprints with `spark_gaps` | a spark gap whose electrodes are not the declared `gap` apart (to 0.01 mm), sit under `min_clearance`, share a net or lack one, or have solder mask across the gap on an outer layer |
 | `unrouted` | error | always | a net whose pads are not all joined by tracks, vias and pours, naming the groups that are apart |
 | `dangling-track` | warning | always | a track end that touches no copper of its net and no pour |
 | `track-grazes-pad` | warning | always | tracks that reach a pad only with their edge; run the centre line into the pad |
@@ -77,10 +82,10 @@ tombstone_ratio = 3            # copper or feed width one chip pad may have over
 | `zone-clearance` | error | zones | a fill that covers or comes too close to copper of another net |
 | `zone-tips` | warning | zones | fill tips sharper than 30 degrees; raise the zone's `min_width` |
 | `copper-neck` | warning | zones | necks in a fill narrower than 90% of the zone's `min_width`, which the fill should have opened; counted by place with the narrowest |
-| `zone-islands` | info | always | fill islands that reach nothing of the zone's net and were removed |
+| `zone-islands` | info | always | fill islands that reach nothing of the zone's net, or only copper that is cut off from the rest of it and joins no two pads, and were removed |
 | `courtyard-overlap` | error | parts | courtyards of two parts on one side overlap by their outline |
 | `courtyard-hole` | error | parts | a courtyard that covers a mounting hole or a non-plated hole of another part |
-| `mask-web` | error | always | pads of different nets whose mask openings leave less than `min_mask_web`, one line per pair of parts; pads of one footprint with `mask_web = false` are skipped among themselves |
+| `mask-web` | error | always | pads of different nets whose mask openings leave less than `min_mask_web`, one line per pair of parts; pads of one footprint with `mask_web = false` are skipped among themselves, and so are the electrodes of a spark gap |
 | `silk-text` | error | always | silk text that crowds other text, sits on pads, prints over vias, crosses a silk outline or runs off the board; a reference gets a clear spot (`agentee silk` moves it there) |
 | `silk-hidden` | warning | always | silk text only hidden under another part's body |
 | `silk-text-height` | warning | always | silk text under `min_silk_text_height` |

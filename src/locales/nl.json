@@ -20,6 +20,9 @@
   "10hj9wtkhca": {
     "defaultMessage": "asserties, setup en hold, contentie"
   },
+  "10jc42a8vsy": {
+    "defaultMessage": "zoomen naar dat rechthoek, in mm in de eigen coördinaten van het item"
+  },
   "10l2rcg9xvo": {
     "defaultMessage": "<code>interface-vias</code>"
   },
@@ -179,6 +182,12 @@
   "12l7h195o1h": {
     "defaultMessage": "<code>usb2-hs</code>"
   },
+  "12la968121a": {
+    "defaultMessage": "een barrière met <code>creepage</code>"
+  },
+  "12mj4ud735z": {
+    "defaultMessage": "onderdelen die per stuk van dit onderdeel worden gekocht maar niet op de printplaat worden geplaatst: passende behuizingen, krimpkoppelingen, een antenne. <code> xN</code> is het aantal per onderdeel; de regel noemt de onderdelen waarvoor deze is en krijgt met <code>--spares</code> één reserve"
+  },
   "12nmfoozwbx": {
     "defaultMessage": "Een net met een zone is een plan-net. <code>tie</code> geeft elke SMD-pad van een plan-net een korte stub en een via ernaast, aan de kant weg van de component, vrij van elke pad en ander net. Zo moeten grond- en voeding-pads een plan bereiken, in plaats van sporen ertussen. Een pad dat al een via van zijn net in de buurt heeft wordt niet aangeraakt, en een pad zonder legale plek wordt opgenomen onder <code>failed</code>."
   },
@@ -272,9 +281,6 @@
   "13u8mhxwbqd": {
     "defaultMessage": "optioneel <code>R</code>, <code>CLK</code>, optioneel <code>D0</code> tot <code>D3</code>, <code>CEP</code>, <code>LOAD</code>, <code>CET</code>"
   },
-  "13wt2gfx3mu": {
-    "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code> (MCP <code>route</code>) routeert het ratsnest van de genoemde nets op een raster (<code>--grid</code>, standaard 0,05 mm) en voegt de sporen en vias toe aan het layoutbestand als gewone <code>[[tracks]]</code> en <code>[[vias]]</code>, zodat je ze daarna zelf kunt bewerken. Het houdt de breedte, clearance en <code>layers</code> van elke netklasse aan voor elk pad, spoor, via, gat en de rand van de printplaat. Het dimensioneert de ruimte voor elke klasse via op basis van het eigen pad, boor en layers (een microvia past waar een doorvia niet past, en een microvia mag naast een begraven via op andere layers staan). Het houdt nieuwe vias op <code>min_hole_to_hole</code> afstand van elke boor waarvan de span een dielektricum deelt met die van de via, en de gaten op <code>min_via_hole_to_copper</code> afstand van pads, sporen en vias van andere nets. Het houdt ze uit de SMD-pads van elke net, ook van de eigen net (de koper van de via mag er niet tegen aan, <code>via-cuts-pad</code>, en het gat blijft op <code>min_hole_to_smd_pad</code> afstand, <code>hole-to-smd-pad</code>, tenzij <code>--via-in-pad</code>, MCP <code>via_in_pad</code>, het volledig binnen een SMD-pad van de eigen net laat staan met een boor van hooguit <code>max_filled_via_drill</code>). Het gebruikt de vias van de klasse om van layer te wisselen, de goedkoopste waarvan de span beide layers dekt (<code>--via uv-top,core</code> of MCP <code>via</code> om uit andere namen te kiezen, <code>--via-cost</code> in mm spoor, standaard 3, vermenigvuldigd met de <code>cost</code> van de via). Het rekent <code>--bend-cost</code> mm spoor voor elke bocht van 45 graden (standaard 0,1, drie keer zoveel voor 90 graden) en verplaatst nooit wat er al is, tenzij <code>--reroute</code> is opgegeven, wat eerst de sporen en vias van de genoemde nets verwijdert. Een verbinding die geen vrij pad vindt, haalt de gerouteerde nets op die hij zou kruisen of waarvan hij de via-gaten binnen <code>min_hole_to_hole</code> van zijn eigen gaten zou brengen (gaten waarvan de span een dielektricum delen), onthoudt de plek als overvol en die nets gaan terug in de wachtrij. Het zoekproces gaat in richtingen van 45 graden en rekent voor elke bocht, zodat paden als rechte stukken met bochten van 45 graden uitkomen. Daarna worden rechte stukken strak getrokken met tweesegment-doglegs van 45 graden en elke overgebleven hoek van 90 graden wordt afgeschuind waar dat past. Alleen de stub naar een padcentrum buiten het raster mag onder een andere hoek staan. Waar de breedte van de klasse niet in een eindpad past (breder dan de kleinere zijde van het pad, of te dicht bij de buurliggende pads om de clearance te houden), loopt de route taps toe: het spoor met de breedte van de klasse stopt kort voor het pad en een apart <code>[[tracks]]</code>-item met een expliciete <code>width</code> loopt recht naar het padcentrum, hooguit de <code>neckdown</code> van de klasse lang en niet smaller dan <code>min_track_width</code>. De breedte is de kleinste van de breedte van de klasse, de kleinere zijde van het pad en de breedste die de clearance houdt, afgerond naar beneden tot 0,01 mm (of exact <code>min_track_width</code> waar afronding eronder zou vallen en de onafgeronde breedte dat niet doet). Het brede spoor begint op de eerste plek buiten het pad waar de volledige breedte de clearance houdt (en, voor een pad smaller dan het spoor, buiten het pad). Pads van één net die elkaar raken, zoals een thermisch pad opgebouwd uit meerdere pad-items, tellen als één breed pad. Paren gerouteerd met <code>--pairs</code> lopen niet taps toe. Een verbinding van een net dat al vers koper heeft, start vanaf dat koper. Zodra alles erin zit, wordt elke gerouteerde verbinding die vias gebruikt, opnieuw geprobeerd op één layer tegelijk met de rest vastgehouden, en de route op één layer vervangt hem als hij hooguit 25% plus 1 mm langer is. Daarna worden de vias van naburige parallelle verbindingen die van layer wisselen in de buurt van elkaar, langs hun eigen sporen verschoven naar een gemeenschappelijke rij of kolom op het raster, waar de plek legaal is en de verbinding zijn lengte behoudt (paarbenen vastgehouden door <code>--pairs</code> en nets met meerdere verbindingen blijven staan). Een net in een interface met <code>max_vias</code> houdt de trace (elk net van de lane, door series-onderdelen) binnen die limiet: een route met te veel vias wordt opnieuw geprobeerd met duurdere vias, dan op één layer, en faalt met de reden als niets past. Het tweede net van een paar wordt naar zijn partner getrokken op de paar-afstand; <code>--pairs</code> probeert eerst beide helften samen als één gekoppeld spoor te routeeren. Als een paar verbindingen faalt, routeer ze dan opnieuw samen met de nets eromheen en <code>--reroute</code>, zodat de router het hele gebied kan opruimen en herordenen, of ga over op <code>--grid 0.025</code>. <code>--dry-run</code> rapporteert zonder te schrijven. Routeer eerst de nets die ertoe doen met de hand, en laat de router dan de rest invullen, klasse voor klasse."
-  },
   "13xykr3e7l9": {
     "defaultMessage": "Symbolen"
   },
@@ -284,6 +290,9 @@
   "13z0xd124hs": {
     "defaultMessage": "<code>mask_web = false</code> wanneer de fabrikant het soldeermasker over alle pads van een fijngepitcht onderdeel als één venster opent."
   },
+  "1412p7ywue1": {
+    "defaultMessage": "een barrière met <code>clearance</code>"
+  },
   "1414n4x5uae": {
     "defaultMessage": "Ontwerp regel controles van een layout. Met list = true: elke DRC regel met zijn id, categorie, ernst, en of deze op deze printplaat van toepassing is en waarom. Zonder dat: de diagnostiek van de layout die een regel id bevatten. Regel ids komen in de [drc] uitschakel lijst of ernst tabel van de printplaat."
   },
@@ -292,6 +301,9 @@
   },
   "14bd9z49wd1": {
     "defaultMessage": "FDTD-simulatie"
+  },
+  "14dlyveasdo": {
+    "defaultMessage": "Isolatiegebieden en barrières"
   },
   "14f19xcrdbg": {
     "defaultMessage": "Apple silicon"
@@ -323,6 +335,9 @@
   "1519g1avehv": {
     "defaultMessage": "Gesloten vormen voor een eerste antwoord, een GPU-veldoplosser met masker en koperdikte voor de classes die ertoe doen. Binnen 0,5% van exacte stripline-referenties."
   },
+  "1521tyvidt3": {
+    "defaultMessage": "Kopervlak van twee domeinen dichter langs het oppervlak van de printplaat dan de creepage van de barrière: op één buitenste laag rond uitsparingen en niet-geplated gaten minstens de groefbreedte van zijn <code>pollution_degree</code> breed, en van F.Cu naar B.Cu langs de wand van een uitsparing of gat of rond de rand van de printplaat"
+  },
   "1528x7i9xv2": {
     "defaultMessage": "mechanisch, in een substack, of tot een gecontroleerde diepte (<code>drill_kind = &quot;controlled_depth&quot;</code>)"
   },
@@ -331,6 +346,9 @@
   },
   "152usp03oi7": {
     "defaultMessage": "Een simulatie van het layout of het schema: FDTD, cascade, channel, PDN, DC drop, thermisch of logica."
+  },
+  "154h9bif94k": {
+    "defaultMessage": "<code>[[domains]]</code>"
   },
   "156bmxs5c35": {
     "defaultMessage": "een condensator tussen voeding en massa waarvan het voeding-pad verder dan <code>decoupling_distance</code> (3 mm) van de dichtstbijzijnde pin van een IC op die voeding ligt, 2,5 keer die afstand voor bulkcondensatoren boven 1 uF"
@@ -632,6 +650,9 @@
   "1aw9rgb1j68": {
     "defaultMessage": "<code>place</code> plaatst connectoren op de randen, houdt passieven dicht bij wat ze verbinden, verfijnt het resultaat en verplaatst elke referentie-label die nu iets overlapt. Het toont een JSON-rapport en schrijft <code>at</code> en <code>rotation</code> in een <code>[[footprints]]</code>-item per onderdeel. Het is een snelle start: op een echte printplaat bekijk je het resultaat, verplaatst je wat belangrijk is met de hand, markeer je het als <code>locked = true</code> en plaats je de rest opnieuw."
   },
+  "1axqq49zy6j": {
+    "defaultMessage": "<code>--show</code> / <code>--hide</code>"
+  },
   "1azhkhgucpo": {
     "defaultMessage": "doet"
   },
@@ -716,8 +737,14 @@
   "1cim9n2z5u3": {
     "defaultMessage": "Voer een simulatie uit (*.sim.toml): FDTD, dc, thermisch, cascade, kanaal, pdn of logisch"
   },
+  "1cmyetwl4ud": {
+    "defaultMessage": "<code>isolation-clearance</code>"
+  },
   "1crpygvo2zk": {
     "defaultMessage": "Gemaakt voor de agent die je al gebruikt"
+  },
+  "1cvbxcnncg4": {
+    "defaultMessage": "<code>--focus A,B,...</code>"
   },
   "1cvepqsqieg": {
     "defaultMessage": "Wanneer een apparaat geen data heeft, wordt het bandgebied ingekort naar waar elk apparaat wel data heeft, en wordt een ruisfactor buiten de data leeg gelaten in plaats van geraad."
@@ -733,6 +760,9 @@
   },
   "1d2oey8ec95": {
     "defaultMessage": "Elk platform met Rust {rust} of nieuwer."
+  },
+  "1d6wja5huke": {
+    "defaultMessage": "vul-eilanden die niets van het net van het kopervlak raken, of alleen koper dat is afgesneden van de rest en geen twee pads verbindt, en die zijn verwijderd"
   },
   "1d7lpt90j0y": {
     "defaultMessage": "Het schema is een netlist, niet je tekening: het schema van KiCad wordt niet gelezen, dus pinnamen, de symboolgrafiek en de sheetstructuur worden niet overgenomen. Dat is genoeg om de printplaat te checken, te renderen, te simuleren en te laten fabriceren, en om een agent het layout te laten wijzigen."
@@ -1034,9 +1064,6 @@
   "1hojglbgsmu": {
     "defaultMessage": "telt de vias die elke <code>[[stitching]]</code>-invoeging heeft geplaatst"
   },
-  "1hp9m6oody5": {
-    "defaultMessage": "Render een item naar PNG exact zoals de viewer het toont en retourneer de afbeelding."
-  },
   "1hr7d2icya6": {
     "defaultMessage": "Wat een link moet voldoen, van USB 3 tot een 50 ohm RF lijn: impedantie, skew, lengte, vias, stubs, referentievlakken en return vias."
   },
@@ -1057,6 +1084,9 @@
   },
   "1i1pyr1ujko": {
     "defaultMessage": "elk testpoint-pad voor de fixturebouwer: ref, pad, net, X, Y (mm, Y omhoog), kant, pad-diameter"
+  },
+  "1i2bwr6hy06": {
+    "defaultMessage": "Creepage is het kortste pad tussen de twee kopers langs het buitenste oppervlak waarop ze liggen (<code>creepage</code>). Het blijft op de printplaat en gaat rond uitsparingen en niet-geplated gaten. Een spleet of gat smaller dan de groefbreedte X van de verontreinigingsgraad (0,25 mm voor 1, 1,0 mm voor 2, 1,5 mm voor 3, zoals IEC 60664-1 die aangeeft) wordt overbrugd en rechtstreeks gemeten. Tussen koper op F.Cu en koper op B.Cu loopt het pad langs de wand van een uitsparing of niet-geplated gat van elke breedte, of rond de rand van de printplaat, en telt de dikte van de printplaat. Soldeermasker telt niet als isolatie."
   },
   "1i2n5zybesm": {
     "defaultMessage": "Elke regel in <code>[rules]</code> overschrijven:"
@@ -1202,6 +1232,9 @@
   "1k11wca9qt7": {
     "defaultMessage": "Analiseer een simulatieresultaat: TDR, mixed mode, crosstalk, passiviteit en reciprociteit"
   },
+  "1k1enhqihl2": {
+    "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code> (MCP <code>route</code>) routeert het ratsnest van de genoemde nets op een raster (<code>--grid</code>, standaard 0,05 mm) en voegt de sporen en vias toe aan het layoutbestand als gewone <code>[[tracks]]</code> en <code>[[vias]]</code>, zodat je ze daarna zelf kunt bewerken. Het houdt voor elke netklasse de breedte, de clearance en <code>layers</code> aan ten opzichte van elk pad, spoor, via, gat en de rand van de printplaat. Het dimensioneert de ruimte voor elke klasse via op basis van het eigen pad, boorgat en lagen (een microvia past waar een doorlopende via niet past, en een microvia mag naast een begraven via op andere lagen staan). Het houdt nieuwe vias op <code>min_hole_to_hole</code> afstand van elk boorgat waarvan de span een dielektricum deelt met die van de via, en houdt de gaten op <code>min_via_hole_to_copper</code> afstand van pads, sporen en vias van andere nets. Het houdt vias weg van SMD-pads van elke net, ook van de eigen net (de kopervlak van de via mag een pad niet raken, <code>via-cuts-pad</code>, en het gat blijft op <code>min_hole_to_smd_pad</code> afstand van het pad, <code>hole-to-smd-pad</code>, tenzij <code>--via-in-pad</code>, MCP <code>via_in_pad</code>, het toelaat volledig binnen een SMD-pad van de eigen net te staan, met een boorgat van hooguit <code>max_filled_via_drill</code>). Het gebruikt de vias van de klasse om van laag te wisselen, de goedkoopste waarvan de span beide lagen dekt (<code>--via uv-top,core</code> of MCP <code>via</code> om uit andere namen te kiezen, <code>--via-cost</code> in mm spoor, standaard 3, vermenigvuldigd met de <code>cost</code> van de via). Het rekent <code>--bend-cost</code> mm spoor voor elke bocht van 45 graden (standaard 0,1, drie keer zoveel voor 90 graden) en verplaatst nooit wat er al is, tenzij <code>--reroute</code> is opgegeven, wat eerst de sporen en vias van de genoemde nets verwijdert. Een verbinding die geen vrije route vindt, haalt de gerouteerde nets op die hij zou kruisen of waarvan hij de viagaten binnen <code>min_hole_to_hole</code> van zijn eigen gaten zou brengen (gaten waarvan de span een dielektricum delen), onthoudt de plek als overvol en die nets gaan terug in de wachtrij. Het zoekproces gaat in richtingen van 45 graden en rekent voor elke bocht, zodat routes als rechte stukken met bochten van 45 graden uitkomen. Daarna worden rechte stukken strak getrokken met tweesegment-bochten van 45 graden en elk overgebleven hoekje van 90 graden wordt afgeschuind waar het past. Alleen de stub naar een padcentrum buiten het raster mag onder een andere hoek staan. Waar de breedte van de klasse niet in een eindpad past (breder dan de kleinere zijde van het pad, of te dicht bij de buren om de clearance aan te houden), loopt de route taps toe: het spoor met de breedte van de klasse stopt kort voor het pad en een apart <code>[[tracks]]</code>-item met een expliciete <code>width</code> loopt recht naar het padcentrum, hooguit de <code>neckdown</code> van de klasse lang en niet smaller dan <code>min_track_width</code>. De breedte is de kleinste van de breedte van de klasse, de kleinere zijde van het pad en de breedste die de clearance aanhoudt, afgerond naar beneden naar 0,01 mm (of exact <code>min_track_width</code> waar afronding eronder zou vallen en de onafgeronde breedte niet). Het brede spoor begint op de eerste plek buiten het pad waar de volledige breedte de clearance aanhoudt (en, voor een pad smaller dan het spoor, buiten het pad). Pads van één net die elkaar raken, zoals een thermisch pad opgebouwd uit meerdere pad-items, tellen als één breed pad. Paren gerouteerd met <code>--pairs</code> lopen niet taps toe. Een verbinding van een net dat al vers kopervlak heeft, start vanaf dat kopervlak. Een verbinding die geen route vindt, zelfs niet door de nets die hij zou kunnen ophalen, wacht op de andere verbindingen van zijn net en probeert het nog een keer vanaf het kopervlak dat zij toevoegen. Klassen worden één voor één gerouteerd, de strakste eerst (minste toegestane lagen, dan de breedste spoor plus clearance), elk vastgehouden voor de volgende. Zodra een klasse binnen is, wordt elke net met vias opgehaald en opnieuw gerouteerd met vias vier keer duurder en de rest vastgehouden, en blijft de nieuwe route staan als hij minder vias heeft (of meer verbindingen), ronde na ronde zolang er nog een via bespaard wordt. Daarna wordt elke gerouteerde verbinding die vias gebruikt, één voor één op één laag geprobeerd met de rest vastgehouden, en vervangt de route op één laag de oude als hij hooguit 25% plus 1 mm langer is. Daarna worden de vias van naburige parallelle verbindingen die van laag wisselen in de buurt van elkaar, langs hun eigen sporen verschoven naar een gemeenschappelijke rij of kolom op het raster, waar de plek legaal is en de verbinding zijn lengte behoudt (paarbenen vastgehouden door <code>--pairs</code> en nets met meerdere verbindingen blijven staan). Een net in een interface met <code>max_vias</code> houdt de trace (elke net van de lane, door series onderdelen) binnen die limiet: een route met te veel vias wordt opnieuw geprobeerd met duurdere vias, dan op één laag, en faalt met de reden als niets past. De tweede net van een paar wordt naar zijn partner getrokken op de paar-afstand; <code>--pairs</code> probeert eerst beide helften samen als één gekoppeld spoor te routeeren. Als verbindingen falen, wordt de hele route opnieuw uitgevoerd, hooguit vier keer in totaal, met de mislukte nets eerst in hun klasse en hun klasse eerst, en een kostenpost op de route die ze zouden nemen door het kopervlak van eerdere klassen, zodat die klassen het vrij laten; de uitvoering met de minste mislukkingen, dan de minste vias, dan het kortste spoor wordt geschreven. Als een paar verbindingen faalt, routeer ze opnieuw samen met de nets eromheen en <code>--reroute</code>, zodat de router het hele gebied kan ophalen en herschikken, of ga naar <code>--grid 0.025</code>. <code>--dry-run</code> rapporteert zonder te schrijven. Routeer eerst de nets die ertoe doen met de hand, en laat de router de rest invullen, klasse voor klasse."
+  },
   "1k216dcuu51": {
     "defaultMessage": "De skill"
   },
@@ -1210,6 +1243,9 @@
   },
   "1k5ujui3zzb": {
     "defaultMessage": "Wat de printplaat doet en wat eraan aansluit: connectoren, spanningen, stromen, signalen en hun snelheden."
+  },
+  "1k608muzjgc": {
+    "defaultMessage": "pads van verschillende nets waarvan de openingen in het masker minder dan <code>min_mask_web</code> laten, één regel per paar onderdelen; pads van één footprint met <code>mask_web = false</code> worden onderling overgeslagen, net als de elektroden van een vonkafstand"
   },
   "1k984m2d9ls": {
     "defaultMessage": "Los elk koperlaag op voor spanningsval en stroomdichtheid, en daarna de temperatuur van de printplaat met het vermogen van elk onderdeel, in seconden."
@@ -1228,6 +1264,9 @@
   },
   "1kfd50so1g": {
     "defaultMessage": "<code>min_controlled_depth_drill</code>"
+  },
+  "1kgj4wspayo": {
+    "defaultMessage": "<code>spark-gap</code>"
   },
   "1kh7lutkph8": {
     "defaultMessage": "4 ns"
@@ -1295,6 +1334,9 @@
   "1ln0s6ojknb": {
     "defaultMessage": "Voeg de MCP-server toe"
   },
+  "1lpa8tzh6yg": {
+    "defaultMessage": "footprints met <code>spark_gaps</code>"
+  },
   "1lqngucnspi": {
     "defaultMessage": "telt de vias in SMD-pads van hun eigen net (boor binnen het pad); <code>fab-notes.txt</code> vraagt de fabrikant om precies deze te vullen en te dichten (IPC-4761 type VII)"
   },
@@ -1324,9 +1366,6 @@
   },
   "1m39d50u8qg": {
     "defaultMessage": "Elke diagnose bevat het bestand, het item, de plaats en de ernst, en layoutdiagnoses bevatten hun regel-id. Dat is genoeg om een pull request te annoteren, of om op waarschuwingen te falen in een project die ze als fouten wil behandelen. Een regel kan ook in de printplaat zelf verhoogd worden tot een fout met <code>[drc] severity</code>, wat het beleid in het ontwerp houdt in plaats van in het CI-script."
-  },
-  "1m526qxf80v": {
-    "defaultMessage": "vuleilanden die niets van het net van de zone bereiken en zijn verwijderd"
   },
   "1m52uejprc2": {
     "defaultMessage": "Een RF-pad wordt in een rechte lijn gelegd. Begin bij elke connector met een pad op een RF-net (een klasse met <code>impedance</code> en geen <code>diff_gap</code>), volgt de placer RF-netten door de onderdelen die twee of meer ervan dragen en maximaal 16 pinnen hebben (DC-blokkers, dempers, schakelaars, LNAs, baluns), en neemt de langste pad die eindigt bij een andere connector of bij een grotere chip met RF-pinnen; een schakelaar met een bypass gaat door de versterker, niet door de bypass. Als beide uiteinden connectors zijn, komen ze op tegenovergestelde randen van de lange as van de printplaat en glijden ze langs die randen op één lijn, door het midden van de printplaat waar beide passen. Elk onderdeel op de pad draait zodat zijn in- en uitgangspads op die lijn zitten, in volgorde, ingepakt richting de ingang met maximaal 1,5 mm extra ruimte per stuk, en de rest van de ruimte gaat naar de laatste run. Een twee- of driepins-onderdeel met één pad op een knoop van de pad (een ESD-klem, een bias-choke, een shunt-condensator) zit naast de lijn op die knoop, gedraaid zodat zijn andere pads naar buiten wijzen, dicht genoeg dat zijn RF-pad het spoor raakt en ver genoeg dat zijn andere pads de klasse-ruimte houden; twee shunts op één knoop nemen tegenovergestelde kanten. De pad is vastgesteld voordat de rest eromheen wordt geplaatst, en een onderdeel dat de printplaat zou verlaten of op een ander zou landen, wordt aan de algemene placer overgelaten."
@@ -1388,9 +1427,6 @@
   "1mzwfau5im8": {
     "defaultMessage": "Elk blad is een gewone schema-bestand met zijn eigen onderdelen en nets. Nets sluiten aan over bladen via naam, dus <code>3V3</code> op elk blad is één net en een signaal verlaat één blad en komt op een ander aan onder dezelfde naam. De pinnen van een net moeten onderdelen op hetzelfde blad zijn; een net die bladen overspant, heeft overal dezelfde <code>class</code> nodig waar hij die noemt, en wordt getekend met labels. Referenties zijn uniek over het hele ontwerp. Een blad op zichzelf slaat de waarschuwingen voor enkele-pinnen en Default klasse over (de rest van het net, en zijn klasse, kan op een ander blad zitten); het bovenste schema voert elke controle uit op het samengevoegde ontwerp en tekent de bladen gestapeld van boven naar beneden. Het bovenste bestand kan ook onderdelen en nets van zichzelf bevatten."
   },
-  "1n1rc7zgly9": {
-    "defaultMessage": "pads van verschillende nets waarvan de maskergaten minder dan <code>min_mask_web</code> laten, één regel per paar onderdelen; pads van één footprint met <code>mask_web = false</code> worden onderling overgeslagen"
-  },
   "1n1sk97q413": {
     "defaultMessage": "een schema: geplaatste onderdelen, nets, draden"
   },
@@ -1405,6 +1441,9 @@
   },
   "1n654yj4dk0": {
     "defaultMessage": "Werk vanuit een clone als je de voorbeelden wilt, of agentee zelf wilt aanpassen:"
+  },
+  "1na2buppw58": {
+    "defaultMessage": "<code>--rulers</code>"
   },
   "1ncp0psxtys": {
     "defaultMessage": "true"
@@ -1640,6 +1679,9 @@
   "1qw5tcldd6o": {
     "defaultMessage": "eenheden, het bestandsmodel, oplossen en controleren, de calculatoren"
   },
+  "1qxtym14c23": {
+    "defaultMessage": "<code>agentee render</code> (MCP <code>render_item</code>) tekent wat de viewer tekent. Zonder de zijpanelen (<code>--canvas-only</code>) wordt de PNG afgesneden tot de tekening, en <code>--width</code> en <code>--height</code> beperken de grootte."
+  },
   "1r0hmmormyn": {
     "defaultMessage": "mechanisch, in een gelamineerde sub-stack"
   },
@@ -1660,6 +1702,9 @@
   },
   "1r5t471qlyo": {
     "defaultMessage": "Plaatsing, routing en kopervlakken - agentee handleiding"
+  },
+  "1r94okxp0ki": {
+    "defaultMessage": "Een hele printplaat op 1400 pixels is te klein voor een model om de labels op te lezen, dus render het deel waarover je vraagt. <code>--focus</code> zoomt naar de onderdelen, nets en pins die je noemt en dempt de rest, <code>--rulers</code> labelt millimetercoördinaten langs de randen zodat de volgende <code>--region</code> uit de afbeelding kan worden afgelezen, en met <code>--canvas-only</code> wordt de PNG afgesneden tot de tekening:"
   },
   "1raj6a0in47": {
     "defaultMessage": "<code>*.pcb.toml</code>: plaatsingen, sporen, vias, kopervlakken, zeefdruk"
@@ -1739,6 +1784,9 @@
   "1siy1uwon63": {
     "defaultMessage": "Anders <code>agentee new symbol NAME</code> / <code>agentee new footprint NAME</code> en het startbestand bewerken."
   },
+  "1sm539dig10": {
+    "defaultMessage": "vlag"
+  },
   "1snb267xxo0": {
     "defaultMessage": "Het rapporteert altijd passiviteit (de grootste singulaire waarde van S over het bandbreedte) en reciprociteit (de grootste |Sij - Sji|) als elke poort is aangedreven. De TDR hermonitort op een uniforme raster, extrapoleert het reële deel naar DC, past een Gaussische rand toe (standaard 10-90% stijgtijd van 1,3 / de topfrequentie) en integreert de impulsrespons; het waarschuwt als de rand sneller is dan de data ondersteunen. De viewer toont dezelfde TDR voor elke aangedreven poort onder het <code>tdr</code>-tabblad."
   },
@@ -1780,6 +1828,9 @@
   },
   "1t6pxa5bz3h": {
     "defaultMessage": "Importeer uit de geïnstalleerde KiCad-bibliotheken"
+  },
+  "1t7f8d3334k": {
+    "defaultMessage": "mm-coördinaten langs de boven- en linker rand labelen"
   },
   "1tb0k2uaxra": {
     "defaultMessage": "Logica simulaties van een teller en een I2C-bus"
@@ -1888,6 +1939,9 @@
   },
   "1v0wqtjy1ac": {
     "defaultMessage": "Bibliotheken op andere locaties worden gevonden via <code>KICAD9_SYMBOL_DIR</code> en <code>KICAD9_FOOTPRINT_DIR</code>."
+  },
+  "1v1hqsikkfv": {
+    "defaultMessage": "Bestellijsten"
   },
   "1v2uudc6t8s": {
     "defaultMessage": "preset"
@@ -2003,6 +2057,9 @@
   "1xdif2fiz9x": {
     "defaultMessage": "wissel de actieve laag"
   },
+  "1xekxt0pa8v": {
+    "defaultMessage": "reserves voor dit onderdeel in plaats van de standaard, bijvoorbeeld geen voor een dure module"
+  },
   "1xfwjxnnmwm": {
     "defaultMessage": "10 ns"
   },
@@ -2023,9 +2080,6 @@
   },
   "1xsx0n8gdmv": {
     "defaultMessage": "Handige footprint-sleutels:"
-  },
-  "1xwa0edgvkl": {
-    "defaultMessage": "koper van twee nets dichter dan de grootste van hun klasse-clearances (een footprint-<code>clearance</code> vervangt ze voor zijn pads), of koper dat in een niet-geplateerd gat loopt"
   },
   "1xx1mnazadi": {
     "defaultMessage": "Schemata schrijven - agentee handleiding"
@@ -2069,8 +2123,14 @@
   "1yd48z3wex0": {
     "defaultMessage": "plaats een via op koper met een net"
   },
+  "1ydrf2t9pa0": {
+    "defaultMessage": "<code>isolation-domain</code>"
+  },
   "1yeem25v9mo": {
     "defaultMessage": "<code>diff_gap</code> maakt van een klasse een paar en zijn impedantie differentieel. Nets die eindigen op <code>_P</code> en <code>_N</code>, <code>_DP</code> en <code>_DN</code>, <code>+</code> en <code>-</code>, of <code>P</code> en <code>N</code> paren zichzelf; anders noem ze in het layout:"
+  },
+  "1yf3l1ndp3i": {
+    "defaultMessage": "<code>buy_with = &quot;XHP-2, SXH-001T-P0.6 x2&quot;</code>"
   },
   "1yf5ve95i67": {
     "defaultMessage": "resultaat JSON en VCD"
@@ -2092,6 +2152,9 @@
   },
   "1yl2jnjwpw": {
     "defaultMessage": "Condensatoren, spoelen, diodes, LED's, testpunten, kristallen en dergelijke worden niet meegenomen."
+  },
+  "1yo5k7srzdk": {
+    "defaultMessage": "<code>--order DIR</code> (MCP <code>order</code>) schrijft bestellijsten in plaats van het rapport: <code>NAME-order.csv</code> met elke regel en de distributeur waar deze wordt gekocht, en per distributeur één <code>NAME-&lt;distributor&gt;.csv</code> met een sleutel, die van Mouser in de kolomindeling van de BOM-importsjabloon. Elke regel gaat naar de distributeur die voor de aangekochte hoeveelheid goedkoper is, onder diegenen met voldoende voorraad en die niet verouderd zijn. De lijst van een distributeur toont elke regel in drie blokken: de regels die daar worden besteld, dan de regels die bij de andere distributeur worden gekocht, dan de regels die die niet aanbiedt of te weinig heeft, zodat het bovenste blok van elke lijst de bestelling is. Een regel die geen distributeur op voorraad heeft, wordt zo aangegeven in <code>NAME-order.csv</code>, of noemt het <code>lcsc</code>-onderdeel."
   },
   "1yqopwhriij": {
     "defaultMessage": "Vanuit broncode"
@@ -2147,6 +2210,9 @@
   "1zgogqmzk75": {
     "defaultMessage": "<code>copper-to-edge</code>"
   },
+  "1zguykj5vvy": {
+    "defaultMessage": "een vonkafstand waarvan de elektroden niet de aangegeven <code>gap</code> uit elkaar staan (op 0,01 mm nauwkeurig), onder <code>min_clearance</code> zitten, hetzelfde net delen of geen net hebben, of waar het soldeermasker over de afstand heen ligt op een buitenste laag"
+  },
   "1zkgdw4j6er": {
     "defaultMessage": "De twee HDI stackups die worden meegeleverd zijn generieke opbouwen, niet de gepubliceerde stackup van één fabrikant:"
   },
@@ -2185,6 +2251,9 @@
   },
   "20dpdr10xbq": {
     "defaultMessage": "<code>dff</code>"
+  },
+  "20gg17bj404": {
+    "defaultMessage": "wat er gebeurt met alles buiten <code>--focus</code> (standaard <code>dim</code>)"
   },
   "20hgaqi3se5": {
     "defaultMessage": "nekken in een vulling smaller dan 90% van de <code>min_width</code> van de zone, die de vulling had moeten openen; geteld op plek met de smalste"
@@ -2287,6 +2356,9 @@
   },
   "221qbpi8pyl": {
     "defaultMessage": "In1.Cu naar In4.Cu, buried, door de sub-stack,"
+  },
+  "226ie5pbkpb": {
+    "defaultMessage": "het LCSC-onderdeel, genoemd als geen van de distributeurs de regel op voorraad heeft"
   },
   "226vjhs4w16": {
     "defaultMessage": "Het *.fp.toml-bestand: pad rijen, pad vormen en lagen, randpads, zone verbindingen, courtyards, zeefdruk en 3D modellen."
@@ -2398,6 +2470,9 @@
   },
   "24ge4p3vpat": {
     "defaultMessage": "eerste tot laatste koper"
+  },
+  "24ghp4o686m": {
+    "defaultMessage": "Een deel van een ontwerp renderen"
   },
   "24kimihxft4": {
     "defaultMessage": "vultips scherper dan 30 graden; verhoog de <code>min_width</code> van de zone"
@@ -2567,6 +2642,9 @@
   "270mf8lg1lx": {
     "defaultMessage": "zet connectoren aan de randen met de aansluitkant naar buiten, en nooit een RF-connector en een USB-connector aan dezelfde rand als een andere splitsing past, omdat USB 3-ruis in het 2,4 GHz-band lands;"
   },
+  "272ff8lqlwg": {
+    "defaultMessage": "Kopervlak van twee nets dichter dan de grootste van hun klasse-clearances (een <code>clearance</code> van een footprint vervangt ze voor zijn pads), of kopervlak dat in een niet-geplated gat loopt. Pads van één footprint worden gehouden op <code>min_clearance</code> en op de klasse-clearance van nets in een isolatiedomein; elektroden van een vonkafstand worden overgeslagen"
+  },
   "273giv9xl0e": {
     "defaultMessage": "plaatsing, JLCPCB-kolommen"
   },
@@ -2620,6 +2698,12 @@
   },
   "28a3r88ouzz": {
     "defaultMessage": "0.3"
+  },
+  "28d8cxee2e6": {
+    "defaultMessage": "schema's en layouts: zoomen naar deze referenties, netnamen of <code>REF.PIN</code>, waarbij <code>*</code> elke reeks tekens matcht. Een net brengt de onderdelen mee die het raakt, een pin zijn net"
+  },
+  "28eex1tfszn": {
+    "defaultMessage": "De clearance van een klasse waarvan de nets in een gebied zitten, wordt als een elektrische afstand behandeld, dus die geldt ook tussen pads van één footprint: een TO-220 op een 1,5 mm HvBus-klasse met pads 1,0 mm uit elkaar is een <code>clearance</code>-fout. Pads van één footprint waarvan de nets in geen gebied zitten, worden alleen aan <code>min_clearance</code> gehouden, omdat de pitch van het onderdeel hun afstand bepaalt."
   },
   "28f7652hq13": {
     "defaultMessage": "Schrijf een startbestand voor een printplaat, symbool, footprint, schema, layout of simulatie, om vanaf te bewerken. Een simulatie start als een FDTD run van een layout, of met sim_kind logic als een logica simulatie van een schema (klok, reset, een geklokte assertie) waarvan je de nets hernoemt."
@@ -2689,6 +2773,9 @@
   },
   "29iu3d22sqh": {
     "defaultMessage": "routeer: klik op een pad, via of spoor om te beginnen, klik om hoeken van 45 graden toe te voegen, <code>/</code> keert de bocht om, V plaatst een via, Enter beëindigt"
+  },
+  "29j14m86ht8": {
+    "defaultMessage": "veld"
   },
   "29ku7ky1qub": {
     "defaultMessage": "een paar dat naast elkaar loopt met een andere afstand dan de <code>diff_gap</code> van de klasse, verder dan <code>max_uncoupled</code>"
@@ -2779,6 +2866,9 @@
   },
   "2b4wu4tjhac": {
     "defaultMessage": "Gebruik een HDI-preset"
+  },
+  "2b5qclo9mdd": {
+    "defaultMessage": "<code>isolation-unassigned</code>"
   },
   "2b6e1q1tvd8": {
     "defaultMessage": "<code>agentee fab pcb:NAME -o DIR</code> (MCP <code>fab</code>) schrijft:"
@@ -2900,6 +2990,9 @@
   "2cjq2lndzi6": {
     "defaultMessage": "De driver wordt een Thevenin-bron uit zijn pulldown- en pulluptabellen, zijn die-capaciteit en zijn package; zijn ramp bepaalt de rand en zijn spanningsbereik de swing, tenzij <code>rise</code> of <code>swing</code> zijn opgegeven. De ontvanger belast het verre eind met zijn package- en die-capaciteit, en het oog wordt gelezen op zijn die. IBIS werkt voor nu op single-ended paden."
   },
+  "2cozbj3xs0k": {
+    "defaultMessage": "<code>--focus</code> accepteert referenties (<code>U1</code>), netnamen (<code>SPI_CLK</code>) en pins (<code>U1.3</code>), met <code>*</code> als jokerteken. Een net brengt de onderdelen mee die het raakt. <code>--context</code> is standaard <code>dim</code>, <code>hide</code> om alleen wat je noemde te laten, of <code>show</code> om te zoomen zonder iets te dempen. MCP <code>render_item</code> accepteert dezelfde <code>focus</code>, <code>context</code> en <code>rulers</code>-argumenten."
+  },
   "2csls3gciuc": {
     "defaultMessage": "Wat het nodig heeft"
   },
@@ -2929,6 +3022,9 @@
   },
   "2d6y5d2d527": {
     "defaultMessage": "<code>impedance-trace</code>"
+  },
+  "2d70vdx1d3o": {
+    "defaultMessage": "Een naam die niets matcht is een fout. <code>--region</code> met <code>--focus</code> behoudt de filter en gebruikt het gebied voor de zoom."
   },
   "2dayrb6juwp": {
     "defaultMessage": "HC, HCT"
@@ -3296,6 +3392,9 @@
   "4lxxwf41j4": {
     "defaultMessage": "<code>min_plated_slot_width</code>"
   },
+  "4pvnbce4b5": {
+    "defaultMessage": "<code>creepage</code>"
+  },
   "4rae9zpwbh": {
     "defaultMessage": "altijd"
   },
@@ -3358,6 +3457,9 @@
   },
   "686lhskeo4": {
     "defaultMessage": "één schema-symbool"
+  },
+  "6f8tjd4506": {
+    "defaultMessage": "lagen om aan of uit te zetten, bijvoorbeeld <code>--hide F.Cu --show In1.Cu</code>"
   },
   "6ido514tq1": {
     "defaultMessage": "4 lagen, JLC04161H-7628, ENIG"
@@ -3671,6 +3773,9 @@
   "b7b8tb291q": {
     "defaultMessage": "Projectbestanden"
   },
+  "b7nt3ki7r1": {
+    "defaultMessage": "Render een item naar PNG, exact zoals de viewer het toont, en geef het beeld terug. Zonder de zijpanelen wordt het beeld afgesneden op de tekening, dus zijn breedte en hoogte het maximum dat het kan worden."
+  },
   "b92nzpwkpa": {
     "defaultMessage": "Wat je deed"
   },
@@ -3766,6 +3871,9 @@
   },
   "d4h9xa9tl2": {
     "defaultMessage": "Teken de courtyard op <code>F.CrtYd</code> en de behuizingscontour op <code>F.Fab</code>: de controle heeft een courtyard nodig die de pads omsluit, de placer houdt courtyards uit elkaar, en de rand- en assemblageregels meten vanaf de behuizing. Stel <code>height</code> in zodat het 3D-weergave en de regel voor hoge onderdelen een hoogte hebben zonder model."
+  },
+  "d8xhh7ye1c": {
+    "defaultMessage": "De <code>back</code>-schakelaar op de 2D-pagina spiegelt de printplaat om deze van onderen te bekijken: het onderste koper wordt boven het bovenste getekend, en de zichtbaarheid van elke voorlaag wisselt met zijn achtertweeling. <code>agentee render pcb:NAME --show back</code> rendert dat beeld."
   },
   "da20h6ryzp": {
     "defaultMessage": "De MCP-server"
@@ -3941,6 +4049,9 @@
   "gaamns4i1l": {
     "defaultMessage": "<code>min_drill</code>, <code>min_via_drill</code>"
   },
+  "gj2bevgtpu": {
+    "defaultMessage": "<code>--spares</code> (MCP <code>spares</code>) voegt de reserve voor handmatige montage toe: 0402- en 0603-weerstanders en condensatoren worden gekocht in het volgende veelvoud van tien boven de behoefte plus vijf, en elke <code>D</code>, <code>Q</code>, <code>U</code> en <code>F</code>-regel krijgt één reserve. Deze velden van het onderdeel veranderen dit:"
+  },
   "glhbhwqbjr": {
     "defaultMessage": "Een pin is <code>REF.PIN</code>, per nummer of per unieke pinnaam; een naam die meerdere pins delen is een fout. Een pin die een net krijgt waar hij al op zit, verplaatst naar het nieuwe net. Het bestand behoudt zijn commentaar en opmaak. <code>agentee edit</code> schrijft het bestand, vult de opgeslagen kopervlakken van een layout opnieuw in en rapporteert daarna de controlediagnostiek van de bestanden die het heeft aangeraakt, en eindigt met 1 als er een fout is."
   },
@@ -4093,6 +4204,15 @@
   },
   "ijyo5sjjdk": {
     "defaultMessage": "<code>Y0</code> tot <code>Y7</code>"
+  },
+  "ingvojakto": {
+    "defaultMessage": "nets in geen domein, die door geen enkele barrière gedekt worden"
+  },
+  "iomevdc6xc": {
+    "defaultMessage": "<code>--context dim|hide|show</code>"
+  },
+  "iozyts7ml0": {
+    "defaultMessage": "<code>spares = &quot;0&quot;</code>"
   },
   "ir7t9q4eba": {
     "defaultMessage": "<code>A</code>, <code>B</code>: dezelfde pinnen, aangedreven van de andere kant door <code>DIR</code>"
@@ -4652,6 +4772,9 @@
   "rbd5i5y6uj": {
     "defaultMessage": "Handleidingen"
   },
+  "rg8rx5tw3u": {
+    "defaultMessage": "<code>lcsc = &quot;C165948&quot;</code>"
+  },
   "rgx7g5j89u": {
     "defaultMessage": "Onderdeeldata wordt lineair geïnterpoleerd in reële en imaginaire delen, en het band wordt afgekapt tot waar elk onderdeel data heeft. Een twee-poortresultaat rapporteert versterkingspiek en -dal, slechtste S11, S22 en S12, en de laagste Edwards-Sinsky mu en Rollett K (mu boven 1 bij elke frequentie is onvoorwaardelijk stabiel). Het resultaat wordt verouderd wanneer de specificatie, het plaatresultaat of een onderdeelbestand verandert."
   },
@@ -4699,6 +4822,9 @@
   },
   "sa2s0k3fii": {
     "defaultMessage": "0.15, 1.0"
+  },
+  "sa82hcx9ev": {
+    "defaultMessage": "Kopervlak van twee domeinen op één laag dichter dan de clearance van de barrière ertussen, pads van één footprint en kopervlakken inbegrepen; één regel per netpaar met de dichtste plek"
   },
   "saviwyv34g": {
     "defaultMessage": "20 ns"
@@ -4862,6 +4988,9 @@
   "vevjglgna0": {
     "defaultMessage": "Geef hem de formaatreferentie"
   },
+  "vg1052wiwx": {
+    "defaultMessage": "Een netklasse heeft één clearance, die wordt gehandhaafd tegenover elk ander net. Als nets meer afstand moeten houden tot één groep dan tot hun buren (een netspanningsprimair tot het secundair, een zwevende rail tot de rest van het secundair), zet de nets in gebieden en stel een barrière in tussen twee gebieden:"
+  },
   "vgzxbueyi7": {
     "defaultMessage": "Sommige beslissingen gaan sneller met een muis: een connector naar de plek schuiven waar de behuizing hem wil, één spoor om een onderdeel heen herrouteert, een via plaatsen. De 2D-layoutpagina bewerkt de layout, en opslaan (ctrl+S) schrijft de wijziging in het <code>.pcb.toml</code> met dezelfde schrijver die commentaar en volgorde behoudt als de CLI. De agent leest jouw wijziging de volgende keer dat hij het bestand laadt."
   },
@@ -4970,6 +5099,9 @@
   "x0m5nm2n6u": {
     "defaultMessage": "KiCad tekent zeefdruk met 0,12 mm en JLCPCB wil 0,15 mm. Open elke footprint en verander <code>width = 0.12</code> in <code>0.15</code> op de zeefdruk-elementen, of laat je agent het doen. Dit is de normale vorm van werk met agentee: de diagnose noemt het bestand, het item en het getal, en de oplossing is één bewerking."
   },
+  "x3a0fv0yot": {
+    "defaultMessage": "betekenis"
+  },
   "x3j6gd5rkw": {
     "defaultMessage": "Projectbestanden - agentee referentie"
   },
@@ -5060,6 +5192,9 @@
   "y817q65376": {
     "defaultMessage": "<code>hole-to-edge</code>"
   },
+  "y84zm9obxw": {
+    "defaultMessage": "<code>--region x0,y0,x1,y1</code>"
+  },
   "y852j1pdwt": {
     "defaultMessage": "<code>*.sym.toml</code>"
   },
@@ -5072,8 +5207,14 @@
   "yc9r30dm9u": {
     "defaultMessage": "De BOM groepeert op deze velden, en <code>agentee parts</code> zoekt voorraad, prijs en goedkopere equivalenten op <code>mpn</code>. Zie <a href=\"/guides/fab/\">Fab-pakket, BOM en prijzen</a>."
   },
+  "ycd75jjuqy": {
+    "defaultMessage": "een net waarvan de klasse of naam het in twee domeinen plaatst"
+  },
   "ydfgdztl7j": {
     "defaultMessage": "<code>rect</code>"
+  },
+  "yebgi2jbad": {
+    "defaultMessage": "Een net zit in hoogstens één gebied. Binnen een gebied, en voor nets in geen gebied, gelden de clearances van de klasse zoals voorheen. Tussen twee gebieden met een barrière houdt koper op één laag de <code>clearance</code> van de barrière (<code>isolation-clearance</code>) aan, pads van één footprint en kopervlakken inbegrepen. Kopervlakken en de autorouter houden de barrière aan van het koper van het andere gebied tijdens het vullen en routeren; op F.Cu en B.Cu houden ze het grootste van <code>clearance</code> en <code>creepage</code> aan, omdat noch van beide paden rond uitsparingen meet."
   },
   "yfwyujuwr8": {
     "defaultMessage": "2"

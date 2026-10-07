@@ -90,3 +90,7 @@ shift-drag to pan, scroll to zoom, double-click to reset. The viewer draws with 
 ([three-d](https://github.com/asny/three-d)); `agentee render pcb:NAME --show 3d` (or `3d-top`,
 `3d-bottom`) draws the same scene in software, `--hide parts` leaves the models out and `--region`
 aims the camera at that area.
+
+The 2D page's `back` toggle mirrors the board to look at it from below: bottom copper draws over
+the top, and each front layer's visibility swaps with its back twin. `agentee render pcb:NAME
+--show back` renders that view.

@@ -20,6 +20,9 @@
   "10hj9wtkhca": {
     "defaultMessage": "assertions, setup and hold, contention"
   },
+  "10jc42a8vsy": {
+    "defaultMessage": "zoom to that rectangle, in mm in the item&#39;s own coordinates"
+  },
   "10l2rcg9xvo": {
     "defaultMessage": "<code>interface-vias</code>"
   },
@@ -179,6 +182,12 @@
   "12l7h195o1h": {
     "defaultMessage": "<code>usb2-hs</code>"
   },
+  "12la968121a": {
+    "defaultMessage": "a barrier with <code>creepage</code>"
+  },
+  "12mj4ud735z": {
+    "defaultMessage": "parts bought with each one of this part but not placed on the board: mating housings, crimps, an antenna. <code> xN</code> is the count per part; the line names the parts it is for and gets one spare with <code>--spares</code>"
+  },
   "12nmfoozwbx": {
     "defaultMessage": "A net with a zone is a plane net. <code>tie</code> gives every SMD pad of a plane net a short stub and a via beside it, on the side away from the part, clear of every pad and other net. That is how ground and supply pads should reach a plane, instead of tracks between them. A pad that already has a via of its net close by is left alone, and a pad with no legal spot is listed under <code>failed</code>."
   },
@@ -272,9 +281,6 @@
   "13u8mhxwbqd": {
     "defaultMessage": "optional <code>R</code>, <code>CLK</code>, optional <code>D0</code> to <code>D3</code>, <code>CEP</code>, <code>LOAD</code>, <code>CET</code>"
   },
-  "13wt2gfx3mu": {
-    "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code> (MCP <code>route</code>) routes the ratsnest of the named nets on a grid (<code>--grid</code>, default 0.05 mm) and appends the tracks and vias to the layout file as ordinary <code>[[tracks]]</code> and <code>[[vias]]</code>, so they are yours to edit afterwards. It keeps each net class&#39;s width, clearance and <code>layers</code> against every pad, track, via, hole and the board edge, sizes the room for each class via by its own pad, drill and layers (a microvia fits where a through via does not, and a microvia may sit beside a buried via on other layers), keeps new vias <code>min_hole_to_hole</code> from every drill whose span shares a dielectric with theirs and their holes <code>min_via_hole_to_copper</code> from other nets&#39; pads, tracks and vias, keeps them off SMD pads of every net, its own too (the via copper may not touch one, <code>via-cuts-pad</code>, and the hole stays <code>min_hole_to_smd_pad</code> from it, <code>hole-to-smd-pad</code>, unless <code>--via-in-pad</code>, MCP <code>via_in_pad</code>, lets it sit wholly inside an SMD pad of its net with a drill of at most <code>max_filled_via_drill</code>), uses the class vias to change layer, the cheapest whose span holds both layers (<code>--via uv-top,core</code> or MCP <code>via</code> to choose from other names instead, <code>--via-cost</code> in mm of track, default 3, times the via&#39;s <code>cost</code>), charges <code>--bend-cost</code> mm of track for each 45 degree bend (default 0.1, three times that for 90), and never moves what is already there unless <code>--reroute</code> is given, which deletes the named nets&#39; tracks and vias first. A connection that finds no free path rips up the routed nets it would cross or whose via holes it would bring within <code>min_hole_to_hole</code> of its own (holes whose spans share a dielectric), remembers the spot as congested, and those nets go back in the queue. The search steps in 45 degree directions and charges for every bend, so paths come out as straight runs with 45 degree bends; afterwards runs are pulled tight with two-segment 45 degree doglegs and any 90 degree corner left is chamfered where it clears. Only the stub into an off-grid pad centre may sit at another angle. Where the class width does not fit into an end pad (wider than the pad&#39;s smaller side, or too close to the neighbouring pads to keep clearance), the route necks down: the class width track stops short of the pad and a separate <code>[[tracks]]</code> entry with an explicit <code>width</code> runs straight into the pad centre, at most the class <code>neckdown</code> long and no narrower than <code>min_track_width</code>. Its width is the smallest of the class width, the pad&#39;s smaller side and the widest that keeps clearance, rounded down to 0.01 mm (or exactly <code>min_track_width</code> where rounding would drop under it and the unrounded width does not); the wide track starts at the first spot out from the pad where its full width keeps clearance (and, for a pad narrower than the track, outside the pad). Pads of one net that touch, like a thermal pad built from several pad entries, count as one wide pad. Pairs routed with <code>--pairs</code> do not neck down. A connection of a net that already has fresh copper starts from that copper. Once everything is in, each routed connection that uses vias is tried again on one layer at a time with the rest held fixed, and the one-layer route replaces it when it is at most 25% plus 1 mm longer. Then the vias of neighbouring parallel connections that change layer near each other are slid along their own tracks onto a common row or column on the grid, where the spot is legal and the connection keeps its length (pair legs held by <code>--pairs</code> and nets with several connections stay put). A net in an interface with <code>max_vias</code> keeps the trace (every net of the lane, through series parts) within it: a route with too many vias is tried again with dearer vias, then on one layer, and fails with the reason if neither fits. The second net of a pair is drawn toward its partner at the pair gap; <code>--pairs</code> tries to route both halves together as one coupled track first. When a few connections fail, route them again together with the nets around them and <code>--reroute</code>, so the router can rip up and reorder the whole area, or drop to <code>--grid 0.025</code>. <code>--dry-run</code> reports without writing. Route the nets that matter by hand first, then let the router fill in the rest, a class at a time."
-  },
   "13xykr3e7l9": {
     "defaultMessage": "Symbols"
   },
@@ -284,6 +290,9 @@
   "13z0xd124hs": {
     "defaultMessage": "<code>mask_web = false</code> when the fab opens the mask over all pads of a fine pitch part as one window."
   },
+  "1412p7ywue1": {
+    "defaultMessage": "a barrier with <code>clearance</code>"
+  },
   "1414n4x5uae": {
     "defaultMessage": "Design rule checks of a layout. With list = true: every DRC rule with its id, category, severity, and whether it applies to this board and why. Without: the layout's diagnostics that carry a rule id. Rule ids go in the board's [drc] disable list or severity table."
   },
@@ -292,6 +301,9 @@
   },
   "14bd9z49wd1": {
     "defaultMessage": "FDTD simulation"
+  },
+  "14dlyveasdo": {
+    "defaultMessage": "Isolation domains and barriers"
   },
   "14f19xcrdbg": {
     "defaultMessage": "Apple silicon"
@@ -323,6 +335,9 @@
   "1519g1avehv": {
     "defaultMessage": "Closed forms for a first answer, a GPU field solver with mask and copper thickness for the classes that matter. Within 0.5% of exact stripline references."
   },
+  "1521tyvidt3": {
+    "defaultMessage": "copper of two domains closer along the board surface than the barrier&#39;s creepage: on one outer layer around board cutouts and non-plated holes at least the groove width of its <code>pollution_degree</code> wide, and from F.Cu to B.Cu down a cutout or hole wall or round the board edge"
+  },
   "1528x7i9xv2": {
     "defaultMessage": "mechanically, in a sub-stack, or to a controlled depth (<code>drill_kind = &quot;controlled_depth&quot;</code>)"
   },
@@ -331,6 +346,9 @@
   },
   "152usp03oi7": {
     "defaultMessage": "A simulation of the layout or the schematic: FDTD, cascade, channel, PDN, DC drop, thermal or logic."
+  },
+  "154h9bif94k": {
+    "defaultMessage": "<code>[[domains]]</code>"
   },
   "156bmxs5c35": {
     "defaultMessage": "a capacitor between a supply and ground whose supply pad is farther than <code>decoupling_distance</code> (3 mm) from the nearest pin of an IC on that supply, 2.5 times that for bulk capacitors over 1 uF"
@@ -632,6 +650,9 @@
   "1aw9rgb1j68": {
     "defaultMessage": "<code>place</code> puts connectors on edges, keeps passives near what they connect to, refines the result and moves any reference label that now overlaps something. It prints a JSON report and writes <code>at</code> and <code>rotation</code> into a <code>[[footprints]]</code> entry per part. It is a quick start: on a real board you look at the result, move what matters by hand, mark it <code>locked = true</code>, and place the rest again."
   },
+  "1axqq49zy6j": {
+    "defaultMessage": "<code>--show</code> / <code>--hide</code>"
+  },
   "1azhkhgucpo": {
     "defaultMessage": "does"
   },
@@ -716,8 +737,14 @@
   "1cim9n2z5u3": {
     "defaultMessage": "Run a simulation (*.sim.toml): FDTD, dc, thermal, cascade, channel, pdn or logic"
   },
+  "1cmyetwl4ud": {
+    "defaultMessage": "<code>isolation-clearance</code>"
+  },
   "1crpygvo2zk": {
     "defaultMessage": "Made for the agent you already use"
+  },
+  "1cvbxcnncg4": {
+    "defaultMessage": "<code>--focus A,B,...</code>"
   },
   "1cvepqsqieg": {
     "defaultMessage": "Where a device has no data, the band is cut to where every device has some, and a noise figure outside the data is left blank rather than guessed."
@@ -733,6 +760,9 @@
   },
   "1d2oey8ec95": {
     "defaultMessage": "Any platform with Rust {rust} or newer."
+  },
+  "1d6wja5huke": {
+    "defaultMessage": "fill islands that reach nothing of the zone&#39;s net, or only copper that is cut off from the rest of it and joins no two pads, and were removed"
   },
   "1d7lpt90j0y": {
     "defaultMessage": "The schematic is a netlist, not your drawing: KiCad&#39;s schematic is not read, so pin names, the symbol art and the sheet structure are not carried over. That is enough to check, render, simulate and fab the board, and to have an agent change the layout."
@@ -1034,9 +1064,6 @@
   "1hojglbgsmu": {
     "defaultMessage": "counts the vias each <code>[[stitching]]</code> entry placed"
   },
-  "1hp9m6oody5": {
-    "defaultMessage": "Render an item to PNG exactly as the viewer shows it and return the image."
-  },
   "1hr7d2icya6": {
     "defaultMessage": "What a link must meet, from USB 3 to a 50 ohm RF line: impedance, skew, length, vias, stubs, reference planes and return vias."
   },
@@ -1057,6 +1084,9 @@
   },
   "1i1pyr1ujko": {
     "defaultMessage": "every test point pad for the fixture builder: ref, pad, net, X, Y (mm, Y up), side, pad diameter"
+  },
+  "1i2bwr6hy06": {
+    "defaultMessage": "Creepage is the shortest path between the two coppers along the outer surface they sit on (<code>creepage</code>). It stays on the board and goes around board cutouts and non-plated holes. A slot or hole narrower than the groove width X of the pollution degree (0.25 mm for 1, 1.0 mm for 2, 1.5 mm for 3, as IEC 60664-1 gives it) is bridged and measured straight across. Between copper on F.Cu and copper on B.Cu the path runs down the wall of a board cutout or non-plated hole of any width, or round the board edge, and counts the board&#39;s thickness. Solder mask does not count as insulation."
   },
   "1i2n5zybesm": {
     "defaultMessage": "Override any rule in <code>[rules]</code>:"
@@ -1202,6 +1232,9 @@
   "1k11wca9qt7": {
     "defaultMessage": "Analyse a sim result: TDR, mixed mode, crosstalk, passivity and reciprocity"
   },
+  "1k1enhqihl2": {
+    "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code> (MCP <code>route</code>) routes the ratsnest of the named nets on a grid (<code>--grid</code>, default 0.05 mm) and appends the tracks and vias to the layout file as ordinary <code>[[tracks]]</code> and <code>[[vias]]</code>, so they are yours to edit afterwards. It keeps each net class&#39;s width, clearance and <code>layers</code> against every pad, track, via, hole and the board edge, sizes the room for each class via by its own pad, drill and layers (a microvia fits where a through via does not, and a microvia may sit beside a buried via on other layers), keeps new vias <code>min_hole_to_hole</code> from every drill whose span shares a dielectric with theirs and their holes <code>min_via_hole_to_copper</code> from other nets&#39; pads, tracks and vias, keeps them off SMD pads of every net, its own too (the via copper may not touch one, <code>via-cuts-pad</code>, and the hole stays <code>min_hole_to_smd_pad</code> from it, <code>hole-to-smd-pad</code>, unless <code>--via-in-pad</code>, MCP <code>via_in_pad</code>, lets it sit wholly inside an SMD pad of its net with a drill of at most <code>max_filled_via_drill</code>), uses the class vias to change layer, the cheapest whose span holds both layers (<code>--via uv-top,core</code> or MCP <code>via</code> to choose from other names instead, <code>--via-cost</code> in mm of track, default 3, times the via&#39;s <code>cost</code>), charges <code>--bend-cost</code> mm of track for each 45 degree bend (default 0.1, three times that for 90), and never moves what is already there unless <code>--reroute</code> is given, which deletes the named nets&#39; tracks and vias first. A connection that finds no free path rips up the routed nets it would cross or whose via holes it would bring within <code>min_hole_to_hole</code> of its own (holes whose spans share a dielectric), remembers the spot as congested, and those nets go back in the queue. The search steps in 45 degree directions and charges for every bend, so paths come out as straight runs with 45 degree bends; afterwards runs are pulled tight with two-segment 45 degree doglegs and any 90 degree corner left is chamfered where it clears. Only the stub into an off-grid pad centre may sit at another angle. Where the class width does not fit into an end pad (wider than the pad&#39;s smaller side, or too close to the neighbouring pads to keep clearance), the route necks down: the class width track stops short of the pad and a separate <code>[[tracks]]</code> entry with an explicit <code>width</code> runs straight into the pad centre, at most the class <code>neckdown</code> long and no narrower than <code>min_track_width</code>. Its width is the smallest of the class width, the pad&#39;s smaller side and the widest that keeps clearance, rounded down to 0.01 mm (or exactly <code>min_track_width</code> where rounding would drop under it and the unrounded width does not); the wide track starts at the first spot out from the pad where its full width keeps clearance (and, for a pad narrower than the track, outside the pad). Pads of one net that touch, like a thermal pad built from several pad entries, count as one wide pad. Pairs routed with <code>--pairs</code> do not neck down. A connection of a net that already has fresh copper starts from that copper. A connection that finds no path even through the nets it could rip up waits for the other connections of its net and tries once more from the copper they add. Classes route one after another, the tightest first (fewest allowed layers, then the widest track plus clearance), each held fixed for the next. Once a class is in, every net of it with vias is ripped up and routed again with vias four times dearer and the rest held fixed, and the new route stays when it has fewer vias (or joins more), pass after pass while one saves a via. Then each routed connection that uses vias is tried again on one layer at a time with the rest held fixed, and the one-layer route replaces it when it is at most 25% plus 1 mm longer. Then the vias of neighbouring parallel connections that change layer near each other are slid along their own tracks onto a common row or column on the grid, where the spot is legal and the connection keeps its length (pair legs held by <code>--pairs</code> and nets with several connections stay put). A net in an interface with <code>max_vias</code> keeps the trace (every net of the lane, through series parts) within it: a route with too many vias is tried again with dearer vias, then on one layer, and fails with the reason if neither fits. The second net of a pair is drawn toward its partner at the pair gap; <code>--pairs</code> tries to route both halves together as one coupled track first. When connections fail, the whole route runs again, up to four times in all, with the failed nets first in their class and their class first, and a cost on the path they would take through the copper of earlier classes so those classes leave it free; the run with the fewest failures, then the fewest vias, then the least track is written. When a few connections fail, route them again together with the nets around them and <code>--reroute</code>, so the router can rip up and reorder the whole area, or drop to <code>--grid 0.025</code>. <code>--dry-run</code> reports without writing. Route the nets that matter by hand first, then let the router fill in the rest, a class at a time."
+  },
   "1k216dcuu51": {
     "defaultMessage": "The skill"
   },
@@ -1210,6 +1243,9 @@
   },
   "1k5ujui3zzb": {
     "defaultMessage": "What the board does, and what connects to it: connectors, voltages, currents, signals and their speeds."
+  },
+  "1k608muzjgc": {
+    "defaultMessage": "pads of different nets whose mask openings leave less than <code>min_mask_web</code>, one line per pair of parts; pads of one footprint with <code>mask_web = false</code> are skipped among themselves, and so are the electrodes of a spark gap"
   },
   "1k984m2d9ls": {
     "defaultMessage": "Solve every copper layer for voltage drop and current density, then the board’s temperature with each part’s power, in seconds."
@@ -1228,6 +1264,9 @@
   },
   "1kfd50so1g": {
     "defaultMessage": "<code>min_controlled_depth_drill</code>"
+  },
+  "1kgj4wspayo": {
+    "defaultMessage": "<code>spark-gap</code>"
   },
   "1kh7lutkph8": {
     "defaultMessage": "4 ns"
@@ -1295,6 +1334,9 @@
   "1ln0s6ojknb": {
     "defaultMessage": "Add the MCP server"
   },
+  "1lpa8tzh6yg": {
+    "defaultMessage": "footprints with <code>spark_gaps</code>"
+  },
   "1lqngucnspi": {
     "defaultMessage": "counts the vias in SMD pads of their own net (drill inside the pad); <code>fab-notes.txt</code> asks the fab to fill and cap exactly these (IPC-4761 type VII)"
   },
@@ -1324,9 +1366,6 @@
   },
   "1m39d50u8qg": {
     "defaultMessage": "Every diagnostic carries its file, item, place and severity, and layout diagnostics carry their rule id. That is enough to annotate a pull request, or to fail on warnings in a project that wants them treated as errors. A rule can also be raised to an error in the board itself with <code>[drc] severity</code>, which keeps the policy in the design rather than the CI script."
-  },
-  "1m526qxf80v": {
-    "defaultMessage": "fill islands that reach nothing of the zone&#39;s net and were removed"
   },
   "1m52uejprc2": {
     "defaultMessage": "An RF path is laid in a straight line. Starting at each connector with a pad on an RF net (a class with <code>impedance</code> and no <code>diff_gap</code>), the placer follows RF nets through the parts that carry two or more of them and have at most 16 pins (DC blocks, attenuators, switches, LNAs, baluns), and takes the longest path that ends at another connector or at a larger chip with RF pins; a switch with a bypass goes through the amplifier, not the bypass. When both ends are connectors they go on opposite edges of the board&#39;s long axis and slide along them onto one line, through the board centre where both fit. Each part on the path turns so its input and output pads sit on that line, in order, packed toward the input with at most 1.5 mm of extra gap each, and the rest of the room goes to the last run. A two or three pin part with one pad on a node of the path (an ESD clamp, a bias choke, a shunt cap) sits beside the line at that node, turned so its other pads point away, close enough that its RF pad meets the track and far enough that its other pads keep the class clearance; two shunts at one node take opposite sides. The path is fixed before the rest is placed around it, and a part that would leave the board or land on another is left to the general placer."
@@ -1388,9 +1427,6 @@
   "1mzwfau5im8": {
     "defaultMessage": "Each sheet is an ordinary schematic file with its own parts and nets. Nets join across sheets by name, so <code>3V3</code> on every sheet is one net and a signal leaves one sheet and arrives on another under the same name. A net&#39;s pins must be parts on the same sheet; a net that spans sheets needs the same <code>class</code> wherever it names one, and is drawn with labels. References are unique across the design. A sheet on its own skips the single-pin and Default class warnings (the rest of the net, and its class, may be on another sheet); the top schematic runs every check on the joined design and draws the sheets stacked top to bottom. The top file may hold parts and nets of its own too."
   },
-  "1n1rc7zgly9": {
-    "defaultMessage": "pads of different nets whose mask openings leave less than <code>min_mask_web</code>, one line per pair of parts; pads of one footprint with <code>mask_web = false</code> are skipped among themselves"
-  },
   "1n1sk97q413": {
     "defaultMessage": "a schematic: placed parts, nets, wires"
   },
@@ -1405,6 +1441,9 @@
   },
   "1n654yj4dk0": {
     "defaultMessage": "Work from a clone when you want the examples, or to change agentee itself:"
+  },
+  "1na2buppw58": {
+    "defaultMessage": "<code>--rulers</code>"
   },
   "1ncp0psxtys": {
     "defaultMessage": "true"
@@ -1640,6 +1679,9 @@
   "1qw5tcldd6o": {
     "defaultMessage": "units, the file model, resolve and check, the calculators"
   },
+  "1qxtym14c23": {
+    "defaultMessage": "<code>agentee render</code> (MCP <code>render_item</code>) draws what the viewer draws. Without the side panels (<code>--canvas-only</code>) the PNG is cropped to the drawing, and <code>--width</code> and <code>--height</code> cap its size."
+  },
   "1r0hmmormyn": {
     "defaultMessage": "mechanically, in a laminated sub-stack"
   },
@@ -1660,6 +1702,9 @@
   },
   "1r5t471qlyo": {
     "defaultMessage": "Placement, routing and pours - agentee guide"
+  },
+  "1r94okxp0ki": {
+    "defaultMessage": "A whole board at 1400 pixels is too small for a model to read the labels on, so render the part you are asking about. <code>--focus</code> zooms to the parts, nets and pins you name and fades the rest, <code>--rulers</code> labels millimetre coordinates along the edges so the next <code>--region</code> can be read off the picture, and with <code>--canvas-only</code> the PNG is cropped to the drawing:"
   },
   "1raj6a0in47": {
     "defaultMessage": "<code>*.pcb.toml</code>: placements, tracks, vias, zones, silk"
@@ -1739,6 +1784,9 @@
   "1siy1uwon63": {
     "defaultMessage": "Otherwise <code>agentee new symbol NAME</code> / <code>agentee new footprint NAME</code> and edit the starter file."
   },
+  "1sm539dig10": {
+    "defaultMessage": "flag"
+  },
   "1snb267xxo0": {
     "defaultMessage": "It always reports passivity (the largest singular value of S over the band) and reciprocity (the largest |Sij - Sji|) when every port was driven. The TDR resamples onto a uniform grid, extrapolates the real part to DC, applies a Gaussian edge (default 10-90% rise of 1.3 / the top frequency) and integrates the impulse response; it warns when the edge is faster than the data supports. The viewer shows the same TDR for every driven port under the <code>tdr</code> tab."
   },
@@ -1780,6 +1828,9 @@
   },
   "1t6pxa5bz3h": {
     "defaultMessage": "Import from the installed KiCad libraries"
+  },
+  "1t7f8d3334k": {
+    "defaultMessage": "label mm coordinates along the top and left edges"
   },
   "1tb0k2uaxra": {
     "defaultMessage": "Logic simulations of a counter and an I2C bus"
@@ -1888,6 +1939,9 @@
   },
   "1v0wqtjy1ac": {
     "defaultMessage": "Libraries anywhere else are found through <code>KICAD9_SYMBOL_DIR</code> and <code>KICAD9_FOOTPRINT_DIR</code>."
+  },
+  "1v1hqsikkfv": {
+    "defaultMessage": "Order sheets"
   },
   "1v2uudc6t8s": {
     "defaultMessage": "preset"
@@ -2003,6 +2057,9 @@
   "1xdif2fiz9x": {
     "defaultMessage": "change the active layer"
   },
+  "1xekxt0pa8v": {
+    "defaultMessage": "spares for this part instead of the default, e.g. none for an expensive module"
+  },
   "1xfwjxnnmwm": {
     "defaultMessage": "10 ns"
   },
@@ -2023,9 +2080,6 @@
   },
   "1xsx0n8gdmv": {
     "defaultMessage": "Useful footprint keys:"
-  },
-  "1xwa0edgvkl": {
-    "defaultMessage": "copper of two nets closer than the larger of their class clearances (a footprint <code>clearance</code> replaces them for its pads), or copper run into a non-plated hole"
   },
   "1xx1mnazadi": {
     "defaultMessage": "Writing schematics - agentee guide"
@@ -2069,8 +2123,14 @@
   "1yd48z3wex0": {
     "defaultMessage": "place a via on copper with a net"
   },
+  "1ydrf2t9pa0": {
+    "defaultMessage": "<code>isolation-domain</code>"
+  },
   "1yeem25v9mo": {
     "defaultMessage": "<code>diff_gap</code> makes a class a pair and its impedance differential. Nets ending in <code>_P</code> and <code>_N</code>, <code>_DP</code> and <code>_DN</code>, <code>+</code> and <code>-</code>, or <code>P</code> and <code>N</code> pair up on their own; otherwise name them in the layout:"
+  },
+  "1yf3l1ndp3i": {
+    "defaultMessage": "<code>buy_with = &quot;XHP-2, SXH-001T-P0.6 x2&quot;</code>"
   },
   "1yf5ve95i67": {
     "defaultMessage": "result JSON and VCD"
@@ -2092,6 +2152,9 @@
   },
   "1yl2jnjwpw": {
     "defaultMessage": "Capacitors, inductors, diodes, LEDs, test points, crystals and the like are left out."
+  },
+  "1yo5k7srzdk": {
+    "defaultMessage": "<code>--order DIR</code> (MCP <code>order</code>) writes sheets to buy from instead of the report: <code>NAME-order.csv</code> with every line and the distributor it is bought from, and one <code>NAME-&lt;distributor&gt;.csv</code> per distributor with a key, Mouser&#39;s in the column layout of its BOM import template. Each line goes to the distributor that is cheaper for the quantity bought, among those with enough stock and not obsolete. A distributor&#39;s sheet lists every line in three blocks: the lines to order there, then the lines bought at the other distributor, then the lines it does not list or has too few of, so the top block of each sheet is the order. A line no distributor stocks says so in <code>NAME-order.csv</code>, or names its <code>lcsc</code> part."
   },
   "1yqopwhriij": {
     "defaultMessage": "From source"
@@ -2147,6 +2210,9 @@
   "1zgogqmzk75": {
     "defaultMessage": "<code>copper-to-edge</code>"
   },
+  "1zguykj5vvy": {
+    "defaultMessage": "a spark gap whose electrodes are not the declared <code>gap</code> apart (to 0.01 mm), sit under <code>min_clearance</code>, share a net or lack one, or have solder mask across the gap on an outer layer"
+  },
   "1zkgdw4j6er": {
     "defaultMessage": "The two HDI stackups that ship are generic builds, not one fab&#39;s published stackup:"
   },
@@ -2185,6 +2251,9 @@
   },
   "20dpdr10xbq": {
     "defaultMessage": "<code>dff</code>"
+  },
+  "20gg17bj404": {
+    "defaultMessage": "what happens to everything outside <code>--focus</code> (default <code>dim</code>)"
   },
   "20hgaqi3se5": {
     "defaultMessage": "necks in a fill narrower than 90% of the zone&#39;s <code>min_width</code>, which the fill should have opened; counted by place with the narrowest"
@@ -2287,6 +2356,9 @@
   },
   "221qbpi8pyl": {
     "defaultMessage": "In1.Cu to In4.Cu, buried, through the sub-stack,"
+  },
+  "226ie5pbkpb": {
+    "defaultMessage": "the LCSC part, named when neither distributor stocks the line"
   },
   "226vjhs4w16": {
     "defaultMessage": "The *.fp.toml file: pad rows, pad shapes and layers, edge pads, zone connections, courtyards, silk and 3D models."
@@ -2398,6 +2470,9 @@
   },
   "24ge4p3vpat": {
     "defaultMessage": "first to last copper"
+  },
+  "24ghp4o686m": {
+    "defaultMessage": "Rendering part of a design"
   },
   "24kimihxft4": {
     "defaultMessage": "fill tips sharper than 30 degrees; raise the zone&#39;s <code>min_width</code>"
@@ -2567,6 +2642,9 @@
   "270mf8lg1lx": {
     "defaultMessage": "puts connectors on the edges with the mating side out, and never an RF connector and a USB connector on one edge if another split fits, since USB 3 noise lands in the 2.4 GHz band;"
   },
+  "272ff8lqlwg": {
+    "defaultMessage": "copper of two nets closer than the larger of their class clearances (a footprint <code>clearance</code> replaces them for its pads), or copper run into a non-plated hole. Pads of one footprint are held to <code>min_clearance</code> and to the class clearance of nets in an isolation domain; spark gap electrodes are skipped"
+  },
   "273giv9xl0e": {
     "defaultMessage": "placement, JLCPCB columns"
   },
@@ -2620,6 +2698,12 @@
   },
   "28a3r88ouzz": {
     "defaultMessage": "0.3"
+  },
+  "28d8cxee2e6": {
+    "defaultMessage": "schematics and layouts: zoom to these references, net names or <code>REF.PIN</code>, <code>*</code> matching any run of characters. A net brings in the parts it touches, a pin its net"
+  },
+  "28eex1tfszn": {
+    "defaultMessage": "The clearance of a class whose nets sit in a domain is taken as an electrical spacing, so it also holds between pads of one footprint: a TO-220 on a 1.5 mm HvBus class with pads 1.0 mm apart is a <code>clearance</code> error. Pads of one footprint whose nets are in no domain are held to <code>min_clearance</code> alone, since the part&#39;s pitch sets their gap."
   },
   "28f7652hq13": {
     "defaultMessage": "Write a starter file for a board, symbol, footprint, schematic, layout or sim, to edit from. A sim starts as an FDTD run of a layout, or with sim_kind logic as a logic sim of a schematic (clock, reset, a clocked assertion) whose nets you rename."
@@ -2689,6 +2773,9 @@
   },
   "29iu3d22sqh": {
     "defaultMessage": "route: click a pad, via or track to start, click to add 45 degree corners, <code>/</code> flips the bend, V drops a via, Enter ends"
+  },
+  "29j14m86ht8": {
+    "defaultMessage": "field"
   },
   "29ku7ky1qub": {
     "defaultMessage": "a pair run side by side at another gap than the class <code>diff_gap</code>, beyond <code>max_uncoupled</code>"
@@ -2779,6 +2866,9 @@
   },
   "2b4wu4tjhac": {
     "defaultMessage": "Use an HDI preset"
+  },
+  "2b5qclo9mdd": {
+    "defaultMessage": "<code>isolation-unassigned</code>"
   },
   "2b6e1q1tvd8": {
     "defaultMessage": "<code>agentee fab pcb:NAME -o DIR</code> (MCP <code>fab</code>) writes:"
@@ -2900,6 +2990,9 @@
   "2cjq2lndzi6": {
     "defaultMessage": "The driver becomes a Thevenin source from its pulldown and pullup tables, its die capacitance and its package; its ramp sets the edge and its voltage range the swing, unless <code>rise</code> or <code>swing</code> are given. The receiver loads the far end with its package and die capacitance, and the eye is read at its die. IBIS works on single-ended paths for now."
   },
+  "2cozbj3xs0k": {
+    "defaultMessage": "<code>--focus</code> takes references (<code>U1</code>), net names (<code>SPI_CLK</code>) and pins (<code>U1.3</code>), with <code>*</code> as a wildcard. A net brings in the parts it touches. <code>--context</code> is <code>dim</code> by default, <code>hide</code> to leave only what you named, or <code>show</code> to zoom without fading anything. MCP <code>render_item</code> takes the same <code>focus</code>, <code>context</code> and <code>rulers</code> arguments."
+  },
   "2csls3gciuc": {
     "defaultMessage": "What it needs"
   },
@@ -2929,6 +3022,9 @@
   },
   "2d6y5d2d527": {
     "defaultMessage": "<code>impedance-trace</code>"
+  },
+  "2d70vdx1d3o": {
+    "defaultMessage": "A name that matches nothing is an error. <code>--region</code> with <code>--focus</code> keeps the filter and uses the region for the zoom."
   },
   "2dayrb6juwp": {
     "defaultMessage": "HC, HCT"
@@ -3296,6 +3392,9 @@
   "4lxxwf41j4": {
     "defaultMessage": "<code>min_plated_slot_width</code>"
   },
+  "4pvnbce4b5": {
+    "defaultMessage": "<code>creepage</code>"
+  },
   "4rae9zpwbh": {
     "defaultMessage": "always"
   },
@@ -3358,6 +3457,9 @@
   },
   "686lhskeo4": {
     "defaultMessage": "one schematic symbol"
+  },
+  "6f8tjd4506": {
+    "defaultMessage": "layers to turn on or off, e.g. <code>--hide F.Cu --show In1.Cu</code>"
   },
   "6ido514tq1": {
     "defaultMessage": "4 layers, JLC04161H-7628, ENIG"
@@ -3671,6 +3773,9 @@
   "b7b8tb291q": {
     "defaultMessage": "Project files"
   },
+  "b7nt3ki7r1": {
+    "defaultMessage": "Render an item to PNG exactly as the viewer shows it and return the image. Without the side panels the image is cropped to the drawing, so width and height are the largest it gets."
+  },
   "b92nzpwkpa": {
     "defaultMessage": "What you did"
   },
@@ -3766,6 +3871,9 @@
   },
   "d4h9xa9tl2": {
     "defaultMessage": "Draw the courtyard on <code>F.CrtYd</code> and the body outline on <code>F.Fab</code>: check needs a courtyard that encloses the pads, the placer keeps courtyards apart, and the edge and assembly rules measure from the body. Set <code>height</code> so the 3D view and the tall-part rule have a height without a model."
+  },
+  "d8xhh7ye1c": {
+    "defaultMessage": "The 2D page&#39;s <code>back</code> toggle mirrors the board to look at it from below: bottom copper draws over the top, and each front layer&#39;s visibility swaps with its back twin. <code>agentee render pcb:NAME --show back</code> renders that view."
   },
   "da20h6ryzp": {
     "defaultMessage": "The MCP server"
@@ -3941,6 +4049,9 @@
   "gaamns4i1l": {
     "defaultMessage": "<code>min_drill</code>, <code>min_via_drill</code>"
   },
+  "gj2bevgtpu": {
+    "defaultMessage": "<code>--spares</code> (MCP <code>spares</code>) adds the hand assembly allowance: 0402 and 0603 resistors and capacitors are bought at the next multiple of ten above the need plus five, and each <code>D</code>, <code>Q</code>, <code>U</code> and <code>F</code> line gets one spare. These part fields change it:"
+  },
   "glhbhwqbjr": {
     "defaultMessage": "A pin is <code>REF.PIN</code>, by number or by a unique pin name; a name several pins share is an error. A pin given a net it is already on moves to the new net. The file keeps its comments and layout. <code>agentee edit</code> writes the file, refills a layout&#39;s stored zone fills, then reports the check diagnostics of the files it touched, and exits 1 if any of them is an error."
   },
@@ -4093,6 +4204,15 @@
   },
   "ijyo5sjjdk": {
     "defaultMessage": "<code>Y0</code> to <code>Y7</code>"
+  },
+  "ingvojakto": {
+    "defaultMessage": "nets in no domain, which no barrier covers"
+  },
+  "iomevdc6xc": {
+    "defaultMessage": "<code>--context dim|hide|show</code>"
+  },
+  "iozyts7ml0": {
+    "defaultMessage": "<code>spares = &quot;0&quot;</code>"
   },
   "ir7t9q4eba": {
     "defaultMessage": "<code>A</code>, <code>B</code>: the same pins, driven from the other side by <code>DIR</code>"
@@ -4652,6 +4772,9 @@
   "rbd5i5y6uj": {
     "defaultMessage": "Guides"
   },
+  "rg8rx5tw3u": {
+    "defaultMessage": "<code>lcsc = &quot;C165948&quot;</code>"
+  },
   "rgx7g5j89u": {
     "defaultMessage": "Device data is interpolated linearly in real and imaginary parts, and the band is cut to where every device has data. A two-port result reports gain peak and low, worst S11, S22 and S12, and the lowest Edwards-Sinsky mu and Rollett K (mu above 1 at every frequency is unconditionally stable). The result goes stale when the spec, the board result or a device file changes."
   },
@@ -4699,6 +4822,9 @@
   },
   "sa2s0k3fii": {
     "defaultMessage": "0.15, 1.0"
+  },
+  "sa82hcx9ev": {
+    "defaultMessage": "copper of two domains on one layer closer than the clearance of the barrier between them, pads of one footprint and pours included; one line per net pair with the closest spot"
   },
   "saviwyv34g": {
     "defaultMessage": "20 ns"
@@ -4862,6 +4988,9 @@
   "vevjglgna0": {
     "defaultMessage": "Give it the format reference"
   },
+  "vg1052wiwx": {
+    "defaultMessage": "A net class has one clearance, held against every other net. Where nets must keep more distance from one group than from their neighbours (a mains primary from the secondary, a floating rail from the rest of the secondary), put the nets in domains and set a barrier between two domains:"
+  },
   "vgzxbueyi7": {
     "defaultMessage": "Some decisions are faster with a mouse: nudging a connector to where the enclosure wants it, rerouting one track around a part, dropping a via. The 2D layout page edits the layout, and saving (ctrl+S) writes the change into the <code>.pcb.toml</code> with the same comment and order preserving writer the CLI uses. The agent reads your change the next time it loads the file."
   },
@@ -4970,6 +5099,9 @@
   "x0m5nm2n6u": {
     "defaultMessage": "KiCad draws silk at 0.12 mm and JLCPCB wants 0.15 mm. Open each footprint and change <code>width = 0.12</code> to <code>0.15</code> on its silk graphics, or have your agent do it. This is the normal shape of work with agentee: the diagnostic names the file, the item and the number, and the fix is one edit."
   },
+  "x3a0fv0yot": {
+    "defaultMessage": "meaning"
+  },
   "x3j6gd5rkw": {
     "defaultMessage": "Project files - agentee reference"
   },
@@ -5060,6 +5192,9 @@
   "y817q65376": {
     "defaultMessage": "<code>hole-to-edge</code>"
   },
+  "y84zm9obxw": {
+    "defaultMessage": "<code>--region x0,y0,x1,y1</code>"
+  },
   "y852j1pdwt": {
     "defaultMessage": "<code>*.sym.toml</code>"
   },
@@ -5072,8 +5207,14 @@
   "yc9r30dm9u": {
     "defaultMessage": "The BOM groups by them, and <code>agentee parts</code> looks up stock, price and cheaper equivalents by <code>mpn</code>. See <a href=\"/guides/fab/\">Fab package, BOM and pricing</a>."
   },
+  "ycd75jjuqy": {
+    "defaultMessage": "a net whose class or name puts it in two domains"
+  },
   "ydfgdztl7j": {
     "defaultMessage": "<code>rect</code>"
+  },
+  "yebgi2jbad": {
+    "defaultMessage": "A net sits in one domain at most. Inside a domain, and for nets in none, the class clearances apply as before. Between two domains with a barrier, copper on one layer keeps the barrier&#39;s <code>clearance</code> (<code>isolation-clearance</code>), pads of one footprint and pours included. Pours and the autorouter keep the barrier from the other domain&#39;s copper as they fill and route; on F.Cu and B.Cu they keep the larger of <code>clearance</code> and <code>creepage</code>, since neither measures paths around slots."
   },
   "yfwyujuwr8": {
     "defaultMessage": "2"

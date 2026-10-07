@@ -20,6 +20,9 @@
   "10hj9wtkhca": {
     "defaultMessage": "Assertions, Setup und Hold, Konflikte"
   },
+  "10jc42a8vsy": {
+    "defaultMessage": "auf dieses Rechteck zoomen, in mm in den eigenen Koordinaten des Elements"
+  },
   "10l2rcg9xvo": {
     "defaultMessage": "<code>interface-vias</code>"
   },
@@ -179,6 +182,12 @@
   "12l7h195o1h": {
     "defaultMessage": "<code>usb2-hs</code>"
   },
+  "12la968121a": {
+    "defaultMessage": "eine Barriere mit <code>creepage</code>"
+  },
+  "12mj4ud735z": {
+    "defaultMessage": "Bauteile, die mit jedem von diesem Bauteil gekauft, aber nicht auf der Platine platziert werden: Gegenstecker, Presshülsen, eine Antenne. <code> xN</code> ist die Anzahl pro Bauteil; die Zeile benennt die Bauteile, für die sie gilt, und erhält mit <code>--spares</code> ein Ersatzteil"
+  },
   "12nmfoozwbx": {
     "defaultMessage": "Ein Netz mit einer Kupferfläche ist ein Ebenennetz. <code>tie</code> gibt jedem SMD-Pad eines Ebenennetzes einen kurzen Stummel und ein daneben liegendes Via auf der Seite weg vom Bauteil, frei von jedem Pad und jedem anderen Netz. So sollen Masse- und Versorgungspads eine Ebene erreichen, statt mit Leiterbahnen dazwischen. Ein Pad, das schon ein Via seines Netzes in der Nähe hat, bleibt unangetastet, und ein Pad ohne legalen Platz wird unter <code>failed</code> aufgelistet."
   },
@@ -272,9 +281,6 @@
   "13u8mhxwbqd": {
     "defaultMessage": "optional <code>R</code>, <code>CLK</code>, optional <code>D0</code> bis <code>D3</code>, <code>CEP</code>, <code>LOAD</code>, <code>CET</code>"
   },
-  "13wt2gfx3mu": {
-    "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code> (MCP <code>route</code>) routet das Ratsnest der benannten Netze auf einem Raster (<code>--grid</code>, Standard 0,05 mm) und hängt die Leiterbahnen und Vias als gewöhnliche <code>[[tracks]]</code> und <code>[[vias]]</code> an die Layout-Datei an, sodass du sie danach selbst bearbeiten kannst. Es hält die Breite, den Freiraum und <code>layers</code> jeder Netzklasse gegenüber jedem Pad, jeder Leiterbahn, jedem Via, jedem Loch und dem Platinenrand ein, dimensioniert den Raum für jedes Via einer Klasse anhand seines eigenen Pads, Bohrers und seiner Lagen (ein Mikrovia passt, wo ein Durchgangsvia nicht passt, und ein Mikrovia darf neben einem vergrabenen Via auf anderen Lagen sitzen), hält neue Vias <code>min_hole_to_hole</code> von jedem Bohrer, dessen Spannweite ein Dielektrikum mit ihren teilt, und ihre Löcher <code>min_via_hole_to_copper</code> von Pads, Leiterbahnen und Vias anderer Netze, hält sie von SMD-Pads aller Netze fern, auch der eigenen (das Via-Kupfer darf eines nicht berühren, <code>via-cuts-pad</code>, und das Loch bleibt <code>min_hole_to_smd_pad</code> davon entfernt, <code>hole-to-smd-pad</code>, es sei denn, <code>--via-in-pad</code>, MCP <code>via_in_pad</code>, lässt es vollständig innerhalb eines SMD-Pads seines Netzes sitzen, mit einem Bohrer von höchstens <code>max_filled_via_drill</code>), nutzt die Vias der Klasse zum Lagewechsel, die günstigsten, deren Spannweite beide Lagen hält (<code>--via uv-top,core</code> oder MCP <code>via</code>, um andere Namen zu wählen, <code>--via-cost</code> in mm Leiterbahn, Standard 3, mal dem <code>cost</code> des Vias), berechnet <code>--bend-cost</code> mm Leiterbahn für jede 45-Grad-Knickung (Standard 0,1, dreimal so viel für 90 Grad) und bewegt nie etwas, das schon da ist, es sei denn, <code>--reroute</code> ist angegeben, was zuerst die Leiterbahnen und Vias der benannten Netze löscht. Eine Verbindung, die keinen freien Pfad findet, reißt die gerouteten Netze auf, die sie kreuzen würde oder deren Via-Löcher sie innerhalb von <code>min_hole_to_hole</code> von ihren eigenen bringen würde (Löcher, deren Spannweiten ein Dielektrikum teilen), merkt sich die Stelle als beengt, und diese Netze kommen wieder in die Warteschlange. Die Suche schreitet in 45-Grad-Richtungen voran und berechnet für jede Knickung, sodass Pfade als gerade Abschnitte mit 45-Grad-Knickungen herauskommen; danach werden Abschnitte mit zwei Segmenten und 45-Grad-Doglegs straffgezogen und jeder verbleibende 90-Grad-Eck wird abgerundet, wo es freihält. Nur der Stumpf in ein außerhalb des Rasters liegendes Pad-Zentrum darf in einem anderen Winkel sitzen. Wo die Klassenbreite nicht in ein Endpad passt (breiter als die kleinere Seite des Pads oder zu nah an den benachbarten Pads, um den Freiraum zu halten), verjüngt sich die Route: die Leiterbahn der Klassenbreite endet kurz vor dem Pad, und ein separater <code>[[tracks]]</code>-Eintrag mit expliziter <code>width</code> läuft gerade ins Pad-Zentrum, höchstens so lang wie das Klassen-<code>neckdown</code> und nicht schmaler als <code>min_track_width</code>. Ihre Breite ist das Minimum aus Klassenbreite, kleinerer Seite des Pads und der breitesten, die den Freiraum hält, abgerundet auf 0,01 mm (oder exakt <code>min_track_width</code>, wo das Abrunden darunter fallen würde und die nicht abgerundete Breite es nicht tut); die breite Leiterbahn beginnt an der ersten Stelle vom Pad weg, wo ihre volle Breite den Freiraum hält (und, bei einem schmaleren Pad als der Leiterbahn, außerhalb des Pads). Pads eines Netzes, die sich berühren, wie ein thermisches Pad aus mehreren Pad-Einträgen, zählen als ein breites Pad. Paare, die mit <code>--pairs</code> geroutet werden, verjüngen sich nicht. Eine Verbindung eines Netzes, das bereits frisches Kupfer hat, startet von diesem Kupfer aus. Sobald alles drin ist, wird jede geroutete Verbindung, die Vias nutzt, nacheinander auf einer Lage mit dem Rest fixiert erneut versucht, und die Ein-Lagen-Route ersetzt sie, wenn sie höchstens 25 % plus 1 mm länger ist. Dann werden die Vias benachbarter paralleler Verbindungen, die in der Nähe zueinander die Lage wechseln, entlang ihrer eigenen Leiterbahnen auf eine gemeinsame Zeile oder Spalte im Raster geschoben, wo die Stelle legal ist und die Verbindung ihre Länge behält (Paar-Beine, die von <code>--pairs</code> gehalten werden, und Netze mit mehreren Verbindungen bleiben an ihrem Platz). Ein Netz in einer Schnittstelle mit <code>max_vias</code> hält die Spur (jedes Netz der Spur, durch Serienbauteile) innerhalb davon: eine Route mit zu vielen Vias wird mit teureren Vias erneut versucht, dann auf einer Lage, und schlägt fehl mit dem Grund, wenn keine passt. Das zweite Netz eines Paares wird mit dem Paarabstand zu seinem Partner gezogen; <code>--pairs</code> versucht zuerst, beide Hälften zusammen als eine gekoppelte Leiterbahn zu routen. Wenn wenige Verbindungen fehlschlagen, routiere sie erneut zusammen mit den Netzen in ihrer Umgebung und <code>--reroute</code>, damit der Router den ganzen Bereich aufreißen und neu ordnen kann, oder weiche auf <code>--grid 0.025</code> aus. <code>--dry-run</code> meldet, ohne zu schreiben. Routiere zuerst die Netze, die wichtig sind, von Hand, und lass dann den Router den Rest füllen, eine Klasse nach der anderen."
-  },
   "13xykr3e7l9": {
     "defaultMessage": "Symbole"
   },
@@ -284,6 +290,9 @@
   "13z0xd124hs": {
     "defaultMessage": "<code>mask_web = false</code>, wenn der Fertiger die Lötstoppmaske über alle Pads eines Feinpitch-Bauteils als ein Fenster öffnet."
   },
+  "1412p7ywue1": {
+    "defaultMessage": "eine Barriere mit <code>clearance</code>"
+  },
   "1414n4x5uae": {
     "defaultMessage": "Design-Regel-Prüfungen eines Layouts. Mit list = true: jede DRC-Regel mit ihrer ID, Kategorie, Schwere und ob sie auf diese Platine zutrifft und warum. Ohne: die Diagnosen des Layouts, die eine Regel-ID tragen. Regel-IDs kommen in die [drc]-Deaktivierungsliste oder die Schwere-Tabelle der Platine."
   },
@@ -292,6 +301,9 @@
   },
   "14bd9z49wd1": {
     "defaultMessage": "FDTD-Simulation"
+  },
+  "14dlyveasdo": {
+    "defaultMessage": "Isolationsdomänen und Barrieren"
   },
   "14f19xcrdbg": {
     "defaultMessage": "Apple-Silicon"
@@ -323,6 +335,9 @@
   "1519g1avehv": {
     "defaultMessage": "Geschlossene Formen für eine erste Antwort, ein GPU-Feldlöser mit Lötstoppmaske und Kupferdicke für die Klassen, die zählen. Innerhalb von 0,5 % exakter Stripline-Referenzen."
   },
+  "1521tyvidt3": {
+    "defaultMessage": "Kupfer zweier Domänen, das entlang der Platinenoberfläche näher beieinander liegt als der Kriechweg der Barriere: auf einer äußeren Lage um Platinenausschnitte und nicht verzinnte Löcher herum mindestens so breit wie die Nutbreite ihres <code>pollution_degree</code>, und von F.Cu zu B.Cu hinunter an einer Ausschnitt- oder Lochwand oder um den Platinenrand herum"
+  },
   "1528x7i9xv2": {
     "defaultMessage": "mechanisch, in einem Unteraufbau oder bis zu einer kontrollierten Tiefe (<code>drill_kind = &quot;controlled_depth&quot;</code>)"
   },
@@ -331,6 +346,9 @@
   },
   "152usp03oi7": {
     "defaultMessage": "Eine Simulation des Layouts oder des Schaltplans: FDTD, Kaskade, Kanal, PDN, DC-Abfall, thermisch oder Logik."
+  },
+  "154h9bif94k": {
+    "defaultMessage": "<code>[[domains]]</code>"
   },
   "156bmxs5c35": {
     "defaultMessage": "ein Kondensator zwischen Versorgung und Masse, dessen Versorgungs-Pad weiter als <code>decoupling_distance</code> (3 mm) vom nächsten Pin eines ICs auf dieser Versorgung entfernt ist, bei Bulk-Kondensatoren über 1 uF das 2,5-Fache davon"
@@ -632,6 +650,9 @@
   "1aw9rgb1j68": {
     "defaultMessage": "<code>place</code> stellt Connectoren an die Ränder, hält passive Bauteile in der Nähe dessen, womit sie verbunden sind, verfeinert das Ergebnis und verschiebt jede Referenzbezeichnung, die jetzt etwas überlappt. Es gibt einen JSON-Bericht aus und schreibt <code>at</code> und <code>rotation</code> in einen <code>[[footprints]]</code>-Eintrag pro Bauteil. Es ist ein schneller Start: Auf einer echten Platine schaust du dir das Ergebnis an, verschiebst das Wichtige von Hand, markierst es mit <code>locked = true</code> und platzierst den Rest erneut."
   },
+  "1axqq49zy6j": {
+    "defaultMessage": "<code>--show</code> / <code>--hide</code>"
+  },
   "1azhkhgucpo": {
     "defaultMessage": "Wirkung"
   },
@@ -716,8 +737,14 @@
   "1cim9n2z5u3": {
     "defaultMessage": "Führe eine Simulation (*.sim.toml) aus: FDTD, dc, thermisch, Kaskade, Kanal, pdn oder logisch"
   },
+  "1cmyetwl4ud": {
+    "defaultMessage": "<code>isolation-clearance</code>"
+  },
   "1crpygvo2zk": {
     "defaultMessage": "Gemacht für den Agenten, den du schon nutzt"
+  },
+  "1cvbxcnncg4": {
+    "defaultMessage": "<code>--focus A,B,...</code>"
   },
   "1cvepqsqieg": {
     "defaultMessage": "Wo ein Bauteil keine Daten hat, wird das Band auf den Bereich beschnitten, in dem jedes Bauteil welche hat, und eine Rauschzahl außerhalb der Daten wird leer gelassen, statt geraten zu werden."
@@ -733,6 +760,9 @@
   },
   "1d2oey8ec95": {
     "defaultMessage": "Jede Plattform mit Rust {rust} oder neuer."
+  },
+  "1d6wja5huke": {
+    "defaultMessage": "Inseln, die nichts vom Netz der Kupferfläche erreichen oder nur Kupfer, das vom Rest abgeschnitten ist und keine zwei Pads verbindet, und entfernt wurden"
   },
   "1d7lpt90j0y": {
     "defaultMessage": "Der Schaltplan ist eine Netlist, nicht deine Zeichnung: Der Schaltplan von KiCad wird nicht gelesen, daher werden Pin-Namen, die Symbolgrafik und die Blattstruktur nicht übernommen. Das reicht, um die Platine zu prüfen, zu rendern, zu simulieren und zu fertigen, und damit ein Agent das Layout ändert."
@@ -1034,9 +1064,6 @@
   "1hojglbgsmu": {
     "defaultMessage": "zählt die Vias, die jeder <code>[[stitching]]</code>-Eintrag platziert hat"
   },
-  "1hp9m6oody5": {
-    "defaultMessage": "Rendere einen Eintrag als PNG, genau so wie der Viewer ihn anzeigt, und gib das Bild zurück."
-  },
   "1hr7d2icya6": {
     "defaultMessage": "Was eine Verbindung erfüllen muss, von USB 3 bis zu einer 50-Ohm-RF-Leitung: Impedanz, Skew, Länge, Vias, Stümpfe, Referenzebenen und Rückkehrvias."
   },
@@ -1057,6 +1084,9 @@
   },
   "1i1pyr1ujko": {
     "defaultMessage": "jeder Testpunkt-Pad für den Prüffeldbauer: Referenz, Pad, Netz, X, Y (mm, Y nach oben), Seite, Pad-Durchmesser"
+  },
+  "1i2bwr6hy06": {
+    "defaultMessage": "Creepage ist der kürzeste Pfad zwischen den beiden Kupfern entlang der Außenfläche, auf der sie liegen (<code>creepage</code>). Er bleibt auf der Platine und geht um Platinausschnitte und nicht verzinnte Löcher. Ein Schlitz oder Loch, das schmaler ist als die Nutbreite X des Verschmutungsgrads (0,25 mm für 1, 1,0 mm für 2, 1,5 mm für 3, wie IEC 60664-1 angibt), wird überbrückt und gerade gemessen. Zwischen Kupfer auf F.Cu und Kupfer auf B.Cu verläuft der Pfad die Wand eines Platinausschnitts oder nicht verzinnten Lochs beliebiger Breite oder um den Plattenrand und zählt die Plattendicke. Lötstoppmasse zählt nicht als Isolierung."
   },
   "1i2n5zybesm": {
     "defaultMessage": "Jede Regel in <code>[rules]</code> überschreiben:"
@@ -1202,6 +1232,9 @@
   "1k11wca9qt7": {
     "defaultMessage": "Analysiere ein Simulationsergebnis: TDR, Mixed Mode, Übersprechen, Passivität und Reziprozität"
   },
+  "1k1enhqihl2": {
+    "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code> (MCP <code>route</code>) routet das Ratsnest der benannten Netze auf einem Raster (<code>--grid</code>, Standard 0,05 mm) und hängt die Leiterbahnen und Vias als gewöhnliche <code>[[tracks]]</code> und <code>[[vias]]</code> an die Layout-Datei an, sodass du sie danach bearbeiten kannst. Es hält die Breite, den Abstand und <code>layers</code> jeder Netzklasse gegenüber jedem Pad, jeder Leiterbahn, jedem Via, jedem Loch und dem Platinenrand ein, dimensioniert den Raum für jedes Via der Klasse anhand seines eigenen Pads, Bohrers und seiner Lagen (ein Mikrovia passt, wo ein Durchgangsvia nicht passt, und ein Mikrovia kann neben einem vergrabenen Via auf anderen Lagen liegen), hält neue Vias <code>min_hole_to_hole</code> von jedem Bohrer, dessen Spanne ein Dielektrikum mit ihren teilt, und ihre Löcher <code>min_via_hole_to_copper</code> von Pads, Leiterbahnen und Vias anderer Netze, hält sie von SMD-Pads aller Netze fern, auch der eigenen (das Kupfer des Vias darf ein Pad nicht berühren, <code>via-cuts-pad</code>, und das Loch bleibt <code>min_hole_to_smd_pad</code> davon entfernt, <code>hole-to-smd-pad</code>, es sei denn, <code>--via-in-pad</code>, MCP <code>via_in_pad</code>, lässt es vollständig innerhalb eines SMD-Pads seines Netzes liegen, mit einem Bohrer von höchstens <code>max_filled_via_drill</code>), verwendet die Vias der Klasse zum Lagewechsel, die günstigsten, deren Spanne beide Lagen abdeckt (<code>--via uv-top,core</code> oder MCP <code>via</code>, um aus anderen Namen zu wählen, <code>--via-cost</code> in mm Leiterbahn, Standard 3, mal dem <code>cost</code> des Vias), berechnet <code>--bend-cost</code> mm Leiterbahn für jede 45-Grad-Kurve (Standard 0,1, dreimal so viel für 90 Grad) und bewegt nichts, was bereits vorhanden ist, es sei denn, <code>--reroute</code> wird angegeben, was zuerst die Leiterbahnen und Vias der benannten Netze löscht. Eine Verbindung, die keinen freien Pfad findet, reißt die gerouteten Netze auf, die sie kreuzen würde oder deren Via-Löcher sie innerhalb von <code>min_hole_to_hole</code> von ihren eigenen bringen würde (Löcher, deren Spannen ein Dielektrikum teilen), merkt sich den Ort als eng und diese Netze kommen erneut in die Warteschlange. Die Suche schreitet in 45-Grad-Richtungen voran und berechnet für jede Kurve, sodass Pfade als gerade Abschnitte mit 45-Grad-Kurven herauskommen; danach werden Abschnitte mit zwei Segmenten langen 45-Grad-Doglegs straffgezogen und jede verbleibende 90-Grad-Ecke wird abgeschrägt, wo es den Abstand erlaubt. Nur der Stumpf zu einem Pad-Mittelpunkt außerhalb des Rasters darf in einem anderen Winkel liegen. Wenn die Klassenbreite nicht in ein Endpad passt (breiter als die kleinere Seite des Pads oder zu nah an benachbarten Pads, um den Abstand einzuhalten), verjüngt sich der Pfad: die Leiterbahn der Klassenbreite endet kurz vor dem Pad, und ein separater <code>[[tracks]]</code>-Eintrag mit expliziter <code>width</code> läuft gerade in den Pad-Mittelpunkt, höchstens so lang wie das <code>neckdown</code> der Klasse und nicht schmaler als <code>min_track_width</code>. Ihre Breite ist der kleinste Wert aus der Klassenbreite, der kleineren Seite des Pads und der größten Breite, die den Abstand einhält, abgerundet auf 0,01 mm (oder exakt <code>min_track_width</code>, wenn das Abrunden darunter fallen würde und die nicht abgerundete Breite es nicht tut); die breite Leiterbahn beginnt an der ersten Stelle außerhalb des Pads, an der ihre volle Breite den Abstand einhält (und, bei einem schmaleren Pad als der Leiterbahn, außerhalb des Pads). Pads eines Netzes, die sich berühren, wie ein thermisches Pad aus mehreren Pad-Einträgen, zählen als ein breites Pad. Paare, die mit <code>--pairs</code> geroutet werden, verjüngen sich nicht. Eine Verbindung eines Netzes, das bereits frisches Kupfer hat, startet von diesem Kupfer aus. Eine Verbindung, die auch durch die Netze, die sie aufreißen könnte, keinen Pfad findet, wartet auf die anderen Verbindungen ihres Netzes und versucht es einmal mehr von dem Kupfer aus, das sie hinzufügen. Klassen werden nacheinander geroutet, die engste zuerst (wenigste erlaubte Lagen, dann die breiteste Leiterbahn plus Abstand), jede für die nächste festgehalten. Sobald eine Klasse drin ist, wird jedes Netz mit Vias aufgerissen und erneut mit viermal teureren Vias geroutet, während der Rest festgehalten wird, und der neue Pfad bleibt, wenn er weniger Vias hat (oder mehr verbindet), Durchgang für Durchgang, solange einer ein Via spart. Danach wird jede geroutete Verbindung, die Vias verwendet, nacheinander auf einer Lage mit dem Rest festgehalten versucht, und der Ein-Lagen-Pfad ersetzt sie, wenn er höchstens 25 % plus 1 mm länger ist. Dann werden die Vias benachbarter paralleler Verbindungen, die in der Nähe Lagewechsel vornehmen, entlang ihrer eigenen Leiterbahnen auf eine gemeinsame Reihe oder Spalte im Raster geschoben, wo der Ort legal ist und die Verbindung ihre Länge beibehält (Paar-Beine, die durch <code>--pairs</code> gehalten werden, und Netze mit mehreren Verbindungen bleiben an ihrem Ort). Ein Netz in einer Schnittstelle mit <code>max_vias</code> hält die Spur (jedes Netz der Spur, durch Serienbauteile) innerhalb dieses Wertes: Ein Pfad mit zu vielen Vias wird mit teureren Vias erneut versucht, dann auf einer Lage, und schlägt fehl mit dem Grund, wenn keiner passt. Das zweite Netz eines Paares wird mit dem Paar-Abstand zu seinem Partner gezogen; <code>--pairs</code> versucht zuerst, beide Hälften als eine gekoppelte Leiterbahn zusammen zu routen. Wenn Verbindungen fehlschlagen, läuft der gesamte Pfad erneut, bis zu viermal insgesamt, mit den fehlgeschlagenen Netzen zuerst in ihrer Klasse und ihrer Klasse zuerst, und einem Kostenfaktor auf dem Pfad, den sie durch das Kupfer früherer Klassen nehmen würden, damit diese Klassen ihn frei lassen; der Lauf mit den wenigsten Fehlern, dann den wenigsten Vias, dann der kürzesten Leiterbahn wird geschrieben. Wenn nur wenige Verbindungen fehlschlagen, routet sie erneut zusammen mit den Netzen in ihrer Nähe und <code>--reroute</code>, damit der Router den gesamten Bereich aufreißen und neu ordnen kann, oder wechsle zu <code>--grid 0.025</code>. <code>--dry-run</code> meldet, ohne zu schreiben. Routet zuerst die Netze, die wichtig sind, von Hand, und lass dann den Router den Rest füllen, Klasse für Klasse."
+  },
   "1k216dcuu51": {
     "defaultMessage": "Der Skill"
   },
@@ -1210,6 +1243,9 @@
   },
   "1k5ujui3zzb": {
     "defaultMessage": "Was die Platine tut und was an sie angeschlossen wird: Steckverbinder, Spannungen, Ströme, Signale und deren Geschwindigkeiten."
+  },
+  "1k608muzjgc": {
+    "defaultMessage": "Pads verschiedener Netze, deren Lötstoppmaske-Öffnungen weniger als <code>min_mask_web</code> lassen, eine Zeile pro Bauteilpaar; Pads eines Footprints mit <code>mask_web = false</code> werden untereinander übersprungen, ebenso die Elektroden einer Funkenstrecke"
   },
   "1k984m2d9ls": {
     "defaultMessage": "Jede Kupferebene für Spannungsabfall und Stromdichte lösen, dann die Temperatur der Platine mit der Leistung jedes Bauteils, in Sekunden."
@@ -1228,6 +1264,9 @@
   },
   "1kfd50so1g": {
     "defaultMessage": "<code>min_controlled_depth_drill</code>"
+  },
+  "1kgj4wspayo": {
+    "defaultMessage": "<code>spark-gap</code>"
   },
   "1kh7lutkph8": {
     "defaultMessage": "4 ns"
@@ -1295,6 +1334,9 @@
   "1ln0s6ojknb": {
     "defaultMessage": "MCP-Server hinzufügen"
   },
+  "1lpa8tzh6yg": {
+    "defaultMessage": "Footprints mit <code>spark_gaps</code>"
+  },
   "1lqngucnspi": {
     "defaultMessage": "Zählt die Vias in SMD-Pads ihres eigenen Netzes (Bohrung innerhalb des Pads); <code>fab-notes.txt</code> bittet den Fertiger, genau diese zu füllen und zu kapseln (IPC-4761 Typ VII)"
   },
@@ -1324,9 +1366,6 @@
   },
   "1m39d50u8qg": {
     "defaultMessage": "Jede Diagnose trägt ihre Datei, ihr Element, ihren Ort und ihren Schweregrad, und Layout-Diagnosen tragen ihre Regel-ID. Das reicht, um einen Pull Request zu annotieren, oder um in einem Projekt, das Warnungen als Fehler behandeln will, bei Warnungen zu scheitern. Eine Regel kann auch in der Platine selbst mit <code>[drc] severity</code> zu einem Fehler hochgestuft werden, was die Politik im Design statt im CI-Skript hält."
-  },
-  "1m526qxf80v": {
-    "defaultMessage": "Füllinseln, die nichts vom Netz der Kupferfläche erreichen und entfernt wurden"
   },
   "1m52uejprc2": {
     "defaultMessage": "Ein RF-Weg wird in einer geraden Linie verlegt. Beginnend an jedem Connector mit einem Pad auf einem RF-Netz (eine Klasse mit <code>impedance</code> und ohne <code>diff_gap</code>), folgt der Plazierer RF-Netzen durch die Bauteile, die zwei oder mehr davon tragen und höchstens 16 Pins haben (DC-Blocker, Dämpfer, Schalter, LNAs, Baluns), und nimmt den längsten Weg, der an einem anderen Connector oder an einem größeren Chip mit RF-Pins endet; ein Schalter mit Bypass geht durch den Verstärker, nicht durch den Bypass. Wenn beide Enden Connectors sind, kommen sie an gegenüberliegenden Kanten der langen Achse der Platine und rutschen entlang ihnen auf eine Linie, durch das Platinenzentrum, wo beide passen. Jedes Bauteil auf dem Weg dreht sich so, dass seine Eingangs- und Ausgangspads auf dieser Linie liegen, in der Reihenfolge, gepackt Richtung Eingang mit höchstens 1,5 mm zusätzlichem Abstand pro Bauteil, und der Rest des Raums geht an den letzten Lauf. Ein zwei- oder dreipoliges Bauteil mit einem Pad auf einem Knoten des Wegs (ein ESD-Clamp, eine Bias-Drossel, ein Shunt-Kondensator) sitzt neben der Linie an diesem Knoten, gedreht so, dass seine anderen Pads weg zeigen, nah genug, dass sein RF-Pad die Leiterbahn trifft, und weit genug, dass seine anderen Pads den Klassenzustand beibehalten; zwei Shunts an einem Knoten nehmen gegenüberliegende Seiten. Der Weg wird festgelegt, bevor der Rest um ihn herum platziert wird, und ein Bauteil, das die Platine verlassen oder auf ein anderes landen würde, bleibt dem allgemeinen Plazierer überlassen."
@@ -1388,9 +1427,6 @@
   "1mzwfau5im8": {
     "defaultMessage": "Jedes Blatt ist eine gewöhnliche Schaltplandatei mit eigenen Bauteilen und Netzen. Netze verbinden sich über Blätter hinweg per Name, sodass <code>3V3</code> auf jedem Blatt ein Netz ist und ein Signal ein Blatt verlässt und unter demselben Namen auf einem anderen ankommt. Die Pins eines Netzes müssen Bauteile auf demselben Blatt sein; ein Netz, das Blätter überspannt, braucht dieselbe <code>class</code>, wo immer es eine nennt, und wird mit Beschriftungen gezeichnet. Referenzen sind über das gesamte Design eindeutig. Ein Blatt für sich überspringt die Ein-Pin- und Default-Klassen-Warnungen (der Rest des Netzes und seine Klasse können auf einem anderen Blatt sein); der obere Schaltplan führt jede Prüfung auf dem verbundenen Design aus und zeichnet die Blätter von oben nach unten gestapelt. Die obere Datei kann auch eigene Bauteile und Netze enthalten."
   },
-  "1n1rc7zgly9": {
-    "defaultMessage": "Pads verschiedener Netze, deren Lötstoppmaske-Öffnungen weniger als <code>min_mask_web</code> lassen, eine Zeile pro Bauteilpaar; Pads eines Footprints mit <code>mask_web = false</code> werden untereinander übersprungen"
-  },
   "1n1sk97q413": {
     "defaultMessage": "ein Schaltplan: platzierte Bauteile, Netze, Drähte"
   },
@@ -1405,6 +1441,9 @@
   },
   "1n654yj4dk0": {
     "defaultMessage": "Arbeite aus einem Clone, wenn du die Beispiele willst oder agentee selbst ändern möchtest:"
+  },
+  "1na2buppw58": {
+    "defaultMessage": "<code>--rulers</code>"
   },
   "1ncp0psxtys": {
     "defaultMessage": "true"
@@ -1640,6 +1679,9 @@
   "1qw5tcldd6o": {
     "defaultMessage": "Einheiten, das Dateimodell, Auflösung und Prüfung, die Rechner"
   },
+  "1qxtym14c23": {
+    "defaultMessage": "<code>agentee render</code> (MCP <code>render_item</code>) zeichnet, was der Viewer zeichnet. Ohne die Seitenpanels (<code>--canvas-only</code>) wird das PNG auf die Zeichnung zugeschnitten, und <code>--width</code> und <code>--height</code> begrenzen seine Größe."
+  },
   "1r0hmmormyn": {
     "defaultMessage": "mechanisch, in einem laminierten Unteraufbau"
   },
@@ -1660,6 +1702,9 @@
   },
   "1r5t471qlyo": {
     "defaultMessage": "Platzierung, Routing und Kupferflächen - agentee-Anleitung"
+  },
+  "1r94okxp0ki": {
+    "defaultMessage": "Eine ganze Platine bei 1400 Pixeln ist zu klein, damit ein Modell die Beschriftungen darauf lesen kann, also rendere den Teil, nach dem du fragst. <code>--focus</code> zoomt auf die Bauteile, Netze und Pins, die du nennst, und blendet den Rest aus, <code>--rulers</code> beschriftet Millimeterkoordinaten entlang der Kanten, damit das nächste <code>--region</code> vom Bild abgelesen werden kann, und mit <code>--canvas-only</code> wird das PNG auf die Zeichnung zugeschnitten:"
   },
   "1raj6a0in47": {
     "defaultMessage": "<code>*.pcb.toml</code>: Platzierungen, Leiterbahnen, Vias, Kupferflächen, Bestückungsdruck"
@@ -1739,6 +1784,9 @@
   "1siy1uwon63": {
     "defaultMessage": "Andernfalls <code>agentee new symbol NAME</code> / <code>agentee new footprint NAME</code> und die Startdatei bearbeiten."
   },
+  "1sm539dig10": {
+    "defaultMessage": "Flag"
+  },
   "1snb267xxo0": {
     "defaultMessage": "Es meldet immer Passivität (der größte Singulärwert von S über das Band) und Reziprozität (der größte |Sij - Sji|), wenn jeder Port angeregt wurde. Das TDR resample auf ein gleichmäßiges Gitter, extrapoliert den Realteil auf DC, wendet eine Gaußkante an (Standard 10-90 % Anstiegszeit von 1,3 / der oberen Frequenz) und integriert die Impulsantwort; es warnt, wenn die Kante schneller ist als die Daten es unterstützen. Der Viewer zeigt dasselbe TDR für jeden angeregten Port unter dem <code>tdr</code>-Tab."
   },
@@ -1780,6 +1828,9 @@
   },
   "1t6pxa5bz3h": {
     "defaultMessage": "Importiere aus den installierten KiCad-Bibliotheken"
+  },
+  "1t7f8d3334k": {
+    "defaultMessage": "mm-Koordinaten entlang der oberen und linken Kante beschriften"
   },
   "1tb0k2uaxra": {
     "defaultMessage": "Logiksimulationen eines Zählers und eines I2C-Busses"
@@ -1888,6 +1939,9 @@
   },
   "1v0wqtjy1ac": {
     "defaultMessage": "Bibliotheken an anderen Orten werden über <code>KICAD9_SYMBOL_DIR</code> und <code>KICAD9_FOOTPRINT_DIR</code> gefunden."
+  },
+  "1v1hqsikkfv": {
+    "defaultMessage": "Bestellscheine"
   },
   "1v2uudc6t8s": {
     "defaultMessage": "Preset"
@@ -2003,6 +2057,9 @@
   "1xdif2fiz9x": {
     "defaultMessage": "Aktive Schicht wechseln"
   },
+  "1xekxt0pa8v": {
+    "defaultMessage": "Ersatzteile für dieses Bauteil statt des Standards, z. B. keine für ein teures Modul"
+  },
   "1xfwjxnnmwm": {
     "defaultMessage": "10 ns"
   },
@@ -2023,9 +2080,6 @@
   },
   "1xsx0n8gdmv": {
     "defaultMessage": "Nützliche Footprint-Schlüssel:"
-  },
-  "1xwa0edgvkl": {
-    "defaultMessage": "Kupfer zweier Netze näher als der größere ihrer Klassenzwischenabstände (ein Footprint-<code>clearance</code> ersetzt sie für seine Pads), oder Kupfer läuft in ein nicht verzinntes Loch"
   },
   "1xx1mnazadi": {
     "defaultMessage": "Schaltpläne schreiben - agentee-Anleitung"
@@ -2069,8 +2123,14 @@
   "1yd48z3wex0": {
     "defaultMessage": "Via auf Kupfer mit Netz setzen"
   },
+  "1ydrf2t9pa0": {
+    "defaultMessage": "<code>isolation-domain</code>"
+  },
   "1yeem25v9mo": {
     "defaultMessage": "<code>diff_gap</code> macht eine Klasse zu einem Paar und ihre Impedanz zu einer Differentialimpedanz. Netze, die auf <code>_P</code> und <code>_N</code>, <code>_DP</code> und <code>_DN</code>, <code>+</code> und <code>-</code> oder <code>P</code> und <code>N</code> enden, paaren sich von selbst; sonst benenne sie im Layout:"
+  },
+  "1yf3l1ndp3i": {
+    "defaultMessage": "<code>buy_with = &quot;XHP-2, SXH-001T-P0.6 x2&quot;</code>"
   },
   "1yf5ve95i67": {
     "defaultMessage": "Ergebnis-JSON und VCD"
@@ -2092,6 +2152,9 @@
   },
   "1yl2jnjwpw": {
     "defaultMessage": "Kondensatoren, Induktivitäten, Dioden, LEDs, Testpunkte, Quarze und dergleichen werden nicht berücksichtigt."
+  },
+  "1yo5k7srzdk": {
+    "defaultMessage": "<code>--order DIR</code> (MCP <code>order</code>) schreibt Bestellscheine statt des Berichts: <code>NAME-order.csv</code> mit jeder Zeile und dem Händler, bei dem sie gekauft wird, und ein <code>NAME-&lt;distributor&gt;.csv</code> pro Händler mit einem Schlüssel, bei Mouser in der Spaltenanordnung seiner BOM-Importvorlage. Jede Zeile geht zum Händler, der für die gekaufte Menge günstiger ist, unter denen mit ausreichendem Bestand und nicht veraltet. Der Schein eines Händlers listet jede Zeile in drei Blöcken: die Zeilen, die dort bestellt werden, dann die Zeilen, die beim anderen Händler gekauft werden, dann die Zeilen, die er nicht führt oder zu wenige hat, sodass der obere Block jedes Scheins die Bestellung ist. Eine Zeile, die kein Händler führt, wird in <code>NAME-order.csv</code> so angegeben oder benennt ihr <code>lcsc</code>-Bauteil."
   },
   "1yqopwhriij": {
     "defaultMessage": "Aus dem Quellcode"
@@ -2147,6 +2210,9 @@
   "1zgogqmzk75": {
     "defaultMessage": "<code>copper-to-edge</code>"
   },
+  "1zguykj5vvy": {
+    "defaultMessage": "eine Funkenstrecke, deren Elektroden nicht den deklarierten Abstand <code>gap</code> (auf 0,01 mm genau) haben, unter <code>min_clearance</code> liegen, ein Netz teilen oder keines haben, oder bei der auf einer Außenlage Lötstoppmaske über dem Spalt liegt"
+  },
   "1zkgdw4j6er": {
     "defaultMessage": "Die zwei mitgelieferten HDI-Lagenaufbauten sind generische Aufbauten, kein veröffentlichter Lagenaufbau eines Fertigers:"
   },
@@ -2185,6 +2251,9 @@
   },
   "20dpdr10xbq": {
     "defaultMessage": "<code>dff</code>"
+  },
+  "20gg17bj404": {
+    "defaultMessage": "was mit allem außerhalb von <code>--focus</code> passiert (Standard <code>dim</code>)"
   },
   "20hgaqi3se5": {
     "defaultMessage": "Hälse in einer Füllung schmaler als 90 % des <code>min_width</code> der Kupferfläche, die die Füllung hätte öffnen sollen; gezählt nach Stelle mit dem schmalsten"
@@ -2287,6 +2356,9 @@
   },
   "221qbpi8pyl": {
     "defaultMessage": "In1.Cu zu In4.Cu, eingangs, durch den Unteraufbau,"
+  },
+  "226ie5pbkpb": {
+    "defaultMessage": "das LCSC-Bauteil, benannt, wenn kein Händler die Zeile führt"
   },
   "226vjhs4w16": {
     "defaultMessage": "Die *.fp.toml-Datei: Pad-Reihen, Pad-Formen und -Lagen, Randpads, Zonenverbindungen, Courtyards, Bestückungsdruck und 3D-Modelle."
@@ -2398,6 +2470,9 @@
   },
   "24ge4p3vpat": {
     "defaultMessage": "erste bis letzte Kupferschicht"
+  },
+  "24ghp4o686m": {
+    "defaultMessage": "Teil eines Designs rendern"
   },
   "24kimihxft4": {
     "defaultMessage": "Füllspitzen schärfer als 30 Grad; erhöhe das <code>min_width</code> der Kupferfläche"
@@ -2567,6 +2642,9 @@
   "270mf8lg1lx": {
     "defaultMessage": "setzt Connectoren an die Kanten mit der Gegenstückseite nach außen und nie einen RF- und einen USB-Connector an derselben Kante, wenn eine andere Aufteilung passt, weil USB-3-Störungen in das 2,4-GHz-Band fallen;"
   },
+  "272ff8lqlwg": {
+    "defaultMessage": "Kupfer zweier Netze, das näher beieinander liegt als der größere ihrer Klassenabstände (ein Footprint-<code>clearance</code> ersetzt sie für seine Pads), oder Kupfer, das in ein nicht verzinntes Loch läuft. Pads eines Footprints werden auf <code>min_clearance</code> und auf den Klassenabstand von Netzen in einer Isolationsdomäne gehalten; Funkenstreckenelektroden werden übersprungen"
+  },
   "273giv9xl0e": {
     "defaultMessage": "Platzierung, JLCPCB-Spalten"
   },
@@ -2620,6 +2698,12 @@
   },
   "28a3r88ouzz": {
     "defaultMessage": "0.3"
+  },
+  "28d8cxee2e6": {
+    "defaultMessage": "Schaltpläne und Layouts: auf diese Referenzen, Netznamen oder <code>REF.PIN</code> zoomen, <code>*</code> passt auf jede Zeichenfolge. Ein Netz bringt die Bauteile mit, die es berührt, ein Pin sein Netz"
+  },
+  "28eex1tfszn": {
+    "defaultMessage": "Der Abstand einer Klasse, deren Netze in einer Domäne liegen, wird als elektrischer Abstand genommen, gilt also auch zwischen Pads eines Footprints: Ein TO-220 in einer 1,5-mm-HvBus-Klasse mit 1,0 mm Abstand zwischen den Pads ist ein <code>clearance</code>-Fehler. Pads eines Footprints, deren Netze in keiner Domäne liegen, werden nur an <code>min_clearance</code> gehalten, da der Bauteilabstand ihren Spalt bestimmt."
   },
   "28f7652hq13": {
     "defaultMessage": "Schreibe eine Startdatei für eine Platine, ein Symbol, einen Footprint, einen Schaltplan, ein Layout oder eine Simulation, die du bearbeiten kannst. Eine Simulation startet als FDTD-Lauf eines Layouts oder mit sim_kind logic als Logiksimulation eines Schaltplans (Takt, Reset, eine getaktete Assertion), deren Netze du umbenennst."
@@ -2689,6 +2773,9 @@
   },
   "29iu3d22sqh": {
     "defaultMessage": "Routen: Pad, Via oder Leiterbahn anklicken zum Starten, klicken für 45-Grad-Ecken, <code>/</code> dreht die Biegung, V setzt ein Via, Enter beendet"
+  },
+  "29j14m86ht8": {
+    "defaultMessage": "Feld"
   },
   "29ku7ky1qub": {
     "defaultMessage": "ein Paar, das nebeneinander mit einem Abstand läuft, der von der <code>diff_gap</code> der Netzklasse abweicht und über <code>max_uncoupled</code> hinausgeht"
@@ -2779,6 +2866,9 @@
   },
   "2b4wu4tjhac": {
     "defaultMessage": "Ein HDI-Preset verwenden"
+  },
+  "2b5qclo9mdd": {
+    "defaultMessage": "<code>isolation-unassigned</code>"
   },
   "2b6e1q1tvd8": {
     "defaultMessage": "<code>agentee fab pcb:NAME -o DIR</code> (MCP <code>fab</code>) schreibt:"
@@ -2900,6 +2990,9 @@
   "2cjq2lndzi6": {
     "defaultMessage": "Der Treiber wird zu einer Thevenin-Quelle aus seinen Pull-down- und Pull-up-Tabellen, seiner Die-Kapazität und seinem Gehäuse; sein Rampenverlauf setzt den Rand und sein Spannungsbereich die Schwingung, außer <code>rise</code> oder <code>swing</code> sind angegeben. Der Empfänger belastet das ferne Ende mit seiner Gehäuse- und Die-Kapazität, und das Auge wird an seiner Die gelesen. IBIS funktioniert vorerst nur auf einseitigen Pfaden."
   },
+  "2cozbj3xs0k": {
+    "defaultMessage": "<code>--focus</code> nimmt Referenzen (<code>U1</code>), Netznamen (<code>SPI_CLK</code>) und Pins (<code>U1.3</code>), mit <code>*</code> als Platzhalter. Ein Netz bringt die Bauteile mit, die es berührt. <code>--context</code> ist standardmäßig <code>dim</code>, <code>hide</code>, um nur das Namentliche zu lassen, oder <code>show</code>, um zu zoomen, ohne etwas auszublenden. MCP <code>render_item</code> nimmt die gleichen <code>focus</code>, <code>context</code> und <code>rulers</code>-Argumente."
+  },
   "2csls3gciuc": {
     "defaultMessage": "Was es braucht"
   },
@@ -2929,6 +3022,9 @@
   },
   "2d6y5d2d527": {
     "defaultMessage": "<code>impedance-trace</code>"
+  },
+  "2d70vdx1d3o": {
+    "defaultMessage": "Ein Name, der nichts passt, ist ein Fehler. <code>--region</code> mit <code>--focus</code> behält den Filter und verwendet die Region für den Zoom."
   },
   "2dayrb6juwp": {
     "defaultMessage": "HC, HCT"
@@ -3296,6 +3392,9 @@
   "4lxxwf41j4": {
     "defaultMessage": "<code>min_plated_slot_width</code>"
   },
+  "4pvnbce4b5": {
+    "defaultMessage": "<code>creepage</code>"
+  },
   "4rae9zpwbh": {
     "defaultMessage": "immer"
   },
@@ -3358,6 +3457,9 @@
   },
   "686lhskeo4": {
     "defaultMessage": "ein Schaltplansymbol"
+  },
+  "6f8tjd4506": {
+    "defaultMessage": "Lagen, die ein- oder ausgeschaltet werden, z. B. <code>--hide F.Cu --show In1.Cu</code>"
   },
   "6ido514tq1": {
     "defaultMessage": "4 Lagen, JLC04161H-7628, ENIG"
@@ -3671,6 +3773,9 @@
   "b7b8tb291q": {
     "defaultMessage": "Projektdateien"
   },
+  "b7nt3ki7r1": {
+    "defaultMessage": "Rendert ein Element als PNG exakt so, wie der Viewer es anzeigt, und gibt das Bild zurück. Ohne die Seitenleisten wird das Bild auf die Zeichnung beschnitten, sodass Breite und Höhe die maximalen Werte sind."
+  },
   "b92nzpwkpa": {
     "defaultMessage": "Was du getan hast"
   },
@@ -3766,6 +3871,9 @@
   },
   "d4h9xa9tl2": {
     "defaultMessage": "Zeichne den Courtyard auf <code>F.CrtYd</code> und die Körperkontur auf <code>F.Fab</code>: Die Prüfung benötigt einen Courtyard, der die Pads umschließt, der Platzhalter hält Courtyards voneinander fern, und die Kanten- und Montage-Regeln messen vom Körper aus. Setze <code>height</code>, damit die 3D-Ansicht und die Regel für hohe Bauteile eine Höhe ohne Modell haben."
+  },
+  "d8xhh7ye1c": {
+    "defaultMessage": "Der <code>back</code>-Schalter der 2D-Seite spiegelt die Platine, um sie von unten zu betrachten: Unteres Kupfer wird über dem oberen gezeichnet, und die Sichtbarkeit jeder Vorderlage tauscht mit ihrer Rücklage. <code>agentee render pcb:NAME --show back</code> rendert diese Ansicht."
   },
   "da20h6ryzp": {
     "defaultMessage": "Der MCP-Server"
@@ -3941,6 +4049,9 @@
   "gaamns4i1l": {
     "defaultMessage": "<code>min_drill</code>, <code>min_via_drill</code>"
   },
+  "gj2bevgtpu": {
+    "defaultMessage": "<code>--spares</code> (MCP <code>spares</code>) fügt den Handbestückungszuschlag hinzu: 0402- und 0603-Widerstände und Kondensatoren werden auf das nächste Zehnermultiple über dem Bedarf plus fünf gekauft, und jede <code>D</code>, <code>Q</code>, <code>U</code> und <code>F</code>-Zeile erhält ein Ersatzteil. Diese Bauteilfelder ändern es:"
+  },
   "glhbhwqbjr": {
     "defaultMessage": "Ein Pin ist <code>REF.PIN</code>, nach Nummer oder nach einem eindeutigen Pin-Namen; ein Name, den mehrere Pins teilen, ist ein Fehler. Ein Pin, dem ein Netz zugewiesen wird, auf dem er bereits liegt, wechselt zum neuen Netz. Die Datei behält ihre Kommentare und ihr Layout. <code>agentee edit</code> schreibt die Datei, füllt die gespeicherten Kupferflächen eines Layouts neu und meldet dann die Prüfungsdiagnosen der Dateien, die es geändert hat, und beendet sich mit 1, wenn eine davon ein Fehler ist."
   },
@@ -4093,6 +4204,15 @@
   },
   "ijyo5sjjdk": {
     "defaultMessage": "<code>Y0</code> bis <code>Y7</code>"
+  },
+  "ingvojakto": {
+    "defaultMessage": "Netze in keiner Domäne, die keine Barriere abdeckt"
+  },
+  "iomevdc6xc": {
+    "defaultMessage": "<code>--context dim|hide|show</code>"
+  },
+  "iozyts7ml0": {
+    "defaultMessage": "<code>spares = &quot;0&quot;</code>"
   },
   "ir7t9q4eba": {
     "defaultMessage": "<code>A</code>, <code>B</code>: dieselbe Pins, von der anderen Seite aus durch <code>DIR</code> gesteuert"
@@ -4652,6 +4772,9 @@
   "rbd5i5y6uj": {
     "defaultMessage": "Anleitungen"
   },
+  "rg8rx5tw3u": {
+    "defaultMessage": "<code>lcsc = &quot;C165948&quot;</code>"
+  },
   "rgx7g5j89u": {
     "defaultMessage": "Gerätedaten werden linear in Real- und Imaginärteil interpoliert, und das Band wird auf den Bereich beschnitten, in dem jedes Gerät Daten hat. Ein Zweiport-Ergebnis meldet Verstärkungsspitze und -tief, schlechtesten S11, S22 und S12 und den niedrigsten Edwards-Sinsky-mu und Rollett-K (mu über 1 bei jeder Frequenz ist bedingungslos stabil). Das Ergebnis wird veraltet, wenn sich die Spezifikation, das Platinenergebnis oder eine Gerätedatei ändert."
   },
@@ -4699,6 +4822,9 @@
   },
   "sa2s0k3fii": {
     "defaultMessage": "0.15, 1.0"
+  },
+  "sa82hcx9ev": {
+    "defaultMessage": "Kupfer zweier Domänen auf einer Lage, das näher beieinander liegt als der Abstand der Barriere zwischen ihnen, einschließlich Pads eines Footprints und Kupferflächen; eine Zeile pro Netzpaar mit dem nächstgelegenen Ort"
   },
   "saviwyv34g": {
     "defaultMessage": "20 ns"
@@ -4862,6 +4988,9 @@
   "vevjglgna0": {
     "defaultMessage": "Gib ihm das Formatreferenzdokument"
   },
+  "vg1052wiwx": {
+    "defaultMessage": "Eine Netzklasse hat einen Abstand, der gegen jedes andere Netz gehalten wird. Wenn Netze zu einer Gruppe mehr Abstand halten müssen als zu ihren Nachbarn (Netzteile-Primärseite zur Sekundärseite, eine schwimmende Schiene zum Rest der Sekundärseite), lege die Netze in Domänen und setze eine Barriere zwischen zwei Domänen:"
+  },
   "vgzxbueyi7": {
     "defaultMessage": "Manche Entscheidungen sind schneller mit der Maus: einen Steckverbinder an den Ort schieben, den das Gehäuse verlangt, eine Leiterbahn um ein Bauteil herum neu routen, ein Via setzen. Die 2D-Layout-Seite bearbeitet das Layout, und das Speichern (Strg+S) schreibt die Änderung in die <code>.pcb.toml</code> mit demselben Kommentar- und Reihenfolge-erhaltenden Writer wie die CLI. Der Agent liest deine Änderung beim nächsten Laden der Datei."
   },
@@ -4970,6 +5099,9 @@
   "x0m5nm2n6u": {
     "defaultMessage": "KiCad zeichnet den Bestückungsdruck mit 0,12 mm, JLCPCB verlangt 0,15 mm. Öffne jeden Footprint und ändere <code>width = 0.12</code> in <code>0.15</code> bei seinen Bestückungsdruck-Grafiken, oder lass deinen Agenten es tun. So sieht die Arbeit mit agentee normalerweise aus: Die Diagnose nennt die Datei, das Element und die Zahl, und die Korrektur ist eine einzige Änderung."
   },
+  "x3a0fv0yot": {
+    "defaultMessage": "Bedeutung"
+  },
   "x3j6gd5rkw": {
     "defaultMessage": "Projektdateien - agentee Referenz"
   },
@@ -5060,6 +5192,9 @@
   "y817q65376": {
     "defaultMessage": "<code>hole-to-edge</code>"
   },
+  "y84zm9obxw": {
+    "defaultMessage": "<code>--region x0,y0,x1,y1</code>"
+  },
   "y852j1pdwt": {
     "defaultMessage": "<code>*.sym.toml</code>"
   },
@@ -5072,8 +5207,14 @@
   "yc9r30dm9u": {
     "defaultMessage": "Die Stückliste gruppiert nach ihnen, und <code>agentee parts</code> sucht Lagerbestand, Preis und günstigere Äquivalente nach <code>mpn</code>. Siehe <a href=\"/guides/fab/\">Fertigungsdaten, Stückliste und Preise</a>."
   },
+  "ycd75jjuqy": {
+    "defaultMessage": "ein Netz, dessen Klasse oder Name es in zwei Domänen einordnet"
+  },
   "ydfgdztl7j": {
     "defaultMessage": "<code>rect</code>"
+  },
+  "yebgi2jbad": {
+    "defaultMessage": "Ein Netz liegt in höchstens einer Domäne. Innerhalb einer Domäne und für Netze ohne Domäne gelten die Klassenabstände wie bisher. Zwischen zwei Domänen mit einer Barriere hält Kupfer auf einer Lage den <code>clearance</code> der Barriere (<code>isolation-clearance</code>), Pads eines Footprints und Kupferflächen eingeschlossen. Kupferflächen und der Autorouter halten die Barriere vom Kupfer der anderen Domäne, während sie füllen und routen; auf F.Cu und B.Cu halten sie das Größere von <code>clearance</code> und <code>creepage</code>, da keines Pfade um Ausschnitte misst."
   },
   "yfwyujuwr8": {
     "defaultMessage": "2"

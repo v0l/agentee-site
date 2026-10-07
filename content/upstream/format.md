@@ -434,6 +434,49 @@ of its own but their blind via drill (`min_blind_via_drill`, 0.2 mm), applied on
 set `min_controlled_depth_drill` in `[rules]` from your fab's figure. On `hdi-6l-1n1` a 0.15 mm controlled depth drill reaches
 In1.Cu or In4.Cu (0.123 mm deep), not In2.Cu.
 
+### Isolation domains and barriers
+
+A net class has one clearance, held against every other net. Where nets must keep more distance
+from one group than from their neighbours (a mains primary from the secondary, a floating rail
+from the rest of the secondary), put the nets in domains and set a barrier between two domains:
+
+```toml
+[[domains]]
+name = "primary"
+classes = ["Mains", "HvBus"]       # every net of these classes
+nets = ["PGND", "LLC_*"]           # and these nets, globs allowed
+
+[[domains]]
+name = "secondary"
+classes = ["Out24V"]
+nets = ["GND_SEC", "5VSB"]
+
+[[barriers]]
+between = ["primary", "secondary"]
+clearance = "4mm"                  # through air, on every copper layer
+creepage = "6.4mm"                 # along the board surface, on F.Cu and B.Cu
+pollution_degree = 2               # 1, 2 or 3, default 2
+```
+
+A net sits in one domain at most. Inside a domain, and for nets in none, the class clearances
+apply as before. Between two domains with a barrier, copper on one layer keeps the barrier's
+`clearance` (`isolation-clearance`), pads of one footprint and pours included. Pours and the
+autorouter keep the barrier from the other domain's copper as they fill and route; on F.Cu and
+B.Cu they keep the larger of `clearance` and `creepage`, since neither measures paths around slots.
+
+Creepage is the shortest path between the two coppers along the outer surface they sit on
+(`creepage`). It stays on the board and goes around board cutouts and non-plated holes. A slot or
+hole narrower than the groove width X of the pollution degree (0.25 mm for 1, 1.0 mm for 2,
+1.5 mm for 3, as IEC 60664-1 gives it) is bridged and measured straight across. Between copper on
+F.Cu and copper on B.Cu the path runs down the wall of a board cutout or non-plated hole of any
+width, or round the board edge, and counts the board's thickness. Solder mask does not count as
+insulation.
+
+The clearance of a class whose nets sit in a domain is taken as an electrical spacing, so it also
+holds between pads of one footprint: a TO-220 on a 1.5 mm HvBus class with pads 1.0 mm apart is a
+`clearance` error. Pads of one footprint whose nets are in no domain are held to `min_clearance`
+alone, since the part's pitch sets their gap.
+
 ### Design rule checks
 
 Layout checks run from a registry of rules, each with a stable id, a category (`copper`,
@@ -492,7 +535,12 @@ tombstone_ratio = 3            # copper or feed width one chip pad may have over
 | `placement-cluster-spread` | info | parts | a two-pin passive whose signal nets reach one IC and nothing else, farther than `cluster_spread` (10 mm) from that IC's pin |
 | `placement-connector-not-at-edge` | info | parts | a connector (edge pads, `overhang = true`, or a `J`/`P` reference that is not a Tag-Connect, U.FL or test pad) whose courtyard is farther than `connector_edge` (3 mm) from the outline |
 | `short` | error | always | copper of two different nets touches |
-| `clearance` | error | always | copper of two nets closer than the larger of their class clearances (a footprint `clearance` replaces them for its pads), or copper run into a non-plated hole |
+| `clearance` | error | always | copper of two nets closer than the larger of their class clearances (a footprint `clearance` replaces them for its pads), or copper run into a non-plated hole. Pads of one footprint are held to `min_clearance` and to the class clearance of nets in an isolation domain; spark gap electrodes are skipped |
+| `isolation-domain` | error | `[[domains]]` | a net whose class or name puts it in two domains |
+| `isolation-unassigned` | warning | `[[domains]]` | nets in no domain, which no barrier covers |
+| `isolation-clearance` | error | a barrier with `clearance` | copper of two domains on one layer closer than the clearance of the barrier between them, pads of one footprint and pours included; one line per net pair with the closest spot |
+| `creepage` | error | a barrier with `creepage` | copper of two domains closer along the board surface than the barrier's creepage: on one outer layer around board cutouts and non-plated holes at least the groove width of its `pollution_degree` wide, and from F.Cu to B.Cu down a cutout or hole wall or round the board edge |
+| `spark-gap` | error | footprints with `spark_gaps` | a spark gap whose electrodes are not the declared `gap` apart (to 0.01 mm), sit under `min_clearance`, share a net or lack one, or have solder mask across the gap on an outer layer |
 | `unrouted` | error | always | a net whose pads are not all joined by tracks, vias and pours, naming the groups that are apart |
 | `dangling-track` | warning | always | a track end that touches no copper of its net and no pour |
 | `track-grazes-pad` | warning | always | tracks that reach a pad only with their edge; run the centre line into the pad |
@@ -515,10 +563,10 @@ tombstone_ratio = 3            # copper or feed width one chip pad may have over
 | `zone-clearance` | error | zones | a fill that covers or comes too close to copper of another net |
 | `zone-tips` | warning | zones | fill tips sharper than 30 degrees; raise the zone's `min_width` |
 | `copper-neck` | warning | zones | necks in a fill narrower than 90% of the zone's `min_width`, which the fill should have opened; counted by place with the narrowest |
-| `zone-islands` | info | always | fill islands that reach nothing of the zone's net and were removed |
+| `zone-islands` | info | always | fill islands that reach nothing of the zone's net, or only copper that is cut off from the rest of it and joins no two pads, and were removed |
 | `courtyard-overlap` | error | parts | courtyards of two parts on one side overlap by their outline |
 | `courtyard-hole` | error | parts | a courtyard that covers a mounting hole or a non-plated hole of another part |
-| `mask-web` | error | always | pads of different nets whose mask openings leave less than `min_mask_web`, one line per pair of parts; pads of one footprint with `mask_web = false` are skipped among themselves |
+| `mask-web` | error | always | pads of different nets whose mask openings leave less than `min_mask_web`, one line per pair of parts; pads of one footprint with `mask_web = false` are skipped among themselves, and so are the electrodes of a spark gap |
 | `silk-text` | error | always | silk text that crowds other text, sits on pads, prints over vias, crosses a silk outline or runs off the board; a reference gets a clear spot (`agentee silk` moves it there) |
 | `silk-hidden` | warning | always | silk text only hidden under another part's body |
 | `silk-text-height` | warning | always | silk text under `min_silk_text_height` |
@@ -732,6 +780,10 @@ model_scale = [1, 1, 1]                # optional
 # net_tie_pad_groups = [["1", "2"]]  # as KiCad's net tie: copper of these pads' nets may touch or
                                # come near any pad of the group (a bridged solder jumper's strip
                                # and the tracks landing on it) without a short or clearance error
+# spark_gaps = [{ pads = ["1", "2"], gap = "0.25mm" }]  # electrodes meant to arc: the pair skips
+                               # clearance, barrier, creepage and mask web checks, and spark-gap
+                               # checks the drawn gap, the fab minimum and an open mask over it;
+                               # draw a filled F.Mask shape across the gap to open it
 
 [[pads]]
 number = "1"
@@ -1247,7 +1299,13 @@ widest that keeps clearance, rounded down to 0.01 mm (or exactly `min_track_widt
 would drop under it and the unrounded width does not); the wide track starts at the first spot out
 from the pad where its full width keeps clearance (and, for a pad narrower than the track, outside
 the pad). Pads of one net that touch, like a thermal pad built from several pad entries, count as
-one wide pad. Pairs routed with `--pairs` do not neck down. A connection of a net that already has fresh copper starts from that copper. Once everything is in,
+one wide pad. Pairs routed with `--pairs` do not neck down. A connection of a net that already has fresh copper starts from that copper. A connection
+that finds no path even through the nets it could rip up waits for the other connections of its
+net and tries once more from the copper they add. Classes route one after another, the tightest
+first (fewest allowed layers, then the widest track plus clearance), each held fixed for the
+next. Once a class is in, every net of it with vias is ripped up and routed again with vias four
+times dearer and the rest held fixed, and the new route stays when it has fewer vias (or joins
+more), pass after pass while one saves a via. Then
 each routed connection that uses vias is tried again on one layer at a time with the rest held
 fixed, and the one-layer route replaces it when it is at most 25% plus 1 mm longer. Then the
 vias of neighbouring parallel connections that change layer near each other are slid along their
@@ -1257,7 +1315,10 @@ interface with `max_vias` keeps the trace (every net of the lane, through series
 it: a route with too many vias is tried again with dearer vias, then on one layer, and fails with
 the reason if neither fits. The second net of a pair is drawn toward its
 partner at the pair gap; `--pairs` tries to route both halves together as one coupled track
-first. When a few connections fail, route them again together with the nets around them and
+first. When connections fail, the whole route runs again, up to four times in all, with the
+failed nets first in their class and their class first, and a cost on the path they would take
+through the copper of earlier classes so those classes leave it free; the run with the fewest
+failures, then the fewest vias, then the least track is written. When a few connections fail, route them again together with the nets around them and
 `--reroute`, so the router can rip up and reorder the whole area, or drop to `--grid 0.025`. `--dry-run` reports without writing. Route the nets that matter by hand
 first, then let the router fill in the rest, a class at a time.
 
@@ -1413,6 +1474,10 @@ shift-drag to pan, scroll to zoom, double-click to reset. The viewer draws with 
 ([three-d](https://github.com/asny/three-d)); `agentee render pcb:NAME --show 3d` (or `3d-top`,
 `3d-bottom`) draws the same scene in software, `--hide parts` leaves the models out and `--region`
 aims the camera at that area.
+
+The 2D page's `back` toggle mirrors the board to look at it from below: bottom copper draws over
+the top, and each front layer's visibility swaps with its back twin. `agentee render pcb:NAME
+--show back` renders that view.
 
 ### Editing in the viewer
 
@@ -2106,6 +2171,22 @@ text.
    and place vias there and save them into the layout.
 7. `agentee fab NAME -o fab/` writes the manufacturing package once the layout has no errors.
 
+### Rendering part of a design
+
+`agentee render` (MCP `render_item`) draws what the viewer draws. Without the side panels
+(`--canvas-only`) the PNG is cropped to the drawing, and `--width` and `--height` cap its size.
+
+| flag | does |
+|---|---|
+| `--region x0,y0,x1,y1` | zoom to that rectangle, in mm in the item's own coordinates |
+| `--focus A,B,...` | schematics and layouts: zoom to these references, net names or `REF.PIN`, `*` matching any run of characters. A net brings in the parts it touches, a pin its net |
+| `--context dim\|hide\|show` | what happens to everything outside `--focus` (default `dim`) |
+| `--rulers` | label mm coordinates along the top and left edges |
+| `--show` / `--hide` | layers to turn on or off, e.g. `--hide F.Cu --show In1.Cu` |
+
+A name that matches nothing is an error. `--region` with `--focus` keeps the filter and uses the
+region for the zoom.
+
 ## Importing a KiCad board
 
 `agentee import board path/to/NAME.kicad_pcb --dir DIR` turns a whole KiCad board into a project:
@@ -2207,3 +2288,28 @@ The report ends with the total per currency as chosen and with every cheaper pic
 number of API calls made: Mouser allows 30 a minute and 1000 a day, and the part lookups go ten
 part numbers to a call. A refused key is reported once and that distributor is not asked again in
 the run.
+
+### Order sheets
+
+```sh
+agentee parts buggy-guard --boards 2 --spares --order docs/
+```
+
+`--order DIR` (MCP `order`) writes sheets to buy from instead of the report: `NAME-order.csv`
+with every line and the distributor it is bought from, and one `NAME-<distributor>.csv` per
+distributor with a key, Mouser's in the column layout of its BOM import template. Each line goes to
+the distributor that is cheaper for the quantity bought, among those with enough stock and not
+obsolete. A distributor's sheet lists every line in three blocks: the lines to order there, then
+the lines bought at the other distributor, then the lines it does not list or has too few of, so
+the top block of each sheet is the order. A line no distributor stocks says so in
+`NAME-order.csv`, or names its `lcsc` part.
+
+`--spares` (MCP `spares`) adds the hand assembly allowance: 0402 and 0603 resistors and
+capacitors are bought at the next multiple of ten above the need plus five, and each `D`, `Q`,
+`U` and `F` line gets one spare. These part fields change it:
+
+| field | meaning |
+|---|---|
+| `spares = "0"` | spares for this part instead of the default, e.g. none for an expensive module |
+| `buy_with = "XHP-2, SXH-001T-P0.6 x2"` | parts bought with each one of this part but not placed on the board: mating housings, crimps, an antenna. ` xN` is the count per part; the line names the parts it is for and gets one spare with `--spares` |
+| `lcsc = "C165948"` | the LCSC part, named when neither distributor stocks the line |

@@ -20,6 +20,9 @@
   "10hj9wtkhca": {
     "defaultMessage": "assertions, setup et hold, conflit"
   },
+  "10jc42a8vsy": {
+    "defaultMessage": "zoomer sur ce rectangle, en mm dans les coordonnées propres de l'élément"
+  },
   "10l2rcg9xvo": {
     "defaultMessage": "<code>interface-vias</code>"
   },
@@ -179,6 +182,12 @@
   "12l7h195o1h": {
     "defaultMessage": "<code>usb2-hs</code>"
   },
+  "12la968121a": {
+    "defaultMessage": "une barrière avec <code>creepage</code>"
+  },
+  "12mj4ud735z": {
+    "defaultMessage": "composants achetés avec chacun de ceux-ci mais non placés sur la carte : boîtiers d'appariement, embouts, une antenne. <code> xN</code> est le nombre par composant ; la ligne indique les composants pour lesquels elle est destinée et reçoit une pièce de rechange avec <code>--spares</code>"
+  },
   "12nmfoozwbx": {
     "defaultMessage": "Un net avec une zone est un net de plan. <code>tie</code> donne à chaque pastille SMD d'un net de plan une courte tige et un via à côté, sur le côté opposé au composant, à l'écart de toute pastille et de tout autre net. C'est ainsi que les pastilles de masse et d'alimentation doivent atteindre un plan, au lieu de pistes entre elles. Une pastille qui a déjà un via de son net à proximité est laissée telle quelle, et une pastille sans emplacement légal est listée sous <code>failed</code>."
   },
@@ -272,9 +281,6 @@
   "13u8mhxwbqd": {
     "defaultMessage": "<code>R</code> facultatif, <code>CLK</code>, <code>D0</code> à <code>D3</code> facultatifs, <code>CEP</code>, <code>LOAD</code>, <code>CET</code>"
   },
-  "13wt2gfx3mu": {
-    "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code> (MCP <code>route</code>) route le chevelu des nets nommés sur une grille (<code>--grid</code>, par défaut 0,05 mm) et ajoute les pistes et les vias au fichier de routage en tant que <code>[[tracks]]</code> et <code>[[vias]]</code> ordinaires, afin que vous puissiez les modifier ensuite. Il respecte la largeur, l'espacement et les <code>layers</code> de chaque classe de nets par rapport à chaque pastille, piste, via, trou et bord de la carte. Il dimensionne l'espace pour chaque via de classe selon sa propre pastille, son perçage et ses couches (un microvia passe là où un via traversant ne passe pas, et un microvia peut se situer à côté d'un via enfoui sur d'autres couches). Il garde les nouveaux vias à <code>min_hole_to_hole</code> de chaque perçage dont l'envergure partage un diélectrique avec le leur, et leurs trous à <code>min_via_hole_to_copper</code> des pastilles, pistes et vias des autres nets. Il les garde hors des pastilles SMD de tous les nets, y compris du sien (le cuivre du via ne doit pas toucher une pastille, <code>via-cuts-pad</code>, et le trou reste à <code>min_hole_to_smd_pad</code> de celle-ci, <code>hole-to-smd-pad</code>, sauf si <code>--via-in-pad</code>, MCP <code>via_in_pad</code>, permet de le placer entièrement à l'intérieur d'une pastille SMD de son net avec un perçage d'au plus <code>max_filled_via_drill</code>). Il utilise les vias de la classe pour changer de couche, le moins coûteux dont l'envergure couvre les deux couches (<code>--via uv-top,core</code> ou MCP <code>via</code> pour choisir parmi d'autres noms, <code>--via-cost</code> en mm de piste, par défaut 3, multiplié par le <code>cost</code> du via). Il facture <code>--bend-cost</code> mm de piste pour chaque virage de 45 degrés (par défaut 0,1, trois fois ce montant pour 90 degrés). Il ne déplace jamais ce qui est déjà en place, sauf si <code>--reroute</code> est fourni, ce qui supprime d'abord les pistes et les vias des nets nommés. Une connexion qui ne trouve pas de chemin libre déroute les nets routés qu'elle croiserait ou dont elle rapprocherait les trous de via à moins de <code>min_hole_to_hole</code> du sien (trous dont les envergures partagent un diélectrique), se souvient du point comme encombré, et ces nets repassent dans la file d'attente. La recherche avance par pas de 45 degrés et facture chaque virage, de sorte que les chemins sortent en segments droits avec des virages de 45 degrés ; ensuite, les segments sont tendus avec des coudes à deux segments de 45 degrés, et tout angle de 90 degrés restant est chanfreiné là où l'espacement le permet. Seule la tige vers le centre d'une pastille hors grille peut se situer à un autre angle. Lorsque la largeur de la classe ne rentre pas dans une pastille d'extrémité (plus large que le petit côté de la pastille, ou trop proche des pastilles voisines pour respecter l'espacement), le routage se rétrécit : la piste de la largeur de la classe s'arrête avant la pastille et une entrée <code>[[tracks]]</code> séparée avec une <code>width</code> explicite va droit vers le centre de la pastille, d'une longueur d'au plus la <code>neckdown</code> de la classe et d'une largeur d'au moins <code>min_track_width</code>. Sa largeur est la plus petite de la largeur de la classe, du petit côté de la pastille et de la plus large qui respecte l'espacement, arrondie par défaut à 0,01 mm (ou exactement <code>min_track_width</code> si l'arrondi ferait descendre en dessous et que la largeur non arrondie ne le fait pas) ; la piste large commence au premier point éloigné de la pastille où sa largeur complète respecte l'espacement (et, pour une pastille plus étroite que la piste, à l'extérieur de la pastille). Les pastilles d'un même net qui se touchent, comme une pastille thermique construite à partir de plusieurs entrées de pastille, comptent comme une seule pastille large. Les paires routées avec <code>--pairs</code> ne se rétrécissent pas. Une connexion d'un net qui a déjà du cuivre neuf part de ce cuivre. Une fois tout en place, chaque connexion routée qui utilise des vias est réessayée couche par couche avec le reste fixé, et le routage à une couche le remplace s'il est d'au plus 25 % plus 1 mm plus long. Ensuite, les vias des connexions parallèles voisines qui changent de couche à proximité sont glissés le long de leurs propres pistes sur une rangée ou une colonne commune sur la grille, là où le point est légal et que la connexion conserve sa longueur (les jambes de paire maintenues par <code>--pairs</code> et les nets avec plusieurs connexions restent en place). Un net dans une interface avec <code>max_vias</code> garde la trace (tous les nets de la voie, y compris les composants en série) à l'intérieur : un routage avec trop de vias est réessayé avec des vias plus coûteux, puis sur une couche, et échoue avec la raison si aucun ne convient. Le second net d'une paire est attiré vers son partenaire à l'écartement de la paire ; <code>--pairs</code> essaie d'abord de router les deux moitiés ensemble comme une piste couplée unique. Lorsque quelques connexions échouent, routez-les à nouveau ensemble avec les nets environnants et <code>--reroute</code>, afin que le routeur puisse dérouter et réorganiser toute la zone, ou passez à <code>--grid 0.025</code>. <code>--dry-run</code> rapporte sans écrire. Routez d'abord manuellement les nets qui comptent, puis laissez le routeur remplir le reste, une classe à la fois."
-  },
   "13xykr3e7l9": {
     "defaultMessage": "Symboles"
   },
@@ -284,6 +290,9 @@
   "13z0xd124hs": {
     "defaultMessage": "<code>mask_web = false</code> quand le fabricant ouvre le vernis épargne sur toutes les pastilles d'un composant à pas fin comme une seule fenêtre."
   },
+  "1412p7ywue1": {
+    "defaultMessage": "une barrière avec <code>clearance</code>"
+  },
   "1414n4x5uae": {
     "defaultMessage": "Vérifications des règles de conception d'un routage. Avec list = true : chaque règle DRC avec son identifiant, sa catégorie, sa gravité, et si elle s'applique à cette carte et pourquoi. Sinon : les diagnostics du routage qui portent un identifiant de règle. Les identifiants de règle vont dans la liste [drc] disable ou le tableau de gravité de la carte."
   },
@@ -292,6 +301,9 @@
   },
   "14bd9z49wd1": {
     "defaultMessage": "Simulation FDTD"
+  },
+  "14dlyveasdo": {
+    "defaultMessage": "Domaines et barrières d'isolement"
   },
   "14f19xcrdbg": {
     "defaultMessage": "Puce Apple"
@@ -323,6 +335,9 @@
   "1519g1avehv": {
     "defaultMessage": "Formules fermées pour une première réponse, un solveur de champ GPU avec vernis et épaisseur de cuivre pour les classes qui comptent. Dans les 0,5 % des références stripline exactes."
   },
+  "1521tyvidt3": {
+    "defaultMessage": "cuivre de deux domaines plus proche le long de la surface de la carte que l'espacement de fuite de la barrière : sur une couche externe autour des découpes de carte et des trous non étamés d'au moins la largeur de rainure de son <code>pollution_degree</code>, et de F.Cu à B.Cu le long d'une paroi de découpe ou de trou ou autour du bord de la carte"
+  },
   "1528x7i9xv2": {
     "defaultMessage": "mécaniquement, dans un sous-empilement, ou à une profondeur contrôlée (<code>drill_kind = &quot;controlled_depth&quot;</code>)"
   },
@@ -331,6 +346,9 @@
   },
   "152usp03oi7": {
     "defaultMessage": "Une simulation du routage ou du schéma : FDTD, cascade, canal, PDN, chute DC, thermique ou logique."
+  },
+  "154h9bif94k": {
+    "defaultMessage": "<code>[[domains]]</code>"
   },
   "156bmxs5c35": {
     "defaultMessage": "un condensateur entre une alimentation et la masse dont la pastille d'alimentation est à plus de <code>decoupling_distance</code> (3 mm) de la broche la plus proche d'un CI sur cette alimentation, 2,5 fois cette distance pour les condensateurs de découplage de plus de 1 uF"
@@ -632,6 +650,9 @@
   "1aw9rgb1j68": {
     "defaultMessage": "<code>place</code> met les connecteurs sur les bords, garde les passifs près de ce à quoi ils se connectent, affine le résultat et déplace toute étiquette de référence qui chevauche maintenant quelque chose. Il affiche un rapport JSON et écrit <code>at</code> et <code>rotation</code> dans une entrée <code>[[footprints]]</code> par composant. C'est un démarrage rapide : sur une vraie carte, vous regardez le résultat, déplacez à la main ce qui compte, le marquez <code>locked = true</code>, et placez le reste à nouveau."
   },
+  "1axqq49zy6j": {
+    "defaultMessage": "<code>--show</code> / <code>--hide</code>"
+  },
   "1azhkhgucpo": {
     "defaultMessage": "action"
   },
@@ -716,8 +737,14 @@
   "1cim9n2z5u3": {
     "defaultMessage": "Exécuter une simulation (*.sim.toml) : FDTD, cc, thermique, cascade, canal, pdn ou logique"
   },
+  "1cmyetwl4ud": {
+    "defaultMessage": "<code>isolation-clearance</code>"
+  },
   "1crpygvo2zk": {
     "defaultMessage": "Conçu pour l'agent que vous utilisez déjà"
+  },
+  "1cvbxcnncg4": {
+    "defaultMessage": "<code>--focus A,B,...</code>"
   },
   "1cvepqsqieg": {
     "defaultMessage": "Quand un dispositif n'a pas de données, la bande est coupée à l'endroit où tous les dispositifs en ont, et un facteur de bruit hors des données est laissé vide plutôt que deviné."
@@ -733,6 +760,9 @@
   },
   "1d2oey8ec95": {
     "defaultMessage": "Toute plateforme avec Rust {rust} ou plus récent."
+  },
+  "1d6wja5huke": {
+    "defaultMessage": "les îlots qui ne rejoignent aucun élément du net de la zone, ou seulement du cuivre isolé du reste et qui ne relie aucune paire de pastilles, et qui ont été supprimés"
   },
   "1d7lpt90j0y": {
     "defaultMessage": "Le schéma est une liste de nets, pas votre dessin : le schéma de KiCad n'est pas lu, donc les noms de broches, les graphismes des symboles et la structure des feuilles ne sont pas repris. C'est suffisant pour vérifier, rendre, simuler et fabriquer la carte, et pour qu'un agent modifie le routage."
@@ -1034,9 +1064,6 @@
   "1hojglbgsmu": {
     "defaultMessage": "compte les vias placés par chaque entrée <code>[[stitching]]</code>"
   },
-  "1hp9m6oody5": {
-    "defaultMessage": "Rend un élément en PNG exactement comme le visualiseur l'affiche et renvoie l'image."
-  },
   "1hr7d2icya6": {
     "defaultMessage": "Ce qu'un lien doit respecter, de USB 3 à une ligne RF de 50 ohms : impédance, déséquilibre, longueur, vias, stubs, plans de référence et vias de retour."
   },
@@ -1057,6 +1084,9 @@
   },
   "1i1pyr1ujko": {
     "defaultMessage": "toutes les pastilles de point de test pour le fabricant de fixture : réf, pastille, net, X, Y (mm, Y vers le haut), côté, diamètre de pastille"
+  },
+  "1i2bwr6hy06": {
+    "defaultMessage": "L'espacement de fuite est le plus court chemin entre les deux cuivres le long de la surface extérieure sur laquelle ils sont posés (<code>creepage</code>). Il reste sur la carte et contourne les découpes et les trous non métallisés. Une fente ou un trou plus étroit que la largeur de gorge X du degré de pollution (0,25 mm pour 1, 1,0 mm pour 2, 1,5 mm pour 3, selon IEC 60664-1) est franchi et mesuré en ligne droite. Entre un cuivre sur F.Cu et un cuivre sur B.Cu, le chemin descend le long de la paroi d'une découpe ou d'un trou non métallisé de n'importe quelle largeur, ou contourne le bord de la carte, et compte l'épaisseur de la carte. Le vernis épargne ne compte pas comme isolation."
   },
   "1i2n5zybesm": {
     "defaultMessage": "Écrasez n'importe quelle règle dans <code>[rules]</code> :"
@@ -1202,6 +1232,9 @@
   "1k11wca9qt7": {
     "defaultMessage": "Analyser un résultat de simulation : TDR, mode mixte, diaphonie, passivité et réciprocité"
   },
+  "1k1enhqihl2": {
+    "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code> (MCP <code>route</code>) route le chevelu des nets nommés sur une grille (<code>--grid</code>, par défaut 0,05 mm) et ajoute les pistes et vias au fichier de routage en tant qu'entrées ordinaires <code>[[tracks]]</code> et <code>[[vias]]</code>, afin que vous puissiez les modifier ensuite. Il respecte la largeur, l'espacement et les <code>layers</code> de chaque classe de nets par rapport à chaque pastille, piste, via, trou et bord de carte, dimensionne l'espace pour chaque via de classe selon sa propre pastille, son perçage et ses couches (un microvia passe là où un via traversant ne passe pas, et un microvia peut se situer à côté d'un via enfoui sur d'autres couches), maintient les nouveaux vias à <code>min_hole_to_hole</code> de tout perçage dont l'envergure partage un diélectrique avec les leurs et leurs trous à <code>min_via_hole_to_copper</code> des pastilles, pistes et vias des autres nets, les écarte des pastilles SMD de tout net, y compris le sien (le cuivre du via ne doit pas toucher une pastille, <code>via-cuts-pad</code>, et le trou reste à <code>min_hole_to_smd_pad</code> de celle-ci, <code>hole-to-smd-pad</code>, sauf si <code>--via-in-pad</code>, MCP <code>via_in_pad</code>, le laisse se situer entièrement à l'intérieur d'une pastille SMD de son net avec un perçage d'au plus <code>max_filled_via_drill</code>), utilise les vias de la classe pour changer de couche, le moins coûteux dont l'envergure couvre les deux couches (<code>--via uv-top,core</code> ou MCP <code>via</code> pour choisir parmi d'autres noms, <code>--via-cost</code> en mm de piste, par défaut 3, multiplié par le <code>cost</code> du via), facture <code>--bend-cost</code> mm de piste pour chaque virage de 45 degrés (par défaut 0,1, trois fois plus pour 90), et ne déplace jamais ce qui est déjà en place sauf si <code>--reroute</code> est fourni, ce qui supprime d'abord les pistes et vias des nets nommés. Une connexion qui ne trouve pas de chemin libre déroute les nets routés qu'elle croiserait ou dont les trous de via elle rapprocherait à moins de <code>min_hole_to_hole</code> des siens (trous dont les envergures partagent un diélectrique), mémorise l'endroit comme congestionné, et ces nets repartent dans la file. La recherche avance par pas de 45 degrés et facture chaque virage, donc les chemins sortent en lignes droites avec des virages de 45 degrés ; ensuite les lignes sont resserrées avec des doglegs à deux segments de 45 degrés et tout angle de 90 degrés restant est chanfreiné là où l'espacement le permet. Seule la tige vers le centre d'une pastille hors grille peut se situer à un autre angle. Là où la largeur de la classe ne rentre pas dans une pastille d'extrémité (plus large que le petit côté de la pastille, ou trop proche des pastilles voisines pour respecter l'espacement), le routage se rétrécit : la piste de la largeur de la classe s'arrête avant la pastille et une entrée <code>[[tracks]]</code> séparée avec une <code>width</code> explicite va droit au centre de la pastille, d'au plus la longueur <code>neckdown</code> de la classe et pas plus étroite que <code>min_track_width</code>. Sa largeur est la plus petite de la largeur de la classe, du petit côté de la pastille et de la plus large qui respecte l'espacement, arrondie par défaut à 0,01 mm (ou exactement <code>min_track_width</code> si l'arrondi ferait descendre en dessous et que la largeur non arrondie ne le fait pas) ; la piste large commence au premier endroit hors de la pastille où sa largeur complète respecte l'espacement (et, pour une pastille plus étroite que la piste, hors de la pastille). Les pastilles d'un même net qui se touchent, comme une pastille thermique construite à partir de plusieurs entrées de pastille, comptent comme une seule pastille large. Les paires routées avec <code>--pairs</code> ne se rétrécissent pas. Une connexion d'un net qui a déjà du cuivre frais part de ce cuivre. Une connexion qui ne trouve pas de chemin même à travers les nets qu'elle pourrait dérouter attend les autres connexions de son net et réessaie une fois de plus depuis le cuivre qu'elles ajoutent. Les classes se routent l'une après l'autre, la plus stricte d'abord (le moins de couches autorisées, puis la piste la plus large plus l'espacement), chacune maintenue fixe pour la suivante. Une fois une classe en place, chaque net de celle-ci avec des vias est déroute et rerouté avec des vias quatre fois plus coûteux et le reste maintenu fixe, et le nouveau routage reste s'il a moins de vias (ou en relie plus), passe après passe tant qu'un passe économise un via. Ensuite chaque connexion routée qui utilise des vias est réessayée couche par couche avec le reste maintenu fixe, et le routage sur une couche la remplace s'il est d'au plus 25 % plus 1 mm plus long. Ensuite les vias de connexions parallèles voisines qui changent de couche à proximité sont glissés le long de leurs propres pistes sur une rangée ou une colonne commune sur la grille, là où l'endroit est légal et que la connexion conserve sa longueur (les jambes de paire maintenues par <code>--pairs</code> et les nets avec plusieurs connexions restent en place). Un net dans une interface avec <code>max_vias</code> maintient la trace (chaque net de la voie, y compris les composants en série) à l'intérieur : un routage avec trop de vias est réessayé avec des vias plus coûteux, puis sur une couche, et échoue avec la raison si aucun ne convient. Le second net d'une paire est attiré vers son partenaire à l'écartement de paire ; <code>--pairs</code> essaie d'abord de router les deux moitiés ensemble comme une piste couplée unique. Lorsque des connexions échouent, tout le routage est relancé, jusqu'à quatre fois au total, avec les nets en échec d'abord dans leur classe et leur classe d'abord, et un coût sur le chemin qu'ils prendraient à travers le cuivre des classes antérieures afin que ces classes le laissent libre ; l'exécution avec le moins d'échecs, puis le moins de vias, puis le moins de piste est écrite. Lorsque quelques connexions échouent, routez-les à nouveau ensemble avec les nets autour et <code>--reroute</code>, afin que le routeur puisse dérouter et réordonner toute la zone, ou passez à <code>--grid 0.025</code>. <code>--dry-run</code> rapporte sans écrire. Routez d'abord à la main les nets qui comptent, puis laissez le routeur remplir le reste, une classe à la fois."
+  },
   "1k216dcuu51": {
     "defaultMessage": "La skill"
   },
@@ -1210,6 +1243,9 @@
   },
   "1k5ujui3zzb": {
     "defaultMessage": "Ce que fait la carte, et ce qui s'y connecte : connecteurs, tensions, courants, signaux et leurs vitesses."
+  },
+  "1k608muzjgc": {
+    "defaultMessage": "les pastilles de nets différents dont les ouvertures de vernis laissent un espace inférieur à <code>min_mask_web</code>, une ligne par paire de composants ; les pastilles d'une même empreinte avec <code>mask_web = false</code> sont ignorées entre elles, de même que les électrodes d'un interstice"
   },
   "1k984m2d9ls": {
     "defaultMessage": "Résoudre chaque couche de cuivre pour la chute de tension et la densité de courant, puis la température de la carte avec la puissance de chaque composant, en quelques secondes."
@@ -1228,6 +1264,9 @@
   },
   "1kfd50so1g": {
     "defaultMessage": "<code>min_controlled_depth_drill</code>"
+  },
+  "1kgj4wspayo": {
+    "defaultMessage": "<code>spark-gap</code>"
   },
   "1kh7lutkph8": {
     "defaultMessage": "4 ns"
@@ -1295,6 +1334,9 @@
   "1ln0s6ojknb": {
     "defaultMessage": "Ajouter le serveur MCP"
   },
+  "1lpa8tzh6yg": {
+    "defaultMessage": "empreintes avec <code>spark_gaps</code>"
+  },
   "1lqngucnspi": {
     "defaultMessage": "compte les vias dans les pastilles SMD de leur propre net (perçage à l'intérieur de la pastille) ; <code>fab-notes.txt</code> demande au fabricant de remplir et de capoter exactement ceux-ci (IPC-4761 type VII)"
   },
@@ -1324,9 +1366,6 @@
   },
   "1m39d50u8qg": {
     "defaultMessage": "Chaque diagnostic porte son fichier, son élément, son emplacement et sa gravité, et les diagnostics de routage portent leur identifiant de règle. C'est suffisant pour annoter une demande d'extraction, ou pour échouer sur les avertissements dans un projet qui veut les traiter comme des erreurs. Une règle peut aussi être élevée au rang d'erreur dans la carte elle-même avec <code>[drc] severity</code>, ce qui garde la politique dans la conception plutôt que dans le script CI."
-  },
-  "1m526qxf80v": {
-    "defaultMessage": "des îlots de zone de cuivre qui ne rejoignent rien du net de la zone et ont été supprimés"
   },
   "1m52uejprc2": {
     "defaultMessage": "Un chemin RF est disposé en ligne droite. En partant de chaque connecteur avec une pastille sur un net RF (une classe avec <code>impedance</code> et sans <code>diff_gap</code>), le positionneur suit les nets RF à travers les composants qui en portent deux ou plus et ont au plus 16 broches (blocs de DC, atténuateurs, commutateurs, LNA, baluns), et prend le plus long chemin qui se termine à un autre connecteur ou à une puce plus grande avec des broches RF ; un commutateur avec un pont passe par l'amplificateur, pas par le pont. Lorsque les deux extrémités sont des connecteurs, ils vont sur des bords opposés de l'axe long de la carte et glissent le long d'eux sur une ligne, à travers le centre de la carte lorsque les deux y tiennent. Chaque composant sur le chemin tourne pour que ses pastilles d'entrée et de sortie soient sur cette ligne, dans l'ordre, tassées vers l'entrée avec au plus 1,5 mm d'écart supplémentaire chacune, et le reste de l'espace va à la dernière course. Un composant à deux ou trois broches avec une pastille sur un nœud du chemin (une pince ESD, une self de polarisation, un condensateur de fuite) se place à côté de la ligne à ce nœud, tourné pour que ses autres pastilles pointent vers l'extérieur, assez près pour que sa pastille RF rencontre la piste et assez loin pour que ses autres pastilles respectent l'écartement de la classe ; deux fuites sur un même nœud prennent des côtés opposés. Le chemin est fixé avant que le reste ne soit positionné autour, et un composant qui sortirait de la carte ou atterrirait sur un autre est laissé au positionneur général."
@@ -1388,9 +1427,6 @@
   "1mzwfau5im8": {
     "defaultMessage": "Chaque feuille est un fichier de schéma ordinaire avec ses propres composants et nets. Les nets se relient entre les feuilles par nom, donc <code>3V3</code> sur chaque feuille est un seul net et un signal quitte une feuille et arrive sur une autre sous le même nom. Les broches d'un net doivent être des composants sur la même feuille ; un net qui traverse les feuilles a besoin du même <code>class</code> partout où il en nomme un, et est dessiné avec des étiquettes. Les références sont uniques dans le design. Une feuille seule ignore les avertissements de broche unique et de classe Default (le reste du net, et sa classe, peuvent être sur une autre feuille) ; le schéma supérieur exécute chaque vérification sur le design joint et dessine les feuilles empilées de haut en bas. Le fichier supérieur peut aussi contenir ses propres composants et nets."
   },
-  "1n1rc7zgly9": {
-    "defaultMessage": "des pastilles de nets différents dont les ouvertures de vernis épargne laissent moins de <code>min_mask_web</code>, une ligne par paire de pièces ; les pastilles d'une empreinte avec <code>mask_web = false</code> sont ignorées entre elles"
-  },
   "1n1sk97q413": {
     "defaultMessage": "un schéma : composants placés, nets, fils"
   },
@@ -1405,6 +1441,9 @@
   },
   "1n654yj4dk0": {
     "defaultMessage": "Travaillez depuis un clone si vous voulez les exemples, ou pour modifier agentee lui-même :"
+  },
+  "1na2buppw58": {
+    "defaultMessage": "<code>--rulers</code>"
   },
   "1ncp0psxtys": {
     "defaultMessage": "true"
@@ -1640,6 +1679,9 @@
   "1qw5tcldd6o": {
     "defaultMessage": "unités, le modèle de fichier, résolution et vérification, les calculatrices"
   },
+  "1qxtym14c23": {
+    "defaultMessage": "<code>agentee render</code> (MCP <code>render_item</code>) dessine ce que le visualiseur dessine. Sans les panneaux latéraux (<code>--canvas-only</code>), le PNG est rogné sur le dessin, et <code>--width</code> et <code>--height</code> limitent sa taille."
+  },
   "1r0hmmormyn": {
     "defaultMessage": "mécaniquement, dans un sous-empilement pressé"
   },
@@ -1660,6 +1702,9 @@
   },
   "1r5t471qlyo": {
     "defaultMessage": "Placement, routage et zones de cuivre - guide agentee"
+  },
+  "1r94okxp0ki": {
+    "defaultMessage": "Une carte entière à 1400 pixels est trop petite pour qu'un modèle lise les étiquettes, il faut donc rendre la partie sur laquelle on pose la question. <code>--focus</code> zoome sur les composants, nets et broches nommés et atténue le reste, <code>--rulers</code> étiquette les coordonnées en millimètres le long des bords pour que le prochain <code>--region</code> puisse être lu sur l'image, et avec <code>--canvas-only</code> le PNG est rogné sur le dessin :"
   },
   "1raj6a0in47": {
     "defaultMessage": "<code>*.pcb.toml</code> : placements, pistes, vias, zones, sérigraphie"
@@ -1739,6 +1784,9 @@
   "1siy1uwon63": {
     "defaultMessage": "Sinon <code>agentee new symbol NAME</code> / <code>agentee new footprint NAME</code> et éditez le fichier de départ."
   },
+  "1sm539dig10": {
+    "defaultMessage": "option"
+  },
   "1snb267xxo0": {
     "defaultMessage": "Il signale toujours la passivité (la plus grande valeur singulière de S sur la bande) et la réciprocité (la plus grande |Sij - Sji|) lorsque tous les ports ont été excités. Le TDR rééchantillonne sur une grille uniforme, extrapole la partie réelle à la fréquence nulle, applique une flèche gaussienne (par défaut, montée de 10 à 90 % de 1,3 / la fréquence supérieure) et intègre la réponse impulsionnelle ; il émet un avertissement lorsque la flèche est plus rapide que ce que les données permettent. Le visualiseur affiche le même TDR pour chaque port excité sous l'onglet <code>tdr</code>."
   },
@@ -1780,6 +1828,9 @@
   },
   "1t6pxa5bz3h": {
     "defaultMessage": "Importer depuis les bibliothèques KiCad installées"
+  },
+  "1t7f8d3334k": {
+    "defaultMessage": "étiqueter les coordonnées en mm le long des bords supérieur et gauche"
   },
   "1tb0k2uaxra": {
     "defaultMessage": "Simulations logiques d'un compteur et d'un bus I2C"
@@ -1888,6 +1939,9 @@
   },
   "1v0wqtjy1ac": {
     "defaultMessage": "Les bibliothèques situées ailleurs sont trouvées via <code>KICAD9_SYMBOL_DIR</code> et <code>KICAD9_FOOTPRINT_DIR</code>."
+  },
+  "1v1hqsikkfv": {
+    "defaultMessage": "Fiches de commande"
   },
   "1v2uudc6t8s": {
     "defaultMessage": "préréglage"
@@ -2003,6 +2057,9 @@
   "1xdif2fiz9x": {
     "defaultMessage": "change la couche active"
   },
+  "1xekxt0pa8v": {
+    "defaultMessage": "pièces de rechange pour ce composant à la place de la valeur par défaut, par exemple aucune pour un module coûteux"
+  },
   "1xfwjxnnmwm": {
     "defaultMessage": "10 ns"
   },
@@ -2023,9 +2080,6 @@
   },
   "1xsx0n8gdmv": {
     "defaultMessage": "Clés d'empreinte utiles :"
-  },
-  "1xwa0edgvkl": {
-    "defaultMessage": "le cuivre de deux nets est à moins de la plus grande des clartances de leurs classes (une <code>clearance</code> d'empreinte les remplace pour ses pastilles), ou le cuivre entre dans un trou non métallisé"
   },
   "1xx1mnazadi": {
     "defaultMessage": "Rédiger des schémas - guide agentee"
@@ -2069,8 +2123,14 @@
   "1yd48z3wex0": {
     "defaultMessage": "pose un via sur un cuivre avec un net"
   },
+  "1ydrf2t9pa0": {
+    "defaultMessage": "<code>isolation-domain</code>"
+  },
   "1yeem25v9mo": {
     "defaultMessage": "<code>diff_gap</code> fait d'une classe une paire et son impédance différentielle. Les nets finissant par <code>_P</code> et <code>_N</code>, <code>_DP</code> et <code>_DN</code>, <code>+</code> et <code>-</code>, ou <code>P</code> et <code>N</code> s'appairent d'eux-mêmes ; sinon, nommez-les dans le routage :"
+  },
+  "1yf3l1ndp3i": {
+    "defaultMessage": "<code>buy_with = &quot;XHP-2, SXH-001T-P0.6 x2&quot;</code>"
   },
   "1yf5ve95i67": {
     "defaultMessage": "JSON de résultat et VCD"
@@ -2147,6 +2207,9 @@
   "1zgogqmzk75": {
     "defaultMessage": "<code>copper-to-edge</code>"
   },
+  "1zguykj5vvy": {
+    "defaultMessage": "un interstice dont les électrodes ne sont pas espacées de la valeur déclarée dans <code>gap</code> (à 0,01 mm près), dont l'écartement est inférieur à <code>min_clearance</code>, dont les électrodes partagent un net ou n'en ont aucun, ou dont le vernis épargne recouvre l'interstice sur une couche externe"
+  },
   "1zkgdw4j6er": {
     "defaultMessage": "Les deux empilements HDI fournis sont des constructions génériques, pas l'empilement publié d'un fabricant :"
   },
@@ -2185,6 +2248,9 @@
   },
   "20dpdr10xbq": {
     "defaultMessage": "<code>dff</code>"
+  },
+  "20gg17bj404": {
+    "defaultMessage": "ce qui arrive à tout ce qui est en dehors de <code>--focus</code> (par défaut <code>dim</code>)"
   },
   "20hgaqi3se5": {
     "defaultMessage": "des goulets dans une zone de cuivre plus étroits que 90 % du <code>min_width</code> de la zone, que la zone aurait dû ouvrir ; comptés par emplacement avec le plus étroit"
@@ -2287,6 +2353,9 @@
   },
   "221qbpi8pyl": {
     "defaultMessage": "In1.Cu vers In4.Cu, enterré, à travers le sous-empilement,"
+  },
+  "226ie5pbkpb": {
+    "defaultMessage": "la référence LCSC, indiquée quand aucun distributeur ne stocke la ligne"
   },
   "226vjhs4w16": {
     "defaultMessage": "Le fichier *.fp.toml : rangées de pastilles, formes et couches de pastilles, pastilles de bord, connexions de zones, zones d'encombrement, sérigraphie et modèles 3D."
@@ -2398,6 +2467,9 @@
   },
   "24ge4p3vpat": {
     "defaultMessage": "de la première à la dernière couche de cuivre"
+  },
+  "24ghp4o686m": {
+    "defaultMessage": "Rendre une partie d'une conception"
   },
   "24kimihxft4": {
     "defaultMessage": "des pointes de zone plus aiguës que 30 degrés ; augmentez le <code>min_width</code> de la zone"
@@ -2567,6 +2639,9 @@
   "270mf8lg1lx": {
     "defaultMessage": "place les connecteurs sur les bords, côté de connexion vers l'extérieur, et n'aligne jamais un connecteur RF et un connecteur USB sur le même bord si une autre répartition est possible, car le bruit USB 3 tombe dans la bande des 2,4 GHz ;"
   },
+  "272ff8lqlwg": {
+    "defaultMessage": "cuivre de deux nets plus proches que le plus grand de leurs espacements de classe (un <code>clearance</code> d'empreinte les remplace pour ses pastilles), ou cuivre entrant dans un trou non étamé. Les pastilles d'une même empreinte sont maintenues à <code>min_clearance</code> et à l'espacement de classe des nets dans un domaine d'isolation ; les électrodes d'écart de décharge sont ignorées"
+  },
   "273giv9xl0e": {
     "defaultMessage": "positionnement, colonnes JLCPCB"
   },
@@ -2620,6 +2695,12 @@
   },
   "28a3r88ouzz": {
     "defaultMessage": "0.3"
+  },
+  "28d8cxee2e6": {
+    "defaultMessage": "schémas et routages : zoomer sur ces références, noms de nets ou <code>REF.PIN</code>, <code>*</code> correspondant à n'importe quelle suite de caractères. Un net inclut les composants qu'il touche, une broche son net"
+  },
+  "28eex1tfszn": {
+    "defaultMessage": "L'écartement d'une classe dont les nets sont dans un domaine est considéré comme un espacement électrique, il s'applique donc aussi entre les pastilles d'une même empreinte : un TO-220 sur une classe HvBus de 1,5 mm avec des pastilles espacées de 1,0 mm est une erreur de <code>clearance</code>. Les pastilles d'une même empreinte dont les nets ne sont dans aucun domaine ne sont soumises qu'à <code>min_clearance</code>, car le pas du composant détermine leur écartement."
   },
   "28f7652hq13": {
     "defaultMessage": "Écrit un fichier de départ pour une carte, un symbole, une empreinte, un schéma, un routage ou une simulation, à modifier ensuite. Une simulation démarre comme une exécution FDTD d'un routage, ou avec sim_kind logic comme simulation logique d'un schéma (horloge, réinitialisation, une assertion horlogée) dont vous renommez les nets."
@@ -2689,6 +2770,9 @@
   },
   "29iu3d22sqh": {
     "defaultMessage": "route : cliquez sur une pastille, un via ou une piste pour démarrer, cliquez pour ajouter des coins à 45 degrés, <code>/</code> inverse la courbe, V pose un via, Entrée termine"
+  },
+  "29j14m86ht8": {
+    "defaultMessage": "champ"
   },
   "29ku7ky1qub": {
     "defaultMessage": "une paire qui court côte à côte avec un écart différent du <code>diff_gap</code> de la classe, au-delà de <code>max_uncoupled</code>"
@@ -2779,6 +2863,9 @@
   },
   "2b4wu4tjhac": {
     "defaultMessage": "Utiliser un préréglage HDI"
+  },
+  "2b5qclo9mdd": {
+    "defaultMessage": "<code>isolation-unassigned</code>"
   },
   "2b6e1q1tvd8": {
     "defaultMessage": "<code>agentee fab pcb:NAME -o DIR</code> (MCP <code>fab</code>) écrit :"
@@ -2900,6 +2987,9 @@
   "2cjq2lndzi6": {
     "defaultMessage": "Le pilote devient une source de Thevenin depuis ses tables de tirage vers le bas et vers le haut, sa capacité de die et son boîtier ; son flanc définit la pente et sa plage de tension l'amplitude, sauf si <code>rise</code> ou <code>swing</code> sont donnés. Le récepteur charge l'extrémité lointaine avec son boîtier et sa capacité de die, et l'œil est lu à son die. IBIS fonctionne sur les chemins simples pour l'instant."
   },
+  "2cozbj3xs0k": {
+    "defaultMessage": "<code>--focus</code> prend des références (<code>U1</code>), des noms de nets (<code>SPI_CLK</code>) et des broches (<code>U1.3</code>), avec <code>*</code> comme joker. Un net inclut les composants qu'il touche. <code>--context</code> est <code>dim</code> par défaut, <code>hide</code> pour ne garder que ce qui est nommé, ou <code>show</code> pour zoomer sans atténuer. MCP <code>render_item</code> prend les mêmes arguments <code>focus</code>, <code>context</code> et <code>rulers</code>."
+  },
   "2csls3gciuc": {
     "defaultMessage": "Ce dont il a besoin"
   },
@@ -2929,6 +3019,9 @@
   },
   "2d6y5d2d527": {
     "defaultMessage": "<code>impedance-trace</code>"
+  },
+  "2d70vdx1d3o": {
+    "defaultMessage": "Un nom qui ne correspond à rien est une erreur. <code>--region</code> avec <code>--focus</code> conserve le filtre et utilise la région pour le zoom."
   },
   "2dayrb6juwp": {
     "defaultMessage": "HC, HCT"
@@ -3296,6 +3389,9 @@
   "4lxxwf41j4": {
     "defaultMessage": "<code>min_plated_slot_width</code>"
   },
+  "4pvnbce4b5": {
+    "defaultMessage": "<code>creepage</code>"
+  },
   "4rae9zpwbh": {
     "defaultMessage": "toujours"
   },
@@ -3358,6 +3454,9 @@
   },
   "686lhskeo4": {
     "defaultMessage": "un symbole de schéma"
+  },
+  "6f8tjd4506": {
+    "defaultMessage": "couches à activer ou désactiver, par exemple <code>--hide F.Cu --show In1.Cu</code>"
   },
   "6ido514tq1": {
     "defaultMessage": "4 couches, JLC04161H-7628, ENIG"
@@ -3671,6 +3770,9 @@
   "b7b8tb291q": {
     "defaultMessage": "Fichiers de projet"
   },
+  "b7nt3ki7r1": {
+    "defaultMessage": "Rend un élément en PNG exactement comme le visualiseur l'affiche et renvoie l'image. Sans les panneaux latéraux, l'image est rognée sur le dessin, donc la largeur et la hauteur sont les plus grandes possibles."
+  },
   "b92nzpwkpa": {
     "defaultMessage": "Ce que vous avez fait"
   },
@@ -3766,6 +3868,9 @@
   },
   "d4h9xa9tl2": {
     "defaultMessage": "Tracez la zone d'encombrement sur <code>F.CrtYd</code> et le contour du corps sur <code>F.Fab</code> : la vérification exige une zone d'encombrement qui englobe les pastilles, le placeur maintient les zones d'encombrement séparées, et les règles de bord et d'assemblage mesurent à partir du corps. Définissez <code>height</code> pour que la vue 3D et la règle des composants hauts disposent d'une hauteur sans modèle."
+  },
+  "d8xhh7ye1c": {
+    "defaultMessage": "Le bascule <code>back</code> de la page 2D renverse la carte pour la voir par le dessous : le cuivre inférieur est dessiné par-dessus le supérieur, et la visibilité de chaque couche avant est échangée avec sa jumelle arrière. <code>agentee render pcb:NAME --show back</code> rend cette vue."
   },
   "da20h6ryzp": {
     "defaultMessage": "Le serveur MCP"
@@ -3941,6 +4046,9 @@
   "gaamns4i1l": {
     "defaultMessage": "<code>min_drill</code>, <code>min_via_drill</code>"
   },
+  "gj2bevgtpu": {
+    "defaultMessage": "<code>--spares</code> (MCP <code>spares</code>) ajoute la marge pour l'assemblage manuel : les résistances et condensateurs 0402 et 0603 sont achetés au multiple de dix supérieur au besoin plus cinq, et chaque ligne <code>D</code>, <code>Q</code>, <code>U</code> et <code>F</code> reçoit une pièce de rechange. Ces champs de composant modifient ce calcul :"
+  },
   "glhbhwqbjr": {
     "defaultMessage": "Une broche est <code>REF.PIN</code>, par numéro ou par un nom de broche unique ; un nom partagé par plusieurs broches est une erreur. Une broche à laquelle on donne un net sur lequel elle est déjà se déplace sur le nouveau net. Le fichier conserve ses commentaires et sa mise en page. <code>agentee edit</code> écrit le fichier, remplit les zones de cuivre stockées du routage, puis signale les diagnostics de vérification des fichiers modifiés, et quitte avec le code 1 si l'un d'eux est une erreur."
   },
@@ -4093,6 +4201,15 @@
   },
   "ijyo5sjjdk": {
     "defaultMessage": "<code>Y0</code> à <code>Y7</code>"
+  },
+  "ingvojakto": {
+    "defaultMessage": "nets dans aucun domaine, que aucune barrière ne couvre"
+  },
+  "iomevdc6xc": {
+    "defaultMessage": "<code>--context dim|hide|show</code>"
+  },
+  "iozyts7ml0": {
+    "defaultMessage": "<code>spares = &quot;0&quot;</code>"
   },
   "ir7t9q4eba": {
     "defaultMessage": "<code>A</code>, <code>B</code> : les mêmes broches, pilotées de l'autre côté par <code>DIR</code>"
@@ -4652,6 +4769,9 @@
   "rbd5i5y6uj": {
     "defaultMessage": "Guides"
   },
+  "rg8rx5tw3u": {
+    "defaultMessage": "<code>lcsc = &quot;C165948&quot;</code>"
+  },
   "rgx7g5j89u": {
     "defaultMessage": "Les données des dispositifs sont interpolées linéairement en parties réelle et imaginaire, et la bande est coupée là où chaque dispositif a des données. Un résultat à deux ports signale le pic et le creux de gain, le pire S11, S22 et S12, et le mu d&#39;Edwards-Sinsky et le K de Rollett les plus bas (mu au-dessus de 1 à chaque fréquence est stable sans condition). Le résultat devient obsolète quand la spécification, le résultat de la carte ou un fichier de dispositif change."
   },
@@ -4699,6 +4819,9 @@
   },
   "sa2s0k3fii": {
     "defaultMessage": "0.15, 1.0"
+  },
+  "sa82hcx9ev": {
+    "defaultMessage": "cuivre de deux domaines sur une même couche plus proche que l'espacement de la barrière entre eux, pastilles d'une même empreinte et zones de cuivre incluses ; une ligne par paire de nets avec l'endroit le plus proche"
   },
   "saviwyv34g": {
     "defaultMessage": "20 ns"
@@ -4862,6 +4985,9 @@
   "vevjglgna0": {
     "defaultMessage": "Donnez-lui la référence de format"
   },
+  "vg1052wiwx": {
+    "defaultMessage": "Une classe de nets a un seul écartement, appliqué à tous les autres nets. Quand des nets doivent garder plus de distance d'un groupe que de leurs voisins (un primaire secteur par rapport au secondaire, un rail flottant par rapport au reste du secondaire), placez les nets dans des domaines et définissez une barrière entre deux domaines :"
+  },
   "vgzxbueyi7": {
     "defaultMessage": "Certaines décisions sont plus rapides à la souris : déplacer un connecteur là où le boîtier l'exige, rerouter une piste autour d'un composant, poser un via. La page 2D du routage modifie le routage, et l'enregistrement (ctrl+S) écrit la modification dans le <code>.pcb.toml</code> avec le même rédacteur qui préserve les commentaires et l'ordre que la CLI utilise. L'agent lit votre modification la prochaine fois qu'il charge le fichier."
   },
@@ -4970,6 +5096,9 @@
   "x0m5nm2n6u": {
     "defaultMessage": "KiCad dessine la sérigraphie à 0,12 mm et JLCPCB veut 0,15 mm. Ouvrez chaque empreinte et passez <code>width = 0.12</code> à <code>0.15</code> sur ses graphiques de sérigraphie, ou laissez votre agent le faire. C'est la forme normale du travail avec agentee : le diagnostic nomme le fichier, l'élément et la valeur, et la correction est une seule édition."
   },
+  "x3a0fv0yot": {
+    "defaultMessage": "signification"
+  },
   "x3j6gd5rkw": {
     "defaultMessage": "Fichiers de projet - référence agentee"
   },
@@ -5060,6 +5189,9 @@
   "y817q65376": {
     "defaultMessage": "<code>hole-to-edge</code>"
   },
+  "y84zm9obxw": {
+    "defaultMessage": "<code>--region x0,y0,x1,y1</code>"
+  },
   "y852j1pdwt": {
     "defaultMessage": "<code>*.sym.toml</code>"
   },
@@ -5072,8 +5204,14 @@
   "yc9r30dm9u": {
     "defaultMessage": "La BOM les regroupe, et <code>agentee parts</code> cherche le stock, le prix et les équivalents moins chers par <code>mpn</code>. Voir <a href=\"/guides/fab/\">Paquet de fabrication, BOM et prix</a>."
   },
+  "ycd75jjuqy": {
+    "defaultMessage": "un net dont la classe ou le nom le place dans deux domaines"
+  },
   "ydfgdztl7j": {
     "defaultMessage": "<code>rect</code>"
+  },
+  "yebgi2jbad": {
+    "defaultMessage": "Un net appartient à un seul domaine au maximum. À l'intérieur d'un domaine, et pour les nets sans domaine, les écarts de classe s'appliquent comme avant. Entre deux domaines avec une barrière, le cuivre d'une couche respecte l'<code>clearance</code> de la barrière (<code>isolation-clearance</code>), y compris les pastilles d'une même empreinte et les zones de cuivre. Les zones de cuivre et l'autoroute respectent la barrière par rapport au cuivre de l'autre domaine lors du remplissage et du routage ; sur F.Cu et B.Cu, ils respectent le plus grand de <code>clearance</code> et <code>creepage</code>, car ni l'un ni l'autre ne mesure les chemins autour des fentes."
   },
   "yfwyujuwr8": {
     "defaultMessage": "2"

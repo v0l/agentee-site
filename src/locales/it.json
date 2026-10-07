@@ -20,6 +20,9 @@
   "10hj9wtkhca": {
     "defaultMessage": "assertion, setup e hold, conflitto"
   },
+  "10jc42a8vsy": {
+    "defaultMessage": "zoom a quel rettangolo, in mm nelle coordinate proprie dell'elemento"
+  },
   "10l2rcg9xvo": {
     "defaultMessage": "<code>interface-vias</code>"
   },
@@ -179,6 +182,12 @@
   "12l7h195o1h": {
     "defaultMessage": "<code>usb2-hs</code>"
   },
+  "12la968121a": {
+    "defaultMessage": "una barriera con <code>creepage</code>"
+  },
+  "12mj4ud735z": {
+    "defaultMessage": "componenti comprati con ogni pezzo di questo componente ma non posizionati sulla scheda: alloggiamenti accoppiati, crimpature, un'antenna. <code> xN</code> è il conteggio per componente; la riga indica i componenti per cui è destinata e riceve un pezzo di scorta con <code>--spares</code>"
+  },
   "12nmfoozwbx": {
     "defaultMessage": "Un net con un'area è un net di piano. <code>tie</code> dà a ogni piazzola SMD di un net di piano un breve stub e una via accanto, sul lato opposto al componente, libera da ogni piazzola e altro net. È così che le piazzole di massa e alimentazione dovrebbero raggiungere un piano, invece di piste tra di esse. Una piazzola che ha già una via del suo net nelle vicinanze viene lasciata così com'è, e una piazzola senza posto legale viene elencata sotto <code>failed</code>."
   },
@@ -272,9 +281,6 @@
   "13u8mhxwbqd": {
     "defaultMessage": "<code>R</code> opzionale, <code>CLK</code>, <code>D0</code> a <code>D3</code> opzionali, <code>CEP</code>, <code>LOAD</code>, <code>CET</code>"
   },
-  "13wt2gfx3mu": {
-    "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code> (MCP <code>route</code>) instrada il ratsnest dei net indicati su una griglia (<code>--grid</code>, predefinito 0,05 mm) e aggiunge le piste e le via al file di layout come normali <code>[[tracks]]</code> e <code>[[vias]]</code>, così puoi modificarle in seguito. Rispetta per ogni classe di net la larghezza, il distacco e i <code>layers</code> rispetto a ogni piazzola, pista, via, foro e bordo della scheda; dimensiona la via per ogni classe in base alla propria piazzola, al foro e ai layer (una microvia passa dove una via passante non passa, e una microvia può stare accanto a una via sepolta su altri layer); mantiene le nuove via a <code>min_hole_to_hole</code> da ogni foro la cui estensione condivide un dielettrico con il loro e i loro fori a <code>min_via_hole_to_copper</code> dalle piazzole, piste e via degli altri net; le tiene lontane dalle piazzole SMD di ogni net, anche del proprio (il rame della via non può toccarne una, <code>via-cuts-pad</code>, e il foro resta a <code>min_hole_to_smd_pad</code> da essa, <code>hole-to-smd-pad</code>, a meno che <code>--via-in-pad</code>, MCP <code>via_in_pad</code>, non permetta di posizionarla interamente dentro una piazzola SMD del proprio net con un foro di al massimo <code>max_filled_via_drill</code>); usa le via della classe per cambiare layer, la meno costosa la cui estensione copra entrambi i layer (<code>--via uv-top,core</code> o MCP <code>via</code> per scegliere da altri nomi, <code>--via-cost</code> in mm di pista, predefinito 3, moltiplicato per il <code>cost</code> della via); addebita <code>--bend-cost</code> mm di pista per ogni curva di 45 gradi (predefinito 0,1, tre volte tanto per 90); e non sposta mai ciò che è già presente a meno che non sia indicato <code>--reroute</code>, che prima elimina le piste e le via dei net indicati. Una connessione che non trova un percorso libero rimuove i net instradati che incrocia o i cui fori di via porterebbe entro <code>min_hole_to_hole</code> dal proprio (fori la cui estensione condivide un dielettrico), ricorda il punto come congestionato e quei net tornano in coda. La ricerca procede in direzioni di 45 gradi e addebita ogni curva, quindi i percorsi escono come tratti rettilinei con curve di 45 gradi; in seguito i tratti vengono tirati in tensione con dogleg a due segmenti di 45 gradi e ogni angolo di 90 gradi rimasto viene smussato dove è possibile. Solo lo stub verso il centro di una piazzola fuori griglia può stare a un altro angolo. Dove la larghezza della classe non entra in una piazzola terminale (più larga del lato minore della piazzola, o troppo vicina alle piazzole vicine per mantenere il distacco), l'instradamento si restringe: la pista della larghezza di classe si ferma prima della piazzola e una voce separata di <code>[[tracks]]</code> con una <code>width</code> esplicita va dritta al centro della piazzola, lunga al massimo la <code>neckdown</code> di classe e larga almeno <code>min_track_width</code>. La sua larghezza è la più piccola tra la larghezza di classe, il lato minore della piazzola e la più larga che mantiene il distacco, arrotondata per difetto a 0,01 mm (o esattamente <code>min_track_width</code> dove l'arrotondamento la porterebbe sotto e la larghezza non arrotondata non lo fa); la pista larga inizia al primo punto lontano dalla piazzola dove la sua larghezza piena mantiene il distacco (e, per una piazzola più stretta della pista, fuori dalla piazzola). Piazzole di un net che si toccano, come una piazzola termica costruita da più voci di piazzola, contano come una singola piazzola larga. Le coppie instradate con <code>--pairs</code> non si restringono. Una connessione di un net che ha già rame fresco parte da quel rame. Una volta che tutto è a posto, ogni connessione instradata che usa via viene riprovata su un layer alla volta con il resto fermo, e l'instradamento a un layer la sostituisce se è lungo al massimo il 25% più 1 mm. Poi le via di connessioni parallele vicine che cambiano layer in prossimità l'una dell'altra vengono scivolate lungo le proprie piste su una riga o colonna comune sulla griglia, dove il punto è legale e la connessione mantiene la sua lunghezza (le gambe di coppia tenute da <code>--pairs</code> e i net con più connessioni restano fermi). Un net in un'interfaccia con <code>max_vias</code> mantiene la traccia (ogni net della corsia, attraverso i componenti in serie) entro il limite: un instradamento con troppe via viene riprovato con via più costose, poi su un layer, e fallisce con la ragione se nessuno dei due va bene. Il secondo net di una coppia viene attirato verso il partner alla distanza di coppia; <code>--pairs</code> prova prima a instradare entrambe le metà insieme come una singola pista accoppiata. Quando poche connessioni falliscono, instradale di nuovo insieme con i net circostanti e <code>--reroute</code>, così l'instradatore può rimuovere e riordinare l'intera area, oppure passa a <code>--grid 0.025</code>. <code>--dry-run</code> riporta senza scrivere. Instrada prima a mano i net importanti, poi lascia che l'instradatore riempia il resto, una classe alla volta."
-  },
   "13xykr3e7l9": {
     "defaultMessage": "Simboli"
   },
@@ -284,6 +290,9 @@
   "13z0xd124hs": {
     "defaultMessage": "<code>mask_web = false</code> quando il produttore apre il solder mask su tutte le piazzole di un componente a passo fine come una sola finestra."
   },
+  "1412p7ywue1": {
+    "defaultMessage": "una barriera con <code>clearance</code>"
+  },
   "1414n4x5uae": {
     "defaultMessage": "Verifiche delle regole di progettazione di un layout. Con list = true: ogni regola DRC con il suo id, categoria, gravità e se si applica a questa scheda e perché. Senza: le diagnostiche del layout che portano un id di regola. Gli id delle regole vanno nella lista di disattivazione [drc] o nella tabella di gravità della scheda."
   },
@@ -292,6 +301,9 @@
   },
   "14bd9z49wd1": {
     "defaultMessage": "Simulazione FDTD"
+  },
+  "14dlyveasdo": {
+    "defaultMessage": "Domini e barriere di isolamento"
   },
   "14f19xcrdbg": {
     "defaultMessage": "Apple silicon"
@@ -323,6 +335,9 @@
   "1519g1avehv": {
     "defaultMessage": "Formule chiuse per una prima risposta, un risolutore di campo GPU con solder mask e spessore del rame per le classi che contano. Entro lo 0,5% dei riferimenti stripline esatti."
   },
+  "1521tyvidt3": {
+    "defaultMessage": "rame di due domini più vicino lungo la superficie della scheda della distanza di strisciamento della barriera: su un layer esterno attorno a ritagli della scheda e fori non placcati almeno la larghezza della scanalatura del suo <code>pollution_degree</code>, e da F.Cu a B.Cu lungo la parete di un ritaglio o foro o attorno al bordo della scheda"
+  },
   "1528x7i9xv2": {
     "defaultMessage": "meccanicamente, in un sottostack, o a profondità controllata (<code>drill_kind = &quot;controlled_depth&quot;</code>)"
   },
@@ -331,6 +346,9 @@
   },
   "152usp03oi7": {
     "defaultMessage": "Una simulazione del layout o dello schema: FDTD, cascata, canale, PDN, caduta DC, termica o logica."
+  },
+  "154h9bif94k": {
+    "defaultMessage": "<code>[[domains]]</code>"
   },
   "156bmxs5c35": {
     "defaultMessage": "un condensatore tra un alimentatore e massa la cui piazzola di alimentazione è più lontana di <code>decoupling_distance</code> (3 mm) dal pin più vicino di un IC su quell'alimentatore, 2,5 volte quella distanza per i condensatori bulk sopra 1 uF"
@@ -632,6 +650,9 @@
   "1aw9rgb1j68": {
     "defaultMessage": "<code>place</code> mette i connettori sui bordi, mantiene i passivi vicino a ciò a cui sono collegati, rifinisce il risultato e sposta qualsiasi etichetta di riferimento che ora sovrappone qualcosa. Stampa un report JSON e scrive <code>at</code> e <code>rotation</code> in una voce <code>[[footprints]]</code> per componente. È un avvio rapido: su una scheda reale guardi il risultato, sposti a mano ciò che conta, lo contrassegni con <code>locked = true</code> e posiziona di nuovo il resto."
   },
+  "1axqq49zy6j": {
+    "defaultMessage": "<code>--show</code> / <code>--hide</code>"
+  },
   "1azhkhgucpo": {
     "defaultMessage": "fa"
   },
@@ -716,8 +737,14 @@
   "1cim9n2z5u3": {
     "defaultMessage": "Esegue una simulazione (*.sim.toml): FDTD, dc, termica, a cascata, canale, pdn o logica"
   },
+  "1cmyetwl4ud": {
+    "defaultMessage": "<code>isolation-clearance</code>"
+  },
   "1crpygvo2zk": {
     "defaultMessage": "Fatto per l'agente che già usi"
+  },
+  "1cvbxcnncg4": {
+    "defaultMessage": "<code>--focus A,B,...</code>"
   },
   "1cvepqsqieg": {
     "defaultMessage": "Dove un dispositivo non ha dati, la banda è tagliata dove tutti i dispositivi ne hanno, e un rumore fuori dai dati è lasciato vuoto invece che stimato."
@@ -733,6 +760,9 @@
   },
   "1d2oey8ec95": {
     "defaultMessage": "Qualsiasi piattaforma con Rust {rust} o superiore."
+  },
+  "1d6wja5huke": {
+    "defaultMessage": "isole di riempimento che non raggiungono nulla del net dell'area, o solo rame tagliato via dal resto e che non unisce due piazzole, e che sono state rimosse"
   },
   "1d7lpt90j0y": {
     "defaultMessage": "Lo schema è una netlist, non il tuo disegno: lo schema di KiCad non viene letto, quindi i nomi dei pin, il disegno dei simboli e la struttura dei fogli non vengono trasferiti. È sufficiente per verificare, renderizzare, simulare e produrre la scheda, e per far modificare il layout a un agente."
@@ -1034,9 +1064,6 @@
   "1hojglbgsmu": {
     "defaultMessage": "conta le vie che ogni voce <code>[[stitching]]</code> ha posizionato"
   },
-  "1hp9m6oody5": {
-    "defaultMessage": "Rende un elemento in PNG esattamente come lo mostra il visualizzatore e restituisce l'immagine."
-  },
   "1hr7d2icya6": {
     "defaultMessage": "Cosa deve soddisfare un collegamento, da USB 3 a una linea RF da 50 ohm: impedenza, skew, lunghezza, vie, stub, piani di riferimento e vie di ritorno."
   },
@@ -1057,6 +1084,9 @@
   },
   "1i1pyr1ujko": {
     "defaultMessage": "ogni piazzola di punto di test per il costruttore di fixture: ref, piazzola, net, X, Y (mm, Y verso l'alto), lato, diametro della piazzola"
+  },
+  "1i2bwr6hy06": {
+    "defaultMessage": "Il creepage è il percorso più corto tra i due rami lungo la superficie esterna su cui si trovano (<code>creepage</code>). Resta sulla scheda e va attorno ai ritagli e ai fori non placcati. Una fessura o un foro più stretto della larghezza della scanalatura X del grado di inquinamento (0,25 mm per 1, 1,0 mm per 2, 1,5 mm per 3, come dato da IEC 60664-1) viene attraversato e misurato in linea retta. Tra il rame su F.Cu e il rame su B.Cu il percorso scende lungo la parete di un ritaglio o di un foro non placcato di qualsiasi larghezza, o gira attorno al bordo della scheda, e conta lo spessore della scheda. Il solder mask non conta come isolamento."
   },
   "1i2n5zybesm": {
     "defaultMessage": "Sovrascrivi qualsiasi regola in <code>[rules]</code>:"
@@ -1202,6 +1232,9 @@
   "1k11wca9qt7": {
     "defaultMessage": "Analizza un risultato di simulazione: TDR, mixed mode, crosstalk, passività e reciprocità"
   },
+  "1k1enhqihl2": {
+    "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code> (MCP <code>route</code>) esegue lo sbroglio dei ratsnest dei net indicati su una griglia (<code>--grid</code>, predefinito 0,05 mm) e aggiunge le piste e le via al file di layout come normali <code>[[tracks]]</code> e <code>[[vias]]</code>, così puoi modificarli in seguito. Rispetta per ogni classe di net la larghezza, la distanza di isolamento e i <code>layers</code> rispetto a ogni piazzola, pista, via, foro e bordo della scheda. Dimensiona lo spazio per ogni via della classe in base alla propria piazzola, al foro e ai layers (una microvia passa dove una via passante non passa, e una microvia può stare accanto a una via sepolta su altri layers). Mantiene le nuove via a <code>min_hole_to_hole</code> da ogni foro il cui span condivide un dielettrico con il loro e i loro fori a <code>min_via_hole_to_copper</code> dalle piazzole, piste e via degli altri net. Le tiene lontane dalle piazzole SMD di ogni net, anche del proprio (il rame della via non può toccarne una, <code>via-cuts-pad</code>, e il foro resta a <code>min_hole_to_smd_pad</code> da essa, <code>hole-to-smd-pad</code>, a meno che <code>--via-in-pad</code>, MCP <code>via_in_pad</code>, non permetta di posizionarla interamente dentro una piazzola SMD del proprio net con un foro di al massimo <code>max_filled_via_drill</code>). Usa le via della classe per cambiare layer, la più economica il cui span copra entrambi i layers (<code>--via uv-top,core</code> o MCP <code>via</code> per scegliere da altri nomi, <code>--via-cost</code> in mm di pista, predefinito 3, moltiplicato per il <code>cost</code> della via). Addebita <code>--bend-cost</code> mm di pista per ogni piega di 45 gradi (predefinito 0,1, tre volte tanto per 90). Non sposta mai ciò che è già presente a meno che non sia indicato <code>--reroute</code>, che prima elimina le piste e le via dei net indicati. Una connessione che non trova un percorso libero rimuove i net già sbrogliati che attraverserebbe o i cui fori di via porterebbe entro <code>min_hole_to_hole</code> dal proprio (fori i cui span condividono un dielettrico), ricorda il punto come congestionato e quei net tornano in coda. La ricerca procede in direzioni di 45 gradi e addebita ogni piega, quindi i percorsi escono come tratti rettilinei con pieghe di 45 gradi; in seguito i tratti vengono tirati con dogleg a due segmenti di 45 gradi e ogni angolo di 90 gradi rimasto viene smussato dove è possibile. Solo lo stub verso il centro di una piazzola fuori griglia può stare a un altro angolo. Dove la larghezza della classe non entra in una piazzola di estremità (più larga del lato minore della piazzola, o troppo vicina alle piazzole vicine per mantenere la distanza di isolamento), lo sbroglio si restringe: la pista della larghezza della classe si ferma prima della piazzola e una voce separata <code>[[tracks]]</code> con una <code>width</code> esplicita va dritta al centro della piazzola, lunga al massimo la <code>neckdown</code> della classe e larga almeno <code>min_track_width</code>. La sua larghezza è la più piccola tra la larghezza della classe, il lato minore della piazzola e la più larga che mantiene la distanza di isolamento, arrotondata per difetto a 0,01 mm (o esattamente <code>min_track_width</code> se l'arrotondamento la portasse sotto e la larghezza non arrotondata non lo facesse); la pista larga inizia al primo punto lontano dalla piazzola dove la sua larghezza piena mantiene la distanza di isolamento (e, per una piazzola più stretta della pista, fuori dalla piazzola). Piazzole di un net che si toccano, come una piazzola termica costruita da più voci di piazzola, contano come una singola piazzola larga. Le coppie sbrogliate con <code>--pairs</code> non si restringono. Una connessione di un net che ha già rame fresco parte da quel rame. Una connessione che non trova un percorso nemmeno attraverso i net che potrebbe rimuovere aspetta le altre connessioni del suo net e riprova una volta dal rame che aggiungono. Le classi vengono sbrogliate una dopo l'altra, la più stretta per prima (meno layers consentiti, poi la pista più larga più distanza di isolamento), ciascuna mantenuta fissa per la successiva. Una volta inserita una classe, ogni net di essa con via viene rimosso e sbrogliato di nuovo con via quattro volte più costose e il resto mantenuto fisso, e il nuovo sbroglio resta quando ha meno via (o ne unisce di più), passo dopo passo finché uno ne risparmia una. Poi ogni connessione sbrogliata che usa via viene provata di nuovo su un layer alla volta con il resto mantenuto fisso, e lo sbroglio a un layer la sostituisce quando è lunga al massimo il 25% più 1 mm. Poi le via di connessioni parallele vicine che cambiano layer in prossimità l'una dell'altra vengono scivolate lungo le proprie piste su una riga o colonna comune sulla griglia, dove il punto è legale e la connessione mantiene la sua lunghezza (le gambe delle coppie mantenute da <code>--pairs</code> e i net con più connessioni restano fermi). Un net in un'interfaccia con <code>max_vias</code> mantiene la traccia (ogni net della corsia, attraverso componenti in serie) entro il limite: uno sbroglio con troppe via viene provato di nuovo con via più costose, poi su un layer, e fallisce con la ragione se nessuno dei due va bene. Il secondo net di una coppia viene disegnato verso il suo partner alla distanza di coppia; <code>--pairs</code> prova prima a sbrogliare entrambe le metà insieme come una singola pista accoppiata. Quando le connessioni falliscono, l'intero sbroglio viene eseguito di nuovo, fino a quattro volte in totale, con i net falliti per primi nella loro classe e la loro classe per prima, e un costo sul percorso che prenderebbero attraverso il rame delle classi precedenti così quelle classi lo lasciano libero; viene scritto l'esecuzione con meno fallimenti, poi meno via, poi meno pista. Quando poche connessioni falliscono, sbrogliale di nuovo insieme ai net circostanti e <code>--reroute</code>, così lo sbrogliatore può rimuovere e riordinare l'intera area, oppure passa a <code>--grid 0.025</code>. <code>--dry-run</code> riporta senza scrivere. Sbrogliare prima a mano i net che contano, poi lasciare che lo sbrogliatore riempia il resto, una classe alla volta."
+  },
   "1k216dcuu51": {
     "defaultMessage": "La skill"
   },
@@ -1210,6 +1243,9 @@
   },
   "1k5ujui3zzb": {
     "defaultMessage": "Cosa fa la scheda e cosa si collega a essa: connettori, tensioni, correnti, segnali e le loro velocità."
+  },
+  "1k608muzjgc": {
+    "defaultMessage": "piazzole di net diversi le cui aperture del mask lasciano meno di <code>min_mask_web</code>, una riga per coppia di componenti; le piazzole di un footprint con <code>mask_web = false</code> sono saltate tra loro, e lo sono anche gli elettrodi di un gap a scintilla"
   },
   "1k984m2d9ls": {
     "defaultMessage": "Risolvi ogni strato di rame per caduta di tensione e densità di corrente, poi la temperatura della scheda con la potenza di ogni componente, in secondi."
@@ -1228,6 +1264,9 @@
   },
   "1kfd50so1g": {
     "defaultMessage": "<code>min_controlled_depth_drill</code>"
+  },
+  "1kgj4wspayo": {
+    "defaultMessage": "<code>spark-gap</code>"
   },
   "1kh7lutkph8": {
     "defaultMessage": "4 ns"
@@ -1295,6 +1334,9 @@
   "1ln0s6ojknb": {
     "defaultMessage": "Aggiungi il server MCP"
   },
+  "1lpa8tzh6yg": {
+    "defaultMessage": "footprint con <code>spark_gaps</code>"
+  },
   "1lqngucnspi": {
     "defaultMessage": "conta le vie nelle piazzole SMD del proprio net (foro all'interno della piazzola); <code>fab-notes.txt</code> chiede al produttore di riempire e coprire esattamente queste (IPC-4761 tipo VII)"
   },
@@ -1324,9 +1366,6 @@
   },
   "1m39d50u8qg": {
     "defaultMessage": "Ogni diagnostica porta il suo file, elemento, posizione e severità, e le diagnostiche di layout portano il loro id di regola. È abbastanza per annotare una pull request, o per fallire sugli avvisi in un progetto che vuole trattarli come errori. Una regola può anche essere alzata a errore nella scheda stessa con <code>[drc] severity</code>, che tiene la politica nel design invece che nello script di CI."
-  },
-  "1m526qxf80v": {
-    "defaultMessage": "isole di riempimento che non raggiungono nulla del net dell'area e sono state rimosse"
   },
   "1m52uejprc2": {
     "defaultMessage": "Un percorso RF è disposto in linea retta. Partendo da ogni connettore con una piazzola su un net RF (una classe con <code>impedance</code> e senza <code>diff_gap</code>), il posizionatore segue i net RF attraverso i componenti che ne portano due o più e hanno al massimo 16 pin (blocchi DC, attenuatori, switch, LNA, balun), e prende il percorso più lungo che termina in un altro connettore o in un chip più grande con pin RF; uno switch con bypass passa attraverso l'amplificatore, non il bypass. Quando entrambe le estremità sono connettori, vanno su bordi opposti dell'asse lungo della scheda e scivolano lungo di essi su una linea, attraverso il centro della scheda dove entrambi stanno. Ogni componente sul percorso ruota in modo che le sue piazzole di ingresso e uscita stiano su quella linea, in ordine, compresse verso l'ingresso con al massimo 1,5 mm di spazio extra ciascuna, e il resto dello spazio va all'ultimo tratto. Un componente a due o tre pin con una piazzola su un nodo del percorso (un clamp ESD, un choke di polarizzazione, un condensatore a shunt) sta accanto alla linea a quel nodo, ruotato in modo che le sue altre piazzole puntino lontano, abbastanza vicino che la sua piazzola RF incontri la pista e abbastanza lontano che le sue altre piazzole mantengano la distanza della classe; due shunt a un nodo vanno su lati opposti. Il percorso è fissato prima che il resto venga posizionato attorno ad esso, e un componente che lascerebbe la scheda o atterrebbe su un altro è lasciato al posizionatore generale."
@@ -1388,9 +1427,6 @@
   "1mzwfau5im8": {
     "defaultMessage": "Ogni foglio è un normale file di schema con i suoi componenti e net. I net si uniscono tra i fogli per nome, quindi <code>3V3</code> su ogni foglio è un solo net e un segnale lascia un foglio e arriva su un altro con lo stesso nome. I pin di un net devono essere componenti sullo stesso foglio; un net che attraversa i fogli ha bisogno della stessa <code>class</code> ovunque la specifichi, e viene disegnato con etichette. I riferimenti sono univoci nell'intero progetto. Un foglio da solo salta gli avvisi per pin singolo e classe Default (il resto del net, e la sua classe, possono essere su un altro foglio); lo schema principale esegue ogni controllo sul progetto unito e disegna i fogli impilati dall'alto verso il basso. Il file principale può contenere anche i suoi componenti e net."
   },
-  "1n1rc7zgly9": {
-    "defaultMessage": "piazzole di net diversi le cui aperture di mask lasciano meno di <code>min_mask_web</code>, una riga per coppia di componenti; le piazzole di un footprint con <code>mask_web = false</code> vengono saltate tra loro"
-  },
   "1n1sk97q413": {
     "defaultMessage": "uno schema: componenti posizionati, net, fili"
   },
@@ -1405,6 +1441,9 @@
   },
   "1n654yj4dk0": {
     "defaultMessage": "Lavora da un clone quando vuoi gli esempi, o per modificare agentee stesso:"
+  },
+  "1na2buppw58": {
+    "defaultMessage": "<code>--rulers</code>"
   },
   "1ncp0psxtys": {
     "defaultMessage": "true"
@@ -1640,6 +1679,9 @@
   "1qw5tcldd6o": {
     "defaultMessage": "unità, modello dei file, resolve e verifica, i calcolatori"
   },
+  "1qxtym14c23": {
+    "defaultMessage": "<code>agentee render</code> (MCP <code>render_item</code>) disegna ciò che il visualizzatore disegna. Senza i pannelli laterali (<code>--canvas-only</code>) il PNG viene ritagliato al disegno, e <code>--width</code> e <code>--height</code> ne limitano la dimensione."
+  },
   "1r0hmmormyn": {
     "defaultMessage": "meccanicamente, in uno sub-stack laminato"
   },
@@ -1660,6 +1702,9 @@
   },
   "1r5t471qlyo": {
     "defaultMessage": "Posizionamento, sbroglio e aree di rame - guida agentee"
+  },
+  "1r94okxp0ki": {
+    "defaultMessage": "Una scheda intera a 1400 pixel è troppo piccola perché un modello legga le etichette, quindi renderizza la parte di cui stai chiedendo. <code>--focus</code> fa zoom ai componenti, net e pin che indichi e attenua il resto, <code>--rulers</code> etichetta le coordinate in millimetri lungo i bordi in modo che il prossimo <code>--region</code> possa essere letto dall'immagine, e con <code>--canvas-only</code> il PNG viene ritagliato al disegno:"
   },
   "1raj6a0in47": {
     "defaultMessage": "<code>*.pcb.toml</code>: posizionamenti, piste, vie, aree, serigrafia"
@@ -1739,6 +1784,9 @@
   "1siy1uwon63": {
     "defaultMessage": "Altrimenti <code>agentee new symbol NAME</code> / <code>agentee new footprint NAME</code> e modifica il file di partenza."
   },
+  "1sm539dig10": {
+    "defaultMessage": "flag"
+  },
   "1snb267xxo0": {
     "defaultMessage": "Segnala sempre la passività (il massimo valore singolare di S nella banda) e la reciprocità (il massimo |Sij - Sji|) quando ogni net è stato eccitato. Il TDR ricampiona su una griglia uniforme, estrapola la parte reale a DC, applica un fronte gaussiano (default 10-90% di salita di 1,3 / frequenza massima) e integra la risposta all'impulso; avvisa quando il fronte è più rapido di quanto i dati supportino. Il visualizzatore mostra lo stesso TDR per ogni net eccitato sotto la scheda <code>tdr</code>."
   },
@@ -1780,6 +1828,9 @@
   },
   "1t6pxa5bz3h": {
     "defaultMessage": "Importa dalle librerie KiCad installate"
+  },
+  "1t7f8d3334k": {
+    "defaultMessage": "etichetta le coordinate in mm lungo i bordi superiore e sinistro"
   },
   "1tb0k2uaxra": {
     "defaultMessage": "Simulazioni logiche di un contatore e di un bus I2C"
@@ -1888,6 +1939,9 @@
   },
   "1v0wqtjy1ac": {
     "defaultMessage": "Le librerie in altre posizioni vengono trovate tramite <code>KICAD9_SYMBOL_DIR</code> e <code>KICAD9_FOOTPRINT_DIR</code>."
+  },
+  "1v1hqsikkfv": {
+    "defaultMessage": "Fogli d'ordine"
   },
   "1v2uudc6t8s": {
     "defaultMessage": "preset"
@@ -2003,6 +2057,9 @@
   "1xdif2fiz9x": {
     "defaultMessage": "cambia il layer attivo"
   },
+  "1xekxt0pa8v": {
+    "defaultMessage": "pezzi di scorta per questo componente al posto del valore predefinito, ad esempio nessuno per un modulo costoso"
+  },
   "1xfwjxnnmwm": {
     "defaultMessage": "10 ns"
   },
@@ -2023,9 +2080,6 @@
   },
   "1xsx0n8gdmv": {
     "defaultMessage": "Chiavi utili del footprint:"
-  },
-  "1xwa0edgvkl": {
-    "defaultMessage": "il rame di due net è più vicino del maggiore dei loro clearances di classe (un <code>clearance</code> di un footprint li sostituisce per le sue piazzole), o il rame entra in un foro non pieno"
   },
   "1xx1mnazadi": {
     "defaultMessage": "Scrittura di schemi - guida di agentee"
@@ -2069,8 +2123,14 @@
   "1yd48z3wex0": {
     "defaultMessage": "piazzare una via su un rame con un net"
   },
+  "1ydrf2t9pa0": {
+    "defaultMessage": "<code>isolation-domain</code>"
+  },
   "1yeem25v9mo": {
     "defaultMessage": "<code>diff_gap</code> rende una classe una coppia e la sua impedenza differenziale. I net che finiscono in <code>_P</code> e <code>_N</code>, <code>_DP</code> e <code>_DN</code>, <code>+</code> e <code>-</code>, o <code>P</code> e <code>N</code> si accoppiano da soli; altrimenti nominali nel layout:"
+  },
+  "1yf3l1ndp3i": {
+    "defaultMessage": "<code>buy_with = &quot;XHP-2, SXH-001T-P0.6 x2&quot;</code>"
   },
   "1yf5ve95i67": {
     "defaultMessage": "JSON dei risultati e VCD"
@@ -2147,6 +2207,9 @@
   "1zgogqmzk75": {
     "defaultMessage": "<code>copper-to-edge</code>"
   },
+  "1zguykj5vvy": {
+    "defaultMessage": "un gap a scintilla i cui elettrodi non sono distanti quanto dichiarato in <code>gap</code> (a 0,01 mm), si trovano sotto <code>min_clearance</code>, condividono un net o non ne hanno uno, o hanno solder mask che attraversa il gap su un layer esterno"
+  },
   "1zkgdw4j6er": {
     "defaultMessage": "Gli due stackup HDI inclusi sono costruzioni generiche, non lo stackup pubblicato di un singolo produttore:"
   },
@@ -2185,6 +2248,9 @@
   },
   "20dpdr10xbq": {
     "defaultMessage": "<code>dff</code>"
+  },
+  "20gg17bj404": {
+    "defaultMessage": "cosa succede a tutto ciò che è fuori da <code>--focus</code> (predefinito <code>dim</code>)"
   },
   "20hgaqi3se5": {
     "defaultMessage": "colli in un riempimento più stretti del 90% del <code>min_width</code> dell'area, che il riempimento avrebbe dovuto aprire; contati per posizione con il più stretto"
@@ -2287,6 +2353,9 @@
   },
   "221qbpi8pyl": {
     "defaultMessage": "da In1.Cu a In4.Cu, interrata, attraverso lo sub-stack,"
+  },
+  "226ie5pbkpb": {
+    "defaultMessage": "il componente LCSC, indicato quando nessun distributore ha in stock la riga"
   },
   "226vjhs4w16": {
     "defaultMessage": "Il file *.fp.toml: file di piazzole, forme e strati delle piazzole, piazzole a bordo, connessioni alle aree di rame, courtyard, serigrafia e modelli 3D."
@@ -2398,6 +2467,9 @@
   },
   "24ge4p3vpat": {
     "defaultMessage": "dal primo all'ultimo strato di rame"
+  },
+  "24ghp4o686m": {
+    "defaultMessage": "Renderizzazione di parte di un progetto"
   },
   "24kimihxft4": {
     "defaultMessage": "punte di riempimento più strette di 30 gradi; aumenta il <code>min_width</code> dell'area"
@@ -2567,6 +2639,9 @@
   "270mf8lg1lx": {
     "defaultMessage": "posiziona i connettori sui bordi con il lato di accoppiamento verso l'esterno, e mai un connettore RF e un connettore USB sullo stesso bordo se un'altra divisione è possibile, perché il rumore USB 3 cade nella banda dei 2,4 GHz;"
   },
+  "272ff8lqlwg": {
+    "defaultMessage": "rame di due net più vicino della maggiore delle loro distanze di isolamento di classe (una <code>clearance</code> di un footprint li sostituisce per le sue piazzole), o rame che entra in un foro non placcato. Le piazzole di un footprint sono mantenute a <code>min_clearance</code> e alla distanza di isolamento di classe dei net in un dominio di isolamento; gli elettrodi di scarica sono saltati"
+  },
   "273giv9xl0e": {
     "defaultMessage": "posizionamento, colonne JLCPCB"
   },
@@ -2620,6 +2695,12 @@
   },
   "28a3r88ouzz": {
     "defaultMessage": "0.3"
+  },
+  "28d8cxee2e6": {
+    "defaultMessage": "schemi e layout: zoom a questi riferimenti, nomi di net o <code>REF.PIN</code>, <code>*</code> che corrisponde a qualsiasi sequenza di caratteri. Un net porta con sé i componenti che tocca, un pin il suo net"
+  },
+  "28eex1tfszn": {
+    "defaultMessage": "La distanza di isolamento di una classe i cui net si trovano in un dominio è presa come spaziatura elettrica, quindi si mantiene anche tra le piazzole di un footprint: un TO-220 su una classe HvBus da 1,5 mm con piazzole distanti 1,0 mm è un errore di <code>clearance</code>. Le piazzole di un footprint i cui net non sono in nessun dominio sono mantenute solo a <code>min_clearance</code>, poiché il passo del componente imposta la loro distanza."
   },
   "28f7652hq13": {
     "defaultMessage": "Scrivi un file di partenza per una scheda, un simbolo, un footprint, uno schema, un layout o una simulazione, da cui modificare. Una simulazione parte come una simulazione FDTD di un layout, o con sim_kind logic come una simulazione logica di uno schema (orologio, reset, un'assertion pilotata) le cui net puoi rinominare."
@@ -2689,6 +2770,9 @@
   },
   "29iu3d22sqh": {
     "defaultMessage": "instrada: clic su una piazzola, una via o una pista per iniziare, clic per aggiungere angoli a 45 gradi, <code>/</code> inverte la curva, V piazza una via, Invio termina"
+  },
+  "29j14m86ht8": {
+    "defaultMessage": "campo"
   },
   "29ku7ky1qub": {
     "defaultMessage": "una coppia che corre affiancata con un gap diverso dal <code>diff_gap</code> della classe, oltre <code>max_uncoupled</code>"
@@ -2779,6 +2863,9 @@
   },
   "2b4wu4tjhac": {
     "defaultMessage": "Usa un preset HDI"
+  },
+  "2b5qclo9mdd": {
+    "defaultMessage": "<code>isolation-unassigned</code>"
   },
   "2b6e1q1tvd8": {
     "defaultMessage": "<code>agentee fab pcb:NAME -o DIR</code> (MCP <code>fab</code>) scrive:"
@@ -2900,6 +2987,9 @@
   "2cjq2lndzi6": {
     "defaultMessage": "Il driver diventa una sorgente di Thevenin dalle sue tabelle di pulldown e pullup, la sua capacità del die e il suo package; il suo rampa imposta il bordo e il suo intervallo di tensione lo swing, a meno che non siano dati <code>rise</code> o <code>swing</code>. Il ricevitore carica l'estremità lontana con il suo package e la capacità del die, e l'occhio viene letto al suo die. IBIS funziona per ora sui percorsi single-ended."
   },
+  "2cozbj3xs0k": {
+    "defaultMessage": "<code>--focus</code> accetta riferimenti (<code>U1</code>), nomi di net (<code>SPI_CLK</code>) e pin (<code>U1.3</code>), con <code>*</code> come carattere jolly. Un net porta con sé i componenti che tocca. <code>--context</code> è <code>dim</code> di default, <code>hide</code> per lasciare solo ciò che hai indicato, o <code>show</code> per fare zoom senza attenuare nulla. MCP <code>render_item</code> accetta gli stessi argomenti <code>focus</code>, <code>context</code> e <code>rulers</code>."
+  },
   "2csls3gciuc": {
     "defaultMessage": "Cosa serve"
   },
@@ -2929,6 +3019,9 @@
   },
   "2d6y5d2d527": {
     "defaultMessage": "<code>impedance-trace</code>"
+  },
+  "2d70vdx1d3o": {
+    "defaultMessage": "Un nome che non corrisponde a nulla è un errore. <code>--region</code> con <code>--focus</code> mantiene il filtro e usa la regione per lo zoom."
   },
   "2dayrb6juwp": {
     "defaultMessage": "HC, HCT"
@@ -3296,6 +3389,9 @@
   "4lxxwf41j4": {
     "defaultMessage": "<code>min_plated_slot_width</code>"
   },
+  "4pvnbce4b5": {
+    "defaultMessage": "<code>creepage</code>"
+  },
   "4rae9zpwbh": {
     "defaultMessage": "sempre"
   },
@@ -3358,6 +3454,9 @@
   },
   "686lhskeo4": {
     "defaultMessage": "un simbolo di schema"
+  },
+  "6f8tjd4506": {
+    "defaultMessage": "layer da attivare o disattivare, ad esempio <code>--hide F.Cu --show In1.Cu</code>"
   },
   "6ido514tq1": {
     "defaultMessage": "4 strati, JLC04161H-7628, ENIG"
@@ -3671,6 +3770,9 @@
   "b7b8tb291q": {
     "defaultMessage": "File di progetto"
   },
+  "b7nt3ki7r1": {
+    "defaultMessage": "Rende un elemento in PNG esattamente come lo mostra il visualizzatore e restituisce l'immagine. Senza i pannelli laterali, l'immagine viene ritagliata sul disegno, quindi larghezza e altezza sono le massime possibili."
+  },
   "b92nzpwkpa": {
     "defaultMessage": "Cosa hai fatto"
   },
@@ -3766,6 +3868,9 @@
   },
   "d4h9xa9tl2": {
     "defaultMessage": "Disegna il courtyard su <code>F.CrtYd</code> e il contorno del corpo su <code>F.Fab</code>: la verifica richiede un courtyard che contenga le piazzole, il posizionatore tiene i courtyard separati, e le regole di bordo e di assemblaggio misurano dal corpo. Imposta <code>height</code> in modo che la vista 3D e la regola per i componenti alti abbiano un'altezza senza un modello."
+  },
+  "d8xhh7ye1c": {
+    "defaultMessage": "L'interruttore <code>back</code> della pagina 2D specchia la scheda per guardarla da sotto: il rame inferiore viene disegnato sopra quello superiore, e la visibilità di ogni layer frontale si scambia con il suo gemello posteriore. <code>agentee render pcb:NAME --show back</code> renderizza quella vista."
   },
   "da20h6ryzp": {
     "defaultMessage": "Il server MCP"
@@ -3941,6 +4046,9 @@
   "gaamns4i1l": {
     "defaultMessage": "<code>min_drill</code>, <code>min_via_drill</code>"
   },
+  "gj2bevgtpu": {
+    "defaultMessage": "<code>--spares</code> (MCP <code>spares</code>) aggiunge la tolleranza per l'assemblaggio manuale: i resistori e i condensatori 0402 e 0603 si comprano al multiplo di dieci successivo al bisogno più cinque, e ogni riga <code>D</code>, <code>Q</code>, <code>U</code> e <code>F</code> riceve un pezzo di scorta. Questi campi del componente la modificano:"
+  },
   "glhbhwqbjr": {
     "defaultMessage": "Un pin è <code>REF.PIN</code>, per numero o per un nome di pin univoco; un nome condiviso da più pin è un errore. Un pin a cui viene assegnato un net a cui è già collegato si sposta sul nuovo net. Il file mantiene i suoi commenti e il suo layout. <code>agentee edit</code> scrive il file, riempe le aree di rame memorizzate di un layout, poi riporta le diagnostiche della verifica dei file modificati, ed esce con codice 1 se una di esse è un errore."
   },
@@ -4093,6 +4201,15 @@
   },
   "ijyo5sjjdk": {
     "defaultMessage": "<code>Y0</code> a <code>Y7</code>"
+  },
+  "ingvojakto": {
+    "defaultMessage": "net in nessun dominio, che nessuna barriera copre"
+  },
+  "iomevdc6xc": {
+    "defaultMessage": "<code>--context dim|hide|show</code>"
+  },
+  "iozyts7ml0": {
+    "defaultMessage": "<code>spares = &quot;0&quot;</code>"
   },
   "ir7t9q4eba": {
     "defaultMessage": "<code>A</code>, <code>B</code>: gli stessi pin, pilotati dall'altro lato da <code>DIR</code>"
@@ -4652,6 +4769,9 @@
   "rbd5i5y6uj": {
     "defaultMessage": "Guide"
   },
+  "rg8rx5tw3u": {
+    "defaultMessage": "<code>lcsc = &quot;C165948&quot;</code>"
+  },
   "rgx7g5j89u": {
     "defaultMessage": "I dati del dispositivo vengono interpolati linearmente nelle parti reale e immaginaria e la banda viene tagliata dove ogni dispositivo ha dati. Un risultato a due porte riporta il picco e il minimo di guadagno, il peggiore tra S11, S22 e S12, e il mu di Edwards-Sinsky e il K di Rollett più bassi (mu sopra 1 a ogni frequenza indica stabilità incondizionata). Il risultato diventa obsoleto quando la specifica, il risultato della scheda o un file di dispositivo cambiano."
   },
@@ -4699,6 +4819,9 @@
   },
   "sa2s0k3fii": {
     "defaultMessage": "0.15, 1.0"
+  },
+  "sa82hcx9ev": {
+    "defaultMessage": "rame di due domini su un layer più vicino della distanza di isolamento della barriera tra loro, incluse piazzole di un footprint e aree di rame; una riga per coppia di net con il punto più vicino"
   },
   "saviwyv34g": {
     "defaultMessage": "20 ns"
@@ -4862,6 +4985,9 @@
   "vevjglgna0": {
     "defaultMessage": "Dagli il riferimento di formato"
   },
+  "vg1052wiwx": {
+    "defaultMessage": "Una classe di net ha un'unica distanza di isolamento, mantenuta contro ogni altro net. Dove i net devono mantenere più distanza da un gruppo che dai loro vicini (un primario di rete da un secondario, un rail flottante dal resto del secondario), metti i net in domini e imposta una barriera tra due domini:"
+  },
   "vgzxbueyi7": {
     "defaultMessage": "Alcune decisioni sono più veloci con un mouse: spostare un connettore dove lo vuole l'involucro, reinstradare una pista attorno a un componente, piazzare una via. La pagina 2D del layout modifica il layout e il salvataggio (ctrl+S) scrive la modifica nel <code>.pcb.toml</code> con lo stesso scrittore che preserva commenti e ordine usato dalla CLI. L'agente legge la tua modifica la prossima volta che carica il file."
   },
@@ -4970,6 +5096,9 @@
   "x0m5nm2n6u": {
     "defaultMessage": "KiCad disegna la serigrafia a 0,12 mm e JLCPCB richiede 0,15 mm. Apri ogni footprint e cambia <code>width = 0.12</code> in <code>0.15</code> nei suoi grafici di serigrafia, oppure fai in modo che il tuo agente lo faccia. Questa è la forma normale del lavoro con agentee: la diagnosi indica il file, l'elemento e il numero, e la correzione è una singola modifica."
   },
+  "x3a0fv0yot": {
+    "defaultMessage": "significato"
+  },
   "x3j6gd5rkw": {
     "defaultMessage": "File di progetto - riferimento agentee"
   },
@@ -5060,6 +5189,9 @@
   "y817q65376": {
     "defaultMessage": "<code>hole-to-edge</code>"
   },
+  "y84zm9obxw": {
+    "defaultMessage": "<code>--region x0,y0,x1,y1</code>"
+  },
   "y852j1pdwt": {
     "defaultMessage": "<code>*.sym.toml</code>"
   },
@@ -5072,8 +5204,14 @@
   "yc9r30dm9u": {
     "defaultMessage": "La BOM li raggruppa, e <code>agentee parts</code> cerca scorte, prezzi ed equivalenti più economici per <code>mpn</code>. Vedi <a href=\"/guides/fab/\">Fab package, BOM e prezzi</a>."
   },
+  "ycd75jjuqy": {
+    "defaultMessage": "un net la cui classe o nome lo mette in due domini"
+  },
   "ydfgdztl7j": {
     "defaultMessage": "<code>rect</code>"
+  },
+  "yebgi2jbad": {
+    "defaultMessage": "Un net si trova in un dominio al massimo. All'interno di un dominio, e per i net in nessun dominio, le distanze di isolamento della classe si applicano come prima. Tra due domini con una barriera, il rame su un layer mantiene la <code>clearance</code> della barriera (<code>isolation-clearance</code>), incluse le piazzole di un footprint e le aree di rame. Le aree di rame e lo sbroglio automatico mantengono la barriera dal rame dell'altro dominio mentre riempiono e sbrogliano; su F.Cu e B.Cu mantengono il maggiore tra <code>clearance</code> e <code>creepage</code>, poiché nessuno dei due misura i percorsi attorno alle fessure."
   },
   "yfwyujuwr8": {
     "defaultMessage": "2"

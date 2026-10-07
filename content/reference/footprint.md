@@ -20,6 +20,10 @@ model_scale = [1, 1, 1]                # optional
 # net_tie_pad_groups = [["1", "2"]]  # as KiCad's net tie: copper of these pads' nets may touch or
                                # come near any pad of the group (a bridged solder jumper's strip
                                # and the tracks landing on it) without a short or clearance error
+# spark_gaps = [{ pads = ["1", "2"], gap = "0.25mm" }]  # electrodes meant to arc: the pair skips
+                               # clearance, barrier, creepage and mask web checks, and spark-gap
+                               # checks the drawn gap, the fab minimum and an open mask over it;
+                               # draw a filled F.Mask shape across the gap to open it
 
 [[pads]]
 number = "1"
