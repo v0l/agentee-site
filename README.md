@@ -21,7 +21,7 @@ bun run deploy         # build, then Cloudflare Pages project `agentee`
 | `content/guides/*.md` | the guides, one file per guide; the list, titles and summaries are `src/content/guides.ts` |
 | `content/pages/source.md` | the build from source page |
 | `content/reference/*.md` | the file format reference, split from `docs/format.md` by `bun run sync` |
-| `content/upstream/` | `SKILL.md` and `format.md` as copied from the agentee repo |
+| `content/upstream/` | `SKILL.md`, `practice.md` and `format.md` as copied from the agentee repo |
 | `src/content/*.ts` | home page copy, examples, install platforms, the reference page list |
 | `src/generated/` | CLI help, MCP tools, counts, and each render's size and content hash (its `?v=` cache key), written by `bun run sync` |
 | `public/assets/renders/` | renders of the examples, written by `bun run sync` |
@@ -29,7 +29,7 @@ bun run deploy         # build, then Cloudflare Pages project `agentee`
 | `scripts/og.html` | the source of `public/assets/og.png`, screenshot at 1200 x 630 |
 
 `bun run sync` reads `../agentee` (or `AGENTEE_REPO`) and its `target/release/agentee` (or
-`AGENTEE_BIN`): it copies the skill and format reference, splits the reference by the headings in
+`AGENTEE_BIN`): it copies the skill files and format reference, splits the reference by the headings in
 `src/content/reference.ts`, records every command's help and the MCP tool list, and renders the
 examples. Run it after an agentee change, then build. `--no-renders` skips the renders.
 
@@ -42,13 +42,14 @@ ships to the browser. Code is highlighted at the same time.
 
 - `/llms.txt` and `/llms-full.txt` ([llmstxt.org](https://llmstxt.org)),
 - `index.html.md` beside every English page, linked from each page's head,
-- `/.well-known/agent-skills/index.json` (Agent Skills Discovery v0.2.0, with the SHA-256 digest
-  of the skill) and the older `/.well-known/skills/index.json`, both with `agentee/SKILL.md`,
+- `/.well-known/agent-skills/index.json` (Agent Skills Discovery v0.2.0), listing
+  `agentee.zip` with its SHA-256 digest, and the older `/.well-known/skills/index.json`, which
+  lists the files; both serve `agentee/SKILL.md` and `agentee/practice.md`,
 - `/sitemap.xml` with hreflang alternates.
 
 The skill itself follows `master` of the agentee repository without a rebuild: Pages Functions in
-`functions/.well-known/` (shared code in `edge/skill.ts`) serve both `SKILL.md` paths and both
-indexes from `raw.githubusercontent.com/v0l/agentee/master/skills/agentee/SKILL.md`, with the
+`functions/.well-known/` (shared code in `edge/skill.ts`) serve the skill files, the zip and both
+indexes from `raw.githubusercontent.com/v0l/agentee/master/skills/agentee/`, with the
 digest worked out per request and a five minute edge cache. When GitHub cannot be reached they
 fall back to the copy the build wrote. The `/skills/` page and `llms-full.txt` still carry the
 copy from the last `bun run sync`.

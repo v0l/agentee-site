@@ -36,6 +36,7 @@ const RENDERS: Render[] = [
 async function copyUpstream() {
   mkdirSync('content/upstream', { recursive: true });
   await Bun.write('content/upstream/SKILL.md', Bun.file(join(REPO, 'skills/agentee/SKILL.md')));
+  await Bun.write('content/upstream/practice.md', Bun.file(join(REPO, 'skills/agentee/practice.md')));
   await Bun.write('content/upstream/format.md', Bun.file(join(REPO, 'docs/format.md')));
 }
 

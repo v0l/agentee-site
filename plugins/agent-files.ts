@@ -7,6 +7,7 @@ import { EXAMPLES } from '../src/content/examples';
 import { PLATFORMS, REPO, SITE, asset, latestUrl } from '../src/content/platforms';
 import { PAGES, ROUTES, alternates, canonicalPath, markdownPath } from '../src/meta';
 import { splitPath } from '../src/i18n/locales';
+import { zip } from '../edge/zip';
 import cli from '../src/generated/cli.json';
 import mcp from '../src/generated/mcp.json';
 import facts from '../src/generated/facts.json';
@@ -23,8 +24,15 @@ const absolute = (md: string) => md.replace(/\]\(\//g, `](${SITE}/`);
 const mdUrl = (path: string) => `${SITE}${markdownPath(path)}`;
 
 const SKILL = read('content/upstream/SKILL.md');
+const PRACTICE = read('content/upstream/practice.md');
+const SKILL_FILES: [string, string][] = [
+  ['SKILL.md', SKILL],
+  ['practice.md', PRACTICE],
+];
+const SKILL_ZIP = zip(SKILL_FILES);
 const skillDescription = /^description: (.*)$/m.exec(SKILL)?.[1] ?? '';
-const digest = `sha256:${createHash('sha256').update(SKILL).digest('hex')}`;
+const sha256 = (data: string | Uint8Array) => `sha256:${createHash('sha256').update(data).digest('hex')}`;
+const digest = sha256(SKILL);
 
 const SUMMARY =
   'Electronics design for coding agents. A design is a directory of plain TOML files (board spec, symbols, footprints, schematics, layouts and simulations) that an agent writes and edits. The `agentee` CLI checks them against the fab, renders them to PNG, solves trace impedance, runs FDTD, cascade, channel, PDN, DC drop, thermal and logic simulations on the GPU, and writes the fab package. A person watches in a live viewer and can edit the layout by hand.';
@@ -200,7 +208,9 @@ function skillsMarkdown() {
     '```',
     '',
     `- Index (Agent Skills Discovery v0.2.0): ${SITE}/.well-known/agent-skills/index.json`,
+    `- Archive: ${SITE}/.well-known/agent-skills/agentee.zip (${sha256(SKILL_ZIP)})`,
     `- SKILL.md: ${SITE}/.well-known/agent-skills/agentee/SKILL.md (${digest})`,
+    `- practice.md: ${SITE}/.well-known/agent-skills/agentee/practice.md`,
     `- Legacy index: ${SITE}/.well-known/skills/index.json`,
     '',
     '---',
@@ -334,20 +344,25 @@ export function agentFiles(): Plugin {
       for (const path of Object.keys(PAGES)) emit(markdownPath(path).slice(1), pageMarkdown(path));
 
       const entry = { name: 'agentee', description: skillDescription };
-      emit('.well-known/agent-skills/agentee/SKILL.md', SKILL);
+      const names = SKILL_FILES.map(([name]) => name);
+      for (const dir of ['agent-skills', 'skills']) {
+        for (const [name, text] of SKILL_FILES) emit(`.well-known/${dir}/agentee/${name}`, text);
+      }
+      this.emitFile({ type: 'asset', fileName: '.well-known/agent-skills/agentee.zip', source: SKILL_ZIP });
       emit(
         '.well-known/agent-skills/index.json',
         `${JSON.stringify(
           {
             $schema: 'https://schemas.agentskills.io/discovery/0.2.0/schema.json',
-            skills: [{ ...entry, type: 'skill-md', url: '/.well-known/agent-skills/agentee/SKILL.md', digest }],
+            skills: [
+              { ...entry, type: 'archive', url: '/.well-known/agent-skills/agentee.zip', digest: sha256(SKILL_ZIP) },
+            ],
           },
           null,
           2,
         )}\n`,
       );
-      emit('.well-known/skills/agentee/SKILL.md', SKILL);
-      emit('.well-known/skills/index.json', `${JSON.stringify({ skills: [{ ...entry, files: ['SKILL.md'] }] }, null, 2)}\n`);
+      emit('.well-known/skills/index.json', `${JSON.stringify({ skills: [{ ...entry, files: names }] }, null, 2)}\n`);
     },
   };
 }
