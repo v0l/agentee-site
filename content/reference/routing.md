@@ -1,7 +1,32 @@
 `agentee route NAME --nets 'FX_D*,SPI_*' --layers F.Cu,In2.Cu,B.Cu` (MCP `route`) routes the
-ratsnest of the named nets on a grid (`--grid`, default 0.05 mm) and appends the tracks and vias
-to the layout file as ordinary `[[tracks]]` and `[[vias]]`, so they are yours to edit afterwards.
-It keeps each net class's width, clearance and `layers` against every pad, track, via, hole and
+ratsnest of the named nets with the layout engine's detail router (see
+`docs/layout-engine-2.md`) and appends the tracks and vias to the layout file as ordinary
+`[[tracks]]` and `[[vias]]`, so they are yours to edit afterwards. The named nets negotiate for
+room together on a grid (`--grid`, default 0.05 mm) over up to 30 rounds, routed in parallel,
+ripping up only the pieces that overlap, so the order they are named in does not matter.
+`--layers` keeps tracks to those layers, apart from a short stub out of a pad that sits on none of
+them; `--via` limits layer changes to the named vias, otherwise a net takes its class vias first
+and the board's others after. `--via-cost`, `--bend-cost` and `--via-in-pad` work as below. Each
+net's new copper is checked against the rules before it is written; the tracks and vias that
+break one are dropped with the rule named under `failed`, and the rest of the net is kept. A via
+the net is joined without is dropped.
+
+A pair whose class has a `diff_gap` at least its clearance, with one connection per net, is routed
+coupled: a centreline as wide as both tracks and the gap is searched on one layer from near the
+middle of one pair of pads to near the middle of the other, offset into two tracks at exactly the
+pair gap, and each net then joins its pads to its track with an ordinary breakout. The centreline
+negotiates like any net, so a pair that overlaps another net is laid again in the next round;
+between the two nets of a pair only the plain clearance holds, so the breakouts may run beside the
+coupled tracks. A pair left with an open connection is tried once more uncoupled and kept that way
+if it joins more. `--pairs` is accepted and does nothing more. A net in an interface with
+`max_vias` gets its share of the lane's remaining vias (the lane less the vias it already has,
+split over the lane's nets being routed); a connection that takes more is searched again with
+dearer vias (four times, sixteen when no via is left), and the second route is kept only if it
+fits. Otherwise the first stands and check reports `interface-vias`, since holding every lane
+to its budget cost more connections than it saved errors.
+
+The viewer's single-connection route goes through the older grid router. The grid router
+keeps each net class's width, clearance and `layers` against every pad, track, via, hole and
 the board edge, sizes the room for each class via by its own pad, drill and layers (a microvia fits
 where a through via does not, and a microvia may sit beside a buried via on other layers), keeps new
 vias `min_hole_to_hole` from every drill whose span shares a dielectric with theirs and their holes
@@ -47,7 +72,10 @@ partner at the pair gap; `--pairs` tries to route both halves together as one co
 first. When connections fail, the whole route runs again, up to four times in all, with the
 failed nets first in their class and their class first, and a cost on the path they would take
 through the copper of earlier classes so those classes leave it free; the run with the fewest
-failures, then the fewest vias, then the least track is written. When a few connections fail, route them again together with the nets around them and
+failures, then the fewest vias, then the least track is written. A new via the net is joined
+without (its pads stay together through the other copper and the pours) is dropped with the
+stub that only led to it before anything is written; a via that drops a track to a pour on a
+layer the track does not reach stays. When a few connections fail, route them again together with the nets around them and
 `--reroute`, so the router can rip up and reorder the whole area, or drop to `--grid 0.025`. `--dry-run` reports without writing. Route the nets that matter by hand
 first, then let the router fill in the rest, a class at a time.
 
@@ -58,13 +86,21 @@ obstacles to the router: the rule places them again around the new copper.
 
 `agentee tie NAME [--nets GND] [--dry-run]` (MCP `tie`) connects each SMD pad of a plane net to
 the nearest layer its zone covers with a short stub and a via beside the pad, which is how ground
-and supply pads join a plane instead of tracks between them. The via goes on the side of the pad
-away from the part's centre, as close as it can: its copper clear of every SMD pad (its own too,
+and supply pads join a plane instead of tracks between them. The via goes straight out from the side of
+the part the pad sits on, so a row of pins gets a row of vias, as close as it can: its copper clear of every SMD pad (its own too,
 so no via-in-pad), its hole `min_hole_to_smd_pad` from them, `min_hole_to_hole` from other holes,
 `min_via_hole_to_copper` and the class clearance from other nets, `min_copper_to_edge` in from
-the outline, and the stub clear of other nets on the pad's layer. It tries 16 directions, nearest
-the outward one first, up to 1.2 mm past the pad. A pad that already has a via of its net within
-0.8 mm of its edge is left alone, through-hole pads and BGA balls (`escape` handles those) are
+the outline, and the stub clear of other nets on the pad's layer. The stub starts where it
+leaves the pad, not at its centre, so a fine-pitch part's other pad is not in its way. It tries 16 directions, nearest
+the outward one first, up to 1.2 mm past the pad. A pad already joined to the main body of
+its net's zone on another layer is left alone, through whatever copper of its net does it: the
+pour on its own layer, tracks, vias and plated holes, so a pad in a ground pour that reaches the
+plane anywhere needs nothing, and running `tie` again adds nothing. Once `tie` puts a via on a
+pad in a pour island, the other pads in that island count as joined, so an island takes one via. Pads of a decoupling
+capacitor (a capacitor with a pin on a supply net) and of a part on an RF class net are the
+exception: they want the short return path, so each gets its own via unless a plated hole of its
+net is within 0.8 mm of its edge, a via of its net within 0.8 mm sits in the same pour island, or
+its own tracks already run to a via on the plane layer within reach of a tie. Through-hole pads and BGA balls (`escape` handles those) are
 skipped, and a pad with no legal spot is listed under `failed`. The stubs and vias are appended
 as ordinary `[[tracks]]` and `[[vias]]`.
 

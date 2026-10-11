@@ -12,7 +12,7 @@ cell = 0.05                    # raster cell in mm
 
 [[supplies]]
 pad = "D2.1"
-voltage = "4.7V"
+voltage = "4.7V"               # default: the class voltage of the pad's net
 
 [[supplies]]
 pad = "J3.2"

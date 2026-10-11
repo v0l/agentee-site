@@ -81,12 +81,13 @@ one (inside the window), both legs of a pair together. Delays turn into millimet
 own ps per mm. When one leg of a pair cannot take all of it, the other leg is held to what it got.
 A net that is over its group target is reported, not shortened. `agentee calc
 serpentine --from x,y --to x,y --add 2.5mm` (MCP `serpentine`) returns the points of one such
-meander on a segment you pick. Net lengths and delays are in `agentee show pcb:NAME`.
+meander on a segment you pick. Net lengths and delays are in `agentee show pcb:NAME`, which names every net it refers to.
 
 The viewer's layout page has a `3d` tab (`agentee view --3d` opens on it): the board in its
 stackup thickness, mask and silk colours and finish, copper under the mask, bare pads, plated and
 bare drill walls, and each part's 3D model. The `parts` toggle hides the models. Drag to orbit,
-shift-drag to pan, scroll to zoom, double-click to reset. The viewer draws with OpenGL
+shift-drag to pan, scroll to zoom toward the pointer, double-click to reset. A `.step`, `.stp`,
+`.wrl` or `.vrml` file written anywhere under the project is loaded again into the open view. The viewer draws with OpenGL
 ([three-d](https://github.com/asny/three-d)); `agentee render pcb:NAME --show 3d` (or `3d-top`,
 `3d-bottom`) draws the same scene in software, `--hide parts` leaves the models out and `--region`
 aims the camera at that area.

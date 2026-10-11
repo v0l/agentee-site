@@ -37,6 +37,7 @@ diameter = "0.6mm"
 
 [[netclasses]]
 name = "Default"               # always define Default
+voltage = "3.3VDC"             # every class, see Net class voltage
 track_width = "0.2mm"
 clearance = "0.2mm"
 via = "std"                    # or a list the router picks from: ["std", "uvia-top"]
@@ -46,6 +47,7 @@ name = "Power"
 track_width = "1mm"
 current = "3A"                 # checked against IPC-2221 on every layer
 max_temp_rise = "10C"          # default 10C
+voltage = "48VDC"              # or "-12VDC", "230VAC" (rms); sets spacing, see Net class voltage
 
 [[netclasses]]
 name = "USB"

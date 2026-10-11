@@ -65,7 +65,10 @@ VRML file, so vendor models need not be checked in: it is downloaded once into
 generated part. Pin the URL to a commit or release so the file cannot change under you. KiCad
 library models that are not on disk are downloaded from the kicad-packages3D repository into the
 cache: `agentee models` (MCP `models`) fetches them all and
-reports what it found, and the viewer fetches in the background. A part without a model is a box
+reports what it found, and the viewer fetches in the background. It also writes `height` into
+each of the project's footprint files that has a model and no `height`: the top of the model as
+placed by `model_rotate`, `model_scale` and `model_offset`, so the placer and
+`tall-part-shadow` use the real part. A part without a model is a box
 over its fab outline, `height` tall, else a height guessed from the footprint name. STEP files are
 meshed with [truck](https://github.com/ricosjp/truck), with colours from their styled items and
 assembly placements applied. Edges use the 3D curve of each surface curve, not its pcurves.

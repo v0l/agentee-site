@@ -9,10 +9,15 @@ A project is a directory of TOML files. You write the files; `agentee` loads eve
 the directory, checks it, computes what the stackup gives, and renders it. There is no editor
 state to sync: the files are the design. `agentee edit` writes those files for you.
 
-Prefer `agentee edit` over writing the TOML yourself. It has the same result, it keeps the
-comments and layout of the file, and it checks what it changed. Reach for a text editor only for
-a key it has no command for. It covers schematics, layouts and board specs, not symbols and
-footprints: those still go in a text editor, or in from KiCad. See "Editing with commands" below.
+Change schematics, layouts and board specs with `agentee edit`, and send a change of more than
+one command as one batch (`agentee edit sch NAME -` with the commands on stdin). It keeps the
+comments and layout of the file, refuses a typo before writing, and checks what it changed.
+Reach for a text editor only for a key it has no command for, and for symbols and footprints,
+which it does not cover. See "Editing with commands" below.
+
+Never parse and rewrite the TOML from a Python or shell script. It drops comments, skips the
+checks `edit` does, and turns a typo into a new net or part. When a change is too repetitive to
+type, have the script print `agentee edit` commands and pipe them in (see below).
 
 ## Installing
 
@@ -36,17 +41,95 @@ To use it over MCP instead of the shell:
 { "mcpServers": { "agentee": { "command": "agentee", "args": ["mcp", "/path/to/project"] } } }
 ```
 
+## The parts library first
+
+Every part on a board comes from the user's parts library. For each part a design needs:
+
+1. **Look in the library.** `agentee library find WORDS --role ROLE` (MCP `library_find`), e.g.
+   `library find 3.3V buck --role regulator`. A match is the part to use: `agentee library use
+   NAME` (MCP `library_use`) copies its symbol, footprint and model in and prints the edit that
+   places it. Prefer a `preferred` part for its role. Its listing carries the last checked stock,
+   so it needs no distributor search.
+2. **When nothing fits, find a current part in stock.** The same `find` then searches Mouser,
+   Farnell and DigiKey and lists only active parts in stock (`--need N` for at least N), merged
+   by part number with total stock, where it is and the unit price. Prefer a part stocked at more
+   than one distributor. Read the datasheet of each candidate (`agentee datasheet text MPN`)
+   and pick the one whose ratings, package and pinout meet the design.
+3. **Add it to the library, then use it from there.** `agentee library add MPN --role ROLE
+   --symbol ... --footprint ... --rating "..."` (MCP `library_add`), then `library use`. Tell
+   the user which part you added and why. `add` notes when the part is not in stock as an active
+   part, and when no datasheet was reachable: then ask the user for the PDF.
+
+Never place a part that is not in the library, and never pick one from memory without a
+distributor listing. `check` warns (rule `library`) when a design strays from the library.
+
+```sh
+agentee library add S2B-PH-K-S --name JST-PH-2 --role connector \
+    --symbol Connector_Generic:Conn_01x02 \
+    --footprint Connector_JST:JST_PH_S2B-PH-K_1x02_P2.00mm_Horizontal \
+    --manufacturer JST --rating "2 A, 100 V"
+agentee library show JST-PH-2      # files, where they came from, datasheet, stock
+agentee library refresh            # stock and price of every part, one lookup each
+agentee library verify             # symbol vs footprint vs datasheet, model vs footprint, hashes
+```
+
+`add` copies the symbol, footprint and 3D model in, sets the footprint `height` from the model,
+fetches and pins the datasheet and records stock. Give it the real part number and the
+datasheet's rating; `--datasheet URL|PDF` when the distributors have none. `--generic` makes a
+resistor or capacitor series cover any value on that footprint; leave `--preferred` to the user.
+`--local` adds to the project's `.agentee/library` instead of the user's
+`~/.config/agentee/library`. Run `verify` after adding and fix what it reports before using the
+part: a pin that does not match the datasheet, or a model that does not fit the footprint. Run
+`refresh` before ordering, and replace a library part that has gone out of stock or obsolete the
+same way: find, add, use.
+
+## Datasheets, never guesses
+
+Every number and pin that describes a real part comes from that part's datasheet: pinout and
+pin functions, pin types, absolute maximum and operating ratings, logic levels, supply current,
+regulator output and dropout, op-amp gain bandwidth and noise, diode forward voltage, transistor
+parameters, package and land pattern dimensions, recommended layout and decoupling, RF gain,
+noise figure and S-parameters. A plausible value from memory is how a board gets built with a
+swapped pin or a rail above a part's rating, and nothing downstream catches it: check, ERC and
+every sim trust the numbers you give them.
+
+- Before you use a part, get its datasheet with `agentee datasheet fetch <ref|mpn|design>` (MCP
+  `datasheet_fetch`) and read the pin table and the electrical characteristics with
+  `agentee datasheet text <part> --find <pin or symbol>` (MCP `datasheet_text`). Do not fetch PDFs
+  your own way: the command shares one cached copy between every project and agent. When it lists
+  a part as unreachable, stop and ask the user for the PDF, then `agentee datasheet add <mpn>
+  file.pdf`. Do not fill the gap from memory, from a similar part or from a family member.
+- Use the exact part number and package you will order. Variants of one family differ in
+  pinout, ratings and footprint, and so do KiCad library parts from the datasheet: treat an
+  import as a starting point and check its pin numbers, pin types and footprint against the
+  datasheet.
+- Say where each entered value came from: the `datasheet` URL on the symbol, and the table and
+  condition ("VF 0.2 V at 100 mA, typ") in the sim's `description` or the report to the user.
+- Prefer the vendor's own files over numbers you transcribe: S-parameter files, IBIS models,
+  SPICE parameters, reference layouts.
+- agentee's built-in fallbacks (circuit sim device models, the op-amp single pole, logic family
+  timing) are generic. Replace them with datasheet values for the part, or leave the part out of
+  the sim. Never report a result that rests on a default as if it described the part.
+- When the datasheet does not give a number you need, or a part has no part number yet ("any
+  0603 LED"), say so and ask. Never present an estimate as a datasheet value.
+
 ## Reference
 
 The full key-by-key reference is `agentee docs` (MCP `format_reference`). Read the section for
 the file kind you are about to write before writing it. This skill covers how to work, not every
 key.
 
+[practice.md](practice.md) is the design judgement check cannot make: stackup, rule values, part
+choice, placement and copper. Read it before choosing a stackup, picking parts or steering a
+layout.
+
 ## The loop
 
-Every edit goes through the same four steps. Do not batch several unchecked edits.
+Every change goes through the same four steps. A change is one batch of `agentee edit` commands
+(a whole sheet, a bus, a row of parts) or one hand edit of a file. Do not stack several hand
+edits before checking them.
 
-1. Edit one file, with `agentee edit` where there is a command for it.
+1. Make the change, with `agentee edit` where there is a command for it.
 2. `agentee check` (exit 0 clean, 1 errors, 2 load failure). Add `--item pcb:NAME` to scope it,
    `--info` for notes, `--json` for machine output. An `agentee edit` already ran this for the
    files it touched and printed the result, so `check` is for anything else you changed.
@@ -94,6 +177,7 @@ agentee new board NAME          # fab, stackup, outline, vias, net classes
 agentee new schematic NAME
 agentee new layout NAME
 agentee new sim NAME --kind logic   # a logic sim of the schematic; default --kind fdtd
+agentee new sim NAME --kind circuit # an analog circuit sim of the schematic
 agentee check
 ```
 
@@ -108,8 +192,16 @@ Order of work, each stage passing check before the next:
 
 1. **Board spec.** Pick `fab` (`jlcpcb`, `generic`, or `hdi` for microvia boards) and a stackup
    preset from `agentee stackups --fab jlcpcb --layers 4` (or `pcbway`, `generic`) rather than
-   typing layers in. Define `Default` and one net class per kind of net (RF, power, pairs). Put impedance and current targets on the
-   class and let check solve the widths; `agentee show board:NAME` prints them per layer.
+   typing layers in. Define `Default` and one net class per kind of net (RF, power, pairs). Put
+   impedance and current targets on the class and let check solve the widths; `agentee show
+   board:NAME` prints them per layer. Give every class a `voltage`, the highest its nets reach
+   (`"0VDC"` for ground, `"3.3VDC"` for 3.3 V logic, `"48VDC"`, `"230VAC"`); a class without one
+   is a warning. It sets the clearance and creepage to every other class (reinforced from SELV),
+   defaults DC sim supplies, makes the power nets of the class rails for the level check (a rail
+   named for its voltage, `1V8`, `3V3_PLL`, takes that voltage instead) and checks capacitor
+   ratings. Above SELV, one class per conductor that can differ: `DC+`/`DC-` with signed
+   voltages, `L1`, `L2`, `L3` each `"230VAC"`, never two phases in one class. Do not write `[[domains]]` or `[[barriers]]`
+   for what a voltage already covers.
    `agentee edit board` does all of this, and check names the width a class needs.
 2. **Parts.** Import rather than draw (see below). Every symbol pin number needs a pad of the same
    number in its footprint.
@@ -119,29 +211,87 @@ Order of work, each stage passing check before the next:
    Give the symbols of logic and MCU parts a `[levels]` table from the datasheet (VIH, VIL,
    limits, leakage) and the schematic a `rails` table, and check flags dividers that land between
    VIL and VIH, floating inputs, pulls too weak for the leakage, and overdriven pins. List ADC
-   inputs in `analog`.
-4. **Layout.** Place footprints, add zones, then tracks and vias net by net. `agentee edit pcb`
-   writes a placement, a track, a via or a zone by hand. The automatic tools are usually better
-   for anything with many connections, and each takes `--dry-run`:
-   - `agentee place NAME` places every part (`--parts 'U*'`, `--keep-placed`, `--seed N`).
-   - `agentee pinswap NAME --part U1 --write` swaps a chip's interchangeable I/O to untangle it.
-   - `agentee tie NAME` stubs every SMD pad of a plane net to its plane with a via.
-   - `agentee route NAME --nets 'SPI_*'` routes those nets (`--pairs`, `--reroute`).
-   - `agentee tune NAME` meanders pairs over their skew and match groups short of their length.
-   - `agentee neck NAME` necks tracks down where they enter a narrower pad.
-   - `agentee fill NAME` fills the zones and stores the copper in the file.
-   - `agentee layout NAME` runs the whole engine (place, access, route, finish) from the
-     layout's `[engine]` settings; `--from`, `--to` and `--only` pick stages.
-
-   Check reports the ratsnest for every unrouted connection, so route until `unrouted` is 0 on
-   every net in `show pcb:NAME`.
+   inputs in `analog`. Pin types drive the `erc-*` rules (unsupplied rails, undriven inputs, two
+   outputs on a net, open drains with no pull-up), so fix a wrong pin `type` on the symbol
+   rather than living with the finding.
+4. **Layout.** Follow the layout loop below. `agentee edit pcb` writes a placement, a track, a
+   via or a zone by hand.
 5. **Simulate** what the design depends on (see below).
-6. **Fab.** `agentee fab pcb:NAME -o fab/` once check has no errors.
+6. **Fab.** Put `title = "NAME v1.0"` at the top of the layout so the silk names the board and
+   its version, then `agentee fab pcb:NAME -o fab/` once check has no errors.
 7. **Enclosure.** `agentee export pcb:NAME -o NAME.step` writes the board solid and every part
    model as one STEP assembly to design a case around.
 
 Write a `DESIGN.md` next to the files as you go: the circuit, why each part was chosen, the layout
 rules the circuit needs, and what is still unverified. `examples/lna/DESIGN.md` is the model.
+
+## The layout loop
+
+The engine places and routes the board. Your job is to set it up, read what it made and steer it.
+Go round this loop until check has no errors:
+
+1. **Pin what the design fixes.** Connectors at the enclosure openings, mounting holes, anything
+   a mechanical drawing dictates: `agentee edit pcb NAME place J1 2,15 --rotation 90 --locked`.
+   Add a zone for each plane (`agentee edit pcb NAME zone GND --layers In1.Cu`). Leave every
+   other part unplaced. The placer reads the design's intent from the files, so give it that
+   intent before you move parts by hand: a `current` on every class that carries real current
+   (motor coils, switch nodes, power entry), correct pin types on symbols (`power_in`,
+   `power_out` for regulator outputs such as VCAP, `input` for FB and op-amp inputs), one sheet
+   per function, and `max_length` on interfaces whose nets must stay short. From these it puts
+   power stages beside their loads, protection at the connector, feedback parts at the pin, and
+   keeps switchers away from analog parts.
+2. **Run the engine.** `agentee layout NAME --search` places, routes to the pads and planes,
+   finishes, and writes the best of 16 placements into the `# plan` sections of the layout.
+3. **Read the result.** The score table it prints is sorted worst first and names the nets and
+   parts under each term, so the top few lines are what to fix. Then `agentee check --item
+   pcb:NAME` and `agentee render pcb:NAME -o /tmp/x.png --canvas-only --rulers`.
+4. **Steer, then go back to 2.** Change one thing a round:
+   - A part in a bad spot: move it and lock it, `place U3 20,12 --locked`.
+   - Unrouted nets in one crowded area: lock the parts that came out well and widen the search,
+     `--search 40 --keep 8`.
+   - No placement routes: the board is too small, `agentee fit NAME --strategy balanced --write`.
+   - Too many vias or detours: give `[engine.search]` knobs to branch on,
+     `knobs = { "detail.via_cost" = ["1mm", "3mm"] }`.
+5. **Finish what is left by hand**, once only a few connections are open: the tools below, then
+   `agentee drc NAME`, a render and check once more.
+
+Each `agentee layout` run throws away its own `# plan` copper and routes again. Copper outside
+those sections (hand tracks, `agentee route` and `agentee tie` output) is kept and routed around.
+So do not route or tie before the engine runs: that copper stays through every later run and
+piles up. Remove an old hand route with `agentee edit pcb NAME untrack NET`. Do not loop
+`place --seed N` and `route` by hand either: one `--search` covers what a dozen manual rounds
+would.
+
+The engine stages are `constraints, place, access, global, detail, finish`. `--from`, `--to` and
+`--only` run part of them, for example `--from global` to route again without moving parts.
+`--search` is a beam search: each kept state branches into children with different knob values
+(placement seeds by default), the best `--keep` survive each stage, and the winner is written with
+its seed pinned in `[engine.place]`. See `docs/layout-engine-2.md`.
+
+Tools for the last few connections and for touch-ups, each with `--dry-run`:
+
+- `agentee route NAME --nets 'SPI_*'` routes those nets with the engine's negotiated detail
+  router (`--reroute` to rip them up first). Each track ends on its pad centre and a via the net
+  is already joined without is dropped. `--pairs` and lanes of an interface with `max_vias` still
+  go through the older grid router.
+- `agentee tie NAME` stubs each SMD pad of a plane net that does not yet reach its plane to the
+  plane with a via, offset straight out from the side of the part so a row of pins gets a row of
+  vias. A pad that its pour, tracks or vias already join to the plane is left alone. Decap and RF
+  part grounds each get a via of their own unless a stub already runs to one. A second run adds
+  nothing.
+- `agentee fit NAME` finds the smallest board the placed layout fits on, per aspect ratio,
+  checked with the global router. `--strategy tight|balanced|spread` trades size for routing
+  room, `--width` or `--height` holds a side, `--write` resizes the board and writes the
+  placement. Use it instead of shrinking the outline by hand.
+- `agentee place NAME` places parts without routing (`--parts 'U*'`, `--keep-placed`, `--seed N`).
+- `agentee pinswap NAME --part U1 --write` swaps a chip's interchangeable I/O to untangle it.
+- `agentee tune NAME` meanders pairs over their skew and match groups short of their length.
+- `agentee neck NAME` necks tracks down where they enter a narrower pad.
+- `agentee silk NAME` moves failing reference labels, `--hide` hides the ones with nowhere to go.
+- `agentee fill NAME` fills the zones and stores the copper in the file.
+
+Check reports the ratsnest for every unrouted connection, so the layout is done when `unrouted`
+is 0 on every net in `show pcb:NAME` and check has no errors.
 
 ## Parts from KiCad
 
@@ -154,8 +304,10 @@ agentee import footprint Package_TO_SOT_SMD:SOT-89-3
 ```
 
 Imports land in `symbols/` and `footprints/`. `--force` overwrites. Run check straight after:
-KiCad silk is often 0.12 mm and JLCPCB wants 0.15 mm, so widen it in the imported `.fp.toml`.
-`agentee models` fetches the 3D models the footprints name.
+KiCad silk is often 0.12 mm and JLCPCB wants 0.15 mm, so check names the footprints to widen.
+Change the `width` of their silk `[[graphics]]` in a text editor, one file at a time.
+`agentee models` fetches the 3D models the footprints name and writes each footprint's `height`
+from its model, which the placer uses to keep small parts out of tall parts' shadows.
 
 `agentee import board path/NAME.kicad_pcb --dir DIR` turns a whole KiCad board into a project:
 board spec, layout, a netlist schematic, footprints and box symbols.
@@ -187,22 +339,23 @@ grid; `--at X,Y` overrides that and snaps to the grid. `--footprint` names the f
 the symbol is missing but a symbol in the project uses that footprint, that one is used.
 
 **Layout** (`place`, `unplace`, `track NET LAYER X,Y X,Y ...`, `untrack`, `via NET X,Y`, `unvia`,
-`zone NET --layers ...`, `unzone`, `pair`, `text`, `fanout`, `stitch`, `watermark`, `test`,
+`zone NET --layers ... --outline X,Y X,Y ...`, `unzone`, `cutout --point X,Y X,Y ... --layers ...`, `uncutout X,Y`, `pair`, `text`, `fanout`, `stitch`, `watermark`, `test`,
 `board`, `schematic`). `place` takes a part of the layout's schematic or of any sheet that
 schematic lists, at any depth, and says which sheet it found it on. A net, layer or via name
 that is not in the schematic or its sheets is an error naming what is, so a typo never becomes a
-net or a placement of its own.
+net or a placement of its own. `untrack NET` drops every track of that net; `untrack X,Y X,Y`
+(optionally after a net) cuts the span between two points of a track and keeps the rest.
 
 **Board** (`class NAME --track-width ... --impedance ... --via ...`, `unclass`, `via NAME --drill
 ... --diameter ...`, `unvia`, `outline`, `cutout`, `stackup`). `class` edits the netclass of that
 name in place or adds it. `stackup --preset NAME` takes a name from `agentee stackups`.
 
-Write several commands to a file, or pipe them in, when a change is more than one part or one
-net. It is one load and one check at the end, so it is much faster and the intermediate states
-that check would flag never happen:
+Pipe the commands in, or write them to a file, whenever a change is more than one command. It
+is one load and one check at the end, so it is much faster, and the half-built states that check
+would flag between single commands (a part with no net yet) never happen:
 
 ```sh
-agentee edit sch - <<'EOF'
+agentee edit sch power - <<'EOF'
 add R1 R 10k --footprint R_0402_1005Metric
 add R2 R 4k7
 add C1 C 100n --footprint C_0402_1005Metric
@@ -212,8 +365,24 @@ note "input divider"
 EOF
 ```
 
-`agentee edit sch build.txt` does the same from a file. Both edit the one schematic the project
-has; with more than one it says so and names them, so pass the item name instead.
+`agentee edit sch power build.txt` does the same from a file. The same works for `pcb` and
+`board`. The item name can be left out when the project has only one item of that kind; with
+more, the error names them. Lines starting with `#` are skipped.
+
+A batch has no loops. For anything repetitive (16 decoupling caps, a `D0..D15` bus, a row of
+placements at a pitch) generate the lines and pipe them in. Doing the coordinate arithmetic in a
+script is right; editing the TOML from it is not:
+
+```sh
+for i in $(seq 0 15); do
+  echo "add C$((10+i)) C 100n --footprint C_0402_1005Metric"
+  echo "net 3V3 C$((10+i)).1"
+  echo "net GND C$((10+i)).2"
+done | agentee edit sch power -
+
+python3 -c 'for i in range(16): print(f"place C{10+i} {20+i*1.5:.2f},12 --rotation 90")' \
+  | agentee edit pcb main -
+```
 
 Each edit writes the file, refills a layout's stored zone fills if the layout stored them, and
 prints the check diagnostics of the files it touched. It exits 1 if any of those is an error, so a
@@ -285,9 +454,16 @@ suggests the width that meets the target.
 ## Simulation
 
 Each `*.sim.toml` has a `kind`: FDTD (default), `cascade`, `channel`, `pdn`, `dc`, `thermal`,
-`logic`. A logic sim runs a schematic's digital parts and writes a VCD as well as the result.
+`logic`, `circuit`. A logic sim runs a schematic's digital parts and writes a VCD as well as the
+result. A circuit sim is an analog simulation of the schematic: operating point, AC, transient
+and noise, with `[[checks]]` that fail check. Only `[[drives]]` drive nets, so give each supply
+one, and give ICs a `[[blocks]]` model (`opamp`, `ldo`, `vcvs`) or `ignore` them. Fill every
+block from the part's datasheet: an op-amp's gain, GBW and noise, an LDO's output and dropout, a
+diode's `is` and `n` fitted to two VF points, a supply current as a current drive. The built-in
+diode, BJT and MOSFET models are generic stand-ins, not the part. Run it on a sub-circuit (a bias
+network, a filter, a regulator) rather than the whole board.
 `agentee sim NAME` writes `NAME.result.json` (and `NAME.sNp` for S-parameters) next to the spec.
-Read the result with `agentee show sim:NAME`: the `readings` list is the summary (gain, match,
+Read the result with `agentee show sim:NAME`: `result.readings` is the summary (gain, match,
 NF, stability, eye height, peak temperature, drop). Look at the plots with `agentee render sim:NAME`.
 
 FDTD is expensive. The LNA example's six-port run took 27 minutes on a workstation GPU. So:
@@ -317,6 +493,8 @@ and OIP3. Change the board, rerun the FDTD; change a part, rerun only the cascad
 ## Parts and prices
 
 ```sh
+agentee bom NAME                       # cost table at 1, 10 and 100 boards, total and per board
+agentee bom NAME --boards 5,50 --json
 agentee parts NAME --boards 5          # stock, price and cheaper drop-ins per BOM line
 agentee parts NAME --refs C11 --json
 agentee parts NAME --boards 2 --spares --order docs/   # order sheets per distributor
@@ -324,7 +502,7 @@ agentee parts NAME --boards 2 --spares --order docs/   # order sheets per distri
 
 Give every part `mfr` and `mpn` fields first; lines without an `mpn` are not looked up. Keys
 go in `~/.config/agentee/distributors.toml` (`[mouser] api_key`, `[farnell] api_key` and
-`store`), never in the project. Alternatives keep value, package and ratings for resistors,
+`store`, `[digikey] client_id`, `client_secret` and `site`), never in the project. Alternatives keep value, package and ratings for resistors,
 ceramics, generic discretes and LEDs; ICs and connectors only get the same part elsewhere or the
 distributor's suggested replacement. Write the swap into the part's `mpn`, not the BOM.
 `--order` writes `NAME-order.csv` and a sheet per distributor with the lines to buy there on top
@@ -337,16 +515,17 @@ and what it lacks at the bottom. Put off-board parts (housings, crimps, antennas
 `list_items`, `show_item`, `render_item` (returns the PNG inline, takes `focus`, `context`,
 `region` and `rulers`), `stackups`, `run_sim`, `sparam`, `field_solve`, `impedance`,
 `trace_width`, `serpentine`, `place`, `route`, `tie`, `fill`, `tune`, `neck`, `silk`,
-`testpoints`, `layout`, `parts`, `kicad_search`, `import_kicad_symbol`,
-`import_kicad_footprint`, `new_item`, `models`, `fab`, `export`. There is no `edit` tool: write
-the TOML files yourself with your normal file tools, or run `agentee edit` in a shell.
+`testpoints`, `layout`, `fit`, `parts`, `kicad_search`, `import_kicad_symbol`,
+`import_kicad_footprint`, `new_item`, `models`, `fab`, `export`, `edit`. `edit` takes `target`
+(`sch`, `pcb` or `board`), `item`, and `commands`: the same batch as `agentee edit`, one command
+per line. Send `commands = "help"` for the list.
 
 ## Worked examples
 
 - `examples/demo`: a small board and part library that passes check.
 - `examples/lna`: a full design. Board spec with a field-solved coplanar RF class, schematic,
-  routed four layer layout, FDTD, cascade with vendor data, DC drop and thermal sims, and
-  `DESIGN.md`. Copy its patterns before inventing new ones.
+  routed four layer layout, FDTD, cascade with vendor data, DC drop, thermal and circuit sims,
+  and `DESIGN.md`. Copy its patterns before inventing new ones.
 - `examples/sdr`: a large design. Hierarchical schematic (power, clock, FPGA, RF, USB sheets),
   BGAs, USB 3 pairs with an FDTD and eye, DC drop on the core rail, thermal, and `DESIGN.md`.
 - `examples/hdi`: a 1+4+1 HDI coupon with microvias in the pads of a 0.5 mm BGA.

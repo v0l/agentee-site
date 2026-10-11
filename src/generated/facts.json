@@ -1,8 +1,8 @@
 {
-  "version": "0.1.0",
-  "commit": "04ab2d5",
-  "date": "2026-10-07",
+  "version": "0.2.0",
+  "commit": "12dd8c8",
+  "date": "2026-10-11",
   "stackups": 864,
-  "drcRules": 91,
-  "mcpTools": 30
+  "drcRules": 93,
+  "mcpTools": 41
 }

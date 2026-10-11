@@ -27,7 +27,7 @@ agentee edit sch NAME add R1 R 10k --footprint R_0402_1005Metric --at 25.4,25.4
 agentee edit sch NAME net VBUS C1.1 U1.7 --class Power
 agentee edit pcb NAME place R1 12.7,20.32
 agentee edit board NAME class RF --impedance 50ohm --coplanar-gap 0.2mm --solver field
-agentee edit sch - < script.txt        # a list of commands, one load, one check at the end
+agentee edit sch NAME - < script.txt   # a list of commands, one load, one check at the end
 ```
 
 A pin is `REF.PIN`, by number or by a unique pin name; a name several pins share is an error. A
@@ -84,6 +84,7 @@ diameter = "0.6mm"
 
 [[netclasses]]
 name = "Default"               # always define Default
+voltage = "3.3VDC"             # every class, see Net class voltage
 track_width = "0.2mm"
 clearance = "0.2mm"
 via = "std"                    # or a list the router picks from: ["std", "uvia-top"]
@@ -93,6 +94,7 @@ name = "Power"
 track_width = "1mm"
 current = "3A"                 # checked against IPC-2221 on every layer
 max_temp_rise = "10C"          # default 10C
+voltage = "48VDC"              # or "-12VDC", "230VAC" (rms); sets spacing, see Net class voltage
 
 [[netclasses]]
 name = "USB"
@@ -434,9 +436,59 @@ of its own but their blind via drill (`min_blind_via_drill`, 0.2 mm), applied on
 set `min_controlled_depth_drill` in `[rules]` from your fab's figure. On `hdi-6l-1n1` a 0.15 mm controlled depth drill reaches
 In1.Cu or In4.Cu (0.123 mm deep), not In2.Cu.
 
+### Net class voltage
+
+Give every class the highest voltage its nets carry, `voltage = "3.3VDC"`, `"0VDC"` for ground,
+`"48VDC"`, `"-12VDC"` or `"230VAC"` (AC is rms against 0 V); a class without one is a warning.
+agentee works out the spacing from it:
+
+- **Its own clearance.** A class with a `voltage` and no `clearance` gets the IPC-2221B table 6-1
+  spacing for its peak voltage on an outer uncoated layer (column B2), and never less than the
+  fab's `min_clearance`. A `clearance` set below that is an error naming the figure.
+- **Between classes.** Every pair of classes is held apart by the voltage between them: the
+  difference of their DC parts plus both AC parts at peak. A class with no `voltage` counts as
+  0 V. A class over the SELV limits (60 VDC, 30 VAC) and one at or under them get
+  **reinforced** insulation; two classes on the same side get **functional** insulation.
+- **Functional** spacing is IPC-2221B B2 clearance and IEC 60664-1 table F.4 creepage for printed
+  wiring at the board's pollution degree. **Reinforced** spacing is clearance for the next rated
+  impulse voltage above the one the working voltage sees (IEC 60664-1 tables F.1 and F.2,
+  overvoltage category II for AC, which is taken as mains, and the peak for DC) and twice the basic
+  creepage for material group IIIa (FR4 of unknown CTI), never under the IPC-2221B figure.
+  AC classes are rated 10% over their nominal for mains tolerance. 230 VAC to SELV comes out at
+  3 mm clearance and 5.06 mm creepage.
+
+Pairs that need more than their class clearances become barriers between implicit domains, one
+per class, so the `isolation-clearance` and `creepage` rules check them, and pours and the
+autorouter keep them, exactly as for hand written ones. Pads of one footprint are only held to the
+barrier between their classes, not to the class clearance, since the part's own pitch is rated by
+its maker. A hand written `[[domains]]` entry that names a class takes that class out of the
+implicit ones, and a hand written `[[barriers]]` entry between two domains replaces the implicit
+one. `agentee show board:NAME` lists every barrier with its working voltage and grade.
+
+`pollution_degree = 2` at the top of the board file (1, 2 or 3, default 2) picks the columns.
+
+Give each conductor that can stand at a different voltage its own class: `DC+ = "400VDC"` and
+`DC- = "-400VDC"` (800 V apart), and `L1`, `L2`, `L3` at `"230VAC"` each. Nets inside one class
+are only held to that class's own clearance, so L1 and L2 in one `Mains` class would miss the
+line to line voltage. Two AC classes are taken as in antiphase (L1 to L2 at 460 V rather than
+398 V), which errs on the safe side.
+
+The voltage reaches further than spacing:
+
+- A DC sim `[[supplies]]` pad with no `voltage` is held at its net's class voltage.
+- Every power net of a DC class that `rails` does not list (ground, a net of a class with a
+  `current`, or a net named like a rail) becomes a rail for the signal level check, at the class
+  voltage, or at the voltage in its name when that is lower (`1V8` in a `3.3VDC` class is a 1.8 V
+  rail). Signal nets of the class are not rails.
+- A capacitor's rating (`100n/50V`, `10u 25V`, or a `voltage` field) and any part's
+  `rated_voltage` field are checked against the peak voltage between the classes of its nets, with
+  a class without `voltage` taken as 0 V: under it is an error, under 1.25 times it a warning.
+
 ### Isolation domains and barriers
 
-A net class has one clearance, held against every other net. Where nets must keep more distance
+A net class has one clearance, held against every other net. Net class voltages cover most
+boards; write domains and barriers by hand where you need more, such as reinforced isolation the
+classes cannot express or a group of nets by name. Where nets must keep more distance
 from one group than from their neighbours (a mains primary from the secondary, a floating rail
 from the rest of the secondary), put the nets in domains and set a barrier between two domains:
 
@@ -460,9 +512,11 @@ pollution_degree = 2               # 1, 2 or 3, default 2
 
 A net sits in one domain at most. Inside a domain, and for nets in none, the class clearances
 apply as before. Between two domains with a barrier, copper on one layer keeps the barrier's
-`clearance` (`isolation-clearance`), pads of one footprint and pours included. Pours and the
-autorouter keep the barrier from the other domain's copper as they fill and route; on F.Cu and
-B.Cu they keep the larger of `clearance` and `creepage`, since neither measures paths around slots.
+`clearance` (`isolation-clearance`), pads of one footprint and pours included. Everything that
+adds copper keeps the barrier from the other domain's copper: pours, `agentee route` and the
+layout engine, `tie`, `testpoints`, `tune`, `neck`, fanouts and stitching vias, from the same
+rule the check uses. On F.Cu and B.Cu they keep the larger of `clearance` and `creepage`, since
+none of them measures paths around slots.
 
 Creepage is the shortest path between the two coppers along the outer surface they sit on
 (`creepage`). It stays on the board and goes around board cutouts and non-plated holes. A slot or
@@ -486,6 +540,34 @@ vias sit in pads, a BGA rule only when there is a BGA. Every message of a rule s
 in brackets, e.g. `[via-cuts-pad]`. `agentee drc NAME --list` (MCP `drc` with `list = true`) prints
 every rule with its category, severity, and whether it applies to this board and why; `agentee
 drc NAME` prints the layout's rule messages alone.
+
+The tools that add copper check it against the same rules before they write it. `tie`,
+`testpoints`, fanouts and stitching vias try each spot against `clearance`, `short`,
+`copper-to-edge`, the hole rules, `isolation-clearance`, `creepage`, `via-cuts-pad`,
+`via-in-pad-fill`, `hole-to-smd-pad`, `stacked-via` and `track-overlap`, and skip a spot that
+breaks one. `tune` and `neck` do the same for each meander and neck, judging it against the rest
+of the track it rewrites rather than the copy it replaces. `agentee route` and the layout engine
+drop the new tracks and vias that break one, found by halving the net's new copper until the
+pieces that fail are left, keep the rest, and report the rule. Pours are left out of these
+checks, since a pour refills around new copper.
+
+The distance rules (`clearance`, `isolation-clearance`, `creepage` measured straight,
+`copper-to-edge`, the hole rules and the via-in-pad rules) also say where new copper may go: for a
+track of a given width or a via of a given type they mark the area each one forbids, layer by
+layer, and what is left on every layer it needs is its green zone. `agentee route` blocks its
+search grid outside the green zones of the nets it routes, so a route never heads for a spot the
+check would refuse. The zone errs on the safe side by half a grid cell, and the check still
+judges the finished copper.
+
+The layout engine builds its search grid from the same keepouts: each pad, track, via, hole and
+board edge carries the gap its rule asks for, so the engine and the check measure one set of
+numbers.
+
+`agentee place` and the engine's place stage hold each part to the rules as well. When the board
+has a barrier between domains, or keeps copper or parts that are not being placed, every spot a
+part is tried at is checked with its pads at that spot against the copper around it, and a spot
+that breaks a rule is passed over. Tracks and vias on nets that touch a part being placed are
+ignored, since moving the part leaves them to be routed again.
 
 ```toml
 [drc]                          # in the board file
@@ -538,11 +620,12 @@ tombstone_ratio = 3            # copper or feed width one chip pad may have over
 | `clearance` | error | always | copper of two nets closer than the larger of their class clearances (a footprint `clearance` replaces them for its pads), or copper run into a non-plated hole. Pads of one footprint are held to `min_clearance` and to the class clearance of nets in an isolation domain; spark gap electrodes are skipped |
 | `isolation-domain` | error | `[[domains]]` | a net whose class or name puts it in two domains |
 | `isolation-unassigned` | warning | `[[domains]]` | nets in no domain, which no barrier covers |
-| `isolation-clearance` | error | a barrier with `clearance` | copper of two domains on one layer closer than the clearance of the barrier between them, pads of one footprint and pours included; one line per net pair with the closest spot |
-| `creepage` | error | a barrier with `creepage` | copper of two domains closer along the board surface than the barrier's creepage: on one outer layer around board cutouts and non-plated holes at least the groove width of its `pollution_degree` wide, and from F.Cu to B.Cu down a cutout or hole wall or round the board edge |
+| `isolation-clearance` | error | a barrier with `clearance`, or class voltages that need one | copper of two domains on one layer closer than the clearance of the barrier between them, pads of one footprint and pours included; one line per net pair with the closest spot |
+| `creepage` | error | a barrier with `creepage`, or class voltages that need one | copper of two domains closer along the board surface than the barrier's creepage: on one outer layer around board cutouts and non-plated holes at least the groove width of its `pollution_degree` wide, and from F.Cu to B.Cu down a cutout or hole wall or round the board edge |
 | `spark-gap` | error | footprints with `spark_gaps` | a spark gap whose electrodes are not the declared `gap` apart (to 0.01 mm), sit under `min_clearance`, share a net or lack one, or have solder mask across the gap on an outer layer |
 | `unrouted` | error | always | a net whose pads are not all joined by tracks, vias and pours, naming the groups that are apart |
 | `dangling-track` | warning | always | a track end that touches no copper of its net and no pour |
+| `dangling-via` | warning | always | a via that joins copper of its net on fewer than two layers |
 | `track-grazes-pad` | warning | always | tracks that reach a pad only with their edge; run the centre line into the pad |
 | `copper-to-edge` | error | always | a track or via closer than `min_copper_to_edge` to the board outline or a board cutout, or off the board (a track across a cutout leaves the board) |
 | `pad-off-board` | error | always | pads outside the outline or in a board cutout; pads marked `edge = true` are exempt |
@@ -557,7 +640,7 @@ tombstone_ratio = 3            # copper or feed width one chip pad may have over
 | `impedance-width` | warning | impedance classes | a track of an impedance class at another width, its impedance moves |
 | `impedance-trace` | error | impedance classes | a track of an impedance class whose width, neck-downs included, or the copper beside it on an outer layer puts its impedance outside the class tolerance; the gap is not checked within the neck-down length of a pad or a junction |
 | `track-overlap` | error | always | tracks of one net running on top of each other, the copper is doubled |
-| `acute-turn` | warning | always | a track turning back more than 90 degrees, an acid trap |
+| `acute-turn` | warning | always | a track turning back more than 90 degrees, an acid trap (half a degree is allowed for coordinates rounded in the file) |
 | `zone-overlap` | error | zones | fills of two nets on one layer overlap, a short |
 | `zone-to-zone` | error | zones | fills of two nets on one layer closer than their clearance |
 | `zone-clearance` | error | zones | a fill that covers or comes too close to copper of another net |
@@ -572,6 +655,7 @@ tombstone_ratio = 3            # copper or feed width one chip pad may have over
 | `silk-text-height` | warning | always | silk text under `min_silk_text_height` |
 | `silk-artwork` | error | always | silk artwork on pads, over silk text or off the board |
 | `watermark` | error | always | the `agentee vX.Y.Z-HASH` watermark has no clear spot on the silk, or the `[watermark]` spot is not clear; fab refuses without a spot, and disabling the rule does not remove the watermark |
+| `board-title` | error | layouts with a `title` | the layout's `title` has no clear spot on the silk, or its `at` spot is not clear |
 | `silk-width` | warning | always | board silk lines (the layout's `[[graphics]]`, not text) thinner than `min_silk_width`, counted with the thinnest; footprint silk is checked with the footprint |
 | `pair-skew` | error | pairs | a pair skewed over its `max_skew` or the class `max_skew`, with the net to lengthen |
 | `pair-skew-info` | info | pairs | the skew of each pair within its limit |
@@ -917,9 +1001,25 @@ class, may be on another sheet);
 the top schematic runs every check on the joined design and draws the sheets stacked top to
 bottom. The top file may hold parts and nets of its own too.
 
-Check reports pins in two nets, pins in no net, single-pin nets, several outputs on one net,
-hand wires that miss a pin or touch another net's pin, overlapping parts, footprints whose
-pads do not cover the symbol's pins, and signal levels when `rails` is set. Every net in the `Default` netclass is a warning, whether it
+Check reports pins in two nets, pins in no net, single-pin nets, hand wires that miss a pin or
+touch another net's pin, overlapping parts, footprints whose pads do not cover the symbol's pins,
+the electrical rules below, and signal levels when `rails` is set.
+
+The electrical rules read each pin's `type` on the joined design (the top schematic of a sheet
+set). Parts with `dnp` and power symbols take no part; the pins of one reference count as one
+part, so a regulator with two `VOUT` pins is one driver.
+
+| rule | severity | when |
+|---|---|---|
+| `erc-unsupplied` | error | a net with `power_in` pins has no pin that can feed it: every other pin is an input, a `power_in` or a capacitor. A warning instead when the inputs are all on one part and a capacitor is on the net, the cap pin of an internal regulator, which should be `power_out` on the symbol |
+| `erc-undriven` | error | every pin on the net is an `input`; a capacitor on it (AC coupling, soft start) counts as intended. Left to the level check when `rails` is set and every input has `levels` |
+| `erc-drive-conflict` | error | push-pull outputs (`output`, `power_out`) of two parts on one net, or one beside an `open_collector` or `open_emitter` of another part |
+| `erc-tristate-contention` | warning | a push-pull output and a `tri_state` pin of another part on one net |
+| `erc-no-pull` | warning | open collector or emitter pins with nothing else to pull the line: no resistor, connector, output or rail, and no input with an internal `pull_up` or `pull_down` in its `levels` |
+| `erc-nc-pin` | warning | a `no_connect` pin is in a net; make it `passive` when the datasheet says to tie it |
+
+Pins imported from KiCad as `passive` or `unspecified` count as possible drivers, so the rules
+only speak where the symbol says what the pin is. Every net in the `Default` netclass is a warning, whether it
 names no class or names `Default`: the class sets the net's width, clearance, vias and routing
 order, so each net should say what it is. The warning needs a board and a layout of the
 schematic; a schematic only simulated (like `examples/logic`) skips it. Give the board a class
@@ -934,6 +1034,7 @@ Places the schematic's footprints on the board and routes them.
 name = "lna"
 board = "lna"
 schematic = "lna"
+title = "LNA v1.0"             # optional: board name and version in the silk, placed for you
 
 [[footprints]]
 ref = "U1"
@@ -997,7 +1098,10 @@ layers = ["F.Cu", "In1.Cu", "In2.Cu", "B.Cu"]
 # spoke_width = "0.3mm"        # default: the net class track width, at least min_width
 
 [[cutouts]]                    # keep zones off an area, e.g. under an SMA centre pin;
-                               # a hole through the board is [[outline.cutouts]] in the board file
+                               # a hole through the board is [[outline.cutouts]] in the board file;
+                               # `agentee edit pcb cutout --point X,Y X,Y ... --layers ...` adds one,
+                               # replacing a cutout with the same points; `uncutout X,Y` removes
+                               # every cutout around that point
 layers = ["In1.Cu"]
 points = [[0, 9], [5.4, 9], [5.4, 11], [0, 11]]
 
@@ -1052,6 +1156,16 @@ refuses; clear room there or set `[watermark] at` (plus `layer`, `rotation`) you
 `[watermark]` spot that is not clear is a `watermark` error naming what it hits, and a stackup
 with no `kind = "silk"` layer is a `watermark` error asking for one.
 
+`title = "LNA v1.0"` prints the board's name and version in the silk, found a spot the same way
+as the watermark: on `F.SilkS` first (then `B.SilkS`), at 1.5 times `min_silk_text_height` (then
+the minimum if nothing that size fits), at the clear spot nearest the top left corner, rotated 90
+degrees if only a tall gap fits. The watermark keeps clear of it. Pin it with a table on the same
+line, `title = { text = "LNA v1.0", at = [26, 14.5], layer = "F.SilkS", rotation = 90, size =
+"2mm" }`; every key but `text` is optional. Keep the key above the first `[[footprints]]` table,
+or TOML reads it as part of that table. When no spot is clear, check reports a `board-title`
+error with the least crowded spot as a line to paste, and fab refuses. `agentee edit pcb NAME
+title "LNA v1.0" [--at X,Y] [--layer B.SilkS] [--size 2mm]` writes it, `title --clear` removes it.
+
 Test access: by default the nets that need a probe are power nets (a class with `current`, or a
 name like `3V3`, `1V8`, `+5V`, `VCC*`, `VDD*`, `VBUS*`, `VBAT*`, `VIN*`, `VSYS*`), ground (`GND`,
 `*GND`, `GND*`) and nets named like `*RST*`, `*RESET*`, `*EN*`, `*PG*`, `*CLK*`, `*TX*`, `*RX*`,
@@ -1090,6 +1204,9 @@ A fill piece is kept only if it touches two items of its net, or one and is at l
 `min_island_area`; the rest reach nothing new and are removed. Check verifies every fill against
 other nets: a fill that overlaps another net's zone, track, via or pad, or comes closer than the
 clearance, is an error, and copper tips sharper than 30 degrees are flagged.
+
+`agentee edit pcb zone NET` with an `--outline` adds a pour of that net, or replaces the one with
+the same outline (or none), so one net can have several pours.
 
 Zones on the same layer fill in order of `priority`, then smallest first, and each keeps its
 clearance from the fills already placed, so a small switch-node or supply pour inside a
@@ -1192,16 +1309,71 @@ What goes where, strongest first, and why:
   mounting holes, where handling and depaneling bend the board and crack BGA joints
   (IPC/JEDEC-9704A strain guidelines).
 - Clusters come from the netlist: each IC takes the passives whose signal nets reach it alone,
-  the capacitors between a supply it uses and ground (the nearest IC in the schematic when
-  several share the supply, spread over its supply pins), and its crystal. A cluster's decoupling
-  caps sit next to the supply pin they serve (Analog Devices MT-101, Decoupling Techniques; TI
-  SCAA082, High-Speed Layout Guidelines), or under it on the back with `--side both` (Xilinx UG483,
-  7 Series PCB Design Guide, puts the small caps under the BGA); the crystal next to its clock
-  pins (ST AN2867, Oscillator design guide). Clusters are placed to minimise weighted HPWL:
-  nets of an impedance or pair class, `[[pairs]]` and `[[interfaces]]` count three times, supply
-  and ground nets not at all (they are planes).
+  the capacitors and resistors between one of its supply or power nets and ground or a second
+  such net (the nearest IC in the schematic when several share the supply), and its crystal. The
+  smallest capacitors are given a supply pin first, one per pin before any pin gets a second, and
+  only pins the symbol types `power_in` or `power_out` (or that share a name with one) take them
+  when the IC has any, so a strap pin tied to the rail never takes a decap. A cluster's
+  decoupling caps sit next to the supply pin they serve with their other pad toward the IC's
+  nearest pin on that net (Analog Devices MT-101, Decoupling Techniques; TI SCAA082, High-Speed
+  Layout Guidelines), or under it on the back with `--side both` (Xilinx UG483, 7 Series PCB
+  Design Guide, puts the small caps under the BGA); the crystal next to its clock pins and its
+  load caps next to the crystal (ST AN2867, Oscillator design guide). A capacitor over 10 uF is
+  bulk and may sit 2.5 times as far. The pull of each grows with the `current` of the class of
+  the net it serves, so a sense resistor or a motor supply cap holds harder than a logic decap.
+  After annealing, every part that belongs at a pin is lifted and put back in the best free
+  spot within 5 mm of it, IC by IC, in two orders, keeping whichever costs less: the regulator
+  outputs (`power_out` pins: VCAP, an internal LDO) first, then protection, then decaps by the
+  current of the net and smallest first, then the parts of a single-IC net. Single moves and
+  swaps follow until nothing improves. These passes may cover a reference label; a label that
+  ends up covered is not written, and the layout engine hides one that settling cannot place. Clusters are placed to minimise weighted HPWL: nets
+  of an impedance or pair class, `[[pairs]]` and `[[interfaces]]` count three times, ground and
+  supply nets that reach more than four parts not at all (they are planes), and a net in a class
+  with `current` that reaches four parts or fewer (a motor coil, a switch node, a sense
+  resistor's node) counts 1 + 1.5 per amp. That keeps a power stage beside its load: a stepper
+  driver goes next to its motor connector, not next to the MCU its step and direction lines come
+  from, since a logic line can run across the board and a 2 A coil loop should not.
+- Protection sits at the connector, in the order the current meets it. From every connector pin
+  the placer follows nets that reach no IC through the parts in series (a fuse, a reverse
+  polarity diode, a ferrite, a series resistor, CC pull-downs) and puts each next to the pad it
+  is fed from; a part with a ground pad whose other pins all reach a connector (a TVS, an ESD
+  array such as USBLC6-2) goes on the connector pins it clamps, or on the protected node at the
+  end of a power chain (TI SLVA680, ST USBLC6-2 datasheet). A net that fans out to more than
+  three parts is a rail, and the chain stops there. An electrolytic on that protected node
+  stays with the chain, and the ICs it feeds are drawn toward the chain's end, so a power entry
+  runs connector, fuse, diode, TVS and bulk cap, then the regulator. RF nets are left to the RF
+  path below.
+- A net with one IC pin and only passives otherwise belongs at that pin: a feedback divider and
+  its feed-forward cap at FB (every buck datasheet's layout section), an op-amp's feedback
+  network at its inverting input, a gate resistor and pull-down at a MOSFET gate, a strap or
+  series resistor at the pin that drives it, an ADC filter cap at the ADC pin. Input pins (the
+  symbol's `input` type) go first. A capacitor on a supply with no IC on it goes to the
+  inductor or ferrite that supply feeds, and an LED's resistor to the LED.
+- A net in a class with `current` that reaches four parts or fewer is a current loop and counts
+  1 + 1.5 per amp. A loop with no `current` is inferred at 2 A: an inductor between an IC pin
+  and its output, a MOSFET drain or source to a connector, a sense resistor (`power` field of
+  0.25 W or more), or a fuse. An IC that drives 1 A or more into a connector or an inductor is
+  loud and is drawn to that connector, so a stepper driver or a fan switch sits beside its
+  load.
+- Loud parts (switchers, their inductors, drivers and switches like the above) keep 8 mm
+  (centre to centre) from sensitive ones: crystals, RF parts, op-amps and the small parts on
+  nets of a class whose name or description says analog, unless both belong to the same IC.
+- An electrolytic keeps 3 mm from a hot part, since its life halves every 10 C (Nichicon and
+  Panasonic application notes). A small two-pad chip keeps a part taller than 3 mm at least
+  that height away (`tall-part-shadow`), unless both serve the same IC; heights come from the
+  footprint `height`, the `CP_Elec_DxH` name, or the 3D view defaults. Run `agentee models`
+  first so `height` is the real model's: a vertical JST PH is 6 mm, which the name alone does
+  not say.
+- LEDs and buttons go to the board edge, clear of mounting hardware, where they can be seen
+  and pressed.
+- Parts stay with their schematic sheet: each is drawn toward the sheet's largest IC once it
+  is further away than the sheet's parts need, and a decoupling cap takes an IC on its own
+  sheet before one elsewhere.
+- An `[[interfaces]]` entry with `max_length` caps its nets: 1.2 times a net's half perimeter
+  past that length costs as much as ten times the wirelength.
 - A switcher (an IC with an inductor on one of its pins whose other end is a supply) keeps its
-  inductor and input caps tight against it, and switchers keep 8 mm (centre to centre) from
+  inductor and input caps tight against it, its output caps against the inductor's output pad,
+  and switchers keep 8 mm (centre to centre) from
   sensitive parts:
   crystals and parts on single-ended impedance (RF) nets (TI SNVA021, AN-1149 Layout Guidelines
   for Switching Power Supplies; Linear Technology AN139, Power Supply Layout and EMI).
@@ -1267,12 +1439,58 @@ seeds 1 to 4 give 3276 to 3436 mm of signal HPWL and 261 to 293 crossings, in ab
 on 4 cores (about 6 s of CPU) plus loading and the label pass. With `--side both` they give about
 1955 to 2025 mm and 150 to 165 crossings.
 
+### Board size
+
+`agentee fit NAME [--strategy tight|balanced|spread] [--aspect 1.5 ...] [--width MM] [--height MM]
+[--verify N] [--write]` (MCP `fit`) finds the smallest rectangular board the layout fits on. It
+loads the layout once and tries outlines in memory, tens to hundreds a second: the current placement
+scaled to the new size (turned a quarter when the new board is the other way round), mounting
+holes kept in their corners, edge connectors kept on their edge and slid along it until clear,
+then every other part legalised with the strategy's gap between parts (0.1, 0.2 or 0.4 mm). A
+size fits when every part finds a spot and the routing demand (each net's half perimeter spread
+over its bounding box on 1 mm tiles) in the busiest twentieth of the board stays under 90%, 70%
+or 50% of what the signal layers hold at the `Default` class track and gap. Each aspect ratio
+(the current one and 13 from 0.42 to 2.38 by default, or `--aspect` repeated) is searched
+separately; `--width` or `--height` holds one side. The smallest sizes then go through the
+access stage and the global router, `--verify` of them (3 by default, 0 skips it), and the
+smallest one with no more stuck pads than the current board and global overflow under 3%, 1% or
+0.2% of its wirelength wins. The table gives each aspect's smallest fitting size and what stopped
+the next size down. `--write` sets `[outline] size` in the board file, writes the placement with
+the routing cleared, and settles the labels; run `agentee layout NAME` after it. Place the layout
+first, since the search starts from the arrangement it has; board texts and artwork stay where
+they are.
+
 ### Autorouting
 
 `agentee route NAME --nets 'FX_D*,SPI_*' --layers F.Cu,In2.Cu,B.Cu` (MCP `route`) routes the
-ratsnest of the named nets on a grid (`--grid`, default 0.05 mm) and appends the tracks and vias
-to the layout file as ordinary `[[tracks]]` and `[[vias]]`, so they are yours to edit afterwards.
-It keeps each net class's width, clearance and `layers` against every pad, track, via, hole and
+ratsnest of the named nets with the layout engine's detail router (see
+`docs/layout-engine-2.md`) and appends the tracks and vias to the layout file as ordinary
+`[[tracks]]` and `[[vias]]`, so they are yours to edit afterwards. The named nets negotiate for
+room together on a grid (`--grid`, default 0.05 mm) over up to 30 rounds, routed in parallel,
+ripping up only the pieces that overlap, so the order they are named in does not matter.
+`--layers` keeps tracks to those layers, apart from a short stub out of a pad that sits on none of
+them; `--via` limits layer changes to the named vias, otherwise a net takes its class vias first
+and the board's others after. `--via-cost`, `--bend-cost` and `--via-in-pad` work as below. Each
+net's new copper is checked against the rules before it is written; the tracks and vias that
+break one are dropped with the rule named under `failed`, and the rest of the net is kept. A via
+the net is joined without is dropped.
+
+A pair whose class has a `diff_gap` at least its clearance, with one connection per net, is routed
+coupled: a centreline as wide as both tracks and the gap is searched on one layer from near the
+middle of one pair of pads to near the middle of the other, offset into two tracks at exactly the
+pair gap, and each net then joins its pads to its track with an ordinary breakout. The centreline
+negotiates like any net, so a pair that overlaps another net is laid again in the next round;
+between the two nets of a pair only the plain clearance holds, so the breakouts may run beside the
+coupled tracks. A pair left with an open connection is tried once more uncoupled and kept that way
+if it joins more. `--pairs` is accepted and does nothing more. A net in an interface with
+`max_vias` gets its share of the lane's remaining vias (the lane less the vias it already has,
+split over the lane's nets being routed); a connection that takes more is searched again with
+dearer vias (four times, sixteen when no via is left), and the second route is kept only if it
+fits. Otherwise the first stands and check reports `interface-vias`, since holding every lane
+to its budget cost more connections than it saved errors.
+
+The viewer's single-connection route goes through the older grid router. The grid router
+keeps each net class's width, clearance and `layers` against every pad, track, via, hole and
 the board edge, sizes the room for each class via by its own pad, drill and layers (a microvia fits
 where a through via does not, and a microvia may sit beside a buried via on other layers), keeps new
 vias `min_hole_to_hole` from every drill whose span shares a dielectric with theirs and their holes
@@ -1318,7 +1536,10 @@ partner at the pair gap; `--pairs` tries to route both halves together as one co
 first. When connections fail, the whole route runs again, up to four times in all, with the
 failed nets first in their class and their class first, and a cost on the path they would take
 through the copper of earlier classes so those classes leave it free; the run with the fewest
-failures, then the fewest vias, then the least track is written. When a few connections fail, route them again together with the nets around them and
+failures, then the fewest vias, then the least track is written. A new via the net is joined
+without (its pads stay together through the other copper and the pours) is dropped with the
+stub that only led to it before anything is written; a via that drops a track to a pour on a
+layer the track does not reach stays. When a few connections fail, route them again together with the nets around them and
 `--reroute`, so the router can rip up and reorder the whole area, or drop to `--grid 0.025`. `--dry-run` reports without writing. Route the nets that matter by hand
 first, then let the router fill in the rest, a class at a time.
 
@@ -1329,13 +1550,21 @@ obstacles to the router: the rule places them again around the new copper.
 
 `agentee tie NAME [--nets GND] [--dry-run]` (MCP `tie`) connects each SMD pad of a plane net to
 the nearest layer its zone covers with a short stub and a via beside the pad, which is how ground
-and supply pads join a plane instead of tracks between them. The via goes on the side of the pad
-away from the part's centre, as close as it can: its copper clear of every SMD pad (its own too,
+and supply pads join a plane instead of tracks between them. The via goes straight out from the side of
+the part the pad sits on, so a row of pins gets a row of vias, as close as it can: its copper clear of every SMD pad (its own too,
 so no via-in-pad), its hole `min_hole_to_smd_pad` from them, `min_hole_to_hole` from other holes,
 `min_via_hole_to_copper` and the class clearance from other nets, `min_copper_to_edge` in from
-the outline, and the stub clear of other nets on the pad's layer. It tries 16 directions, nearest
-the outward one first, up to 1.2 mm past the pad. A pad that already has a via of its net within
-0.8 mm of its edge is left alone, through-hole pads and BGA balls (`escape` handles those) are
+the outline, and the stub clear of other nets on the pad's layer. The stub starts where it
+leaves the pad, not at its centre, so a fine-pitch part's other pad is not in its way. It tries 16 directions, nearest
+the outward one first, up to 1.2 mm past the pad. A pad already joined to the main body of
+its net's zone on another layer is left alone, through whatever copper of its net does it: the
+pour on its own layer, tracks, vias and plated holes, so a pad in a ground pour that reaches the
+plane anywhere needs nothing, and running `tie` again adds nothing. Once `tie` puts a via on a
+pad in a pour island, the other pads in that island count as joined, so an island takes one via. Pads of a decoupling
+capacitor (a capacitor with a pin on a supply net) and of a part on an RF class net are the
+exception: they want the short return path, so each gets its own via unless a plated hole of its
+net is within 0.8 mm of its edge, a via of its net within 0.8 mm sits in the same pour island, or
+its own tracks already run to a via on the plane layer within reach of a tie. Through-hole pads and BGA balls (`escape` handles those) are
 skipped, and a pad with no legal spot is listed under `failed`. The stubs and vias are appended
 as ordinary `[[tracks]]` and `[[vias]]`.
 
@@ -1465,12 +1694,13 @@ one (inside the window), both legs of a pair together. Delays turn into millimet
 own ps per mm. When one leg of a pair cannot take all of it, the other leg is held to what it got.
 A net that is over its group target is reported, not shortened. `agentee calc
 serpentine --from x,y --to x,y --add 2.5mm` (MCP `serpentine`) returns the points of one such
-meander on a segment you pick. Net lengths and delays are in `agentee show pcb:NAME`.
+meander on a segment you pick. Net lengths and delays are in `agentee show pcb:NAME`, which names every net it refers to.
 
 The viewer's layout page has a `3d` tab (`agentee view --3d` opens on it): the board in its
 stackup thickness, mask and silk colours and finish, copper under the mask, bare pads, plated and
 bare drill walls, and each part's 3D model. The `parts` toggle hides the models. Drag to orbit,
-shift-drag to pan, scroll to zoom, double-click to reset. The viewer draws with OpenGL
+shift-drag to pan, scroll to zoom toward the pointer, double-click to reset. A `.step`, `.stp`,
+`.wrl` or `.vrml` file written anywhere under the project is loaded again into the open view. The viewer draws with OpenGL
 ([three-d](https://github.com/asny/three-d)); `agentee render pcb:NAME --show 3d` (or `3d-top`,
 `3d-bottom`) draws the same scene in software, `--hide parts` leaves the models out and `--region`
 aims the camera at that area.
@@ -1548,7 +1778,10 @@ VRML file, so vendor models need not be checked in: it is downloaded once into
 generated part. Pin the URL to a commit or release so the file cannot change under you. KiCad
 library models that are not on disk are downloaded from the kicad-packages3D repository into the
 cache: `agentee models` (MCP `models`) fetches them all and
-reports what it found, and the viewer fetches in the background. A part without a model is a box
+reports what it found, and the viewer fetches in the background. It also writes `height` into
+each of the project's footprint files that has a model and no `height`: the top of the model as
+placed by `model_rotate`, `model_scale` and `model_offset`, so the placer and
+`tall-part-shadow` use the real part. A part without a model is a box
 over its fab outline, `height` tall, else a height guessed from the footprint name. STEP files are
 meshed with [truck](https://github.com/ricosjp/truck), with colours from their styled items and
 assembly placements applied. Edges use the 3D curve of each surface curve, not its pcurves.
@@ -1870,7 +2103,7 @@ cell = 0.05                    # raster cell in mm
 
 [[supplies]]
 pad = "D2.1"
-voltage = "4.7V"
+voltage = "4.7V"               # default: the class voltage of the pad's net
 
 [[supplies]]
 pad = "J3.2"
@@ -1908,10 +2141,16 @@ ref = "U1"
 power = "0.45W"
 theta_jc = 65.0                # adds a junction estimate: pads + P x theta
 pads = ["2"]                   # the pads the heat leaves through, default all
+
+[[mounts]]                     # a part that carries heat off the board, such as a standoff
+ref = "H1"
+theta = 4.0                    # C/W from its pads to ambient
+# pads = ["1"]                 # default all
 ```
 
+A mount spreads its conductance over every copper cell of its pads, on each layer the pad is on.
 Maps: temperature per copper layer. Readings: board peak, each source's pad and junction
-temperature.
+temperature, and the watts each mount carries.
 
 ### Logic (`kind = "logic"`)
 
@@ -2138,6 +2377,135 @@ and `i2c`, an open-drain bus where a controller (two 74LVC1G07) and a target (a 
 pulling SDA low for its ACK) share 4.7k pull-ups, and a 74HC595 clocked by SCL captures the
 byte, checked for START, the bits, the ACK, the byte (a `record` bus) and STOP.
 
+### Circuit (`kind = "circuit"`)
+
+An analog simulation of a schematic, straight from its netlist: the operating point always, and
+an AC sweep, a transient and a noise analysis when asked. The solver is modified nodal analysis
+with Newton iteration (junction limiting, then gmin stepping, then source stepping when the
+operating point will not settle), trapezoidal integration with backward Euler after each
+breakpoint and a step that halves when Newton fails, complex AC at the operating point, and noise
+by the adjoint method. `agentee new sim NAME --kind circuit` (MCP `new_item` with `sim_kind =
+"circuit"`) writes a starter. `agentee sim NAME` writes `NAME.result.json`; the viewer plots the
+transient, gain, phase and noise, with the operating point and the checks beside them, and
+`agentee render NAME` draws the same headless.
+
+```toml
+name = "lna-supply"
+kind = "circuit"
+schematic = "lna"              # default: the only top-level schematic
+ignore = ["D3"]                # parts to leave out
+record = ["VCC", "LED_A"]      # nets in the curves, default every net
+# temperature = 27             # deg C, for the noise and the junctions
+
+[[drives]]                     # only drives drive a net: give every supply one
+net = "VEXT"
+dc = "5V"
+# return = "VNEG"              # default ground
+# current = true               # a current source into `net`, in A
+# ac = 1                       # the AC and noise input, in V (or A)
+# resistance = "50ohm"         # in series (in parallel for a current source)
+steps = [["0s", "0V"], ["1ms", "0V"], ["2ms", "5V"]]   # piecewise linear, for the transient
+# pulse = { low = "0V", high = "5V", delay = "1ms", rise = "1us", fall = "1us", width = "1ms", period = "2ms" }
+# sine = { offset = "0V", amplitude = "1V", frequency = "1kHz", delay = "0s" }
+
+[ac]
+from = "10Hz"
+to = "10MHz"
+points = 20                    # per decade
+
+[tran]
+stop = "10ms"
+step = "10us"                  # the largest step
+
+[noise]
+output = "OUT"
+input = "VIN"                  # a drive with `ac`: adds the input referred curve
+from = "10Hz"
+to = "100kHz"
+
+[[checks]]
+v = "VCC"                      # a net voltage at the operating point
+min = 4.55
+max = 4.85
+
+[[checks]]
+i = "R1"                       # the current through a two-pin part, pin 1 to pin 2
+at = "5ms"                     # a time reads the transient
+min = "2mA"
+
+[[checks]]
+v = "OUT"
+at = "1kHz"                    # a frequency reads the AC gain in dB against the ac drive
+min = 19.5
+# phase = "OUT"                # degrees at a frequency
+# noise = "OUT"                # V/rtHz at a frequency, at the [noise] output
+
+[[blocks]]                     # a model for a part, by `ref` or by `value` (every such part)
+ref = "U1"
+kind = "opamp"
+gain = 1e5
+gbw = "1MHz"
+# rout = "10ohm"
+# vos = "0V"
+# en = "10n"                   # input voltage noise, V/rtHz
+# headroom = "0.1V"            # how close the output swings to its rails
+# pins = { inp = "3", inn = "2", out = "1", vcc = "8", vee = "4" }
+```
+
+The built-in device models below are generic stand-ins (a silicon diode, a small-signal BJT, a
+logic-level MOSFET), not the part on the schematic. Give each part that matters a block with
+values from its datasheet, and fit a diode's `is` and `n` to two of its typical VF points: two
+points a decade of current apart give `n = dV / (Vt ln 10)` and `is = I / exp(V / (n Vt))`.
+A result that rests on a default describes the default, not the part.
+
+Values take SI prefixes and units: `"4k7"`, `"100nF"`, `"1MHz"`, `"10meg"`, or a bare number.
+The ground is every net named with GND, `0V`, `GROUND` or starting with `VSS`, unless a drive
+names it. Nets with nothing to hold them sit on a 1 pS conductance to ground.
+
+The netlist becomes elements by the symbol's reference letter:
+
+| reference | element |
+|---|---|
+| `R` | resistor of the value; 0 ohm, `JP`, `SJ` and `NT` join their nets |
+| `C`, `L` | capacitor, inductor of the value |
+| `FB` | 0.1 ohm, unless a block gives it more |
+| `D`, `LED`, `DZ` | diode by pin name (`A`, `K`): silicon (Is 10 fA, n 1); a symbol or value with Schottky, BAT or SS1 is Schottky (10 nA, 1.05); LED is (1 aA, 2); a zener takes its breakdown from the value (`BZX84C3V3` is 3.3 V), with a 1 mA knee |
+| `Q` with `B`, `C`, `E` pins | Ebers-Moll BJT, PNP when the symbol or value says so: Is 10 fA, Bf 100, Br 1 |
+| `Q`, `M` with `G`, `D`, `S` pins | level 1 MOSFET with a smooth threshold, P channel when the symbol says PMOS: Vth 1.5 V, k 0.5 A/V^2, lambda 0.01 |
+| `J`, `P`, `TP`, `H`, `MH`, `FID`, `Y`, `X`, `SW`, `BT`, `T` | left out |
+| anything else | an error naming it, unless it is in `ignore` or has a block |
+
+Block kinds and their fields:
+
+| kind | pins (default by name) | fields |
+|---|---|---|
+| `resistor`, `capacitor`, `inductor`, `bead` | `1`, `2` | `resistance`, `capacitance`, `inductance` |
+| `diode`, `schottky`, `zener`, `led` | `a`, `k` | `is`, `n`, `bv`, `cj` |
+| `bjt`, `npn`, `pnp` | `c`, `b`, `e` | `is`, `bf`, `br`, `va`, `cje`, `cjc` |
+| `mosfet`, `nmos`, `pmos` | `d`, `g`, `s` | `vth`, `k`, `lambda`, `cgs`, `cgd` |
+| `opamp` | `inp` (`+`, `IN+`), `inn` (`-`, `IN-`), `out` (`~`, `OUT`), `vcc` (`V+`, `VCC`), `vee` (`V-`, `VEE`) | `gain`, `gbw`, `rout`, `vos`, `en`, `headroom` |
+| `ldo` | `vin`, `vout`, `gnd` | `vout`, `dropout`, `rout`, `iq` |
+| `vcvs`, `vccs` | `p`, `n`, `cp`, `cn` (all given) | `gain` (V/V or A/V) |
+| `open` | | leaves the part out |
+
+An op-amp is a single pole: a transconductance into a node with `gain` ohms and a capacitor that
+puts unity gain at `gbw`, then a buffer clamped smoothly between its rails less `headroom` (no
+clamp without both rail pins) behind `rout`. Every unit of a multi-unit op-amp with the three
+signal pins is its own op-amp sharing the rail pins. An LDO holds `vout` above `gnd` until the
+input comes within `dropout`, then follows the input down, and the input supplies the output
+current plus `iq`.
+
+Noise sources: resistors (4kT/R), drive resistances, diodes and BJT collector and base currents
+(2qI), MOSFET channels (8kT gm / 3) and op-amp `en`. The result has the output density, the input
+referred density when `input` is set, and the RMS over the band.
+
+A check that fails is an error on the sim while the result is current; the result goes stale
+when the spec or the schematic's netlist changes. `examples/lna` holds two: `lna-supply`, the
+OR-ing of the 5 V input through a Schottky to U1's bias current, and `lna-biastee`, how far the
+bias tee keeps RF on the output off VBIAS. Both take U1 as its 90 mA quiescent current and the
+BAT60A from its typical VF, from the two datasheets; the LED, which has no part number, is left
+out.
+
 ## Graphics
 
 Shared by symbols and footprints. `kind` picks the shape and the fields it needs:
@@ -2245,8 +2613,8 @@ read the same on screen as on the board.
 
 ## Distributors
 
-`agentee parts NAME` (MCP `parts`) prices the BOM of a layout or schematic at Mouser and Farnell
-and lists cheaper parts that drop in. The keys live outside every project, in
+`agentee parts NAME` (MCP `parts`) prices the BOM of a layout or schematic at Mouser, Farnell
+and DigiKey and lists cheaper parts that drop in. The keys live outside every project, in
 `~/.config/agentee/distributors.toml` (`$AGENTEE_DISTRIBUTORS` or `--config` point elsewhere):
 
 ```toml
@@ -2257,6 +2625,14 @@ api_key = "..."                # Mouser Search API key, not the Cart/Order key
 api_key = "..."                # element14 Product Search API key
 store = "uk.farnell.com"       # ie.farnell.com, de.farnell.com, www.newark.com, au.element14.com ...
 # currency = "GBP"             # default follows the store
+
+[digikey]
+client_id = "..."              # a DigiKey API app with Product Information v4,
+client_secret = "..."          # swapped for a bearer token per run
+site = "IE"                    # the DigiKey site to price at, default US
+# currency = "EUR"             # default follows the site
+# language = "en"
+# sandbox = true               # sandbox-api.digikey.com, for a sandbox app
 ```
 
 ```sh
@@ -2280,13 +2656,24 @@ Alternatives, at most three per line, cheapest saving first, in the chosen offer
 | ceramic capacitor, `C` on a `C_0603...` footprint | value, voltage, dielectric and size | capacitance within 1 %, voltage no lower (from the value's `/50V` or the listed part), dielectric no worse (C0G stays C0G, X7R may become X7S or X8R, X5R may become X7R), tolerance no looser, the same case code; electrolytic, tantalum, polymer and film are refused |
 | generic discrete, `D` or `Q` whose value is a JEDEC name (2N7002, BSS138, 1N4148, BAT54, BZT52, S1x, SS1x, SMAJ, BC847 ...) | name and package | the name inside the part number and the same package (SOT-23 is not SOT-23-5, SMA is DO-214AC, not SMB) |
 | indicator LED, `D` on an `LED_0603...` footprint | colour and size | the colour and the case code |
-| anything else | nothing | only the same part at the other distributor, and the distributor's suggested replacement |
+| anything else | nothing | only the same part at another distributor, and the distributor's suggested replacement |
+
+`agentee bom NAME` (MCP `bom`) prints the cost as a table: one row per BOM line with its
+quantity per board, part number, the distributor and SKU it comes from, and its line total at
+each board count (`--boards`, default 1, 10 and 100), then the total, the cost per board and the
+number of lines it could not price. Each count picks the cheapest offer in stock for that
+quantity, so a line can come from another distributor at 100 boards than at one; those cells
+carry a `*`. It looks every part up once at the largest count and prices the smaller ones from
+the same price breaks, so the table costs the same API calls as one `parts` run. It does not
+search for alternatives; `parts` does that.
 
 Case codes are read from the imperial attribute (`Case Code - in`) or the part of a Farnell value
 before its `[... Metric]`, so a 0201 listed as `0201 [0603 Metric]` is not taken for an 0603.
 The report ends with the total per currency as chosen and with every cheaper pick, and the
 number of API calls made: Mouser allows 30 a minute and 1000 a day, and the part lookups go ten
-part numbers to a call. A refused key is reported once and that distributor is not asked again in
+part numbers to a call. DigiKey allows 120 a minute and 1000 a day and is asked one part number
+per call; each of its packagings (cut tape, tape and reel) is a separate offer, Digi-Reel and
+marketplace listings are left out. A refused key is reported once and that distributor is not asked again in
 the run.
 
 ### Order sheets
@@ -2297,10 +2684,12 @@ agentee parts buggy-guard --boards 2 --spares --order docs/
 
 `--order DIR` (MCP `order`) writes sheets to buy from instead of the report: `NAME-order.csv`
 with every line and the distributor it is bought from, and one `NAME-<distributor>.csv` per
-distributor with a key, Mouser's in the column layout of its BOM import template. Each line goes to
+distributor with a key, Mouser's in the column layout of its BOM import template and DigiKey's
+with the quantity, DigiKey part number and a customer reference of up to 48 characters first,
+the way its BOM Manager and cart upload read them. Each line goes to
 the distributor that is cheaper for the quantity bought, among those with enough stock and not
 obsolete. A distributor's sheet lists every line in three blocks: the lines to order there, then
-the lines bought at the other distributor, then the lines it does not list or has too few of, so
+the lines bought at another distributor, then the lines it does not list or has too few of, so
 the top block of each sheet is the order. A line no distributor stocks says so in
 `NAME-order.csv`, or names its `lcsc` part.
 
@@ -2312,4 +2701,179 @@ capacitors are bought at the next multiple of ten above the need plus five, and 
 |---|---|
 | `spares = "0"` | spares for this part instead of the default, e.g. none for an expensive module |
 | `buy_with = "XHP-2, SXH-001T-P0.6 x2"` | parts bought with each one of this part but not placed on the board: mating housings, crimps, an antenna. ` xN` is the count per part; the line names the parts it is for and gets one spare with `--spares` |
-| `lcsc = "C165948"` | the LCSC part, named when neither distributor stocks the line |
+| `lcsc = "C165948"` | the LCSC part, named when no distributor stocks the line |
+
+## Datasheets
+
+`agentee datasheet` (MCP `datasheet_fetch`, `datasheet_text`, `datasheet_add`) fetches part
+datasheets once into a cache every project and agent shares, `~/.cache/agentee/datasheets/`
+(`$AGENTEE_DATASHEETS` or `$XDG_CACHE_HOME` move it), and reads them back as text.
+
+```sh
+agentee datasheet fetch lna                    # every part of a layout or schematic
+agentee datasheet fetch U3                     # one part, by reference, symbol or part number
+agentee datasheet fetch TMC2209-LA
+agentee datasheet fetch U3 --url https://example.com/u3.pdf
+agentee datasheet text TMC2209-LA --find VS    # passages holding VS, with page and line
+agentee datasheet text U3 --pages 4-6
+agentee datasheet add XYZ123 ~/Downloads/xyz123.pdf --manufacturer Acme
+agentee datasheet list
+agentee datasheet purge                        # drop every copy no library part pins
+```
+
+A part's datasheet is looked for in order: its `datasheet` field in the schematic, its symbol's
+`datasheet` URL, then the datasheet each distributor with a key lists for its `mpn` (a
+`Maker MPN` field is split, and a part number that is the start of a listed one, such as
+`TMC2209-LA` for `TMC2209-LA-T`, takes its datasheet). Downloads use a browser user agent, retry
+on HTTP 429 and 5xx, follow an HTML page to the PDF it links, and give up on a host that timed
+out once for the rest of the run. Only a PDF is kept.
+
+Copies live at `MAKER/MPN/HASH.pdf` with a `meta.json` holding each copy's URL, source, SHA-256,
+fetch date and the revision line read from its first or last pages, so a part is fetched once
+and a newer revision sits beside the old one. `text` reads a copy with `pdftotext -layout` and
+keeps the text beside the PDF; it never touches the network when the part is cached, and fetches
+it first when it is not (`--offline` refuses instead). `--find` matches whole words, case
+sensitive when the word has capitals, with `--context` lines around each hit.
+
+A fetch of a design, or of a part in it, records what it used in `datasheets.toml` at the project
+root:
+
+```toml
+[[parts]]
+key = "TPS7A9101DSKR"
+manufacturer = "TI"
+refs = ["U9", "U24"]
+url = "https://www.ti.com/lit/ds/symlink/tps7a91.pdf"
+source = "symbol TPS7A91"
+sha256 = "1ab38416..."
+revision = "SBVS282A – DECEMBER 2016 – REVISED SEPTEMBER 2026"
+fetched = "2026-10-09"
+
+[[parts]]
+key = "SPF5189Z"
+refs = ["U1"]
+missing = "https://www.qorvo.com/products/d/da001910: HTTP 429"
+```
+
+`check` warns (rule `datasheet`) for a part with an `mpn` that has no datasheet URL on its symbol
+or part and no record here, and for a part whose last fetch found no datasheet. The fix is the
+user's PDF through `datasheet add`, or a URL that works.
+
+## Parts library
+
+The parts library is the user's own set of parts: the connectors, regulators, passives and
+anything else they want every design to reuse, so cables and stock carry between projects. Each
+part holds its symbol, footprint, 3D model, datasheet and last checked stock, and an agent picks
+from it before reaching for anything new (MCP `library_find`, `library_list`, `library_show`,
+`library_use`, `library_add`). The workflow for each part a design needs is find, add, use:
+`find` shows the library parts that match and, when none does, current parts in stock at the
+distributors; the chosen one goes into the library with `add` and onto the board with `use`.
+
+It lives in `~/.config/agentee/library/` (`$AGENTEE_LIBRARY` moves it), and a project can add or
+override parts in `.agentee/library/` at its root. Each part is a directory:
+
+```
+JST-PH-2/
+  part.toml
+  JST-PH-2.sym.toml            # the symbol, renamed to the part
+  JST_PH_S2B-PH-K_1x02_P2.00mm_Horizontal.fp.toml
+  3dmodels/JST_PH_S2B-PH-K_1x02_P2.00mm_Horizontal.step
+```
+
+```toml
+role = "connector"
+mpn = "S2B-PH-K-S"
+manufacturer = "JST"
+value = "PH 2-pin"
+rating = "2 A, 100 V"
+preferred = true               # the first choice for its role
+# generic = true               # any value on this footprint is this part (a resistor series)
+# pins = 2                     # default the symbol's pin count
+tags = ["power", "battery"]
+notes = "power input, 2 A max, use XH for motors"
+symbol = "JST-PH-2.sym.toml"
+footprint = "JST_PH_S2B-PH-K_1x02_P2.00mm_Horizontal.fp.toml"
+model = "3dmodels/JST_PH_S2B-PH-K_1x02_P2.00mm_Horizontal.step"
+added = "2026-10-09"
+
+[datasheet]                    # pinned in the datasheet cache
+url = "http://www.farnell.com/datasheets/4648554.pdf"
+sha256 = "dd60971f..."
+
+[[files]]                      # where each file came from and its hash when added
+path = "JST-PH-2.sym.toml"
+source = "kicad Connector_Generic:Conn_01x02, KiCad 9.0"
+sha256 = "42b88f96..."
+
+[[stock]]                      # one per distributor listing, from add or refresh
+distributor = "Farnell"
+sku = "9491902"
+stock = 338281
+currency = "EUR"
+breaks = [[100.0, 0.0841], [1000.0, 0.0655]]
+min = 100
+url = "https://ie.farnell.com/search?st=9491902"
+checked = "2026-10-09"
+```
+
+```sh
+agentee library add S2B-PH-K-S --name JST-PH-2 --role connector \
+    --symbol Connector_Generic:Conn_01x02 \
+    --footprint Connector_JST:JST_PH_S2B-PH-K_1x02_P2.00mm_Horizontal \
+    --manufacturer JST --rating "2 A, 100 V" --notes "power input" --preferred
+agentee library find 3.3V buck --role regulator   # library matches, else stocked parts to add
+agentee library find USB-C receptacle --need 100 --search
+agentee library list                           # every part, by role, with stock and price
+agentee library list --role connector 2-pin power
+agentee library show JST-PH-2
+agentee library use JST-PH-2 -p board/         # copy its files in, print the edit that places it
+agentee library refresh                        # stock and price of every part, one lookup each
+agentee library verify
+```
+
+`find WORDS` lists the library parts whose name, role, tags, part number, value, rating,
+footprint or notes match every word. Only when none matches (or with `--search`) it runs the
+same words as a keyword search at each distributor with a key and lists the parts that are
+active (no obsolete, end of life or discontinued status) with at least `--need` in stock (default
+1), merged by part number: total stock, the distributors that have it, the best unit price at
+that quantity, and the datasheet link. Parts stocked at more distributors come first, then by
+stock; `--limit` caps the list (default 15). A listed part already in the library says so.
+
+`add` takes the symbol and footprint from a `.sym.toml` or `.fp.toml` file, a symbol or footprint
+of the project (`-p`), or a KiCad `Library:Name`; the footprint defaults to the symbol's. It
+copies the footprint's 3D model in (from the KiCad model directories, the model cache or a
+download), points the footprint at the copy and sets its `height` from the model when it has none, so a part works offline and keeps working when a
+KiCad install or a vendor download changes. It fetches the datasheet (`--datasheet` URL or PDF,
+else the symbol's URL, else the distributors'), pins it in the datasheet cache so `datasheet
+purge` never removes it, and records each listing's stock and price breaks. Its notes say when no distributor has the part
+in stock as an active part. `--local` adds to the
+project's library instead.
+
+`use` copies the symbol into `symbols/`, the footprint into `footprints/` and the model into
+`3dmodels/` of the project; a file that already exists and differs is refused without `--force`.
+It returns the `agentee edit sch` command that adds the part with its `mpn`, `mfr` and `library`
+fields. `datasheet text JST-PH-2` reads the pinned copy without a network call.
+
+`refresh` asks every distributor with a key once for all the library's part numbers and replaces
+each part's `[[stock]]`; a distributor that fails keeps its last listing. `list` prints the
+cheapest listing in stock with the date it was checked, so stock and price are known without an
+API call, as of that date.
+
+`verify` checks each part: every symbol pin has a pad, the pinned datasheet names the part number
+and the package (or a pin count), the symbol's pin names appear in it, the model's outline fits
+the courtyard, and each file still has the hash it was added with. It exits 1 when one fails.
+
+`check` warns (rule `library`) when a design uses a part outside the library for a role the
+library holds, naming the library part to use: the one with the same pin count, the preferred one
+first. A part's role is its `role` field, or follows from its reference: `J`/`P` connector (`rf
+connector` for coax, SMA and U.FL, `usb connector`, `modular connector`, `card socket`), `R`
+resistor, `C` capacitor, `L` inductor, `FB` ferrite, `D` diode or `led`, `Q` transistor, `Y`
+crystal, `F` fuse, `SW` switch, `BT` battery, `K` relay. A part is in the library when its `mpn`
+or `library` field names a library part, or it sits on the footprint of a `generic` one. Set the
+part's `library = "no"` field to keep one out. `library.toml` at the library root sets how hard
+it pushes:
+
+```toml
+check = "warning"              # warning | info | off
+# roles = ["connector"]        # only these roles
+```

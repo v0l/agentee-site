@@ -4,6 +4,7 @@ Places the schematic's footprints on the board and routes them.
 name = "lna"
 board = "lna"
 schematic = "lna"
+title = "LNA v1.0"             # optional: board name and version in the silk, placed for you
 
 [[footprints]]
 ref = "U1"
@@ -67,7 +68,10 @@ layers = ["F.Cu", "In1.Cu", "In2.Cu", "B.Cu"]
 # spoke_width = "0.3mm"        # default: the net class track width, at least min_width
 
 [[cutouts]]                    # keep zones off an area, e.g. under an SMA centre pin;
-                               # a hole through the board is [[outline.cutouts]] in the board file
+                               # a hole through the board is [[outline.cutouts]] in the board file;
+                               # `agentee edit pcb cutout --point X,Y X,Y ... --layers ...` adds one,
+                               # replacing a cutout with the same points; `uncutout X,Y` removes
+                               # every cutout around that point
 layers = ["In1.Cu"]
 points = [[0, 9], [5.4, 9], [5.4, 11], [0, 11]]
 
@@ -122,6 +126,16 @@ refuses; clear room there or set `[watermark] at` (plus `layer`, `rotation`) you
 `[watermark]` spot that is not clear is a `watermark` error naming what it hits, and a stackup
 with no `kind = "silk"` layer is a `watermark` error asking for one.
 
+`title = "LNA v1.0"` prints the board's name and version in the silk, found a spot the same way
+as the watermark: on `F.SilkS` first (then `B.SilkS`), at 1.5 times `min_silk_text_height` (then
+the minimum if nothing that size fits), at the clear spot nearest the top left corner, rotated 90
+degrees if only a tall gap fits. The watermark keeps clear of it. Pin it with a table on the same
+line, `title = { text = "LNA v1.0", at = [26, 14.5], layer = "F.SilkS", rotation = 90, size =
+"2mm" }`; every key but `text` is optional. Keep the key above the first `[[footprints]]` table,
+or TOML reads it as part of that table. When no spot is clear, check reports a `board-title`
+error with the least crowded spot as a line to paste, and fab refuses. `agentee edit pcb NAME
+title "LNA v1.0" [--at X,Y] [--layer B.SilkS] [--size 2mm]` writes it, `title --clear` removes it.
+
 Test access: by default the nets that need a probe are power nets (a class with `current`, or a
 name like `3V3`, `1V8`, `+5V`, `VCC*`, `VDD*`, `VBUS*`, `VBAT*`, `VIN*`, `VSYS*`), ground (`GND`,
 `*GND`, `GND*`) and nets named like `*RST*`, `*RESET*`, `*EN*`, `*PG*`, `*CLK*`, `*TX*`, `*RX*`,
@@ -160,6 +174,9 @@ A fill piece is kept only if it touches two items of its net, or one and is at l
 `min_island_area`; the rest reach nothing new and are removed. Check verifies every fill against
 other nets: a fill that overlaps another net's zone, track, via or pad, or comes closer than the
 clearance, is an error, and copper tips sharper than 30 degrees are flagged.
+
+`agentee edit pcb zone NET` with an `--outline` adds a pour of that net, or replaces the one with
+the same outline (or none), so one net can have several pours.
 
 Zones on the same layer fill in order of `priority`, then smallest first, and each keeps its
 clearance from the fills already placed, so a small switch-node or supply pour inside a

@@ -42,7 +42,7 @@
   },
   {
     "name": "layout",
-    "description": "Run the layout engine on a layout: the configured [engine] phases in order, then the score per term with the worst offenders of each. Phases not implemented yet are listed as skipped.",
+    "description": "Run the layout engine on a layout: the configured [engine] phases in order, then the score per term with the worst offenders of each. Phases not implemented yet are listed as skipped. With search it runs a beam search over the stages in memory: each kept engine state branches into children with different values of that stage's [engine.search] knobs (placement seeds by default), the best `keep` survive each stage from the global route on, and the winner is written with its settings pinned in [engine]. Use search instead of rerunning place and route by hand with different seeds.",
     "args": [
       {
         "name": "dry_run",
@@ -57,6 +57,12 @@
         "description": "start at this phase"
       },
       {
+        "name": "keep",
+        "type": "integer",
+        "required": false,
+        "description": "with search, how many nodes survive each stage (default 4)"
+      },
+      {
         "name": "name",
         "type": "string",
         "required": true,
@@ -69,10 +75,67 @@
         "description": "run one phase"
       },
       {
+        "name": "search",
+        "type": [
+          "boolean",
+          "integer"
+        ],
+        "required": false,
+        "description": "true, or how many settings to try (default 16)"
+      },
+      {
         "name": "to",
         "type": "string",
         "required": false,
         "description": "stop after this phase"
+      }
+    ]
+  },
+  {
+    "name": "fit",
+    "description": "Find the smallest rectangular board a layout fits on. Loads the layout once and tries outlines of many aspect ratios in memory: the current placement scaled to the new size, edge connectors slid along their edge, holes kept in their corners, the rest legalised, routing demand estimated per tile; then checks the smallest sizes with the global router. strategy tight, balanced or spread sets the gap between parts and the routing room kept. width or height holds one side. write sets the board's [outline] size and writes the placement. Place the layout first: the search starts from its current arrangement.",
+    "args": [
+      {
+        "name": "aspects",
+        "type": "array",
+        "required": false,
+        "description": "width over height ratios to try"
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "required": false,
+        "description": "hold the height, mm"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": "layout"
+      },
+      {
+        "name": "strategy",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "verify",
+        "type": "integer",
+        "required": false,
+        "description": "how many of the smallest sizes to check with the global router (default 3, 0 skips)"
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "required": false,
+        "description": "hold the width, mm"
+      },
+      {
+        "name": "write",
+        "type": "boolean",
+        "required": false,
+        "description": ""
       }
     ]
   },
@@ -109,6 +172,30 @@
         "type": "number",
         "required": false,
         "description": "finished thickness in mm, within 10%"
+      }
+    ]
+  },
+  {
+    "name": "edit",
+    "description": "Edit a schematic (sch), layout (pcb) or board spec (board) with commands, one per line, in one load and one check at the end. It keeps the file's comments and layout and returns the check report of what it touched. A command that names a missing pin, part or net fails before anything is written. Send `help` alone for the commands of that target. Commands: sch add/remove/move/set/net/connect/disconnect/nc/unnc/note; pcb place/unplace/track/untrack/via/unvia/zone/unzone/cutout/uncutout/pair/text/fanout/stitch/watermark/title/test; board class/unclass/via/unvia/outline/cutout/stackup.",
+    "args": [
+      {
+        "name": "commands",
+        "type": "string",
+        "required": true,
+        "description": "one command per line, e.g. `add R1 R 10k --footprint R_0402_1005Metric` then `net MID R1.2 R2.1 --class Signal`"
+      },
+      {
+        "name": "item",
+        "type": "string",
+        "required": false,
+        "description": "item name, optional when the project has one of that kind"
+      },
+      {
+        "name": "target",
+        "type": "string",
+        "required": true,
+        "description": ""
       }
     ]
   },
@@ -299,7 +386,7 @@
   },
   {
     "name": "new_item",
-    "description": "Write a starter file for a board, symbol, footprint, schematic, layout or sim, to edit from. A sim starts as an FDTD run of a layout, or with sim_kind logic as a logic sim of a schematic (clock, reset, a clocked assertion) whose nets you rename.",
+    "description": "Write a starter file for a board, symbol, footprint, schematic, layout or sim, to edit from. A sim starts as an FDTD run of a layout, with sim_kind logic as a logic sim of a schematic (clock, reset, a clocked assertion), or with sim_kind circuit as an analog circuit sim of a schematic (a drive, an AC sweep and checks), whose nets you rename.",
     "args": [
       {
         "name": "dir",
@@ -760,7 +847,7 @@
   },
   {
     "name": "parts",
-    "description": "Price a layout's or schematic's BOM at Mouser and Farnell and find cheaper equivalents: the same part at the other distributor, resistors and ceramic capacitors with the same value, package, tolerance, voltage and dielectric (never a downgrade), generic discretes (2N7002, S1D, SS14, SMAJ..) by name and package, indicator LEDs by colour and package, and the distributor's suggested replacement for parts going obsolete. Costs are at the needed quantity, buying up to a price break when that is cheaper. Keys come from ~/.config/agentee/distributors.toml ([mouser] api_key, [farnell] api_key and store).",
+    "description": "Price a layout's or schematic's BOM at Mouser, Farnell and DigiKey and find cheaper equivalents: the same part at another distributor, resistors and ceramic capacitors with the same value, package, tolerance, voltage and dielectric (never a downgrade), generic discretes (2N7002, S1D, SS14, SMAJ..) by name and package, indicator LEDs by colour and package, and the distributor's suggested replacement for parts going obsolete. Costs are at the needed quantity, buying up to a price break when that is cheaper. Keys come from ~/.config/agentee/distributors.toml ([mouser] api_key, [farnell] api_key and store, [digikey] client_id, client_secret and site).",
     "args": [
       {
         "name": "alternatives",
@@ -778,7 +865,7 @@
         "name": "distributors",
         "type": "array",
         "required": false,
-        "description": "mouser, farnell; default every one with a key"
+        "description": "mouser, farnell, digikey; default every one with a key"
       },
       {
         "name": "farnell_store",
@@ -796,7 +883,7 @@
         "name": "order",
         "type": "string",
         "required": false,
-        "description": "directory, relative to the project, to write order sheets to instead of returning the report: NAME-order.csv and NAME-<distributor>.csv, each with the lines to buy there first, then the lines bought at the other distributor, then what it lacks"
+        "description": "directory, relative to the project, to write order sheets to instead of returning the report: NAME-order.csv and NAME-<distributor>.csv, each with the lines to buy there first, then the lines bought at another distributor, then what it lacks"
       },
       {
         "name": "refs",
@@ -809,6 +896,306 @@
         "type": "boolean",
         "required": false,
         "description": "with order: 0402/0603 resistors and capacitors to the next 10 above need + 5, one spare per D, Q, U and F line, or the part's `spares` field"
+      }
+    ]
+  },
+  {
+    "name": "bom",
+    "description": "BOM cost table of a layout or schematic: every line priced at Mouser, Farnell and DigiKey at each board count (default 1, 10 and 100), buying up to a price break when that is cheaper, with the total and the cost per board, and the lines that could not be priced and why. Use parts to look for cheaper equivalents.",
+    "args": [
+      {
+        "name": "boards",
+        "type": "array",
+        "required": false,
+        "description": "board counts, default [1, 10, 100]"
+      },
+      {
+        "name": "distributors",
+        "type": "array",
+        "required": false,
+        "description": "mouser, farnell, digikey; default every one with a key"
+      },
+      {
+        "name": "farnell_store",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "json",
+        "type": "boolean",
+        "required": false,
+        "description": "return the rows as JSON instead of the table"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": "layout or schematic"
+      },
+      {
+        "name": "refs",
+        "type": "array",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "datasheet_fetch",
+    "description": "Fetch and cache a part's datasheet, or every part's of a layout or schematic, into the cache every project shares (~/.cache/agentee/datasheets). Tries the part's `datasheet` field, its symbol's `datasheet` URL, then the datasheet the distributors list for its mpn, with a browser user agent and retries. Lists the parts with no reachable datasheet: ask the user for those, never fill the gap from memory. A design fetch records the URL, hash and revision of each in datasheets.toml at the project root.",
+    "args": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": "layout or schematic, a reference (U3), a symbol or a part number"
+      },
+      {
+        "name": "refresh",
+        "type": "boolean",
+        "required": false,
+        "description": "fetch again even when cached"
+      },
+      {
+        "name": "url",
+        "type": "string",
+        "required": false,
+        "description": "fetch one part from this URL instead"
+      }
+    ]
+  },
+  {
+    "name": "datasheet_text",
+    "description": "Read a cached datasheet as text with page numbers, fetching it first when it is not cached. Use find for the pin table and electrical characteristics (e.g. find \"VS\" returns the passages holding that word, matched whole and case sensitive when it has capitals), and pages for a page range. Without find or pages it returns the first 3 pages and the page count.",
+    "args": [
+      {
+        "name": "context",
+        "type": "integer",
+        "required": false,
+        "description": "lines around each match"
+      },
+      {
+        "name": "find",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": "a reference (U3), a symbol, a part number or a library part"
+      },
+      {
+        "name": "pages",
+        "type": "string",
+        "required": false,
+        "description": "page or range, e.g. 4 or 4-6"
+      }
+    ]
+  },
+  {
+    "name": "datasheet_add",
+    "description": "Add a PDF the user supplied (a part behind a login, a vendor that blocks downloads) to the shared datasheet cache under its part number.",
+    "args": [
+      {
+        "name": "manufacturer",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "mpn",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "path",
+        "type": "string",
+        "required": true,
+        "description": "the PDF, relative to the project"
+      },
+      {
+        "name": "url",
+        "type": "string",
+        "required": false,
+        "description": "where it came from"
+      }
+    ]
+  },
+  {
+    "name": "library_list",
+    "description": "The user's parts library: the connectors, regulators, passives and other parts they have chosen, each with its role, part number, rating, pin count, notes, whether it is preferred for its role, and its last checked stock and price. Look here first whenever a design needs a part, and use what is here before searching for anything new; ask the user before using a part outside the library for a role it covers.",
+    "args": [
+      {
+        "name": "role",
+        "type": "string",
+        "required": false,
+        "description": "connector, rf connector, usb connector, regulator, resistor, capacitor, led, diode, crystal ..."
+      },
+      {
+        "name": "words",
+        "type": "array",
+        "required": false,
+        "description": "words that must all match, e.g. [\"2-pin\", \"power\"]"
+      }
+    ]
+  },
+  {
+    "name": "library_find",
+    "description": "Search for a part: the library parts that match, and only when none does (or search is set) active parts in stock at Mouser, Farnell and DigiKey for the same words, merged by part number with total stock, the distributors that have it, the best unit price at the quantity needed and a datasheet link. Use it when the library has no part for a role; pick from the datasheets, then library_add the choice and library_use it.",
+    "args": [
+      {
+        "name": "need",
+        "type": "integer",
+        "required": false,
+        "description": "at least this many in stock, default 1"
+      },
+      {
+        "name": "role",
+        "type": "string",
+        "required": false,
+        "description": "only library parts of this role"
+      },
+      {
+        "name": "search",
+        "type": "boolean",
+        "required": false,
+        "description": "search the distributors even when the library has a match"
+      },
+      {
+        "name": "words",
+        "type": "array",
+        "required": true,
+        "description": "e.g. [\"3.3V\", \"buck\", \"1A\"] or a part number"
+      }
+    ]
+  },
+  {
+    "name": "library_add",
+    "description": "Add a part to the user's parts library: its symbol and footprint (a .sym.toml/.fp.toml file, a project item or a KiCad Library:Name) and 3D model copied in, the footprint height set from the model, its datasheet fetched and pinned, its stock and price recorded. Notes say when the part is not in stock as an active part or has no datasheet. Add only parts the user agreed to, with the rating from the datasheet.",
+    "args": [
+      {
+        "name": "datasheet",
+        "type": "string",
+        "required": false,
+        "description": "URL or PDF, default the symbol's URL then the distributors'"
+      },
+      {
+        "name": "footprint",
+        "type": "string",
+        "required": false,
+        "description": "default the symbol's footprint"
+      },
+      {
+        "name": "force",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "generic",
+        "type": "boolean",
+        "required": false,
+        "description": "a resistor or capacitor series: any value on this footprint"
+      },
+      {
+        "name": "local",
+        "type": "boolean",
+        "required": false,
+        "description": "into this project's .agentee/library"
+      },
+      {
+        "name": "manufacturer",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "model",
+        "type": "string",
+        "required": false,
+        "description": "a STEP or VRML file or URL, default the footprint's model"
+      },
+      {
+        "name": "mpn",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "description": "library name, default the part number"
+      },
+      {
+        "name": "notes",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "preferred",
+        "type": "boolean",
+        "required": false,
+        "description": "the first choice for its role"
+      },
+      {
+        "name": "rating",
+        "type": "string",
+        "required": false,
+        "description": "from the datasheet, e.g. \"2 A, 100 V\""
+      },
+      {
+        "name": "role",
+        "type": "string",
+        "required": true,
+        "description": "connector, regulator, resistor, capacitor, led, diode, crystal ..."
+      },
+      {
+        "name": "symbol",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "library_show",
+    "description": "One library part in full: its symbol, footprint and model files and where each came from, its pinned datasheet file, and its stock and price at each distributor with the date checked.",
+    "args": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "library_use",
+    "description": "Copy a library part's symbol, footprint and 3D model into this project and return the edit command that places it with its mpn, mfr and library fields.",
+    "args": [
+      {
+        "name": "force",
+        "type": "boolean",
+        "required": false,
+        "description": "replace project files that differ from the library copy"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
       }
     ]
   },

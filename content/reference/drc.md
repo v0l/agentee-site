@@ -6,6 +6,34 @@ in brackets, e.g. `[via-cuts-pad]`. `agentee drc NAME --list` (MCP `drc` with `l
 every rule with its category, severity, and whether it applies to this board and why; `agentee
 drc NAME` prints the layout's rule messages alone.
 
+The tools that add copper check it against the same rules before they write it. `tie`,
+`testpoints`, fanouts and stitching vias try each spot against `clearance`, `short`,
+`copper-to-edge`, the hole rules, `isolation-clearance`, `creepage`, `via-cuts-pad`,
+`via-in-pad-fill`, `hole-to-smd-pad`, `stacked-via` and `track-overlap`, and skip a spot that
+breaks one. `tune` and `neck` do the same for each meander and neck, judging it against the rest
+of the track it rewrites rather than the copy it replaces. `agentee route` and the layout engine
+drop the new tracks and vias that break one, found by halving the net's new copper until the
+pieces that fail are left, keep the rest, and report the rule. Pours are left out of these
+checks, since a pour refills around new copper.
+
+The distance rules (`clearance`, `isolation-clearance`, `creepage` measured straight,
+`copper-to-edge`, the hole rules and the via-in-pad rules) also say where new copper may go: for a
+track of a given width or a via of a given type they mark the area each one forbids, layer by
+layer, and what is left on every layer it needs is its green zone. `agentee route` blocks its
+search grid outside the green zones of the nets it routes, so a route never heads for a spot the
+check would refuse. The zone errs on the safe side by half a grid cell, and the check still
+judges the finished copper.
+
+The layout engine builds its search grid from the same keepouts: each pad, track, via, hole and
+board edge carries the gap its rule asks for, so the engine and the check measure one set of
+numbers.
+
+`agentee place` and the engine's place stage hold each part to the rules as well. When the board
+has a barrier between domains, or keeps copper or parts that are not being placed, every spot a
+part is tried at is checked with its pads at that spot against the copper around it, and a spot
+that breaks a rule is passed over. Tracks and vias on nets that touch a part being placed are
+ignored, since moving the part leaves them to be routed again.
+
 ```toml
 [drc]                          # in the board file
 disable = ["silk-width"]       # rule ids to skip; their checks are not computed, so with silk-text
@@ -57,11 +85,12 @@ tombstone_ratio = 3            # copper or feed width one chip pad may have over
 | `clearance` | error | always | copper of two nets closer than the larger of their class clearances (a footprint `clearance` replaces them for its pads), or copper run into a non-plated hole. Pads of one footprint are held to `min_clearance` and to the class clearance of nets in an isolation domain; spark gap electrodes are skipped |
 | `isolation-domain` | error | `[[domains]]` | a net whose class or name puts it in two domains |
 | `isolation-unassigned` | warning | `[[domains]]` | nets in no domain, which no barrier covers |
-| `isolation-clearance` | error | a barrier with `clearance` | copper of two domains on one layer closer than the clearance of the barrier between them, pads of one footprint and pours included; one line per net pair with the closest spot |
-| `creepage` | error | a barrier with `creepage` | copper of two domains closer along the board surface than the barrier's creepage: on one outer layer around board cutouts and non-plated holes at least the groove width of its `pollution_degree` wide, and from F.Cu to B.Cu down a cutout or hole wall or round the board edge |
+| `isolation-clearance` | error | a barrier with `clearance`, or class voltages that need one | copper of two domains on one layer closer than the clearance of the barrier between them, pads of one footprint and pours included; one line per net pair with the closest spot |
+| `creepage` | error | a barrier with `creepage`, or class voltages that need one | copper of two domains closer along the board surface than the barrier's creepage: on one outer layer around board cutouts and non-plated holes at least the groove width of its `pollution_degree` wide, and from F.Cu to B.Cu down a cutout or hole wall or round the board edge |
 | `spark-gap` | error | footprints with `spark_gaps` | a spark gap whose electrodes are not the declared `gap` apart (to 0.01 mm), sit under `min_clearance`, share a net or lack one, or have solder mask across the gap on an outer layer |
 | `unrouted` | error | always | a net whose pads are not all joined by tracks, vias and pours, naming the groups that are apart |
 | `dangling-track` | warning | always | a track end that touches no copper of its net and no pour |
+| `dangling-via` | warning | always | a via that joins copper of its net on fewer than two layers |
 | `track-grazes-pad` | warning | always | tracks that reach a pad only with their edge; run the centre line into the pad |
 | `copper-to-edge` | error | always | a track or via closer than `min_copper_to_edge` to the board outline or a board cutout, or off the board (a track across a cutout leaves the board) |
 | `pad-off-board` | error | always | pads outside the outline or in a board cutout; pads marked `edge = true` are exempt |
@@ -76,7 +105,7 @@ tombstone_ratio = 3            # copper or feed width one chip pad may have over
 | `impedance-width` | warning | impedance classes | a track of an impedance class at another width, its impedance moves |
 | `impedance-trace` | error | impedance classes | a track of an impedance class whose width, neck-downs included, or the copper beside it on an outer layer puts its impedance outside the class tolerance; the gap is not checked within the neck-down length of a pad or a junction |
 | `track-overlap` | error | always | tracks of one net running on top of each other, the copper is doubled |
-| `acute-turn` | warning | always | a track turning back more than 90 degrees, an acid trap |
+| `acute-turn` | warning | always | a track turning back more than 90 degrees, an acid trap (half a degree is allowed for coordinates rounded in the file) |
 | `zone-overlap` | error | zones | fills of two nets on one layer overlap, a short |
 | `zone-to-zone` | error | zones | fills of two nets on one layer closer than their clearance |
 | `zone-clearance` | error | zones | a fill that covers or comes too close to copper of another net |
@@ -91,6 +120,7 @@ tombstone_ratio = 3            # copper or feed width one chip pad may have over
 | `silk-text-height` | warning | always | silk text under `min_silk_text_height` |
 | `silk-artwork` | error | always | silk artwork on pads, over silk text or off the board |
 | `watermark` | error | always | the `agentee vX.Y.Z-HASH` watermark has no clear spot on the silk, or the `[watermark]` spot is not clear; fab refuses without a spot, and disabling the rule does not remove the watermark |
+| `board-title` | error | layouts with a `title` | the layout's `title` has no clear spot on the silk, or its `at` spot is not clear |
 | `silk-width` | warning | always | board silk lines (the layout's `[[graphics]]`, not text) thinner than `min_silk_width`, counted with the thinnest; footprint silk is checked with the footprint |
 | `pair-skew` | error | pairs | a pair skewed over its `max_skew` or the class `max_skew`, with the net to lengthen |
 | `pair-skew-info` | info | pairs | the skew of each pair within its limit |
