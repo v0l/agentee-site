@@ -58,7 +58,9 @@ Every part on a board comes from the user's parts library. For each part a desig
 3. **Add it to the library, then use it from there.** `agentee library add MPN --role ROLE
    --symbol ... --footprint ... --rating "..."` (MCP `library_add`), then `library use`. Tell
    the user which part you added and why. `add` notes when the part is not in stock as an active
-   part, and when no datasheet was reachable: then ask the user for the PDF.
+   part, and when no datasheet was reachable: then ask the user for the PDF. When KiCad has no
+   model, `add` takes the EasyEDA one by the LCSC number and places it by the pads; failing that,
+   ask the user for the vendor's KiCad ZIP and pass it as `--model part.zip`.
 
 Never place a part that is not in the library, and never pick one from memory without a
 distributor listing. `check` warns (rule `library`) when a design strays from the library.
@@ -288,6 +290,8 @@ Tools for the last few connections and for touch-ups, each with `--dry-run`:
 - `agentee tune NAME` meanders pairs over their skew and match groups short of their length.
 - `agentee neck NAME` necks tracks down where they enter a narrower pad.
 - `agentee silk NAME` moves failing reference labels, `--hide` hides the ones with nowhere to go.
+- `agentee edit pcb NAME label REF --text PWR` prints other words in place of a reference; mounting
+  hole references start hidden, `--show` brings one back.
 - `agentee fill NAME` fills the zones and stores the copper in the file.
 
 Check reports the ratsnest for every unrouted connection, so the layout is done when `unrouted`
@@ -339,7 +343,7 @@ grid; `--at X,Y` overrides that and snaps to the grid. `--footprint` names the f
 the symbol is missing but a symbol in the project uses that footprint, that one is used.
 
 **Layout** (`place`, `unplace`, `track NET LAYER X,Y X,Y ...`, `untrack`, `via NET X,Y`, `unvia`,
-`zone NET --layers ... --outline X,Y X,Y ...`, `unzone`, `cutout --point X,Y X,Y ... --layers ...`, `uncutout X,Y`, `pair`, `text`, `fanout`, `stitch`, `watermark`, `test`,
+`zone NET --layers ... --outline X,Y X,Y ...`, `unzone`, `cutout --point X,Y X,Y ... --layers ...`, `uncutout X,Y`, `keepout --point X,Y X,Y ... [--layers ...] [--nets SW]` (tracks and vias stay out, the router routes around it), `unkeepout X,Y`, `pair`, `text`, `fanout`, `stitch`, `watermark`, `test`,
 `board`, `schematic`). `place` takes a part of the layout's schematic or of any sheet that
 schematic lists, at any depth, and says which sheet it found it on. A net, layer or via name
 that is not in the schematic or its sheets is an error naming what is, so a typo never becomes a

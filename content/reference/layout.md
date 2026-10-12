@@ -12,6 +12,7 @@ at = [13.0, 8.05]
 rotation = 90                  # degrees, counter-clockwise
 # side = "bottom"              # mirrors the footprint and swaps F./B. layers
 label = { at = [9.9, 7.4], rotation = 90 }   # move the silk reference; size = 0.8, hide = true
+# label = { text = "PWR" }     # print this instead of the reference; ${REFERENCE} and ${VALUE} expand
 # mlcc = false                 # this part is not a ceramic capacitor, over the footprint's `mlcc`
 # locked = true                # `agentee place` never moves it
 
@@ -43,7 +44,8 @@ ref = "U3"                     # * and ? globs: ref = "*" with nets = [...] fans
 net = "GND"
 # via = "std"                  # default the net's first class via
 # pitch = "2.5mm"              # grid pitch, or the spacing along a fence (default 1mm)
-# outline = [[x, y], ...]      # default the board outline
+# outline = [[x, y], ...]      # default the board outline; a grid in an outline is centred
+                               # in it, so a strip narrower than the pitch gets one row
 # margin = "0.6mm"             # extra distance from the board edge
 # fence = ["RF_*"]             # instead of a grid: a row either side of these nets' tracks
 # offset = "0.5mm"             # fence row distance from the track centre, default just past
@@ -74,6 +76,14 @@ layers = ["F.Cu", "In1.Cu", "In2.Cu", "B.Cu"]
                                # every cutout around that point
 layers = ["In1.Cu"]
 points = [[0, 9], [5.4, 9], [5.4, 11], [0, 11]]
+
+[[keepouts]]                   # keep tracks and vias off an area, e.g. under a buck switch node
+points = [[20, 4], [26, 4], [26, 8], [20, 8]]
+# layers = ["F.Cu", "In1.Cu"]  # default every copper layer
+# nets = ["SW"]                # nets that may still run inside; the rest keep out
+                               # `agentee edit pcb keepout --point X,Y X,Y ... --layers ... --nets ...`
+                               # adds one, `unkeepout X,Y` removes every keepout around that point;
+                               # zone fills are not cut, add a [[cutouts]] for that
 
 [[graphics]]                   # board text and lines, same keys as footprint graphics
 kind = "text"
@@ -169,6 +179,13 @@ another part's body, which is a warning. When a reference label fails, check nam
 spot that passes every rule, as a `label = { at = [...] }` line to paste. `agentee silk NAME`
 (MCP `silk`) pastes them all for you and repeats until the labels settle; `--hide` hides the
 references that have no clear spot, typically small passives under a BGA.
+
+`label.text` prints its own words in place of the footprint's reference text, with
+`${REFERENCE}` and `${VALUE}` expanded, and gets the same checks. A label with only `text` keeps
+the footprint's spot, rotation and size. Mounting holes start with their reference hidden;
+`hide = false` shows it. `agentee edit pcb NAME label REF` sets `--text`, `--at`, `--rotation`,
+`--size`, `--hide` or `--show`, and `--clear text,at,rotation,size,hide` drops keys again. The
+fab layer keeps the real reference for assembly.
 
 A fill piece is kept only if it touches two items of its net, or one and is at least
 `min_island_area`; the rest reach nothing new and are removed. Check verifies every fill against

@@ -40,3 +40,16 @@ odd and even mode impedances and delays, the coupling coefficient (Ze - Zo)/(Ze 
 saturated near-end crosstalk of a long line (half the coupling). The two modes land within 0.5% of
 Cohn's exact edge-coupled stripline. A difference between the odd and even delays is what drives
 far-end crosstalk on microstrip.
+
+`[fab_notes]` sets what `fab-notes.txt` asks of the fab beyond the stackup. Every key is optional
+and the notes always carry the defaults:
+
+```toml
+[fab_notes]
+ipc_class = 2                      # IPC-6012 class, 1, 2 or 3, default 2
+hole_tolerance = "0.08mm"          # finished plated hole, plus or minus, default 0.08mm
+npth_tolerance = "0.05mm"          # non-plated holes, default 0.05mm
+remove_unused_pads = true          # non-functional pads off inner layers, default true (4+ layers)
+marking = "anywhere"               # fab logo, date code, order number: "omit", "anywhere" or a
+                                   # spot [x, y] on the board where it may go
+```

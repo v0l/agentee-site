@@ -544,7 +544,7 @@ drc NAME` prints the layout's rule messages alone.
 The tools that add copper check it against the same rules before they write it. `tie`,
 `testpoints`, fanouts and stitching vias try each spot against `clearance`, `short`,
 `copper-to-edge`, the hole rules, `isolation-clearance`, `creepage`, `via-cuts-pad`,
-`via-in-pad-fill`, `hole-to-smd-pad`, `stacked-via` and `track-overlap`, and skip a spot that
+`via-in-pad-fill`, `hole-to-smd-pad`, `stacked-via`, `track-overlap` and `keepout`, and skip a spot that
 breaks one. `tune` and `neck` do the same for each meander and neck, judging it against the rest
 of the track it rewrites rather than the copy it replaces. `agentee route` and the layout engine
 drop the new tracks and vias that break one, found by halving the net's new copper until the
@@ -640,6 +640,7 @@ tombstone_ratio = 3            # copper or feed width one chip pad may have over
 | `impedance-width` | warning | impedance classes | a track of an impedance class at another width, its impedance moves |
 | `impedance-trace` | error | impedance classes | a track of an impedance class whose width, neck-downs included, or the copper beside it on an outer layer puts its impedance outside the class tolerance; the gap is not checked within the neck-down length of a pad or a junction |
 | `track-overlap` | error | always | tracks of one net running on top of each other, the copper is doubled |
+| `keepout` | error | layouts with `[[keepouts]]` | a track or via of a net the keepout does not list inside it on one of its layers; `agentee route` and the layout engine route around it |
 | `acute-turn` | warning | always | a track turning back more than 90 degrees, an acid trap (half a degree is allowed for coordinates rounded in the file) |
 | `zone-overlap` | error | zones | fills of two nets on one layer overlap, a short |
 | `zone-to-zone` | error | zones | fills of two nets on one layer closer than their clearance |
@@ -741,6 +742,19 @@ odd and even mode impedances and delays, the coupling coefficient (Ze - Zo)/(Ze 
 saturated near-end crosstalk of a long line (half the coupling). The two modes land within 0.5% of
 Cohn's exact edge-coupled stripline. A difference between the odd and even delays is what drives
 far-end crosstalk on microstrip.
+
+`[fab_notes]` sets what `fab-notes.txt` asks of the fab beyond the stackup. Every key is optional
+and the notes always carry the defaults:
+
+```toml
+[fab_notes]
+ipc_class = 2                      # IPC-6012 class, 1, 2 or 3, default 2
+hole_tolerance = "0.08mm"          # finished plated hole, plus or minus, default 0.08mm
+npth_tolerance = "0.05mm"          # non-plated holes, default 0.05mm
+remove_unused_pads = true          # non-functional pads off inner layers, default true (4+ layers)
+marking = "anywhere"               # fab logo, date code, order number: "omit", "anywhere" or a
+                                   # spot [x, y] on the board where it may go
+```
 
 ## Symbol (`*.sym.toml`)
 
@@ -1042,6 +1056,7 @@ at = [13.0, 8.05]
 rotation = 90                  # degrees, counter-clockwise
 # side = "bottom"              # mirrors the footprint and swaps F./B. layers
 label = { at = [9.9, 7.4], rotation = 90 }   # move the silk reference; size = 0.8, hide = true
+# label = { text = "PWR" }     # print this instead of the reference; ${REFERENCE} and ${VALUE} expand
 # mlcc = false                 # this part is not a ceramic capacitor, over the footprint's `mlcc`
 # locked = true                # `agentee place` never moves it
 
@@ -1073,7 +1088,8 @@ ref = "U3"                     # * and ? globs: ref = "*" with nets = [...] fans
 net = "GND"
 # via = "std"                  # default the net's first class via
 # pitch = "2.5mm"              # grid pitch, or the spacing along a fence (default 1mm)
-# outline = [[x, y], ...]      # default the board outline
+# outline = [[x, y], ...]      # default the board outline; a grid in an outline is centred
+                               # in it, so a strip narrower than the pitch gets one row
 # margin = "0.6mm"             # extra distance from the board edge
 # fence = ["RF_*"]             # instead of a grid: a row either side of these nets' tracks
 # offset = "0.5mm"             # fence row distance from the track centre, default just past
@@ -1104,6 +1120,14 @@ layers = ["F.Cu", "In1.Cu", "In2.Cu", "B.Cu"]
                                # every cutout around that point
 layers = ["In1.Cu"]
 points = [[0, 9], [5.4, 9], [5.4, 11], [0, 11]]
+
+[[keepouts]]                   # keep tracks and vias off an area, e.g. under a buck switch node
+points = [[20, 4], [26, 4], [26, 8], [20, 8]]
+# layers = ["F.Cu", "In1.Cu"]  # default every copper layer
+# nets = ["SW"]                # nets that may still run inside; the rest keep out
+                               # `agentee edit pcb keepout --point X,Y X,Y ... --layers ... --nets ...`
+                               # adds one, `unkeepout X,Y` removes every keepout around that point;
+                               # zone fills are not cut, add a [[cutouts]] for that
 
 [[graphics]]                   # board text and lines, same keys as footprint graphics
 kind = "text"
@@ -1199,6 +1223,13 @@ another part's body, which is a warning. When a reference label fails, check nam
 spot that passes every rule, as a `label = { at = [...] }` line to paste. `agentee silk NAME`
 (MCP `silk`) pastes them all for you and repeats until the labels settle; `--hide` hides the
 references that have no clear spot, typically small passives under a BGA.
+
+`label.text` prints its own words in place of the footprint's reference text, with
+`${REFERENCE}` and `${VALUE}` expanded, and gets the same checks. A label with only `text` keeps
+the footprint's spot, rotation and size. Mounting holes start with their reference hidden;
+`hide = false` shows it. `agentee edit pcb NAME label REF` sets `--text`, `--at`, `--rotation`,
+`--size`, `--hide` or `--show`, and `--clear text,at,rotation,size,hide` drops keys again. The
+fab layer keeps the real reference for assembly.
 
 A fill piece is kept only if it touches two items of its net, or one and is at least
 `min_island_area`; the rest reach nothing new and are removed. Check verifies every fill against
@@ -2600,7 +2631,7 @@ imported layout lands where KiCad's own IPC-D-356 export puts it (2089 and 165 p
 | `drill-backdrill-FROM-TO.drl` | the backdrill holes of each side and stop layer, non-plated, at the backdrill diameter, with the stop layer and `max_stub` in a comment |
 | `bom.csv`, `bom-jlcpcb.csv` | grouped by value, footprint, `mpn` and `lcsc` fields |
 | `cpl.csv` | placement, JLCPCB columns |
-| `fab-notes.txt` | the agentee version and watermark spot, stackup, finish, impedance classes, each via type with its span, laser, mechanical or controlled depth drill, sizes, hole count, IPC-4761 fill and drill file, and each backdrill with its side, stop layer and stub, vias in pads to fill, edge pads to keep |
+| `fab-notes.txt` | the agentee version and watermark spot, stackup, finish, impedance classes, each via type with its span, laser, mechanical or controlled depth drill, sizes, hole count, IPC-4761 fill and drill file, and each backdrill with its side, stop layer and stub, vias in pads to fill, edge pads to keep, and the `[fab_notes]` IPC class, hole tolerances, non-functional pads and fab marking |
 | `NAME.d356` | IPC-D-356A netlist for the fab's bare-board electrical test, columns as KiCad writes them; test point pads are end points with the probe side access code (`A01` top, the copper layer count for the bottom, `A02` on 2 layers and `A08` on 8), vias are tented mid points unless `[test] vias = true` makes them probe side access; an unprobed via's access code follows the layers its copper reaches (a backdrill takes its side away): `A00` through, `A01` from the top, the bottom layer number from the bottom, the first layer's number for a buried via |
 | `testpoints.csv` | every test point pad for the fixture builder: ref, pad, net, X, Y (mm, Y up), side, pad diameter |
 | `NAME-gerbers.zip` | every Gerber and drill file, ready to upload to the fab |
@@ -2784,6 +2815,7 @@ JST-PH-2/
 role = "connector"
 mpn = "S2B-PH-K-S"
 manufacturer = "JST"
+lcsc = "C131337"               # the JLCPCB/LCSC part number, looked up by `add` and `refresh`
 value = "PH 2-pin"
 rating = "2 A, 100 V"
 preferred = true               # the first choice for its role
@@ -2843,7 +2875,18 @@ stock; `--limit` caps the list (default 15). A listed part already in the librar
 of the project (`-p`), or a KiCad `Library:Name`; the footprint defaults to the symbol's. It
 copies the footprint's 3D model in (from the KiCad model directories, the model cache or a
 download), points the footprint at the copy and sets its `height` from the model when it has none, so a part works offline and keeps working when a
-KiCad install or a vendor download changes. It fetches the datasheet (`--datasheet` URL or PDF,
+KiCad install or a vendor download changes. When KiCad has no model of that name, it takes the
+nearest body in the same `.3dshapes` folder, the same package with the closest exposed pad (or the
+plain body of a `_ThermalVias` footprint), and says so; the 3D view and `models` do the same.
+`--model` also takes a vendor download, a ZIP or folder holding a `.kicad_mod` and its STEP or
+VRML model (SamacSys, SnapMagic and Ultra Librarian ship these): it matches the vendor
+footprint's pads to ours by number, refuses when they sit more than 0.1 mm apart, and writes the
+`model_offset` and `model_rotate` that put the vendor model on our footprint. With no model from
+KiCad or `--model`, `add` looks the part number up in the JLCPCB/LCSC parts list and takes the
+EasyEDA model, placed the same way by the EasyEDA footprint's pads after checking the model
+against that footprint's outline; the part's `files` record it as `EasyEDA C258169
+(easyeda.com)`. `add` and `refresh` store the LCSC number as `lcsc`, and `use` passes it on as the
+part's `lcsc` field, which `bom-jlcpcb.csv` reads. `--no-distributors` skips both lookups. It fetches the datasheet (`--datasheet` URL or PDF,
 else the symbol's URL, else the distributors'), pins it in the datasheet cache so `datasheet
 purge` never removes it, and records each listing's stock and price breaks. Its notes say when no distributor has the part
 in stock as an active part. `--local` adds to the

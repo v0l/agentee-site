@@ -746,9 +746,6 @@
   "1bjoflyulvw": {
     "defaultMessage": "<code>hdi-6l-1n1</code>: 6 layers, 1+4+1, 0.8 mm, a 0.07 mm 1080 build-up prepreg each side of a core sub-stack."
   },
-  "1bm68955ftw": {
-    "defaultMessage": "The tools that add copper check it against the same rules before they write it. <code>tie</code>, <code>testpoints</code>, fanouts and stitching vias try each spot against <code>clearance</code>, <code>short</code>, <code>copper-to-edge</code>, the hole rules, <code>isolation-clearance</code>, <code>creepage</code>, <code>via-cuts-pad</code>, <code>via-in-pad-fill</code>, <code>hole-to-smd-pad</code>, <code>stacked-via</code> and <code>track-overlap</code>, and skip a spot that breaks one. <code>tune</code> and <code>neck</code> do the same for each meander and neck, judging it against the rest of the track it rewrites rather than the copy it replaces. <code>agentee route</code> and the layout engine drop the new tracks and vias that break one, found by halving the net&#39;s new copper until the pieces that fail are left, keep the rest, and report the rule. Pours are left out of these checks, since a pour refills around new copper."
-  },
   "1bse3rd4z5c": {
     "defaultMessage": "Results go stale when the spec or the copper changes, and check says so."
   },
@@ -2093,6 +2090,9 @@
   "1v2uudc6t8s": {
     "defaultMessage": "preset"
   },
+  "1v63rjfr0v5": {
+    "defaultMessage": "The tools that add copper check it against the same rules before they write it. <code>tie</code>, <code>testpoints</code>, fanouts and stitching vias try each spot against <code>clearance</code>, <code>short</code>, <code>copper-to-edge</code>, the hole rules, <code>isolation-clearance</code>, <code>creepage</code>, <code>via-cuts-pad</code>, <code>via-in-pad-fill</code>, <code>hole-to-smd-pad</code>, <code>stacked-via</code>, <code>track-overlap</code> and <code>keepout</code>, and skip a spot that breaks one. <code>tune</code> and <code>neck</code> do the same for each meander and neck, judging it against the rest of the track it rewrites rather than the copy it replaces. <code>agentee route</code> and the layout engine drop the new tracks and vias that break one, found by halving the net&#39;s new copper until the pieces that fail are left, keep the rest, and report the rule. Pours are left out of these checks, since a pour refills around new copper."
+  },
   "1v6tkvi9eoa": {
     "defaultMessage": "can go past its <code>min</code> or <code>max</code>."
   },
@@ -2969,6 +2969,9 @@
   "2921q7sf5ii": {
     "defaultMessage": "0.254"
   },
+  "2938khm5ak6": {
+    "defaultMessage": "<code>label.text</code> prints its own words in place of the footprint&#39;s reference text, with <code>${REFERENCE}</code> and <code>${VALUE}</code> expanded, and gets the same checks. A label with only <code>text</code> keeps the footprint&#39;s spot, rotation and size. Mounting holes start with their reference hidden; <code>hide = false</code> shows it. <code>agentee edit pcb NAME label REF</code> sets <code>--text</code>, <code>--at</code>, <code>--rotation</code>, <code>--size</code>, <code>--hide</code> or <code>--show</code>, and <code>--clear text,at,rotation,size,hide</code> drops keys again. The fab layer keeps the real reference for assembly."
+  },
   "294judhfjwe": {
     "defaultMessage": "<code>acute-turn</code>"
   },
@@ -3626,6 +3629,9 @@
   "4ce2b2y9rr": {
     "defaultMessage": "Design rule settings"
   },
+  "4dr78wrl0f": {
+    "defaultMessage": "the agentee version and watermark spot, stackup, finish, impedance classes, each via type with its span, laser, mechanical or controlled depth drill, sizes, hole count, IPC-4761 fill and drill file, and each backdrill with its side, stop layer and stub, vias in pads to fill, edge pads to keep, and the <code>[fab_notes]</code> IPC class, hole tolerances, non-functional pads and fab marking"
+  },
   "4dzg9g67zm": {
     "defaultMessage": "<code>Q</code>, <code>QN</code>"
   },
@@ -3865,6 +3871,9 @@
   },
   "8i3ijde2rp": {
     "defaultMessage": "2 ns"
+  },
+  "8iurzwna37": {
+    "defaultMessage": "<code>add</code> takes the symbol and footprint from a <code>.sym.toml</code> or <code>.fp.toml</code> file, a symbol or footprint of the project (<code>-p</code>), or a KiCad <code>Library:Name</code>; the footprint defaults to the symbol&#39;s. It copies the footprint&#39;s 3D model in (from the KiCad model directories, the model cache or a download), points the footprint at the copy and sets its <code>height</code> from the model when it has none, so a part works offline and keeps working when a KiCad install or a vendor download changes. When KiCad has no model of that name, it takes the nearest body in the same <code>.3dshapes</code> folder, the same package with the closest exposed pad (or the plain body of a <code>_ThermalVias</code> footprint), and says so; the 3D view and <code>models</code> do the same. <code>--model</code> also takes a vendor download, a ZIP or folder holding a <code>.kicad_mod</code> and its STEP or VRML model (SamacSys, SnapMagic and Ultra Librarian ship these): it matches the vendor footprint&#39;s pads to ours by number, refuses when they sit more than 0.1 mm apart, and writes the <code>model_offset</code> and <code>model_rotate</code> that put the vendor model on our footprint. With no model from KiCad or <code>--model</code>, <code>add</code> looks the part number up in the JLCPCB/LCSC parts list and takes the EasyEDA model, placed the same way by the EasyEDA footprint&#39;s pads after checking the model against that footprint&#39;s outline; the part&#39;s <code>files</code> record it as <code>EasyEDA C258169 (easyeda.com)</code>. <code>add</code> and <code>refresh</code> store the LCSC number as <code>lcsc</code>, and <code>use</code> passes it on as the part&#39;s <code>lcsc</code> field, which <code>bom-jlcpcb.csv</code> reads. <code>--no-distributors</code> skips both lookups. It fetches the datasheet (<code>--datasheet</code> URL or PDF, else the symbol&#39;s URL, else the distributors&#39;), pins it in the datasheet cache so <code>datasheet purge</code> never removes it, and records each listing&#39;s stock and price breaks. Its notes say when no distributor has the part in stock as an active part. <code>--local</code> adds to the project&#39;s library instead."
   },
   "8jttpmev0y": {
     "defaultMessage": "Hand-drawn wires"
@@ -4346,6 +4355,9 @@
   "gaamns4i1l": {
     "defaultMessage": "<code>min_drill</code>, <code>min_via_drill</code>"
   },
+  "gap4xtqpz6": {
+    "defaultMessage": "<code>keepout</code>"
+  },
   "gcl625e80g": {
     "defaultMessage": "Add a part to the user's parts library: its symbol and footprint (a .sym.toml/.fp.toml file, a project item or a KiCad Library:Name) and 3D model copied in, the footprint height set from the model, its datasheet fetched and pinned, its stock and price recorded. Notes say when the part is not in stock as an active part or has no datasheet. Add only parts the user agreed to, with the rating from the datasheet."
   },
@@ -4531,6 +4543,9 @@
   },
   "ijyo5sjjdk": {
     "defaultMessage": "<code>Y0</code> to <code>Y7</code>"
+  },
+  "ilxdi0lbky": {
+    "defaultMessage": "layouts with <code>[[keepouts]]</code>"
   },
   "ingvojakto": {
     "defaultMessage": "nets in no domain, which no barrier covers"
@@ -5273,9 +5288,6 @@
   "u06ay1whj4": {
     "defaultMessage": "A mounted part&#39;s impedance is taken from whichever of S11 and S21 is better conditioned, then joined to the board port as a one-port."
   },
-  "u0gsaa33hb": {
-    "defaultMessage": "the agentee version and watermark spot, stackup, finish, impedance classes, each via type with its span, laser, mechanical or controlled depth drill, sizes, hole count, IPC-4761 fill and drill file, and each backdrill with its side, stop layer and stub, vias in pads to fill, edge pads to keep"
-  },
   "u227emzdla": {
     "defaultMessage": "0.18"
   },
@@ -5540,9 +5552,6 @@
   "xw7bguk9b0": {
     "defaultMessage": "<code>assembly-top.png</code>, <code>assembly-bottom.png</code>"
   },
-  "xwq1lpid74": {
-    "defaultMessage": "<code>add</code> takes the symbol and footprint from a <code>.sym.toml</code> or <code>.fp.toml</code> file, a symbol or footprint of the project (<code>-p</code>), or a KiCad <code>Library:Name</code>; the footprint defaults to the symbol&#39;s. It copies the footprint&#39;s 3D model in (from the KiCad model directories, the model cache or a download), points the footprint at the copy and sets its <code>height</code> from the model when it has none, so a part works offline and keeps working when a KiCad install or a vendor download changes. It fetches the datasheet (<code>--datasheet</code> URL or PDF, else the symbol&#39;s URL, else the distributors&#39;), pins it in the datasheet cache so <code>datasheet purge</code> never removes it, and records each listing&#39;s stock and price breaks. Its notes say when no distributor has the part in stock as an active part. <code>--local</code> adds to the project&#39;s library instead."
-  },
   "xx198xsjkx": {
     "defaultMessage": "<code>silk-artwork</code>"
   },
@@ -5557,6 +5566,9 @@
   },
   "y39w1tss1e": {
     "defaultMessage": "layouts with a <code>title</code>"
+  },
+  "y51rg2j1sw": {
+    "defaultMessage": "<code>[fab_notes]</code> sets what <code>fab-notes.txt</code> asks of the fab beyond the stackup. Every key is optional and the notes always carry the defaults:"
   },
   "y56cpfpudy": {
     "defaultMessage": "<strong>Sims</strong>: S-parameter plots and Smith charts, TDR, eyes, PDN impedance, DC drop, current density and temperature maps, and logic waveforms."
@@ -5659,6 +5671,9 @@
   },
   "z9fsbaql10": {
     "defaultMessage": "The impedance of a power rail from its sinks, decaps and VRM against a target, with the anti-resonances to fix."
+  },
+  "za0yg7igha": {
+    "defaultMessage": "a track or via of a net the keepout does not list inside it on one of its layers; <code>agentee route</code> and the layout engine route around it"
   },
   "zayrhnbz0u": {
     "defaultMessage": "An outline is a rectangle with <code>size</code>, <code>origin</code> and <code>corner_radius</code>, or a polygon of <code>points</code>. A cutout is a window, slot or large hole routed through the board, and everything that cares about the edge (copper to edge, pads, pours, the router, the sims) treats a cutout&#39;s edge as board edge. A cutout in the layout file is different: it only keeps pours off an area on some layers."
