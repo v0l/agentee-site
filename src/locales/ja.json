@@ -17,6 +17,12 @@
   "106v2549b6s": {
     "defaultMessage": "回路図のネットリストからデジタル部を直接シミュレーション: 74シリーズモデル、刺激、アサーション、セットアップとホールドチェック、VCD出力。"
   },
+  "108cphe41zf": {
+    "defaultMessage": "免除された検出項目は、その理由付きの情報行として表示されます。何も一致しない免除は警告となるため、ジオメトリ変更後に残されたものは気づかれます。"
+  },
+  "1091k4d7e37": {
+    "defaultMessage": "<code>erc-drive-conflict</code>"
+  },
   "10hj9wtkhca": {
     "defaultMessage": "アサーション、セットアップとホールド、コンテンション"
   },
@@ -31,6 +37,9 @@
   },
   "10nmic6hlr9": {
     "defaultMessage": "<code>show</code>は、すべてのピンの位置を出力します。エージェントが部品を他の部品の隣に配置するために必要な情報です。"
+  },
+  "10qp7b7amml": {
+    "defaultMessage": "<code>check</code> は、シンボルや部品にデータシート URL がなく、ここに記録もない <code>mpn</code> を持つ部品、および最後の取得でデータシートが見つからなかった部品に対して警告します (ルール <code>datasheet</code>)。修正は、<code>datasheet add</code> によるユーザーの PDF、または動作する URL です。"
   },
   "10qw10dtpce": {
     "defaultMessage": "<code>clearance</code>"
@@ -71,6 +80,9 @@
   "117712qxnpn": {
     "defaultMessage": "ルーターは、各層変更時に、両層にまたがる最も安いリストされたビア（<code>cost</code> 乘以 <code>--via-cost</code>、同点の場合はより少ない層にまたがるビア）を選択します。したがって、F.CuからIn1.Cuへの変更ではマイクロビアが、In2.Cuへの変更ではスルービアが選択されます。<code>[[fanouts]]</code> は、パッドの層に到達する最初のビアを選択します。これにより、細ピッチBGAのパッドごとにマイクロビアが配置されます。"
   },
+  "118dkiet83q": {
+    "defaultMessage": "プッシュプル出力と、他の部品の<code>tri_state</code>ピンが1つのネットにある場合。"
+  },
   "119giktmgrp": {
     "defaultMessage": "製造パッケージ"
   },
@@ -95,9 +107,6 @@
   "11ik8rt3455": {
     "defaultMessage": "閉形式とGPUフィールド解による配線幅、共面RFライン、差動ペア、長さマッチング、USB 3などのインターフェース。"
   },
-  "11jm22r590b": {
-    "defaultMessage": "基板にある各フットプリント（底面にあるものは上面に戻して反転、パッドのドリルオフセットは保持されます）"
-  },
   "11jm8vdf8i9": {
     "defaultMessage": "リリース"
   },
@@ -106,6 +115,9 @@
   },
   "11k385vc52h": {
     "defaultMessage": "テストとベンチマーク"
+  },
+  "11l8sflcaiq": {
+    "defaultMessage": "ビューアの単一接続ルーティングは、旧型のグリッドルーティングを介して行われます。グリッドルーティングは、各ネットクラスの幅、クリアランス、および<code>layers</code>を、すべてのパッド、配線、ビア、穴、基板の縁に対して維持します。各クラスのビアの部屋は、そのパッド、ドリル、層構成によってサイズが決められます（マイクロビアはスルービアが通らない場所に収まり、他の層の埋め込みビアの横に置かれることもあります）。新しいビアは、同じ誘電体を跨ぐすべてのドリルから<code>min_hole_to_hole</code>以上離れ、その穴は他のネットのパッド、配線、ビアから<code>min_via_hole_to_copper</code>以上離れます。すべてのネットのSMDパッド（自分のネットも含む）からは離れます（ビアの銅はパッドに触れてはならず、<code>via-cuts-pad</code>、穴は<code>min_hole_to_smd_pad</code>以上離れていなければならず、<code>hole-to-smd-pad</code>、ただし<code>--via-in-pad</code>、MCPの<code>via_in_pad</code>、が有効な場合は、<code>max_filled_via_drill</code>以下のドリルで、自分のネットのSMDパッドの内部に完全に収まる場合があります）。クラスビアは層を変更するために使用され、両方の層を跨ぐ最も安価なものが選ばれます（<code>--via uv-top,core</code>またはMCPの<code>via</code>で他の名前から選択できます。コストは<code>--via-cost</code>で配線のmm数として指定され、デフォルトは3で、ビアの<code>cost</code>を掛けます）。45度の曲がりごとに<code>--bend-cost</code>の配線mm数が課金されます（デフォルトは0.1、90度はその3倍）。<code>--reroute</code>が指定されない限り、既存のものは移動しません。<code>--reroute</code>が指定されると、指定されたネットの配線とビアが先に削除されます。空き経路が見つからない接続は、交差するルーティング済みネット、またはその穴が<code>min_hole_to_hole</code>以内に近づくネット（同じ誘電体を跨ぐ穴）を引き剥がし、その場所を混雑していると記憶し、そのネットをキューに戻します。探索は45度方向でステップを進め、すべての曲がりにコストを課するため、経路は45度の曲がりを持つ直線区間として出力されます。その後、区間は2セグメントの45度ドッグレッグで引き締められ、残った90度の角はクリアランスがある場合にのみ斜め切りされます。グリッド外のパッド中心へのスタブだけが、他の角度で置かれることがあります。クラス幅がエンドパッドに収まらない場合（パッドの短い側より広い、または隣接パッドとのクリアランスを維持できないほど近い）、ルーティングは細くなります：クラス幅の配線はパッド手前で止まり、明示的な<code>width</code>を持つ別の<code>[[tracks]]</code>エントリがパッド中心まで直線で行きます。長さはクラス<code>neckdown</code>以下、幅は<code>min_track_width</code>以上です。その幅は、クラス幅、パッドの短い側、クリアランスを維持する最大幅の最小値を0.01 mmに切り捨てたものです（切り捨てで<code>min_track_width</code>を下回る場合は、切り捨て前の幅が下回らない限り、ちょうどmin_track_widthになります）。広い配線は、パッドからその全幅でクリアランスを維持できる最初の場所（配線より狭いパッドの場合は、パッドの外側）から始まります。1つのネットの触れているパッド（複数のパッドエントリで構成されたサーマルパッドなど）は、1つの広いパッドとして扱われます。<code>--pairs</code>でルーティングされたペアは細くなりません。すでに新しい銅があるネットの接続は、その銅から始まります。引き剥がせるネットを経由しても経路が見つからない接続は、自分のネットの他の接続を待ってから、それらが追加する銅から1回再試行します。クラスは1つずつルーティングされ、最も厳しいものから（許可される層数が少なく、次に配線幅とクリアランスが広いもの）、各クラスは次のクラスのために固定されます。クラスがルーティングされると、そのクラスでビアを持つすべてのネットが引き剥がされ、ビアのコストを4倍にして再ルーティングされ、他のものは固定されます。新しいルーティングがビア数が少ない場合（または接続数が多い場合）、ビアを1つ節約できる限り、パスごとに維持されます。その後、ビアを使用する各ルーティング済み接続が、他のものを固定した状態で1層ずつ再試行され、1層ルーティングが25%プラス1 mm以下長い場合に置き換えられます。その後、近接して層を変更する隣接する並列接続のビアが、グリッド上で共通の行または列にスライドされます。その場所が合法で、接続の長さが維持される場合です（<code>--pairs</code>で保持されたペアの脚と、複数の接続を持つネットは固定されます）。<code>max_vias</code>を持つインターフェースのネットは、トレース（シリーズ部品を含むレーンのすべてのネット）をその範囲内に保ちます：ビアが多すぎるルーティングは、ビアのコストを高くして再試行され、次に1層で試され、どちらも収まらなければ理由付きで失敗します。ペアの2番目のネットは、ペアギャップでパートナーに引き寄せられます。<code>--pairs</code>は、まず両半分を1つの結合配線として一緒にルーティングしようとします。接続が失敗した場合、全体のルーティングが再実行されます。最大4回まで、失敗したネットがクラス内で先頭、そのクラスが先頭になり、以前のクラスの銅を通る経路にコストが課せられ、それらのクラスが空きを確保します。失敗数が少なく、次にビア数が少なく、次に配線長が少ない実行が書き出されます。ネットが接続されずに追加された新しいビア（パッドは他の銅とベタを通じて一緒に保たれる）は、書き出し前に、それに向かうスタブとともに削除されます。配線が届かない層でベタに配線を落とすビアは残ります。一部の接続が失敗した場合、周囲のネットと--rerouteを付けて一緒に再ルーティングし、ルーティングがその領域全体を引き剥がして並べ替えられるようにするか、<code>--grid 0.025</code>に下げます。<code>--dry-run</code>は書き出さずに報告します。重要なネットを先に手動でルーティングし、その後、クラスごとにルーティングが残りを埋めるのを許可します。"
   },
   "11ne9kzx947": {
     "defaultMessage": "90 オーム +/-10% 差動"
@@ -121,9 +133,6 @@
   },
   "11sfpa2v5yp": {
     "defaultMessage": "基板"
-  },
-  "11soldwpr5n": {
-    "defaultMessage": "モデルは STEP または VRML で、KiCad と同じ方法で配置されます（<code>model_offset</code>、<code>model_rotate</code>、<code>model_scale</code>）。モデルのパスは指定されたまま、次に <code>KICAD9_3DMODEL_DIR</code> などの環境変数、プロジェクト内の <code>3dmodels/</code>、<code>~/.cache/agentee/3dmodels</code>、<code>/usr/share/kicad/3dmodels</code> の順で検索されます。拡張子は <code>.step</code>、<code>.stp</code>、<code>.wrl</code> を試し、gzip 圧縮の有無も確認します。モデルは STEP または VRML ファイルへの <code>https://</code> URL でも指定でき、ベンダーのモデルをリポジトリにチェックインする必要はありません。URL は一度だけ <code>~/.cache/agentee/3dmodels/url/</code> にダウンロードされ、プロジェクト独自のモデルとして扱われるため、生成部品より優先されます。ファイルが変わらないよう、URL はコミットやリリースに固定してください。ディスク上にない KiCad ライブラリのモデルは、kicad-packages3D リポジトリからキャッシュにダウンロードされます。<code>agentee models</code>（MCP の <code>models</code>）はすべてを取得し、見つかったものを報告します。ビューアはバックグラウンドで取得します。モデルのない部品は、基板メーカーの外形に <code>height</code> の高さの箱を重ねて表示します。高さがない場合は、フットプリント名から推定します。STEP ファイルは <a href=\"https://github.com/ricosjp/truck\">truck</a> でメッシュ化され、スタイル付きアイテムの色とアセンブリ配置が適用されます。エッジは各サーフェスクリーブの 3D カーブを使用し、pcurves は使用しません。クランプされていない B スプライン曲線や曲面は、有効なノット範囲に切り取られます。それでも有限な点に評価できないエッジ曲線は直線としてメッシュ化され、曲面が有限な点に評価できない面は除外されます。"
   },
   "11u2v23riko": {
     "defaultMessage": "<a href=\"/guides/agents/\">コーディングエージェントを設定</a>して、これらすべてを一文から実行できるようにします。"
@@ -148,6 +157,12 @@
   },
   "126h0k8jfve": {
     "defaultMessage": "Great Scott Gadgets の HackRF Pro、KiCad からインポート - agentee 例"
+  },
+  "1276m6yir8l": {
+    "defaultMessage": "ラダー VCF のレイアウト。中央に 2 列のラダー用トランジスタ、背面にジャックとポット。"
+  },
+  "128f2etyi2k": {
+    "defaultMessage": "ライブラリの部品が固定していないすべてのキャッシュされたデータシートを削除します"
   },
   "12961kesnhk": {
     "defaultMessage": "<code>min_microvia_diameter</code>"
@@ -181,9 +196,6 @@
   },
   "12l7h195o1h": {
     "defaultMessage": "<code>usb2-hs</code>"
-  },
-  "12la968121a": {
-    "defaultMessage": "<code>creepage</code> を持つバリア"
   },
   "12mj4ud735z": {
     "defaultMessage": "この部品の1つごと購入するが基板には配置しない部品：対応ハウジング、圧着端子、アンテナなど。<code> xN</code>は1個あたりの数量。行は対象部品名を列挙し、<code>--spares</code>で1個の予備が付く"
@@ -239,9 +251,6 @@
   "13c5y1gvrqq": {
     "defaultMessage": "<code>test-pad-geometry</code>"
   },
-  "13cjulq1dm2": {
-    "defaultMessage": "他のディストリビューターでの同じ部品と、ディストリビューター推奨の代替品のみ"
-  },
   "13d1reysfze": {
     "defaultMessage": "見つかった内容を確認します。"
   },
@@ -265,6 +274,9 @@
   },
   "13mgmqapqep": {
     "defaultMessage": "クロックは<code>phase</code>まで低レベルで、その後は各<code>period</code>のうち<code>duty</code>の間高レベルになります。phaseがない場合は0で高レベルから始まります。刺激は強いドライバとしてそのネットを駆動し、電源ネットではレールを置き換えます。<code>at</code>チェックは、その時刻までにすべてが安定した後にネットを1回読み取ります。シーケンスは、クロックの各クリーンなエッジ（0から1、または1から0）の直前にネットを読み取ります。これにより、レジスタ出力はエッジが来た時点の値として見えます。ネット名は回路図と同じです。0オームのリンクで別のネットに接続されたネットは、どちらの名前でも応答します。"
+  },
+  "13mxbjsjj67": {
+    "defaultMessage": "ネットに<code>power_in</code>ピンがあり、給電できるピンがない場合: 他のすべてのピンが入力、<code>power_in</code>、またはコンデンサである。入力がすべて1つの部品上にあり、ネット上にコンデンサがある場合は警告になる。これは内部レギュレータのコンデンサピンであり、シンボルでは<code>power_out</code>であるべき。"
   },
   "13r99o1j0yg": {
     "defaultMessage": "LVC"
@@ -290,9 +302,6 @@
   "13z0xd124hs": {
     "defaultMessage": "基板メーカーが細ピッチ部品のすべてのパッドのソルダーレジストを1つのウィンドウとして開く場合に<code>mask_web = false</code>。"
   },
-  "1412p7ywue1": {
-    "defaultMessage": "<code>clearance</code> を持つバリア"
-  },
   "1414n4x5uae": {
     "defaultMessage": "レイアウトの設計ルールチェック。list = trueの場合: この基板に適用されるかどうかとその理由を含む、すべてのDRCルールのID、カテゴリ、重大度。それ以外の場合: ルールIDを持つレイアウトの診断情報。ルールIDは、基板の[drc]無効リストまたは重大度テーブルに入れます。"
   },
@@ -307,6 +316,9 @@
   },
   "14f19xcrdbg": {
     "defaultMessage": "Apple silicon"
+  },
+  "14fa0hfyp5": {
+    "defaultMessage": "レイアウトにレイアウトエンジンを実行します。設定済みの [engine] フェーズを順に実行し、各用語のスコアと最悪の違反箇所を表示します。未実装のフェーズはスキップとして列挙されます。search を指定すると、メモリ内でステージに対してビームサーチを実行します。保持される各エンジン状態は、そのステージの [engine.search] ノブ (デフォルトでは配置シード) の異なる値を持つ子に枝分かれし、グローバルルーティング以降の各ステージで最良の `keep` が生存し、勝者が [engine] に設定を固定して書き出されます。異なるシードで place と route を手動で再実行する代わりに search を使用します。"
   },
   "14gnxpjtpy": {
     "defaultMessage": "<code>board</code> はリンクを担う S パラメータを持つシミュレーションを指定します。<code>through = [FROM, TO]</code> は単一エンドパス、<code>pair = [IN+, IN-, OUT+, OUT-]</code> は差動パスで、Sdd21 から読み取ります。パルス応答はパスから得られ、CTLE がある場合はそれに乗算し、ガウスエッジを付けます。アイは単位区間あたり 64 フェーズで PRBS を重ね、最初の <code>dfe_taps</code> 個のポストカーソルに理想的な決定フィードバックを適用します。"
@@ -323,6 +335,9 @@
   "14v2xwiubvc": {
     "defaultMessage": "クロック、カウント、デコーダ出力を含むカウンタシミュレーションの波形。"
   },
+  "14w4v10fyz5": {
+    "defaultMessage": "<code>inp</code> (<code>+</code>、<code>IN+</code>)、<code>inn</code> (<code>-</code>、<code>IN-</code>)、<code>out</code> (<code>~</code>、<code>OUT</code>)、<code>vcc</code> (<code>V+</code>、<code>VCC</code>)、<code>vee</code> (<code>V-</code>、<code>VEE</code>)"
+  },
   "14wsz3ii62e": {
     "defaultMessage": "手動でインストールするには、ファイルをエージェントのスキルフォルダに配置します。Claude Code の場合："
   },
@@ -338,20 +353,23 @@
   "1521tyvidt3": {
     "defaultMessage": "2つのドメインの銅が、バリアのクリーページに沿って基板表面で近い場合: 1つの外層で、基板カットアウトと非めっき穴の周囲に、その <code>pollution_degree</code> の溝幅以上、および F.Cu から B.Cu までカットアウトまたは穴の壁に沿って、または基板エッジを回って"
   },
+  "1524x70gur": {
+    "defaultMessage": "<strong>AC:</strong> <code>[ac]</code>は<code>from</code>から<code>to</code>まで、1デケードあたり<code>points</code>点でスウィープし、動作点で線形化する。ゲインは<code>ac</code>ドライバに対するdBで。"
+  },
   "1528x7i9xv2": {
     "defaultMessage": "機械的、サブスタック内、または制御深度（<code>drill_kind = &quot;controlled_depth&quot;</code>）"
   },
   "152h6ji8lvx": {
     "defaultMessage": "フットプリント"
   },
-  "152usp03oi7": {
-    "defaultMessage": "レイアウトまたは回路図のシミュレーション：FDTD、カスケード、チャネル、PDN、DCドロップ、熱、ロジック。"
-  },
   "154h9bif94k": {
     "defaultMessage": "<code>[[domains]]</code>"
   },
   "156bmxs5c35": {
     "defaultMessage": "電源とグランド間のコンデンサで、その電源の IC の最も近いピンから電源パッドが <code>decoupling_distance</code>(3 mm)より遠いもの。1 uF 以上の大容量コンデンサは 2.5 倍"
+  },
+  "1579yop098p": {
+    "defaultMessage": "<code>agentee edit pcb zone NET</code> に <code>--outline</code> を付けると、そのネットのベタを追加します。同じアウトライン（またはアウトラインなし）のベタがある場合は置き換えます。これにより、1 つのネットに複数のベタを持たせることができます。"
   },
   "158e1gx1ajq": {
     "defaultMessage": "クリップボードにコピー"
@@ -368,14 +386,17 @@
   "15fdgx4pxgy": {
     "defaultMessage": "パッドに集積ポートを持つレイアウトの GPU によるフルウェーブ FDTD 実行。S パラメータを JSON と Touchstone で出力します。"
   },
-  "15htq2azhlj": {
-    "defaultMessage": "パッド内のビアで、ドリルが <code>max_filled_via_drill</code> より広いもの、またはビアタイプで <code>fill</code> が <code>filled_capped</code> 以外に設定されているもの (IPC-4761 タイプ VII)"
-  },
   "15k0amejm7i": {
     "defaultMessage": "部品"
   },
+  "15k1306fi73": {
+    "defaultMessage": "agentee mcp は stdio 上で Model Context Protocol 経由でプロジェクトを提供します。チェック、レンダリング、ルーティング、シミュレーション、基板メーカー向けパッケージの書き出しを行う 41 のツールがあり、Claude Code、Codex、Cursor およびその他の MCP クライアント向けのセットアップが含まれます。"
+  },
   "15ot754w5ig": {
     "defaultMessage": "*.pcb.toml ファイル: 配置、配線、ビア、ファンアウト、ステッチング、ベタ、カットアウト、シルク、アートワーク、テストアクセス、バージョンウォーターマーク。"
+  },
+  "15q843jtwzc": {
+    "defaultMessage": "クラスターはネットリストから生成されます。各 IC は、その IC にのみ到達する信号ネットを持つ受動部品、電源または電力ネットとグランドまたは第 2 のそのようなネット間のコンデンサと抵抗器 (複数の IC が電源を共有する場合は、回路図で最も近い IC)、クリスタルを含みます。最小のコンデンサは、1 つのピンに 2 つ目を割り当てる前に各ピンに 1 つずつ、シンボルが <code>power_in</code> または <code>power_out</code> とタイプ付けされているピン (またはそれと同名のピン) にのみ割り当てられ、IC にそのようなピンがある場合のみ割り当てられるため、レールに接続されたストラップピンはデカップリングコンデンサを受け取りません。クラスターのデカップリングコンデンサは、サービスする電源ピンの隣に、他のパッドをそのネット上の IC の最も近いピンに向けるように配置されます (Analog Devices MT-101, Decoupling Techniques; TI SCAA082, High-Speed Layout Guidelines)。または、<code>--side both</code> で裏面に配置します (Xilinx UG483, 7 Series PCB Design Guide は、小さなコンデンサを BGA の下に配置します)。クリスタルはクロックピンの隣に、ロードコンデンサはクリスタルの隣に配置します (ST AN2867, Oscillator design guide)。10 uF を超えるコンデンサはバルクとみなされ、2.5 倍の距離まで離して配置できます。各コンデンサの引き寄せは、サービスするネットのクラスの <code>current</code> に比例して大きくなるため、センス抵抗器やモーター電源コンデンサは、論理デカップリングコンデンサよりも強く保持されます。アニーリング後、ピンに属するすべての部品は、5 mm 以内の最適な空き位置に、IC ごとに 2 つの順序で再配置されます。コストが低い方を選択します。レギュレータ出力 (<code>power_out</code> ピン: VCAP、内部 LDO) が最初、次に保護、次にネットの電流と最小サイズ順のデカップリングコンデンサ、次に単一 IC ネットの部品です。単一の移動とスワップは、改善がなくなるまで続行されます。これらのパスは参照ラベルを覆う可能性があります。覆われたラベルは書き込まれず、レイアウトエンジンは定着で配置できないラベルを非表示にします。クラスターは、重み付き HPWL を最小化するように配置されます。インピーダンスまたはペアクラスのネット、<code>[[pairs]]</code> と <code>[[interfaces]]</code> は 3 倍、4 つを超える部品に到達するグランドと電源ネットは 0 倍 (それらはプレーンです)、<code>current</code> を持つクラスで 4 つ以下の部品に到達するネット (モーターコイル、スイッチノード、センス抵抗器のノード) は 1 + 1.5/アンペアです。これにより、電力段は負荷の隣に保持されます。ステッパードライバは、そのモーターコネクタの隣に配置され、ステップと方向ラインが来る MCU の隣には配置されません。論理ラインは基板を横断して走れますが、2 A のコイルループはそうではありません。"
   },
   "15rgega759b": {
     "defaultMessage": "CLI と MCP サーバー"
@@ -389,11 +410,20 @@
   "163d98q67s1": {
     "defaultMessage": "Sponsor"
   },
+  "165ue6hkpsf": {
+    "defaultMessage": "読み取り"
+  },
   "1674g4enex3": {
     "defaultMessage": "熱 - agentee リファレンス"
   },
+  "1677g2wr3cv": {
+    "defaultMessage": "<code>find</code>は、すべての単語に一致するライブラリの部品をリストします。一致しない場合、キーを持つ分销業者を検索し、在庫のある有効な部品をリストします。<code>add</code>は、シンボル、フットプリント、モデルをコピーし、データシートを取得して固定し、在庫と価格を記録します。<code>use</code>は、ファイルをプロジェクトにコピーし、<code>mpn</code>で部品を配置する<code>agentee edit sch</code>コマンドを表示します。"
+  },
   "1699uknl8gl": {
     "defaultMessage": "レールをルーティングした後。ネックがホットスポットになる前に捕捉するため。"
+  },
+  "16aqeraywce": {
+    "defaultMessage": "ネットクラス電圧"
   },
   "16ay1d9id6m": {
     "defaultMessage": "agenteeのスキルをインストールし、MCPサーバーをClaude Code、Codex、Cursor、または任意のMCPクライアントに追加し、エージェントが作業できるブリーフを与えます。"
@@ -403,6 +433,12 @@
   },
   "16f35gxdrha": {
     "defaultMessage": "パッドに集積ポートを設け、GPU上でレイアウトのフルウェーブ3Dシミュレーションを実行し、SパラメータをJSONとTouchstoneで出力します。"
+  },
+  "16gt72qkj5h": {
+    "defaultMessage": "agentee library: シンボル、フットプリント、モデル、データシート、在庫を持つユーザー独自の部品。すべての設計で検索、追加、使用されます。"
+  },
+  "16i3ie6qw4m": {
+    "defaultMessage": "ノイズの大きい部品(スイッチングレギュレータ、そのインダクタ、上記のようなドライバやスイッチ)は、感度の高い部品(クリスタル、RF部品、オペアンプ、アナログと名付けられたクラスまたは説明を持つネット上の小型部品)から8 mm(中心間距離)以上離れます。ただし、両方が同じICに属する場合を除きます。"
   },
   "16jk6bahuiz": {
     "defaultMessage": "1つの基板仕様: 基板メーカーのルール、層構成、外形、ビア、ネットクラス"
@@ -436,6 +472,9 @@
   },
   "17149dx9dau": {
     "defaultMessage": "戻す"
+  },
+  "1717pf29jtv": {
+    "defaultMessage": "<strong>動作点:</strong> 常に。接合部制限付きニュートン反復、次にgminステップ、収束しない場合はソースステップ。"
   },
   "173rxxfj3zm": {
     "defaultMessage": "同じビルドで基板を発注してください。JLCPCBが別の層構成を使う場合、計算したすべてのインピーダンスがずれます。"
@@ -476,6 +515,9 @@
   "17kj16hixyw": {
     "defaultMessage": "値、公差、サイズ"
   },
+  "17lij57ucy8": {
+    "defaultMessage": "<code>gain</code>、<code>gbw</code>、<code>rout</code>、<code>vos</code>、<code>en</code>、<code>headroom</code>"
+  },
   "17ljpokzog": {
     "defaultMessage": "<code>min_pth_annular_ring</code>, 1オンス"
   },
@@ -494,6 +536,9 @@
   "17vzx0cngxd": {
     "defaultMessage": "PCBWay 4 milグリーンマスクブリッジ（<code>generic</code>の値）"
   },
+  "17yg4lr7o4c": {
+    "defaultMessage": "基板上の各フットプリントの配置。下面のものは上面に戻して反転し、パッドのドリルオフセットは保持されます。基板アウトラインや切り欠きにまたがる、または触れる銅パッド、および KiCad がカステラとマークしたパッドには <code>edge = true</code> が付与されます。"
+  },
   "17yp0xq3kx7": {
     "defaultMessage": "ルーティングエンジンは 0.05 mm グリッドで動作し、既存のすべての要素に対して、各クラスの幅、クリアランス、層、ビアを維持します。45 度方向にステップし、ビアと曲がりにはコストを課し、その後で配線を引き締め、クラス幅より狭いパッドには配線をネックダウンします。自由な経路がない接続は、邪魔になっているものを除去し、そのネットをキューに戻します。"
   },
@@ -502,6 +547,9 @@
   },
   "182j0cavsy3": {
     "defaultMessage": "<code>agentee models</code> は、フットプリントが指定するKiCadライブラリのモデルをまずキャッシュに取得し、見つからないものを報告します。フットプリントは、ベンダーのSTEPファイルへの <code>https://</code> URLを指定することもでき、コミットにピン留めして変更されないようにします。"
+  },
+  "183jivnkhlo": {
+    "defaultMessage": "長時間のシミュレーションをバックグラウンドで実行し、他のものを編集し続けます。チェックは、結果が古くなったことを記録します。"
   },
   "18496upds25": {
     "defaultMessage": "<code>min_via_diameter</code>, <code>min_annular_ring</code>"
@@ -526,6 +574,9 @@
   },
   "18i3wvdd03h": {
     "defaultMessage": "直線区間に長さを追加するメアンダーポイント"
+  },
+  "18jg88bbowl": {
+    "defaultMessage": "シミュレーションの<code>description</code>に、データシートと各値の出典となった表を記載してください。結果を読む次の人、多くの場合エージェントが、その結果が何に基づいているかを理解できます。"
   },
   "18ju6pvfrj4": {
     "defaultMessage": "agentee editでの部品、ネット、クラス、コマンドのバッチ、大規模設計向けのシート、VILとVIH間の分圧器を検出する信号レベルチェック。"
@@ -584,6 +635,12 @@
   "19d1n7v14gn": {
     "defaultMessage": "スキルは作業手順です。キーごとの完全なリファレンスは別物として用意されており、必要になったときのみコンテキストを消費します。<code>agentee docs</code> で表示され、MCP ツール <code>format_reference</code> でも返されます。スキルは、エージェントに書きかけのファイル種別に対応するセクションを読むよう指示します。同じテキストは、このサイトの <a href=\"/reference/\">リファレンス</a> 配下と、<a href=\"/llms-full.txt\">/llms-full.txt</a> の単一ファイルとしても公開されています。"
   },
+  "19ho4vods90": {
+    "defaultMessage": "<code>vout</code>、<code>dropout</code>、<code>rout</code>、<code>iq</code>"
+  },
+  "19k78arn1w2": {
+    "defaultMessage": "基板サイズ"
+  },
   "19kea6u9hmz": {
     "defaultMessage": "クイックスタート配置：回路図のチェックが通ったら、<code>agentee place NAME</code>ですべての部品を基板に配置します（コネクタはエッジ、大きなチップは中央、デカップリングコンデンサはピン付近）。<code>agentee render pcb:NAME</code>で確認し、重要な部品を移動して<code>locked = true</code>にし、残りの部品には<code>agentee place NAME --keep-placed</code>または別の<code>--seed</code>を実行し、その後<code>agentee silk NAME</code>を実行します。"
   },
@@ -599,6 +656,9 @@
   "19v6u3ih0rb": {
     "defaultMessage": "デザインルールチェック"
   },
+  "19x2nbclzor": {
+    "defaultMessage": "ユーザーが提供した PDF (ログインが必要な部品、ダウンロードをブロックするベンダーなど) を、その部品番号で共有データシートキャッシュに追加します。"
+  },
   "19xg7e5ysfo": {
     "defaultMessage": "kind"
   },
@@ -607,6 +667,9 @@
   },
   "1a5yd5gwb9f": {
     "defaultMessage": "回路図のフットプリントを基板に配置し、配線します。"
+  },
+  "1a7erqeinnt": {
+    "defaultMessage": "<code>G</code>、<code>D</code>、<code>S</code> ピンを持つ <code>Q</code>、<code>M</code>"
   },
   "1a7hh4p9xoj": {
     "defaultMessage": "基板アウトラインまたは基板の切り抜きから <code>min_copper_to_edge</code> 以内にあるパッドの銅。<code>edge = true</code> とマークされたパッドは対象外です。"
@@ -617,14 +680,8 @@
   "1ad670ounye": {
     "defaultMessage": "<code>*.sim.toml</code>"
   },
-  "1adfjatvsb9": {
-    "defaultMessage": "チェックは、2つのネットにあるピン、ネットにないピン、1ピンネット、1つのネットに複数の出力、ピンを逃すまたは他のネットのピンに触れる手動ワイヤ、重なった部品、シンボルのピンをカバーしないパッドを持つフットプリント、<code>rails</code>が設定されている場合の信号レベルを報告します。<code>Default</code>ネットクラスのすべてのネットは警告です。クラスを指定しない場合でも、<code>Default</code>を指定する場合でも同様です。クラスはネットの幅、クリアランス、ビア、ルーティング順序を設定するため、各ネットはそれが何であるべきかを述べる必要があります。この警告には、回路図のボードとレイアウトが必要です。シミュレーションのみされた回路図(<code>examples/logic</code>など)はスキップします。ボードにネットの種類ごとのクラス(<code>Signal</code>、<code>Data</code>、<code>Clock</code>、<code>Analog</code>、<code>Ground</code>、<code>Power</code>、<code>RF</code>、ペア)を与え、<code>Default</code>はクラスがカバーしないルールにレイアウトが使用するフォールバックとして保持します。<code>agentee show sch:lna</code>はすべてのピンの位置を出力します。"
-  },
   "1aiks5l81a4": {
     "defaultMessage": "値、フットプリント、 <code>mpn</code> フィールド、 <code>lcsc</code> フィールドでグループ化"
-  },
-  "1aiq67w9kpg": {
-    "defaultMessage": "クラスターはネットリストから生成されます。各 IC は、その信号ネットにのみ到達する受動部品、使用する電源とグランド間のコンデンサ(複数の IC が電源を共有する場合は回路図上の最も近い IC に割り当てられ、その電源ピンに分散配置)、およびクリスタルを含みます。クラスターのデカップリングコンデンサは、対応する電源ピンの隣に配置されます(Analog Devices MT-101, Decoupling Techniques; TI SCAA082, High-Speed Layout Guidelines)。または <code>--side both</code> で裏面に配置します(Xilinx UG483, 7 Series PCB Design Guide は小型コンデンサを BGA の下に配置)。クリスタルはクロックピンの隣に配置します(ST AN2867, Oscillator design guide)。クラスターは、重み付き HPWL を最小化するように配置されます。インピーダンスまたはペアクラスのネット、<code>[[pairs]]</code> および <code>[[interfaces]]</code> は 3 倍カウントされ、電源およびグランドのネットはカウントされません(プレーンであるため)。"
   },
   "1ajr71ql6pw": {
     "defaultMessage": "<code>drill-FROM-TO.drl</code>"
@@ -638,8 +695,14 @@
   "1amqtulas32": {
     "defaultMessage": "そのネットの IC ピンから信号パッドが <code>crystal_distance</code>(5 mm)より遠い、水晶またはオシレーター(参照 <code>Y</code>、または水晶やオシレーターのように名付けられたフットプリント)"
   },
+  "1ao1pre60tq": {
+    "defaultMessage": "<strong>クラス内のクリアランス。</strong> <code>voltage</code> があり <code>clearance</code> がないクラスには、外層の非めっき層におけるピーク電圧に対する IPC-2221B テーブル 6-1 の間隔（B2 列）が適用されます。ただし、基板メーカーの <code>min_clearance</code> 未満にはなりません。それ未満の <code>clearance</code> が設定されている場合は、その数値を特定してエラーになります。"
+  },
   "1api0wdnxbo": {
     "defaultMessage": "空のディレクトリから、チェック済みで配線済みの2層基板と製造パッケージまで: 基板仕様、KiCad部品、回路図、配置、配線、Gerber。"
+  },
+  "1api515n42h": {
+    "defaultMessage": "部品は回路図のシートに留まります。各部品は、そのシートの部品が必要とする距離を超えて遠ざかると、そのシートの最大のICに引き寄せられます。デカップリングコンデンサは、他の場所にあるICより、自分のシート上のICを優先します。"
   },
   "1ar5epo06pj": {
     "defaultMessage": "アイダイアグラム、PDN、Sパラメータ - agentee ガイド"
@@ -667,6 +730,9 @@
   },
   "1b2g6nf8c6n": {
     "defaultMessage": "TOML を手書きする代わりに、コマンドで回路図、レイアウト、基板を編集します"
+  },
+  "1b8dih99diu": {
+    "defaultMessage": "自身のネットの銅を2層未満で接続するビア。"
   },
   "1baail9oshf": {
     "defaultMessage": "*.sym.toml ファイル: ピン、グラフィック、生成されたボックス本体、マルチユニットシンボル、信号チェック用のロジックレベル。"
@@ -716,8 +782,14 @@
   "1c0qyq3q0v3": {
     "defaultMessage": "0.25"
   },
+  "1c0rvxzyl66": {
+    "defaultMessage": "その <code>DESIGN.md</code> は、シミュレーションで判明した問題、電源投入時のドン鳴り、ラインレベル未満でクリップする入力を列挙し、隠さず既知の問題として残しています。"
+  },
   "1c241d73ceu": {
     "defaultMessage": "ファイルが設計であり、エージェントはそれらを操作します。ビューアは、人がその過程を観察し、介入するための場所です。ファイルが変更されるたびに再読み込みされる、プロジェクトディレクトリ上のウィンドウです。"
+  },
+  "1c4b7buhjq7": {
+    "defaultMessage": "すべてのシミュレーションは U1 と D1 をデータシートからモデル化し、それぞれにチェックがあります。バイアス、ゲイン、ノイズ用の <code>preamp-ac</code>、出力がレールに到達する位置用の <code>preamp-clip</code>、バイアスが定着する際の電源投入時のドン鳴り用の <code>preamp-power</code>、電池逆接続時のリーク用の <code>preamp-reverse</code>。"
   },
   "1c8qdwsfopb": {
     "defaultMessage": "シンボルライブラリエントリ"
@@ -728,14 +800,11 @@
   "1cdj80vjstq": {
     "defaultMessage": "<code>class-width</code>"
   },
-  "1cdqc9jigvv": {
-    "defaultMessage": "Mouser と Farnell から、レイアウトまたは回路図の BOM 向けの在庫、価格、より安価な同等品。キーは ~/.config/agentee/distributors.toml にあります"
-  },
   "1cenr0bjssf": {
     "defaultMessage": "維持必須"
   },
-  "1cim9n2z5u3": {
-    "defaultMessage": "シミュレーション (*.sim.toml) を実行します。FDTD、dc、熱、カスケード、チャネル、pdn、またはロジック"
+  "1cl0gqk18t3": {
+    "defaultMessage": "別の販売業者での同じ部品、および販売業者が提案する代替品。"
   },
   "1cmyetwl4ud": {
     "defaultMessage": "<code>isolation-clearance</code>"
@@ -755,6 +824,9 @@
   "1cyyjxk65fy": {
     "defaultMessage": "ロジックシミュレーション - agentee リファレンス"
   },
+  "1d219wtsa1m": {
+    "defaultMessage": "<code>p</code>、<code>n</code>、<code>cp</code>、<code>cn</code> (すべて指定)"
+  },
   "1d2fjcit5ne": {
     "defaultMessage": "ファミリ"
   },
@@ -773,6 +845,9 @@
   "1d9xqjcpkko": {
     "defaultMessage": "6 ns"
   },
+  "1dbzf22unbw": {
+    "defaultMessage": "基板サイズ - agentee リファレンス"
+  },
   "1dckotedgvc": {
     "defaultMessage": "最初の基板 - agenteeガイド"
   },
@@ -784,6 +859,9 @@
   },
   "1de1dkyah31": {
     "defaultMessage": "DCドロップ"
+  },
+  "1deo9rn355v": {
+    "defaultMessage": "<code>noise = \"NET\"</code>、<code>at = \"1kHz\"</code>"
   },
   "1dexyb209p4": {
     "defaultMessage": "<code>min_plated_slot_width</code> または <code>min_npth_slot_width</code> より狭い、または幅の 2 倍より短いスロット"
@@ -797,8 +875,17 @@
   "1dko2ubm5ro": {
     "defaultMessage": "<code>*.pcb.toml</code>"
   },
+  "1dnfg9jow3j": {
+    "defaultMessage": "すべてのキーは<a href=\"/reference/circuit/\">回路リファレンス</a>にあります。"
+  },
   "1dq7e0fdz5y": {
     "defaultMessage": "必要なテストパッドがあります：<code>agentee testpoints NAME --dry-run</code> は、追加されるものをリストします。"
+  },
+  "1dqfn9te4ae": {
+    "defaultMessage": "過渡解析では、記録された各ネットの後半分のスペクトル（Hann窓、dBV、2048ビンのFFT）も保存され、ビューアで過渡曲線の下部に表示されます。"
+  },
+  "1dqi4st4dqd": {
+    "defaultMessage": "プリアンプのレイアウト。両側に 3.5 mm ジャック、中央に LM358、上部に電池ヘッダ。"
   },
   "1dr356dhwlw": {
     "defaultMessage": "移動はツールバーのグリッドにスナップします。新しい配線はクラスの幅を使用します。プロパティパネルで、配線のネット、層、幅、ビアの位置、ネット、タイプ、コンポーネントの位置、回転、面、<code>locked</code>を設定できます。"
@@ -833,6 +920,9 @@
   "1eama207i7p": {
     "defaultMessage": "<code>pinswap</code> は、FPGA や MCU の交換可能な I/O（同じバンク、ペアはペアのまま、クロックピンはクロックピンのまま）を再割り当てしてラッツネストを整理し、<code>--write</code> で回路図のピン参照を書き換えます。"
   },
+  "1edwi1n3ab3": {
+    "defaultMessage": "保護はコネクタ側に配置され、電流が流れる順序に従います。すべてのコネクタピンから、配置ツールはICに到達しないネットを、直列に接続された部品(ヒューズ、逆極性ダイオード、フェライト、直列抵抗、CCプルダウン)を介して追跡し、各部品を給電元のパッドの隣に配置します。グランドパッドを持ち、他のピンがすべてコネクタに到達する部品(TVS、USBLC6-2などのESDアレイ)は、クランプするコネクタピン上、または電源チェーンの末端の保護ノード上に配置されます(TI SLVA680、ST USBLC6-2データシート)。3つを超える部品に扇出するネットはレールとみなされ、そこでチェーンは停止します。その保護ノード上の電解コンデンサはチェーンに留まり、給電先のICはチェーンの末端に引き寄せられます。これにより、電源投入部はコネクタ、ヒューズ、ダイオード、TVS、大容量コンデンサの順になり、その後レギュレータが続きます。RFネットは、以下のRFパスに委ねられます。"
+  },
   "1ef7h87ntk5": {
     "defaultMessage": "次へ："
   },
@@ -862,6 +952,9 @@
   },
   "1epmfd3eh8f": {
     "defaultMessage": "配置ルールは部品をどこに置くかのガイドであり、デフォルトでは通知です。<code>[drc] severity</code>で重要度を上げられます。その閾値は基板ファイル内にあります。"
+  },
+  "1eqkiptg3mc": {
+    "defaultMessage": "<code>bjt</code>、<code>npn</code>、<code>pnp</code>"
   },
   "1er91a8spjx": {
     "defaultMessage": "エラーがなくなるまで<code>agentee check</code>を実行し、<code>agentee render NAME -o out.png</code>で確認します。"
@@ -893,11 +986,17 @@
   "1f0t6b2zw6y": {
     "defaultMessage": "ファイル形式リファレンスを出力します"
   },
+  "1f1ilupid01": {
+    "defaultMessage": "絶縁ドメインとバリア - agentee リファレンス"
+  },
   "1f338yhmorq": {
     "defaultMessage": "1.5 mm 以上のメッキなし穴がない"
   },
   "1f35gwftya6": {
     "defaultMessage": "カスケード"
+  },
+  "1f36tsxej3q": {
+    "defaultMessage": "チェックが失敗すると、結果が最新である間はシミュレーションでエラーになります。仕様または回路図のネットリストが変更されると、結果は古くなります。<code>examples/lna</code> には 2 つがあります。<code>lna-supply</code> は、ショットキーバリアダイオードを介して 5 V 入力を OR して U1 のバイアス電流を供給するものです。<code>lna-biastee</code> は、バイアスティーが出力の RF を VBIAS からどれだけ遮断するかを示します。両方とも、2 つのデータシートから、U1 の 90 mA の定常電流と、BAT60A の典型的な VF を使用します。部品番号がない LED は除外されます。<code>examples/preamp</code> は、すべての解析を実行したオペアンプ設計です。デュアル LM358 上のゲイン段と Sallen-Key フィルターの動作点、ゲイン、ノイズ、ミッドレールバイアスが安定するまでの電源投入時のサージ、クリップ、逆電池ダイオードです。<code>examples/ladder-vcf</code> は BJT ラダーフィルターです。そのシミュレーションは、3 つの CV でのエクスポコンバータの 1 V/oct 追従、共振ピーク、過渡現象での自己振動をチェックします。"
   },
   "1f3cehvkdmm": {
     "defaultMessage": "<code>NAME.board.toml</code>"
@@ -920,6 +1019,9 @@
   "1f9vqh6fhss": {
     "defaultMessage": "NPTHから配線まで"
   },
+  "1fb52jqf03s": {
+    "defaultMessage": "<code>v = \"NET\"</code>、<code>at = \"5ms\"</code>"
+  },
   "1fcszuy3i8h": {
     "defaultMessage": "全周波数でMuが1を超えることは、この基板で増幅器が無条件に安定であることを意味します。ノイズフロアは-174 dBm/Hzにノイズ係数と10 log（帯域幅）を加えたものです。SFDRはIIP3の3分の2をフロアで割ったものです。"
   },
@@ -932,6 +1034,9 @@
   "1fftm2g546y": {
     "defaultMessage": "自身のネット (またはネットなし) の SMD パッドに接していないのに、そのパッドから <code>min_hole_to_smd_pad</code> 以内にあるビア穴: はんだペーストや溶融はんだが流れ込む可能性があります"
   },
+  "1ffyj3ywykf": {
+    "defaultMessage": "モデルはデータシートから"
+  },
   "1fk8bss2ysu": {
     "defaultMessage": "パッドをプレーンに接続する"
   },
@@ -940,6 +1045,9 @@
   },
   "1fm6rqt9tp": {
     "defaultMessage": "作業できる要約を書く"
+  },
+  "1fnddxb8gfh": {
+    "defaultMessage": "<code>agentee parts NAME</code>（MCPの<code>parts</code>）は、レイアウトまたは回路図のBOMをMouser、Farnell、DigiKeyで価格評価し、代替可能な安い部品を列挙します。キーはすべてのプロジェクトの外、<code>~/.config/agentee/distributors.toml</code>に存在します（<code>$AGENTEE_DISTRIBUTORS</code>または<code>--config</code>で別の場所を指定可能）："
   },
   "1fowyzso6vo": {
     "defaultMessage": "<code>min_smd_pad_gap</code>"
@@ -965,6 +1073,9 @@
   "1g476xbqg3z": {
     "defaultMessage": "<code>3d</code>タブ、または<code>agentee view --3d</code>で、基板を層構成の厚さで、ソルダーレジスト、シルク、仕上げの色で表示します。ソルダーレジストの下に銅、裸のパッド、ドリル壁、各コンポーネントのモデルを表示します。ドラッグで軌道回転、shiftドラッグでパン、スクロールでズーム、ダブルクリックでリセット。<code>parts</code>トグルでモデルを非表示にできます。"
   },
+  "1g6p8eug3kk": {
+    "defaultMessage": "<code>max_length</code>を持つ<code>[[interfaces]]</code>エントリは、そのネットを制限します。その長さを超えてネットの半周の1.2倍になると、配線長の10倍のコストがかかります。"
+  },
   "1g6zmhe369k": {
     "defaultMessage": "1つの絶縁層"
   },
@@ -979,6 +1090,9 @@
   },
   "1geygj66je3": {
     "defaultMessage": "KiCadからの移行 - agenteeガイド"
+  },
+  "1gg1o70pe12": {
+    "defaultMessage": "ユーザーの部品ライブラリです。ユーザーが選んだコネクタ、レギュレータ、受動部品、その他の部品が、それぞれ役割、部品番号、定格、ピン数、メモ、その役割での優先指定の有無、最後に確認した在庫と価格を伴って登録されています。設計に部品が必要な場合は、まずここで確認し、新しいものを検索する前にここにあるものを使用してください。ライブラリ外の部品を、ライブラリがカバーしている役割で使用する場合は、ユーザーに確認してください。"
   },
   "1gg3gblzoqk": {
     "defaultMessage": "ボックスシンボルでは、辺ごとにピンを列挙し、agenteeがグリッド上に配置して本体のサイズを決定します。各エントリはピン、または<code>{ gap = N }</code>でN個の空スロットを残します。"
@@ -995,6 +1109,9 @@
   "1gkrykf8k03": {
     "defaultMessage": "<code>layout engine</code> カードは、<code>agentee layout</code> のステージ（<code>docs/layout-engine-2.md</code> を参照）を、未保存の編集を含めてウィンドウ上の現在のレイアウトに対して実行します。<code>run</code> は from..to のステージを実行し、<code>run X only</code> は 1 つだけ再実行し、<code>stop</code> は実行中のステージが終わった時点で実行を終えます。実行中は編集が一時停止します。結果はほかの編集と同じく未保存のままウィンドウに反映され、1 回の取り消しで元に戻せます。各ステージの時間とスコア、最も重みの大きいスコア項目も表示されます。<code>phases to run</code> と <code>settings</code> はレイアウトに <code>[engine]</code> を書き込み（<code>phases</code>、<code>rounds</code>、<code>place_rounds</code>、<code>[engine.place] seed</code>、<code>[engine.access] via_in_pad</code>、<code>[engine.global]</code>、<code>[engine.detail]</code>）、<code>default</code> は設定を削除して既定値に戻します。16 個以上のパッドを持つ部品を選択すると <code>pinswap</code> が使えます。これは <code>agentee pinswap</code> と同様に I/O の入れ替えを探索し、<code>write to the schematic</code> で回路図ファイルに書き込みます。"
   },
+  "1glb8dp87sw": {
+    "defaultMessage": "ピン名（<code>A</code>、<code>K</code>）によるダイオード：シリコン（Is 10 fA、n 1）。シンボルまたは値にSchottky、BAT、SS1がある場合はショットキー（10 nA、1.05）。LEDは（1 aA、2）。ゼナダイオードは値からブレークダウン電圧を取得します（<code>BZX84C3V3</code> は3.3 V）、ニー電流は1 mA"
+  },
   "1gngryix2dn": {
     "defaultMessage": "<strong>不明なキーはエラーです。</strong>キーのタイプミスは無視されず、報告されます。"
   },
@@ -1003,6 +1120,9 @@
   },
   "1gq89pyao7d": {
     "defaultMessage": "レイアウトの設計ルールチェック。ルール診断、または --list ですべてのルール"
+  },
+  "1gw5szk1pxm": {
+    "defaultMessage": "ネットを駆動するのはドライバのみであり、各電源に1つを与える。ドライバはグランドまたは<code>return</code>のネットに対する電圧源であり、<code>resistance</code>を直列に持つ。<code>current = true</code>は電流源にし、プリアンプがオペアンプの静止電流をレールから取り除く方法である。<code>ac</code>はACとノイズ解析の入力を示す。過渡に対して、ドライバは<code>steps</code>(区間線形)、<code>pulse</code>、または<code>sine</code>を受け取る。"
   },
   "1gy2l5rvaui": {
     "defaultMessage": "手動配置またはピンリストから生成された回路図シンボル。大半はKiCadから来ます。"
@@ -1028,6 +1148,9 @@
   "1h7of1a6l07": {
     "defaultMessage": "3.5 ns"
   },
+  "1haxhgdybu8": {
+    "defaultMessage": "<code>mosfet</code>、<code>nmos</code>、<code>pmos</code>"
+  },
   "1hb0jme7uy": {
     "defaultMessage": "フィールドマップと放射"
   },
@@ -1036,9 +1159,6 @@
   },
   "1hfj1gylge8": {
     "defaultMessage": "直線セグメントを置き換え、片側に指定された長さをトロンボーンバンプとして追加する配線のポイント。これらを配線のpointsに貼り付けます。"
-  },
-  "1hhhztm1751": {
-    "defaultMessage": "<code>agentee parts</code>はMouserとFarnellでBOMの価格を調べ、値、パッケージ、定格、誘電体を維持したまま安い部品を見つけます。<code>agentee export</code>は基板とすべての部品モデルをエンクロージャ用の1つのSTEPとして書き出します。"
   },
   "1hi9eni5l8u": {
     "defaultMessage": "ウェブサイトではなくリポジトリから："
@@ -1064,8 +1184,14 @@
   "1hojglbgsmu": {
     "defaultMessage": "各 <code>[[stitching]]</code> エントリが配置したビアを数える"
   },
+  "1hqwefpgt77": {
+    "defaultMessage": "フィルター"
+  },
   "1hr7d2icya6": {
     "defaultMessage": "USB 3 から 50 オームの RF 線まで、リンクが満たすべき要件: インピーダンス、スキュー、長さ、ビア、スタブ、リファレンスプレーン、リターンビア。"
+  },
+  "1htc4tzd3xi": {
+    "defaultMessage": "AC 解析とノイズ解析によるプリアンプのゲイン、位相、ノイズ。"
   },
   "1hviyqhpez": {
     "defaultMessage": "agenteeのエージェントスキル"
@@ -1075,6 +1201,9 @@
   },
   "1hxafpkj1nw": {
     "defaultMessage": "電流に対する最小配線幅 (IPC-2221)"
+  },
+  "1hyqcxjc9z3": {
+    "defaultMessage": "部品ライブラリ"
   },
   "1hzqa1mj0n2": {
     "defaultMessage": "すべてのピンにパッドが必要"
@@ -1103,6 +1232,9 @@
   "1i7pbxun3lv": {
     "defaultMessage": "<code>NAME.pcb.toml</code>"
   },
+  "1i7z9j9357q": {
+    "defaultMessage": "シミュレーション（*.sim.toml）を実行します。FDTD、dc、熱、カスケード、チャネル、pdn、論理、回路のいずれかです"
+  },
   "1ibt1vgiieq": {
     "defaultMessage": "<a href=\"/examples/lna/\">LNAの例</a>はこの方法で作られており、このガイドではそのファイルを使用します。"
   },
@@ -1124,17 +1256,14 @@
   "1ijpgw6zy04": {
     "defaultMessage": "リンクするシステムライブラリはありません。ビューアは実行時に X11 または Wayland を読み込み、GPU ソルバーは wgpu を通じて Vulkan、Metal、または DirectX 12 にアクセスします。"
   },
-  "1ijvmou62qv": {
-    "defaultMessage": "各<code>*.sim.toml</code>は種類を持つ実行です。ソルバーはVulkan、Metal、DirectX 12経由でwgpuを実行し、結果をスペックの隣に書き出し、結果が古くなるとチェックが警告します。"
-  },
   "1ik7elrzp6d": {
     "defaultMessage": "ビアタイプ - agentee リファレンス"
   },
-  "1ik8l4txs0m": {
-    "defaultMessage": "ケースコードは、インチ属性（<code>Case Code - in</code>）またはFarnellの値の<code>[... Metric]</code>より前の部分から読み取られるため、<code>0201 [0603 Metric]</code>と掲載されている0201は0603とはみなされません。レポートは、選択された通貨別の合計と、すべての安い代替品、および実行されたAPI呼び出し数で終わります。Mouserは1分間に30回、1日に1000回まで許可されており、部品検索は1回の呼び出しで10個の部品番号までです。拒否されたキーは1回だけ報告され、その実行中は同じディストリビューターに再度問い合せません。"
-  },
   "1ikp7ij892m": {
     "defaultMessage": "<code>fab</code> は、レイアウトにエラーがある間は拒否します。エラーがない場合、以下を書き出します。"
+  },
+  "1ilfchbxqel": {
+    "defaultMessage": "Moog トランジスタラダーをベースにした 12HP の電圧制御フィルター。4 ポール、1 V/oct のカットオフ、自己振動までのレゾナンス。回路シミュレーションで検証します。"
   },
   "1ilun4jnwfc": {
     "defaultMessage": "すべてのプッシュで agentee check を実行し、エラーでビルドを失敗させ、シミュレーション結果を最新に保ち、リリースにファブパッケージを添付します。"
@@ -1145,8 +1274,14 @@
   "1iprd0lzf8v": {
     "defaultMessage": "複数のビアタイプでの配線"
   },
+  "1iradbccaqg": {
+    "defaultMessage": "<strong>LDO</strong>は、入力が<code>dropout</code>の範囲内に入るまで<code>vout</code>を維持し、その後入力を追従して低下させます。"
+  },
   "1itm5kdohd2": {
     "defaultMessage": "<code>show</code>は、解決済みの基板をJSONで出力します。各クラスと各層について、トレースの幾何学(外層はマイクロストリップ、内層はストリップライン)、インピーダンス、ターゲットを満たす幅、流れる電流です。クラスがターゲットから外れている場合、チェックはどの程度外れているか、何をすべきかを指定します。"
+  },
+  "1iukd2j96uf": {
+    "defaultMessage": "部品ライブラリ - agentee リファレンス"
   },
   "1ivu4pud73f": {
     "defaultMessage": "フィルは読み込み時に計算され、キャッシュされます。<code>agentee fill NAME</code> はレイアウトファイルの末尾に保存するため、新しいチェックアウトではフィルなしで読み込めます。"
@@ -1184,6 +1319,9 @@
   "1jd1017ztm2": {
     "defaultMessage": "シミュレーションは、RF設計で一般的な分割を示しています。まず、各アクティブパーツの位置にポートを設けたパッシブ基板のFDTD実行を行い、次にベンダーの<code>.s2p</code>ファイルとデータシートに記載のノイズフィギュアおよびOIP3を組み合わせたカスケードを行います。基板を変更したらFDTDを再実行し、パーツを変更したらカスケードのみを再実行します。"
   },
+  "1jd4cwmr9gu": {
+    "defaultMessage": "<code>erc-unsupplied</code>"
+  },
   "1jftzni5t5z": {
     "defaultMessage": "レンダリングはヘッドレスで実行され、ディスプレイやGPUが不要です。ハードウェア変更のレビュアーは、diffだけでなく基板も確認できます。"
   },
@@ -1195,6 +1333,9 @@
   },
   "1jhsvs6al4q": {
     "defaultMessage": "id"
+  },
+  "1jiq6f07qt2": {
+    "defaultMessage": "<code>agentee tie NAME [--nets GND] [--dry-run]</code>（MCP <code>tie</code>）は、プレーンネットの各SMDパッドを、そのベタが覆す最も近い層に、パッドの横に短いスタブとビアを置いて接続します。これにより、グランドや電源パッドはパッド間の配線ではなく、プレーンに接続されます。ビアはパッドがある部品の側面からまっすぐ出ます。そのため、1列のピンには1列のビアが、可能な限り近い位置に配置されます。ビアの銅はすべてのSMDパッド（自分のパッドも含むため、ビアインパッドにはしない）から離れ、穴はそれらから <code>min_hole_to_smd_pad</code>、他の穴から <code>min_hole_to_hole</code>、他のネットの銅から <code>min_via_hole_to_copper</code> とクラスクリアランス、アウトラインから <code>min_copper_to_edge</code> 離れます。また、スタブはパッドの層で他のネットからクリアランスを確保します。スタブはパッドの中心ではなく、パッドから離れる位置から始まるため、細ピッチ部品の他のパッドが邪魔になりません。16方向を試行し、外側に向かう方向を優先して、パッドの1.2 mm先まで探します。他の層でそのネットのベタ本体に接続済みのパッドは、そのネットの銅（自分の層のベタ、配線、ビア、メッキ穴）を介して接続済みとみなし、そのままにします。そのため、どこかからプレーンに届くグランドベタ内のパッドには何も必要なく、<code>tie</code> を再実行しても何も追加されません。<code>tie</code> がベタの島にあるパッドにビアを置くと、その島内の他のパッドも接続済みとみなされるため、島ごとに1つのビアで済みます。デカップリングコンデンサ（電源ネットにピンを持つコンデンサ）とRFクラスネット上の部品のパッドは例外です。これらは短い帰路を必要とするため、自分のネットのメッキ穴がパッドの端から0.8 mm以内にある場合、自分のネットのビアがパッドの端から0.8 mm以内で同じベタの島内にある場合、または自分の配線がすでに手の届く範囲のプレーン層のビアに接続されている場合を除き、それぞれに独自のビアが配置されます。スルーホールパッドとBGAボール（<code>escape</code> が処理する）はスキップされ、適した場所のないパッドは <code>failed</code> にリストされます。スタブとビアは通常の <code>[[tracks]]</code> と <code>[[vias]]</code> として追加されます。"
   },
   "1jj1gfv10sm": {
     "defaultMessage": "色とケースコード"
@@ -1220,11 +1361,17 @@
   "1js1ubxwxw1": {
     "defaultMessage": "参照ビアが<code>return_via</code>の範囲内にない信号ビア"
   },
+  "1jt2xur8nd9": {
+    "defaultMessage": "動作点での電圧"
+  },
   "1junxrrooi9": {
     "defaultMessage": "スタブ"
   },
   "1jvphz860gf": {
     "defaultMessage": "回路図、レイアウト、基板仕様のすべてのキーを書き込み、ファイルのコメントを保持し、変更箇所をチェックするコマンド。"
+  },
+  "1jvyh6m2ydk": {
+    "defaultMessage": "部品（リファレンス、シンボル、または部品番号）のデータシート、またはレイアウトや回路図のすべての部品のデータシートを取得し、到達できない部品をリストします"
   },
   "1jzxry32yoi": {
     "defaultMessage": "<code>coplanar_gap</code>は、接地コプランアにします。ベタが両側にそのギャップを維持し、下にプレーンがあります。"
@@ -1301,6 +1448,15 @@
   "1kykq750f2s": {
     "defaultMessage": "PCBWay最大14:1"
   },
+  "1kzoza60qnv": {
+    "defaultMessage": "<code>J</code>、<code>P</code>、<code>TP</code>、<code>H</code>、<code>MH</code>、<code>FID</code>、<code>Y</code>、<code>X</code>、<code>SW</code>、<code>BT</code>、<code>T</code>"
+  },
+  "1l0xv8zp6gz": {
+    "defaultMessage": "部品のデータシートは、以下の順序で検索されます。回路図の <code>datasheet</code> フィールド、シンボルの <code>datasheet</code> URL、次にキーを持つ各ディストリビュータがその <code>mpn</code> にリストしているデータシート (<code>Maker MPN</code> フィールドは分割され、リストされている部品の先頭である部品番号、例えば <code>TMC2209-LA-T</code> の <code>TMC2209-LA</code> は、そのデータシートを使用します)。ダウンロードはブラウザのユーザーエージェントを使用し、HTTP 429 と 5xx でリトライし、HTML ページから PDF にリンクをたどり、一度タイムアウトしたホストについては実行の残りでは諦めます。PDF のみ保存されます。"
+  },
+  "1l4yez9717j": {
+    "defaultMessage": "LCSC部品。どの販売業者も在庫を持たない場合に名前付けされます。"
+  },
   "1l7i7cvrbu3": {
     "defaultMessage": "プロジェクトはディレクトリです。その下のすべてのファイルは、サフィックスによって読み込まれます:"
   },
@@ -1334,9 +1490,6 @@
   "1lpa8tzh6yg": {
     "defaultMessage": "<code>spark_gaps</code> を持つフットプリント"
   },
-  "1lqngucnspi": {
-    "defaultMessage": "自身のネットの SMD パッド内のビア (ドリルがパッド内) を数えます。<code>fab-notes.txt</code> で、これらだけを充填・キャップするよう基板メーカーに依頼します (IPC-4761 タイプ VII)。"
-  },
   "1lsygghx10g": {
     "defaultMessage": "<code>shift164</code>"
   },
@@ -1351,6 +1504,9 @@
   },
   "1m0hw1leold": {
     "defaultMessage": "<code>i2c</code>はオープンドレインバスです。2つの74LVC1G07で構成されたコントローラ、74LVC1G06でACK時にSDAをローにプルダウンするターゲット、4.7kのプルアップ、およびSCLでクロックされバイトをキャプチャする74HC595です。シミュレーションはSTART、ビット、ACK、バイト、STOPをチェックします。"
+  },
+  "1m22kr5xfe7": {
+    "defaultMessage": "<code>find WORDS</code>は、名前、役割、タグ、部品番号、値、定格、フットプリント、メモのいずれかがすべての単語に一致するライブラリの部品をリストします。一致する部品がない場合（または<code>--search</code>を指定した場合）のみ、キーを持つ各ディストリビューターで同じ単語をキーワード検索として実行し、アクティブ（廃止、生産終了、販売終了のステータスがない）で、かつ<code>--need</code>以上の在庫（デフォルト1）がある部品を、部品番号でマージしてリストします。リストには、総在庫、在庫があるディストリビューター、その数量での最安単価、データシートのリンクが表示されます。複数のディストリビューターで在庫がある部品が優先され、次に在庫量で並べ替えられます。<code>--limit</code>でリストの上限を設定できます（デフォルト15）。ライブラリに既に存在する部品がリストされた場合は、その旨が表示されます。"
   },
   "1m2m4kjajdn": {
     "defaultMessage": "すべての長さ: <code>min_track_width</code>、<code>min_clearance</code>、<code>min_drill</code>、<code>min_via_drill</code>、<code>min_via_diameter</code>、<code>min_annular_ring</code> (ビア、マイクロビアは <code>min_microvia_diameter</code> を使用)、 <code>min_blind_via_drill</code>、<code>min_controlled_depth_drill</code>、<code>min_microvia_drill</code>、<code>max_microvia_drill</code>、<code>min_microvia_diameter</code>、<code>min_hole_to_hole</code>、<code>min_copper_to_edge</code>、<code>min_silk_width</code>、<code>min_silk_text_height</code>、<code>min_mask_web</code> (0.1 mm)、<code>max_drill</code>、<code>min_npth_drill</code>、<code>min_plated_slot_width</code>、<code>min_npth_slot_width</code>、<code>min_pth_annular_ring</code>、<code>min_via_hole_to_copper</code>、<code>min_pth_hole_to_copper</code>、<code>min_inner_pth_hole_to_copper</code>、<code>min_npth_to_copper</code>、<code>min_smd_pad_gap</code>、<code>min_hole_to_smd_pad</code>、<code>max_filled_via_drill</code>、<code>min_bga_pad</code>、<code>min_bga_pitch</code>、<code>min_part_to_edge</code>、<code>min_body_to_edge</code>、<code>flex_zone</code>。さらに <code>max_aspect_ratio</code> (単純な数値、穴の深さをドリルで割ったもの)、 <code>max_microvia_aspect_ratio</code> (絶縁体の深さをレーザードリルで割ったもの)、 <code>max_controlled_depth_aspect_ratio</code> (制御深さビアの深さをドリルで割ったもの)、およびスイッチ <code>hdi</code> (基板メーカーがブラインド、バリー、マイクロビアとバックドリルを製造) と <code>stacked_microvias</code> (基板メーカーがマイクロビアをスタック)。フットプリントは、そのレイアウトが配置するすべての基板のルールに対してチェックされるため、4層基板と2層基板を持つプロジェクトでは、各フットプリントは配置されている基板のみに対してチェックされます。どのレイアウトにも配置されていないフットプリントは、各基板に対してチェックされ、最も適合する基板について報告されます。基板がない場合は <code>generic</code> に対してチェックされます。"
@@ -1373,11 +1529,17 @@
   "1m6kwfe3c6w": {
     "defaultMessage": "<code>agentee</code>"
   },
+  "1m7m07kon5o": {
+    "defaultMessage": "<code>refresh</code>は、キーを持つすべてのディストリビューターに一度だけ、ライブラリのすべての部品番号を問い合わせ、各部品の<code>[[stock]]</code>を置き換えます。失敗したディストリビューターは、最後のリストを保持します。<code>list</code>は、確認日付付きで在庫がある最安のリストを表示します。これにより、API呼び出しなしで、その日付時点の在庫と価格がわかります。"
+  },
   "1m9lznvbge": {
     "defaultMessage": "cargo でインストール"
   },
   "1mbcvq07ruj": {
     "defaultMessage": "Excellonドリル、HDI基板ではビアスパンごとに1ファイル"
+  },
+  "1me1qgv50ni": {
+    "defaultMessage": "<strong>過渡:</strong> <code>[tran]</code>は<code>stop</code>まで実行し、<code>step</code>を最大ステップとする。記録されたネットの後半のスペクトルも保存する。"
   },
   "1megpg1z5qq": {
     "defaultMessage": "誘電体損失は、各層の誘電率と損失正接角に適合させた因果的なDjordjevic-Sarkarモデルに従います。銅はスキンの効果、層構成の粗さ、<code>finish = &quot;ENIG&quot;</code>の場合の外側パッドの金とニッケルを含む表面インピーダンスとしてモデル化されます。ニッケルは数GHz以下で裸銅の抵抗の何倍もの損失を加えます。<a href=\"/reference/fdtd-losses/\">FDTD損失の参考資料</a>にモデルと検証測定値があります。"
@@ -1409,6 +1571,9 @@
   "1mpzrcnadb1": {
     "defaultMessage": "<code>drill-size</code>"
   },
+  "1mrq86ff5d0": {
+    "defaultMessage": "オンまたはオフにする層。例: <code>--hide F.Cu --show In1.Cu</code>。<code>--hide F.Cu</code>のみで指定すると、他のすべての銅層が表示される。"
+  },
   "1msr6dathc2": {
     "defaultMessage": "シンボルとフットプリントで共有されます。<code>kind</code> が形状と必要なフィールドを選択します:"
   },
@@ -1417,6 +1582,9 @@
   },
   "1mx3cwr1w9g": {
     "defaultMessage": "ALVC, LVT, ALVT, AUC, AVC"
+  },
+  "1mxb4xtmz6s": {
+    "defaultMessage": "要素"
   },
   "1mxesl4tx9n": {
     "defaultMessage": "FDTD やカスケード結果からの TDR、混合モードペア、クロストーク、受動性、相互性。"
@@ -1442,8 +1610,14 @@
   "1na2buppw58": {
     "defaultMessage": "<code>--rulers</code>"
   },
+  "1nacw1bprac": {
+    "defaultMessage": "プリアンプの回路図。逆接続防止ダイオード、ミッドレールバイアス、ゲイン段、Sallen-Key フィルター。"
+  },
   "1ncp0psxtys": {
     "defaultMessage": "true"
+  },
+  "1nedpasi8fn": {
+    "defaultMessage": "各クラスに、そのネットが帯びる最高電圧を指定します。<code>voltage = &quot;3.3VDC&quot;</code>、グランドは <code>&quot;0VDC&quot;</code>、<code>&quot;48VDC&quot;</code>、<code>&quot;-12VDC&quot;</code> または <code>&quot;230VAC&quot;</code>（AC は 0 V に対する rms 値）です。電圧のないクラスは警告になります。agentee はこれに基づいて間隔を計算します。"
   },
   "1nemdizwo76": {
     "defaultMessage": "保持するもの"
@@ -1457,8 +1631,8 @@
   "1ngwiqkmd9w": {
     "defaultMessage": "層構成、インピーダンスクラス、ビアタイプ、充填対象"
   },
-  "1nlm67q95ox": {
-    "defaultMessage": "DCドロップ、熱、ロジックシミュレーションは、ランナーにGPUがあるCIで実行するほど安価です。ロジックシミュレーションはGPUが不要です。"
+  "1nl542i1htn": {
+    "defaultMessage": "<code>examples/ladder-vcf</code>: トランジスタラダーフィルタ。シミュレーションで3つのCVにおける1 V/oct追従、共鳴ピーク、過渡現象での自己振動を確認します。"
   },
   "1nnqixb5v3w": {
     "defaultMessage": "エージェントスキル"
@@ -1499,6 +1673,12 @@
   "1o5zbgkmf8l": {
     "defaultMessage": "<code>arc</code>"
   },
+  "1o7kggzwt9x": {
+    "defaultMessage": "<code>resistor</code>、<code>capacitor</code>、<code>inductor</code>、<code>bead</code>"
+  },
+  "1o8qvwrh0hg": {
+    "defaultMessage": "チェックは、2つのネットにあるピン、ネットにないピン、単一ピンのネット、ピンを逃したり他のネットのピンに触れたりする手動配線、重なった部品、シンボルのピンをカバーしないフットプリントのパッド、以下の電気ルール、<code>rails</code>が設定されている場合の信号レベルを報告します。"
+  },
   "1o8ulbek2n3": {
     "defaultMessage": "<code>short</code>"
   },
@@ -1516,6 +1696,9 @@
   },
   "1ohjl688ppo": {
     "defaultMessage": "インターフェースはリンクが満たすべき条件を定義し、チェックは銅をすべて同時に測定します。"
+  },
+  "1ohz449bpu9": {
+    "defaultMessage": "ライブラリの部品を 1 つ完全に表示します。シンボル、フットプリント、モデルファイルとその出所、固定されたデータシートファイル、各販売店の在庫と価格、確認日付です。"
   },
   "1oiyg9y9o9n": {
     "defaultMessage": "JLCPCBが要求する列形式のBOMと配置"
@@ -1540,6 +1723,9 @@
   },
   "1osgh921477": {
     "defaultMessage": "AUP, LV, LVX"
+  },
+  "1ou2k5baocl": {
+    "defaultMessage": "Eurorack トランジスタラダーフィルター"
   },
   "1ou2oicps82": {
     "defaultMessage": "コーディングエージェント向けの電子回路デザイン"
@@ -1583,6 +1769,9 @@
   "1pgivx3wguz": {
     "defaultMessage": "ベタ"
   },
+  "1phg383f5ek": {
+    "defaultMessage": "<code>gain</code> (V/V または A/V)"
+  },
   "1pj2k64de7u": {
     "defaultMessage": "USBの数値はTIの高速レイアウトガイドラインです。クラス目標を超えて、インターフェースは端から端までの長さ、トレースあたりのビア数、ビアスタブ、参照平面がない区間、すべての信号ビアの隣のグランドビア、およびバスでは到着スプレッドとクロックに対するウィンドウをチェックします。完成したシミュレーションも読み取れます。FDTD実行からの最大挿入損失、反射損失、モード変換、チャネルシミュレーションからのアイ高さ、アイ幅。詳しくは <a href=\"/guides/signal-integrity/\">アイダイアグラム、PDN、Sパラメータ</a> を参照。"
   },
@@ -1598,6 +1787,9 @@
   "1po8zc29phk": {
     "defaultMessage": "プロジェクト内のすべての項目は、種類ごとに1ページ:"
   },
+  "1pp3816cfql": {
+    "defaultMessage": "レイアウトが収まる最小の長方形基板を見つけます。レイアウトを一度読み込み、メモリ内で複数のアスペクト比のアウトラインを試します。現在の配置を新サイズにスケーリングし、エッジコネクタをそのエッジに沿ってスライドし、穴を角に保ち、残りを合法化し、タイルごとにルーティング需要を推定します。その後、最小サイズをグローバルルーターでチェックします。strategy の tight、balanced、spread は部品間のギャップと確保する配線空間を設定します。width または height は一方の辺を固定します。write は基板の [outline] サイズを設定し、配置を書き出します。先にレイアウトを配置してください。サーチはその現在の配置から開始します。"
+  },
   "1ppa0ladd1t": {
     "defaultMessage": "穴が通過する層で、他のネットの銅 (配線、パッド、ビア、ベタ) から <code>min_via_hole_to_copper</code> または <code>min_pth_hole_to_copper</code> 以内にあるビアまたはメッキパッドの穴壁"
   },
@@ -1606,6 +1798,9 @@
   },
   "1pqynrmtd2g": {
     "defaultMessage": "すべての編集は、<code>check</code>と同様にバックグラウンドでチェックされるため、保存前に診断メッセージとネットテーブルが追従します。<code>revert</code>で未保存の編集を破棄します。未保存の編集がある間にディスク上のファイルが変更された場合、ビューアは自分の編集を保持するかファイルを読み込むかを尋ねます。"
+  },
+  "1prcz0ixely": {
+    "defaultMessage": "一致するライブラリの部品、次に一致しない場合に追加するための分销業者の在庫のある現在の部品"
   },
   "1psjspfv8n4": {
     "defaultMessage": "すべてのポートが駆動された場合、すべての実行で受動性（帯域内のSの最大特異値）と相互性（SijとSjiの最大差）を報告します。受動性が1を超える場合、実行が収束していないか、メッシュが粗すぎます。"
@@ -1621,6 +1816,15 @@
   },
   "1px3e0peona": {
     "defaultMessage": "x86_64またはarm64のLinuxで1コマンドでagenteeをインストールし、部品をインポートするKiCadライブラリを追加し、GPUソルバーがグラフィックカードを見ているか確認します。"
+  },
+  "1q0npql6f10": {
+    "defaultMessage": "<code>--order DIR</code>（MCPの<code>order</code>）は、レポートの代わりに購入用シートを書き出します。すべての行と購入先販売業者を含む<code>NAME-order.csv</code>、および販売業者ごとの<code>NAME-&lt;distributor&gt;.csv</code>です。MouserのものはBOMインポートテンプレートの列レイアウトに従い、DigiKeyのものは数量、DigiKey部品番号、48文字までの顧客参照を先頭に配置し、BOMマネージャーとカートアップロードが読み取る形式です。各行は、在庫が十分で廃盤でない販売業者の中で、購入数量に対して安い販売業者に割り当てられます。販売業者のシートは3つのブロックですべての行を列挙します。そこで注文する行、次に他の販売業者で購入する行、最後に掲載されていないまたは在庫が不足している行です。これにより、各シートの上部ブロックが注文になります。どの販売業者も在庫を持たない行は、<code>NAME-order.csv</code>でその旨が示され、またはその<code>lcsc</code>部品が名前付けされます。"
+  },
+  "1q3rur02pkh": {
+    "defaultMessage": "指定値のコンデンサ、インダクタ"
+  },
+  "1q3vqm4fd47": {
+    "defaultMessage": "結果は、仕様または回路図のネットリストが変わると古くなる: チェックはそれを古いものとして注記し、シミュレーションが再び実行されるまでその失敗を落とすため、回路のすべての変更後にシミュレーションを再実行する。<code>thd</code>または<code>freq</code>のスパンは回路が安定した後に開始し、そうでないと立ち上がりステップが歪みとして読み取られる。"
   },
   "1q8yeug7h6t": {
     "defaultMessage": "設計ルールチェック - agentee リファレンス"
@@ -1658,6 +1862,9 @@
   "1qo8ftpe555": {
     "defaultMessage": "マップ: E (dBV/m) と H (dBA/m)。ポートへの入射電力1 mW、深さ60 dB。遠界は、吸収境界のすぐ内側のボックスに対する近界-遠界変換から得られます。読み取り値: 入力に対する放射電力の割合、指向性、および1 mW入力時の3 m地点のピーク電界（FCCクラスBとの比較）。ポートはパッド上の整合負荷なので、ケーブルとコネクタは放射体には含まれません。"
   },
+  "1qpm6ngfddp": {
+    "defaultMessage": "値はSI接頭辞と単位を取ります：<code>\"4k7\"</code>、<code>\"100nF\"</code>、<code>\"1MHz\"</code>、<code>\"10meg\"</code>、または単なる数値。グランドは、GND、<code>0V</code>、<code>GROUND</code> で命名されたネット、または <code>VSS</code> で始まるネットすべてです。ドライブが指定しない限り。何も保持しないネットは、グランドに対して1 pSのコンダクタンスで接続されます。"
+  },
   "1qpzpi2dc2y": {
     "defaultMessage": "セラミックコンデンサ"
   },
@@ -1673,11 +1880,20 @@
   "1qvez8rx5jb": {
     "defaultMessage": "HDI: マイクロビアと積層"
   },
+  "1qvvhd0wo3v": {
+    "defaultMessage": "<code>max_filled_via_drill</code>より広くドリルされたパッド内のビアまたはフットプリント穴、または<code>fill</code>が<code>filled_capped</code>以外に設定されているビアタイプ（IPC-4761タイプVII）。"
+  },
   "1qw5tcldd6o": {
     "defaultMessage": "単位、ファイルモデル、解決とチェック、計算ツール"
   },
+  "1qwq7fw1zbr": {
+    "defaultMessage": "すべてのキャッシュされたデータシート"
+  },
   "1qxtym14c23": {
     "defaultMessage": "<code>agentee render</code>（MCP <code>render_item</code>）はビューアが描画するものを描画する。サイドパネルなし（<code>--canvas-only</code>）の場合、PNG は図面にクロップされ、<code>--width</code>と<code>--height</code>でサイズが制限される"
+  },
+  "1qyqtouauf7": {
+    "defaultMessage": "電解コンデンサは、寿命が10 Cごとに半分になるため(ニチコンおよびパナソニックのアプリケーションノート)、高温部品から3 mm離れます。小型の2パッドチップは、3 mmより高い部品から少なくともその高さだけ離れます(<code>tall-part-shadow</code>)。ただし、両方が同じICに使用される場合を除きます。高さは、フットプリントの<code>height</code>、<code>CP_Elec_DxH</code>の名前、または3Dビューのデフォルト値から取得されます。<code>height</code>が実際のモデルのものになるよう、先に<code>agentee models</code>を実行してください。縦置きJST PHは6 mmですが、名前だけではそれがわかりません。"
   },
   "1r0hmmormyn": {
     "defaultMessage": "機械ドリル、積層されたサブスタック内"
@@ -1700,8 +1916,14 @@
   "1r5t471qlyo": {
     "defaultMessage": "配置、配線、ベタ - agenteeガイド"
   },
+  "1r7o4cu7dpd": {
+    "defaultMessage": "2つの部品のプッシュプル出力(<code>output</code>、<code>power_out</code>)が1つのネットにある場合、または1つが他の部品の<code>open_collector</code>または<code>open_emitter</code>の隣にある場合。"
+  },
   "1r94okxp0ki": {
     "defaultMessage": "1400 ピクセルの基板全体では、モデルがラベルを読み取るには小さすぎるため、質問している部分を描画する。<code>--focus</code>は指定した部品、ネット、ピンにズームし残りをフェードさせ、<code>--rulers</code>は端に沿ってミリメートル座標をラベル付けして次の<code>--region</code>を図面から読み取れるようにし、<code>--canvas-only</code>で PNG を図面にクロップする："
+  },
+  "1rabh789z04": {
+    "defaultMessage": "1 つのネットは最大 1 つのドメインに属します。ドメイン内、およびドメインに属さないネットについては、クラスクリアランスが従来どおり適用されます。バリアを持つ 2 つのドメインの間では、1 つの層の銅はバリアの <code>clearance</code>（<code>isolation-clearance</code>）を保持し、1 つのフットプリントのパッドやベタも含みます。銅を追加するものはすべて、バリアから他のドメインの銅を保持します。ベタ、<code>agentee route</code> とレイアウトエンジン、<code>tie</code>、<code>testpoints</code>、<code>tune</code>、<code>neck</code>、ファンアウトとステッチングビアは、チェックが使用するのと同じルールから保持します。F.Cu と B.Cu では、スロットを迂回する経路を測定しないため、<code>clearance</code> と <code>creepage</code> の大きい方を保持します。"
   },
   "1raj6a0in47": {
     "defaultMessage": "<code>*.pcb.toml</code>: 配置、配線、ビア、ベタ、シルク"
@@ -1733,11 +1955,20 @@
   "1rlh0pizak3": {
     "defaultMessage": "編集のたびに<code>agentee check</code>を実行します。不明なキーはエラーになるため、タイプミスは無視されず報告されます。"
   },
+  "1rn9mv98qz7": {
+    "defaultMessage": "<code>resistance</code>、<code>capacitance</code>、<code>inductance</code>"
+  },
   "1rpeqj9sa5a": {
     "defaultMessage": "カスタム部品はインラインでモデルを取得し、<code>ref</code>または<code>value</code>（その値を持つすべての部品）で一致します。1つの部品に複数のエントリがあると、それぞれセルを追加します（クアッドの1ゲートあたり1つなど）。タイミングだけのエントリは組み込みモデルを保持し、タイミングを変更します。"
   },
   "1rqigxpguzp": {
     "defaultMessage": "インストールし、エージェントにスキルを与え、小さなものを依頼してください。ブレイクアウト、電源、センサーノードなど。ビューアで観察し、チェックの出力を読み取ってください。"
+  },
+  "1rshvxek8oj": {
+    "defaultMessage": "<code>is</code>、<code>n</code>、<code>bv</code>、<code>cj</code>"
+  },
+  "1rsjtrsrwaj": {
+    "defaultMessage": "トラッキング"
   },
   "1rt96e9xmko": {
     "defaultMessage": "<code>--nets</code> のグロブはプレーンネットにマッチしないため、<code>--nets &#39;*&#39;</code> はすべてのシグナルをルーティングし、グラウンドはプレーンに任せます。"
@@ -1766,6 +1997,9 @@
   "1s33pmxzurr": {
     "defaultMessage": "GPU で配線の断面を解算します (2D フィールドソルバー)"
   },
+  "1s3fydwewfi": {
+    "defaultMessage": "結果は、参照した銅のハッシュ（シミュレーションの<code>region</code>のみ）と層構成のハッシュを記録します。どちらかが変更されると、チェックは結果が古くなったことを記録し、それを読むもの、カスケードやインターフェース測定は、再実行するまで失敗します。"
+  },
   "1s531aqxeis": {
     "defaultMessage": "インピーダンス、解決済み"
   },
@@ -1774,6 +2008,9 @@
   },
   "1sgbmbows82": {
     "defaultMessage": "値付きの全部品、ネットラベルで描画したピンリストとしての各ネット"
+  },
+  "1sgn8anmdqe": {
+    "defaultMessage": "<code>creepage</code>を持つバリア、またはそれが必要なクラス電圧。"
   },
   "1sgs7vrz8gf": {
     "defaultMessage": "<img src=\"/assets/renders/lna-cascade.webp\" alt=\"カスケード: 利得、インピーダンス整合、ノイズ係数、安定性\">"
@@ -1814,14 +2051,26 @@
   "1sxo3nbwdqe": {
     "defaultMessage": "基板仕様 - agentee リファレンス"
   },
+  "1t05ap2kwsf": {
+    "defaultMessage": "<code>bom</code>は、BOMの各行について、各基板数での行合計、総額、基板あたりのコストを表示します。各数量は、その数量で在庫のある最安値のオファーを採用するため、100枚の基板では1枚の場合と異なる分销業者から行が選ばれることがあります。そのようなセルには<code>*</code>が付きます。1回の<code>parts</code>実行と同じAPI呼び出しを行い、代替品を検索しません。"
+  },
   "1t0gfv4ns3v": {
     "defaultMessage": "なし"
+  },
+  "1t1fwly2kmh": {
+    "defaultMessage": "電気ルールは、結合された設計（シートセットのトップ回路図）の各ピンの<code>type</code>を読み取ります。<code>dnp</code>の部品と電源シンボルは対象外です。1つの参照のピンは1つの部品としてカウントされるため、2つの<code>VOUT</code>ピンを持つレギュレータは1つのドライバです。"
+  },
+  "1t2756gdxi8": {
+    "defaultMessage": "<code>v = \"NET\"</code>"
   },
   "1t3ojsnksah": {
     "defaultMessage": "エージェントは、ジュニアエンジニアと同じように基板を設計します。要件が書かれている場合はうまくいき、推測を強いられる場合はうまくいきません。役立つ要約には以下を含めます。"
   },
   "1t4e51ww1vh": {
     "defaultMessage": "すべての基板には、シルクに <code>agentee vX.Y.Z-HASH</code> が含まれます。デフォルトでは裏面です。約 23 x 1.2 mm のクリアな帯が必要です。小型または混雑した基板では、その場所を確保するか、<code>[watermark] at</code> を自分で設定してください。これがなければ、ファブパッケージは拒否されます。"
+  },
+  "1t4pvs3edjz": {
+    "defaultMessage": "ラダーのシート。BC550C ペア 4 段で各段に 68 nF コンデンサを跨がせ、隣にバイアスストリング。"
   },
   "1t6pxa5bz3h": {
     "defaultMessage": "インストール済みの KiCad ライブラリからインポートします"
@@ -1846,6 +2095,9 @@
   },
   "1tg0igjwde6": {
     "defaultMessage": "ペアと長さのルールもレイアウトにあります："
+  },
+  "1thp4jnlo2o": {
+    "defaultMessage": "回路図のネットリストからアナログ側をシミュレーションします。動作点、AC、過渡、ノイズを実行し、オペアンプとダイオードはデータシートからモデル化し、結果をチェックします。"
   },
   "1ti08lpup4e": {
     "defaultMessage": "スイッチングレギュレータをクリスタルや RF 部品から 8 mm 離し、発熱部品も互いに離します。"
@@ -1874,6 +2126,9 @@
   "1u0p4bww3su": {
     "defaultMessage": "agenteeは、ファイル形式が異なるKiCadの代替品ではありません。エージェント向けの設計ツールであり、KiCadのライブラリを借用し、KiCadの基板を読み込みます。KiCadを知っていれば、ほとんどの概念は引き継がれます。変わる点は、ファイルがインターフェースであること、人がエディタではなくエージェントとビューアを通じて編集することです。"
   },
+  "1u0t9osv98": {
+    "defaultMessage": "各部品について、シンボルとフットプリントおよびピン付きデータシートを、モデルとフットプリントを、ファイルと記録されたハッシュを照合します"
+  },
   "1u0twe57jl1": {
     "defaultMessage": "<code>watermark</code>"
   },
@@ -1888,6 +2143,9 @@
   },
   "1u6fenl5qnu": {
     "defaultMessage": "製造メーカー独自の限界"
+  },
+  "1u6hqd9nhfc": {
+    "defaultMessage": "基板のチェック、描画、配線、シミュレーションを行う 41 の MCP ツール。"
   },
   "1u8fb2niukv": {
     "defaultMessage": "コピー"
@@ -1943,11 +2201,20 @@
   "1v2uudc6t8s": {
     "defaultMessage": "プリセット"
   },
+  "1v63rjfr0v5": {
+    "defaultMessage": "銅を追加するツールは、書き込む前に同じルールに対してチェックします。<code>tie</code>、<code>testpoints</code>、ファンアウト、ステッチングビアは、各スポットを <code>clearance</code>、<code>short</code>、<code>copper-to-edge</code>、穴のルール、<code>isolation-clearance</code>、<code>creepage</code>、<code>via-cuts-pad</code>、<code>via-in-pad-fill</code>、<code>hole-to-smd-pad</code>、<code>stacked-via</code>、<code>track-overlap</code>、<code>keepout</code> に対して試し、1 つでも違反するスポットはスキップします。<code>tune</code> と <code>neck</code> は、各メアンダーとネックに対して同じことをし、書き換える配線の残りの部分に対して判断し、置き換えるコピーに対して判断しません。<code>agentee route</code> とレイアウトエンジンは、1 つでも違反する新しい配線とビアを破棄します。ネットの新しい銅を半分に減らして、失敗する部分が残るまで見つけ、残りは保持し、ルールを報告します。ベタはこれらのチェックから除外されます。ベタは新しい銅の周りに再充填されるためです。"
+  },
   "1v6tkvi9eoa": {
     "defaultMessage": "<code>min</code>または<code>max</code>を超えうる場合。"
   },
+  "1v8b22zuq5j": {
+    "defaultMessage": "<a href=\"/examples/preamp/\">プリアンプの例</a>は、9 Vオペアンププリアンプをすべての解析で実行する。これがそのACとノイズ実行の抜粋:"
+  },
   "1varlnyi9we": {
     "defaultMessage": "基板仕様は設計の最初のファイルであり、他のすべてがこれに対してチェックされます。基板メーカー、層構成、アウトライン、ビアタイプ、ネットクラスを指定します。最初に正しく設定してください。誤った層構成に対してルーティングされたレイアウトは、すべての制御ラインでインピーダンスが誤ります。"
+  },
+  "1vdk0dj8xih": {
+    "defaultMessage": "<code>examples/preamp</code>: LM358上のゲイン段とSallen-Keyフィルタの動作点、ゲイン、ノイズ、スイッチオン時の低音、クリップ、逆接続保護ダイオード。"
   },
   "1vheefcsvsv": {
     "defaultMessage": "オープンピン"
@@ -1967,11 +2234,23 @@
   "1vx4ph7hg13": {
     "defaultMessage": "内容"
   },
+  "1vxhfofrz3z": {
+    "defaultMessage": "ネット上のすべてのピンが<code>input</code>である。コンデンサ(AC結合、ソフトスタート)は意図されたものとみなす。<code>rails</code>が設定され、すべての入力が<code>levels</code>を持つ場合、レベルチェックに委ねる。"
+  },
   "1vy6wglg1cw": {
     "defaultMessage": "<code>tune</code> は、各ペアの短いネットのスキュー分と、各マッチグループのメンバーの目標値までの不足分を、他のすべてのネットを避けて隆起が置ける最も長い直線区間でメアンダーさせ、その点を配線に書き戻します。ペアでは、すでに脚が離れている部分の伸長を先に隆起させます。目標値を超えるネットは報告され、短くされません。<code>agentee calc serpentine --from 10,5 --to 20,5 --add 2.5mm</code> は、選択した区間の 1 つのメアンダーの点を与えます。ネットの長さや遅延は <code>show</code> にあります。"
   },
   "1vzjszgv194": {
     "defaultMessage": "銅層 4 層以上"
+  },
+  "1vzk3qgev1j": {
+    "defaultMessage": "過渡での電圧"
+  },
+  "1w22asyz8b0": {
+    "defaultMessage": "BOMコスト表です。各行をMouser、Farnell、DigiKeyで1枚、10枚、100枚（または --boards）の価格で計算し、合計と1枚あたりのコストを表示します"
+  },
+  "1w23uml0qs4": {
+    "defaultMessage": "レイアウトまたは回路図のBOMについて、Mouser、Farnell、DigiKeyからの在庫、価格、より安い同等品を取得します。キーは ~/.config/agentee/distributors.toml にあります"
   },
   "1w24jhiuacg": {
     "defaultMessage": "<code>agentee view</code>は人間用のライブウィンドウを開き続けます。人間はそこで部品を移動し、配線し、ビアを配置し、レイアウトに保存できます。"
@@ -2006,6 +2285,9 @@
   "1wiy621uk7q": {
     "defaultMessage": "<code>max_drill</code>"
   },
+  "1wj9ywr1xgm": {
+    "defaultMessage": "3社のいずれかを省略できます。<code>parts</code>は、キーを持つ分销業者のみを照会します。"
+  },
   "1wl1w7vzxz9": {
     "defaultMessage": "差動ペア"
   },
@@ -2032,6 +2314,9 @@
   },
   "1x26l2o1amg": {
     "defaultMessage": "0.065"
+  },
+  "1x3p3tks6p0": {
+    "defaultMessage": "<strong>ノイズ:</strong> <code>[noise]</code>は<code>output</code>での密度を与え、<code>input</code>がある場合は入力参照曲線、および帯域内のRMSも与える。抵抗、接合部電流、MOSFETチャネル、オペアンプの<code>en</code>がすべて寄与する。"
   },
   "1x46s3bac2h": {
     "defaultMessage": "HC, HCT: <code>nSD</code>、<code>nRD</code>から<code>nCP</code>へのtrec 8 ns、Nexperia 74HC_HCT74 rev 9（TI SN74HC74 SCLS094Fは6 ns、TI CD74HC74 SCHS124Eは8 ns、tremとして記載）。"
@@ -2126,6 +2411,9 @@
   "1yeem25v9mo": {
     "defaultMessage": "<code>diff_gap</code>でクラスをペアにし、インピーダンスを差動にします。<code>_P</code>と<code>_N</code>、<code>_DP</code>と<code>_DN</code>、<code>+</code>と<code>-</code>、または<code>P</code>と<code>N</code>で終わるネットは自動的にペアになります。それ以外はレイアウトで名前を指定します:"
   },
+  "1yekhe9nw0e": {
+    "defaultMessage": "ネットクラスには 1 つのクリアランスがあり、他のすべてのネットに対して保持されます。ネットクラスの電圧はほとんどの基板をカバーしますが、より多くの制御が必要な場合は、クラスでは表現できない強化絶縁や、名前によるネットのグループなど、ドメインとバリアを手動で記述します。あるグループから他のグループへの距離を、近傍のネットよりも大きく保つ必要がある場合（商用電源の一次側と二次側、浮遊レールと二次側の残りの部分など）、ネットをドメインに配置し、2 つのドメインの間にバリアを設定します。"
+  },
   "1yf3l1ndp3i": {
     "defaultMessage": "<code>buy_with = &quot;XHP-2, SXH-001T-P0.6 x2&quot;</code>"
   },
@@ -2147,17 +2435,29 @@
   "1yjthbtqq7n": {
     "defaultMessage": "アクティブ層"
   },
+  "1yl05y0xcby": {
+    "defaultMessage": "指定値の抵抗。0オーム、<code>JP</code>、<code>SJ</code>、<code>NT</code> はネットを接続します"
+  },
   "1yl2jnjwpw": {
     "defaultMessage": "コンデンサ、インダクタ、ダイオード、LED、テストポイント、水晶発振器などは対象外です。"
   },
-  "1yo5k7srzdk": {
-    "defaultMessage": "<code>--order DIR</code>（MCP <code>order</code>）はレポートの代わりに購入用シートを書き出す：<code>NAME-order.csv</code>には全行と発注先ディストリビュータ、各ディストリビュータごとに<code>NAME-&lt;distributor&gt;.csv</code>が1つ。キー付きで、Mouser のものは BOM インポートテンプレートの列レイアウトに従う。各行は、在庫が十分で廃番でないディストリビュータの中で、購入数量に対して安価な方に割り当てられる。ディストリビュータのシートには全行が3つのブロックで列挙される：そこで発注する行、他のディストリビュータで購入する行、そちらに載っていないか在庫不足の行。各シートの最上部ブロックが発注内容となる。どのディストリビュータにも在庫のない行は<code>NAME-order.csv</code>にその旨が記載され、または<code>lcsc</code>の部品名が示される"
+  "1yll3w86c5p": {
+    "defaultMessage": "<code>B</code>、<code>C</code>、<code>E</code> ピンを持つ <code>Q</code>"
+  },
+  "1yq2pxfevie": {
+    "defaultMessage": "17.5 µV RMS、20 Hz から 20 kHz"
   },
   "1yqopwhriij": {
     "defaultMessage": "ソースから"
   },
   "1ysi778ja9n": {
     "defaultMessage": "ロジックシミュレーション - agenteeガイド"
+  },
+  "1yu0zeaxe5z": {
+    "defaultMessage": "度での位相"
+  },
+  "1yu31vmkotr": {
+    "defaultMessage": "DC シミュレーションの <code>[[supplies]]</code> パッドに <code>voltage</code> がない場合、そのネットのクラス電圧に固定されます。"
   },
   "1ywj64ua9cz": {
     "defaultMessage": "2次元ソルバーは、各周波数で抵抗に損失係数として粗さを適用します。FDTDは、下記の「FDTDにおける損失」で説明されているように、粗さとENIG仕上げを使用します。<code>nickel</code> と <code>gold</code> は <code>finish = \"ENIG\"</code> の場合のみ重要です。デフォルトはIPC-4552のウィンドウの中央値です（ニッケル3から6 um、金は0.05 umの最小値、基板メーカーは0.05から0.1 umを目標とします）。"
@@ -2192,6 +2492,9 @@
   "1zbhhlwlwcb": {
     "defaultMessage": "Mouser と Farnell からのディストリビューター在庫、価格、より安価な代替品"
   },
+  "1zcd3tig1a7": {
+    "defaultMessage": "<code>c</code>、<code>b</code>、<code>e</code>"
+  },
   "1zctgotqodt": {
     "defaultMessage": "macOS 11 以降。"
   },
@@ -2222,6 +2525,9 @@
   "1zro2sgolb3": {
     "defaultMessage": "ビューアからレイアウトを開始する"
   },
+  "1zrw4z0t5g2": {
+    "defaultMessage": "ネットクラス電圧 - agentee リファレンス"
+  },
   "201vba8b1dw": {
     "defaultMessage": "<code>--tdr PORT</code> は、1つのポートからの時間に対するインピーダンスです。データを均一なグリッドに再サンプリングし、DCまで外挿し、ガウシアンエッジを与えて積分します。エッジがデータがサポートできる範囲より速い場合は警告します。ビューアは、すべての駆動ポートについて同じTDRを表示します。"
   },
@@ -2237,17 +2543,29 @@
   "206fz74rgcf": {
     "defaultMessage": "3Dビュー"
   },
+  "207b5i67sqz": {
+    "defaultMessage": "3.5 mm ジャック入力、3.5 mm ジャック出力、9 V 電池。U1A は DC ゲインを 1 に保ちつつ信号を 11 倍に増幅するため、トリミングなしで出力がミッドレールバイアスに位置します。U1B は Q 0.74 の 1.07 kHz ユニティゲイン Sallen-Key ローパスで、バタワースに近い特性です。1N4148 が電池の逆接続をブロックします。"
+  },
   "207lu7hdiio": {
     "defaultMessage": "グリッドは、最後のメッシュラインから約1/3セル先にゼロ厚のエッジを置きます。そのため、グリッド上に描画されたストリップは実際の幅より広く読まれます。厚みtの実銅は、エッジごとに(t / 2 pi)(1 + ln(4h / t))だけさらに広く読まれます(hは最寄りの他の銅層までの距離、Hammerstad-Jensenの厚み補正)。メッシャーは、各配線、パッド、ベタのエッジの最後のラインを設定し、2つが一致するようにします。グリッド自身のオフセットは、局所的なセル形状のスリットに対する有限差分法による解から得られます。0.15 mmの空気層上の0.3 mmマイクロストリップは、0.05 mmと0.025 mmのセルで81.9オームと82.2オームを読み、35 umの銅でHammerstad-Jensenでは82.4オームです。エッジをメッシュライン上に描画すると82.6オームと85.1オームになります。"
   },
   "208c5entakq": {
     "defaultMessage": "すべての変更は同じループを回ります"
   },
+  "209iwtkegak": {
+    "defaultMessage": "<code>erc-nc-pin</code>"
+  },
   "20amke600vw": {
     "defaultMessage": "LS: <code>CLR</code>の非アクティブなセットアップ25 ns、任意の入力でのホールド3 ns、TI SN74LS161A SDLS060（SDLS119のSN74LS74Aはどちらも記載なし）。"
   },
   "20dpdr10xbq": {
     "defaultMessage": "<code>dff</code>"
+  },
+  "20fztuvf9ax": {
+    "defaultMessage": "コピーは <code>MAKER/MPN/HASH.pdf</code> にあり、各コピーの URL、ソース、SHA-256、取得日、および最初のページまたは最後のページから読み取った改訂行を保持する <code>meta.json</code> があります。これにより、部品は一度だけ取得され、新しい改訂版が古いものの隣に置かれます。<code>text</code> は <code>pdftotext -layout</code> でコピーを読み、テキストを PDF の隣に保持します。部品がキャッシュされている場合はネットワークにアクセスせず、キャッシュされていない場合は先に取得します (<code>--offline</code> は代わりに拒否します)。<code>--find</code> は単語全体にマッチし、大文字を含む単語は大文字小文字を区別し、<code>--context</code> で各ヒットの前後の行を表示します。"
+  },
+  "20g50gmjre9": {
+    "defaultMessage": "<code>phase = \"NET\"</code>、<code>at = \"1kHz\"</code>"
   },
   "20gg17bj404": {
     "defaultMessage": "<code>--focus</code>の外側のすべてのものの扱い（デフォルトは<code>dim</code>）"
@@ -2261,11 +2579,17 @@
   "20ibe091n9u": {
     "defaultMessage": "<code>interface-length</code>"
   },
+  "20j48ugt560": {
+    "defaultMessage": "<strong>ポテンショメータ</strong>は0から1の<code>position</code>を受け取ります。これにより、ワイパは実際の部品と同様に負荷を課し、負荷を受けます。"
+  },
   "20jeq5fot08": {
     "defaultMessage": "ソースからのビルド"
   },
   "20jhelro40z": {
     "defaultMessage": "FDTD シミュレーション - agentee リファレンス"
+  },
+  "20kuk49haa4": {
+    "defaultMessage": "<code>examples/lna</code>: <code>lna-supply</code>はショットキーダイオードを介した2つの電源入力のOR化を確認し、<code>lna-biastee</code>はバイアスティが電源に漏れるRFの量を確認します。"
   },
   "20lewk716sx": {
     "defaultMessage": "クラスは複数のビアをリストできます。"
@@ -2288,6 +2612,9 @@
   "211ybnyn8so": {
     "defaultMessage": "基板メーカーと層数、または予算の上限。<code>jlcpcb</code>の2層または4層の層構成が、最初の基板の多くに適しています。"
   },
+  "213tismx1of": {
+    "defaultMessage": "部品を除外する"
+  },
   "215vsc0isv1": {
     "defaultMessage": "インジケータLED、<code>LED_0603...</code>フットプリントの<code>D</code>"
   },
@@ -2300,6 +2627,9 @@
   "21bc96aqosb": {
     "defaultMessage": "部品: インポートまたは描画 - agenteeガイド"
   },
+  "21dcqcwku0v": {
+    "defaultMessage": "<strong>クラス間。</strong> すべてのクラス対は、それらの間の電圧によって隔てられます。これは、DC 成分の差と、両方の AC 成分のピーク値の和です。<code>voltage</code> のないクラスは 0 V とみなされます。SELV 制限（60 VDC、30 VAC）を超えるクラスと、それ以下のクラスの間には<strong>強化</strong>絶縁が適用されます。同じ側の 2 つのクラスの間には<strong>機能</strong>絶縁が適用されます。"
+  },
   "21fci6qv4rx": {
     "defaultMessage": "Cursor、Claude Desktop、およびその他のほとんどのクライアント"
   },
@@ -2308,6 +2638,9 @@
   },
   "21lg9b01spd": {
     "defaultMessage": "<code>lamination</code>は、層構成に表示されないビルド (片側から先にプレスされたサブスタック、コアへのレーザー工程など) について、工程を列挙します。"
+  },
+  "21lqvncx1x3": {
+    "defaultMessage": "JLCPCB やその他の基板メーカー向けに Gerber、ドリル、BOM、実装位置を書き出し、Mouser、Farnell、DigiKey で BOM の価格を調べ、エンクロージャ用に STEP をエクスポートします。"
   },
   "21mbk2ewvna": {
     "defaultMessage": "<code>min_inner_pth_hole_to_copper</code>"
@@ -2318,14 +2651,14 @@
   "21mhsdlzlqh": {
     "defaultMessage": "パンくずリスト"
   },
+  "21nrp4765h1": {
+    "defaultMessage": "ライブラリから始める"
+  },
   "21r8tknr577": {
     "defaultMessage": "実行前にサイズを決定する"
   },
   "21s9nx7dx53": {
     "defaultMessage": "Edge.Cutsのアウトライン（内部の閉ループは <code>[[outline.cutouts]]</code> になり、外部のループは除外されて報告されます）、厚さ、er、損失正接を含む層構成、銅の仕上げとソルダーレジストの色、<code>NAME.kicad_pro</code> からの設計ルールとネットクラス"
-  },
-  "21t179n2u3z": {
-    "defaultMessage": "<code>agentee tie NAME [--nets GND] [--dry-run]</code>(MCP <code>tie</code>)は、プレーンネットの各SMDパッドを、そのゾーンがカバーする最も近い層に、短いスタブとパッドの横のビアで接続します。これにより、グランドと電源パッドは、パッド間の配線ではなく、プレーンに接続されます。ビアは、パッドの部品中心から遠い側に、可能な限り近づけて配置されます:その銅はすべてのSMDパッド(自分のものも含むため、via-in-padなし)からクリア、その穴はそれらから<code>min_hole_to_smd_pad</code>、他の穴から<code>min_hole_to_hole</code>、他のネットから<code>min_via_hole_to_copper</code>およびクラスクリアランス、アウトラインから<code>min_copper_to_edge</code>以内、スタブはパッドの層で他のネットからクリアです。外側方向を最優先に16方向を試み、パッドから1.2 mmまで探します。パッドの端から0.8 mm以内に自分のネットのビアがあるパッドはそのままにし、スルーホールパッドとBGAボール(<code>escape</code>がそれらを処理します)はスキップし、合法な場所のないパッドは<code>failed</code>の下にリストされます。スタブとビアは通常の<code>[[tracks]]</code>と<code>[[vias]]</code>として追加されます。"
   },
   "21ttppkimpx": {
     "defaultMessage": "インポートは、<code>symbols/</code>または<code>footprints/</code>に<code>.sym.toml</code>または<code>.fp.toml</code>を書き込みます。それ以降、プロジェクトが所有します。ライブラリへのリンクはなく、KiCadが更新されても部品が変化しません。標準ライブラリ外の部品には、<code>Library:Name</code>の代わりに<code>.kicad_sym</code>または<code>.kicad_mod</code>のパスが機能します。"
@@ -2336,26 +2669,23 @@
   "21wi51767ol": {
     "defaultMessage": "インピーダンス"
   },
-  "21xmo8n3sgq": {
-    "defaultMessage": "90 度以上折り返す配線。酸トラップ"
-  },
   "21xug02u5te": {
     "defaultMessage": "PCBWay"
   },
   "21y338fq4ci": {
     "defaultMessage": "ルーティング"
   },
+  "21ydixlhbqp": {
+    "defaultMessage": "ブロックで指定されない限り0.1オーム"
+  },
+  "21yuvtchndl": {
+    "defaultMessage": "各部品は参照文字によって要素になる: <code>R</code>、<code>C</code>、<code>L</code>は値で、<code>D</code>はダイオード、<code>Q</code>はピン名でBJTまたはMOSFET。コネクタ、テストポイント、穴、水晶は除外され、それ以外はブロックを持つか<code>ignore</code>に入るまでエラーである。"
+  },
   "21yxfse7rgr": {
     "defaultMessage": "agenteeファイル形式リファレンス"
   },
-  "21z7dt71046": {
-    "defaultMessage": "チェックはシミュレーションを実行しません。各結果は、仕様、確認した銅、層構成のハッシュを記録し、一致しなくなった場合、チェックが警告します。GPUのないCIランナーでは、これが有用な部分です。RF配線を動かすプルリクエストは、FDTD結果に古い警告を受け取り、その結果を測定するインターフェースは完全に失敗します。"
-  },
   "221qbpi8pyl": {
     "defaultMessage": "In1.CuからIn4.Cu、バリード、サブスタックを貫通"
-  },
-  "226ie5pbkpb": {
-    "defaultMessage": "LCSC の部品。どちらのディストリビュータにも在庫がない場合に名前が示される"
   },
   "226vjhs4w16": {
     "defaultMessage": "*.fp.toml ファイル: パッド行、パッド形状と層、エッジパッド、ベタ接続、コートヤード、シルク、3D モデル。"
@@ -2368,6 +2698,9 @@
   },
   "229ir5229if": {
     "defaultMessage": "コマンドは<code>add</code>、<code>remove</code>、<code>move</code>、<code>set</code>、<code>net</code>、<code>connect</code>、<code>disconnect</code>、<code>nc</code>、<code>unnc</code>、<code>note</code>です。ピンは<code>REF.PIN</code>の形式で、番号(<code>U1.3</code>)または一意なピン名(<code>U1.VCC</code>)で指定します。複数のピンが共有する名前(レギュレータの2つのグランドピンに共通する<code>GND</code>など)は、番号を列挙するエラーになります。ピンに、すでに接続されているネットを指定すると、新しいネットに移動します。"
+  },
+  "22b7zte6z7r": {
+    "defaultMessage": "<code>rails</code> にリストされていない DC クラスのすべての電源ネット（グランド、<code>current</code> があるクラスのネット、レールのように名付けられたネット）は、クラス電圧で、またはその名前が低い場合はその電圧で、信号レベルチェック用のレールになります（<code>3.3VDC</code> クラス内の <code>1V8</code> は 1.8 V レール）。クラスの信号ネットはレールではありません。"
   },
   "22by2tvb5ch": {
     "defaultMessage": "基板のすべての部品は2つのファイルです。回路図用のシンボルと、レイアウト用のフットプリントで、ピン番号で結びつけます。KiCadに部品がある場合はKiCadからインポートし、ない場合はデータシートから描画します。"
@@ -2384,8 +2717,14 @@
   "22lhuqm05qf": {
     "defaultMessage": "次に"
   },
+  "22ozmlk6n33": {
+    "defaultMessage": "組み込みデバイスは汎用の代替品です。シリコンダイオード、小信号BJT、ロジックレベルMOSFETです。代替品に依存する結果は、代替品を説明しているだけで、お使いの部品を説明していません。重要な各部品に、データシートからの値を含む<code>[[blocks]]</code>エントリを指定してください。"
+  },
   "22rmjzm4b8o": {
     "defaultMessage": "エンジンは0、1、x、zの4レベルを保持します。強い駆動源が一致しない場合、xと競合になります。プルは、強い駆動源がオンでない場合のみ有効です。ゲートは、未知の入力が結果に影響する場合にのみxになります。ANDゲートに0を入力しても、出力は0のままです。"
+  },
+  "22tq692y57v": {
+    "defaultMessage": "データシート"
   },
   "22y6wirhrgw": {
     "defaultMessage": "<code>impedance-width</code>は、クラスに属する別の線幅の配線について警告します。"
@@ -2438,14 +2777,23 @@
   "23mm06wb3co": {
     "defaultMessage": "DC 電圧降下と熱のシミュレーションは、すべての電源パスが提起する 2 つの質問に答えます。負荷は必要な電圧を見ているか、基板はどのくらい熱くなるかです。どちらも数秒で実行できるため、電源パスに関わるすべてのレイアウト変更の後に自由に実行してください。"
   },
+  "23p16t2yc2b": {
+    "defaultMessage": "回路シミュレーション - agentee リファレンス"
+  },
   "23plfra7o4v": {
     "defaultMessage": "Excellonドリル、スロットはG85。HDI基板ではブラインド、バリアード、マイクロビアのスパンごとに1ファイル追加"
+  },
+  "23pr6odwzs9": {
+    "defaultMessage": "<code>vcvs</code>、<code>vccs</code>"
   },
   "23q0rg2wlh0": {
     "defaultMessage": "チェックは、重なり合うパッド、基板メーカーのクリアランスより近いパッド、ルール（<code>min_drill</code>、<code>min_pth_annular_ring</code>）を下回るドリル径とアニュラリング、パッドを囲むコートヤード、露出した銅の上を走るシルクを検出します。"
   },
-  "23tshyft62l": {
-    "defaultMessage": "ビューアのレイアウトページには<code>3d</code>タブがあります（<code>agentee view --3d</code>で開くとそこに移動します）：層構成の厚さを持つ基板、マスクとシルクの色と仕上げ、マスク下の銅、裸のパッド、めっきドリル壁と裸ドリル壁、および各パーツの3Dモデル。<code>parts</code>トグルでモデルを非表示にします。ドラッグで回転、Shiftドラッグでパン、スクロールでズーム、ダブルクリックでリセットします。ビューアはOpenGL（<a href=\"https://github.com/asny/three-d\">three-d</a>）で描画します。<code>agentee render pcb:NAME --show 3d</code>（または<code>3d-top</code>、<code>3d-bottom</code>）はソフトウェアで同じシーンを描画し、<code>--hide parts</code>でモデルを除外し、<code>--region</code>でカメラをその領域に向けます。"
+  "23qdrfyv5jt": {
+    "defaultMessage": "すべてのネットが1つのドメインにある部品は、バリアを持つドメインの部品から、バリアの距離だけ離されます。<code>outline</code>を持つゾーンは、そのネットのドメインが存在する場所を示します。そのようなアウトラインの外に配置されたそのドメインの部品は距離を支払うため、まずプライマリとセカンダリのベタを描くことで、スロットのどちら側に各ドメインが来るかが決まります。スルーホール部品の裏面は、穴を除き、反対側の部品に対して開いています。"
+  },
+  "23wrviurn1r": {
+    "defaultMessage": "<code>agentee fit NAME [--strategy tight|balanced|spread] [--aspect 1.5 ...] [--width MM] [--height MM] [--verify N] [--write]</code>（MCP <code>fit</code>）は、レイアウトが収まる最小の長方形基板を見つけます。レイアウトを一度読み込み、メモリ内でアウトラインを試行します。1秒に数十から数百個の速度です。現在の配置を新しいサイズにスケーリングし（新しい基板が逆向きの場合は90度回転）、マウンティングホールは角に保持、エッジコネクタはエッジに保持してクリアランスが確保されるまでスライドし、その後、他のすべての部品を戦略の部品間ギャップ（0.1、0.2、または0.4 mm）で合法化します。すべての部品が場所を見つけ、配線需要（各ネットの半周長を1 mmタイルのバウンディングボックスに広げたもの）が基板の最も混雑した20分の1で、<code>Default</code> クラスの配線とギャップに対する信号層の容量の90%、70%、または50%以下である場合、そのサイズは収まると判断されます。各アスペクト比（現在のアスペクト比と、デフォルトでは0.42から2.38までの13種類、または <code>--aspect</code> の繰り返し指定）は個別に探索され、<code>--width</code> または <code>--height</code> は一方の辺を固定します。最小サイズはアクセス段階とグローバルルーティングを経て、<code>--verify</code> 個（デフォルト3、0でスキップ）が検証されます。現在の基板よりスタックパッドが少なく、グローバルオーバーフローがワイヤレングスの3%、1%、または0.2%以下である最小サイズが採用されます。表には、各アスペクト比の最小収容サイズと、それより小さいサイズを止めた要因が表示されます。<code>--write</code> は基板ファイルの <code>[outline] size</code> を設定し、配線をクリアした配置を書き出し、ラベルを確定します。その後、<code>agentee layout NAME</code> を実行してください。探索はその配置から始まるため、先にレイアウトを配置してください。基板テキストとアートワークは元の位置のままです。"
   },
   "23yn0z4hin7": {
     "defaultMessage": "SMDパッドへのはんだペースト"
@@ -2465,6 +2813,15 @@
   "24f48s88zot": {
     "defaultMessage": "部品には、ピンを対応付けたプリミティブ、<code>primitive = &quot;74HC244&quot;</code>で借用したライブラリのピンアウトライン、または最初の一致行が優先される真値表を割り当てます。"
   },
+  "24f71nk43yn": {
+    "defaultMessage": "<code>ldo</code>"
+  },
+  "24fbukr9z2l": {
+    "defaultMessage": "<code>thd</code> は、スパン内の平均値の最初の立ち上がり交差と最後の立ち上がり交差の間の全周期にわたる、基本波に対する2次から10次までの高調波の割合（パーセント）です。<code>freq</code> と <code>thd</code> には、そこに少なくとも1周期必要です。スパンは回路が安定した後に開始してください。そうでないと、立ち上がりステップが歪みとして読み取られます。"
+  },
+  "24fhyo0b1p": {
+    "defaultMessage": "部品ライブラリは、<code>~/.config/agentee/library/</code>に保存され、すべてのプロジェクトで共有される、ご自身の部品セットです。各設計で再利用したいコネクタ、レギュレータ、受動部品です。各部品は、シンボル、フットプリント、3Dモデル、固定されたデータシート、最後に確認した在庫を保持します。設計に必要な各部品について、手順は検索、追加、使用です。"
+  },
   "24ge4p3vpat": {
     "defaultMessage": "最上層から最下層まで"
   },
@@ -2476,6 +2833,9 @@
   },
   "24m8a2eo3kj": {
     "defaultMessage": "macOSでは<code>/Applications/KiCad/KiCad.app/Contents/SharedSupport</code>、"
+  },
+  "24mm2zhem68": {
+    "defaultMessage": "Eurorack トランジスタラダーフィルター - agentee 実例"
   },
   "24nz8lzyz4c": {
     "defaultMessage": "ペアのスキューがインターフェースの<code>max_skew</code>を超えている"
@@ -2501,6 +2861,12 @@
   "24s42atd7r2": {
     "defaultMessage": "名称とパッケージ"
   },
+  "24s85n77v14": {
+    "defaultMessage": "部品のデータシートを取得してキャッシュするか、レイアウトまたは回路図のすべての部品のデータシートを、すべてのプロジェクトで共有するキャッシュ (~/.cache/agentee/datasheets) に保存します。部品の `datasheet` フィールド、シンボルの `datasheet` URL、販売店がその mpn にリストしているデータシートの順に試し、ブラウザのユーザーエージェントとリトライを使用します。取得できないデータシートを持つ部品をリストします。それらはユーザーに確認してください。記憶から補わないでください。設計の取得は、プロジェクトルートの datasheets.toml に各 URL、ハッシュ、リビジョンを記録します。"
+  },
+  "24t8hi9137n": {
+    "defaultMessage": "Ebers-Moll BJT。シンボルまたは値が指定する場合はPNP：Is 10 fA、Bf 100、Br 1"
+  },
   "24ud3zz9afs": {
     "defaultMessage": "ブラインド、バリー、マイクロビアのスパンごとに1つのExcellonファイル。KiCadが分割するのと同じ形式で、例: <code>drill-F.Cu-In1.Cu.drl</code>。 <code>TF.FileFunction,Plated,1,2,Blind</code> (内層スパンは <code>Buried</code>、層は上から1で番号付け) と、 <code>; span F.Cu to In1.Cu, microvia vias</code> というコメント付き"
   },
@@ -2518,6 +2884,9 @@
   },
   "24zpcxpqyjv": {
     "defaultMessage": "<code>placement-large-part-off-centre</code>"
+  },
+  "253qjtv6se3": {
+    "defaultMessage": "2つのネットの銅が、それぞれのクラスクリアランスの大きい方より近い場合（フットプリントの<code>clearance</code>はパッドに対してそれらを置き換え、コートヤード内ではパッド上のネットの銅に対して適用される）、または銅が非メッキ穴に接触した場合。1つのフットプリントのパッドは<code>min_clearance</code>と、隔離ドメイン内のネットのクラスクリアランスに準拠させられます。スパークギャップ電極はスキップされます。"
   },
   "257dvkr134n": {
     "defaultMessage": "<code>testpoints.csv</code>"
@@ -2539,6 +2908,12 @@
   },
   "25fez3tn8rw": {
     "defaultMessage": "<code>tune</code> はインターフェースに対して長さだけでなく時間でも機能します。ペアのスキューが ps で超過し、バスがクロックウィンドウの外に出た場合、各ネット自身の mm あたりの遅延で短い側を伸ばします。"
+  },
+  "25fgfiucnax": {
+    "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code> (MCP <code>route</code>)は、レイアウトエンジンの詳細ルーティングツール(<code>docs/layout-engine-2.md</code>参照)を使用して、指定されたネットのラッツネストをルーティングし、トラックとビアルを通常の<code>[[tracks]]</code>および<code>[[vias]]</code>としてレイアウトファイルに追加します。これにより、後から編集できます。指定されたネットは、グリッド(<code>--grid</code>、デフォルト0.05 mm)上で最大30ラウンドにわたり、並列でルーティングされ、重なる部分のみを破棄してスペースを交渉します。そのため、指定された順序は関係ありません。<code>--layers</code>は、それらの層にないパッドからの短いスタブを除き、トラックをその層に制限します。<code>--via</code>は、層変更を指定されたビアルに制限します。指定がない場合、ネットはまず自分のクラスのビアルを使用し、次に基板の他のビアルを使用します。<code>--via-cost</code>、<code>--bend-cost</code>、<code>--via-in-pad</code>は、以下の通り動作します。各ネットの新しい銅は、書き込まれる前にルールに対してチェックされます。ルールに違反するトラックとビアルは、<code>failed</code>の下にルール名を付けて破棄され、ネットの残りは保持されます。ネットが接続されずに残ったビアルは破棄されます。"
+  },
+  "25j3wt0ciym": {
+    "defaultMessage": "デュアル LM358 による 9 V オーディオプリアンプ。ゲイン x11 と 1 kHz の Sallen-Key ローパス。動作点からクリップまですべての回路解析を実行します。"
   },
   "25p7vx30apm": {
     "defaultMessage": "表示する"
@@ -2579,6 +2954,12 @@
   "263vpm1rcow": {
     "defaultMessage": "50 mil"
   },
+  "265zcs521bh": {
+    "defaultMessage": "DCドロップと熱シミュレーションは、ランナーにGPUがある場合、CIで実行するほど安価であり、ロジックと回路シミュレーションはGPUを必要としない:"
+  },
+  "266quvv4t07": {
+    "defaultMessage": "ピン (デフォルトは名前)"
+  },
   "268vqbs3pfx": {
     "defaultMessage": "<code>cell = 0.1</code>から始め、設計が安定してからデフォルトの0.05に絞ります。メッシュは銅の端から段階的に細くなるため、最細セルがコストを決定します。"
   },
@@ -2597,6 +2978,9 @@
   "26ggj5it9cm": {
     "defaultMessage": "<code>min_via_diameter</code>"
   },
+  "26hr2y7egea": {
+    "defaultMessage": "条件"
+  },
   "26hurtbg63o": {
     "defaultMessage": "KiCadファイルへのエクスポートはありません。agenteeから出ていくのは、ファブパッケージ（X2属性付きGerber、Excellonドリル、BOM、配置、IPC-D-356ネットリスト）と、組立済み基板のSTEPです。これらはどの基板メーカーでも、どのMCADツールでも読み取れます。"
   },
@@ -2611,6 +2995,9 @@
   },
   "26pkfhq2tqp": {
     "defaultMessage": "<strong>インピーダンスと電流はクラスに設定します。</strong>クラスに<code>impedance = \"50ohm\"</code>または<code>current = \"2A\"</code>を設定すると、checkが層構成の全層で線幅を計算します。"
+  },
+  "26q4tw53szo": {
+    "defaultMessage": "<code>opamp</code>"
   },
   "26s0srbqiyq": {
     "defaultMessage": "基板には複数のビアタイプを指定できます。スルービアは追加の指定が不要です。ブラインドビア、バリアドビア、マイクロビアはHDI対応の基板メーカーが必要で、<a href=\"/guides/hdi/\">HDI: マイクロビアと積層</a>で説明しています。"
@@ -2627,6 +3014,9 @@
   "26vnz731kn": {
     "defaultMessage": "<code>.kicad_pro</code>の基板設定: 層、ルール、ネットクラス"
   },
+  "26vq2pjzk9h": {
+    "defaultMessage": "<code>agentee datasheet</code> (MCP の <code>datasheet_fetch</code>、<code>datasheet_text</code>、<code>datasheet_add</code>) は、部品データシートを一度取得して、すべてのプロジェクトとエージェントが共有するキャッシュ <code>~/.cache/agentee/datasheets/</code> (<code>$AGENTEE_DATASHEETS</code> または <code>$XDG_CACHE_HOME</code> で移動可能) に保存し、テキストとして読み戻します。"
+  },
   "26xp2wb7oh5": {
     "defaultMessage": "チェック"
   },
@@ -2639,17 +3029,29 @@
   "270mf8lg1lx": {
     "defaultMessage": "コネクタを基板の縁に配置し、接続面を外側に向けます。別の分割が可能な場合、RF コネクタと USB コネクタを同じ縁に配置しません。USB 3 のノイズは 2.4 GHz 帯域に入るためです。"
   },
-  "272ff8lqlwg": {
-    "defaultMessage": "2つのネットの銅が、それぞれのクラスクリアランスの大きい方より近い場合 (フットプリントの <code>clearance</code> がそのパッドに対してそれらを置き換える)、または銅が非めっき穴に侵入した場合。1つのフットプリントのパッドは <code>min_clearance</code> と、分離ドメイン内のネットのクラスクリアランスに保持されます。スパークギャップ電極はスキップされます"
+  "272eywo2195": {
+    "defaultMessage": "レイアウトまたは回路図の BOM コスト表です。すべての行を Mouser、Farnell、DigiKey で、各基板数 (デフォルトは 1、10、100) ごとに価格調査し、価格ブレークまで購入した方が安い場合はその数量で計算します。合計と基板あたりのコスト、価格調査できなかった行とその理由を表示します。parts を使用して、より安い同等品を探せます。"
+  },
+  "273fbb03hqb": {
+    "defaultMessage": "<strong>機能</strong>間隔は、基板の汚染度に対するプリント配線板の IPC-2221B B2 クリアランスと IEC 60664-1 テーブル F.4 のクリーページです。<strong>強化</strong>間隔は、動作電圧が受けるものより次の定格インパルス電圧に対するクリアランス（IEC 60664-1 テーブル F.1 および F.2、AC は過電圧カテゴリ II（商用電源とみなす）、DC はピーク値）と、材料グループ IIIa（CTI 不明の FR4）の基本クリーページの 2 倍です。IPC-2221B の数値を下回ることはありません。AC クラスは、商用電源の許容誤差として定格の 10% 上乗せで評価されます。230 VAC から SELV への間隔は、クリアランス 3 mm、クリーページ 5.06 mm になります。"
   },
   "273giv9xl0e": {
     "defaultMessage": "配置、JLCPCBの列"
+  },
+  "274ypkwjy06": {
+    "defaultMessage": "<code>v = \"NET\"</code>、<code>at = \"1kHz\"</code>"
   },
   "275gnly9wa6": {
     "defaultMessage": "マイクロビアは<code>stacked</code>（単一マイクロビアの積層。<code>[rules] stacked_microvias = true</code>と下部の銅充填マイクロビアが必要）または<code>skip</code>（誘電体2枚に1つのレーザー穴）でない限り、誘電体1枚を跨ぎます。ドリルは<code>min_microvia_drill</code>と<code>max_microvia_drill</code>の間、パッドは<code>min_microvia_diameter</code>以上、ドリルに対する深度は積層の各誘電体について<code>max_microvia_aspect_ratio</code>以下です。IPC-T-50はマイクロビアをアスペクト比1:1以下、深度0.25 mm以下のブラインド構造と定義しています。それより深い場合は警告です。"
   },
   "2772h2ej51q": {
     "defaultMessage": "agenteeの回路図は、部品の一覧とネットの一覧です。ネットは、名前、クラス、接続するピンで定義されます。回路図を描画する際に配線は自動で描かれるため、回路の内容は線の引き位置に依存しません。"
+  },
+  "2772qn73uvk": {
+    "defaultMessage": "agentee fit: レイアウトが収まる最小の長方形基板。複数のアスペクト比を試行し、グローバルルーターでチェックします。"
+  },
+  "279x9no5t0z": {
+    "defaultMessage": "マウントは、パッドが載っている各層で、パッドのすべての銅セルにその導電率を広げる。マップ: 銅層ごとの温度。読み取り値: 基板のピーク、各ソースのパッドと接合部の温度、および各マウントが担うワット数。"
   },
   "27ax5gs0bl3": {
     "defaultMessage": "クロックからの<code>clock_window</code>の範囲外にデータ信号が到着している"
@@ -2681,6 +3083,9 @@
   "27wir0l1dg4": {
     "defaultMessage": "FR4、銅、ビアを通る定常状態の伝導と両面からの対流を GPU で解算します。"
   },
+  "27wkqu1huc3": {
+    "defaultMessage": "部品ライブラリは、ユーザー自身の部品セットです。コネクタ、レギュレータ、受動部品など、すべての設計で再利用したい部品を保持し、ケーブルや在庫がプロジェクト間で引き継がれます。各部品には、シンボル、フットプリント、3Dモデル、データシート、最後に確認した在庫が含まれます。エージェントは、新しい部品を探す前に、まずライブラリから選択します（MCP <code>library_find</code>、<code>library_list</code>、<code>library_show</code>、<code>library_use</code>、<code>library_add</code>）。設計に必要な各部品について、ワークフローは「検索、追加、使用」です。<code>find</code>は一致するライブラリの部品を表示し、一致しない場合は、ディストリビューターで在庫がある現在の部品を表示します。選択した部品は<code>add</code>でライブラリに追加され、<code>use</code>で基板に配置されます。"
+  },
   "283c2ww4akn": {
     "defaultMessage": "Cursor、Claude Desktop、その他の多くのクライアントは共通のJSON形式を受け付けます。<code>.cursor/mcp.json</code>、<code>claude_desktop_config.json</code>、またはクライアント独自の設定に記述します。"
   },
@@ -2690,11 +3095,17 @@
   "2870xozdz2f": {
     "defaultMessage": "回路図を書く"
   },
+  "28718d0b502": {
+    "defaultMessage": "<strong>シミュレーション</strong>: Sパラメータプロットとスミスチャート、TDR、アイパターン、PDNインピーダンス、DCドロップ、電流密度と温度マップ、ロジック波形、回路シミュレーションのゲイン、位相、ノイズ、過渡現象。"
+  },
   "289ljtwa0p": {
     "defaultMessage": "<code>min_track_width</code>, <code>min_clearance</code>"
   },
   "28a3r88ouzz": {
     "defaultMessage": "0.3"
+  },
+  "28coq96ytfk": {
+    "defaultMessage": "チェック"
   },
   "28d8cxee2e6": {
     "defaultMessage": "回路図とレイアウト：これらの参照、ネット名、または<code>REF.PIN</code>にズーム。<code>*</code>は任意の文字列にマッチする。ネットは接続する部品を持ち込み、ピンはそのネットを持ち込む"
@@ -2702,14 +3113,14 @@
   "28eex1tfszn": {
     "defaultMessage": "ドメインに属するネットを持つクラスのクリアランスは電気的間隔として扱われ、1つのフットプリントのパッド間にも適用される：1.5 mm HvBus クラスの TO-220 でパッド間隔が 1.0 mm の場合は<code>clearance</code>エラーとなる。ドメインに属さないネットを持つ1つのフットプリントのパッドは、部品のピッチがギャップを決定するため、<code>min_clearance</code>のみが適用される"
   },
-  "28f7652hq13": {
-    "defaultMessage": "基板、シンボル、フットプリント、回路図、レイアウト、シミュレーションのスターターファイルを書き出します。編集の起点として使用します。シミュレーションは、レイアウトのFDTD実行として開始するか、sim_kind logicを指定すると回路図のロジックシミュレーション(クロック、リセット、クロック付きアサーション)として開始し、ネットをリネームします。"
-  },
   "28fsiidlg9n": {
     "defaultMessage": "ソース"
   },
   "28goafxzigz": {
     "defaultMessage": "agentee editでの編集"
+  },
+  "28ko3qn71a8": {
+    "defaultMessage": "以下の組み込みデバイスモデルは汎用の代替物（シリコンダイオード、小信号BJT、ロジックレベルMOSFET）であり、回路図上の部品そのものではありません。重要な各部品には、データシートからの値を含むブロックを与え、ダイオードの <code>is</code> と <code>n</code> はその典型的なVFポイント2つに合わせます。電流が1桁異なる2つの点から、<code>n = dV / (Vt ln 10)</code> および <code>is = I / exp(V / (n Vt))</code> が得られます。デフォルト値に依存する結果は、部品ではなくデフォルト値を説明しています。"
   },
   "28kslsvbf6g": {
     "defaultMessage": "その後、人が行う作業を行います。表示を確認し、重要な部品を移動し、ロックします。"
@@ -2750,6 +3161,12 @@
   "2921q7sf5ii": {
     "defaultMessage": "0.254"
   },
+  "2938khm5ak6": {
+    "defaultMessage": "<code>label.text</code> は、フットプリントの参照テキストの代わりに、そのラベル自身のテキストを出力します。<code>${REFERENCE}</code> と <code>${VALUE}</code> は展開されます。同じチェックが適用されます。<code>text</code> のみのラベルは、フットプリントの位置、回転、サイズを維持します。マウンティングホールは、参照テキストが非表示の状態で開始します。<code>hide = false</code> で表示します。<code>agentee edit pcb NAME label REF</code> は <code>--text</code>、<code>--at</code>、<code>--rotation</code>、<code>--size</code>、<code>--hide</code> または <code>--show</code> を設定し、<code>--clear text,at,rotation,size,hide</code> でキーを削除します。基板メーカー用のレイヤーには、組立のために実際の参照テキストが保持されます。"
+  },
+  "293lvl79gnm": {
+    "defaultMessage": "<code>i = \"R1\"</code>"
+  },
   "294judhfjwe": {
     "defaultMessage": "<code>acute-turn</code>"
   },
@@ -2768,6 +3185,9 @@
   "29hlkld1b4r": {
     "defaultMessage": "サブスタックは、プレス後に機械的にドリルされます。"
   },
+  "29ijobj9qbh": {
+    "defaultMessage": "1つのライブラリの部品: そのファイル、出典、データシート、在庫"
+  },
   "29iu3d22sqh": {
     "defaultMessage": "ルーティング: パッド、ビア、または配線をクリックして開始、クリックして45度のコーナーを追加、<code>/</code>で曲がり方向を反転、Vでビアを配置、Enterで終了"
   },
@@ -2777,6 +3197,9 @@
   "29ku7ky1qub": {
     "defaultMessage": "クラス<code>diff_gap</code>以外のギャップで並走するペアが、<code>max_uncoupled</code>を超えて並走している"
   },
+  "29o11ucnb9q": {
+    "defaultMessage": "チェックは1つの数値を読み、<code>min</code>と<code>max</code>の間に保持する。読み取るものは<code>at</code>に依存する:"
+  },
   "29pexjrs3mz": {
     "defaultMessage": "<code>bom.csv</code>、<code>bom-jlcpcb.csv</code>"
   },
@@ -2785,6 +3208,9 @@
   },
   "29ry8a1yxe4": {
     "defaultMessage": "レジストリ"
+  },
+  "29sbyr9eqy3": {
+    "defaultMessage": "<code>R</code>"
   },
   "29t7eom4pu7": {
     "defaultMessage": "層の厚さを手入力しないでください。基板メーカー自身のビルドを選択します："
@@ -2806,6 +3232,9 @@
   },
   "2a36cas8c3": {
     "defaultMessage": "マルチユニットシンボル：ピンとグラフィックに<code>unit</code>を指定します。同じピン番号が複数のユニットに現れても、名前が同じ場合（共有ピン）のみ許可されます。"
+  },
+  "2a4d6lwb3hw": {
+    "defaultMessage": "<code>no_connect</code>ピンがネット内にある。データシートで接続を指示されている場合は<code>passive</code>にする。"
   },
   "2acppb2qi5r": {
     "defaultMessage": "基板仕様、層構成、ネットクラス"
@@ -2870,6 +3299,9 @@
   "2b6e1q1tvd8": {
     "defaultMessage": "<code>agentee fab pcb:NAME -o DIR</code> (MCP <code>fab</code>) は以下を書き出します:"
   },
+  "2b6ij7n4vlv": {
+    "defaultMessage": "解析"
+  },
   "2b6nbr5oygg": {
     "defaultMessage": "<code>new board</code>は<code>blinky.board.toml</code>を書き出します。50 x 30 mmのアウトライン、JLCPCBの2層1.6 mm層構成、1つのビアタイプ、4つのネットクラス。チェックは読み込み、何も報告しません。"
   },
@@ -2878,9 +3310,6 @@
   },
   "2b7t81y413p": {
     "defaultMessage": "回路図でクラス名を付ける前に、<code>agentee check</code>がクリーンになること。"
-  },
-  "2b9md1xxs4j": {
-    "defaultMessage": "実例のagenteeプロジェクト: FDTD、カスケード、DCドロップ、熱シミュレーション付きのバイアスティーLNA、KiCadからインポートしたHackRF Pro、カウンタとI2Cバスのロジックシミュレーション。"
   },
   "2banbwa4skb": {
     "defaultMessage": "すでによく理解している基板から始める"
@@ -2918,6 +3347,9 @@
   "2bnote5txfs": {
     "defaultMessage": "JLCPCB のインピーダンスビルド、PCBWay の標準ビルド、汎用 HDI 層構成 2 種。ファブ独自のコードで命名されています。"
   },
+  "2bnsehmthz5": {
+    "defaultMessage": "モデルは STEP または VRML で、KiCad と同じ方法で配置されます（<code>model_offset</code>、<code>model_rotate</code>、<code>model_scale</code>）。モデルのパスは、指定されたパス、次に <code>KICAD9_3DMODEL_DIR</code> などの環境変数、プロジェクト内の <code>3dmodels/</code>、<code>~/.cache/agentee/3dmodels</code>、<code>/usr/share/kicad/3dmodels</code> の順で検索されます。拡張子は <code>.step</code>、<code>.stp</code>、<code>.wrl</code> を試し、gzip 圧縮の有無も考慮します。モデルは STEP または VRML ファイルへの <code>https://</code> URL でも指定でき、ベンダーのモデルをリポジトリにチェックインする必要はありません。URL は一度だけ <code>~/.cache/agentee/3dmodels/url/</code> にダウンロードされ、プロジェクト独自のモデルとして扱われるため、生成された部品よりも優先されます。ファイルが変更されないように、URL はコミットやリリースに固定してください。ディスク上にない KiCad ライブラリのモデルは、kicad-packages3D リポジトリからキャッシュにダウンロードされます。<code>agentee models</code>（MCP の <code>models</code>）はすべてを取得し、見つかったものを報告します。ビューアはバックグラウンドで取得します。また、モデルがあり <code>height</code> がないプロジェクトのフットプリントファイルそれぞれに <code>height</code> を書き込みます。これは <code>model_rotate</code>、<code>model_scale</code>、<code>model_offset</code> で配置されたモデルの頂部の高さであり、配置ツールと <code>tall-part-shadow</code> が実際の部品を使用できるようにします。モデルのない部品は、基板メーカーの外形を覆う <code>height</code> 高さの箱になります。height がない場合は、フットプリント名から推定した高さになります。STEP ファイルは <a href=\"https://github.com/ricosjp/truck\">truck</a> でメッシュ化され、スタイル付きアイテムの色とアセンブリの配置が適用されます。エッジは、各サーフェスクラブの pcurves ではなく、その 3D クラブを使用します。クランプされていない B スプラインのクラブとサーフェスは、有効なノット範囲に切り詰められます。それでも有限の点に評価できないエッジのクラブは直線としてメッシュ化され、サーフェスが有限の点に評価できない面は除外されます。"
+  },
   "2bo3p56qhyc": {
     "defaultMessage": "ツールバーの<code>reset</code>は、チェックしたものをクリアします。ルーティング(配線、ビア、エンジンの計画セクション)、<code>[[fanouts]]</code>と<code>[[stitching]]</code>ルール、保存されたフィルを含むベタ、シルクラベルの位置です。また、ロックされていないすべての部品を配置ツール(<code>agentee place</code>、シード付き)で再配置できます。他の編集と同様に、保存するまで未保存のままです。レイアウトタブの<code>new layout</code>は、名前、基板、回路図を尋ね、プロジェクトの隣に<code>NAME.pcb.toml</code>を書き出します。チェックを外さない限り、最初にすべての部品を配置ツールで配置します。新しいファイルは、回路図の各グランドネットに対してすべての銅層にベタを持ち、回路図にRFネットがある場合、クラスに<code>coplanar_gap</code>があるRF配線に沿ってフェンス付きの、2.5 mm間隔のグランドビアの<code>[[stitching]]</code>グリッドを持ちます。エンジンカードの<code>tie plane pads</code>は、ウィンドウのレイアウトに<code>agentee tie</code>を実行し、プレーネットの選択したラッツネストの線は、ルーティング前に<code>tie pads to the plane</code>を提示します。"
   },
@@ -2945,6 +3377,9 @@
   "2bu38inx0ww": {
     "defaultMessage": "ロジックシミュレーションは、回路図のネットリストからデジタル部分を直接実行します。レイアウトは不要なため、設計の初期段階に適しています。配置を行う前に、カウンタがカウントし、デコーダがデコードし、オープンドレインバスが応答することを確認できます。"
   },
+  "2bwxeh48i5b": {
+    "defaultMessage": "グランドは、GND、<code>0V</code>、<code>GROUND</code>、または<code>VSS</code>で始まるすべてのネットである。"
+  },
   "2bxd38dsnem": {
     "defaultMessage": "基板全体のインポート"
   },
@@ -2953,9 +3388,6 @@
   },
   "2bxrf9y4lxu": {
     "defaultMessage": "フリップフロップ、カウンタ、シフトレジスタは、モデルのタイミングに対してクロック付き入力のセットアップとホールドを検査します。上昇クロックエッジの<code>setup</code>より前にデータ入力が変化した場合、またはエッジの<code>hold</code>より後に変化した場合、違反となります（非同期リセットまたはセットがアクティブの間は検査されません）。Dラッチは、<code>EN</code>のクローズ（下降）エッジに対して<code>D</code>を同様に検査します。非同期リセットまたはセットがクロックエッジの<code>recovery</code>より前に解放された場合、またはエッジの<code>removal</code>より後に解放された場合も、ファミリーテーブルのrecoveryとremovalに基づいて違反となります。595は、最後の<code>CLK</code>（SRCLK）上昇エッジから少なくとも<code>setup</code>後に<code>LATCH</code>（RCLK）上昇エッジを必要とします。2つのクロックが一緒に接続されている（同一瞬間）場合は問題なく、シフト前の値をラッチします。"
-  },
-  "2c10uai0wm5": {
-    "defaultMessage": "agentee mcpはstdio上でModel Context Protocolによりプロジェクトを提供します。チェック、描画、配線、シミュレーション、製造パッケージの書き出しを行う30のツールと、Claude Code、Codex、Cursor、その他のMCPクライアント向けのセットアップ。"
   },
   "2c2jk9bbgc7": {
     "defaultMessage": "パッド内ビアのエポキシまたは銅充填、0.15から0.55 mm"
@@ -2981,14 +3413,14 @@
   "2cjh4sryf9n": {
     "defaultMessage": "パッドがすべて配線、ビア、ベタで接続されていないネット。離れているグループを名指し"
   },
-  "2cjp54hpvxh": {
-    "defaultMessage": "すべてのシミュレーションが最新です。チェックは古い結果について警告します。"
-  },
   "2cjq2lndzi6": {
     "defaultMessage": "ドライバは、プルダウンとプルアップのテーブル、ダイ容量、パッケージからテブナン電源になります。ランプがエッジを設定し、電圧範囲がスイングを設定します。<code>rise</code> または <code>swing</code> が指定されていない限り。受信機はパッケージとダイ容量で遠端をロードし、アイはそのダイで読み取ります。IBIS は現在、単一エンドパスで動作します。"
   },
   "2cozbj3xs0k": {
     "defaultMessage": "<code>--focus</code>は参照（<code>U1</code>）、ネット名（<code>SPI_CLK</code>）、ピン（<code>U1.3</code>）を受け取り、<code>*</code>はワイルドカードとして機能する。ネットは接続する部品を持ち込む。<code>--context</code>はデフォルトで<code>dim</code>、指定したもののみに残すには<code>hide</code>、フェードなしでズームするには<code>show</code>。MCP <code>render_item</code>は同じ<code>focus</code>、<code>context</code>、<code>rulers</code>引数を受け取る"
+  },
+  "2cs52ia4alm": {
+    "defaultMessage": "agentee の実例プロジェクト: FDTD、カスケード、DC 電圧降下、熱シミュレーション付きのバイアスティー LNA、オペアンププリアンプ、回路シミュレーション付きの Eurorack ラダーフィルター、KiCad から取り込んだ HackRF Pro、カウンタと I2C バスのロジックシミュレーション。"
   },
   "2csls3gciuc": {
     "defaultMessage": "必要なもの"
@@ -3001,6 +3433,9 @@
   },
   "2cxiorus6h5": {
     "defaultMessage": "レイアウトのシミュレーション: FDTD Sパラメータ、カスケード、チャネル、PDN、直流ドロップまたは熱(<code>kind</code>)"
+  },
+  "2cydaclfzc3": {
+    "defaultMessage": "動作点、AC、ノイズ、過渡"
   },
   "2cyh4coacuo": {
     "defaultMessage": "プロジェクトのフットプリントが指定する3Dモデル（STEPまたはVRML）を見つけます。不足しているKiCadライブラリのモデルをキャッシュにダウンロードします。各モデルのパスと三角形数を報告します。不足している場合はその理由を報告します。"
@@ -3040,6 +3475,9 @@
   },
   "2dkux4yfq4z": {
     "defaultMessage": "テストパッド"
+  },
+  "2dmi520w6i3": {
+    "defaultMessage": "ライブラリは<code>~/.config/agentee/library/</code>に保存されます（<code>$AGENTEE_LIBRARY</code>で移動可能）。プロジェクトは、ルートディレクトリの<code>.agentee/library/</code>で部品を追加または上書きできます。各部品はディレクトリです："
   },
   "2dn1tyahlx1": {
     "defaultMessage": "チェックは基板メーカーのルールを把握しています"
@@ -3095,6 +3533,9 @@
   "2e7c9td1w4l": {
     "defaultMessage": "シミュレーションが必要な項目。RF経路、USBレーン、レールの電圧降下、発熱するレギュレータなど。"
   },
+  "2e9bi5sy2r9": {
+    "defaultMessage": "自身のネットのSMDパッド内のビア（パッド内ドリル）を数え、フットプリントが自身のSMDパッドに入れるメッキ穴（KiCadの<code>_ThermalVias</code>露出パッド）を数えます。<code>fab-notes.txt</code>は、これらだけを正確に充填キャップするよう基板メーカーに依頼します（IPC-4761タイプVII）。"
+  },
   "2eae1pcr9lz": {
     "defaultMessage": "長さを合わせる"
   },
@@ -3125,8 +3566,14 @@
   "2erk3af4v4t": {
     "defaultMessage": "直後にチェックを実行します。よくある指摘はシルクです。"
   },
+  "2eston77ejc": {
+    "defaultMessage": "すべての銅層を抵抗シートとして解算します。各負荷へのドロップ、電流密度、最も忙しいビア。"
+  },
   "2esv3ij8ba7": {
     "defaultMessage": "レイアウトを手動で編集する"
+  },
+  "2esvl1tgpde": {
+    "defaultMessage": "2ピン部品を流れる電流、ピン1からピン2へ"
   },
   "2etkcmne0z1": {
     "defaultMessage": "ページが見つかりません - agentee"
@@ -3137,6 +3584,9 @@
   "2ewa8hrpfs8": {
     "defaultMessage": "スルービアは、最後のプレス後に上から下へ一度だけドリルされます。それ以外の、ブラインドビアやバリードビア、マイクロビア、バックドリル、制御深さドリリングは、基板のビルドアップ方法に依存します。agenteeはそのビルドをモデル化しているため、配線する前に、どのビアが基板メーカーでドリル可能かを判断できます。"
   },
+  "2ewho8hob2f": {
+    "defaultMessage": "レイアウトまたは回路図の BOM を Mouser、Farnell、DigiKey で価格調査し、より安い同等品を探します。同等品とは、別の販売店の同じ部品、同じ値・パッケージ・公差・電圧・誘電体の抵抗器とセラミックコンデンサ (性能の低下はしない)、汎用ディスクリート部品 (2N7002、S1D、SS14、SMAJ など) の名前とパッケージ、インジケータ LED の色とパッケージ、廃盤予定部品の販売店推奨代替品です。コストは必要な数量で計算し、価格ブレークまで購入した方が安い場合はその数量で計算します。キーは ~/.config/agentee/distributors.toml ([mouser] api_key、[farnell] api_key と store、[digikey] client_id、client_secret と site) から読みます。"
+  },
   "2ex3r53vycd": {
     "defaultMessage": "ビューアでの編集"
   },
@@ -3146,11 +3596,17 @@
   "2ezpt5kwwpr": {
     "defaultMessage": "レイアウトエンジン"
   },
+  "2ezukwpwbpu": {
+    "defaultMessage": "レイアウトエンジンは、同じキープアウトから探索グリッドを構築します。各パッド、配線、ビア、穴、基板エッジがルールが要求するギャップを持ち、エンジンとチェックが同じ数値セットを測定します。"
+  },
   "2f2ku24wnum": {
     "defaultMessage": "プロジェクトのフットプリントが指定する KiCad 3D モデル (VRML) を、3D ビュー用にダウンロードします"
   },
   "2f2z33kakex": {
     "defaultMessage": "10.7"
+  },
+  "2f350b6ufp1": {
+    "defaultMessage": "<code>agentee parts</code> はBOMをMouser、Farnell、DigiKeyで価格計算し、値、パッケージ、定格、誘電体を維持するより安い部品を探します。<code>agentee export</code> は基板とすべての部品モデルをエンクロージャ用の1つのSTEPとして書き出します。"
   },
   "2f4itubsbkt": {
     "defaultMessage": "<code>min_microvia_drill</code>, <code>max_microvia_drill</code>"
@@ -3176,6 +3632,9 @@
   "2fedv07145l": {
     "defaultMessage": "このガイドでは、コマンドを1つずつ実行して、小さな基板を手作業で作ります。2ピン電源ヘッダ、抵抗、緑LED、デカップリングコンデンサを、2層のJLCPCB基板に載せます。エージェントが追うのと同じ手順なので、一度自分でやると、後でエージェントが何をしているのかを読み解くのがずっと楽になります。"
   },
+  "2fhrbgvauc6": {
+    "defaultMessage": "<code>erc-undriven</code>"
+  },
   "2fkypo5l7hk": {
     "defaultMessage": "チェックが報告するもの"
   },
@@ -3193,6 +3652,15 @@
   },
   "2fu4efrry7i": {
     "defaultMessage": "ルールを指定しないidは警告です。ファイル自体のエラー（回路図にないネット、銅層でない層、不正なプリセット）はルールではなく、無効にできません。"
+  },
+  "2fwrwbzf0z3": {
+    "defaultMessage": "コンデンサの定格（<code>100n/50V</code>、<code>10u 25V</code>、または <code>voltage</code> フィールド）と、任意の部品の <code>rated_voltage</code> フィールドは、そのネットのクラス間のピーク電圧に対してチェックされます。<code>voltage</code> のないクラスは 0 V とみなされます。定格未満はエラー、定格の 1.25 倍未満は警告です。"
+  },
+  "2fx8v3naj0i": {
+    "defaultMessage": "<code>FB</code>"
+  },
+  "2fxjtz5h5w5": {
+    "defaultMessage": "<code>d</code>、<code>g</code>、<code>s</code>"
   },
   "2g0285nhoo1": {
     "defaultMessage": "プロジェクトを読み込み、すべてのアイテムまたは1つのアイテムのエラーと警告を報告します。"
@@ -3215,6 +3683,9 @@
   "2g2iwasuysf": {
     "defaultMessage": "最小非めっきスロット"
   },
+  "2g31tagexxd": {
+    "defaultMessage": "<code>open</code>"
+  },
   "2g3va6s0t1e": {
     "defaultMessage": "チェックが提案する空きスペースに、失敗しているシルク参照を移動します。安定するまで繰り返し、指定があれば行き場のないものを非表示にします"
   },
@@ -3233,14 +3704,23 @@
   "2gbdkmb6u42": {
     "defaultMessage": "座標はY上向きミリメートルで、Gerberと配置ファイルで同一です。<code>dnp</code>とマークされた部品、フィールドに <code>assembly = \"no\"</code> がある部品、マウンティングホールとフィデューシャルは、BOMと配置から除外されます。"
   },
+  "2gdjd5twcfg": {
+    "defaultMessage": "<code>parts</code>は、<code>mpn</code>フィールドに基づいてBOMの各行をMouser、Farnell、DigiKeyで検索します。そのため、まず各部品に<code>mfr</code>と<code>mpn</code>を指定してください。指定のない行はスキップされます。キーはすべてのプロジェクトの外、<code>~/.config/agentee/distributors.toml</code>にあります。"
+  },
   "2gdxxtr0gxf": {
     "defaultMessage": "実際の層構成を選択"
+  },
+  "2ggl1f9apj7": {
+    "defaultMessage": "<code>is</code>、<code>bf</code>、<code>br</code>、<code>va</code>、<code>cje</code>、<code>cjc</code>"
   },
   "2gie3fyz691": {
     "defaultMessage": "Excellon、メートル単位、スロットはG85。めっきファイルにはパッドの穴とスルービアが含まれ、スルービアのみの基板では変更されません"
   },
   "2giq5lxjwx9": {
     "defaultMessage": "値（またはシンボル名）に74シリーズ番号を持つ部品は、ピン番号で組み込みモデルを使用します：<code>74HC00</code>、<code>SN74LVC1G08DBVR</code>、<code>CD74HCT04E</code>はすべて一致します。ライブラリは00、01、02、03、04、05、06、07、08、10、11、14、20、21、27、32、74、86、125、126、132、138、157、161、163、164、244、245、573、574、595、単一ゲートの1G00、1G02、1G04、1G06、1G07、1G08、1G14、1G17、1G32、1G34、1G74、1G79、1G80、1G86、1G125、1G126、1G157、デュアルゲートの2G00、2G02、2G04、2G08、2G14、2G17、2G32、2G34、2G74、2G86、2G125、2G126をカバーします。マルチユニットシンボルの配置されていないユニットは除外されます。配置されたピンでネットがないものは浮動（z）として読み取られます。"
+  },
+  "2giqdaqkg6m": {
+    "defaultMessage": "回路図の動作点、AC、過渡、ノイズ。オペアンプとダイオードはデータシートからモデル化され、ゲイン、スイング、歪みのチェックを行います。"
   },
   "2git8ngbr77": {
     "defaultMessage": "<code>zone-islands</code>"
@@ -3259,6 +3739,9 @@
   },
   "2qc7ktbz3i": {
     "defaultMessage": "すべてのパッケージには、シルクに <code>agentee vX.Y.Z-HASH</code> が含まれます。ビルドしたバージョンとソースのgitコミットで、ツリーに未コミットの変更がある場合は <code>-dirty</code> が付きます。デフォルトでは下側シルクに、左下隅に最も近い空きスペースに配置され、<code>fab-notes.txt</code> に場所が記載されています。無効にすることはできず、スペースがない場合はパッケージが拒否されます。レイアウトで <code>[watermark] at</code> を設定して、場所を自分で選択できます。"
+  },
+  "2rc2bsr8la": {
+    "defaultMessage": "異なる電位に立ち得る各導体に独自のクラスを割り当てます。<code>DC+ = &quot;400VDC&quot;</code> と <code>DC- = &quot;-400VDC&quot;</code>（800 V の差）、および <code>L1</code>、<code>L2</code>、<code>L3</code> をそれぞれ <code>&quot;230VAC&quot;</code> にします。1 つのクラス内のネットは、そのクラス自身のクリアランスにのみ拘束されます。そのため、1 つの <code>Mains</code> クラス内の L1 と L2 では、線間電圧が満たされません。2 つの AC クラスは逆相（L1 から L2 は 460 V ではなく 398 V）とみなされます。これは安全側に倒す評価です。"
   },
   "2szz4270pn": {
     "defaultMessage": "<code>min_npth_drill</code>"
@@ -3317,6 +3800,9 @@
   "3k8q5s5roj": {
     "defaultMessage": "作業を観察する"
   },
+  "3kon0drnja": {
+    "defaultMessage": "スイッチングレギュレータ(1つのピンにインダクタがあり、その反対端が電源であるIC)は、インダクタと入力コンデンサを密着させ、出力コンデンサをインダクタの出力パッドに密着させます。また、スイッチングレギュレータは感度の高い部品(クリスタル、シングルエンドインピーダンス(RF)ネット上の部品)から8 mm(中心間距離)以上離れます(TI SNVA021、AN-1149 Switching Power Supplies Layout Guidelines; Linear Technology AN139, Power Supply Layout and EMI)。"
+  },
   "3lzw18sxzi": {
     "defaultMessage": "<code>class</code>は、その名前のクラスをその場で編集するか、追加します。ターゲットの動作は以下の通りです。"
   },
@@ -3368,6 +3854,9 @@
   "4ce2b2y9rr": {
     "defaultMessage": "設計ルール設定"
   },
+  "4dr78wrl0f": {
+    "defaultMessage": "agentee のバージョンとウォーターマークの位置、層構成、仕上げ、インピーダンスクラス、各ビアタイプとそのスパン、レーザー、機械的、または制御深さドリル、サイズ、穴数、IPC-4761 によるフィルとドリルファイル、各バックドリルとその側、停止層、スタブ、埋め込むためのパッド内のビア、保持するエッジパッド、および <code>[fab_notes]</code> の IPC クラス、穴の許容差、非機能パッド、ファブマーキング"
+  },
   "4dzg9g67zm": {
     "defaultMessage": "<code>Q</code>、<code>QN</code>"
   },
@@ -3377,9 +3866,6 @@
   "4eozrvrv71": {
     "defaultMessage": "<code>agentee edit</code>は、TOMLを書き直し、コメントを保持し、変更したファイルにチェックを実行します。この程度のシンプルな基板では、あまり小さくしないことです。すべての基板はシルクに<code>agentee vX.Y.Z-HASH</code>のバージョンを載せ、チェックはそれを配置するために約23 x 1.2 mmの空き帯が必要です。20 mmの基板では<code>watermark</code>エラーを報告し、ファブパッケージは拒否されます。"
   },
-  "4fc8tsnpn5": {
-    "defaultMessage": "マップ：銅層ごとの温度。読み取り値：基板のピーク温度、各発熱源のパッド温度と接合部温度。"
-  },
   "4hcmaqffpe": {
     "defaultMessage": "最初の銅層から最後の銅層まで"
   },
@@ -3388,6 +3874,9 @@
   },
   "4lxxwf41j4": {
     "defaultMessage": "<code>min_plated_slot_width</code>"
+  },
+  "4ppradody": {
+    "defaultMessage": "回路シミュレーションは、回路図のアナログ側をネットリストから直接実行する: 毎回動作点、そして仕様が要求する場合にACスウィープ、過渡、ノイズ解析。レイアウトは不要であり、回路図を決定する質問に答える: バイアスは正しい位置にあるか、1 kHzでのゲインは何か、出力はどこでクリップするか、ハissはどれほど大きいか。"
   },
   "4pvnbce4b5": {
     "defaultMessage": "<code>creepage</code>"
@@ -3412,6 +3901,9 @@
   },
   "56md48ys3m": {
     "defaultMessage": "FDTDまたはカスケード結果のパスを通じてビットストリームを通過させ、アイパターンを描画します。"
+  },
+  "570l47d8xl": {
+    "defaultMessage": "ライブラリの部品のシンボル、フットプリント、3D モデルをこのプロジェクトにコピーし、mpn、mfr、library フィールドを伴って配置する編集コマンドを返します。"
   },
   "5fuldbyvww": {
     "defaultMessage": "<strong>全基板にバージョンウォーターマークがあります。</strong>シルクにagenteeのバージョンと、ファブパッケージをビルドしたコミットが記載されます。"
@@ -3440,6 +3932,9 @@
   "5pto2u1r9b": {
     "defaultMessage": "<code>placement-decoupling-distance</code>"
   },
+  "5r1xf3dojc": {
+    "defaultMessage": "agentee datasheet: 各部品のデータシートを一度だけ共有キャッシュに取得し、テキストとして読み返し、設計で使用した内容を記録します。"
+  },
   "5s6x74866k": {
     "defaultMessage": "セルになるもの"
   },
@@ -3449,14 +3944,17 @@
   "5u8z0zrk18": {
     "defaultMessage": "部品: インポートまたは描画"
   },
+  "6181chw78z": {
+    "defaultMessage": "キック後のフルレゾナンスで自己振動するフィルターと出力のスペクトル。"
+  },
   "666r1k781v": {
     "defaultMessage": "0805 以上のセラミックコンデンサを、縁や穴付近のフレックスゾーンから除外し、小型部品は縁に沿うように回転します。"
   },
+  "683ii2bsxi": {
+    "defaultMessage": "ドライバ"
+  },
   "686lhskeo4": {
     "defaultMessage": "1つの回路図シンボル"
-  },
-  "6f8tjd4506": {
-    "defaultMessage": "オンまたはオフにする層。例：<code>--hide F.Cu --show In1.Cu</code>"
   },
   "6ido514tq1": {
     "defaultMessage": "4 層、JLC04161H-7628、ENIG"
@@ -3464,11 +3962,17 @@
   "6k78mfo5gv": {
     "defaultMessage": "<code>D</code>、<code>CLK</code>、任意の<code>S</code>、<code>R</code>、<code>OE</code>"
   },
+  "6l5ctiahrz": {
+    "defaultMessage": "<code>1</code>、<code>2</code>"
+  },
   "6l9lkmmold": {
     "defaultMessage": "<code>via-annulus-past-pad</code>"
   },
   "6ok9awbn5l": {
     "defaultMessage": "ロジックシミュレーションの測定は、シミュレーションに失敗（アサーション、コンテション、タイミング違反、または停止した実行）がある間、失敗します。失敗数と最初の失敗を特定します。シミュレーションの仕様や回路図ネットリストが変更された場合は、シミュレーション自体が報告するように、古くなります。銅が変更された場合は古くなりません。ロジックシミュレーションはレイアウトを見ないためです。"
+  },
+  "6op96i4sps": {
+    "defaultMessage": "ビューアのレイアウトページには <code>3d</code> タブがあります（<code>agentee view --3d</code> で開くとここに表示されます）。基板は層構成の厚さ、ソルダーレジストとシルクの色、仕上げ、ソルダーレジスト下の銅、裸のパッド、メッキと裸のドリル壁、各部品の 3D モデルで表示されます。<code>parts</code> トグルでモデルを非表示にできます。ドラッグで回転、シフトドラッグでパン、スクロールでポインタに向かってズーム、ダブルクリックでリセットします。プロジェクト配下のどこかに書き出された <code>.step</code>、<code>.stp</code>、<code>.wrl</code>、<code>.vrml</code> ファイルは、開いているビューに再読み込みされます。ビューアは OpenGL（<a href=\"https://github.com/asny/three-d\">three-d</a>）で描画します。<code>agentee render pcb:NAME --show 3d</code>（または <code>3d-top</code>、<code>3d-bottom</code>）は同じシーンをソフトウェアで描画し、<code>--hide parts</code> でモデルを除外し、<code>--region</code> でカメラをその領域に向けます。"
   },
   "6rrbqy2nf2": {
     "defaultMessage": "輪郭と各基板の切り抜き"
@@ -3493,6 +3997,9 @@
   },
   "74vkuiezk": {
     "defaultMessage": "<code>agentee sparam NAME</code>（MCP <code>sparam</code>）は、FDTDまたはカスケードの結果すべてで動作します："
+  },
+  "77g3glnb2v": {
+    "defaultMessage": "<code>--order DIR</code>は、レポートの代わりに購入用のシートを書き出します。すべての行と購入先を含む<code>NAME-order.csv</code>、およびBOMアップロードが読み取るレイアウトの各分销業者ごとの<code>NAME-&lt;distributor&gt;.csv</code>です。<code>--spares</code>は、手作業組立の余裕分、少量の追加の受動部品、各チップ、ダイオード、トランジスタ、ヒューズ行の予備1個を追加します。"
   },
   "785vso7xer": {
     "defaultMessage": "<code>track_width</code>を省略すると、checkが最初の層に対して解算します。1つの線幅で全層に対応できない場合は、<code>widths = { \"In2.Cu\" = \"0.16mm\" }</code>のように指定します。"
@@ -3554,20 +4061,35 @@
   "7uikuq2omp": {
     "defaultMessage": "3 ns"
   },
+  "7v8pvobcp6": {
+    "defaultMessage": "役割と単語によるライブラリの部品、最後に確認した在庫と価格"
+  },
   "7x7d65b94f": {
     "defaultMessage": "FDTD における損失 - agentee リファレンス"
   },
   "7yos9axkg5": {
     "defaultMessage": "各々の異なる面(銅の厚みごと)は、ベクトルフィッティング(Gustavsen and Semlyen, IEEE Trans. Power Delivery 14(3), 1999)で約24極の共通集合に適合させます。周波数範囲はバンド中心の1000分の1から最高周波数の100倍までです(20 GHzのバンド中心では、上記の関数に対して0.02%以内)。適合がどこかゼロを下回る場合は、直列抵抗を上げて受動化します。シートエッジは、実極ごとに1状態、複素極ペアごとに1状態をステップし、2つの面で共有します。台形則を用いるため、離散化されたシートは、適合させたインピーダンスの双線形写像になります(CPUでのテーブル再生は5e-6まで一致します)。"
   },
+  "7yx79t577c": {
+    "defaultMessage": "失敗したチェックはシミュレーションでのエラーである。上記の1 kHzチェックを<code>min = 19</code>に上げると、実行が失敗し、その結果が最新である間、<code>agentee check</code>はそれをエラーとして報告する:"
+  },
+  "7zpv5zdl2j": {
+    "defaultMessage": "クラスが流す最高電圧。agentee はこれをもとに IPC-2221B と IEC 60664-1 でクリアランスとクリーページを算出します。"
+  },
   "806u90mrug": {
     "defaultMessage": "スキル"
+  },
+  "80qv9xurph": {
+    "defaultMessage": "距離ルール（<code>clearance</code>、<code>isolation-clearance</code>、直線距離で測定される<code>creepage</code>、<code>copper-to-edge</code>、穴のルール、およびパッド内ビアのルール）は、新しい銅が置ける場所も示します。特定の幅の配線や特定のタイプのビアについて、各層ごとに禁止される領域をマークし、必要なすべての層に残る領域がグリーンゾーンです。<code>agentee route</code>はルーティング対象のネットのグリーンゾーン外を探索グリッドとしてブロックするため、ルーティングはチェックが拒否するスポットに向かうことはありません。ゾーンは安全側に半グリッドセルだけ誤差を持ち、完成した銅はチェックが判定します。"
   },
   "82k3a4fl2t": {
     "defaultMessage": "コマンドライン"
   },
   "82qvrr6scb": {
     "defaultMessage": "<code>via-cuts-pad</code>"
+  },
+  "84muclre7r": {
+    "defaultMessage": "<code>use</code>は、シンボルを<code>symbols/</code>に、フットプリントを<code>footprints/</code>に、モデルをプロジェクトの<code>3dmodels/</code>にコピーします。既に存在し、内容が異なるファイルは、<code>--force</code>がない限り拒否されます。<code>agentee edit sch</code>コマンドを返し、部品を<code>mpn</code>、<code>mfr</code>、<code>library</code>フィールド付きで追加します。<code>datasheet text JST-PH-2</code>は、ネットワーク呼び出しなしでピン留めされたコピーを読み取ります。"
   },
   "85hxri05mo": {
     "defaultMessage": "スパンとドリル種類はラミネーションのドリル工程と一致する必要があります（ラミネーションを参照）。エラーにはドリルするスパンが列挙されます。<code>drill_kind</code>はマイクロビアの場合デフォルトで<code>laser</code>、それ以外で<code>mechanical</code>です。マイクロビアは常にレーザードリルであり、レーザードリルのビアはマイクロビアです。"
@@ -3596,11 +4118,17 @@
   "8i3ijde2rp": {
     "defaultMessage": "2 ns"
   },
+  "8iurzwna37": {
+    "defaultMessage": "<code>add</code>は、<code>.sym.toml</code>または<code>.fp.toml</code>ファイル、プロジェクトのシンボルまたはフットプリント（<code>-p</code>）、またはKiCadの<code>Library:Name</code>からシンボルとフットプリントを取得します。フットプリントはデフォルトでシンボルのものになります。フットプリントの3Dモデルをコピーして取り込みます（KiCadのモデルディレクトリ、モデルキャッシュ、またはダウンロードから）。フットプリントはそのコピーを指し、モデルに高さがない場合は<code>height</code>を設定します。これにより、部品はオフラインでも動作し、KiCadのインストールやベンダーのダウンロードが変わっても動作し続けます。KiCadにその名前のモデルがない場合、同じ<code>.3dshapes</code>フォルダ内で最も近いボディ、同じパッケージで最も近い露出パッドを持つもの（または<code>_ThermalVias</code>フットプリントの場合はプレーンボディ）を採用し、その旨を通知します。3Dビューと<code>models</code>も同じ動作をします。<code>--model</code>は、ベンダーのダウンロード、<code>.kicad_mod</code>とそのSTEPまたはVRMLモデルを含むZIPまたはフォルダ（SamacSys、SnapMagic、Ultra Librarianはこれらを配布しています）も受け入れます。ベンダーのフットプリントのパッドを番号で照合し、0.1 mm以上ずれている場合は拒否し、ベンダーのモデルを自分のフットプリント上に配置するための<code>model_offset</code>と<code>model_rotate</code>を書き出します。KiCadや<code>--model</code>からモデルがない場合、<code>add</code>はJLCPCB/LCSCの部品リストで部品番号を検索し、EasyEDAのモデルを採用します。EasyEDAのフットプリントのパッドで同じ方法で配置し、そのフットプリントの外形に対してモデルを検証します。部品の<code>files</code>には<code>EasyEDA C258169 (easyeda.com)</code>として記録されます。<code>add</code>と<code>refresh</code>はLCSC番号を<code>lcsc</code>として保存し、<code>use</code>はそれを部品の<code>lcsc</code>フィールドとして引き継ぎ、<code>bom-jlcpcb.csv</code>が読み取ります。<code>--no-distributors</code>は両方の検索をスキップします。データシートを取得します（<code>--datasheet</code>のURLまたはPDF、なければシンボルのURL、なければディストリビューターのもの）。データシートキャッシュにピン留めし、<code>datasheet purge</code>で削除されないようにします。各リストの在庫と価格ブレークを記録します。メモには、どのディストリビューターにもアクティブな部品として在庫がない場合の日付が記載されます。<code>--local</code>は、プロジェクトのライブラリに追加します。"
+  },
   "8jttpmev0y": {
     "defaultMessage": "手描きの配線"
   },
   "8k3t1hv2xx": {
     "defaultMessage": "Intel"
+  },
+  "8kz378orm4": {
+    "defaultMessage": "コストと発注書"
   },
   "8lxceyo8ts": {
     "defaultMessage": "ピンタイプは重要です。チェックはネットチェックに使用し、<code>open_collector</code>出力と<code>input</code>ピンは信号レベルチェックに参加します。"
@@ -3623,8 +4151,14 @@
   "8vf2ipcuu0": {
     "defaultMessage": "6種類のファイルが拡張子で読み込まれます。未知のキーはエラーになるため、タイプミスは無視されるのではなく報告されます。単位のない数値はミリメートルです。それ以外は単位を伴います。"
   },
+  "90r5s8xxz3": {
+    "defaultMessage": "クラスクリアランス以上の間隔を必要とするペアは、暗黙のドメイン間のバリアになります。クラスごとに 1 つです。これにより、<code>isolation-clearance</code> と <code>creepage</code> ルールがそれらをチェックし、ベタと自動ルーティングもそれらを維持します。手書きのものとまったく同じです。1 つのフットプリントのパッドは、そのクラス間のバリアにのみ拘束され、クラスクリアランスには拘束されません。これは、部品自体のピッチがメーカーによって評価されているためです。クラス名を指定した手書きの <code>[[domains]]</code> エントリは、そのクラスを暗黙のクラスから除外します。2 つのドメイン間の手書きの <code>[[barriers]]</code> エントリは、暗黙のものを置き換えます。<code>agentee show board:NAME</code> は、動作電圧と等級を付けてすべてのバリアをリスト表示します。"
+  },
   "90ssgwd7lr": {
     "defaultMessage": "各面には周波数の関数としての独自の表面インピーダンスがあります："
+  },
+  "91oux48ts9": {
+    "defaultMessage": "<code>agentee place</code>とエンジンの配置ステージも、各部品をルールに準拠させます。基板にドメイン間のバリアがある場合、または配置しない銅や部品がある場合、部品を試すすべてのスポットで、そのスポットでのパッドを周囲の銅に対してチェックし、ルールに違反するスポットはスキップされます。配置中の部品に触れるネット上の配線とビアは無視されます。部品を動かすと、それらは再度ルーティングされるためです。"
   },
   "962yh23fjb": {
     "defaultMessage": "サーバーはエージェントのためにTOMLを書きません。読み取り、チェック、レンダリング、ルーティング、シミュレーション、そして基板メーカー向けパッケージの書き出しを行います。エージェントは引き続き、独自のツール、またはシェルでの<code>agentee edit</code>でファイルを編集します。<a href=\"/mcp/\">MCPページ</a>にすべてのツールがリストされています。"
@@ -3632,11 +4166,17 @@
   "9b2cn8yf3k": {
     "defaultMessage": "ソースコード"
   },
+  "9cpnfdq2us": {
+    "defaultMessage": "<code>erc-no-pull</code>"
+  },
   "9e23y0wnzc": {
     "defaultMessage": "Esc"
   },
   "9e5f79ouxe": {
     "defaultMessage": "誘電体1枚（<code>stacked</code>：複数枚、<code>skip</code>：2枚）"
+  },
+  "9eh9jtbyne": {
+    "defaultMessage": "チェックはシミュレーションを実行しない。各結果は、仕様、確認した銅、層構成のハッシュを記録し、それらが一致しなくなった場合、チェックは結果を古いものとして情報行で報告する。GPUのないCIランナーでは、これが有用な部分である。RF配線を動かすプルリクエストは、FDTD結果に古いという注記を受け、その結果を測定するインターフェースは完全に失敗する。"
   },
   "9hy2mo0tx8": {
     "defaultMessage": "レールとシグナルレベルチェック"
@@ -3656,9 +4196,6 @@
   "9jg21u56kj": {
     "defaultMessage": "BOMの各行は1つの<code>mpn</code>フィールドで、<code>bom.csv</code>と同じグループ化です。参照記号の数×<code>--boards</code>が必要です。各行のオファーは、その部品番号のディストリビューターでの掲載情報です。選択されるのは、数量で在庫があり、廃番でなく、最も安いものです。コストは掲載情報の最小注文数と倍数を尊重し、大量注文で総額が安くなる場合は次の価格ブレークまで購入するため、10個の抵抗が100個で買われることもあります。"
   },
-  "9kvc8by4wd": {
-    "defaultMessage": "agentee parts: Mouser と Farnell での BOM 価格、ダウングレードなしで代替可能な低価格部品。"
-  },
   "9neeppgncz": {
     "defaultMessage": "深さ (通過する銅と絶縁体) をドリル径で割った値が <code>max_aspect_ratio</code> を超えるメッキ穴"
   },
@@ -3668,14 +4205,17 @@
   "9sblhpa17q": {
     "defaultMessage": "KiCadからインポートしたHackRF Pro基板をagenteeでレンダリングしたもの。"
   },
+  "9tbbl430qu": {
+    "defaultMessage": "部品ライブラリ: ユーザーが選択した部品と、そのシンボル、フットプリント、モデル、データシート、在庫。~/.config/agentee/libraryと.agentee/library"
+  },
   "9tdtrp8oa4": {
     "defaultMessage": "シルクテキストは、他のシルクテキストから0.4 mm、シルクのアウトラインから0.2 mm離れ、パッド、ビア、他の部品の本体を避け、基板上にとどまる必要があります。これらそれぞれがエラーですが、他の部品の本体下にあるテキストは警告です。参照ラベルが失敗した場合、チェックはすべてのルールを満たす場所を<code>label = { at = [...] }</code>行として貼り付け可能な形で特定します。<code>agentee silk NAME</code> (MCP <code>silk</code>) はそれらすべてを貼り付け、ラベルが安定するまで繰り返します。<code>--hide</code>は空きスペースのない参照を非表示にします。通常はBGA下の小さな受動部品です。"
   },
   "9u7i8lybkg": {
     "defaultMessage": "3Dモデルは、<code>KICAD9_3DMODEL_DIR</code>など、プロジェクト内の<code>3dmodels/</code>、または<code>agentee models</code>がkicad-packages3Dリポジトリから埋めるキャッシュから来ます。"
   },
-  "9wwswyud6u": {
-    "defaultMessage": "スイッチング電源(インダクタが 1 つのピンに接続され、その另一端が電源である IC)は、インダクタと入力コンデンサを密着して保持し、スイッチング電源は感度の高い部品(クリスタルおよびシングルエンドインピーダンス(RF)ネット上の部品)から 8 mm(中心間距離)以上離れます(TI SNVA021, AN-1149 Layout Guidelines for Switching Power Supplies; Linear Technology AN139, Power Supply Layout and EMI)。"
+  "9xg4zunrup": {
+    "defaultMessage": "ゲイン"
   },
   "9y4cbpwac0": {
     "defaultMessage": "アウトラインまたは基板の切り抜きから <code>min_part_to_edge</code> 以内にある SMD パッド。デパネリングの応力で部品が割れる可能性があります。フィジューシャル、マウンティングホール、<code>edge</code> パッドを持つ部品はスキップされます。"
@@ -3694,6 +4234,9 @@
   },
   "a0kk47j657": {
     "defaultMessage": "<code>paste-without-mask</code>"
+  },
+  "a1bxebjv7n": {
+    "defaultMessage": "逆のケースは、一緒に動くネットのグループです。ハーフブリッジの高側では、ブートストラップ、ゲートドライブ、ゲートがスイッチノードから 15 V 以内にある一方、ノードはバス全体でスイングします。それらを 1 つのクラスにまとめ、<code>voltage = &quot;430VDC&quot;</code>（グランドに対する到達電圧）と <code>own_voltage = &quot;15VDC&quot;</code>（互いの最大差）を指定します。<code>voltage</code> は、他のすべてのクラスおよびバリアに対するクラスクリアランスを設定し続けます。<code>own_voltage</code> は、クラス内の 2 つのネット間のクリアランスを設定します（ピーク値に対する IPC-2221B B2、基板メーカーの <code>min_clearance</code> 未満にはなりません）。これは配線と、1 つのフットプリントのパッド間に適用されます。ベタはクラスクリアランスを維持し、<code>agentee route</code> も維持します。そのため、これらの少数のネットは手動ルーティングするか、広い隙間を取らせる必要があります。"
   },
   "a362zk9ey7": {
     "defaultMessage": "<code>--style power</code>は、配線の代わりにグランドや電源のシンボルでネットを描画し、<code>--style label</code>はネットラベルで描画します。"
@@ -3725,8 +4268,8 @@
   "anjd3965ow": {
     "defaultMessage": "<img src=\"/assets/renders/blinky-pcb.webp\" alt=\"ルーティングされたblinkyのレイアウト\">"
   },
-  "aptrexto3m": {
-    "defaultMessage": "結果には、シミュレーションが参照した銅のハッシュ（シミュレーションの<code>region</code>のみ）と層構成のハッシュが記録されます。どちらかが変更されると、チェックが結果が古くなったと警告し、カスケードやインターフェース測定など結果を読む処理は、再実行するまで失敗します。"
+  "anqxjd1ebi": {
+    "defaultMessage": "<strong>BJTとMOSFET</strong>は<code>is</code>、<code>bf</code>、<code>va</code>または<code>vth</code>、<code>k</code>、<code>lambda</code>、およびそれらの容量を受け取ります。"
   },
   "aq5m89eyr9": {
     "defaultMessage": "0.2"
@@ -3764,6 +4307,9 @@
   "b4du3mm5x7": {
     "defaultMessage": "最初の基板を作る"
   },
+  "b4z1bs5m7z": {
+    "defaultMessage": "除外"
+  },
   "b71sv3ntno": {
     "defaultMessage": "<code>min_via_hole_to_copper</code>"
   },
@@ -3779,6 +4325,9 @@
   "bfszn94lc9": {
     "defaultMessage": "<code>--sweep</code>で周波数ごとの損失テーブルを追加します: R、L、G、C、Z0、メートルおよびインチあたりのdB。導体損失と誘電体損失に分け、スキンの効果、層構成からの銅の粗さ（<code>roughness</code>または<code>huray</code>）、因果的な誘電体モデルを含みます。GPUがない場合、2DソルバーはCPUにフォールバックします。"
   },
+  "bgocio28dy": {
+    "defaultMessage": "3 種の CV での AC、レゾナンス、振動"
+  },
   "bhwbvbaf0s": {
     "defaultMessage": "0.5"
   },
@@ -3787,6 +4336,9 @@
   },
   "blg2ol2zyn": {
     "defaultMessage": "標準のスルーホールビルド、4層から18層"
+  },
+  "bmg5gxmzrd": {
+    "defaultMessage": "ノイズ"
   },
   "bp830w79wp": {
     "defaultMessage": "バッチ"
@@ -3805,6 +4357,9 @@
   },
   "btrmtpae6h": {
     "defaultMessage": "{stackups} 実際の層構成"
+  },
+  "bukdwvw0sm": {
+    "defaultMessage": "<code>check</code>は、ライブラリが保持する役割に対して、ライブラリ外の部品が設計で使用されている場合に警告します（ルール<code>library</code>）。使用するライブラリの部品を名指しします：ピン数が同じもの、優先されるものを最初に。部品の役割は、その<code>role</code>フィールド、または参照記号から導かれます：<code>J</code>/<code>P</code>はコネクタ（同軸、SMA、U.FLは<code>rf connector</code>、<code>usb connector</code>、<code>modular connector</code>、<code>card socket</code>）、<code>R</code>は抵抗、<code>C</code>はコンデンサ、<code>L</code>はインダクタ、<code>FB</code>はフェライト、<code>D</code>はダイオードまたは<code>led</code>、<code>Q</code>はトランジスタ、<code>Y</code>は水晶振動子、<code>F</code>はヒューズ、<code>SW</code>はスイッチ、<code>BT</code>は電池、<code>K</code>はリレー。部品がライブラリにあるのは、その<code>mpn</code>または<code>library</code>フィールドがライブラリの部品を指している場合、または<code>generic</code>部品のフットプリント上に配置されている場合です。部品を除外するには、その<code>library = \"no\"</code>フィールドを設定します。ライブラリルートの<code>library.toml</code>は、強制の強さを設定します："
   },
   "buo5213pk5": {
     "defaultMessage": "読み取り値は、最良フェーズでのアイ高さ、アイ幅、最悪ケースのピーク歪み、ナイキスト周波数での損失、カーソル数です。S パラメータが到達するより速いエッジは、データがサポートする速度まで遅くされ、注記が付きます。"
@@ -3842,11 +4397,26 @@
   "cde2l624db": {
     "defaultMessage": "ドリルがパッド内に完全に収まっていないのに、銅が SMD パッドと重なるか接するビア: はんだがビアの穴に吸い込まれ、パッドの縁が損傷します。他のネットのビアがパッドに接している場合は、代わりに <code>short</code> として報告されます。"
   },
+  "ceoliizb9w": {
+    "defaultMessage": "<code>board-title</code>"
+  },
+  "chpb4blpoa": {
+    "defaultMessage": "部品の追加: シンボル、フットプリント、3Dモデルのコピー、データシートの取得と固定、在庫と価格の確認"
+  },
   "ckbyq9btjj": {
     "defaultMessage": "単位と座標 - agentee リファレンス"
   },
+  "ckzbj4m4dl": {
+    "defaultMessage": "基板、シンボル、フットプリント、回路図、レイアウト、シミュレーションの初期ファイルを、編集の起点として作成します。シミュレーションは、レイアウトの FDTD 実行から始まり、sim_kind logic では回路図の論理シミュレーション (クロック、リセット、クロック付きアサーション)、sim_kind circuit では回路図のアナログ回路シミュレーション (ドライブ、AC スイープ、チェック) となり、ネットの名前を変更できます。"
+  },
+  "cmp7crwary": {
+    "defaultMessage": "ページ番号付きのキャッシュされたデータシートのテキスト、または--findに一致する箇所"
+  },
   "css75sv92c": {
     "defaultMessage": "ロジック"
+  },
+  "ctwn7qtj4s": {
+    "defaultMessage": "レイアウトが収まる最小の長方形基板を求めます。メモリ内で複数のアスペクト比の外形を試行し（現在の配置をスケーリング、端部の部品をその端に沿ってスライド、残りを合法化、配線需要を推定）、最小のものをグローバルルーティングで確認します"
   },
   "cuvgv3zinf": {
     "defaultMessage": "<code>diff_gap</code> を持つクラスはペアです。その <code>impedance</code> は差動インピーダンスであり、ソルバーは奇数モードと偶数モードの両方を実行します。<code>calc field</code> は、Zdiff、Zcommon、奇数モードと偶数モードのインピーダンスと遅延、結合係数 (Ze - Zo)/(Ze + Zo)、および長いラインの飽和したニアエンドクロストーク（結合の半分）を含む <code>pair</code> ブロックを追加します。2つのモードは、Cohnの正確なエッジ結合ストリップラインの0.5%以内に収まります。奇数モードと偶数モードの遅延の差が、マイクロストリップのファーエンドクロストークを駆動します。"
@@ -3869,6 +4439,9 @@
   "d4h9xa9tl2": {
     "defaultMessage": "コートヤードは<code>F.CrtYd</code>に、ボディアウトラインは<code>F.Fab</code>に描画します。チェックにはパッドを囲むコートヤードが必要で、配置ツールはコートヤードを離して保ち、エッジおよび組立ルールはボディから測定します。モデルがない場合でも、3Dビューと高部品ルールに高さを持たせるため、<code>height</code>を設定します。"
   },
+  "d7ggu7mpkv": {
+    "defaultMessage": "回路シミュレーション"
+  },
   "d8xhh7ye1c": {
     "defaultMessage": "2D ページの<code>back</code>トグルは基板を反転させて下面から見る：下面銅が上面の上に描画され、各前面層の可視性が対応する背面層と入れ替わる。<code>agentee render pcb:NAME --show back</code>はこのビューを描画する"
   },
@@ -3884,14 +4457,26 @@
   "dc15fypawa": {
     "defaultMessage": "<code>agentee-view</code>"
   },
+  "ddf6f418qb": {
+    "defaultMessage": "回路シミュレーション - agentee ガイド"
+  },
   "ddp1zi15x0": {
     "defaultMessage": "シミュレーションの予算。FDTD の実行には数十分かかることがあります。スキルは、まずドライランを行い、粗い設定で反復するようエージェントに指示します。GPU の時間が重要な場合は、ブリーフにその旨を明記してください。"
   },
   "dgylf7q4rm": {
     "defaultMessage": "すべてのGerberファイルとドリルファイル。基板メーカーへのアップロード準備完了"
   },
+  "dirz9wtyzb": {
+    "defaultMessage": "<code>agentee library verify</code>は、各部品のシンボルをフットプリントとデータシートと照合し、<code>refresh</code>は在庫と価格を更新します。ライブラリに役割が保持されると、チェックは、設計がその役割にライブラリ外の部品を使用している場合に警告し、使用するライブラリの部品を指定します。プロジェクトは<code>.agentee/library/</code>に独自の部品を追加できます。"
+  },
+  "dkyrwo6xyu": {
+    "defaultMessage": "<code>agentee tune NAME</code>（MCP の <code>tune</code>）はこれらを修正します。スケー上限を超えるすべてのペアと、ターゲットに届かないすべてのマッチグループメンバーについて、短い側を、その最も長い直線セグメント上で、直列チェーンのどこでも、他のすべてのネットのクリアランスと基板エッジルールを維持するバンプでメアンダーさせ、新しい点を配線に書き出します。<code>--nets</code> で範囲を限定し、<code>--amplitude</code> でバンプの高さを上限設定し、<code>--pitch</code> でバンプのピッチを固定します（デフォルトは配線幅の 3 倍、それが収まる場合はより狭く）。ペアの 1 本の脚では、脚がすでに離れている部分（ブレイクアウトや曲がり角など、ミスマッチの原因となる部分）を優先してバンプを付け、クラスギャップを外れてパートナーの脚と並行して走らせないようにします。結合している部分は、ペアをクリアできる高さのバンプのみを付けます。インターフェースは長さだけでなく時間でもカウントされます。<code>max_skew</code>（ps）を超えるペアでは、短い側をその遅延分だけ長くします。<code>max_bus_skew</code> と <code>clock_window</code> については、クロックを、最新のデータラインがそのウィンドウ内に入るまで長くし、バススプレッドやウィンドウの早期エッジに届かないすべてのデータラインを、最新のライン（ウィンドウ内）まで長くします。ペアの 2 本の脚は一緒に扱われます。遅延は、各ネット独自の ps/mm でミリメートルに変換されます。ペアの 1 本の脚がすべてを受け取れない場合、もう 1 本の脚は得られた分まで保持されます。グループのターゲットを超えるネットは報告され、短くはされません。<code>agentee calc serpentine --from x,y --to x,y --add 2.5mm</code>（MCP の <code>serpentine</code>）は、選択したセグメント上のそのようなメアンダーの 1 つの点を返します。ネットの長さと遅延は <code>agentee show pcb:NAME</code> にあり、参照するすべてのネットの名前が表示されます。"
+  },
   "dmqny6e6os": {
     "defaultMessage": "注文を押す前に"
+  },
+  "dotuettavd": {
+    "defaultMessage": "電圧は間隔以上に影響します。"
   },
   "dpkvg4p2g0": {
     "defaultMessage": "<code>dlatch</code>"
@@ -3901,6 +4486,9 @@
   },
   "dqqttfnrhh": {
     "defaultMessage": "<code>blind</code>"
+  },
+  "dr0pwlezlr": {
+    "defaultMessage": "スルーホールオペアンププリアンプ - agentee 実例"
   },
   "dw8ajheq57": {
     "defaultMessage": "agentee MCPサーバー: コーディングエージェント向けツール"
@@ -3917,8 +4505,17 @@
   "e3fdh02qq8": {
     "defaultMessage": "グラフィック - agentee リファレンス"
   },
+  "e4gdhccxs7": {
+    "defaultMessage": "回路図、基板レイアウト、シミュレーションを、コーディングエージェントが書くプレーンな TOML ファイルとして扱います。agentee はすべての編集を基板メーカーのルールに対してチェックし、基板を描画し、インピーダンスを解き、GPU で FDTD と熱シミュレーション、回路図の回路シミュレーションとロジックシミュレーションを実行し、Gerber を書き出します。"
+  },
+  "e5e4gu0f6o": {
+    "defaultMessage": "<code>dangling-via</code>"
+  },
   "e76eh3tzql": {
     "defaultMessage": "<code>*.board.toml</code>"
+  },
+  "ecpxwvt82e": {
+    "defaultMessage": "オペアンプは単一極です。伝導度ゲインが <code>gain</code> オームのノードに接続され、<code>gbw</code> でゲインが 1 になるコンデンサがあり、その後、<code>headroom</code> を引いたレール間で滑らかにクランプされるバッファが <code>rout</code> の後ろにあります (両方のレールピンがない場合はクランプなし)。ゲインノードはクランプを少し超えた位置で停止するため、クリップしたオペアンプは、実際のオペアンプと同様に、入力が要求するやいなやレールから戻ります。クランプとその <code>headroom</code> は両方のレールで同じです。3 つの信号ピンを持つマルチユニットオペアンプの各ユニットは、レールピンを共有する独自のオペアンプです。出力は名前で特定され、名前がない場合はユニットの 1 つの出力ピンとして特定されます。1 つのブロックが部品のすべてのユニットをカバーします。同じ <code>ref</code> に対する 2 番目のブロックはエラーです。LDO は、入力が <code>dropout</code> 以内に入るまで <code>vout</code> を <code>gnd</code> 以上に保ち、その後、入力を下げて追従し、入力が出力電流と <code>iq</code> を供給します。"
   },
   "ecy7xeeb05": {
     "defaultMessage": "<code>fab</code>はルールプリセットを選択します：<code>generic</code>、<code>jlcpcb</code>、または<code>hdi</code>。プリセットは、銅層数、外層銅厚、仕上げをキーとするテーブルです。そのため、4層1オンスの基板は2層2オンスの基板よりも厳しい配線ルールになります。<code>jlcpcb</code>の値はJLCPCBの能力ページの行ごとに従います。<a href=\"/reference/rules/\">ルールリファレンス</a>は、各値とその出典となる行、およびagenteeが意図的に厳しくしている少数の箇所を示します。"
@@ -3944,8 +4541,8 @@
   "exggsye3pl": {
     "defaultMessage": "ゾーンは、アウトライン（デフォルトでは基板）から、他のすべてのネットの銅をクリアランス分拡大したものを除いた領域を、角が丸い正確なポリゴンとして埋めます。ゾーンの <code>min_width</code> より狭いネックは、基板メーカーのエッチングと同様に除去され、どこにも接続しない島は削除されます。1 層では、ゾーンは <code>priority</code> 順に埋められるため、基板全体のグラウンドベタ内の電源ベタは、ショートせず周囲に埋められます。<code>--pad-connection relief</code> は、パッドを固い銅ではなく 4 本のスポークで接続します。"
   },
-  "eze24a6102": {
-    "defaultMessage": "レイアウトにレイアウトエンジンを実行します: 設定された[engine]フェーズを順番に実行し、その後、各用語のスコアと最悪の違反者を出力します。まだ実装されていないフェーズはスキップとしてリストされます。"
+  "eznzojzsb": {
+    "defaultMessage": "<code>peak</code>、<code>trough</code>、<code>rms</code>、<code>freq</code>、<code>thd</code>"
   },
   "f0o5ujzc7n": {
     "defaultMessage": "同じネットの配線が重なり、銅が二重になる"
@@ -3977,11 +4574,17 @@
   "feovy736vz": {
     "defaultMessage": "0.55"
   },
+  "fgv7qmm5yp": {
+    "defaultMessage": "レゾナンス 0.9 でのフィルターのゲインと位相。カットオフでピーク。"
+  },
   "fh4qz0zxp7": {
     "defaultMessage": "ディストリビュータと価格 - agentee リファレンス"
   },
   "fhqzrnvrqw": {
     "defaultMessage": "入力"
+  },
+  "fhx86lu1fd": {
+    "defaultMessage": "CV 0 V、3 V、6 V の 3 回の AC シミュレーションは、カットオフで互いに 0.07 dB 以内であり、エクスポが 6 オクターブにわたりトラッキングします。<code>vcf-res</code> はレゾナンスピークとそれに伴う低域減衰を示し、<code>vcf-osc</code> はフルレゾナンスでフィルターをキックし、振動することをチェックします。トランジスタとオペアンプはデータシートからモデル化し、ポットは <code>potentiometer</code> ブロックなので、実際の部品と同様にワイパーが回路をロードします。"
   },
   "fjcjshzon5": {
     "defaultMessage": "品番"
@@ -3992,8 +4595,14 @@
   "fm2p0hrar5": {
     "defaultMessage": "BGA"
   },
+  "fn16173gff": {
+    "defaultMessage": "ログインが必要な部品やユーザーが提供する部品のために、ローカルPDFをキャッシュに追加します"
+  },
   "fnclo6kdyf": {
     "defaultMessage": "フットプリント配置、配線（アークは短いセグメントとして）、充填を保存したビアとベタ、シルクとファブのテキストおよび線。<code>${TITLE}</code>とプロジェクトのテキスト変数は展開済み"
+  },
+  "fnevjll7rr": {
+    "defaultMessage": "回路図のネットリストから直接行うアナログシミュレーションです。動作点は常に計算され、要求があればACスウィープ、過渡解析、ノイズ解析を行います。ソルバーはニュートン反復（収束しない場合はジャンクション制限、次にgminステップ、次にソースステップ）付きの修正節点解析、各ブレークポイント後の台形積分と後方オイラー法、ニュートン法が失敗した際のステップ半減、動作点での複素AC、および双対法によるノイズ解析です。<code>agentee new sim NAME --kind circuit</code>（MCP <code>new_item</code> で <code>sim_kind = \"circuit\"</code>）はスターターを書き出します。<code>agentee sim NAME</code> は <code>NAME.result.json</code> を書き出します。ビューアは過渡、ゲイン、位相、ノイズをプロットし、動作点とチェックを横に表示します。<code>agentee render NAME</code> は同じ内容をヘッドレスで描画します。"
   },
   "fu1o330nrq": {
     "defaultMessage": "ロジックや MCU のシンボルには、データシートから <code>[levels]</code> テーブルを与え（<a href=\"/guides/parts/\">部品</a> を参照）、回路図には <code>rails</code> テーブルを与えてください。"
@@ -4025,9 +4634,6 @@
   "g2n2yl3yhc": {
     "defaultMessage": "最初の基板から製造パッケージまで、設計の各段階ごとに1つのガイド。"
   },
-  "g2q3qvyy0n": {
-    "defaultMessage": "<code>parts</code> は、<code>mpn</code> フィールドでMouserとFarnellのすべてのBOM行を検索します。そのため、まずすべての部品に <code>mfr</code> と <code>mpn</code> を与えます。それがない行はスキップされます。キーはすべてのプロジェクトの外、<code>~/.config/agentee/distributors.toml</code> にあります。"
-  },
   "g30m3gedrr": {
     "defaultMessage": "銅面は、層の厚さを持つ銅スラブであり、sqrt(j w mu rho) coth(gamma t)で、DCではrho / tに収束します。これに層構成の粗さを因果的な複素係数として乗算します（Dmitriev-Zdorov, Simonovich and Kochikov, \"A Causal Conductor Roughness Model and its Effect on Transmission Line Characteristics\", DesignCon 2018, table 1）。その損失部分は、すべての周波数で正確にHammerstad-Jensenの1 + (2/pi) atan(1.4 (rms / skin depth)^2)またはHurayの1 + 1.5 ratio / (1 + d/a + d^2 / 2a^2)であり、同じ関数が因果性が要求するインダクタンスを追加します。"
   },
@@ -4037,8 +4643,14 @@
   "g40fabyt1j": {
     "defaultMessage": "プロジェクト内のアイテムをリスト表示します"
   },
+  "g41rl2b6iy": {
+    "defaultMessage": "6 オクターブにわたり 0.07 dB 以内で 1 V/oct"
+  },
   "g6frqcmynu": {
     "defaultMessage": "電流<code>&quot;2A&quot;</code> / <code>&quot;500mA&quot;</code>、インピーダンス<code>&quot;50ohm&quot;</code>、温度上昇<code>&quot;10C&quot;</code>、公差<code>&quot;10%&quot;</code>。"
+  },
+  "g6ps69z9qi": {
+    "defaultMessage": "<code>verify</code>は、各部品をチェックします。すべてのシンボルのピンにパッドがあること、ピン留めされたデータシートに部品番号とパッケージ（またはピン数）が記載されていること、シンボルのピン名がデータシートに登場すること、モデルの外形がコートヤードに収まること、フットプリントの穴、スロット、リングがJLCPCBの最小値を満たすこと、各ファイルが追加時のハッシュを保持していること。1つでも失敗すると、終了コード1を返します。"
   },
   "g8kvw5vsrk": {
     "defaultMessage": "CIでのシミュレーション"
@@ -4046,8 +4658,20 @@
   "gaamns4i1l": {
     "defaultMessage": "<code>min_drill</code>, <code>min_via_drill</code>"
   },
+  "gap4xtqpz6": {
+    "defaultMessage": "<code>keepout</code>"
+  },
+  "gcl625e80g": {
+    "defaultMessage": "ユーザーの部品ライブラリに部品を追加します。シンボルとフットプリント (.sym.toml/.fp.toml ファイル、プロジェクト項目、または KiCad Library:Name) と 3D モデルをコピーし、フットプリントの高さをモデルから設定し、データシートを取得して固定し、在庫と価格を記録します。メモには、アクティブ部品として在庫がない場合やデータシートがない場合を記載します。ユーザーが同意した部品のみを追加し、定格はデータシートから取得します。"
+  },
+  "gdtqkljdc2": {
+    "defaultMessage": "ケースコードは、英制属性（<code>Case Code - in</code>）またはFarnellの値の<code>[... Metric]</code>前の部分から読み取られるため、<code>0201 [0603 Metric]</code>と記載された0201は0603と誤認されません。レポートは、選択された通貨別の合計、すべての安い選択、および行われたAPI呼び出し数で終わります。Mouserは1分30回、1日1000回を許可し、部品検索は1回の呼び出しで10個の部品番号を行います。DigiKeyは1分120回、1日1000回を許可し、1回の呼び出しで1個の部品番号を要求します。DigiKeyのパッケージング（カットテープ、テープ&リール）はそれぞれ別のオファーであり、Digi-Reelとマーケットプレイスの掲載は除外されます。拒否されたキーは1回報告され、その販売業者は実行中に再度要求されません。"
+  },
   "gj2bevgtpu": {
     "defaultMessage": "<code>--spares</code>（MCP <code>spares</code>）は手作業組立用の余裕分を追加する：0402 と 0603 の抵抗器とコンデンサは、必要数を超えた次の10の倍数に5を加えた数量で購入し、各<code>D</code>、<code>Q</code>、<code>U</code>、<code>F</code>の行に1個の予備が付く。これらの部品フィールドで変更できる："
+  },
+  "gj8r6li87s": {
+    "defaultMessage": "<code>diode</code>、<code>schottky</code>、<code>zener</code>、<code>led</code>"
   },
   "glhbhwqbjr": {
     "defaultMessage": "ピンは <code>REF.PIN</code> で、番号または一意なピン名で指定します。複数のピンが共有する名前はエラーです。すでにネット上のピンに別のネットを指定すると、新しいネットに移動します。ファイルはコメントとレイアウトを保持します。 <code>agentee edit</code> はファイルを書き込み、レイアウトに保存されたベタの充填を再実行し、変更したファイルのチェック診断を報告します。エラーがあれば終了コード1で終了します。"
@@ -4076,11 +4700,17 @@
   "gtxjkl6uea": {
     "defaultMessage": "5 ns"
   },
+  "gv6a5le9jo": {
+    "defaultMessage": "ノイズ源: 抵抗 (4kT/R)、駆動抵抗、ダイオードおよび BJT のコレクタ電流とベース電流 (2qI)、MOSFET チャネル (8kT gm / 3)、オペアンプの <code>en</code>。結果には、出力密度、<code>input</code> が設定されている場合の入力参照密度、およびバンド内の RMS が含まれます。"
+  },
   "gx36z0lcz6": {
     "defaultMessage": "アイダイアグラム、PDN、Sパラメータ"
   },
   "gx47fhiroy": {
     "defaultMessage": "すべてのレイアウトにはシルクテキスト<code>agentee vX.Y.Z-HASH</code>が含まれます。これはパッケージをビルドしたagenteeのバージョンと、そのソースの短いgitハッシュです。ツリーに未コミットの変更がある場合は<code>-dirty</code>、git外では<code>unknown</code>になります。常にプロットされ、無効にすることはできません。<code>min_silk_text_height</code>の高さで中央揃えです。デフォルトでは<code>B.SilkS</code>に配置されます (下側にスペースがない場合、または基板に下側のシルクがない場合は<code>F.SilkS</code>)。基板の左下隅に最も近い空きスペースに配置され、高い隙間しか合わない場合は90度回転します。空きスペースは、パッド、ビア、他のシルクテキストや線、アートワーク、部品本体から離れ、アウトラインから<code>min_copper_to_edge</code>以内にとどまります。ビューア、レンダリング、組立図に表示され、<code>fab-notes.txt</code>にも名前が記載されます。空きスペースがない場合、チェックは<code>watermark</code>エラーを報告し、確保すべきサイズと最も混雑していない場所を示します。メーカーは拒否します。そこにスペースを確保するか、<code>[watermark] at</code> (および<code>layer</code>、<code>rotation</code>) を自分で設定してください。<code>[watermark]</code>の場所が空きスペースでない場合、衝突したものを特定した<code>watermark</code>エラーになります。<code>kind = \"silk\"</code>レイヤーのない層構成は、そのレイヤーを求める<code>watermark</code>エラーになります。"
+  },
+  "gxjpwau8g0": {
+    "defaultMessage": "<code>C</code>、<code>L</code>"
   },
   "gykjxthnef": {
     "defaultMessage": "メーカー品番で指定した部品。エージェントが自分で選ぶ部品は、理由とともに<code>DESIGN.md</code>に記録します。"
@@ -4102,6 +4732,12 @@
   },
   "h7yu1r51cu": {
     "defaultMessage": "層構成から導出するか手動で列挙するプレスとドリルの順序。どのビアをドリルできるかを決定します。"
+  },
+  "h8mxm4i5ny": {
+    "defaultMessage": "2 層、58 x 108 mm、12HP"
+  },
+  "h8o177nopu": {
+    "defaultMessage": "滑らかな閾値を持つレベル1 MOSFET。シンボルがPMOSと指定する場合はPチャネル：Vth 1.5 V、k 0.5 A/V^2、lambda 0.01"
   },
   "ha3dqxvm42": {
     "defaultMessage": "<code>--hide</code> は、配置場所がないラベルを非表示にします。通常は BGA 下の小型受動部品です。"
@@ -4139,11 +4775,17 @@
   "hrvzg558ac": {
     "defaultMessage": "制御インピーダンスとペア - agenteeガイド"
   },
+  "hsamug97sf": {
+    "defaultMessage": "名前を指定するエラー。ただし、<code>ignore</code> に含まれているか、ブロックがある場合は除く"
+  },
   "hsi82c5mfy": {
     "defaultMessage": "電源配分ネットワーク - agentee リファレンス"
   },
   "hsqnlauo7x": {
     "defaultMessage": "ビューア - agenteeガイド"
+  },
+  "hsyspglgz1": {
+    "defaultMessage": "<code>from</code>から<code>to</code>までの過渡"
   },
   "ht09w0qx1l": {
     "defaultMessage": "同一レイヤーのベタは<code>priority</code>の順、次に面積の小さい順に配置されます。各ベタは既に配置されたベタとのクリアランスを維持するため、基板全体のグランドベタ内部にある小さなスイッチノードや電源ベタは、ショートせずに周囲にベタが張られます。"
@@ -4178,6 +4820,12 @@
   "i0c6h3t4en": {
     "defaultMessage": "生成された本体"
   },
+  "i0uma9y50s": {
+    "defaultMessage": "キャッシュされたデータシートをページ番号付きのテキストとして読み取ります。キャッシュされていない場合は先に取得します。find でピンテーブルや電気的特性を検索します (例: find \"VS\" はその単語を含む箇所を返します。大文字を含む場合は完全一致と大文字小文字を区別します)。pages でページ範囲を指定します。find も pages も指定しない場合、最初の 3 ページとページ数を返します。"
+  },
+  "i1bsyoog90": {
+    "defaultMessage": "90度以上折り返す配線、酸トラップ（ファイル内で座標が丸められるため、半度は許容されます）。"
+  },
   "i4sm2cka8e": {
     "defaultMessage": "階層型シート"
   },
@@ -4193,14 +4841,23 @@
   "ibp664pyt5": {
     "defaultMessage": "ネットリストは次のようにセルに変換されます。"
   },
+  "iehiyjz55q": {
+    "defaultMessage": "参照"
+  },
   "if71kfu7cj": {
     "defaultMessage": "シミュレーション"
+  },
+  "igjrpxichi": {
+    "defaultMessage": "<strong>オペアンプ</strong>は、<code>gain</code>、<code>gbw</code>、<code>rout</code>、<code>vos</code>、<code>en</code>、<code>ib</code>、<code>slew</code>、<code>psrr</code>、および各レールから滑らかにクランプする<code>headroom</code>を持つ単一極です。デュアルやクアッドの各ユニットは、共通レールを持つ独立したオペアンプです。"
   },
   "ijld4ibnc4": {
     "defaultMessage": "<code>center</code>、<code>radius</code>"
   },
   "ijyo5sjjdk": {
     "defaultMessage": "<code>Y0</code>から<code>Y7</code>"
+  },
+  "ilxdi0lbky": {
+    "defaultMessage": "<code>[[keepouts]]</code>を持つレイアウト。"
   },
   "ingvojakto": {
     "defaultMessage": "どのドメインにも属さず、どのバリアもカバーしないネット"
@@ -4241,6 +4898,9 @@
   "j35nejelwe": {
     "defaultMessage": "0603 以下のチップ"
   },
+  "j5yn0wzz7t": {
+    "defaultMessage": "チェックは、<code>mpn</code>を持つ部品にどこにもデータシートがない場合に警告します。"
+  },
   "j6comp4p10": {
     "defaultMessage": "<code>hdi-6l-1n1</code> (1+4+1) では、In1.Cu-In2.CuおよびIn3.Cu-In4.Cu (コア)、In1.Cu-In4.Cu (埋め込み、サブスタック)、レーザーによるF.Cu-In1.CuおよびIn4.Cu-B.Cu、スルー穴によるF.Cu-B.Cu、そして制御された深さの範囲です。<code>hdi-8l-2n2</code> (2+4+2) では、最初のビルドアップがレーザーによるIn1.Cu-In2.CuおよびIn5.Cu-In6.Cu、埋め込みのIn1.Cu-In6.Cuを追加し、2番目のレーザーがF.Cu-In1.Cu、In6.Cu-B.Cu、スキップビアのF.Cu-In2.CuおよびIn5.Cu-B.Cuを追加します。そのため、スタックされたマイクロビアF.Cu-In2.Cuは2回のレーザー工程になりますが、<code>hdi-6l-1n1</code>でのF.Cu-In2.Cuは最初のコアをまたぐことになります。コアを持たない層構成、またはコアが最外層にある層構成は1回のプレスです。そのサブスタックは基板全体です。メーカーがマイクロビアをスタックするか、ずらして配置するかの希望は<code>stacked_microvias</code>に残ります。"
   },
@@ -4268,6 +4928,9 @@
   "jg7uxrpl9s": {
     "defaultMessage": "期待されること"
   },
+  "jhag6fbx7e": {
+    "defaultMessage": "<code>vin</code>、<code>vout</code>、<code>gnd</code>"
+  },
   "jhj3f2nzvm": {
     "defaultMessage": "バスの値は、数値または <code>0</code>、<code>1</code>、<code>x</code>、<code>z</code>、<code>-</code>（任意）の文字列で、MSBが先頭です。"
   },
@@ -4282,6 +4945,9 @@
   },
   "jp0luth8qn": {
     "defaultMessage": "最小配線幅と間隔（2オンス）"
+  },
+  "jsxusob17q": {
+    "defaultMessage": "2 層、60 x 40 mm、スルーホール"
   },
   "jtpda3gs6e": {
     "defaultMessage": "ホールド"
@@ -4307,8 +4973,8 @@
   "k1ri7sr6gl": {
     "defaultMessage": "パン、ズーム"
   },
-  "k647r12v4u": {
-    "defaultMessage": "<code>agentee tune NAME</code>（MCP <code>tune</code>）はこれらを修正します。スキュー制限を超えるすべてのペアと、ターゲットに届かないすべてのマッチグループメンバーについて、長い直線セグメント上で、シリーズチェーンのどこでも、他のすべてのネットのクリアランスと基板エッジルールを維持するバンプで短い側をメアンダーさせ、新しい点を配線に書き込みます。<code>--nets</code>で範囲を限定し、<code>--amplitude</code>でバンプの高さを上限設定し、<code>--pitch</code>でバンプのピッチを固定します（デフォルトは配線幅3倍、収まる範囲でより密に）。ペアの1本の脚では、脚がすでに離れている部分（ブレイクアウトや曲がり角、ミスマッチの原因となる部分）を優先的にバンプし、クラスギャップから外れてパートナーの隣を走っている脚を残しません。結合セグメントは、ペアをクリアできる高さのバンプのみを受け取ります。インターフェースもカウントされます。時間だけでなく長さでも：ペアが<code>max_skew</code>（ps）を超えている場合、短い側の長さをその遅延分だけ伸ばします。<code>max_bus_skew</code>と<code>clock_window</code>の場合、クロックは最新のデータラインがウィンドウ内に入るまで伸ばされ、バススプレッドやウィンドウの早期エッジに届かないすべてのデータラインは最新のデータライン（ウィンドウ内）まで伸ばされます。ペアの両方の脚を一緒に処理します。遅延は、各ネット自身のps/mmでミリメートルに変換されます。ペアの1本の脚がすべてを受け取れない場合、もう1本の脚は受け取った分まで保持されます。グループターゲットを超えるネットは報告され、短くされません。<code>agentee calc serpentine --from x,y --to x,y --add 2.5mm</code>（MCP <code>serpentine</code>）は、選択したセグメント上のそのようなメアンダーの1つの点を返します。ネットの長さと遅延は<code>agentee show pcb:NAME</code>にあります。"
+  "k4lysi2czl": {
+    "defaultMessage": "<code>vth</code>、<code>k</code>、<code>lambda</code>、<code>cgs</code>、<code>cgd</code>"
   },
   "kcruwlbzhh": {
     "defaultMessage": "74HC161, 74HC138, 74LVC1G06, 74LVC1G07, 74HC595"
@@ -4355,6 +5021,9 @@
   "ktplvqwyza": {
     "defaultMessage": "LNA レイアウト: 両端に SMA コネクタ、中央に RF 線、グランドベタ上にステッチングビア。"
   },
+  "kuwxm983gi": {
+    "defaultMessage": "agentee parts and bom: Mouser、Farnell、DigiKey の在庫と価格、ダウングレードなしで代替可能な安い部品、発注書。"
+  },
   "kyfwcabfua": {
     "defaultMessage": "RFシミュレーション: FDTDとカスケード"
   },
@@ -4376,6 +5045,9 @@
   "l633efwpnl": {
     "defaultMessage": "<strong>回路図</strong>: コンポーネントとネット。agenteeがルーティングしたワイヤー付き。"
   },
+  "l8j289vxy0": {
+    "defaultMessage": "最上位の回路図は 4 つのシートを結合します。逆接続保護付き Eurorack 電源ヘッダ、CV を 1 V/oct のテール電流に変換するエクスポコンバータ、BC550C トランジスタ 12 個のラダー、JFET バッファから差動増幅器へ。ポットとジャックは背面に実装し、パネルを貫通します。"
+  },
   "l9sdfg559n": {
     "defaultMessage": "実行条件"
   },
@@ -4391,6 +5063,9 @@
   "lgwkdu5ixz": {
     "defaultMessage": "スクリプトは <code>agentee.exe</code> を <code>%LOCALAPPDATA%\\agentee\\bin</code> に配置し、ユーザーの <code>PATH</code> に追加します。その後、新しいターミナルを開いてください。"
   },
+  "lhwr45y9a9": {
+    "defaultMessage": "dBでのACゲイン"
+  },
   "ljublhbg4": {
     "defaultMessage": "ビルド"
   },
@@ -4403,11 +5078,17 @@
   "llft4kk0v4": {
     "defaultMessage": "<code>agentee mcp</code>はstdio経由で1つのプロジェクトを{count}ツールで提供します。エージェントは自分のファイルツールでTOMLを書き続けます。サーバーはチェック、レンダリング、ルーティング、シミュレーション、基板メーカー用パッケージの書き出しを行い、レンダリングされたPNGを会話に直接返します。"
   },
+  "lluircx1gz": {
+    "defaultMessage": "<code>fetch</code>は、レイアウトまたは回路図のすべての部品のデータシートを、<code>~/.cache/agentee/datasheets/</code>のすべてのプロジェクトで共有されるキャッシュにダウンロードし、<code>datasheets.toml</code>に使用したもの进行記録します。部品の<code>datasheet</code>フィールド、次にシンボルのURL、次に各分销業者が<code>mpn</code>に対してリストしているものを参照します。<code>text</code>は、ページ番号付きのキャッシュされたコピーを読み戻すか、単語を含む箇所のみを読み、エージェントが記憶ではなくソースから閾値やピンアサインを取得できるようにします。ログインが必要な部品は<code>add</code>で追加します。"
+  },
   "lnsppm0cj1": {
     "defaultMessage": "CIでの設計チェック - agenteeガイド"
   },
   "lnxfsx9n9j": {
     "defaultMessage": "チェックは、レベルを持つすべての入力が、レールと抵抗の許容誤差(部品に<code>tolerance</code>フィールドがない場合は1%)の最悪のコーナーで、すべての状態のスイッチ、オフおよびローのオープンコレクタ出力、内部プル、入力リークを介して見る電圧を計算します。入力が次の場合はエラーです。"
+  },
+  "lpbr8enuvo": {
+    "defaultMessage": "<code>a</code>、<code>k</code>"
   },
   "lq8wugwd8k": {
     "defaultMessage": "誘電体は、2Dソルバーと同じDjordjevic-Sarkarモデルに従います（<code>er</code>と<code>loss_tangent</code>は1 GHzで取得）。Debye極は、最低周波数の1/30から最高周波数の30倍まで対数間隔で配置され、各誘電体エッジに極ごとに1つの分極電流があります（帯域内でモデルの損失正接の3%以内、erの0.01以内）。そのため損失は周波数とともに適切に増加し、50オームのマイクロストリップでは1.5、2.2、3 GHzでHammerstadの充填率式から4%以内に収まります。ポート、集積部品、銅を運ぶエッジは、帯域中心で固定された導電率を保持します。銅層は周波数によって変化する表面インピーダンスを持つシートであり、抵抗と内部インダクタンスは帯域全体でスキンの効果、粗さ、仕上げに従います。シートが任意の時間ステップで安定するように暗黙的に更新されます。ゼロ厚みのシートは1つの電流を持ち、実際の銅は2つの面で電流を運ぶため、各シートエッジは実行中にその直上と直下の磁界を追跡し、インピーダンスを(Jtop^2 Ztop + Jbottom^2 Zbottom) / (Jtop + Jbottom)^2として取得します：中央ストリップラインでは面のインピーダンスの半分、プレーン上のトレースでは下面に近い値です。"
@@ -4423,6 +5104,9 @@
   },
   "lw6kc9oukf": {
     "defaultMessage": "<code>mlcc-flex-zone</code>"
+  },
+  "lzju67svdj": {
+    "defaultMessage": "回路図のネットリストのアナログシミュレーション。動作点、AC、過渡、ノイズを実行し、オペアンプ、LDO、デバイスブロックとチェックを含みます。"
   },
   "m0qfhz1awn": {
     "defaultMessage": "ペアのスキューが、そのペアの<code>max_skew</code>またはクラスの<code>max_skew</code>を超えている場合で、伸ばす対象のネット"
@@ -4442,8 +5126,8 @@
   "m71kxhs16e": {
     "defaultMessage": "信号レベルチェック用のレールとアナログ入力は、ファイルの先頭(またはシートセットのトップ回路図の先頭)に配置します:"
   },
-  "m7uamwlq0o": {
-    "defaultMessage": "レイアウトまたは回路図のBOMをMouserとFarnellで価格調査し、より安い同等品を探します。同じパーツを別のディストリビューターで、同じ値、パッケージ、公差、電圧、誘電体を持つ抵抗器とセラミックコンデンサ（ダウングレードはしない）、汎用ディスクリート（2N7002、S1D、SS14、SMAJなど）を名称とパッケージで、インジケータLEDを色とパッケージで、廃盤になるパーツのディストリビューター推奨代替品。コストは必要な数量で計算し、価格ブレークまで購入して安くなる場合はその数量で計算します。キーは~/.config/agentee/distributors.toml（[mouser] api_key、[farnell] api_keyとstore）から取得します。"
+  "marnmnzlg7": {
+    "defaultMessage": "ブロックの種類とそのフィールド:"
   },
   "mcyqv52xym": {
     "defaultMessage": "KiCadはシルクを0.12 mmで描画し、JLCPCBは0.15 mmで印刷します。フットプリントのシルクグラフィックスの<code>width</code>を広げます。もう一つのよくある指摘は、荒い基板メーカーに対するコートヤードまたはパッド間隔です。ルールの上書きではなく、本来あるべき場所であるフットプリントで修正します。"
@@ -4462,6 +5146,9 @@
   },
   "mpzrdlihpw": {
     "defaultMessage": "プロジェクトを開始する"
+  },
+  "mqoi24k5e7": {
+    "defaultMessage": "基板ファイルの先頭に <code>pollution_degree = 2</code>（1、2、または 3、デフォルトは 2）を指定すると、列が選択されます。"
   },
   "mrv3scji9m": {
     "defaultMessage": "回路図のデジタル部分のイベント駆動シミュレーションです。ネットリストから直接実行され、レイアウトは不要です。<code>agentee new sim NAME --kind logic</code>（MCPの<code>new_item</code>に<code>kind = \"sim\"</code>と<code>sim_kind = \"logic\"</code>）は、クロック、リセット、クロック付きアサーションを含むスターターファイルを書き出します。これらは自分のネット名にリネームしてください。<code>--kind fdtd</code>（デフォルト）はFDTD実行を開始します。<code>agentee sim NAME</code>（MCPの<code>run_sim</code>）は、スペックの隣に<code>NAME.result.json</code>とVCD波形<code>NAME.vcd</code>を書き出します。ビューアは、記録された各ネットのトレースを時間軸に対して描画します。"
@@ -4492,6 +5179,9 @@
   },
   "n2abl6epg9": {
     "defaultMessage": "セラミックコンデンサ、<code>C_0603...</code>フットプリントの<code>C</code>"
+  },
+  "n3i5rrozbo": {
+    "defaultMessage": "V/rtHzでのノイズ密度"
   },
   "nbg32w7afb": {
     "defaultMessage": "フットプリントの描画"
@@ -4532,6 +5222,9 @@
   "ntv69zm13y": {
     "defaultMessage": "パスは、TOML ファイルを含むプロジェクトディレクトリです。サーバーを <a>スキル</a> と組み合わせると、エージェントは各ツールをいつ、どの順序で呼び出すかを知ることができます。"
   },
+  "nvaf2zo2o9": {
+    "defaultMessage": "回路図 (sch)、レイアウト (pcb)、基板仕様 (board) を、1行1コマンドで編集します。1回の読み込みと、最後に1回のチェックで完了します。ファイルのコメントとレイアウトを保持し、変更した部分のチェックレポートを返します。存在しないピン、部品、ネットを指定したコマンドは、書き込み前に失敗します。そのターゲットのコマンド一覧は、`help` を単独で送信してください。コマンド: sch add/remove/move/set/net/connect/disconnect/nc/unnc/note; pcb place/unplace/track/untrack/via/unvia/zone/unzone/cutout/uncutout/pair/text/fanout/stitch/watermark/title/test; board class/unclass/via/unvia/outline/cutout/stackup。"
+  },
   "nve8brurko": {
     "defaultMessage": "MCP サーバー"
   },
@@ -4568,6 +5261,9 @@
   "oiis0f7b4j": {
     "defaultMessage": "<code>NAME.sch.toml</code>"
   },
+  "oilaadgex": {
+    "defaultMessage": "部品データシートの取得、キャッシュ、読み取り。~/.cache/agentee/datasheetsですべてのプロジェクトと共有"
+  },
   "oiuakc8lz3": {
     "defaultMessage": "元"
   },
@@ -4589,8 +5285,14 @@
   "os2c8385pu": {
     "defaultMessage": "その他"
   },
+  "osvwj7hhp1": {
+    "defaultMessage": "隣接するネットよりも互いの距離を大きく保つネットのグループ。例えば商用電源の一次側と二次側など。"
+  },
   "othgynjo8g": {
     "defaultMessage": "シルク線幅、文字高さ"
+  },
+  "otqibvz2mt": {
+    "defaultMessage": "レイアウトの<code>title</code>にシルク上で明確な場所がない、またはその<code>at</code>の場所が明確でない。"
   },
   "otvu2ni7al": {
     "defaultMessage": "機械ドリル、最後のプレス後"
@@ -4600,6 +5302,12 @@
   },
   "ozhhecsz5s": {
     "defaultMessage": "<strong>層構成は基板メーカーのものです。</strong>厚さを手入力する代わりに、<code>agentee stackups</code>から<code>JLC04161H-7628</code>やPCBWayのビルドを選択します。"
+  },
+  "p017irs5ep": {
+    "defaultMessage": "ICピンが1つで、それ以外は受動部品だけのネットは、そのピン上に配置されます。フィードバック分圧器とそのフィードフォワードコンデンサはFB上に(すべてのバックスイッチングデータシートのレイアウトセクション)、オペアンプのフィードバックネットワークは反転入力上に、ゲート抵抗とプルダウンはMOSFETのゲート上に、ストラップまたは直列抵抗はそれを駆動するピン上に、ADCフィルタコンデンサはADCピン上に配置されます。入力ピン(シンボルの<code>input</code>タイプ)が優先されます。ICのない電源上のコンデンサは、その電源が給電するインダクタまたはフェライト上に、LEDの抵抗はLED上に配置されます。"
+  },
+  "p2tuzrnesw": {
+    "defaultMessage": "400 mV の正弦波でプリアンプをクリップまで駆動し、各ネットのスペクトルを表示。"
   },
   "p56if3224j": {
     "defaultMessage": "<code>min_hole_to_hole</code>, <code>min_via_hole_to_copper</code>"
@@ -4667,8 +5375,14 @@
   "pvlccgp9z3": {
     "defaultMessage": "各コマンドのヘルプテキストを、バイナリが出力するように表示します。プロジェクトは、コマンドがパスや <code>-p</code> を取らない限り、現在のディレクトリです。"
   },
+  "pz7fvkvbi1": {
+    "defaultMessage": "<code>D</code>、<code>LED</code>、<code>DZ</code>"
+  },
   "q1ap23m16u": {
     "defaultMessage": "<code>neckdown</code>は、小さなパッドへの短い区間としてクラスより細い配線を記録します。クラス<code>neckdown</code>の長さ（デフォルト0.5 mm）まで許可されます。"
+  },
+  "q1zk9pjc4q": {
+    "defaultMessage": "LEDとボタンは、見える場所かつ押せる場所である基板の端に配置され、マウント金具を避けます。"
   },
   "q3vsnxl95d": {
     "defaultMessage": "<code>Y</code>（<code>OE</code>が低レベルのときz）"
@@ -4697,9 +5411,6 @@
   "qc2bzi0q71": {
     "defaultMessage": "Del"
   },
-  "qd2x6bk9v7": {
-    "defaultMessage": "JLCPCBまたは任意の基板メーカー向けにGerber、ドリル、BOM、配置を書き出し、MouserとFarnellでBOMの価格を調べ、エンクロージャ用にSTEPを書き出します。"
-  },
   "qf4dlgfub5": {
     "defaultMessage": "Edge.Cutsのアウトラインとそのカットアウト、厚さ・誘電率・損失正接を含む層構成、仕上げとソルダーレジストの色、<code>NAME.kicad_pro</code>からの設計ルールとネットクラス"
   },
@@ -4708,9 +5419,6 @@
   },
   "qh0ojri5hh": {
     "defaultMessage": "エラー"
-  },
-  "qhk30c8ffk": {
-    "defaultMessage": "<code>agentee parts NAME</code>（MCP <code>parts</code>）は、レイアウトまたは回路図のBOMをMouserとFarnellで価格計算し、代替可能な安い部品をリストします。キーはすべてのプロジェクトの外、<code>~/.config/agentee/distributors.toml</code>にあります（<code>$AGENTEE_DISTRIBUTORS</code>または<code>--config</code>で別の場所を指定できます）。"
   },
   "qimbrf3p7z": {
     "defaultMessage": "<code>agentee-parts</code>"
@@ -4730,17 +5438,29 @@
   "qnljv851lz": {
     "defaultMessage": "<code>interface-skew</code>"
   },
+  "qnna24e0pz": {
+    "defaultMessage": "すべてのシミュレーションは最新です。チェックは古い結果を記録します。"
+  },
   "qnrjed0cry": {
     "defaultMessage": "インピーダンスや電流が重要な基板の前に、<a href=\"/guides/board-spec/\">基板仕様、層構成、ネットクラス</a>を確認します。"
   },
   "qnsjfmc8du": {
     "defaultMessage": "15 mil スタブ、3500 / 3000 mil の長さ、リターンビアは 200 mil 以内"
   },
+  "qoa4bsda5i": {
+    "defaultMessage": "各 <code>*.sim.toml</code> は種別を持つ実行です。フィールドソルバーは Vulkan、Metal、DirectX 12 上の wgpu で実行されます。すべてのシミュレーションは結果を仕様書の隣に書き出し、チェックは結果が古くなったことを記録します。"
+  },
   "qpqn3c21tz": {
     "defaultMessage": "スキルは、タスクが一致したときにエージェントが読み込む指示ファイルです。このスキルは、編集・チェック・レンダリングのループ、設計を構築する順序、ファイル形式の落とし穴、GPU の時間を何時間も費やさずにシミュレーションを反復する方法を教えます。"
   },
   "qqaoguhe3q": {
     "defaultMessage": "インストール"
+  },
+  "qs28izk34e": {
+    "defaultMessage": "設計またはその中の部品の取得は、プロジェクトルートの <code>datasheets.toml</code> に使用したものを書き込みます:"
+  },
+  "qv8lsldabi": {
+    "defaultMessage": "<code>title = &quot;LNA v1.0&quot;</code> は、基板の名称とバージョンをシルクに出力します。ウォーターマークと同様の方法で配置場所を探します。まず <code>F.SilkS</code>（次に <code>B.SilkS</code>）で、<code>min_silk_text_height</code> の 1.5 倍（そのサイズが収まらない場合は最小値）で、左上隅に最も近い空きスペースに配置します。縦長の隙間しかない場合は 90 度回転します。ウォーターマークはこれと重ならないように配置されます。同じ行のテーブルで固定できます。<code>title = { text = &quot;LNA v1.0&quot;, at = [26, 14.5], layer = &quot;F.SilkS&quot;, rotation = 90, size = &quot;2mm&quot; }</code>。<code>text</code> 以外のキーはすべて省略可能です。このキーは最初の <code>[[footprints]]</code> テーブルより上に配置してください。そうしないと TOML がそのテーブルの一部として読み取ります。空きスペースがない場合、チェックは <code>board-title</code> エラーを報告し、最も混雑していない場所を貼り付け用の行として表示します。基板メーカーは拒否します。<code>agentee edit pcb NAME title &quot;LNA v1.0&quot; [--at X,Y] [--layer B.SilkS] [--size 2mm]</code> で書き込み、<code>title --clear</code> で削除します。"
   },
   "qw9dcq11a5": {
     "defaultMessage": "3 つのシミュレーションは、プロットよりも具体的なために FDTD 実行の S パラメータを読み取ります。チャネルシミュレーションはビットストリームをリンクを通して送りアイを描き、PDN シミュレーションはレールのポートを目標に対するインピーダンスに変換し、<code>agentee sparam</code> は任意の結果を時間領域で解析します。それぞれにまず基板の FDTD 実行が必要です。設定方法とコストを抑える方法は <a href=\"/guides/rf-simulation/\">RF シミュレーション</a>を参照してください。"
@@ -4865,6 +5585,9 @@
   "sv92b1l3r7": {
     "defaultMessage": "<code>start</code>、<code>end</code>"
   },
+  "svu1jezdqp": {
+    "defaultMessage": "<strong>ダイオード</strong>は<code>is</code>と<code>n</code>を受け取ります。1桁離れた電流の2つの典型的なVF点に合わせます。<code>n = dV / (Vt ln 10)</code>、次に<code>is = I / exp(V / (n Vt))</code>。"
+  },
   "sxmbmh4p48": {
     "defaultMessage": "層構成プリセット - agentee リファレンス"
   },
@@ -4913,8 +5636,8 @@
   "u06ay1whj4": {
     "defaultMessage": "実装された部品のインピーダンスは、S11とS21のどちらかがより良い条件にあるかによって取得され、その後、1ポートとして基板ポートに結合されます。"
   },
-  "u0gsaa33hb": {
-    "defaultMessage": "agenteeのバージョンと透かしの位置、層構成、仕上げ、インピーダンスクラス、スパン付きの各ビアタイプ、レーザー、機械的または制御深さドリル、サイズ、穴の数、IPC-4761の充填とドリルファイル、側と停止層とスタブ付きの各バックドリル、充填するパッド内のビア、保持するエッジパッド"
+  "u1az541vk1": {
+    "defaultMessage": "20.8 dB、1.07 kHz でローパス"
   },
   "u227emzdla": {
     "defaultMessage": "0.18"
@@ -4928,17 +5651,14 @@
   "ub09le3wy0": {
     "defaultMessage": "gitリポジトリからのcargo installと、ワークスペースの内容。"
   },
-  "uba8p3dl3r": {
-    "defaultMessage": "基板のチェック、描画、配線、シミュレーションを行う30のMCPツール。"
-  },
   "ue0n7x13rn": {
     "defaultMessage": "*.board.toml ファイル: ファブプリセット、外形とカットアウト、層構成、ビアタイプ、インピーダンスと電流目標を持つネットクラス。"
   },
   "ufs7yirhsl": {
     "defaultMessage": "<code>F_Mask.gbr</code>、<code>B_Mask.gbr</code>"
   },
-  "ugkyq9fp3x": {
-    "defaultMessage": "回路図、PCBレイアウト、シミュレーションを、コーディングエージェントが書くプレーンなTOMLファイルとして扱います。agenteeは各編集を基板メーカーのルールに対してチェックし、基板を描画し、インピーダンスを解き、GPU上でFDTD、熱、ロジックのシミュレーションを実行し、Gerberを書き出します。"
+  "ug21i4qvs2": {
+    "defaultMessage": "4 ポール、1 オクターブあたり 24 dB"
   },
   "uk5y9kvoda": {
     "defaultMessage": "バッチは1回の読み込みと末尾の1回のチェックで構成されるため、中間の未完成状態はフラグが立てられません。ピンは<code>REF.PIN</code>で、番号または一意なピン名で指定します。<code>D1.A</code>はアノードであり、出力がどの番号に解決されたかを確認できます。"
@@ -4964,6 +5684,9 @@
   "uw5fig3ut9": {
     "defaultMessage": "スキルを読む"
   },
+  "uwau15nq20": {
+    "defaultMessage": "ネットリストは、シンボルの参照文字によって要素に変換されます："
+  },
   "ux8zd7myih": {
     "defaultMessage": "基板仕様"
   },
@@ -4972,6 +5695,9 @@
   },
   "v3czk205np": {
     "defaultMessage": "<code>pair-gap</code>"
+  },
+  "v7fhnp7aqe": {
+    "defaultMessage": "ライブラリ部品すべて、または1つについて、販売代理店の在庫と価格を確認します"
   },
   "v8uikgvbmu": {
     "defaultMessage": "スルー、ブラインド、バリアード、マイクロビア、スタックビア、スキップビア、制御深度ドリリング、バックドリル、IPC-4761 ビアフィル。"
@@ -4984,9 +5710,6 @@
   },
   "vevjglgna0": {
     "defaultMessage": "フォーマットのリファレンスを渡す"
-  },
-  "vg1052wiwx": {
-    "defaultMessage": "ネットクラスには1つのクリアランスがあり、他のすべてのネットに対して保持される。あるグループから他のグループへの距離を、近隣のネットより大きく保つ必要がある場合（商用電源の一次側と二次側、浮遊レールと二次側の残りの部分など）、ネットをドメインに配置し、2つのドメイン間にバリアを設定する："
   },
   "vgzxbueyi7": {
     "defaultMessage": "マウスを使った方が速い判断もあります。エンクロージャの希望する位置にコネクタを微調整したり、コンポーネントの周りに1本の配線をルーティングし直したり、ビアを配置したりすることです。2Dレイアウトページでレイアウトを編集し、保存(ctrl+S)すると、CLIと同じコメントと順序を保持する書き込みプログラムで<code>.pcb.toml</code>に変更が書き込まれます。エージェントは、次にファイルを読み込む際に変更を認識します。"
@@ -5030,6 +5753,9 @@
   "vzq1ignn5n": {
     "defaultMessage": "SDR 用の広帯域 SPF5189Z 低雑音増幅器。回路図から配線済みの 4 層レイアウトまで、FDTD、ベンダーデータによるカスケード、DC ドロップ、熱シミュレーション付き。"
   },
+  "w14eiw6ynb": {
+    "defaultMessage": "<code>agentee bom NAME</code>（MCPの<code>bom</code>）は、コストを表形式で出力します。BOM行ごとに1行で、基板あたりの数量、部品番号、出典の販売業者とSKU、および各基板数（<code>--boards</code>、デフォルトは1、10、100）での行合計、次に合計、基板あたりのコスト、価格評価できなかった行数を表示します。各数量は、その数量で在庫がある最も安いオファーを選択するため、100基板の場合と1基板の場合で異なる販売業者から行が来る可能性があります。そのようなセルには<code>*</code>が付きます。すべての部品は最大の数量で1回だけ検索され、小さい数量は同じ価格ブレークから価格評価されるため、表のコストは<code>parts</code>の実行1回と同じAPI呼び出し数です。代替品の検索は行いません。<code>parts</code>がそれを行います。"
+  },
   "w5ismz424f": {
     "defaultMessage": "<code>via-lamination</code>"
   },
@@ -5042,8 +5768,14 @@
   "w7ba4yzjw9": {
     "defaultMessage": "<code>current</code>は、クラスが使用できるすべての層で、<code>max_temp_rise</code>(既定は10 C)に対してIPC-2221でチェックされます。内層は外層より電流が小さく、チェックは各層でその電流を流す幅を指定します。"
   },
+  "w8u6bh20yf": {
+    "defaultMessage": "部品を検索します。一致するライブラリの部品を返し、一致しない場合 (または search が設定されている場合) に、Mouser、Farnell、DigiKey で在庫のあるアクティブ部品を同じ単語で検索し、部品番号で統合して、総在庫、在庫のある販売店、必要な数量での最安単価、データシートのリンクを返します。ライブラリにその役割の部品がない場合に使用します。データシートから選び、library_add で選択を登録し、library_use で使用します。"
+  },
   "w8vs1sxjll": {
     "defaultMessage": "agenteeのすべてのファイルのキーごとのリファレンス: 基板仕様、層構成、ビアと基板メーカーのルール、設計ルールチェック、シンボル、フットプリント、回路図、レイアウト、シミュレーション、製造パッケージ。"
+  },
+  "w9ytudnnpd": {
+    "defaultMessage": "KiCadから<code>passive</code>または<code>unspecified</code>としてインポートされたピンは、潜在的なドライバとして扱われるため、ルールはシンボルがピンの種類を指定している場合のみ適用される。<code>Default</code>ネットクラス内のすべてのネットは警告になる。クラス名が指定されていない場合でも、<code>Default</code>が指定されている場合でも同様である。クラスはネットの幅、クリアランス、ビア、ルーティング順序を設定するため、各ネットは自分の種類を指定すべきである。この警告には基板と回路図のレイアウトが必要であり、シミュレーションのみ(例: <code>examples/logic</code>)の回路図ではスキップされる。基板にはネットの種類ごとにクラス(<code>Signal</code>、<code>Data</code>、<code>Clock</code>、<code>Analog</code>、<code>Ground</code>、<code>Power</code>、<code>RF</code>、ペア)を与え、<code>Default</code>はクラスがカバーしないルールにレイアウトが使用するフォールバックとして残す。<code>agentee show sch:lna</code>はすべてのピンの位置を出力する。"
   },
   "wb6rqca056": {
     "defaultMessage": "実行するタイミング"
@@ -5057,6 +5789,9 @@
   "wdyhpqood2": {
     "defaultMessage": "<code>hdi</code>, <code>stacked_microvias</code>"
   },
+  "we3xrxu6s3": {
+    "defaultMessage": "<code>current</code>を持つクラス内のネットが4つ以下の部品に到達する場合、それは電流ループとみなされ、1 + 1.5/アンペアで計算されます。<code>current</code>のないループは2 Aで推定されます。ICピンとその出力間のインダクタ、MOSFETのドレインまたはソースからコネクタへの接続、センス抵抗(<code>power</code>フィールドが0.25 W以上)、またはヒューズです。コネクタまたはインダクタに1 A以上の電流を流すICはノイズが大きく、そのコネクタに引き寄せられます。これにより、ステッパードライバやファンスイッチは負荷の隣に配置されます。"
+  },
   "wg81j9pw7d": {
     "defaultMessage": "<code>*.board.toml</code>: 基板メーカープリセット、層構成プリセット、<code>[rules]</code>、<code>[[netclasses]]</code>、<code>[[vias]]</code>"
   },
@@ -5065,9 +5800,6 @@
   },
   "wjnhc1ufi9": {
     "defaultMessage": "サフィックス"
-  },
-  "wkkjumi055": {
-    "defaultMessage": "長時間のシミュレーションはバックグラウンドで実行し、他の部分を編集し続けます。結果が古くなるとチェックが警告を出します。"
   },
   "wonqk3rj7e": {
     "defaultMessage": "<code>Edge_Cuts.gbr</code>"
@@ -5090,6 +5822,9 @@
   "wv1dyxl3wo": {
     "defaultMessage": "高さ 3 mm 超の部品から、その高さ以内にある 0603 以下の 2 パッドチップ。チップのパッドから高い部品の本体まで測定 (EMS の目安 1:1: リフローと検査時の影)。高さはフットプリントの <code>height</code> から取得し、なければ 3D ビューがモデルなしで描画する本体から取得します: ファミリーのデフォルト (SOIC、QFN、ヘッダ、シールド) または名前の <code>_h1.25mm</code> 部分。"
   },
+  "wyxtns2rv": {
+    "defaultMessage": "実行は、仕様の隣に<code>preamp-ac.result.json</code>を書き、すべてのネットの動作点、すべての部品を流れる電流、各チェックとその値、記録されたネットの曲線を含む。ビューアと<code>render</code>はゲイン、位相、ノイズをプロットする。"
+  },
   "wzkbrlmz4f": {
     "defaultMessage": "汎用ディスクリート、JEDEC名（2N7002、BSS138、1N4148、BAT54、BZT52、S1x、SS1x、SMAJ、BC847など）が値の<code>D</code>または<code>Q</code>"
   },
@@ -5101,6 +5836,9 @@
   },
   "x3j6gd5rkw": {
     "defaultMessage": "プロジェクトファイル - agentee リファレンス"
+  },
+  "x3zinyon7j": {
+    "defaultMessage": "レイアウトまたは回路図のシミュレーション: FDTD、カスケード、チャネル、PDN、DCドロップ、熱、ロジック、回路。"
   },
   "x422pfyxst": {
     "defaultMessage": "<code>region = [x0, y0, x1, y1]</code>で、信号が通過する基板の部分にトリミングします。"
@@ -5126,6 +5864,9 @@
   "xd9q7qc4ol": {
     "defaultMessage": "<code>*.sym.toml</code>、シンボルごとに1つ"
   },
+  "xdfeoi809t": {
+    "defaultMessage": "クラスにクリアランス以上の<code>diff_gap</code>があり、ネットごとに1つの接続を持つペアは、結合状態でルーティングされます。両方のトラックとギャップの幅を持つ中心線が、1つの層上で、1組のパッドの中央付近からもう1組のパッドの中央付近まで探索され、ペアのギャップに正確にオフセットされて2本のトラックになります。その後、各ネットは通常のブレイクアウトでパッドとトラックを接続します。中心線は通常のネットと同様に交渉するため、他のネットと重なるペアは次のラウンドで再配置されます。ペアの2つのネット間では、通常のクリアランスのみが適用されるため、ブレイクアウトは結合トラックの横を走れます。接続が未解決のまま残ったペアは、非結合状態で1回再試行され、接続が増えればその状態で保持されます。<code>--pairs</code>は受け入れられますが、それ以上の動作はありません。<code>max_vias</code>を持つインターフェース内のネットは、レーンの残りのビアルの割り当てを受け取ります(レーンから既存のビアルを差し引いたものを、ルーティング中のレーンのネット数で割ったもの)。割り当てを超える接続は、ビアルのコストを高めて(4倍、ビアルが残っていない場合は16倍)再探索され、2番目のルートは収まった場合のみ保持されます。そうでない場合、最初のルートが採用され、チェックは<code>interface-vias</code>を報告します。すべてのレーンを予算に収めることは、節約したエラー数より多くの接続コストを要するためです。"
+  },
   "xdn9jbx1c5": {
     "defaultMessage": "<code>NAME.d356</code>"
   },
@@ -5137,6 +5878,9 @@
   },
   "xetsghciuj": {
     "defaultMessage": "<code>symbols/</code>"
+  },
+  "xgn8ocf8cm": {
+    "defaultMessage": "<code>clearance</code>を持つバリア、またはそれが必要なクラス電圧。"
   },
   "xktfmjujro": {
     "defaultMessage": "スターターに<code>board = &quot;blinky&quot;</code>と<code>schematic = &quot;blinky&quot;</code>を追加します。ここでチェックは失敗しますが、これが正しい挙動です。"
@@ -5171,14 +5915,20 @@
   "xzk7gat1y5": {
     "defaultMessage": "<code>microvia</code>"
   },
+  "y0shu84u6w": {
+    "defaultMessage": "回路"
+  },
   "y1t5rm0tbh": {
     "defaultMessage": "<code>solver = \"field\"</code>は、閉じた形の公式ではなく、ソルダーレジストと銅の厚さを考慮したGPUフィールドソルバーでクラスをチェックします。"
   },
   "y23t5uhb43": {
     "defaultMessage": "シート"
   },
-  "y56cpfpudy": {
-    "defaultMessage": "<strong>シミュレーション</strong>: Sパラメータプロットとスミスチャート、TDR、アイパターン、PDNインピーダンス、DC電圧降下、電流密度と温度マップ、論理波形。"
+  "y39w1tss1e": {
+    "defaultMessage": "<code>title</code>を持つレイアウト。"
+  },
+  "y51rg2j1sw": {
+    "defaultMessage": "<code>[fab_notes]</code> は、層構成以外に <code>fab-notes.txt</code> が基板メーカーに求める内容を設定します。すべてのキーは任意であり、ノートには常にデフォルト値が含まれます。"
   },
   "y6qutugiwd": {
     "defaultMessage": "エージェント向けMarkdown"
@@ -5201,6 +5951,9 @@
   "y8i0lygtdi": {
     "defaultMessage": "<code>agentee fab</code>はレイアウトにエラーがある間は拒否します。クリーンになると、基板メーカーがそのまま受け入れるパッケージを書き出します。シルクにagenteeのバージョンとコミットを含むため、すべての基板が何でビルドされたかを示します。"
   },
+  "y8vrlhyonm": {
+    "defaultMessage": "<code>erc-tristate-contention</code>"
+  },
   "yc9r30dm9u": {
     "defaultMessage": "BOMはこれらでグループ化し、<code>agentee parts</code>は<code>mpn</code>で在庫、価格、より安い同等品を検索します。<a href=\"/guides/fab/\">Fabパッケージ、BOM、価格</a>を参照してください。"
   },
@@ -5210,8 +5963,8 @@
   "ydfgdztl7j": {
     "defaultMessage": "<code>rect</code>"
   },
-  "yebgi2jbad": {
-    "defaultMessage": "ネットは最大1つのドメインに属する。ドメイン内およびドメインに属さないネットでは、クラスクリアランスが従来通り適用される。バリアを持つ2つのドメイン間では、1層上の銅がバリアの<code>clearance</code>（<code>isolation-clearance</code>）を保持し、1つのフットプリントのパッドやベタも含む。ベタと自動ルーティングは、充填と配線時に他のドメインの銅からバリアを保持する。F.Cu と B.Cu では、スロット周りの経路を測定できないため、<code>clearance</code>と<code>creepage</code>の大きい方を保持する"
+  "ydiw24quw7": {
+    "defaultMessage": "スルーホールオペアンププリアンプ"
   },
   "yfwyujuwr8": {
     "defaultMessage": "2"
@@ -5219,11 +5972,17 @@
   "yg67ojncc5": {
     "defaultMessage": "JLCPCBの列形式での配置"
   },
+  "yh7p85ay2c": {
+    "defaultMessage": "プリアンプの電源投入。バイアスが定着する間にゲイン段がクリップし、出力が膨らんだ後、0 V に戻ります。"
+  },
   "yihidovnt4": {
     "defaultMessage": "発注前に、実際のエンクロージャで。"
   },
   "yko6k45sn": {
     "defaultMessage": "レイアウトエンジンのカード"
+  },
+  "ykxd98c94k": {
+    "defaultMessage": "ライブラリ部品からシンボル、フットプリント、モデルをプロジェクトにコピーし、配置する編集内容を表示します"
   },
   "ym46vdpzte": {
     "defaultMessage": "しきい値から100 mV以内は警告です。<code>analog</code>に列挙された入力はADCで読み取られるため、限界値のみが適用されます。チェックがモデル化できないもの(出力やコネクタなど)が乗っているネットは、推測するのではなくスキップされます。"
@@ -5245,6 +6004,9 @@
   },
   "yxvf3ydeca": {
     "defaultMessage": "弱いプルを介したリークで、有効なレベルからずれてしまう場合。"
+  },
+  "yylci6i9na": {
+    "defaultMessage": "データシート - agentee リファレンス"
   },
   "yz4kuzy1qr": {
     "defaultMessage": "VILとVIHの間に置かれる可能性がある場合。例えば、分圧が中間に落ちる場合。"
@@ -5279,6 +6041,9 @@
   "z9fsbaql10": {
     "defaultMessage": "シンク、デカップ、VRM による電源レールのインピーダンスを目標値に対して評価し、修正すべきアンチレゾナンスを示します。"
   },
+  "za0yg7igha": {
+    "defaultMessage": "キープアウトがその層で列挙していないネットの配線またはビア。<code>agentee route</code>とレイアウトエンジンはそれらを迂回してルーティングします。"
+  },
   "zayrhnbz0u": {
     "defaultMessage": "外形は、<code>size</code>、<code>origin</code>、<code>corner_radius</code>を持つ長方形、または<code>points</code>のポリゴンです。切り欠きは、基板を貫通してルーティングされた窓、スロット、大きな穴です。エッジに関心を持つもの(エッジまでの銅、パッド、ベタ、ルーティング、シミュレーション)は、切り欠きのエッジを基板エッジとして扱います。レイアウトファイル内の切り欠きは異なります。一部の層で、特定の領域にベタを入れないようにするだけです。"
   },
@@ -5293,6 +6058,9 @@
   },
   "zklzpmnsvt": {
     "defaultMessage": "<code>min_silk_width</code> 未満の基板シルクライン(レイアウトの <code>[[graphics]]</code>、テキストではない)。最も細いものでカウント。フットプリントのシルクはフットプリントでチェック"
+  },
+  "zlj7m71gw3": {
+    "defaultMessage": "オープンコレクタまたはオープネミッタピンで、ラインをプルする他の要素がない場合: レジスタ、コネクタ、出力、レールがなく、<code>levels</code>に内部<code>pull_up</code>または<code>pull_down</code>を持つ入力もない。"
   },
   "zluqrvuq4m": {
     "defaultMessage": "回路図とレイアウト"
