@@ -12,7 +12,8 @@ model_scale = [1, 1, 1]                # optional
 # mask_web = false             # the fab opens the mask over all pads of a fine pitch part as one
                                # window, so min_mask_web is not checked between its own pads
 # clearance = "0.2mm"          # as KiCad's footprint clearance: its pads keep this from other
-                               # copper instead of the net class clearance
+                               # copper instead of the net class clearance, and inside its
+                               # courtyard so do the tracks and vias of the nets on its pads
 # overhang = true              # a connector meant to hang over the board edge: part-body-to-edge
                                # skips it, its SMD pads still keep min_part_to_edge
 # mlcc = false                 # not a ceramic capacitor (film, polymer): the mlcc-flex-zone rules

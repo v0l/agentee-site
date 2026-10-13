@@ -95,6 +95,7 @@ track_width = "1mm"
 current = "3A"                 # checked against IPC-2221 on every layer
 max_temp_rise = "10C"          # default 10C
 voltage = "48VDC"              # or "-12VDC", "230VAC" (rms); sets spacing, see Net class voltage
+# own_voltage = "15VDC"        # nets that ride together, see Net class voltage
 
 [[netclasses]]
 name = "USB"
@@ -473,6 +474,15 @@ are only held to that class's own clearance, so L1 and L2 in one `Mains` class w
 line to line voltage. Two AC classes are taken as in antiphase (L1 to L2 at 460 V rather than
 398 V), which errs on the safe side.
 
+The opposite case is a group of nets that move together: the high side of a half bridge, where
+the bootstrap, the gate drive and the gate sit within 15 V of the switch node while the node
+swings over the whole bus. Put them in one class with `voltage = "430VDC"`, what they reach
+against ground, and `own_voltage = "15VDC"`, the most they differ from each other. `voltage` keeps
+setting the class clearance to every other class and the barriers; `own_voltage` sets the
+clearance between two nets of the class (IPC-2221B B2 for its peak, never under the fab's
+`min_clearance`), on tracks and between pads of one footprint. Pours keep the class clearance,
+and `agentee route` keeps it too, so route these few nets by hand or let them take the wider gap.
+
 The voltage reaches further than spacing:
 
 - A DC sim `[[supplies]]` pad with no `voltage` is held at its net's class voltage.
@@ -569,20 +579,39 @@ part is tried at is checked with its pads at that spot against the copper around
 that breaks a rule is passed over. Tracks and vias on nets that touch a part being placed are
 ignored, since moving the part leaves them to be routed again.
 
+Parts whose nets all sit in one domain are kept apart from the parts of a domain it has a barrier
+with, by the barrier's distance. A zone with an `outline` marks where its net's domain lives: a
+part of that domain placed outside every such outline pays for the distance, so drawing the
+primary and secondary pours first settles which side of the slots each domain goes. The back of a
+through-hole part is open to parts on the other side, apart from its holes.
+
 ```toml
 [drc]                          # in the board file
 disable = ["silk-width"]       # rule ids to skip; their checks are not computed, so with silk-text
                                # and silk-hidden off `agentee silk` has nothing to move
 severity = { "starved-thermal" = "error", "via-in-pad" = "warning" }   # info | warning | error
 tombstone_ratio = 3            # copper or feed width one chip pad may have over the other
+
+[[drc.waive]]                  # accept one finding as reviewed: it is dropped from the report
+rule = "pad-off-board"         # the rule id
+at = "part J1"                 # the place DRC prints before the message: part J1, net GND, pad U1.3
+reason = "milled edge-card socket"
+
+[[drc.waive]]                  # a finding between two items names both, in either order: a pad
+rule = "clearance"             # as DRC prints it or `net NAME` for any copper of that net
+at = "U2.12 / net HB"
+reason = "package pin pitch"
 ```
+
+A waived finding shows as an info line with its reason. A waiver that matches nothing is a
+warning, so one left behind after the geometry changes is noticed.
 
 | id | severity | runs when | checks |
 |---|---|---|---|
 | `via-cuts-pad` | error | always | a via whose copper overlaps or touches an SMD pad while its drill is not fully inside the pad: solder wicks down the barrel and the pad edge is damaged. A via of another net touching a pad is reported as a `short` instead |
 | `via-annulus-past-pad` | warning | vias in pads | the drill sits in the pad but the via's annulus reaches past the pad edge under the mask |
-| `via-in-pad` | info | vias in pads | counts the vias in SMD pads of their own net (drill inside the pad); `fab-notes.txt` asks the fab to fill and cap exactly these (IPC-4761 type VII) |
-| `via-in-pad-fill` | error | vias in pads | a via in a pad drilled wider than `max_filled_via_drill`, or whose via type sets a `fill` other than `filled_capped` (IPC-4761 type VII) |
+| `via-in-pad` | info | vias in pads | counts the vias in SMD pads of their own net (drill inside the pad), and the plated holes a footprint puts in its own SMD pad (KiCad `_ThermalVias` exposed pads); `fab-notes.txt` asks the fab to fill and cap exactly these (IPC-4761 type VII) |
+| `via-in-pad-fill` | error | vias in pads | a via or footprint hole in a pad drilled wider than `max_filled_via_drill`, or whose via type sets a `fill` other than `filled_capped` (IPC-4761 type VII) |
 | `hole-to-smd-pad` | warning | always | a via hole closer than `min_hole_to_smd_pad` to an SMD pad of its own net (or no net) that it does not touch; paste and solder can flow into it |
 | `drill-size` | error | always | pad holes under `min_drill` (plated) or `min_npth_drill` (non-plated), or over `max_drill` (larger holes are routed, draw them as cutouts). Via sizes are checked on the board's `[[vias]]` |
 | `slot-size` | error | slotted holes | slots narrower than `min_plated_slot_width` or `min_npth_slot_width`, or shorter than twice their width |
@@ -617,7 +646,7 @@ tombstone_ratio = 3            # copper or feed width one chip pad may have over
 | `placement-cluster-spread` | info | parts | a two-pin passive whose signal nets reach one IC and nothing else, farther than `cluster_spread` (10 mm) from that IC's pin |
 | `placement-connector-not-at-edge` | info | parts | a connector (edge pads, `overhang = true`, or a `J`/`P` reference that is not a Tag-Connect, U.FL or test pad) whose courtyard is farther than `connector_edge` (3 mm) from the outline |
 | `short` | error | always | copper of two different nets touches |
-| `clearance` | error | always | copper of two nets closer than the larger of their class clearances (a footprint `clearance` replaces them for its pads), or copper run into a non-plated hole. Pads of one footprint are held to `min_clearance` and to the class clearance of nets in an isolation domain; spark gap electrodes are skipped |
+| `clearance` | error | always | copper of two nets closer than the larger of their class clearances (a footprint `clearance` replaces them for its pads, and inside its courtyard between copper of nets on its pads), or copper run into a non-plated hole. Pads of one footprint are held to `min_clearance` and to the class clearance of nets in an isolation domain; spark gap electrodes are skipped |
 | `isolation-domain` | error | `[[domains]]` | a net whose class or name puts it in two domains |
 | `isolation-unassigned` | warning | `[[domains]]` | nets in no domain, which no barrier covers |
 | `isolation-clearance` | error | a barrier with `clearance`, or class voltages that need one | copper of two domains on one layer closer than the clearance of the barrier between them, pads of one footprint and pours included; one line per net pair with the closest spot |
@@ -870,7 +899,8 @@ model_scale = [1, 1, 1]                # optional
 # mask_web = false             # the fab opens the mask over all pads of a fine pitch part as one
                                # window, so min_mask_web is not checked between its own pads
 # clearance = "0.2mm"          # as KiCad's footprint clearance: its pads keep this from other
-                               # copper instead of the net class clearance
+                               # copper instead of the net class clearance, and inside its
+                               # courtyard so do the tracks and vias of the nets on its pads
 # overhang = true              # a connector meant to hang over the board edge: part-body-to-edge
                                # skips it, its SMD pads still keep min_part_to_edge
 # mlcc = false                 # not a ceramic capacitor (film, polymer): the mlcc-flex-zone rules
@@ -2471,6 +2501,15 @@ min = 19.5
 # phase = "OUT"                # degrees at a frequency
 # noise = "OUT"                # V/rtHz at a frequency, at the [noise] output
 
+[[checks]]
+thd = "OUT"                    # over the transient: peak, trough, rms, freq or thd
+from = "2ms"                   # the span read, default the whole transient
+# to = "10ms"
+max = "1%"
+# peak = "OUT"                 # highest voltage in the span; trough is the lowest
+# rms = "OUT"                  # RMS about the span's mean, V
+# freq = "OUT"                 # from the rising crossings of the mean, Hz
+
 [[blocks]]                     # a model for a part, by `ref` or by `value` (every such part)
 ref = "U1"
 kind = "opamp"
@@ -2480,8 +2519,28 @@ gbw = "1MHz"
 # vos = "0V"
 # en = "10n"                   # input voltage noise, V/rtHz
 # headroom = "0.1V"            # how close the output swings to its rails
+# headroom_high = "1.5V"       # per rail, default `headroom`
+# headroom_low = "5mV"
+# slew = "0.3V/us"             # slew rate, transient only
+# ib = "-20nA"                 # input bias current, into each input pin
+# psrr = "100dB"               # supply changes about the operating point, referred to the input
+# fc = "100Hz"                 # 1/f corner of `en`
 # pins = { inp = "3", inn = "2", out = "1", vcc = "8", vee = "4" }
+
+[[blocks]]
+ref = "RV1"
+kind = "potentiometer"         # pins 1 and 3 are the ends, 2 the wiper
+position = 0.25                # 0 puts the wiper at pin 1, 1 at pin 3; default 0.5
+# resistance = "10k"           # the end to end value, default the part's value
 ```
+
+`thd` is the harmonics 2 to 10 against the fundamental, in percent, over the whole periods
+between the first and last rising crossing of the mean in the span. `freq` and `thd` need at
+least one full period there. Start the span after the circuit settles, or the start-up step
+reads as distortion.
+
+A transient also stores the spectrum of each recorded net over its second half (a Hann window,
+in dBV, 2048 bins), drawn under the transient in the viewer.
 
 The built-in device models below are generic stand-ins (a silicon diode, a small-signal BJT, a
 logic-level MOSFET), not the part on the schematic. Give each part that matters a block with
@@ -2521,8 +2580,12 @@ Block kinds and their fields:
 
 An op-amp is a single pole: a transconductance into a node with `gain` ohms and a capacitor that
 puts unity gain at `gbw`, then a buffer clamped smoothly between its rails less `headroom` (no
-clamp without both rail pins) behind `rout`. Every unit of a multi-unit op-amp with the three
-signal pins is its own op-amp sharing the rail pins. An LDO holds `vout` above `gnd` until the
+clamp without both rail pins) behind `rout`. The gain node stops a little past the clamp, so a
+clipped op-amp comes back off its rail as soon as its input asks it to, as a real one does,
+rather than winding up. The clamp and its `headroom` are the same on both rails. Every unit of a
+multi-unit op-amp with the three signal pins is its own op-amp sharing the rail pins, the output
+found by name or, when it has none, as the unit's one output pin. One block covers every unit of
+a part; a second block for the same `ref` is an error. An LDO holds `vout` above `gnd` until the
 input comes within `dropout`, then follows the input down, and the input supplies the output
 current plus `iq`.
 
@@ -2535,7 +2598,11 @@ when the spec or the schematic's netlist changes. `examples/lna` holds two: `lna
 OR-ing of the 5 V input through a Schottky to U1's bias current, and `lna-biastee`, how far the
 bias tee keeps RF on the output off VBIAS. Both take U1 as its 90 mA quiescent current and the
 BAT60A from its typical VF, from the two datasheets; the LED, which has no part number, is left
-out.
+out. `examples/preamp` is an op-amp design run through every analysis: the operating point, gain
+and noise of a gain stage and Sallen-Key filter on a dual LM358, the power-up thump as the
+mid-rail bias settles, clipping, and the reverse battery diode. `examples/ladder-vcf` is a BJT ladder filter: its sims
+check the expo converter's 1 V/oct tracking at three CVs, the resonance peak, and self-oscillation
+in a transient.
 
 ## Graphics
 
@@ -2581,7 +2648,7 @@ text.
 | `--focus A,B,...` | schematics and layouts: zoom to these references, net names or `REF.PIN`, `*` matching any run of characters. A net brings in the parts it touches, a pin its net |
 | `--context dim\|hide\|show` | what happens to everything outside `--focus` (default `dim`) |
 | `--rulers` | label mm coordinates along the top and left edges |
-| `--show` / `--hide` | layers to turn on or off, e.g. `--hide F.Cu --show In1.Cu` |
+| `--show` / `--hide` | layers to turn on or off, e.g. `--hide F.Cu --show In1.Cu`; `--hide F.Cu` alone shows every other copper layer |
 
 A name that matches nothing is an error. `--region` with `--focus` keeps the filter and uses the
 region for the zoom.
@@ -2595,7 +2662,7 @@ region for the zoom.
 | `NAME.board.toml` | the Edge.Cuts outline (closed loops inside it become `[[outline.cutouts]]`, loops outside it are left out and reported), the stackup with thickness, er and loss tangent, the copper finish and mask colour, the design rules and net classes from `NAME.kicad_pro` |
 | `NAME.pcb.toml` | footprint placements, tracks (arcs as short segments), vias and zones, with agentee's zone fills stored, and the silk and fab text and lines drawn on the board, with `${TITLE}`, `${DATE}` and the project's text variables filled in |
 | `NAME.sch.toml` | every part with its value, and each net as a list of pins, drawn with net labels |
-| `footprints/` | each footprint as it sits on the board, bottom-side ones flipped back to the top, pad drill offsets kept |
+| `footprints/` | each footprint as it sits on the board, bottom-side ones flipped back to the top, pad drill offsets kept; copper pads that cross or touch the board outline or a cutout, and pads KiCad marks castellated, get `edge = true` |
 | `symbols/` | one box symbol per footprint with a pin per pad number |
 
 KiCad vias keep their type: `micro` becomes a microvia, `blind` a blind or buried via by its span,
@@ -2904,7 +2971,8 @@ API call, as of that date.
 
 `verify` checks each part: every symbol pin has a pad, the pinned datasheet names the part number
 and the package (or a pin count), the symbol's pin names appear in it, the model's outline fits
-the courtyard, and each file still has the hash it was added with. It exits 1 when one fails.
+the courtyard, the footprint's holes, slots and rings meet JLCPCB's minimums, and each file still
+has the hash it was added with. It exits 1 when one fails.
 
 `check` warns (rule `library`) when a design uses a part outside the library for a role the
 library holds, naming the library part to use: the one with the same pin count, the preferred one

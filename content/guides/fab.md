@@ -51,7 +51,7 @@ agentee parts NAME --refs C11,R8 --json
 agentee parts NAME --distributor farnell --farnell-store ie.farnell.com
 ```
 
-`parts` looks up every BOM line at Mouser and Farnell by its `mpn` field, so give every part `mfr` and `mpn` first; lines without one are skipped. The keys live outside every project, in `~/.config/agentee/distributors.toml`:
+`parts` looks up every BOM line at Mouser, Farnell and DigiKey by its `mpn` field, so give every part `mfr` and `mpn` first; lines without one are skipped. The keys live outside every project, in `~/.config/agentee/distributors.toml`:
 
 ```toml
 [mouser]
@@ -60,7 +60,14 @@ api_key = "..."
 [farnell]
 api_key = "..."
 store = "uk.farnell.com"
+
+[digikey]
+client_id = "..."
+client_secret = "..."
+site = "IE"
 ```
+
+Any of the three can be left out; `parts` asks only the distributors it has a key for.
 
 For each line it picks the cheapest listing that is in stock for the quantity and not obsolete, honouring minimums and multiples and buying up to a price break when that costs less in total. Then it looks for cheaper parts that drop in:
 
@@ -70,6 +77,17 @@ For each line it picks the cheapest listing that is in stock for the quantity an
 - indicator LEDs of the same colour and case.
 
 ICs and connectors only get the same part at the other distributor, or the distributor's suggested replacement. Write a swap into the part's `mpn`, not into the BOM, so the next run and the next package agree.
+
+## Cost and order sheets
+
+```sh
+agentee bom NAME --boards 1,10,100
+agentee parts NAME --boards 2 --spares --order order/
+```
+
+`bom` prints one row per BOM line with its line total at each board count, then the total and the cost per board. Each count takes the cheapest offer in stock for that quantity, so a line can come from another distributor at 100 boards than at one; those cells carry a `*`. It makes the same API calls as one `parts` run and does not search for alternatives.
+
+`--order DIR` writes sheets to buy from instead of the report: `NAME-order.csv` with every line and where it is bought, and one `NAME-<distributor>.csv` per distributor in the layout its BOM upload reads. `--spares` adds the hand assembly allowance, a few extra small passives and one spare of each chip, diode, transistor and fuse line.
 
 ## Export for the enclosure
 
@@ -85,7 +103,7 @@ agentee export pcb:NAME -o NAME.step
 ## Before you press order
 
 - `agentee check` is clean, and so is `agentee drc NAME` with the notices you chose to ignore written down in `DESIGN.md`.
-- Every simulation is current: check warns about stale results.
+- Every simulation is current: check notes stale results.
 - The renders look right: `agentee render pcb:NAME`, and the assembly drawings in the package.
 - `agentee view --3d` shows the parts where you expect them.
 - The test pads you need are there: `agentee testpoints NAME --dry-run` lists what it would add.

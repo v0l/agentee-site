@@ -254,7 +254,7 @@
         "name": "hide",
         "type": "array",
         "required": false,
-        "description": ""
+        "description": "layers to turn off; hiding a copper layer with no copper in show shows every other copper layer"
       },
       {
         "name": "name",

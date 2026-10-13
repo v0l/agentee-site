@@ -53,9 +53,9 @@ Every diagnostic carries its file, item, place and severity, and layout diagnost
 
 ## Simulations in CI
 
-Check never runs a sim. Each result records a hash of the spec, the copper it saw and the stackup, and check warns when they no longer match. On a CI runner without a GPU that is the useful part: a pull request that moves an RF track gets a stale warning on the FDTD result, and an interface that measures that result fails outright.
+Check never runs a sim. Each result records a hash of the spec, the copper it saw and the stackup, and check reports the result as stale, as an info line, when they no longer match. On a CI runner without a GPU that is the useful part: a pull request that moves an RF track gets a stale note on the FDTD result, and an interface that measures that result fails outright.
 
-DC drop, thermal and logic sims are cheap enough to run in CI where the runner has a GPU, and logic sims need none at all:
+DC drop and thermal sims are cheap enough to run in CI where the runner has a GPU, and logic and circuit sims need none at all:
 
 ```yaml
       - run: agentee sim counter

@@ -34,20 +34,39 @@ part is tried at is checked with its pads at that spot against the copper around
 that breaks a rule is passed over. Tracks and vias on nets that touch a part being placed are
 ignored, since moving the part leaves them to be routed again.
 
+Parts whose nets all sit in one domain are kept apart from the parts of a domain it has a barrier
+with, by the barrier's distance. A zone with an `outline` marks where its net's domain lives: a
+part of that domain placed outside every such outline pays for the distance, so drawing the
+primary and secondary pours first settles which side of the slots each domain goes. The back of a
+through-hole part is open to parts on the other side, apart from its holes.
+
 ```toml
 [drc]                          # in the board file
 disable = ["silk-width"]       # rule ids to skip; their checks are not computed, so with silk-text
                                # and silk-hidden off `agentee silk` has nothing to move
 severity = { "starved-thermal" = "error", "via-in-pad" = "warning" }   # info | warning | error
 tombstone_ratio = 3            # copper or feed width one chip pad may have over the other
+
+[[drc.waive]]                  # accept one finding as reviewed: it is dropped from the report
+rule = "pad-off-board"         # the rule id
+at = "part J1"                 # the place DRC prints before the message: part J1, net GND, pad U1.3
+reason = "milled edge-card socket"
+
+[[drc.waive]]                  # a finding between two items names both, in either order: a pad
+rule = "clearance"             # as DRC prints it or `net NAME` for any copper of that net
+at = "U2.12 / net HB"
+reason = "package pin pitch"
 ```
+
+A waived finding shows as an info line with its reason. A waiver that matches nothing is a
+warning, so one left behind after the geometry changes is noticed.
 
 | id | severity | runs when | checks |
 |---|---|---|---|
 | `via-cuts-pad` | error | always | a via whose copper overlaps or touches an SMD pad while its drill is not fully inside the pad: solder wicks down the barrel and the pad edge is damaged. A via of another net touching a pad is reported as a `short` instead |
 | `via-annulus-past-pad` | warning | vias in pads | the drill sits in the pad but the via's annulus reaches past the pad edge under the mask |
-| `via-in-pad` | info | vias in pads | counts the vias in SMD pads of their own net (drill inside the pad); `fab-notes.txt` asks the fab to fill and cap exactly these (IPC-4761 type VII) |
-| `via-in-pad-fill` | error | vias in pads | a via in a pad drilled wider than `max_filled_via_drill`, or whose via type sets a `fill` other than `filled_capped` (IPC-4761 type VII) |
+| `via-in-pad` | info | vias in pads | counts the vias in SMD pads of their own net (drill inside the pad), and the plated holes a footprint puts in its own SMD pad (KiCad `_ThermalVias` exposed pads); `fab-notes.txt` asks the fab to fill and cap exactly these (IPC-4761 type VII) |
+| `via-in-pad-fill` | error | vias in pads | a via or footprint hole in a pad drilled wider than `max_filled_via_drill`, or whose via type sets a `fill` other than `filled_capped` (IPC-4761 type VII) |
 | `hole-to-smd-pad` | warning | always | a via hole closer than `min_hole_to_smd_pad` to an SMD pad of its own net (or no net) that it does not touch; paste and solder can flow into it |
 | `drill-size` | error | always | pad holes under `min_drill` (plated) or `min_npth_drill` (non-plated), or over `max_drill` (larger holes are routed, draw them as cutouts). Via sizes are checked on the board's `[[vias]]` |
 | `slot-size` | error | slotted holes | slots narrower than `min_plated_slot_width` or `min_npth_slot_width`, or shorter than twice their width |
@@ -82,7 +101,7 @@ tombstone_ratio = 3            # copper or feed width one chip pad may have over
 | `placement-cluster-spread` | info | parts | a two-pin passive whose signal nets reach one IC and nothing else, farther than `cluster_spread` (10 mm) from that IC's pin |
 | `placement-connector-not-at-edge` | info | parts | a connector (edge pads, `overhang = true`, or a `J`/`P` reference that is not a Tag-Connect, U.FL or test pad) whose courtyard is farther than `connector_edge` (3 mm) from the outline |
 | `short` | error | always | copper of two different nets touches |
-| `clearance` | error | always | copper of two nets closer than the larger of their class clearances (a footprint `clearance` replaces them for its pads), or copper run into a non-plated hole. Pads of one footprint are held to `min_clearance` and to the class clearance of nets in an isolation domain; spark gap electrodes are skipped |
+| `clearance` | error | always | copper of two nets closer than the larger of their class clearances (a footprint `clearance` replaces them for its pads, and inside its courtyard between copper of nets on its pads), or copper run into a non-plated hole. Pads of one footprint are held to `min_clearance` and to the class clearance of nets in an isolation domain; spark gap electrodes are skipped |
 | `isolation-domain` | error | `[[domains]]` | a net whose class or name puts it in two domains |
 | `isolation-unassigned` | warning | `[[domains]]` | nets in no domain, which no barrier covers |
 | `isolation-clearance` | error | a barrier with `clearance`, or class voltages that need one | copper of two domains on one layer closer than the clearance of the barrier between them, pads of one footprint and pours included; one line per net pair with the closest spot |

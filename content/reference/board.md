@@ -48,6 +48,7 @@ track_width = "1mm"
 current = "3A"                 # checked against IPC-2221 on every layer
 max_temp_rise = "10C"          # default 10C
 voltage = "48VDC"              # or "-12VDC", "230VAC" (rms); sets spacing, see Net class voltage
+# own_voltage = "15VDC"        # nets that ride together, see Net class voltage
 
 [[netclasses]]
 name = "USB"

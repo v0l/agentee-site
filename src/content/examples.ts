@@ -40,6 +40,58 @@ export const EXAMPLES: Example[] = [
   },
 
   {
+    slug: 'preamp',
+    name: 'Preamp',
+    title: 'A through-hole op-amp preamp',
+    summary: 'A 9 V audio preamp on a dual LM358: x11 gain and a 1 kHz Sallen-Key low-pass, run through every circuit analysis from the operating point to clipping.',
+    dir: 'examples/preamp',
+    image: 'preamp-pcb',
+    shots: [
+      { src: 'preamp-pcb', alt: 'The preamp layout: a 3.5 mm jack on each side, the LM358 in the middle and the battery header along the top.' },
+      { src: 'preamp-sch', alt: 'The preamp schematic: the reverse battery diode, the mid-rail bias, the gain stage and the Sallen-Key filter.' },
+      { src: 'preamp-ac', alt: 'Gain, phase and noise of the preamp from the AC and noise analyses.' },
+      { src: 'preamp-clip', alt: 'A 400 mV sine driving the preamp into clipping, with the spectrum of each net.' },
+      { src: 'preamp-power', alt: 'The preamp switched on: the gain stage clips while the bias settles and the output swells, then returns to 0 V.' },
+    ],
+    facts: [
+      ['Board', '2 layers, 60 x 40 mm, through-hole'],
+      ['Gain', '20.8 dB, low-pass at 1.07 kHz'],
+      ['Noise', '17.5 µV RMS, 20 Hz to 20 kHz'],
+      ['Sims', 'operating point, AC, noise, transient'],
+    ],
+    body: [
+      'A 3.5 mm jack in, a 3.5 mm jack out and a 9 V battery. U1A gains the signal by 11 with its DC gain held at 1, so the output sits at the mid-rail bias with no trimming. U1B is a unity-gain Sallen-Key low-pass at 1.07 kHz with a Q of 0.74, close to Butterworth. A 1N4148 blocks a battery clip put on backwards.',
+      'Every sim models U1 and D1 from their datasheets, and each one has checks: <code>preamp-ac</code> for the bias, gain and noise, <code>preamp-clip</code> for where the output hits the rails, <code>preamp-power</code> for the thump at switch-on as the bias settles, and <code>preamp-reverse</code> for the leakage with the battery reversed.',
+      'Its <code>DESIGN.md</code> lists what the sims found wrong with it, the turn-on thump and an input that clips below line level, and keeps them as known problems rather than hiding them.',
+    ],
+  },
+
+  {
+    slug: 'ladder-vcf',
+    name: 'Ladder VCF',
+    title: 'A Eurorack transistor ladder filter',
+    summary: 'A 12HP voltage-controlled filter built on the Moog transistor ladder: four poles, 1 V/oct cutoff and resonance up to self-oscillation, checked by circuit sims.',
+    dir: 'examples/ladder-vcf',
+    image: 'vcf-pcb',
+    shots: [
+      { src: 'vcf-pcb', alt: 'The ladder VCF layout: the two columns of ladder transistors in the middle, the jacks and pots on the back.' },
+      { src: 'vcf-sch', alt: 'The ladder sheet: four rungs of BC550C pairs with a 68 nF capacitor across each, and the bias string beside them.' },
+      { src: 'vcf-res', alt: 'Gain and phase of the filter with resonance at 0.9, peaking at the cutoff.' },
+      { src: 'vcf-osc', alt: 'The filter self-oscillating at full resonance after a kick, with the spectrum of the output.' },
+    ],
+    facts: [
+      ['Board', '2 layers, 58 x 108 mm, 12HP'],
+      ['Filter', '4 poles, 24 dB per octave'],
+      ['Tracking', '1 V/oct within 0.07 dB over 6 octaves'],
+      ['Sims', 'AC at three CVs, resonance, oscillation'],
+    ],
+    body: [
+      'The top schematic joins four sheets: the Eurorack power header with reverse protection, the expo converter that turns CV into tail current at 1 V/oct, the ladder of twelve BC550C transistors, and JFET buffers into a difference amplifier. The pots and jacks mount on the back and come through the panel.',
+      'Three AC sims at 0, 3 and 6 V of CV land within 0.07 dB of each other at their cutoff, so the expo tracks over six octaves. <code>vcf-res</code> shows the resonance peak and the bass loss that goes with it, and <code>vcf-osc</code> kicks the filter at full resonance and checks it oscillates. The transistors and op-amps are modelled from their datasheets, and the pots are <code>potentiometer</code> blocks so their wipers load the circuit as the real parts do.',
+    ],
+  },
+
+  {
     slug: 'hackrf-pro',
     name: 'HackRF Pro',
     title: 'Great Scott Gadgets’ HackRF Pro, imported from KiCad',

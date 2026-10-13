@@ -40,7 +40,7 @@ export const SOFTWARE = {
   screenshot: `${SITE}/assets/renders/lna-pcb.webp`,
   codeRepository: REPO,
   description:
-    'Electronics design for coding agents. Boards, symbols, footprints, schematics, layouts and simulations are plain TOML files an agent writes; agentee checks them against the fab, renders them, solves impedance and runs FDTD, cascade, channel, PDN, DC drop, thermal and logic simulations on the GPU, and writes the fab package.',
+    'Electronics design for coding agents. Boards, symbols, footprints, schematics, layouts and simulations are plain TOML files an agent writes; agentee checks them against the fab, renders them, solves impedance and runs FDTD, cascade, channel, PDN, DC drop and thermal simulations on the GPU and logic and circuit simulations of the schematic, and writes the fab package.',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   author,
 };
@@ -91,7 +91,7 @@ export const PAGES: Record<string, PageMeta> = {
   '/': {
     title: 'agentee - electronics design for coding agents',
     description:
-      'Schematics, PCB layouts and simulations as plain TOML files your coding agent writes. agentee checks every edit against the fab’s rules, renders the board, solves impedance and runs FDTD, thermal and logic sims on the GPU, and writes the Gerbers.',
+      'Schematics, PCB layouts and simulations as plain TOML files your coding agent writes. agentee checks every edit against the fab’s rules, renders the board, solves impedance, runs FDTD and thermal sims on the GPU and circuit and logic sims of the schematic, and writes the Gerbers.',
     social: 'Your coding agent writes the board as TOML. agentee checks it, draws it, simulates it and writes the Gerbers.',
     jsonLd: SOFTWARE,
   },
@@ -146,7 +146,7 @@ export const PAGES: Record<string, PageMeta> = {
   '/examples': {
     title: 'agentee example designs',
     description:
-      'Worked agentee projects: a bias-tee LNA with FDTD, cascade, DC drop and thermal sims, the HackRF Pro imported from KiCad, and logic simulations of a counter and an I2C bus.',
+      'Worked agentee projects: a bias-tee LNA with FDTD, cascade, DC drop and thermal sims, an op-amp preamp and a Eurorack ladder filter with circuit sims, the HackRF Pro imported from KiCad, and logic simulations of a counter and an I2C bus.',
     social: 'An LNA, the HackRF Pro and two logic sims, all plain TOML.',
     jsonLd: list('agentee example designs', '/examples/', EXAMPLES.map(e => ({ name: e.title, path: `/examples/${e.slug}/` }))),
   },

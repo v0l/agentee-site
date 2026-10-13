@@ -27,11 +27,14 @@ export const MCP_CLIENTS: { name: string; where: string; lang: string; code: str
 
 export const MCP_GROUPS: [string, string[]][] = [
   ['Read the project', ['format_reference', 'list_items', 'show_item', 'check', 'drc', 'render_item', 'stackups']],
+  ['Editing', ['edit']],
   ['Parts', ['kicad_search', 'import_kicad_symbol', 'import_kicad_footprint', 'new_item', 'models']],
+  ['Parts library', ['library_find', 'library_list', 'library_show', 'library_add', 'library_use']],
+  ['Datasheets', ['datasheet_fetch', 'datasheet_text', 'datasheet_add']],
   ['Traces', ['impedance', 'field_solve', 'trace_width', 'serpentine']],
-  ['Layout', ['place', 'route', 'tie', 'tune', 'neck', 'fill', 'silk', 'testpoints', 'layout']],
+  ['Layout', ['place', 'route', 'tie', 'tune', 'neck', 'fill', 'silk', 'testpoints', 'layout', 'fit']],
   ['Simulation', ['run_sim', 'sparam']],
-  ['Output', ['fab', 'export', 'parts']],
+  ['Output', ['fab', 'export', 'parts', 'bom']],
 ];
 
 export function Mcp() {

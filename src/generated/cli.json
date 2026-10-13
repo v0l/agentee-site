@@ -29,7 +29,7 @@
     {
       "command": "render",
       "about": "Render an item to PNG as the viewer draws it",
-      "help": "Render an item to PNG as the viewer draws it\n\nUsage: agentee render [OPTIONS] --out <OUT> <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n  -o, --out <OUT>          \n      --width <WIDTH>      [default: 1400]\n      --height <HEIGHT>    [default: 900]\n      --scale <SCALE>      Pixels per point [default: 1]\n      --unit <UNIT>        [default: 1]\n      --canvas-only        Only the drawing, no side panels\n      --hidden-pins        \n      --show <SHOW>        Layers to turn on, comma separated (F.Fab,F.Mask,In1.Cu)\n      --hide <HIDE>        Layers to turn off, comma separated\n      --region <REGION>    Zoom to x0,y0,x1,y1 in mm\n      --focus <FOCUS>      Zoom to these parts, nets or pins (U1,SPI_*,U1.3) and fade the rest\n      --context <CONTEXT>  What happens to everything outside --focus: dim, hide or show [default: dim]\n      --rulers             Label mm coordinates along the edges\n  -h, --help               Print help"
+      "help": "Render an item to PNG as the viewer draws it\n\nUsage: agentee render [OPTIONS] --out <OUT> <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n  -o, --out <OUT>          \n      --width <WIDTH>      [default: 1400]\n      --height <HEIGHT>    [default: 900]\n      --scale <SCALE>      Pixels per point [default: 1]\n      --unit <UNIT>        [default: 1]\n      --canvas-only        Only the drawing, no side panels\n      --hidden-pins        \n      --show <SHOW>        Layers to turn on, comma separated (F.Fab,F.Mask,In1.Cu)\n      --hide <HIDE>        Layers to turn off, comma separated. Hiding a copper layer with no copper in --show shows every other copper layer\n      --region <REGION>    Zoom to x0,y0,x1,y1 in mm\n      --focus <FOCUS>      Zoom to these parts, nets or pins (U1,SPI_*,U1.3) and fade the rest\n      --context <CONTEXT>  What happens to everything outside --focus: dim, hide or show [default: dim]\n      --rulers             Label mm coordinates along the edges\n  -h, --help               Print help"
     },
     {
       "command": "view",
@@ -50,6 +50,76 @@
       "command": "models",
       "about": "Download the KiCad 3D models (VRML) the project's footprints name, for the 3D view",
       "help": "Download the KiCad 3D models (VRML) the project's footprints name, for the 3D view\n\nUsage: agentee models [PATH]\n\nArguments:\n  [PATH]  [default: .]\n\nOptions:\n  -h, --help  Print help"
+    },
+    {
+      "command": "datasheet",
+      "about": "Fetch, cache and read part datasheets, shared by every project in ~/.cache/agentee/datasheets",
+      "help": "Fetch, cache and read part datasheets, shared by every project in ~/.cache/agentee/datasheets\n\nUsage: agentee datasheet <COMMAND>\n\nCommands:\n  fetch  Fetch the datasheet of a part (reference, symbol or part number), or of every part of a layout or schematic, and list the parts with none reachable\n  text   Text of a cached datasheet with page numbers, or the passages matching --find\n  add    Add a local PDF to the cache, for parts behind a login or supplied by the user\n  list   Every cached datasheet\n  purge  Remove every cached datasheet that no library part pins\n  help   Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help"
+    },
+    {
+      "command": "datasheet fetch",
+      "about": "Fetch the datasheet of a part (reference, symbol or part number), or of every part of a layout or schematic, and list the parts with none reachable",
+      "help": "Fetch the datasheet of a part (reference, symbol or part number), or of every part of a layout or schematic, and list the parts with none reachable\n\nUsage: agentee datasheet fetch [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n      --url <URL>          Fetch from this URL instead\n      --refresh            Fetch again even when a copy is cached\n      --no-distributors    Do not ask the distributors for a datasheet URL\n      --config <CONFIG>    Distributor key file instead of ~/.config/agentee/distributors.toml\n      --json               \n  -h, --help               Print help"
+    },
+    {
+      "command": "datasheet text",
+      "about": "Text of a cached datasheet with page numbers, or the passages matching --find",
+      "help": "Text of a cached datasheet with page numbers, or the passages matching --find\n\nUsage: agentee datasheet text [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  Reference, symbol, part number or library part\n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n      --find <FIND>        Only the passages holding this word (case sensitive when it has capitals)\n      --pages <PAGES>      Page or page range, e.g. 3 or 3-5\n      --context <CONTEXT>  Lines of context around each match [default: 2]\n      --offline            Never fetch; fail when the datasheet is not cached\n      --json               \n  -h, --help               Print help"
+    },
+    {
+      "command": "datasheet add",
+      "about": "Add a local PDF to the cache, for parts behind a login or supplied by the user",
+      "help": "Add a local PDF to the cache, for parts behind a login or supplied by the user\n\nUsage: agentee datasheet add [OPTIONS] <MPN> <FILE>\n\nArguments:\n  <MPN>   \n  <FILE>  \n\nOptions:\n      --manufacturer <MANUFACTURER>  \n      --url <URL>                    Where it came from\n  -h, --help                         Print help"
+    },
+    {
+      "command": "datasheet list",
+      "about": "Every cached datasheet",
+      "help": "Every cached datasheet\n\nUsage: agentee datasheet list\n\nOptions:\n  -h, --help  Print help"
+    },
+    {
+      "command": "datasheet purge",
+      "about": "Remove every cached datasheet that no library part pins",
+      "help": "Remove every cached datasheet that no library part pins\n\nUsage: agentee datasheet purge\n\nOptions:\n  -h, --help  Print help"
+    },
+    {
+      "command": "library",
+      "about": "The parts library: the user's chosen parts with their symbols, footprints, models, datasheets and stock, in ~/.config/agentee/library and .agentee/library",
+      "help": "The parts library: the user's chosen parts with their symbols, footprints, models, datasheets and stock, in ~/.config/agentee/library and .agentee/library\n\nUsage: agentee library <COMMAND>\n\nCommands:\n  list     Library parts, by role and words, with their last checked stock and price\n  find     Library parts that match, then current parts in stock at the distributors to add when none fits\n  show     One library part: its files, where they came from, datasheet and stock\n  add      Add a part: its symbol, footprint and 3D model copied in, its datasheet fetched and pinned, its stock and price checked\n  use      Copy a library part's symbol, footprint and model into a project and print the edit that places it\n  refresh  Check stock and price of every library part, or one, at the distributors\n  verify   Check each part's symbol against its footprint and pinned datasheet, its model against its footprint, and its files against their recorded hashes\n  help     Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help"
+    },
+    {
+      "command": "library list",
+      "about": "Library parts, by role and words, with their last checked stock and price",
+      "help": "Library parts, by role and words, with their last checked stock and price\n\nUsage: agentee library list [OPTIONS] [WORDS]...\n\nArguments:\n  [WORDS]...  Words that must all match the name, role, tags, part number, value, rating, footprint or notes\n\nOptions:\n      --role <ROLE>        \n  -p, --project <PROJECT>  [default: .]\n      --json               \n  -h, --help               Print help"
+    },
+    {
+      "command": "library find",
+      "about": "Library parts that match, then current parts in stock at the distributors to add when none fits",
+      "help": "Library parts that match, then current parts in stock at the distributors to add when none fits\n\nUsage: agentee library find [OPTIONS] [WORDS]...\n\nArguments:\n  [WORDS]...  Words to search for, e.g. 3.3V buck 1A SOT-23-6\n\nOptions:\n      --role <ROLE>                \n      --need <NEED>                Only parts with at least this many in stock [default: 1]\n      --distributor <DISTRIBUTOR>  Distributors to ask, comma separated (mouser, farnell, digikey), default every one with a key\n      --limit <LIMIT>              [default: 15]\n      --search                     Search the distributors even when the library has a match\n  -p, --project <PROJECT>          [default: .]\n      --config <CONFIG>            \n      --json                       \n  -h, --help                       Print help"
+    },
+    {
+      "command": "library show",
+      "about": "One library part: its files, where they came from, datasheet and stock",
+      "help": "One library part: its files, where they came from, datasheet and stock\n\nUsage: agentee library show [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n  -h, --help               Print help"
+    },
+    {
+      "command": "library add",
+      "about": "Add a part: its symbol, footprint and 3D model copied in, its datasheet fetched and pinned, its stock and price checked",
+      "help": "Add a part: its symbol, footprint and 3D model copied in, its datasheet fetched and pinned, its stock and price checked\n\nUsage: agentee library add [OPTIONS] --role <ROLE> --symbol <SYMBOL> <MPN>\n\nArguments:\n  <MPN>  \n\nOptions:\n      --role <ROLE>                  What it is for: connector, regulator, resistor, capacitor, led, diode, crystal ...\n      --symbol <SYMBOL>              A .sym.toml file, a project symbol or a KiCad Library:Name\n      --footprint <FOOTPRINT>        A .fp.toml file, a project footprint or a KiCad Library:Name; default the symbol's footprint\n      --model <MODEL>                A STEP or VRML file or URL, or a vendor ZIP or folder with a .kicad_mod and its model; default the footprint's model\n      --datasheet <DATASHEET>        A datasheet URL or PDF; default the symbol's URL, then the distributors'\n      --name <NAME>                  Library name, default the part number\n      --manufacturer <MANUFACTURER>  \n      --value <VALUE>                \n      --rating <RATING>              e.g. \"2 A, 100 V\"\n      --pins <PINS>                  Pin count, default the symbol's\n      --tags <TAGS>                  \n      --notes <NOTES>                \n      --preferred                    The first choice for its role\n      --generic                      Any value on this footprint is this part, for resistor and capacitor series\n      --local                        Into the project's .agentee/library instead of ~/.config/agentee/library\n  -p, --project <PROJECT>            [default: .]\n      --no-distributors              Do not ask the distributors for stock or a datasheet\n      --force                        \n  -h, --help                         Print help"
+    },
+    {
+      "command": "library use",
+      "about": "Copy a library part's symbol, footprint and model into a project and print the edit that places it",
+      "help": "Copy a library part's symbol, footprint and model into a project and print the edit that places it\n\nUsage: agentee library use [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n      --force              \n  -h, --help               Print help"
+    },
+    {
+      "command": "library refresh",
+      "about": "Check stock and price of every library part, or one, at the distributors",
+      "help": "Check stock and price of every library part, or one, at the distributors\n\nUsage: agentee library refresh [OPTIONS] [NAME]\n\nArguments:\n  [NAME]  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n      --config <CONFIG>    \n  -h, --help               Print help"
+    },
+    {
+      "command": "library verify",
+      "about": "Check each part's symbol against its footprint and pinned datasheet, its model against its footprint, and its files against their recorded hashes",
+      "help": "Check each part's symbol against its footprint and pinned datasheet, its model against its footprint, and its files against their recorded hashes\n\nUsage: agentee library verify [OPTIONS] [NAME]\n\nArguments:\n  [NAME]  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n      --json               \n  -h, --help               Print help"
     },
     {
       "command": "stackups",
@@ -132,6 +202,11 @@
       "help": "Run the layout engine on a layout: the configured stages in order, then the score per term\n\nUsage: agentee layout [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n      --from <FROM>        Start at this stage, keeping the results of the stages before it\n      --to <TO>            Stop after this stage\n      --only <ONLY>        Run one stage only\n      --dry-run            Report without writing the plan into the layout file\n      --search [<SEARCH>]  Beam search over the stages: this many children a stage (default 16, or `[engine.search] tries`), placement seeds unless `[engine.search] knobs` names others\n      --keep <KEEP>        With --search, how many nodes survive each stage (default 4)\n      --json               \n  -h, --help               Print help"
     },
     {
+      "command": "fit",
+      "about": "Find the smallest rectangular board the layout fits on: tries outlines of several aspect ratios in memory (the current placement scaled, edge parts slid along their edge, the rest legalised, routing demand estimated), then checks the smallest with the global router",
+      "help": "Find the smallest rectangular board the layout fits on: tries outlines of several aspect ratios in memory (the current placement scaled, edge parts slid along their edge, the rest legalised, routing demand estimated), then checks the smallest with the global router\n\nUsage: agentee fit [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>    [default: .]\n      --strategy <STRATEGY>  tight, balanced or spread: the gap between parts and the routing room to keep [default: balanced]\n      --aspect <ASPECT>      Width over height to try, repeatable; default the current one and 13 from 0.42 to 2.38\n      --width <WIDTH>        Hold the width at this many mm\n      --height <HEIGHT>      Hold the height at this many mm\n      --verify <VERIFY>      How many of the smallest sizes to check with the global router, 0 to skip [default: 3]\n      --write                Write the size into the board's [outline] and the placement into the layout\n      --json                 \n  -h, --help                 Print help"
+    },
+    {
       "command": "drc",
       "about": "Design rule checks of a layout: its rule diagnostics, or every rule with --list",
       "help": "Design rule checks of a layout: its rule diagnostics, or every rule with --list\n\nUsage: agentee drc [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>  [default: .]\n      --list               Print every rule with its id, category, severity and whether it applies here\n      --json               \n  -h, --help               Print help"
@@ -162,6 +237,11 @@
       "help": "Stock, price and cheaper equivalents for a layout's or schematic's BOM from Mouser, Farnell and DigiKey, with keys in ~/.config/agentee/distributors.toml\n\nUsage: agentee parts [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>              [default: .]\n      --boards <BOARDS>                Boards to buy for [default: 1]\n      --distributor <DISTRIBUTOR>      Distributors to ask, comma separated (mouser, farnell, digikey), default every one with a key\n      --farnell-store <FARNELL_STORE>  Farnell store, e.g. uk.farnell.com, ie.farnell.com, de.farnell.com, www.newark.com\n      --refs <REFS>                    Only these references, comma separated\n      --order <ORDER>                  Write order sheets to this directory instead: NAME-order.csv and one NAME-<distributor>.csv per distributor, each with the lines to buy there first, then the lines bought at another, then what it lacks\n      --spares                         With --order, add the hand assembly allowance: 0402/0603 resistors and capacitors to the next 10 above need + 5, one spare per D, Q, U and F line, or the part's `spares` field\n      --no-alternatives                Price what is on the BOM without searching for cheaper equivalents\n      --config <CONFIG>                Key file instead of ~/.config/agentee/distributors.toml\n      --json                           \n  -h, --help                           Print help"
     },
     {
+      "command": "bom",
+      "about": "BOM cost table: each line priced at Mouser, Farnell and DigiKey for 1, 10 and 100 boards (or --boards), with totals and the cost per board",
+      "help": "BOM cost table: each line priced at Mouser, Farnell and DigiKey for 1, 10 and 100 boards (or --boards), with totals and the cost per board\n\nUsage: agentee bom [OPTIONS] <NAME>\n\nArguments:\n  <NAME>  \n\nOptions:\n  -p, --project <PROJECT>              [default: .]\n      --boards <BOARDS>                Board counts to price, comma separated [default: 1 10 100]\n      --distributor <DISTRIBUTOR>      Distributors to ask, comma separated (mouser, farnell, digikey), default every one with a key\n      --farnell-store <FARNELL_STORE>  Farnell store, e.g. uk.farnell.com, ie.farnell.com, de.farnell.com, www.newark.com\n      --refs <REFS>                    Only these references, comma separated\n      --config <CONFIG>                Key file instead of ~/.config/agentee/distributors.toml\n      --json                           \n  -h, --help                           Print help"
+    },
+    {
       "command": "mcp",
       "about": "Serve the project over MCP on stdio",
       "help": "Serve the project over MCP on stdio\n\nUsage: agentee mcp [PATH]\n\nArguments:\n  [PATH]  [default: .]\n\nOptions:\n  -h, --help  Print help"
@@ -183,7 +263,7 @@
     },
     {
       "target": "board",
-      "help": "agentee edit board ITEM COMMAND [args]   (sch = sch:NAME, pcb = pcb:NAME)\nagentee edit board ITEM -   commands on stdin, one per line\nagentee edit board ITEM FILE   commands from a file\nITEM can be left out of the last two when the project has one board\n\n  class NAME [--track-width 0.2mm] [--clearance 0.2mm] [--voltage 48VDC|230VAC] [--via std] [--current 1A] [--max-temp-rise 10C] [--impedance 50ohm] [--impedance-tolerance 10%] [--solver field] [--diff-gap 0.15mm] [--coplanar-gap 0.2mm] [--layers F.Cu] [--max-skew 1mm] [--max-uncoupled 1mm] [--neckdown 1mm] [--width LAYER=WIDTH ...] [--description TEXT]\n  unclass NAME ...\n  via NAME [--drill 0.3mm] [--diameter 0.6mm] [--type through|blind|buried|microvia] [--from F.Cu] [--to B.Cu] [--fill filled_capped] [--drill-kind laser] [--stacked] [--skip] [--cost 2.0] [--backdrill-from L] [--backdrill-to L] [--backdrill-diameter 0.4mm]\n  unvia NAME ...\n  outline [--size W,H] [--corner-radius 1mm] [--origin X,Y] [--point X,Y ...]\n  cutout [--size W,H] [--origin X,Y] [--point X,Y ...]\n  stackup [--preset NAME] [--finish ENIG] [--mask-color green] [--silk-color white] [--roughness 1um] [--layer kind:name:thickness ...]"
+      "help": "agentee edit board ITEM COMMAND [args]   (sch = sch:NAME, pcb = pcb:NAME)\nagentee edit board ITEM -   commands on stdin, one per line\nagentee edit board ITEM FILE   commands from a file\nITEM can be left out of the last two when the project has one board\n\n  class NAME [--track-width 0.2mm] [--clearance 0.2mm] [--voltage 48VDC|230VAC] [--own-voltage 15VDC] [--via std] [--current 1A] [--max-temp-rise 10C] [--impedance 50ohm] [--impedance-tolerance 10%] [--solver field] [--diff-gap 0.15mm] [--coplanar-gap 0.2mm] [--layers F.Cu] [--max-skew 1mm] [--max-uncoupled 1mm] [--neckdown 1mm] [--width LAYER=WIDTH ...] [--description TEXT]\n  unclass NAME ...\n  via NAME [--drill 0.3mm] [--diameter 0.6mm] [--type through|blind|buried|microvia] [--from F.Cu] [--to B.Cu] [--fill filled_capped] [--drill-kind laser] [--stacked] [--skip] [--cost 2.0] [--backdrill-from L] [--backdrill-to L] [--backdrill-diameter 0.4mm]\n  unvia NAME ...\n  outline [--size W,H] [--corner-radius 1mm] [--origin X,Y] [--point X,Y ...]\n  cutout [--size W,H] [--origin X,Y] [--point X,Y ...]\n  stackup [--preset NAME] [--finish ENIG] [--mask-color green] [--silk-color white] [--roughness 1um] [--layer kind:name:thickness ...]"
     }
   ]
 }

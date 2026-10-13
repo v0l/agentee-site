@@ -72,7 +72,7 @@ agentee library add S2B-PH-K-S --name JST-PH-2 --role connector \
     --manufacturer JST --rating "2 A, 100 V"
 agentee library show JST-PH-2      # files, where they came from, datasheet, stock
 agentee library refresh            # stock and price of every part, one lookup each
-agentee library verify             # symbol vs footprint vs datasheet, model vs footprint, hashes
+agentee library verify             # symbol vs footprint vs datasheet, model, fab minimums, hashes
 ```
 
 `add` copies the symbol, footprint and 3D model in, sets the footprint `height` from the model,
@@ -143,7 +143,8 @@ edits before checking them.
 
 `agentee list` names every item with its error count. `agentee drc NAME` prints a layout's rule
 messages alone, and `--list` every rule id with whether it applies to this board; turn one off
-with `[drc] disable = ["id"]` in the board file.
+with `[drc] disable = ["id"]` in the board file. To accept one finding that is meant to be there,
+add a `[[drc.waive]]` with its `rule`, the `at` DRC prints (`part J1`, `net GND`) and a `reason`.
 
 Every diagnostic names the file, the item and the place (`tracks[1] RF_IN`, `U1.1`, a coordinate).
 Fix the named thing, rerun check. When a silk label fails, check prints a `label = { at = [...] }`
@@ -202,7 +203,9 @@ Order of work, each stage passing check before the next:
    defaults DC sim supplies, makes the power nets of the class rails for the level check (a rail
    named for its voltage, `1V8`, `3V3_PLL`, takes that voltage instead) and checks capacitor
    ratings. Above SELV, one class per conductor that can differ: `DC+`/`DC-` with signed
-   voltages, `L1`, `L2`, `L3` each `"230VAC"`, never two phases in one class. Do not write `[[domains]]` or `[[barriers]]`
+   voltages, `L1`, `L2`, `L3` each `"230VAC"`, never two phases in one class. Nets that ride
+   together on a switch node (a half-bridge high side) share a class with `own_voltage`, the most
+   they differ from each other. Do not write `[[domains]]` or `[[barriers]]`
    for what a voltage already covers.
    `agentee edit board` does all of this, and check names the width a class needs.
 2. **Parts.** Import rather than draw (see below). Every symbol pin number needs a pad of the same
@@ -264,7 +267,8 @@ piles up. Remove an old hand route with `agentee edit pcb NAME untrack NET`. Do 
 `place --seed N` and `route` by hand either: one `--search` covers what a dozen manual rounds
 would.
 
-The engine stages are `constraints, place, access, global, detail, finish`. `--from`, `--to` and
+The engine stages are `constraints, place, access, global, detail, finish`, plus an optional
+`topo` (any-angle topological router) that runs only when `phases` names it. `--from`, `--to` and
 `--only` run part of them, for example `--from global` to route again without moving parts.
 `--search` is a beam search: each kept state branches into children with different knob values
 (placement seeds by default), the best `--keep` survive each stage, and the winner is written with
@@ -534,4 +538,9 @@ per line. Send `commands = "help"` for the list.
   BGAs, USB 3 pairs with an FDTD and eye, DC drop on the core rail, thermal, and `DESIGN.md`.
 - `examples/hdi`: a 1+4+1 HDI coupon with microvias in the pads of a 0.5 mm BGA.
 - `examples/logic`: logic sims of a counter and an I2C write, with their VCDs.
+- `examples/ladder-vcf`: a 12HP Eurorack transistor ladder filter, all through-hole, panel parts
+  on the back, a four-sheet schematic, and circuit sims of 1 V/oct tracking, resonance and
+  self-oscillation.
+- `examples/preamp`: a through-hole op-amp board on a 9 V battery, with circuit sims of its
+  operating point, gain, noise, power-up, clipping and reverse battery.
 - `examples/hackrf-pro`: the HackRF Pro main board, imported from KiCad with `import board`.

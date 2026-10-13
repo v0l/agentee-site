@@ -73,6 +73,20 @@ export const REFERENCE: ReferencePage[] = [
     group: 'Board',
   },
   {
+    slug: 'voltage',
+    start: '### Net class voltage',
+    title: 'Net class voltage',
+    summary: 'The highest voltage a class carries, and the clearance and creepage agentee works out from it with IPC-2221B and IEC 60664-1.',
+    group: 'Board',
+  },
+  {
+    slug: 'isolation',
+    start: '### Isolation domains and barriers',
+    title: 'Isolation domains and barriers',
+    summary: 'Groups of nets that keep more distance from each other than from their neighbours, such as a mains primary from the secondary.',
+    group: 'Board',
+  },
+  {
     slug: 'drc',
     start: '### Design rule checks',
     title: 'Design rule checks',
@@ -101,6 +115,20 @@ export const REFERENCE: ReferencePage[] = [
     group: 'Parts',
   },
   {
+    slug: 'datasheets',
+    start: '## Datasheets',
+    title: 'Datasheets',
+    summary: 'agentee datasheet: fetch each part’s datasheet once into a shared cache, read it back as text and record what a design used.',
+    group: 'Parts',
+  },
+  {
+    slug: 'library',
+    start: '## Parts library',
+    title: 'Parts library',
+    summary: 'agentee library: the user’s own parts with their symbols, footprints, models, datasheets and stock, found, added and used in every design.',
+    group: 'Parts',
+  },
+  {
     slug: 'graphics',
     start: '## Graphics',
     title: 'Graphics',
@@ -126,6 +154,13 @@ export const REFERENCE: ReferencePage[] = [
     start: '### Placement',
     title: 'Automatic placement',
     summary: 'agentee place: connectors on edges, large chips central, decoupling caps at their pins, then legalised and refined.',
+    group: 'Schematic and layout',
+  },
+  {
+    slug: 'board-size',
+    start: '### Board size',
+    title: 'Board size',
+    summary: 'agentee fit: the smallest rectangular board a layout fits on, tried at many aspect ratios and checked with the global router.',
     group: 'Schematic and layout',
   },
   {
@@ -220,6 +255,13 @@ export const REFERENCE: ReferencePage[] = [
     group: 'Simulation',
   },
   {
+    slug: 'circuit',
+    start: '### Circuit (`kind = "circuit"`)',
+    title: 'Circuit simulation',
+    summary: 'An analog sim of a schematic’s netlist: operating point, AC, transient and noise, with op-amp, LDO and device blocks and checks.',
+    group: 'Simulation',
+  },
+  {
     slug: 'kicad-import',
     start: '## Importing a KiCad board',
     title: 'Importing a KiCad board',
@@ -237,7 +279,7 @@ export const REFERENCE: ReferencePage[] = [
     slug: 'distributors',
     start: '## Distributors',
     title: 'Distributors and pricing',
-    summary: 'agentee parts: BOM pricing at Mouser and Farnell and cheaper parts that drop in without a downgrade.',
+    summary: 'agentee parts and bom: stock and prices at Mouser, Farnell and DigiKey, cheaper parts that drop in without a downgrade, and order sheets.',
     group: 'Output',
   },
 ];

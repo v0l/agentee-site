@@ -177,7 +177,7 @@ export function Home() {
             <FormattedMessage defaultMessage="Simulate before you order" />
           </h2>
           <p class="section-lede">
-            <FormattedMessage defaultMessage="Each <code>*.sim.toml</code> is a run with a kind. The solvers run through wgpu on Vulkan, Metal or DirectX 12, write their results next to the spec, and check warns when a result goes stale." />
+            <FormattedMessage defaultMessage="Each <code>*.sim.toml</code> is a run with a kind. The field solvers run through wgpu on Vulkan, Metal or DirectX 12. Every sim writes its results next to the spec, and check notes when a result goes stale." />
           </p>
           <ul class="sims">
             {SIMS.map(s => (
@@ -278,7 +278,7 @@ export function Home() {
               <FormattedMessage defaultMessage="<code>agentee fab</code> refuses while the layout has errors. Once it is clean it writes a package a fab accepts as is, with the agentee version and commit in the silk so every board says what built it." />
             </p>
             <p>
-              <FormattedMessage defaultMessage="<code>agentee parts</code> prices the BOM at Mouser and Farnell and finds cheaper parts that keep the value, package, rating and dielectric. <code>agentee export</code> writes the board and every part model as one STEP for the enclosure." />
+              <FormattedMessage defaultMessage="<code>agentee parts</code> prices the BOM at Mouser, Farnell and DigiKey and finds cheaper parts that keep the value, package, rating and dielectric. <code>agentee export</code> writes the board and every part model as one STEP for the enclosure." />
             </p>
             <p class="more">
               <a href={to('/guides/fab/')}>

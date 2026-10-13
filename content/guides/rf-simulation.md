@@ -57,7 +57,7 @@ That takes a second and says what the run will cost: one run per driven port, ea
 - Start at `cell = 0.1` and only tighten to the default 0.05 once the design has settled. The mesh grades out from copper edges, so the finest cell sets the cost.
 - Crop with `region = [x0, y0, x1, y1]` to the part of the board the signal crosses.
 - Drive only the ports you need with `excite = ["IN"]`. A cascade needs every port driven, so leave `excite` out there.
-- Run long sims in the background and keep editing other things. Check warns when a result has gone stale.
+- Run long sims in the background and keep editing other things. Check notes when a result has gone stale.
 
 ## Run and read it
 
@@ -71,7 +71,7 @@ The run writes a `.result.json` and a Touchstone `.s6p` next to the spec, named 
 
 ![S-parameters of the LNA board from the FDTD run](/assets/renders/lna-sim.webp)
 
-The result records a hash of the copper it saw (only the sim's `region`) and of the stackup. When either changes, check warns that the result is stale, and anything that reads it, a cascade or an interface measure, fails until you rerun.
+The result records a hash of the copper it saw (only the sim's `region`) and of the stackup. When either changes, check notes that the result is stale, and anything that reads it, a cascade or an interface measure, fails until you rerun.
 
 ## The cascade
 

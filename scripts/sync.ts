@@ -10,9 +10,12 @@ const BIN = process.env.AGENTEE_BIN ?? (existsSync(BUILT) ? BUILT : 'agentee');
 
 const COMMANDS = [
   'new', 'check', 'edit', 'list', 'show', 'render', 'view', 'search', 'import', 'models',
+  'datasheet', 'datasheet fetch', 'datasheet text', 'datasheet add', 'datasheet list', 'datasheet purge',
+  'library', 'library list', 'library find', 'library show', 'library add', 'library use',
+  'library refresh', 'library verify',
   'stackups', 'calc', 'calc trace-width', 'calc impedance', 'calc field', 'calc serpentine',
-  'place', 'route', 'tie', 'tune', 'neck', 'fill', 'silk', 'testpoints', 'pinswap', 'layout',
-  'drc', 'sim', 'sparam', 'fab', 'export', 'parts', 'mcp', 'docs',
+  'place', 'route', 'tie', 'tune', 'neck', 'fill', 'silk', 'testpoints', 'pinswap', 'layout', 'fit',
+  'drc', 'sim', 'sparam', 'fab', 'export', 'parts', 'bom', 'mcp', 'docs',
 ];
 
 type Render = { project: string; item: string; name: string; canvas?: boolean; size?: [number, number, number] };
@@ -29,6 +32,15 @@ const RENDERS: Render[] = [
   { project: 'lna', item: 'sim:lna-dc', name: 'lna-dc', canvas: true, size: PANEL },
   { project: 'hackrf-pro', item: 'pcb:praline', name: 'praline-pcb', canvas: true },
   { project: 'logic', item: 'sim:counter', name: 'logic-counter', canvas: true, size: [1400, 640, 1.8] },
+  { project: 'preamp', item: 'pcb:preamp', name: 'preamp-pcb', canvas: true },
+  { project: 'preamp', item: 'sch:preamp', name: 'preamp-sch', canvas: true },
+  { project: 'preamp', item: 'sim:preamp-ac', name: 'preamp-ac', canvas: true, size: PANEL },
+  { project: 'preamp', item: 'sim:preamp-clip', name: 'preamp-clip', canvas: true, size: PANEL },
+  { project: 'preamp', item: 'sim:preamp-power', name: 'preamp-power', canvas: true, size: PANEL },
+  { project: 'ladder-vcf', item: 'pcb:ladder-vcf', name: 'vcf-pcb', canvas: true },
+  { project: 'ladder-vcf', item: 'sch:ladder', name: 'vcf-sch', canvas: true },
+  { project: 'ladder-vcf', item: 'sim:vcf-res', name: 'vcf-res', canvas: true, size: PANEL },
+  { project: 'ladder-vcf', item: 'sim:vcf-osc', name: 'vcf-osc', canvas: true, size: PANEL },
   { project: 'demo', item: 'sym:STM32F103C8Tx', name: 'demo-symbol', canvas: true },
   { project: 'demo', item: 'fp:LQFP-48_7x7mm_P0.5mm', name: 'demo-footprint', canvas: true },
 ];

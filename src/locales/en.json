@@ -17,6 +17,9 @@
   "106v2549b6s": {
     "defaultMessage": "Simulate the digital parts of a schematic straight from its netlist: 74 series models, stimulus, assertions, setup and hold checks, and a VCD out."
   },
+  "108cphe41zf": {
+    "defaultMessage": "A waived finding shows as an info line with its reason. A waiver that matches nothing is a warning, so one left behind after the geometry changes is noticed."
+  },
   "1091k4d7e37": {
     "defaultMessage": "<code>erc-drive-conflict</code>"
   },
@@ -104,9 +107,6 @@
   "11ik8rt3455": {
     "defaultMessage": "Closed form and GPU field solved trace widths, coplanar RF lines, differential pairs, length matching and interfaces like USB 3."
   },
-  "11jm22r590b": {
-    "defaultMessage": "each footprint as it sits on the board, bottom-side ones flipped back to the top, pad drill offsets kept"
-  },
   "11jm8vdf8i9": {
     "defaultMessage": "Releases"
   },
@@ -157,6 +157,12 @@
   },
   "126h0k8jfve": {
     "defaultMessage": "Great Scott Gadgets’ HackRF Pro, imported from KiCad - agentee example"
+  },
+  "1276m6yir8l": {
+    "defaultMessage": "The ladder VCF layout: the two columns of ladder transistors in the middle, the jacks and pots on the back."
+  },
+  "128f2etyi2k": {
+    "defaultMessage": "Remove every cached datasheet that no library part pins"
   },
   "12961kesnhk": {
     "defaultMessage": "<code>min_microvia_diameter</code>"
@@ -347,14 +353,14 @@
   "1521tyvidt3": {
     "defaultMessage": "copper of two domains closer along the board surface than the barrier&#39;s creepage: on one outer layer around board cutouts and non-plated holes at least the groove width of its <code>pollution_degree</code> wide, and from F.Cu to B.Cu down a cutout or hole wall or round the board edge"
   },
+  "1524x70gur": {
+    "defaultMessage": "<strong>AC:</strong> <code>[ac]</code> sweeps from <code>from</code> to <code>to</code> at <code>points</code> per decade, linearised at the operating point. Gains are in dB against the <code>ac</code> drive."
+  },
   "1528x7i9xv2": {
     "defaultMessage": "mechanically, in a sub-stack, or to a controlled depth (<code>drill_kind = &quot;controlled_depth&quot;</code>)"
   },
   "152h6ji8lvx": {
     "defaultMessage": "footprint"
-  },
-  "152usp03oi7": {
-    "defaultMessage": "A simulation of the layout or the schematic: FDTD, cascade, channel, PDN, DC drop, thermal or logic."
   },
   "154h9bif94k": {
     "defaultMessage": "<code>[[domains]]</code>"
@@ -380,9 +386,6 @@
   "15fdgx4pxgy": {
     "defaultMessage": "A full-wave FDTD run of a layout on the GPU with lumped ports on pads, giving S-parameters as JSON and Touchstone."
   },
-  "15htq2azhlj": {
-    "defaultMessage": "a via in a pad drilled wider than <code>max_filled_via_drill</code>, or whose via type sets a <code>fill</code> other than <code>filled_capped</code> (IPC-4761 type VII)"
-  },
   "15k0amejm7i": {
     "defaultMessage": "parts"
   },
@@ -407,8 +410,14 @@
   "163d98q67s1": {
     "defaultMessage": "Sponsor"
   },
+  "165ue6hkpsf": {
+    "defaultMessage": "reads"
+  },
   "1674g4enex3": {
     "defaultMessage": "Thermal - agentee reference"
+  },
+  "1677g2wr3cv": {
+    "defaultMessage": "<code>find</code> lists the library parts that match every word. When none does, it searches the distributors you have keys for and lists active parts in stock. <code>add</code> copies the symbol, footprint and model in, fetches and pins the datasheet, and records stock and price. <code>use</code> copies the files into the project and prints the <code>agentee edit sch</code> command that places the part with its <code>mpn</code>."
   },
   "1699uknl8gl": {
     "defaultMessage": "After routing a rail, to catch a neck before it becomes a hot spot."
@@ -424,6 +433,9 @@
   },
   "16f35gxdrha": {
     "defaultMessage": "A full-wave 3D run of the layout on the GPU, with lumped ports on pads, giving S-parameters as JSON and Touchstone."
+  },
+  "16gt72qkj5h": {
+    "defaultMessage": "agentee library: the user’s own parts with their symbols, footprints, models, datasheets and stock, found, added and used in every design."
   },
   "16i3ie6qw4m": {
     "defaultMessage": "Loud parts (switchers, their inductors, drivers and switches like the above) keep 8 mm (centre to centre) from sensitive ones: crystals, RF parts, op-amps and the small parts on nets of a class whose name or description says analog, unless both belong to the same IC."
@@ -460,6 +472,9 @@
   },
   "17149dx9dau": {
     "defaultMessage": "Going back"
+  },
+  "1717pf29jtv": {
+    "defaultMessage": "<strong>Operating point:</strong> always. Newton iteration with junction limiting, then gmin stepping, then source stepping when it will not settle."
   },
   "173rxxfj3zm": {
     "defaultMessage": "Order the board with the same build: if JLCPCB uses another stackup, every impedance you solved is off."
@@ -521,6 +536,9 @@
   "17vzx0cngxd": {
     "defaultMessage": "PCBWay 4 mil green mask bridge (the <code>generic</code> value)"
   },
+  "17yg4lr7o4c": {
+    "defaultMessage": "each footprint as it sits on the board, bottom-side ones flipped back to the top, pad drill offsets kept; copper pads that cross or touch the board outline or a cutout, and pads KiCad marks castellated, get <code>edge = true</code>"
+  },
   "17yp0xq3kx7": {
     "defaultMessage": "The router works on a 0.05 mm grid and keeps each class&#39;s width, clearance, layers and vias against everything already there. It steps in 45 degree directions, charges for vias and bends, pulls runs tight afterwards, and necks a track down into a pad that is narrower than the class width. A connection with no free path rips up what is in its way and those nets go back in the queue."
   },
@@ -529,6 +547,9 @@
   },
   "182j0cavsy3": {
     "defaultMessage": "<code>agentee models</code> fetches the KiCad library models the footprints name into a cache first, and reports any it cannot find. A footprint can also name an <code>https://</code> URL to a vendor&#39;s STEP file, pinned to a commit so it cannot change under you."
+  },
+  "183jivnkhlo": {
+    "defaultMessage": "Run long sims in the background and keep editing other things. Check notes when a result has gone stale."
   },
   "18496upds25": {
     "defaultMessage": "<code>min_via_diameter</code>, <code>min_annular_ring</code>"
@@ -542,9 +563,6 @@
   "18cz80vaejd": {
     "defaultMessage": "Validated on a 50 ohm microstrip: return loss under -25 dB, insertion loss under 0.2 dB, and phase velocity within 1.2% of Kirschning-Jansen."
   },
-  "18fll8wbnqc": {
-    "defaultMessage": "Circuit (<code>kind = &quot;circuit&quot;</code>)"
-  },
   "18gh0j8z27z": {
     "defaultMessage": "Export for the enclosure"
   },
@@ -556,6 +574,9 @@
   },
   "18i3wvdd03h": {
     "defaultMessage": "Meander points that add length to a straight segment"
+  },
+  "18jg88bbowl": {
+    "defaultMessage": "Put the datasheet and the table each value came from in the sim&#39;s <code>description</code>. The next person to read the result, often the agent, then knows what it rests on."
   },
   "18ju6pvfrj4": {
     "defaultMessage": "Parts, nets and classes with agentee edit, batches of commands, sheets for large designs, and the signal level check that catches dividers between VIL and VIH."
@@ -761,8 +782,14 @@
   "1c0qyq3q0v3": {
     "defaultMessage": "0.25"
   },
+  "1c0rvxzyl66": {
+    "defaultMessage": "Its <code>DESIGN.md</code> lists what the sims found wrong with it, the turn-on thump and an input that clips below line level, and keeps them as known problems rather than hiding them."
+  },
   "1c241d73ceu": {
     "defaultMessage": "The files are the design, and the agent works on them. The viewer is where a person watches that happen and steps in. It is a window over the project directory that reloads whenever a file changes."
+  },
+  "1c4b7buhjq7": {
+    "defaultMessage": "Every sim models U1 and D1 from their datasheets, and each one has checks: <code>preamp-ac</code> for the bias, gain and noise, <code>preamp-clip</code> for where the output hits the rails, <code>preamp-power</code> for the thump at switch-on as the bias settles, and <code>preamp-reverse</code> for the leakage with the battery reversed."
   },
   "1c8qdwsfopb": {
     "defaultMessage": "symbol library entry"
@@ -818,6 +845,9 @@
   "1d9xqjcpkko": {
     "defaultMessage": "6 ns"
   },
+  "1dbzf22unbw": {
+    "defaultMessage": "Board size - agentee reference"
+  },
   "1dckotedgvc": {
     "defaultMessage": "Your first board - agentee guide"
   },
@@ -829,6 +859,9 @@
   },
   "1de1dkyah31": {
     "defaultMessage": "DC drop"
+  },
+  "1deo9rn355v": {
+    "defaultMessage": "<code>noise = &quot;NET&quot;</code>, <code>at = &quot;1kHz&quot;</code>"
   },
   "1dexyb209p4": {
     "defaultMessage": "slots narrower than <code>min_plated_slot_width</code> or <code>min_npth_slot_width</code>, or shorter than twice their width"
@@ -842,8 +875,17 @@
   "1dko2ubm5ro": {
     "defaultMessage": "<code>*.pcb.toml</code>"
   },
+  "1dnfg9jow3j": {
+    "defaultMessage": "Every key is in the <a href=\"/reference/circuit/\">circuit reference</a>."
+  },
   "1dq7e0fdz5y": {
     "defaultMessage": "The test pads you need are there: <code>agentee testpoints NAME --dry-run</code> lists what it would add."
+  },
+  "1dqfn9te4ae": {
+    "defaultMessage": "A transient also stores the spectrum of each recorded net over its second half (a Hann window, in dBV, 2048 bins), drawn under the transient in the viewer."
+  },
+  "1dqi4st4dqd": {
+    "defaultMessage": "The preamp layout: a 3.5 mm jack on each side, the LM358 in the middle and the battery header along the top."
   },
   "1dr356dhwlw": {
     "defaultMessage": "Moves snap to the toolbar&#39;s grid. New tracks take the class width. The properties panel sets a track&#39;s net, layer and width, a via&#39;s position, net and type, and a part&#39;s position, rotation, side and <code>locked</code>."
@@ -862,9 +904,6 @@
   },
   "1e0vverrlbx": {
     "defaultMessage": "A bit stream through an S-parameter path with CTLE, DFE and IBIS drivers and receivers, read as an eye."
-  },
-  "1e20npt0ymm": {
-    "defaultMessage": "An op-amp is a single pole: a transconductance into a node with <code>gain</code> ohms and a capacitor that puts unity gain at <code>gbw</code>, then a buffer clamped smoothly between its rails less <code>headroom</code> (no clamp without both rail pins) behind <code>rout</code>. Every unit of a multi-unit op-amp with the three signal pins is its own op-amp sharing the rail pins. An LDO holds <code>vout</code> above <code>gnd</code> until the input comes within <code>dropout</code>, then follows the input down, and the input supplies the output current plus <code>iq</code>."
   },
   "1e2p7j03qjn": {
     "defaultMessage": "as the gate"
@@ -947,11 +986,17 @@
   "1f0t6b2zw6y": {
     "defaultMessage": "Print the file format reference"
   },
+  "1f1ilupid01": {
+    "defaultMessage": "Isolation domains and barriers - agentee reference"
+  },
   "1f338yhmorq": {
     "defaultMessage": "no non-plated hole of 1.5 mm or more"
   },
   "1f35gwftya6": {
     "defaultMessage": "The cascade"
+  },
+  "1f36tsxej3q": {
+    "defaultMessage": "A check that fails is an error on the sim while the result is current; the result goes stale when the spec or the schematic&#39;s netlist changes. <code>examples/lna</code> holds two: <code>lna-supply</code>, the OR-ing of the 5 V input through a Schottky to U1&#39;s bias current, and <code>lna-biastee</code>, how far the bias tee keeps RF on the output off VBIAS. Both take U1 as its 90 mA quiescent current and the BAT60A from its typical VF, from the two datasheets; the LED, which has no part number, is left out. <code>examples/preamp</code> is an op-amp design run through every analysis: the operating point, gain and noise of a gain stage and Sallen-Key filter on a dual LM358, the power-up thump as the mid-rail bias settles, clipping, and the reverse battery diode. <code>examples/ladder-vcf</code> is a BJT ladder filter: its sims check the expo converter&#39;s 1 V/oct tracking at three CVs, the resonance peak, and self-oscillation in a transient."
   },
   "1f3cehvkdmm": {
     "defaultMessage": "<code>NAME.board.toml</code>"
@@ -974,6 +1019,9 @@
   "1f9vqh6fhss": {
     "defaultMessage": "NPTH to track"
   },
+  "1fb52jqf03s": {
+    "defaultMessage": "<code>v = &quot;NET&quot;</code>, <code>at = &quot;5ms&quot;</code>"
+  },
   "1fcszuy3i8h": {
     "defaultMessage": "Mu above 1 at every frequency means the amplifier is unconditionally stable on this board. The noise floor is -174 dBm/Hz plus the noise figure plus 10 log of the bandwidth, and SFDR is two thirds of IIP3 over the floor."
   },
@@ -985,6 +1033,9 @@
   },
   "1fftm2g546y": {
     "defaultMessage": "a via hole closer than <code>min_hole_to_smd_pad</code> to an SMD pad of its own net (or no net) that it does not touch; paste and solder can flow into it"
+  },
+  "1ffyj3ywykf": {
+    "defaultMessage": "Models come from the datasheet"
   },
   "1fk8bss2ysu": {
     "defaultMessage": "Tie pads to their planes"
@@ -1070,6 +1121,9 @@
   "1gq89pyao7d": {
     "defaultMessage": "Design rule checks of a layout: its rule diagnostics, or every rule with --list"
   },
+  "1gw5szk1pxm": {
+    "defaultMessage": "Only a drive drives a net, so give every supply one. A drive is a voltage source to ground, or to the net in <code>return</code>, with <code>resistance</code> in series. <code>current = true</code> makes it a current source, which is how the preamp takes the op-amp&#39;s quiescent current off its rail. <code>ac</code> marks the input of the AC and noise analyses. For the transient, a drive takes <code>steps</code> (piecewise linear), a <code>pulse</code> or a <code>sine</code>."
+  },
   "1gy2l5rvaui": {
     "defaultMessage": "A schematic symbol, hand placed or generated from per-side pin lists. Most come from KiCad."
   },
@@ -1106,9 +1160,6 @@
   "1hfj1gylge8": {
     "defaultMessage": "Points for a track that replaces a straight segment and adds a given length as trombone bumps to one side. Paste them into the track's points."
   },
-  "1hhhztm1751": {
-    "defaultMessage": "<code>agentee parts</code> prices the BOM at Mouser and Farnell and finds cheaper parts that keep the value, package, rating and dielectric. <code>agentee export</code> writes the board and every part model as one STEP for the enclosure."
-  },
   "1hi9eni5l8u": {
     "defaultMessage": "From the repository instead of the website:"
   },
@@ -1133,8 +1184,14 @@
   "1hojglbgsmu": {
     "defaultMessage": "counts the vias each <code>[[stitching]]</code> entry placed"
   },
+  "1hqwefpgt77": {
+    "defaultMessage": "Filter"
+  },
   "1hr7d2icya6": {
     "defaultMessage": "What a link must meet, from USB 3 to a 50 ohm RF line: impedance, skew, length, vias, stubs, reference planes and return vias."
+  },
+  "1htc4tzd3xi": {
+    "defaultMessage": "Gain, phase and noise of the preamp from the AC and noise analyses."
   },
   "1hviyqhpez": {
     "defaultMessage": "The agentee agent skill"
@@ -1199,14 +1256,14 @@
   "1ijpgw6zy04": {
     "defaultMessage": "There are no system libraries to link against. The viewer loads X11 or Wayland at run time, and the GPU solvers reach Vulkan, Metal or DirectX 12 through wgpu."
   },
-  "1ijvmou62qv": {
-    "defaultMessage": "Each <code>*.sim.toml</code> is a run with a kind. The solvers run through wgpu on Vulkan, Metal or DirectX 12, write their results next to the spec, and check warns when a result goes stale."
-  },
   "1ik7elrzp6d": {
     "defaultMessage": "Via types - agentee reference"
   },
   "1ikp7ij892m": {
     "defaultMessage": "<code>fab</code> refuses while the layout has errors. With none, it writes:"
+  },
+  "1ilfchbxqel": {
+    "defaultMessage": "A 12HP voltage-controlled filter built on the Moog transistor ladder: four poles, 1 V/oct cutoff and resonance up to self-oscillation, checked by circuit sims."
   },
   "1ilun4jnwfc": {
     "defaultMessage": "Run agentee check on every push, fail the build on errors, keep simulation results fresh, and attach a fab package to a release."
@@ -1217,8 +1274,14 @@
   "1iprd0lzf8v": {
     "defaultMessage": "Routing with several via types"
   },
+  "1iradbccaqg": {
+    "defaultMessage": "<strong>LDOs</strong> hold <code>vout</code> until the input comes within <code>dropout</code>, then follow it down."
+  },
   "1itm5kdohd2": {
     "defaultMessage": "<code>show</code> prints the resolved board as JSON: for each class and layer the trace geometry (microstrip on the outer layers, stripline inside), the impedance, the width that meets the target and the current it carries. When a class is off target, check says by how much and what to use:"
+  },
+  "1iukd2j96uf": {
+    "defaultMessage": "Parts library - agentee reference"
   },
   "1ivu4pud73f": {
     "defaultMessage": "Fills are computed on load and cached. <code>agentee fill NAME</code> stores them at the end of the layout file, so a fresh checkout loads without filling."
@@ -1298,11 +1361,17 @@
   "1js1ubxwxw1": {
     "defaultMessage": "a signal via with no reference via within <code>return_via</code>"
   },
+  "1jt2xur8nd9": {
+    "defaultMessage": "the voltage at the operating point"
+  },
   "1junxrrooi9": {
     "defaultMessage": "stub"
   },
   "1jvphz860gf": {
     "defaultMessage": "The commands that write every key of a schematic, layout or board spec, keep the file’s comments, and check what they changed."
+  },
+  "1jvyh6m2ydk": {
+    "defaultMessage": "Fetch the datasheet of a part (reference, symbol or part number), or of every part of a layout or schematic, and list the parts with none reachable"
   },
   "1jzxry32yoi": {
     "defaultMessage": "<code>coplanar_gap</code> makes it grounded coplanar: the pour keeps that gap either side, with the plane below."
@@ -1421,9 +1490,6 @@
   "1lpa8tzh6yg": {
     "defaultMessage": "footprints with <code>spark_gaps</code>"
   },
-  "1lqngucnspi": {
-    "defaultMessage": "counts the vias in SMD pads of their own net (drill inside the pad); <code>fab-notes.txt</code> asks the fab to fill and cap exactly these (IPC-4761 type VII)"
-  },
   "1lsygghx10g": {
     "defaultMessage": "<code>shift164</code>"
   },
@@ -1472,6 +1538,9 @@
   "1mbcvq07ruj": {
     "defaultMessage": "Excellon drills, one file per via span on HDI boards"
   },
+  "1me1qgv50ni": {
+    "defaultMessage": "<strong>Transient:</strong> <code>[tran]</code> runs to <code>stop</code> with <code>step</code> as the largest step. It also stores the spectrum of each recorded net over its second half."
+  },
   "1megpg1z5qq": {
     "defaultMessage": "Dielectric loss follows a causal Djordjevic-Sarkar model fitted to each layer&#39;s permittivity and loss tangent. Copper is a surface impedance that follows the skin effect, the stackup&#39;s roughness and, with <code>finish = &quot;ENIG&quot;</code>, the gold and nickel on the outer pads, whose nickel adds several times the resistance of bare copper below a few GHz. The <a href=\"/reference/fdtd-losses/\">FDTD losses reference</a> has the models and the measurements they were checked against."
   },
@@ -1501,6 +1570,9 @@
   },
   "1mpzrcnadb1": {
     "defaultMessage": "<code>drill-size</code>"
+  },
+  "1mrq86ff5d0": {
+    "defaultMessage": "layers to turn on or off, e.g. <code>--hide F.Cu --show In1.Cu</code>; <code>--hide F.Cu</code> alone shows every other copper layer"
   },
   "1msr6dathc2": {
     "defaultMessage": "Shared by symbols and footprints. <code>kind</code> picks the shape and the fields it needs:"
@@ -1538,6 +1610,9 @@
   "1na2buppw58": {
     "defaultMessage": "<code>--rulers</code>"
   },
+  "1nacw1bprac": {
+    "defaultMessage": "The preamp schematic: the reverse battery diode, the mid-rail bias, the gain stage and the Sallen-Key filter."
+  },
   "1ncp0psxtys": {
     "defaultMessage": "true"
   },
@@ -1556,8 +1631,8 @@
   "1ngwiqkmd9w": {
     "defaultMessage": "Stackup, impedance classes, via types and what to fill"
   },
-  "1nlm67q95ox": {
-    "defaultMessage": "DC drop, thermal and logic sims are cheap enough to run in CI where the runner has a GPU, and logic sims need none at all:"
+  "1nl542i1htn": {
+    "defaultMessage": "<code>examples/ladder-vcf</code>: a transistor ladder filter whose sims check 1 V/oct tracking at three CVs, the resonance peak, and self-oscillation in a transient."
   },
   "1nnqixb5v3w": {
     "defaultMessage": "Agent skill"
@@ -1649,6 +1724,9 @@
   "1osgh921477": {
     "defaultMessage": "AUP, LV, LVX"
   },
+  "1ou2k5baocl": {
+    "defaultMessage": "A Eurorack transistor ladder filter"
+  },
   "1ou2oicps82": {
     "defaultMessage": "Electronics design for coding agents"
   },
@@ -1721,6 +1799,9 @@
   "1pqynrmtd2g": {
     "defaultMessage": "Every edit is checked in the background the way <code>check</code> would, so the diagnostics and the net table follow along before you save. <code>revert</code> drops unsaved edits. If the file changes on disk under unsaved edits, the viewer asks whether to keep yours or load the file."
   },
+  "1prcz0ixely": {
+    "defaultMessage": "Library parts that match, then current parts in stock at the distributors to add when none fits"
+  },
   "1psjspfv8n4": {
     "defaultMessage": "Every run reports passivity (the largest singular value of S over the band) and reciprocity (the largest difference between Sij and Sji) when every port was driven. A passivity above 1 means the run did not converge or the mesh is too coarse."
   },
@@ -1741,6 +1822,9 @@
   },
   "1q3rur02pkh": {
     "defaultMessage": "capacitor, inductor of the value"
+  },
+  "1q3vqm4fd47": {
+    "defaultMessage": "The result goes stale when the spec or the schematic&#39;s netlist changes: check notes it as stale and drops its failures until the sim runs again, so rerun the sim after every change to the circuit. Start a <code>thd</code> or <code>freq</code> span after the circuit settles, or the start-up step reads as distortion."
   },
   "1q8yeug7h6t": {
     "defaultMessage": "Design rule checks - agentee reference"
@@ -1796,8 +1880,14 @@
   "1qvez8rx5jb": {
     "defaultMessage": "HDI: microvias and lamination"
   },
+  "1qvvhd0wo3v": {
+    "defaultMessage": "a via or footprint hole in a pad drilled wider than <code>max_filled_via_drill</code>, or whose via type sets a <code>fill</code> other than <code>filled_capped</code> (IPC-4761 type VII)"
+  },
   "1qw5tcldd6o": {
     "defaultMessage": "units, the file model, resolve and check, the calculators"
+  },
+  "1qwq7fw1zbr": {
+    "defaultMessage": "Every cached datasheet"
   },
   "1qxtym14c23": {
     "defaultMessage": "<code>agentee render</code> (MCP <code>render_item</code>) draws what the viewer draws. Without the side panels (<code>--canvas-only</code>) the PNG is cropped to the drawing, and <code>--width</code> and <code>--height</code> cap its size."
@@ -1877,6 +1967,9 @@
   "1rshvxek8oj": {
     "defaultMessage": "<code>is</code>, <code>n</code>, <code>bv</code>, <code>cj</code>"
   },
+  "1rsjtrsrwaj": {
+    "defaultMessage": "Tracking"
+  },
   "1rt96e9xmko": {
     "defaultMessage": "A glob in <code>--nets</code> never matches a plane net, so <code>--nets &#39;*&#39;</code> routes every signal and leaves ground to the planes."
   },
@@ -1903,6 +1996,9 @@
   },
   "1s33pmxzurr": {
     "defaultMessage": "Solve the trace cross-section on the GPU (2D field solver)"
+  },
+  "1s3fydwewfi": {
+    "defaultMessage": "The result records a hash of the copper it saw (only the sim&#39;s <code>region</code>) and of the stackup. When either changes, check notes that the result is stale, and anything that reads it, a cascade or an interface measure, fails until you rerun."
   },
   "1s531aqxeis": {
     "defaultMessage": "Impedance, solved"
@@ -1955,17 +2051,26 @@
   "1sxo3nbwdqe": {
     "defaultMessage": "Board spec - agentee reference"
   },
+  "1t05ap2kwsf": {
+    "defaultMessage": "<code>bom</code> prints one row per BOM line with its line total at each board count, then the total and the cost per board. Each count takes the cheapest offer in stock for that quantity, so a line can come from another distributor at 100 boards than at one; those cells carry a <code>*</code>. It makes the same API calls as one <code>parts</code> run and does not search for alternatives."
+  },
   "1t0gfv4ns3v": {
     "defaultMessage": "nothing"
   },
   "1t1fwly2kmh": {
     "defaultMessage": "The electrical rules read each pin&#39;s <code>type</code> on the joined design (the top schematic of a sheet set). Parts with <code>dnp</code> and power symbols take no part; the pins of one reference count as one part, so a regulator with two <code>VOUT</code> pins is one driver."
   },
+  "1t2756gdxi8": {
+    "defaultMessage": "<code>v = &quot;NET&quot;</code>"
+  },
   "1t3ojsnksah": {
     "defaultMessage": "An agent designs a board the way a junior engineer would: well when the requirements are written down, badly when it has to guess them. A useful brief says:"
   },
   "1t4e51ww1vh": {
     "defaultMessage": "Every board also carries <code>agentee vX.Y.Z-HASH</code> in its silk, on the bottom by default. It needs a clear strip about 23 by 1.2 mm; on a small or crowded board, clear room for it or set <code>[watermark] at</code> yourself. The fab package is refused without it."
+  },
+  "1t4pvs3edjz": {
+    "defaultMessage": "The ladder sheet: four rungs of BC550C pairs with a 68 nF capacitor across each, and the bias string beside them."
   },
   "1t6pxa5bz3h": {
     "defaultMessage": "Import from the installed KiCad libraries"
@@ -1990,6 +2095,9 @@
   },
   "1tg0igjwde6": {
     "defaultMessage": "Pairs and length rules live in the layout too:"
+  },
+  "1thp4jnlo2o": {
+    "defaultMessage": "Run the analog side of a schematic from its netlist: operating point, AC, transient and noise, with op-amps and diodes modelled from their datasheets and checks on the results."
   },
   "1ti08lpup4e": {
     "defaultMessage": "keeps switching regulators 8 mm from crystals and RF parts, and hot parts apart;"
@@ -2017,6 +2125,9 @@
   },
   "1u0p4bww3su": {
     "defaultMessage": "agentee is not a KiCad replacement with a different file format. It is a design tool for agents that borrows KiCad&#39;s libraries and reads KiCad&#39;s boards. If you know KiCad, most of the concepts carry over; what changes is that the files are the interface, and a person edits through an agent and a viewer rather than through an editor."
+  },
+  "1u0t9osv98": {
+    "defaultMessage": "Check each part's symbol against its footprint and pinned datasheet, its model against its footprint, and its files against their recorded hashes"
   },
   "1u0twe57jl1": {
     "defaultMessage": "<code>watermark</code>"
@@ -2096,8 +2207,14 @@
   "1v6tkvi9eoa": {
     "defaultMessage": "can go past its <code>min</code> or <code>max</code>."
   },
+  "1v8b22zuq5j": {
+    "defaultMessage": "The <a href=\"/examples/preamp/\">preamp example</a> runs a 9 V op-amp preamp through every analysis. This is its AC and noise run, cut down:"
+  },
   "1varlnyi9we": {
     "defaultMessage": "The board spec is the first file of a design and the one everything else is checked against. It names the fab, the stackup, the outline, the via types and the net classes. Get it right first: a layout routed against the wrong stackup has the wrong impedance on every controlled line."
+  },
+  "1vdk0dj8xih": {
+    "defaultMessage": "<code>examples/preamp</code>: the operating point, gain and noise of a gain stage and Sallen-Key filter on an LM358, the thump at switch-on, clipping, and the reverse battery diode."
   },
   "1vheefcsvsv": {
     "defaultMessage": "Open pins"
@@ -2125,6 +2242,12 @@
   },
   "1vzjszgv194": {
     "defaultMessage": "4+ copper layers"
+  },
+  "1vzk3qgev1j": {
+    "defaultMessage": "the voltage in the transient"
+  },
+  "1w22asyz8b0": {
+    "defaultMessage": "BOM cost table: each line priced at Mouser, Farnell and DigiKey for 1, 10 and 100 boards (or --boards), with totals and the cost per board"
   },
   "1w23uml0qs4": {
     "defaultMessage": "Stock, price and cheaper equivalents for a layout's or schematic's BOM from Mouser, Farnell and DigiKey, with keys in ~/.config/agentee/distributors.toml"
@@ -2162,6 +2285,9 @@
   "1wiy621uk7q": {
     "defaultMessage": "<code>max_drill</code>"
   },
+  "1wj9ywr1xgm": {
+    "defaultMessage": "Any of the three can be left out; <code>parts</code> asks only the distributors it has a key for."
+  },
   "1wl1w7vzxz9": {
     "defaultMessage": "Differential pairs"
   },
@@ -2188,6 +2314,9 @@
   },
   "1x26l2o1amg": {
     "defaultMessage": "0.065"
+  },
+  "1x3p3tks6p0": {
+    "defaultMessage": "<strong>Noise:</strong> <code>[noise]</code> gives the density at <code>output</code> and, with <code>input</code>, the input referred curve, plus the RMS over the band. Resistors, junction currents, MOSFET channels and op-amp <code>en</code> all contribute."
   },
   "1x46s3bac2h": {
     "defaultMessage": "HC, HCT: 8 ns trec of <code>nSD</code>, <code>nRD</code> to <code>nCP</code>, Nexperia 74HC_HCT74 rev 9 (TI SN74HC74 SCLS094F gives 6 ns, TI CD74HC74 SCHS124E 8 ns, named trem there)."
@@ -2315,11 +2444,17 @@
   "1yll3w86c5p": {
     "defaultMessage": "<code>Q</code> with <code>B</code>, <code>C</code>, <code>E</code> pins"
   },
+  "1yq2pxfevie": {
+    "defaultMessage": "17.5 µV RMS, 20 Hz to 20 kHz"
+  },
   "1yqopwhriij": {
     "defaultMessage": "From source"
   },
   "1ysi778ja9n": {
     "defaultMessage": "Logic simulation - agentee guide"
+  },
+  "1yu0zeaxe5z": {
+    "defaultMessage": "the phase in degrees"
   },
   "1yu31vmkotr": {
     "defaultMessage": "A DC sim <code>[[supplies]]</code> pad with no <code>voltage</code> is held at its net&#39;s class voltage."
@@ -2390,6 +2525,9 @@
   "1zro2sgolb3": {
     "defaultMessage": "Starting a layout from the viewer"
   },
+  "1zrw4z0t5g2": {
+    "defaultMessage": "Net class voltage - agentee reference"
+  },
   "201vba8b1dw": {
     "defaultMessage": "<code>--tdr PORT</code> is impedance against time from one port: the data resampled to a uniform grid, extrapolated to DC, given a Gaussian edge and integrated. It warns when the edge is faster than the data supports. The viewer shows the same TDR for every driven port."
   },
@@ -2404,6 +2542,9 @@
   },
   "206fz74rgcf": {
     "defaultMessage": "The 3D view"
+  },
+  "207b5i67sqz": {
+    "defaultMessage": "A 3.5 mm jack in, a 3.5 mm jack out and a 9 V battery. U1A gains the signal by 11 with its DC gain held at 1, so the output sits at the mid-rail bias with no trimming. U1B is a unity-gain Sallen-Key low-pass at 1.07 kHz with a Q of 0.74, close to Butterworth. A 1N4148 blocks a battery clip put on backwards."
   },
   "207lu7hdiio": {
     "defaultMessage": "A grid puts a zero-thickness edge about a third of a cell past its last mesh line, so a strip drawn on the grid reads wider than it is, and real copper of thickness t reads wider again by (t / 2 pi)(1 + ln(4h / t)) per edge, h being the distance to the nearest other copper layer (the Hammerstad-Jensen thickness correction). The mesher sets the last line of each trace, pad and pour edge so the two land together: the grid&#39;s own offset comes from a finite difference solve of a slit on the local cell shape. A 0.3 mm microstrip on 0.15 mm of air reads 81.9 and 82.2 ohm at 0.05 and 0.025 mm cells against 82.4 ohm from Hammerstad-Jensen with 35 um copper; drawing the edges on mesh lines gave 82.6 and 85.1."
@@ -2423,6 +2564,9 @@
   "20fztuvf9ax": {
     "defaultMessage": "Copies live at <code>MAKER/MPN/HASH.pdf</code> with a <code>meta.json</code> holding each copy&#39;s URL, source, SHA-256, fetch date and the revision line read from its first or last pages, so a part is fetched once and a newer revision sits beside the old one. <code>text</code> reads a copy with <code>pdftotext -layout</code> and keeps the text beside the PDF; it never touches the network when the part is cached, and fetches it first when it is not (<code>--offline</code> refuses instead). <code>--find</code> matches whole words, case sensitive when the word has capitals, with <code>--context</code> lines around each hit."
   },
+  "20g50gmjre9": {
+    "defaultMessage": "<code>phase = &quot;NET&quot;</code>, <code>at = &quot;1kHz&quot;</code>"
+  },
   "20gg17bj404": {
     "defaultMessage": "what happens to everything outside <code>--focus</code> (default <code>dim</code>)"
   },
@@ -2435,11 +2579,17 @@
   "20ibe091n9u": {
     "defaultMessage": "<code>interface-length</code>"
   },
+  "20j48ugt560": {
+    "defaultMessage": "<strong>Potentiometers</strong> take a <code>position</code> from 0 to 1, so the wiper loads and is loaded like the real part."
+  },
   "20jeq5fot08": {
     "defaultMessage": "Building from source"
   },
   "20jhelro40z": {
     "defaultMessage": "FDTD simulation - agentee reference"
+  },
+  "20kuk49haa4": {
+    "defaultMessage": "<code>examples/lna</code>: <code>lna-supply</code> checks the OR-ing of two power inputs through Schottkys, and <code>lna-biastee</code> how much RF the bias tee lets onto the supply."
   },
   "20lewk716sx": {
     "defaultMessage": "A class can list several vias:"
@@ -2489,6 +2639,9 @@
   "21lg9b01spd": {
     "defaultMessage": "<code>lamination</code> lists the steps instead, for a build the stackup does not show (a sub-stack pressed on one side first, a laser step into a core):"
   },
+  "21lqvncx1x3": {
+    "defaultMessage": "Write Gerbers, drills, BOM and placement for JLCPCB or any fab, price the BOM at Mouser, Farnell and DigiKey, and export a STEP for the enclosure."
+  },
   "21mbk2ewvna": {
     "defaultMessage": "<code>min_inner_pth_hole_to_copper</code>"
   },
@@ -2497,6 +2650,9 @@
   },
   "21mhsdlzlqh": {
     "defaultMessage": "Breadcrumb"
+  },
+  "21nrp4765h1": {
+    "defaultMessage": "Start from your library"
   },
   "21r8tknr577": {
     "defaultMessage": "Size it before you run it"
@@ -2522,11 +2678,11 @@
   "21ydixlhbqp": {
     "defaultMessage": "0.1 ohm, unless a block gives it more"
   },
+  "21yuvtchndl": {
+    "defaultMessage": "Each part becomes an element by its reference letter: <code>R</code>, <code>C</code> and <code>L</code> by value, <code>D</code> as a diode, <code>Q</code> as a BJT or MOSFET by its pin names. Connectors, test points, holes and crystals are left out, and anything else is an error until it has a block or sits in <code>ignore</code>."
+  },
   "21yxfse7rgr": {
     "defaultMessage": "agentee file format reference"
-  },
-  "21z7dt71046": {
-    "defaultMessage": "Check never runs a sim. Each result records a hash of the spec, the copper it saw and the stackup, and check warns when they no longer match. On a CI runner without a GPU that is the useful part: a pull request that moves an RF track gets a stale warning on the FDTD result, and an interface that measures that result fails outright."
   },
   "221qbpi8pyl": {
     "defaultMessage": "In1.Cu to In4.Cu, buried, through the sub-stack,"
@@ -2560,6 +2716,9 @@
   },
   "22lhuqm05qf": {
     "defaultMessage": "Then"
+  },
+  "22ozmlk6n33": {
+    "defaultMessage": "The built-in devices are generic stand-ins: a silicon diode, a small-signal BJT, a logic-level MOSFET. A result that rests on one describes the stand-in, not your part. Give each part that matters a <code>[[blocks]]</code> entry with values from its datasheet:"
   },
   "22rmjzm4b8o": {
     "defaultMessage": "The engine keeps four levels, 0, 1, x and z. Strong drivers that disagree give x and a contention; pulls count only when no strong driver is on. A gate goes to x only when the unknown input matters, so 0 into an AND is still 0."
@@ -2618,6 +2777,9 @@
   "23mm06wb3co": {
     "defaultMessage": "DC drop and thermal sims answer the two questions every power path raises: does the load see the voltage it needs, and how hot does the board get. Both run in seconds, so run them freely, after every layout change that touches a power path."
   },
+  "23p16t2yc2b": {
+    "defaultMessage": "Circuit simulation - agentee reference"
+  },
   "23plfra7o4v": {
     "defaultMessage": "Excellon drills, slots as G85; one more file per blind, buried or microvia span on HDI boards"
   },
@@ -2626,6 +2788,9 @@
   },
   "23q0rg2wlh0": {
     "defaultMessage": "Check looks for overlapping pads, pads closer than the fab clearance, drills and annular rings under the rules (<code>min_drill</code>, <code>min_pth_annular_ring</code>), a courtyard that encloses the pads, and silk that runs over exposed copper."
+  },
+  "23qdrfyv5jt": {
+    "defaultMessage": "Parts whose nets all sit in one domain are kept apart from the parts of a domain it has a barrier with, by the barrier&#39;s distance. A zone with an <code>outline</code> marks where its net&#39;s domain lives: a part of that domain placed outside every such outline pays for the distance, so drawing the primary and secondary pours first settles which side of the slots each domain goes. The back of a through-hole part is open to parts on the other side, apart from its holes."
   },
   "23wrviurn1r": {
     "defaultMessage": "<code>agentee fit NAME [--strategy tight|balanced|spread] [--aspect 1.5 ...] [--width MM] [--height MM] [--verify N] [--write]</code> (MCP <code>fit</code>) finds the smallest rectangular board the layout fits on. It loads the layout once and tries outlines in memory, tens to hundreds a second: the current placement scaled to the new size (turned a quarter when the new board is the other way round), mounting holes kept in their corners, edge connectors kept on their edge and slid along it until clear, then every other part legalised with the strategy&#39;s gap between parts (0.1, 0.2 or 0.4 mm). A size fits when every part finds a spot and the routing demand (each net&#39;s half perimeter spread over its bounding box on 1 mm tiles) in the busiest twentieth of the board stays under 90%, 70% or 50% of what the signal layers hold at the <code>Default</code> class track and gap. Each aspect ratio (the current one and 13 from 0.42 to 2.38 by default, or <code>--aspect</code> repeated) is searched separately; <code>--width</code> or <code>--height</code> holds one side. The smallest sizes then go through the access stage and the global router, <code>--verify</code> of them (3 by default, 0 skips it), and the smallest one with no more stuck pads than the current board and global overflow under 3%, 1% or 0.2% of its wirelength wins. The table gives each aspect&#39;s smallest fitting size and what stopped the next size down. <code>--write</code> sets <code>[outline] size</code> in the board file, writes the placement with the routing cleared, and settles the labels; run <code>agentee layout NAME</code> after it. Place the layout first, since the search starts from the arrangement it has; board texts and artwork stay where they are."
@@ -2651,6 +2816,12 @@
   "24f71nk43yn": {
     "defaultMessage": "<code>ldo</code>"
   },
+  "24fbukr9z2l": {
+    "defaultMessage": "<code>thd</code> is the harmonics 2 to 10 against the fundamental, in percent, over the whole periods between the first and last rising crossing of the mean in the span. <code>freq</code> and <code>thd</code> need at least one full period there. Start the span after the circuit settles, or the start-up step reads as distortion."
+  },
+  "24fhyo0b1p": {
+    "defaultMessage": "The parts library is your own set of parts, kept in <code>~/.config/agentee/library/</code> and shared by every project: the connectors, regulators and passives you want each design to reuse. Each part holds its symbol, footprint, 3D model, pinned datasheet and last checked stock. For each part a design needs, the steps are find, add, use:"
+  },
   "24ge4p3vpat": {
     "defaultMessage": "first to last copper"
   },
@@ -2662,6 +2833,9 @@
   },
   "24m8a2eo3kj": {
     "defaultMessage": "<code>/Applications/KiCad/KiCad.app/Contents/SharedSupport</code> on macOS,"
+  },
+  "24mm2zhem68": {
+    "defaultMessage": "A Eurorack transistor ladder filter - agentee example"
   },
   "24nz8lzyz4c": {
     "defaultMessage": "a pair skewed over the interface&#39;s <code>max_skew</code>"
@@ -2711,6 +2885,9 @@
   "24zpcxpqyjv": {
     "defaultMessage": "<code>placement-large-part-off-centre</code>"
   },
+  "253qjtv6se3": {
+    "defaultMessage": "copper of two nets closer than the larger of their class clearances (a footprint <code>clearance</code> replaces them for its pads, and inside its courtyard between copper of nets on its pads), or copper run into a non-plated hole. Pads of one footprint are held to <code>min_clearance</code> and to the class clearance of nets in an isolation domain; spark gap electrodes are skipped"
+  },
   "257dvkr134n": {
     "defaultMessage": "<code>testpoints.csv</code>"
   },
@@ -2734,6 +2911,9 @@
   },
   "25fgfiucnax": {
     "defaultMessage": "<code>agentee route NAME --nets &#39;FX_D*,SPI_*&#39; --layers F.Cu,In2.Cu,B.Cu</code> (MCP <code>route</code>) routes the ratsnest of the named nets with the layout engine&#39;s detail router (see <code>docs/layout-engine-2.md</code>) and appends the tracks and vias to the layout file as ordinary <code>[[tracks]]</code> and <code>[[vias]]</code>, so they are yours to edit afterwards. The named nets negotiate for room together on a grid (<code>--grid</code>, default 0.05 mm) over up to 30 rounds, routed in parallel, ripping up only the pieces that overlap, so the order they are named in does not matter. <code>--layers</code> keeps tracks to those layers, apart from a short stub out of a pad that sits on none of them; <code>--via</code> limits layer changes to the named vias, otherwise a net takes its class vias first and the board&#39;s others after. <code>--via-cost</code>, <code>--bend-cost</code> and <code>--via-in-pad</code> work as below. Each net&#39;s new copper is checked against the rules before it is written; the tracks and vias that break one are dropped with the rule named under <code>failed</code>, and the rest of the net is kept. A via the net is joined without is dropped."
+  },
+  "25j3wt0ciym": {
+    "defaultMessage": "A 9 V audio preamp on a dual LM358: x11 gain and a 1 kHz Sallen-Key low-pass, run through every circuit analysis from the operating point to clipping."
   },
   "25p7vx30apm": {
     "defaultMessage": "Look at it"
@@ -2773,6 +2953,9 @@
   },
   "263vpm1rcow": {
     "defaultMessage": "50 mil"
+  },
+  "265zcs521bh": {
+    "defaultMessage": "DC drop and thermal sims are cheap enough to run in CI where the runner has a GPU, and logic and circuit sims need none at all:"
   },
   "266quvv4t07": {
     "defaultMessage": "pins (default by name)"
@@ -2849,20 +3032,23 @@
   "272eywo2195": {
     "defaultMessage": "BOM cost table of a layout or schematic: every line priced at Mouser, Farnell and DigiKey at each board count (default 1, 10 and 100), buying up to a price break when that is cheaper, with the total and the cost per board, and the lines that could not be priced and why. Use parts to look for cheaper equivalents."
   },
-  "272ff8lqlwg": {
-    "defaultMessage": "copper of two nets closer than the larger of their class clearances (a footprint <code>clearance</code> replaces them for its pads), or copper run into a non-plated hole. Pads of one footprint are held to <code>min_clearance</code> and to the class clearance of nets in an isolation domain; spark gap electrodes are skipped"
-  },
   "273fbb03hqb": {
     "defaultMessage": "<strong>Functional</strong> spacing is IPC-2221B B2 clearance and IEC 60664-1 table F.4 creepage for printed wiring at the board&#39;s pollution degree. <strong>Reinforced</strong> spacing is clearance for the next rated impulse voltage above the one the working voltage sees (IEC 60664-1 tables F.1 and F.2, overvoltage category II for AC, which is taken as mains, and the peak for DC) and twice the basic creepage for material group IIIa (FR4 of unknown CTI), never under the IPC-2221B figure. AC classes are rated 10% over their nominal for mains tolerance. 230 VAC to SELV comes out at 3 mm clearance and 5.06 mm creepage."
   },
   "273giv9xl0e": {
     "defaultMessage": "placement, JLCPCB columns"
   },
+  "274ypkwjy06": {
+    "defaultMessage": "<code>v = &quot;NET&quot;</code>, <code>at = &quot;1kHz&quot;</code>"
+  },
   "275gnly9wa6": {
     "defaultMessage": "A microvia spans one dielectric unless <code>stacked</code> (a stack of single microvias, which needs <code>[rules] stacked_microvias = true</code> and copper filled microvias below) or <code>skip</code> (one laser hole over two dielectrics). Its drill is between <code>min_microvia_drill</code> and <code>max_microvia_drill</code>, its pad at least <code>min_microvia_diameter</code>, and its depth over the drill at most <code>max_microvia_aspect_ratio</code>, for each dielectric of a stack. IPC-T-50 defines a microvia as a blind structure of at most 1:1 aspect ratio and 0.25 mm depth; a deeper one is a warning."
   },
   "2772h2ej51q": {
     "defaultMessage": "A schematic in agentee is a list of parts and a list of nets. A net is a name, a class and the pins it joins. Wires are drawn for you when the schematic is rendered, so nothing about the circuit depends on where a line was dragged."
+  },
+  "2772qn73uvk": {
+    "defaultMessage": "agentee fit: the smallest rectangular board a layout fits on, tried at many aspect ratios and checked with the global router."
   },
   "279x9no5t0z": {
     "defaultMessage": "A mount spreads its conductance over every copper cell of its pads, on each layer the pad is on. Maps: temperature per copper layer. Readings: board peak, each source&#39;s pad and junction temperature, and the watts each mount carries."
@@ -2909,11 +3095,17 @@
   "2870xozdz2f": {
     "defaultMessage": "Write the schematic"
   },
+  "28718d0b502": {
+    "defaultMessage": "<strong>Sims</strong>: S-parameter plots and Smith charts, TDR, eyes, PDN impedance, DC drop, current density and temperature maps, logic waveforms, and the gain, phase, noise and transients of a circuit sim."
+  },
   "289ljtwa0p": {
     "defaultMessage": "<code>min_track_width</code>, <code>min_clearance</code>"
   },
   "28a3r88ouzz": {
     "defaultMessage": "0.3"
+  },
+  "28coq96ytfk": {
+    "defaultMessage": "check"
   },
   "28d8cxee2e6": {
     "defaultMessage": "schematics and layouts: zoom to these references, net names or <code>REF.PIN</code>, <code>*</code> matching any run of characters. A net brings in the parts it touches, a pin its net"
@@ -2972,6 +3164,9 @@
   "2938khm5ak6": {
     "defaultMessage": "<code>label.text</code> prints its own words in place of the footprint&#39;s reference text, with <code>${REFERENCE}</code> and <code>${VALUE}</code> expanded, and gets the same checks. A label with only <code>text</code> keeps the footprint&#39;s spot, rotation and size. Mounting holes start with their reference hidden; <code>hide = false</code> shows it. <code>agentee edit pcb NAME label REF</code> sets <code>--text</code>, <code>--at</code>, <code>--rotation</code>, <code>--size</code>, <code>--hide</code> or <code>--show</code>, and <code>--clear text,at,rotation,size,hide</code> drops keys again. The fab layer keeps the real reference for assembly."
   },
+  "293lvl79gnm": {
+    "defaultMessage": "<code>i = &quot;R1&quot;</code>"
+  },
   "294judhfjwe": {
     "defaultMessage": "<code>acute-turn</code>"
   },
@@ -2990,6 +3185,9 @@
   "29hlkld1b4r": {
     "defaultMessage": "the sub-stack, mechanically, after its press;"
   },
+  "29ijobj9qbh": {
+    "defaultMessage": "One library part: its files, where they came from, datasheet and stock"
+  },
   "29iu3d22sqh": {
     "defaultMessage": "route: click a pad, via or track to start, click to add 45 degree corners, <code>/</code> flips the bend, V drops a via, Enter ends"
   },
@@ -2998,6 +3196,9 @@
   },
   "29ku7ky1qub": {
     "defaultMessage": "a pair run side by side at another gap than the class <code>diff_gap</code>, beyond <code>max_uncoupled</code>"
+  },
+  "29o11ucnb9q": {
+    "defaultMessage": "A check reads one number and holds it between <code>min</code> and <code>max</code>. What it reads depends on <code>at</code>:"
   },
   "29pexjrs3mz": {
     "defaultMessage": "<code>bom.csv</code>, <code>bom-jlcpcb.csv</code>"
@@ -3098,6 +3299,9 @@
   "2b6e1q1tvd8": {
     "defaultMessage": "<code>agentee fab pcb:NAME -o DIR</code> (MCP <code>fab</code>) writes:"
   },
+  "2b6ij7n4vlv": {
+    "defaultMessage": "Analyses"
+  },
   "2b6nbr5oygg": {
     "defaultMessage": "<code>new board</code> writes <code>blinky.board.toml</code>: a 50 by 30 mm outline, the JLCPCB two layer 1.6 mm stackup, one via type and four net classes. Check loads it and reports nothing:"
   },
@@ -3106,9 +3310,6 @@
   },
   "2b7t81y413p": {
     "defaultMessage": "<code>agentee check</code> clean before the schematic starts naming classes."
-  },
-  "2b9md1xxs4j": {
-    "defaultMessage": "Worked agentee projects: a bias-tee LNA with FDTD, cascade, DC drop and thermal sims, the HackRF Pro imported from KiCad, and logic simulations of a counter and an I2C bus."
   },
   "2banbwa4skb": {
     "defaultMessage": "Start with a board you already understand"
@@ -3176,6 +3377,9 @@
   "2bu38inx0ww": {
     "defaultMessage": "A logic sim runs the digital parts of a schematic straight from its netlist. No layout is needed, so it fits early in a design: check that a counter counts, a decoder decodes and an open-drain bus acknowledges, before anything is placed."
   },
+  "2bwxeh48i5b": {
+    "defaultMessage": "Ground is every net named GND, <code>0V</code>, <code>GROUND</code> or starting with <code>VSS</code>."
+  },
   "2bxd38dsnem": {
     "defaultMessage": "Importing a whole board"
   },
@@ -3209,14 +3413,14 @@
   "2cjh4sryf9n": {
     "defaultMessage": "a net whose pads are not all joined by tracks, vias and pours, naming the groups that are apart"
   },
-  "2cjp54hpvxh": {
-    "defaultMessage": "Every simulation is current: check warns about stale results."
-  },
   "2cjq2lndzi6": {
     "defaultMessage": "The driver becomes a Thevenin source from its pulldown and pullup tables, its die capacitance and its package; its ramp sets the edge and its voltage range the swing, unless <code>rise</code> or <code>swing</code> are given. The receiver loads the far end with its package and die capacitance, and the eye is read at its die. IBIS works on single-ended paths for now."
   },
   "2cozbj3xs0k": {
     "defaultMessage": "<code>--focus</code> takes references (<code>U1</code>), net names (<code>SPI_CLK</code>) and pins (<code>U1.3</code>), with <code>*</code> as a wildcard. A net brings in the parts it touches. <code>--context</code> is <code>dim</code> by default, <code>hide</code> to leave only what you named, or <code>show</code> to zoom without fading anything. MCP <code>render_item</code> takes the same <code>focus</code>, <code>context</code> and <code>rulers</code> arguments."
+  },
+  "2cs52ia4alm": {
+    "defaultMessage": "Worked agentee projects: a bias-tee LNA with FDTD, cascade, DC drop and thermal sims, an op-amp preamp and a Eurorack ladder filter with circuit sims, the HackRF Pro imported from KiCad, and logic simulations of a counter and an I2C bus."
   },
   "2csls3gciuc": {
     "defaultMessage": "What it needs"
@@ -3229,6 +3433,9 @@
   },
   "2cxiorus6h5": {
     "defaultMessage": "a simulation of a layout: FDTD S-parameters, cascade, channel, PDN, DC drop or thermal (<code>kind</code>)"
+  },
+  "2cydaclfzc3": {
+    "defaultMessage": "operating point, AC, noise, transient"
   },
   "2cyh4coacuo": {
     "defaultMessage": "Find the 3D models (STEP or VRML) the project's footprints name, downloading missing KiCad library models into the cache. Reports each model's path and triangle count, or why it is missing."
@@ -3326,6 +3533,9 @@
   "2e7c9td1w4l": {
     "defaultMessage": "What must be simulated: the RF path, a USB lane, a rail&#39;s drop, a hot regulator."
   },
+  "2e9bi5sy2r9": {
+    "defaultMessage": "counts the vias in SMD pads of their own net (drill inside the pad), and the plated holes a footprint puts in its own SMD pad (KiCad <code>_ThermalVias</code> exposed pads); <code>fab-notes.txt</code> asks the fab to fill and cap exactly these (IPC-4761 type VII)"
+  },
   "2eae1pcr9lz": {
     "defaultMessage": "Length matching"
   },
@@ -3356,8 +3566,14 @@
   "2erk3af4v4t": {
     "defaultMessage": "Run check straight after. The usual finding is silk:"
   },
+  "2eston77ejc": {
+    "defaultMessage": "Every copper layer solved as a resistive sheet: the drop to each load, current density and the busiest vias."
+  },
   "2esv3ij8ba7": {
     "defaultMessage": "Editing a layout by hand"
+  },
+  "2esvl1tgpde": {
+    "defaultMessage": "the current through a two-pin part, pin 1 to pin 2"
   },
   "2etkcmne0z1": {
     "defaultMessage": "Page not found - agentee"
@@ -3388,6 +3604,9 @@
   },
   "2f2z33kakex": {
     "defaultMessage": "10.7"
+  },
+  "2f350b6ufp1": {
+    "defaultMessage": "<code>agentee parts</code> prices the BOM at Mouser, Farnell and DigiKey and finds cheaper parts that keep the value, package, rating and dielectric. <code>agentee export</code> writes the board and every part model as one STEP for the enclosure."
   },
   "2f4itubsbkt": {
     "defaultMessage": "<code>min_microvia_drill</code>, <code>max_microvia_drill</code>"
@@ -3485,6 +3704,9 @@
   "2gbdkmb6u42": {
     "defaultMessage": "Coordinates are millimetres with Y up, the same in the Gerbers and the placement file. Parts marked <code>dnp</code>, parts with <code>assembly = &quot;no&quot;</code> in their fields, and mounting holes and fiducials stay off the BOM and placement."
   },
+  "2gdjd5twcfg": {
+    "defaultMessage": "<code>parts</code> looks up every BOM line at Mouser, Farnell and DigiKey by its <code>mpn</code> field, so give every part <code>mfr</code> and <code>mpn</code> first; lines without one are skipped. The keys live outside every project, in <code>~/.config/agentee/distributors.toml</code>:"
+  },
   "2gdxxtr0gxf": {
     "defaultMessage": "Pick a real stackup"
   },
@@ -3496,6 +3718,9 @@
   },
   "2giq5lxjwx9": {
     "defaultMessage": "Parts whose value (or else symbol name) holds a 74 series number take the built-in model by pin number: <code>74HC00</code>, <code>SN74LVC1G08DBVR</code> and <code>CD74HCT04E</code> all match. The library covers 00, 01, 02, 03, 04, 05, 06, 07, 08, 10, 11, 14, 20, 21, 27, 32, 74, 86, 125, 126, 132, 138, 157, 161, 163, 164, 244, 245, 573, 574 and 595, the single gates 1G00, 1G02, 1G04, 1G06, 1G07, 1G08, 1G14, 1G17, 1G32, 1G34, 1G74, 1G79, 1G80, 1G86, 1G125, 1G126 and 1G157, and the dual gates 2G00, 2G02, 2G04, 2G08, 2G14, 2G17, 2G32, 2G34, 2G74, 2G86, 2G125 and 2G126. A unit of a multi-unit symbol that is not placed is left out; a placed pin with no net reads as floating (z)."
+  },
+  "2giqdaqkg6m": {
+    "defaultMessage": "Operating point, AC, transient and noise of the schematic, with op-amps and diodes modelled from their datasheets and checks on gain, swing and distortion."
   },
   "2git8ngbr77": {
     "defaultMessage": "<code>zone-islands</code>"
@@ -3650,6 +3875,9 @@
   "4lxxwf41j4": {
     "defaultMessage": "<code>min_plated_slot_width</code>"
   },
+  "4ppradody": {
+    "defaultMessage": "A circuit sim runs the analog side of a schematic straight from its netlist: the operating point every time, and an AC sweep, a transient and a noise analysis when the spec asks for them. No layout is needed, so it answers the questions that decide the schematic: does the bias sit where it should, what is the gain at 1 kHz, where does the output clip, how loud is the hiss."
+  },
   "4pvnbce4b5": {
     "defaultMessage": "<code>creepage</code>"
   },
@@ -3704,6 +3932,9 @@
   "5pto2u1r9b": {
     "defaultMessage": "<code>placement-decoupling-distance</code>"
   },
+  "5r1xf3dojc": {
+    "defaultMessage": "agentee datasheet: fetch each part’s datasheet once into a shared cache, read it back as text and record what a design used."
+  },
   "5s6x74866k": {
     "defaultMessage": "What becomes a cell"
   },
@@ -3713,14 +3944,17 @@
   "5u8z0zrk18": {
     "defaultMessage": "Parts: import or draw"
   },
+  "6181chw78z": {
+    "defaultMessage": "The filter self-oscillating at full resonance after a kick, with the spectrum of the output."
+  },
   "666r1k781v": {
     "defaultMessage": "keeps 0805 and larger ceramic capacitors out of the flex zone near edges and holes, and turns small ones to lie along the edge;"
   },
+  "683ii2bsxi": {
+    "defaultMessage": "Drives"
+  },
   "686lhskeo4": {
     "defaultMessage": "one schematic symbol"
-  },
-  "6f8tjd4506": {
-    "defaultMessage": "layers to turn on or off, e.g. <code>--hide F.Cu --show In1.Cu</code>"
   },
   "6ido514tq1": {
     "defaultMessage": "4 layers, JLC04161H-7628, ENIG"
@@ -3763,6 +3997,9 @@
   },
   "74vkuiezk": {
     "defaultMessage": "<code>agentee sparam NAME</code> (MCP <code>sparam</code>) works on any FDTD or cascade result:"
+  },
+  "77g3glnb2v": {
+    "defaultMessage": "<code>--order DIR</code> writes sheets to buy from instead of the report: <code>NAME-order.csv</code> with every line and where it is bought, and one <code>NAME-&lt;distributor&gt;.csv</code> per distributor in the layout its BOM upload reads. <code>--spares</code> adds the hand assembly allowance, a few extra small passives and one spare of each chip, diode, transistor and fuse line."
   },
   "785vso7xer": {
     "defaultMessage": "Leave <code>track_width</code> out and check solves it for the first layer. Where one width does not fit every layer, give <code>widths = { &quot;In2.Cu&quot; = &quot;0.16mm&quot; }</code>."
@@ -3824,11 +4061,20 @@
   "7uikuq2omp": {
     "defaultMessage": "3 ns"
   },
+  "7v8pvobcp6": {
+    "defaultMessage": "Library parts, by role and words, with their last checked stock and price"
+  },
   "7x7d65b94f": {
     "defaultMessage": "Losses in the FDTD - agentee reference"
   },
   "7yos9axkg5": {
     "defaultMessage": "Each distinct face (per copper thickness) is fitted with a common set of about 24 poles by vector fitting (Gustavsen and Semlyen, IEEE Trans. Power Delivery 14(3), 1999) from a thousandth of the band centre to 100 times the top frequency (within 0.02% of the functions above for a 20 GHz band centre), and made passive by raising the series resistance if the fit dips below zero anywhere. The sheet edge steps one state per real pole and one complex state per pole pair, shared between its two faces, with the trapezoidal rule, so the discrete sheet is the bilinear image of the fitted impedance (a CPU replay of the table matches it to 5e-6)."
+  },
+  "7yx79t577c": {
+    "defaultMessage": "A check that fails is an error on the sim. Raise the 1 kHz check above to <code>min = 19</code> and the run fails, and <code>agentee check</code> reports it as an error while that result is current:"
+  },
+  "7zpv5zdl2j": {
+    "defaultMessage": "The highest voltage a class carries, and the clearance and creepage agentee works out from it with IPC-2221B and IEC 60664-1."
   },
   "806u90mrug": {
     "defaultMessage": "Skill"
@@ -3881,6 +4127,9 @@
   "8k3t1hv2xx": {
     "defaultMessage": "Intel"
   },
+  "8kz378orm4": {
+    "defaultMessage": "Cost and order sheets"
+  },
   "8lxceyo8ts": {
     "defaultMessage": "Pin types matter: check uses them for the net checks, and <code>open_collector</code> outputs and <code>input</code> pins take part in the signal level check."
   },
@@ -3926,8 +4175,8 @@
   "9e5f79ouxe": {
     "defaultMessage": "one dielectric (<code>stacked</code>: several, <code>skip</code>: two)"
   },
-  "9gsbz0h06f": {
-    "defaultMessage": "<code>verify</code> checks each part: every symbol pin has a pad, the pinned datasheet names the part number and the package (or a pin count), the symbol&#39;s pin names appear in it, the model&#39;s outline fits the courtyard, and each file still has the hash it was added with. It exits 1 when one fails."
+  "9eh9jtbyne": {
+    "defaultMessage": "Check never runs a sim. Each result records a hash of the spec, the copper it saw and the stackup, and check reports the result as stale, as an info line, when they no longer match. On a CI runner without a GPU that is the useful part: a pull request that moves an RF track gets a stale note on the FDTD result, and an interface that measures that result fails outright."
   },
   "9hy2mo0tx8": {
     "defaultMessage": "Rails and the signal level check"
@@ -3947,9 +4196,6 @@
   "9jg21u56kj": {
     "defaultMessage": "Each BOM line is one <code>mpn</code> field, the same grouping as <code>bom.csv</code>, needing its reference count times <code>--boards</code>. The line&#39;s offers are the distributor listings of that part number; the chosen one is the cheapest that is in stock for the quantity and not obsolete. A cost honours the listing&#39;s minimum and multiple and buys up to a later price break when the larger quantity costs less in total, so ten resistors may be bought as a hundred."
   },
-  "9kvc8by4wd": {
-    "defaultMessage": "agentee parts: BOM pricing at Mouser and Farnell and cheaper parts that drop in without a downgrade."
-  },
   "9neeppgncz": {
     "defaultMessage": "plated holes whose depth (the copper and dielectric they pass) over drill exceeds <code>max_aspect_ratio</code>"
   },
@@ -3959,11 +4205,17 @@
   "9sblhpa17q": {
     "defaultMessage": "The HackRF Pro board imported from KiCad, rendered by agentee."
   },
+  "9tbbl430qu": {
+    "defaultMessage": "The parts library: the user's chosen parts with their symbols, footprints, models, datasheets and stock, in ~/.config/agentee/library and .agentee/library"
+  },
   "9tdtrp8oa4": {
     "defaultMessage": "Silk text must keep 0.4 mm from other silk text and 0.2 mm from silk outlines, stay off pads, vias and other parts&#39; bodies, and stay on the board. Each of these is an error, except text under another part&#39;s body, which is a warning. When a reference label fails, check names a spot that passes every rule, as a <code>label = { at = [...] }</code> line to paste. <code>agentee silk NAME</code> (MCP <code>silk</code>) pastes them all for you and repeats until the labels settle; <code>--hide</code> hides the references that have no clear spot, typically small passives under a BGA."
   },
   "9u7i8lybkg": {
     "defaultMessage": "3D models come from <code>KICAD9_3DMODEL_DIR</code> and friends, <code>3dmodels/</code> in the project, or a cache that <code>agentee models</code> fills from the kicad-packages3D repository."
+  },
+  "9xg4zunrup": {
+    "defaultMessage": "Gain"
   },
   "9y4cbpwac0": {
     "defaultMessage": "SMD pads closer than <code>min_part_to_edge</code> to the outline or a board cutout, where depaneling stress cracks parts; skips fiducials, mounting holes and parts with <code>edge</code> pads"
@@ -3982,6 +4234,9 @@
   },
   "a0kk47j657": {
     "defaultMessage": "<code>paste-without-mask</code>"
+  },
+  "a1bxebjv7n": {
+    "defaultMessage": "The opposite case is a group of nets that move together: the high side of a half bridge, where the bootstrap, the gate drive and the gate sit within 15 V of the switch node while the node swings over the whole bus. Put them in one class with <code>voltage = &quot;430VDC&quot;</code>, what they reach against ground, and <code>own_voltage = &quot;15VDC&quot;</code>, the most they differ from each other. <code>voltage</code> keeps setting the class clearance to every other class and the barriers; <code>own_voltage</code> sets the clearance between two nets of the class (IPC-2221B B2 for its peak, never under the fab&#39;s <code>min_clearance</code>), on tracks and between pads of one footprint. Pours keep the class clearance, and <code>agentee route</code> keeps it too, so route these few nets by hand or let them take the wider gap."
   },
   "a362zk9ey7": {
     "defaultMessage": "<code>--style power</code> draws a net with ground or supply symbols instead of wires, and <code>--style label</code> with net labels."
@@ -4013,8 +4268,8 @@
   "anjd3965ow": {
     "defaultMessage": "<img src=\"/assets/renders/blinky-pcb.webp\" alt=\"The routed blinky layout\">"
   },
-  "aptrexto3m": {
-    "defaultMessage": "The result records a hash of the copper it saw (only the sim&#39;s <code>region</code>) and of the stackup. When either changes, check warns that the result is stale, and anything that reads it, a cascade or an interface measure, fails until you rerun."
+  "anqxjd1ebi": {
+    "defaultMessage": "<strong>BJTs and MOSFETs</strong> take <code>is</code>, <code>bf</code>, <code>va</code> or <code>vth</code>, <code>k</code>, <code>lambda</code>, and their capacitances."
   },
   "aq5m89eyr9": {
     "defaultMessage": "0.2"
@@ -4070,6 +4325,9 @@
   "bfszn94lc9": {
     "defaultMessage": "<code>--sweep</code> adds a loss table per frequency: R, L, G, C, Z0 and dB per metre and per inch, split into conductor and dielectric loss, with skin effect, copper roughness from the stackup (<code>roughness</code> or <code>huray</code>) and a causal dielectric model. Without a GPU the 2D solver falls back to the CPU."
   },
+  "bgocio28dy": {
+    "defaultMessage": "AC at three CVs, resonance, oscillation"
+  },
   "bhwbvbaf0s": {
     "defaultMessage": "0.5"
   },
@@ -4078,6 +4336,9 @@
   },
   "blg2ol2zyn": {
     "defaultMessage": "the standard through-hole builds, 4 to 18 layers"
+  },
+  "bmg5gxmzrd": {
+    "defaultMessage": "Noise"
   },
   "bp830w79wp": {
     "defaultMessage": "Batches"
@@ -4139,14 +4400,23 @@
   "ceoliizb9w": {
     "defaultMessage": "<code>board-title</code>"
   },
+  "chpb4blpoa": {
+    "defaultMessage": "Add a part: its symbol, footprint and 3D model copied in, its datasheet fetched and pinned, its stock and price checked"
+  },
   "ckbyq9btjj": {
     "defaultMessage": "Units and coordinates - agentee reference"
   },
   "ckzbj4m4dl": {
     "defaultMessage": "Write a starter file for a board, symbol, footprint, schematic, layout or sim, to edit from. A sim starts as an FDTD run of a layout, with sim_kind logic as a logic sim of a schematic (clock, reset, a clocked assertion), or with sim_kind circuit as an analog circuit sim of a schematic (a drive, an AC sweep and checks), whose nets you rename."
   },
+  "cmp7crwary": {
+    "defaultMessage": "Text of a cached datasheet with page numbers, or the passages matching --find"
+  },
   "css75sv92c": {
     "defaultMessage": "Logic"
+  },
+  "ctwn7qtj4s": {
+    "defaultMessage": "Find the smallest rectangular board the layout fits on: tries outlines of several aspect ratios in memory (the current placement scaled, edge parts slid along their edge, the rest legalised, routing demand estimated), then checks the smallest with the global router"
   },
   "cuvgv3zinf": {
     "defaultMessage": "A class with <code>diff_gap</code> is a pair: its <code>impedance</code> is the differential impedance, and the solver runs both the odd and even modes. <code>calc field</code> then adds a <code>pair</code> block with Zdiff, Zcommon, the odd and even mode impedances and delays, the coupling coefficient (Ze - Zo)/(Ze + Zo), and the saturated near-end crosstalk of a long line (half the coupling). The two modes land within 0.5% of Cohn&#39;s exact edge-coupled stripline. A difference between the odd and even delays is what drives far-end crosstalk on microstrip."
@@ -4169,6 +4439,9 @@
   "d4h9xa9tl2": {
     "defaultMessage": "Draw the courtyard on <code>F.CrtYd</code> and the body outline on <code>F.Fab</code>: check needs a courtyard that encloses the pads, the placer keeps courtyards apart, and the edge and assembly rules measure from the body. Set <code>height</code> so the 3D view and the tall-part rule have a height without a model."
   },
+  "d7ggu7mpkv": {
+    "defaultMessage": "Circuit simulation"
+  },
   "d8xhh7ye1c": {
     "defaultMessage": "The 2D page&#39;s <code>back</code> toggle mirrors the board to look at it from below: bottom copper draws over the top, and each front layer&#39;s visibility swaps with its back twin. <code>agentee render pcb:NAME --show back</code> renders that view."
   },
@@ -4184,11 +4457,17 @@
   "dc15fypawa": {
     "defaultMessage": "<code>agentee-view</code>"
   },
+  "ddf6f418qb": {
+    "defaultMessage": "Circuit simulation - agentee guide"
+  },
   "ddp1zi15x0": {
     "defaultMessage": "Simulation budgets. An FDTD run can take tens of minutes. The skill tells the agent to dry-run first and iterate coarse, but say so in the brief if GPU time matters."
   },
   "dgylf7q4rm": {
     "defaultMessage": "every Gerber and drill file, ready to upload to the fab"
+  },
+  "dirz9wtyzb": {
+    "defaultMessage": "<code>agentee library verify</code> checks each part&#39;s symbol against its footprint and datasheet, and <code>refresh</code> updates stock and price. Once the library holds a role, check warns when a design uses a part from outside it for that role and names the library part to use. A project can add its own parts in <code>.agentee/library/</code>."
   },
   "dkyrwo6xyu": {
     "defaultMessage": "<code>agentee tune NAME</code> (MCP <code>tune</code>) fixes these: for every pair over its skew limit and every match group member short of its target it meanders the short side, on its longest straight segments, anywhere along a series chain, with bumps that keep every other net&#39;s clearance and the board edge rule, and writes the new points into the tracks. <code>--nets</code> limits it, <code>--amplitude</code> caps the bump height and <code>--pitch</code> fixes the bump pitch (default three track widths, tighter where that is all that fits). On one leg of a pair it bumps the stretches where the legs already run apart first (breakouts and bends, where the mismatch comes from) and never leaves the leg running beside its partner off the class gap; a coupled stretch only takes bumps tall enough to clear the pair. Interfaces count too, in time as well as length: a pair over its <code>max_skew</code> in ps gets the short side lengthened by that delay; for <code>max_bus_skew</code> and <code>clock_window</code> the clock is lengthened until the latest data line falls inside its window and every data line short of the bus spread or the window&#39;s early edge is lengthened to the latest one (inside the window), both legs of a pair together. Delays turn into millimetres at each net&#39;s own ps per mm. When one leg of a pair cannot take all of it, the other leg is held to what it got. A net that is over its group target is reported, not shortened. <code>agentee calc serpentine --from x,y --to x,y --add 2.5mm</code> (MCP <code>serpentine</code>) returns the points of one such meander on a segment you pick. Net lengths and delays are in <code>agentee show pcb:NAME</code>, which names every net it refers to."
@@ -4208,6 +4487,9 @@
   "dqqttfnrhh": {
     "defaultMessage": "<code>blind</code>"
   },
+  "dr0pwlezlr": {
+    "defaultMessage": "A through-hole op-amp preamp - agentee example"
+  },
   "dw8ajheq57": {
     "defaultMessage": "agentee MCP server: tools for coding agents"
   },
@@ -4223,11 +4505,17 @@
   "e3fdh02qq8": {
     "defaultMessage": "Graphics - agentee reference"
   },
+  "e4gdhccxs7": {
+    "defaultMessage": "Schematics, PCB layouts and simulations as plain TOML files your coding agent writes. agentee checks every edit against the fab’s rules, renders the board, solves impedance, runs FDTD and thermal sims on the GPU and circuit and logic sims of the schematic, and writes the Gerbers."
+  },
   "e5e4gu0f6o": {
     "defaultMessage": "<code>dangling-via</code>"
   },
   "e76eh3tzql": {
     "defaultMessage": "<code>*.board.toml</code>"
+  },
+  "ecpxwvt82e": {
+    "defaultMessage": "An op-amp is a single pole: a transconductance into a node with <code>gain</code> ohms and a capacitor that puts unity gain at <code>gbw</code>, then a buffer clamped smoothly between its rails less <code>headroom</code> (no clamp without both rail pins) behind <code>rout</code>. The gain node stops a little past the clamp, so a clipped op-amp comes back off its rail as soon as its input asks it to, as a real one does, rather than winding up. The clamp and its <code>headroom</code> are the same on both rails. Every unit of a multi-unit op-amp with the three signal pins is its own op-amp sharing the rail pins, the output found by name or, when it has none, as the unit&#39;s one output pin. One block covers every unit of a part; a second block for the same <code>ref</code> is an error. An LDO holds <code>vout</code> above <code>gnd</code> until the input comes within <code>dropout</code>, then follows the input down, and the input supplies the output current plus <code>iq</code>."
   },
   "ecy7xeeb05": {
     "defaultMessage": "<code>fab</code> picks a rule preset: <code>generic</code>, <code>jlcpcb</code> or <code>hdi</code>. The preset is a table keyed by the copper layer count, the outer copper weight and the finish, so a four layer 1 oz board gets tighter track rules than a two layer 2 oz one. The <code>jlcpcb</code> values follow JLCPCB&#39;s capability page line by line; the <a href=\"/reference/rules/\">rules reference</a> gives each value with the line it comes from, and the few places agentee is stricter on purpose."
@@ -4252,6 +4540,9 @@
   },
   "exggsye3pl": {
     "defaultMessage": "A zone fills its outline (the board by default) less every other net&#39;s copper grown by its clearance, as exact polygons with round corners. Necks narrower than the zone&#39;s <code>min_width</code> are removed, the way a fab would etch them, and islands that reach nothing are dropped. On one layer, zones fill by <code>priority</code>, so a supply pour inside a board-wide ground pour is poured around rather than shorted to it. <code>--pad-connection relief</code> joins pads by four spokes instead of solid copper."
+  },
+  "eznzojzsb": {
+    "defaultMessage": "<code>peak</code>, <code>trough</code>, <code>rms</code>, <code>freq</code>, <code>thd</code>"
   },
   "f0o5ujzc7n": {
     "defaultMessage": "tracks of one net running on top of each other, the copper is doubled"
@@ -4283,11 +4574,17 @@
   "feovy736vz": {
     "defaultMessage": "0.55"
   },
+  "fgv7qmm5yp": {
+    "defaultMessage": "Gain and phase of the filter with resonance at 0.9, peaking at the cutoff."
+  },
   "fh4qz0zxp7": {
     "defaultMessage": "Distributors and pricing - agentee reference"
   },
   "fhqzrnvrqw": {
     "defaultMessage": "Inputs"
+  },
+  "fhx86lu1fd": {
+    "defaultMessage": "Three AC sims at 0, 3 and 6 V of CV land within 0.07 dB of each other at their cutoff, so the expo tracks over six octaves. <code>vcf-res</code> shows the resonance peak and the bass loss that goes with it, and <code>vcf-osc</code> kicks the filter at full resonance and checks it oscillates. The transistors and op-amps are modelled from their datasheets, and the pots are <code>potentiometer</code> blocks so their wipers load the circuit as the real parts do."
   },
   "fjcjshzon5": {
     "defaultMessage": "Part numbers"
@@ -4297,6 +4594,9 @@
   },
   "fm2p0hrar5": {
     "defaultMessage": "a BGA"
+  },
+  "fn16173gff": {
+    "defaultMessage": "Add a local PDF to the cache, for parts behind a login or supplied by the user"
   },
   "fnclo6kdyf": {
     "defaultMessage": "footprint placements, tracks (arcs as short segments), vias and zones with their fills stored, and the silk and fab text and lines, with <code>${TITLE}</code> and the project&#39;s text variables filled in"
@@ -4334,9 +4634,6 @@
   "g2n2yl3yhc": {
     "defaultMessage": "From the first board to the fab package, one guide per stage of a design."
   },
-  "g2q3qvyy0n": {
-    "defaultMessage": "<code>parts</code> looks up every BOM line at Mouser and Farnell by its <code>mpn</code> field, so give every part <code>mfr</code> and <code>mpn</code> first; lines without one are skipped. The keys live outside every project, in <code>~/.config/agentee/distributors.toml</code>:"
-  },
   "g30m3gedrr": {
     "defaultMessage": "A copper face is a copper slab of the layer&#39;s thickness, sqrt(j w mu rho) coth(gamma t), which settles to rho / t at DC, times the stackup roughness as a causal complex factor (Dmitriev-Zdorov, Simonovich and Kochikov, &quot;A Causal Conductor Roughness Model and its Effect on Transmission Line Characteristics&quot;, DesignCon 2018, table 1). Its loss part is exactly the Hammerstad-Jensen 1 + (2/pi) atan(1.4 (rms / skin depth)^2) or the Huray 1 + 1.5 ratio / (1 + d/a + d^2 / 2a^2) at every frequency, and the same function adds the inductance that causality demands."
   },
@@ -4346,8 +4643,14 @@
   "g40fabyt1j": {
     "defaultMessage": "List the items in a project"
   },
+  "g41rl2b6iy": {
+    "defaultMessage": "1 V/oct within 0.07 dB over 6 octaves"
+  },
   "g6frqcmynu": {
     "defaultMessage": "Current <code>&quot;2A&quot;</code> / <code>&quot;500mA&quot;</code>, impedance <code>&quot;50ohm&quot;</code>, temperature rise <code>&quot;10C&quot;</code>, tolerance <code>&quot;10%&quot;</code>."
+  },
+  "g6ps69z9qi": {
+    "defaultMessage": "<code>verify</code> checks each part: every symbol pin has a pad, the pinned datasheet names the part number and the package (or a pin count), the symbol&#39;s pin names appear in it, the model&#39;s outline fits the courtyard, the footprint&#39;s holes, slots and rings meet JLCPCB&#39;s minimums, and each file still has the hash it was added with. It exits 1 when one fails."
   },
   "g8kvw5vsrk": {
     "defaultMessage": "Simulations in CI"
@@ -4430,6 +4733,9 @@
   "h7yu1r51cu": {
     "defaultMessage": "The build-up sequence of presses and drill steps, derived from the stackup or listed by hand, that decides which vias can be drilled."
   },
+  "h8mxm4i5ny": {
+    "defaultMessage": "2 layers, 58 x 108 mm, 12HP"
+  },
   "h8o177nopu": {
     "defaultMessage": "level 1 MOSFET with a smooth threshold, P channel when the symbol says PMOS: Vth 1.5 V, k 0.5 A/V^2, lambda 0.01"
   },
@@ -4477,6 +4783,9 @@
   },
   "hsqnlauo7x": {
     "defaultMessage": "The viewer - agentee guide"
+  },
+  "hsyspglgz1": {
+    "defaultMessage": "the transient between <code>from</code> and <code>to</code>"
   },
   "ht09w0qx1l": {
     "defaultMessage": "Zones on the same layer fill in order of <code>priority</code>, then smallest first, and each keeps its clearance from the fills already placed, so a small switch-node or supply pour inside a board-wide ground pour is poured around rather than shorted to it."
@@ -4538,6 +4847,9 @@
   "if71kfu7cj": {
     "defaultMessage": "Sims"
   },
+  "igjrpxichi": {
+    "defaultMessage": "<strong>Op-amps</strong> are a single pole with <code>gain</code>, <code>gbw</code>, <code>rout</code>, <code>vos</code>, <code>en</code>, <code>ib</code>, <code>slew</code>, <code>psrr</code>, and a smooth clamp <code>headroom</code> away from each rail. Every unit of a dual or quad is its own op-amp on shared rails."
+  },
   "ijld4ibnc4": {
     "defaultMessage": "<code>center</code>, <code>radius</code>"
   },
@@ -4586,6 +4898,9 @@
   "j35nejelwe": {
     "defaultMessage": "chips of 0603 or smaller"
   },
+  "j5yn0wzz7t": {
+    "defaultMessage": "Check warns when a part with an <code>mpn</code> has no datasheet anywhere."
+  },
   "j6comp4p10": {
     "defaultMessage": "On <code>hdi-6l-1n1</code> (1+4+1) that is In1.Cu-In2.Cu and In3.Cu-In4.Cu (cores), In1.Cu-In4.Cu (buried, the sub-stack), laser F.Cu-In1.Cu and In4.Cu-B.Cu, the through drill F.Cu-B.Cu, and the controlled depth spans. On <code>hdi-8l-2n2</code> (2+4+2) the first build-up adds laser In1.Cu-In2.Cu and In5.Cu-In6.Cu and a buried In1.Cu-In6.Cu, the second laser F.Cu-In1.Cu, In6.Cu-B.Cu and the skip vias F.Cu-In2.Cu and In5.Cu-B.Cu, so a stacked microvia F.Cu-In2.Cu is two laser steps, while F.Cu-In2.Cu on <code>hdi-6l-1n1</code> would cross its first core. A stackup with no core, or a core outermost, is one press: its sub-stack is the whole board. Whether the fab stacks microvias or wants them staggered stays <code>stacked_microvias</code>."
   },
@@ -4631,6 +4946,9 @@
   "jp0luth8qn": {
     "defaultMessage": "min. track width and spacing (2 oz)"
   },
+  "jsxusob17q": {
+    "defaultMessage": "2 layers, 60 x 40 mm, through-hole"
+  },
   "jtpda3gs6e": {
     "defaultMessage": "Hold"
   },
@@ -4654,9 +4972,6 @@
   },
   "k1ri7sr6gl": {
     "defaultMessage": "pan, zoom"
-  },
-  "k3ef39oix5": {
-    "defaultMessage": "A check that fails is an error on the sim while the result is current; the result goes stale when the spec or the schematic&#39;s netlist changes. <code>examples/lna</code> holds two: <code>lna-supply</code>, the OR-ing of the 5 V input through a Schottky to U1&#39;s bias current, and <code>lna-biastee</code>, how far the bias tee keeps RF on the output off VBIAS. Both take U1 as its 90 mA quiescent current and the BAT60A from its typical VF, from the two datasheets; the LED, which has no part number, is left out."
   },
   "k4lysi2czl": {
     "defaultMessage": "<code>vth</code>, <code>k</code>, <code>lambda</code>, <code>cgs</code>, <code>cgd</code>"
@@ -4706,6 +5021,9 @@
   "ktplvqwyza": {
     "defaultMessage": "The LNA layout: SMA connectors at both ends, the RF line across the middle and stitching vias over the ground pour."
   },
+  "kuwxm983gi": {
+    "defaultMessage": "agentee parts and bom: stock and prices at Mouser, Farnell and DigiKey, cheaper parts that drop in without a downgrade, and order sheets."
+  },
   "kyfwcabfua": {
     "defaultMessage": "RF simulation: FDTD and cascade"
   },
@@ -4727,6 +5045,9 @@
   "l633efwpnl": {
     "defaultMessage": "<strong>Schematics</strong>: parts and nets, with the wires agentee routed."
   },
+  "l8j289vxy0": {
+    "defaultMessage": "The top schematic joins four sheets: the Eurorack power header with reverse protection, the expo converter that turns CV into tail current at 1 V/oct, the ladder of twelve BC550C transistors, and JFET buffers into a difference amplifier. The pots and jacks mount on the back and come through the panel."
+  },
   "l9sdfg559n": {
     "defaultMessage": "runs when"
   },
@@ -4742,6 +5063,9 @@
   "lgwkdu5ixz": {
     "defaultMessage": "The script puts <code>agentee.exe</code> in <code>%LOCALAPPDATA%\\agentee\\bin</code> and adds it to your user <code>PATH</code>. Open a new terminal afterwards."
   },
+  "lhwr45y9a9": {
+    "defaultMessage": "the AC gain in dB"
+  },
   "ljublhbg4": {
     "defaultMessage": "builds"
   },
@@ -4753,6 +5077,9 @@
   },
   "llft4kk0v4": {
     "defaultMessage": "<code>agentee mcp</code> serves one project over stdio with {count} tools. The agent still writes TOML with its own file tools; the server checks, renders, routes, simulates and writes the fab package, and hands rendered PNGs straight back into the conversation."
+  },
+  "lluircx1gz": {
+    "defaultMessage": "<code>fetch</code> downloads the datasheet of every part in a layout or schematic into a cache in <code>~/.cache/agentee/datasheets/</code> that every project shares, and records what it used in <code>datasheets.toml</code>. It looks at the part&#39;s <code>datasheet</code> field, then the symbol&#39;s URL, then what each distributor lists for the <code>mpn</code>. <code>text</code> reads a cached copy back with page numbers, or only the passages that hold a word, so an agent can take a threshold or a pinout from the source instead of from memory. A part behind a login goes in with <code>add</code>."
   },
   "lnsppm0cj1": {
     "defaultMessage": "Checking designs in CI - agentee guide"
@@ -4777,6 +5104,9 @@
   },
   "lw6kc9oukf": {
     "defaultMessage": "<code>mlcc-flex-zone</code>"
+  },
+  "lzju67svdj": {
+    "defaultMessage": "An analog sim of a schematic’s netlist: operating point, AC, transient and noise, with op-amp, LDO and device blocks and checks."
   },
   "m0qfhz1awn": {
     "defaultMessage": "a pair skewed over its <code>max_skew</code> or the class <code>max_skew</code>, with the net to lengthen"
@@ -4849,6 +5179,9 @@
   },
   "n2abl6epg9": {
     "defaultMessage": "ceramic capacitor, <code>C</code> on a <code>C_0603...</code> footprint"
+  },
+  "n3i5rrozbo": {
+    "defaultMessage": "the noise density in V/rtHz"
   },
   "nbg32w7afb": {
     "defaultMessage": "Drawing a footprint"
@@ -4928,6 +5261,9 @@
   "oiis0f7b4j": {
     "defaultMessage": "<code>NAME.sch.toml</code>"
   },
+  "oilaadgex": {
+    "defaultMessage": "Fetch, cache and read part datasheets, shared by every project in ~/.cache/agentee/datasheets"
+  },
   "oiuakc8lz3": {
     "defaultMessage": "from"
   },
@@ -4949,6 +5285,9 @@
   "os2c8385pu": {
     "defaultMessage": "other"
   },
+  "osvwj7hhp1": {
+    "defaultMessage": "Groups of nets that keep more distance from each other than from their neighbours, such as a mains primary from the secondary."
+  },
   "othgynjo8g": {
     "defaultMessage": "legend line width, text height"
   },
@@ -4966,6 +5305,9 @@
   },
   "p017irs5ep": {
     "defaultMessage": "A net with one IC pin and only passives otherwise belongs at that pin: a feedback divider and its feed-forward cap at FB (every buck datasheet&#39;s layout section), an op-amp&#39;s feedback network at its inverting input, a gate resistor and pull-down at a MOSFET gate, a strap or series resistor at the pin that drives it, an ADC filter cap at the ADC pin. Input pins (the symbol&#39;s <code>input</code> type) go first. A capacitor on a supply with no IC on it goes to the inductor or ferrite that supply feeds, and an LED&#39;s resistor to the LED."
+  },
+  "p2tuzrnesw": {
+    "defaultMessage": "A 400 mV sine driving the preamp into clipping, with the spectrum of each net."
   },
   "p56if3224j": {
     "defaultMessage": "<code>min_hole_to_hole</code>, <code>min_via_hole_to_copper</code>"
@@ -5069,9 +5411,6 @@
   "qc2bzi0q71": {
     "defaultMessage": "Del"
   },
-  "qd2x6bk9v7": {
-    "defaultMessage": "Write Gerbers, drills, BOM and placement for JLCPCB or any fab, price the BOM at Mouser and Farnell, and export a STEP for the enclosure."
-  },
   "qf4dlgfub5": {
     "defaultMessage": "the Edge.Cuts outline and its cutouts, the stackup with thickness, permittivity and loss tangent, the finish and mask colour, the design rules and net classes from <code>NAME.kicad_pro</code>"
   },
@@ -5099,11 +5438,17 @@
   "qnljv851lz": {
     "defaultMessage": "<code>interface-skew</code>"
   },
+  "qnna24e0pz": {
+    "defaultMessage": "Every simulation is current: check notes stale results."
+  },
   "qnrjed0cry": {
     "defaultMessage": "<a href=\"/guides/board-spec/\">Board specs, stackups and net classes</a> before a board where impedance or current matters."
   },
   "qnsjfmc8du": {
     "defaultMessage": "15 mil stubs, 3500 / 3000 mil long, return via within 200 mil"
+  },
+  "qoa4bsda5i": {
+    "defaultMessage": "Each <code>*.sim.toml</code> is a run with a kind. The field solvers run through wgpu on Vulkan, Metal or DirectX 12. Every sim writes its results next to the spec, and check notes when a result goes stale."
   },
   "qpqn3c21tz": {
     "defaultMessage": "A skill is a file of instructions an agent loads when a task matches it. This one teaches the edit, check, render loop, the order to build a design in, the traps in the file format, and how to iterate on simulations without spending hours of GPU time."
@@ -5240,6 +5585,9 @@
   "sv92b1l3r7": {
     "defaultMessage": "<code>start</code>, <code>end</code>"
   },
+  "svu1jezdqp": {
+    "defaultMessage": "<strong>Diodes</strong> take <code>is</code> and <code>n</code>. Fit them to two typical VF points a decade of current apart: <code>n = dV / (Vt ln 10)</code>, then <code>is = I / exp(V / (n Vt))</code>."
+  },
   "sxmbmh4p48": {
     "defaultMessage": "Stackup presets - agentee reference"
   },
@@ -5288,6 +5636,9 @@
   "u06ay1whj4": {
     "defaultMessage": "A mounted part&#39;s impedance is taken from whichever of S11 and S21 is better conditioned, then joined to the board port as a one-port."
   },
+  "u1az541vk1": {
+    "defaultMessage": "20.8 dB, low-pass at 1.07 kHz"
+  },
   "u227emzdla": {
     "defaultMessage": "0.18"
   },
@@ -5306,8 +5657,8 @@
   "ufs7yirhsl": {
     "defaultMessage": "<code>F_Mask.gbr</code>, <code>B_Mask.gbr</code>"
   },
-  "ugkyq9fp3x": {
-    "defaultMessage": "Schematics, PCB layouts and simulations as plain TOML files your coding agent writes. agentee checks every edit against the fab’s rules, renders the board, solves impedance and runs FDTD, thermal and logic sims on the GPU, and writes the Gerbers."
+  "ug21i4qvs2": {
+    "defaultMessage": "4 poles, 24 dB per octave"
   },
   "uk5y9kvoda": {
     "defaultMessage": "A batch is one load and one check at the end, so the half-finished states in between are never flagged. Pins are <code>REF.PIN</code>, by number or by a unique pin name: <code>D1.A</code> is the anode, and the output confirms which number it resolved to."
@@ -5344,6 +5695,9 @@
   },
   "v3czk205np": {
     "defaultMessage": "<code>pair-gap</code>"
+  },
+  "v7fhnp7aqe": {
+    "defaultMessage": "Check stock and price of every library part, or one, at the distributors"
   },
   "v8uikgvbmu": {
     "defaultMessage": "Through, blind, buried and microvias, stacked and skip vias, controlled depth drilling, backdrills and IPC-4761 via fill."
@@ -5447,9 +5801,6 @@
   "wjnhc1ufi9": {
     "defaultMessage": "suffix"
   },
-  "wkkjumi055": {
-    "defaultMessage": "Run long sims in the background and keep editing other things. Check warns when a result has gone stale."
-  },
   "wonqk3rj7e": {
     "defaultMessage": "<code>Edge_Cuts.gbr</code>"
   },
@@ -5471,6 +5822,9 @@
   "wv1dyxl3wo": {
     "defaultMessage": "a two-pad chip of 0603 or smaller closer to a part taller than 3 mm than that part&#39;s height, measured from the chip&#39;s pads to the tall part&#39;s body (EMS rule of thumb 1:1: shadowing in reflow and inspection); heights come from the footprint <code>height</code>, else the body the 3D view draws without a model: its family default (SOIC, QFN, headers, shields) or an <code>_h1.25mm</code> part of the name"
   },
+  "wyxtns2rv": {
+    "defaultMessage": "The run writes <code>preamp-ac.result.json</code> beside the spec, with the operating point of every net, the current through every part, each check and its value, and the curves of the recorded nets. The viewer and <code>render</code> plot the gain, phase and noise."
+  },
   "wzkbrlmz4f": {
     "defaultMessage": "generic discrete, <code>D</code> or <code>Q</code> whose value is a JEDEC name (2N7002, BSS138, 1N4148, BAT54, BZT52, S1x, SS1x, SMAJ, BC847 ...)"
   },
@@ -5482,6 +5836,9 @@
   },
   "x3j6gd5rkw": {
     "defaultMessage": "Project files - agentee reference"
+  },
+  "x3zinyon7j": {
+    "defaultMessage": "A simulation of the layout or the schematic: FDTD, cascade, channel, PDN, DC drop, thermal, logic or circuit."
   },
   "x422pfyxst": {
     "defaultMessage": "Crop with <code>region = [x0, y0, x1, y1]</code> to the part of the board the signal crosses."
@@ -5558,6 +5915,9 @@
   "xzk7gat1y5": {
     "defaultMessage": "<code>microvia</code>"
   },
+  "y0shu84u6w": {
+    "defaultMessage": "Circuit"
+  },
   "y1t5rm0tbh": {
     "defaultMessage": "<code>solver = &quot;field&quot;</code> checks the class with the GPU field solver, which includes solder mask and copper thickness, instead of closed form formulas."
   },
@@ -5569,9 +5929,6 @@
   },
   "y51rg2j1sw": {
     "defaultMessage": "<code>[fab_notes]</code> sets what <code>fab-notes.txt</code> asks of the fab beyond the stackup. Every key is optional and the notes always carry the defaults:"
-  },
-  "y56cpfpudy": {
-    "defaultMessage": "<strong>Sims</strong>: S-parameter plots and Smith charts, TDR, eyes, PDN impedance, DC drop, current density and temperature maps, and logic waveforms."
   },
   "y6qutugiwd": {
     "defaultMessage": "Markdown for agents"
@@ -5606,17 +5963,26 @@
   "ydfgdztl7j": {
     "defaultMessage": "<code>rect</code>"
   },
+  "ydiw24quw7": {
+    "defaultMessage": "A through-hole op-amp preamp"
+  },
   "yfwyujuwr8": {
     "defaultMessage": "2"
   },
   "yg67ojncc5": {
     "defaultMessage": "placement, in JLCPCB&#39;s columns"
   },
+  "yh7p85ay2c": {
+    "defaultMessage": "The preamp switched on: the gain stage clips while the bias settles and the output swells, then returns to 0 V."
+  },
   "yihidovnt4": {
     "defaultMessage": "Before ordering, with the real enclosure."
   },
   "yko6k45sn": {
     "defaultMessage": "The layout engine card"
+  },
+  "ykxd98c94k": {
+    "defaultMessage": "Copy a library part's symbol, footprint and model into a project and print the edit that places it"
   },
   "ym46vdpzte": {
     "defaultMessage": "Within 100 mV of a threshold is a warning. Inputs listed in <code>analog</code> are read by an ADC, so only their limits apply. A net with something on it the check cannot model, like an output or a connector, is skipped rather than guessed."
@@ -5638,6 +6004,9 @@
   },
   "yxvf3ydeca": {
     "defaultMessage": "is moved out of a valid level by leakage through a pull that is too weak,"
+  },
+  "yylci6i9na": {
+    "defaultMessage": "Datasheets - agentee reference"
   },
   "yz4kuzy1qr": {
     "defaultMessage": "can sit between VIL and VIH, like a divider that lands in the middle,"

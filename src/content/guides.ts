@@ -87,9 +87,15 @@ export const GUIDES: Guide[] = [
     group: 'Simulate',
   },
   {
+    slug: 'circuit-simulation',
+    title: 'Circuit simulation',
+    summary: 'Run the analog side of a schematic from its netlist: operating point, AC, transient and noise, with op-amps and diodes modelled from their datasheets and checks on the results.',
+    group: 'Simulate',
+  },
+  {
     slug: 'fab',
     title: 'Fab package, BOM and pricing',
-    summary: 'Write Gerbers, drills, BOM and placement for JLCPCB or any fab, price the BOM at Mouser and Farnell, and export a STEP for the enclosure.',
+    summary: 'Write Gerbers, drills, BOM and placement for JLCPCB or any fab, price the BOM at Mouser, Farnell and DigiKey, and export a STEP for the enclosure.',
     group: 'Ship',
   },
   {

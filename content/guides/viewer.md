@@ -16,7 +16,7 @@ Every item in the project, one page per kind:
 - **Symbols and footprints**: the part as it will be placed, with pins or pads numbered.
 - **Schematics**: parts and nets, with the wires agentee routed.
 - **Layouts**: copper per layer, pours, vias by type, silk, courtyards and the ratsnest of everything unrouted, with a net table and the diagnostics panel.
-- **Sims**: S-parameter plots and Smith charts, TDR, eyes, PDN impedance, DC drop, current density and temperature maps, and logic waveforms.
+- **Sims**: S-parameter plots and Smith charts, TDR, eyes, PDN impedance, DC drop, current density and temperature maps, logic waveforms, and the gain, phase, noise and transients of a circuit sim.
 
 `agentee render` draws exactly what the viewer draws, to a PNG, which is how the agent sees the same thing without a window:
 

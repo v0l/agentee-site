@@ -7,10 +7,15 @@ export const CLI_GROUPS: [string, string[]][] = [
   ['Project', ['new', 'check', 'list', 'show', 'render', 'view', 'docs']],
   ['Editing', ['edit']],
   ['Parts', ['search', 'import', 'models']],
+  [
+    'Parts library',
+    ['library', 'library list', 'library find', 'library show', 'library add', 'library use', 'library refresh', 'library verify'],
+  ],
+  ['Datasheets', ['datasheet', 'datasheet fetch', 'datasheet text', 'datasheet add', 'datasheet list', 'datasheet purge']],
   ['Board and traces', ['stackups', 'calc', 'calc trace-width', 'calc impedance', 'calc field', 'calc serpentine']],
-  ['Layout', ['place', 'route', 'tie', 'tune', 'neck', 'fill', 'silk', 'testpoints', 'pinswap', 'layout', 'drc']],
+  ['Layout', ['place', 'route', 'tie', 'tune', 'neck', 'fill', 'silk', 'testpoints', 'pinswap', 'layout', 'fit', 'drc']],
   ['Simulation', ['sim', 'sparam']],
-  ['Output', ['fab', 'export', 'parts']],
+  ['Output', ['fab', 'export', 'parts', 'bom']],
   ['Agents', ['mcp']],
 ];
 

@@ -49,7 +49,7 @@ export const FILES = [
   },
   {
     suffix: '*.sim.toml',
-    body: 'A simulation of the layout or the schematic: FDTD, cascade, channel, PDN, DC drop, thermal or logic.',
+    body: 'A simulation of the layout or the schematic: FDTD, cascade, channel, PDN, DC drop, thermal, logic or circuit.',
     code: 'name = "lna-rf"\nlayout = "lna"\n[frequency]\nstart = "50MHz"\nstop = "6GHz"',
   },
 ];
@@ -93,6 +93,18 @@ export const SIMS = [
     body: 'Conduction through FR4, copper and vias with convection from both faces. Seconds, not minutes.',
   },
   {
+    kind: 'Circuit',
+    guide: 'circuit-simulation',
+    image: 'preamp-clip',
+    body: 'Operating point, AC, transient and noise of the schematic, with op-amps and diodes modelled from their datasheets and checks on gain, swing and distortion.',
+  },
+  {
+    kind: 'DC drop',
+    guide: 'power-and-thermal',
+    image: 'lna-dc',
+    body: 'Every copper layer solved as a resistive sheet: the drop to each load, current density and the busiest vias.',
+  },
+  {
     kind: 'Logic',
     guide: 'logic-simulation',
     image: 'logic-counter',
@@ -108,6 +120,7 @@ export const SIM_KINDS: [string, string][] = [
   ['DC drop', 'power-and-thermal'],
   ['Thermal', 'power-and-thermal'],
   ['Logic', 'logic-simulation'],
+  ['Circuit', 'circuit-simulation'],
 ];
 
 export const FAB_FILES = [

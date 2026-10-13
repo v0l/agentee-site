@@ -35,7 +35,7 @@ const sha256 = (data: string | Uint8Array) => `sha256:${createHash('sha256').upd
 const digest = sha256(SKILL);
 
 const SUMMARY =
-  'Electronics design for coding agents. A design is a directory of plain TOML files (board spec, symbols, footprints, schematics, layouts and simulations) that an agent writes and edits. The `agentee` CLI checks them against the fab, renders them to PNG, solves trace impedance, runs FDTD, cascade, channel, PDN, DC drop, thermal and logic simulations on the GPU, and writes the fab package. A person watches in a live viewer and can edit the layout by hand.';
+  'Electronics design for coding agents. A design is a directory of plain TOML files (board spec, symbols, footprints, schematics, layouts and simulations) that an agent writes and edits. The `agentee` CLI checks them against the fab, renders them to PNG, solves trace impedance, runs FDTD, cascade, channel, PDN, DC drop and thermal simulations on the GPU and logic and circuit simulations of the schematic, and writes the fab package. A person watches in a live viewer and can edit the layout by hand.';
 
 const INSTALL = [
   '```sh',
@@ -87,7 +87,7 @@ function homeMarkdown() {
     '| `*.fp.toml` | a footprint |',
     '| `*.sch.toml` | a schematic: parts, nets, wires |',
     '| `*.pcb.toml` | a layout: placement, tracks, vias, zones |',
-    '| `*.sim.toml` | a simulation: FDTD, cascade, channel, PDN, DC drop, thermal or logic |',
+    '| `*.sim.toml` | a simulation: FDTD, cascade, channel, PDN, DC drop, thermal, logic or circuit |',
   ].join('\n');
 }
 

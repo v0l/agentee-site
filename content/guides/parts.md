@@ -1,5 +1,21 @@
 Every part on a board is two files: a symbol for the schematic and a footprint for the layout, joined by pin number. Import them from KiCad whenever KiCad has the part, and draw them from the datasheet when it does not.
 
+## Start from your library
+
+The parts library is your own set of parts, kept in `~/.config/agentee/library/` and shared by every project: the connectors, regulators and passives you want each design to reuse. Each part holds its symbol, footprint, 3D model, pinned datasheet and last checked stock. For each part a design needs, the steps are find, add, use:
+
+```sh
+agentee library find 3.3V buck --role regulator
+agentee library add S2B-PH-K-S --name JST-PH-2 --role connector \
+    --symbol Connector_Generic:Conn_01x02 \
+    --footprint Connector_JST:JST_PH_S2B-PH-K_1x02_P2.00mm_Horizontal --preferred
+agentee library use JST-PH-2
+```
+
+`find` lists the library parts that match every word. When none does, it searches the distributors you have keys for and lists active parts in stock. `add` copies the symbol, footprint and model in, fetches and pins the datasheet, and records stock and price. `use` copies the files into the project and prints the `agentee edit sch` command that places the part with its `mpn`.
+
+`agentee library verify` checks each part's symbol against its footprint and datasheet, and `refresh` updates stock and price. Once the library holds a role, check warns when a design uses a part from outside it for that role and names the library part to use. A project can add its own parts in `.agentee/library/`.
+
 ## Search
 
 ```sh
@@ -124,6 +140,18 @@ Useful footprint keys:
 ## Every pin needs a pad
 
 Pad nets come from the schematic by number: pin 3 of the symbol is pad 3 of the footprint. Check reports any pin without a pad. A symbol pin named `EP` or numbered `17` for an exposed pad needs that pad number in the footprint too.
+
+## Datasheets
+
+```sh
+agentee datasheet fetch NAME
+agentee datasheet text TMC2209-LA --find VS
+agentee datasheet add XYZ123 ~/Downloads/xyz123.pdf --manufacturer Acme
+```
+
+`fetch` downloads the datasheet of every part in a layout or schematic into a cache in `~/.cache/agentee/datasheets/` that every project shares, and records what it used in `datasheets.toml`. It looks at the part's `datasheet` field, then the symbol's URL, then what each distributor lists for the `mpn`. `text` reads a cached copy back with page numbers, or only the passages that hold a word, so an agent can take a threshold or a pinout from the source instead of from memory. A part behind a login goes in with `add`.
+
+Check warns when a part with an `mpn` has no datasheet anywhere.
 
 ## Part numbers
 
